@@ -15,6 +15,7 @@
 
     let allItems = [];  // raw data from API
     let activeSort = 'recommended';
+    let visibleLimit = 5;
     let activeFilters = {
         search: '',
         types: [],
@@ -27,7 +28,7 @@
     // ============================================================
     // BOOTSTRAP — runs after DOM + config ready
     // ============================================================
-    document.addEventListener('DOMContentLoaded', async () => {
+    async function initListings() {
         const cfg = window.LISTING_CONFIG;
         if (!cfg) return;
 
@@ -35,7 +36,13 @@
         injectSortBar(cfg);
         await fetchAndRender(cfg);
         bindFilterEvents(cfg);
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initListings);
+    } else {
+        initListings();
+    }
 
     // ============================================================
     // FETCH
@@ -51,17 +58,78 @@
             if (!res.ok) throw new Error('Network error');
             allItems = await res.json();
 
-            // Build filter options dynamically from data
-            buildFilterOptions(cfg);
-            // Initial render
-            renderResults(cfg);
+            if (!allItems || allItems.length === 0) {
+                allItems = getDemoData(cfg.category);
+            }
         } catch (err) {
-            console.error('Listing fetch error:', err);
-            container.innerHTML = `
-                <div class="text-center py-16">
-                    <span class="material-symbols-outlined text-[48px] text-gray-300 mb-3">cloud_off</span>
-                    <p class="text-gray-400 text-sm">Could not load listings. Please try again.</p>
-                </div>`;
+            console.error('Listing fetch error, falling back to demo data:', err);
+            allItems = getDemoData(cfg.category);
+        }
+
+        // Build filter options dynamically from data
+        buildFilterOptions(cfg);
+        // Initial render
+        renderResults(cfg);
+    }
+
+    function getDemoData(category) {
+        switch (category) {
+            case 'stays':
+                return [
+                    { id: 1, name: "Grand Taj Palace", location: "Downtown Mumbai", description: "Luxury 5-star hotel with sea views.", price: 8500, rating: 9.2, reviews: 342, badge: "Bestseller", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 2, name: "Sunset Beach Resort", location: "North Goa", description: "Private beach access and pool.", price: 4200, rating: 8.5, reviews: 128, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "Mountain View Cabin", location: "Manali", description: "Cozy retreat in the hills.", price: 2100, rating: 7.8, reviews: 64, badge: "Great Value", image: "https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "City Center Inn", location: "Pune", description: "Affordable stay near the station.", price: 1200, rating: 7.0, reviews: 45, image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 5, name: "Desert Camp Oasis", location: "Jaisalmer", description: "Luxury tents in the sand dunes.", price: 5500, rating: 8.8, reviews: 210, badge: "Unique", image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "Himalayan Retreat", location: "Shimla", description: "Cozy rooms with snow views.", price: 3200, rating: 8.1, reviews: 95, image: "https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            case 'cars':
+                return [
+                    { id: 1, name: "Hyundai Creta", provider: "Zoomcar", location: "Pune Station", dailyRate: 1800, passengers: 5, transmission: "Automatic", type: "SUV", rating: 8.9, reviews: 210, badge: 'Popular', image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 2, name: "Maruti Swift", provider: "Revv", location: "Airport", dailyRate: 1200, passengers: 4, transmission: "Manual", type: "Hatchback", rating: 7.5, reviews: 85, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "Honda City", provider: "Avis", location: "City Center", dailyRate: 2200, passengers: 5, transmission: "Automatic", type: "Sedan", rating: 9.4, reviews: 430, badge: 'Premium', image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "Mahindra Thar", provider: "Zoomcar", location: "North Goa", dailyRate: 3500, passengers: 4, transmission: "Manual", type: "Offroad", rating: 9.0, reviews: 320, badge: 'Adventure', image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 5, name: "Toyota Innova", provider: "Savaari", location: "Mumbai Airport", dailyRate: 2800, passengers: 7, transmission: "Automatic", type: "MUV", rating: 9.1, reviews: 512, badge: 'Family Choice', image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "Tata Nexon", provider: "Revv", location: "Pune", dailyRate: 1600, passengers: 5, transmission: "Automatic", type: "SUV", rating: 8.4, reviews: 145, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            case 'bikes':
+                return [
+                    { id: 1, name: "Royal Enfield Classic 350", type: "Cruiser", description: "Perfect for long highway rides.", features: "2 Helmets Included, Carrier", dailyRate: 800, rating: 9.1, reviews: 312, badge: 'Top Choice', image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 2, name: "Honda Activa 6G", type: "Scooter", description: "Easy and reliable city commuter.", features: "1 Helmet", dailyRate: 400, rating: 8.0, reviews: 150, image: "https://images.unsplash.com/photo-1627834575836-39149bb88ed1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "KTM Duke 200", type: "Sports", description: "Agile performance for enthusiasts.", features: "Full Gear Available", dailyRate: 1100, rating: 8.7, reviews: 92, badge: 'Sporty', image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "Bajaj Avenger 220", type: "Cruiser", description: "Relaxed riding posture.", features: "2 Helmets", dailyRate: 600, rating: 8.2, reviews: 110, image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 5, name: "TVS Jupiter", type: "Scooter", description: "Comfortable family scooter.", features: "1 Helmet, First Aid", dailyRate: 350, rating: 7.8, reviews: 88, image: "https://images.unsplash.com/photo-1627834575836-39149bb88ed1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "Yamaha R15", type: "Sports", description: "Track oriented performance.", features: "Helmet, Gloves", dailyRate: 900, rating: 8.9, reviews: 205, badge: 'Popular', image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            case 'restaurants':
+                return [
+                    { id: 1, name: "Spice Route", cuisine: "Authentic Indian", location: "Connaught Place", description: "Award-winning North Indian dishes.", pricePerPerson: 1200, rating: 9.3, reviews: 450, badge: 'Recommended', image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 2, name: "Ocean Grill", cuisine: "Seafood & Continental", location: "Baga Beach", description: "Fresh catch of the day by the waves.", pricePerPerson: 1800, rating: 8.8, reviews: 215, image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "Cafe Mocha", cuisine: "Cafe & Desserts", location: "Koregaon Park", description: "Great coffee and relaxed outdoor seating.", pricePerPerson: 600, rating: 8.5, reviews: 330, badge: 'Cozy', image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "The Steakhouse", cuisine: "Continental", location: "Bandra West", description: "Premium steaks and fine wines.", pricePerPerson: 2500, rating: 9.5, reviews: 620, badge: 'Premium', image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 5, name: "Punjabi Dhaba", cuisine: "North Indian", location: "Highway 4", description: "Authentic dhaba food with outdoor seating.", pricePerPerson: 400, rating: 8.2, reviews: 180, image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "Sushi Train", cuisine: "Japanese", location: "City Center Mall", description: "Conveyor belt sushi experience.", pricePerPerson: 1500, rating: 8.6, reviews: 290, image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            case 'attractions':
+                return [
+                    { id: 1, name: "Taj Mahal Guided Tour", location: "Agra", duration: "3h 00m", description: "Skip-the-line access to the iconic monument of love.", entryFee: 1500, rating: 9.8, reviews: 2450, badge: 'Must See', image: "https://images.unsplash.com/photo-1564507592224-2fc8c61bb2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 2, name: "Elephanta Caves Trip", location: "Gateway of India", duration: "5h 00m", description: "Ferry ride and guided exploration of ancient caves.", entryFee: 800, rating: 8.4, reviews: 520, image: "https://images.unsplash.com/photo-1627891398124-7bd08a462db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "Desert Safari", location: "Jaisalmer", duration: "6h 30m", description: "Evening dune bashing and cultural campfire dinner.", entryFee: 2500, rating: 9.1, reviews: 340, badge: 'Adventure', image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "Amber Fort Visit", location: "Jaipur", duration: "4h 00m", description: "Explore the majestic hilltop fort.", entryFee: 500, rating: 9.0, reviews: 1200, badge: 'Historic', image: "https://images.unsplash.com/photo-1564507592224-2fc8c61bb2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 5, name: "Kerala Houseboat", location: "Alleppey", duration: "1 Day", description: "Overnight stay on the peaceful backwaters.", entryFee: 6000, rating: 9.5, reviews: 850, badge: 'Popular', image: "https://images.unsplash.com/photo-1627891398124-7bd08a462db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "City Museum", location: "Delhi", duration: "2h 30m", description: "Art and history exhibits.", entryFee: 200, rating: 7.9, reviews: 410, image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            case 'buses':
+                return [
+                    { id: 1, name: "Purple Travels Volvo", route: "CSN → Nashik", departure: "05:30 AM", duration: "5h 00m", type: "Volvo AC", price: 420, rating: 8.7, reviews: 88, badge: 'Comfortable', image: "/images/purple-travels-bus.jpg" },
+                    { id: 2, name: "Neeta Tours", route: "CSN → Pune", departure: "08:00 PM", duration: "10h 30m", type: "Sleeper Non-AC", price: 650, rating: 7.5, reviews: 140, image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 3, name: "VRL Travels", route: "CSN → Mumbai", departure: "10:30 PM", duration: "12h 00m", type: "Volvo Multi-Axle", price: 1100, rating: 9.0, reviews: 520, badge: 'Premium', image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 4, name: "Konduskar Travels", route: "CSN → Kolhapur", departure: "07:00 PM", duration: "14h 00m", type: "AC Sleeper", price: 1250, rating: 8.5, reviews: 310, image: "/images/purple-travels-bus.jpg" },
+                    { id: 5, name: "Prasanna Purple", route: "CSN → Aurangabad", departure: "06:00 AM", duration: "3h 30m", type: "Seater Non-AC", price: 300, rating: 8.1, reviews: 195, image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+                    { id: 6, name: "Shivneri (MSRTC)", route: "CSN → Pune", departure: "Hourly", duration: "8h 00m", type: "AC Seater", price: 750, rating: 8.8, reviews: 1450, badge: 'Reliable', image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+                ];
+            default:
+                return [];
         }
     }
 
@@ -146,6 +214,12 @@
         return (map[category] || 'price');
     }
 
+    // Expose load more globally so the button can call it
+    window.loadMoreListings = function () {
+        visibleLimit += 5;
+        renderResults(window.LISTING_CONFIG);
+    };
+
     function renderResults(cfg) {
         const container = document.getElementById(cfg.containerId);
         if (!container) return;
@@ -167,12 +241,36 @@
             return;
         }
 
-        container.innerHTML = items.map(item => renderCard(item, cfg.category)).join('');
+        // Slice items based on visibleLimit
+        const visibleItems = items.slice(0, visibleLimit);
+
+        let html = visibleItems.map(item => renderCard(item, cfg.category)).join('');
+
+        // Add Load More button if there are more items to show
+        if (items.length > visibleLimit) {
+            html += `
+                <div class="text-center mt-8">
+                    <button onclick="window.loadMoreListings()" class="bg-primary/10 text-primary font-bold py-3 px-8 rounded-lg hover:bg-primary hover:text-white transition-colors duration-300 shadow-sm">
+                        Load More Results
+                    </button>
+                    <p class="text-xs text-text-muted mt-2">Showing ${visibleLimit} of ${items.length} listings</p>
+                </div>
+            `;
+        } else if (items.length > 5) {
+            html += `
+                <div class="text-center mt-8 text-sm text-text-muted">
+                    End of results (Showing all ${items.length} listings)
+                </div>
+            `;
+        }
+
+        container.innerHTML = html;
     }
 
     window.resetFilters = function () {
         activeFilters = { search: '', types: [], minRating: 0, minPrice: 0, maxPrice: Infinity, popularOnly: false };
         activeSort = 'recommended';
+        visibleLimit = 5; // Reset limit on filter reset
 
         // Reset UI
         document.querySelectorAll('.filter-type-cb').forEach(cb => cb.checked = false);
@@ -457,273 +555,87 @@
     // CARD RENDERERS
     // ============================================================
     function renderCard(item, category) {
-        switch (category) {
-            case 'stays': return stayCard(item);
-            case 'cars': return carCard(item);
-            case 'bikes': return bikeCard(item);
-            case 'restaurants': return restaurantCard(item);
-            case 'attractions': return attractionCard(item);
-            case 'buses': return busCard(item);
-            default: return '';
+        const getDetailUrl = (cat) => {
+            const m = {
+                stays: 'stay-detail.html',
+                cars: 'car-rental-detail.html',
+                bikes: 'bike-rental-detail.html',
+                restaurants: 'restaurant-detail.html',
+                attractions: 'attraction-detail.html',
+                buses: 'bus-detail.html'
+            };
+            return m[cat] ? `${m[cat]}?id=${item.id}` : '#';
+        };
+
+        const pVal = item.price || item.dailyRate || item.pricePerPerson || item.entryFee || 0;
+        const priceStr = pVal > 0 ? `₹${Number(pVal).toLocaleString('en-IN')}` : 'Free';
+        const perUnit = category === 'stays' ? 'night' : (category === 'cars' || category === 'bikes') ? 'day' : 'person';
+
+        // Define lines dynamically
+        let lines = [];
+        let tag = '';
+
+        if (category === 'stays') {
+            if (item.location) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>`);
+            if (item.description) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">info</span><span class="line-clamp-1">${item.description}</span></p>`);
+            lines.push(`<p class="text-xs text-text-muted flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px]">check_circle</span>Free Cancellation</p>`);
+            tag = 'Hotel Stay';
+        } else if (category === 'cars') {
+            if (item.provider) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">directions_car</span>By ${item.provider}</p>`);
+            if (item.location) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>`);
+            lines.push(`<p class="text-xs text-text-muted flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px]">group</span>${item.passengers || 4} seats • ${item.transmission || 'Auto'}</p>`);
+            tag = item.type || 'Standard';
+        } else if (category === 'bikes') {
+            if (item.type) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">two_wheeler</span>${item.type}</p>`);
+            if (item.description) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">info</span><span class="line-clamp-1">${item.description}</span></p>`);
+            if (item.features) lines.push(`<p class="text-xs text-text-muted flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px]">build</span>${item.features.split(',')[0]}</p>`);
+            tag = 'Bike Rental';
+        } else if (category === 'restaurants') {
+            if (item.cuisine) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">restaurant_menu</span>${item.cuisine}</p>`);
+            if (item.location) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>`);
+            if (item.description) lines.push(`<p class="text-xs text-text-muted mt-0.5 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">info</span><span class="line-clamp-1">${item.description}</span></p>`);
+            tag = 'Dining';
+        } else if (category === 'attractions') {
+            if (item.location) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>`);
+            if (item.duration) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">schedule</span>Duration: ${item.duration}</p>`);
+            if (item.description) lines.push(`<p class="text-xs text-text-muted mt-0.5 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">info</span><span class="line-clamp-1">${item.description}</span></p>`);
+            tag = 'Tourist Spot';
+        } else if (category === 'buses') {
+            if (item.route) lines.push(`<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">route</span>${item.route}</p>`);
+            if (item.departure) lines.push(`<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">schedule</span>Departure: ${item.departure}</p>`);
+            if (item.duration) lines.push(`<p class="text-xs text-text-muted flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px]">timer</span>Duration: ${item.duration}</p>`);
+            tag = item.type || 'Volvo AC';
         }
-    }
 
-    function contactButtons() {
+        const tagHtml = tag ? `<span class="mt-1 inline-block bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">${tag}</span>` : '';
+        const titleName = item.name || item.route || 'Listing';
+
+        const Wrapper = category === 'restaurants' ? 'div' : 'a';
+        const hrefProp = Wrapper === 'a' ? `href="${getDetailUrl(category)}"` : '';
+
         return `
-        <div class="flex gap-2 mt-3">
-            <a href="tel:${PHONE}"
-                class="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white font-bold px-3 py-2 text-sm rounded-lg hover:bg-primary-hover transition-colors shadow-sm">
-                <span class="material-symbols-outlined text-[18px]">call</span> Call
-            </a>
-            <a href="${WHATSAPP_URL}" target="_blank" rel="noopener"
-                class="flex-1 flex items-center justify-center gap-1.5 bg-[#25D366] text-white font-bold px-3 py-2 text-sm rounded-lg hover:bg-[#128C7E] transition-colors shadow-sm">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-4 h-4 brightness-0 invert" alt="wa"/>
-                WhatsApp
-            </a>
-        </div>`;
-    }
-
-    function ratingBadge(item) {
-        const r = parseFloat(item.rating) || 0;
-        const label = r >= 9 ? 'Superb' : r >= 8 ? 'Very Good' : r >= 7 ? 'Good' : r >= 5 ? 'Pleasant' : r > 0 ? 'New' : '—';
-        return r > 0 ? `
-            <div class="flex items-center gap-1.5">
-                <div class="text-right">
-                    <p class="text-sm font-bold text-text-main">${label}</p>
-                    <p class="text-[11px] text-text-muted">${item.reviews ? item.reviews + ' reviews' : 'reviews'}</p>
-                </div>
-                <div class="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-sm">${r}</div>
-            </div>` : '';
-    }
-
-    function starIcons(rating) {
-        const stars = Math.round(parseFloat(rating) || 0);
-        return Array(5).fill(0).map((_, i) =>
-            `<span class="material-symbols-outlined text-[15px] ${i < stars ? 'text-yellow-400' : 'text-gray-300'}"
-              style="${i < stars ? 'font-variation-settings:\'FILL\' 1' : ''}">star</span>`
-        ).join('');
-    }
-
-    function badgeHtml(item) {
-        return item.badge ? `<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${item.badge}</span>` : '';
-    }
-
-    // ---- Stay Card ----
-    function stayCard(item) {
-        return `
-        <a href="stay-detail.html?id=${item.id}"
-            class="bg-white border border-gray-200 rounded-xl shadow-soft p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow block group"
-            data-id="${item.id}" data-title="${item.name}" data-price="${item.price || 0}" data-category="stays">
-            <div class="w-full md:w-64 h-48 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-gray-100">
-                <img alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    src="${item.image || ''}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>
-                <button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur flex items-center justify-center hover:bg-white transition-colors shadow-sm text-gray-400 hover:text-red-500 z-10"
-                    onclick="event.preventDefault()">
-                    <span class="material-symbols-outlined text-[18px]">favorite</span>
-                </button>
-            </div>
-            <div class="flex-1 flex flex-col">
-                <div class="flex flex-col md:flex-row justify-between items-start gap-2 mb-2">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1 flex-wrap">
-                            <h3 class="text-lg font-bold text-text-main leading-tight">${item.name}</h3>
-                            <div class="flex">${starIcons(item.rating)}</div>
-                        </div>
-                        <p class="text-sm text-primary font-bold mb-1">${item.location || ''}</p>
-                        <p class="text-xs text-text-muted line-clamp-2">${item.description || ''}</p>
-                    </div>
-                    <div class="flex flex-col items-end gap-1 shrink-0">
-                        ${ratingBadge(item)}
-                        ${badgeHtml(item)}
-                    </div>
-                </div>
-                <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row justify-between items-end gap-3">
-                    <div class="flex items-center gap-1.5 text-xs text-green-700 font-bold">
-                        <span class="material-symbols-outlined text-[15px]">check_circle</span> Free Cancellation
-                    </div>
-                    <div class="flex flex-col items-end gap-1">
-                        ${item.price ? `<p class="text-xs text-text-muted">from <span class="text-lg font-black text-text-main">₹${Number(item.price).toLocaleString('en-IN')}</span> / night</p>` : ''}
-                        ${contactButtons()}
-                    </div>
-                </div>
-            </div>
-        </a>`;
-    }
-
-    // ---- Car Card ----
-    function carCard(item) {
-        const price = item.dailyRate || item.price;
-        return `
-        <a href="car-rental-detail.html?id=${item.id}"
-            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-6 hover:shadow-card transition-shadow block group"
-            data-id="${item.id}" data-title="${item.name}" data-price="${price || 0}" data-category="cars">
-            <div class="md:w-64 shrink-0 flex flex-col gap-2">
-                <div class="relative aspect-[16/10] rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
-                    <img alt="${item.name}" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                        src="${item.image || ''}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>
-                    ${badgeHtml(item) ? `<div class="absolute top-2 left-2">${badgeHtml(item)}</div>` : ''}
-                </div>
-                <div class="flex items-center justify-between px-1">
-                    ${ratingBadge(item)}
-                </div>
-            </div>
-            <div class="flex-grow flex flex-col">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold text-text-main mb-1">${item.name}</h3>
-                        ${item.location ? `<p class="text-xs text-text-muted flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">location_on</span>${item.location}</p>` : ''}
-                        ${item.provider ? `<p class="text-xs text-primary font-semibold mt-1">By ${item.provider}</p>` : ''}
-                    </div>
-                    <div class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-1 rounded-lg shrink-0">${item.type || 'Standard'}</div>
-                </div>
-                <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-2">
-                    <div class="flex items-center gap-1.5 text-sm text-text-main">
-                        <span class="material-symbols-outlined text-[16px] text-text-muted">person</span>${item.passengers || 4} seats
-                    </div>
-                    <div class="flex items-center gap-1.5 text-sm text-text-main">
-                        <span class="material-symbols-outlined text-[16px] text-text-muted">work</span>2 bags
-                    </div>
-                    <div class="flex items-center gap-1.5 text-sm text-text-main">
-                        <span class="material-symbols-outlined text-[16px] text-text-muted">settings</span>${item.transmission || 'Automatic'}
-                    </div>
-                    <div class="flex items-center gap-1.5 text-sm text-text-main">
-                        <span class="material-symbols-outlined text-[16px] text-text-muted">ac_unit</span>A/C
-                    </div>
-                </div>
-                <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                    ${price ? `<p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">₹${Number(price).toLocaleString('en-IN')}</span> / day</p>` : '<div></div>'}
-                    ${contactButtons()}
-                </div>
-            </div>
-        </a>`;
-    }
-
-    // ---- Bike Card ----
-    function bikeCard(item) {
-        const price = item.dailyRate || item.price;
-        return `
-        <a href="bike-rental-detail.html?id=${item.id}"
-            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-6 hover:shadow-card transition-shadow block group"
-            data-id="${item.id}" data-title="${item.name}" data-price="${price || 0}" data-category="bikes">
-            <div class="md:w-56 shrink-0">
-                <div class="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-50 flex items-center justify-center">
-                    <img alt="${item.name}" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                        src="${item.image || ''}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>
-                    ${badgeHtml(item) ? `<div class="absolute top-2 left-2">${badgeHtml(item)}</div>` : ''}
-                </div>
-            </div>
-            <div class="flex-grow flex flex-col">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold text-text-main mb-1">${item.name}</h3>
-                        ${item.type ? `<span class="bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-0.5 rounded-full">${item.type}</span>` : ''}
-                        ${item.description ? `<p class="text-xs text-text-muted mt-2 line-clamp-2">${item.description}</p>` : ''}
-                    </div>
-                    ${ratingBadge(item)}
-                </div>
-                ${item.features ? `
-                <div class="flex flex-wrap gap-1.5 mt-2">
-                    ${item.features.split(',').map(f => `<span class="bg-gray-100 text-text-muted text-[11px] px-2 py-0.5 rounded-full">${f.trim()}</span>`).join('')}
-                </div>` : ''}
-                <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                    ${price ? `<p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">₹${Number(price).toLocaleString('en-IN')}</span> / day</p>` : '<div></div>'}
-                    ${contactButtons()}
-                </div>
-            </div>
-        </a>`;
-    }
-
-    // ---- Restaurant Card ----
-    function restaurantCard(item) {
-        return `
-        <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group"
-            data-id="${item.id}" data-title="${item.name}" data-price="${item.pricePerPerson || 0}" data-category="restaurants">
-            <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-gray-100">
-                <img alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    src="${item.image || ''}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>
-                ${badgeHtml(item) ? `<div class="absolute top-2 left-2">${badgeHtml(item)}</div>` : ''}
-            </div>
-            <div class="flex-1 flex flex-col">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold text-text-main mb-0.5">${item.name}</h3>
-                        <div class="flex mb-1">${starIcons(item.rating)}</div>
-                        ${item.cuisine ? `<p class="text-xs text-primary font-semibold">${item.cuisine}</p>` : ''}
-                        ${item.location ? `<p class="text-xs text-text-muted flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>` : ''}
-                        ${item.description ? `<p class="text-xs text-text-muted mt-2 line-clamp-2">${item.description}</p>` : ''}
-                    </div>
-                    ${ratingBadge(item)}
-                </div>
-                <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                    ${item.pricePerPerson ? `<p class="text-xs text-text-muted">~<span class="text-lg font-black text-text-main">₹${Number(item.pricePerPerson).toLocaleString('en-IN')}</span> / person</p>` : '<div></div>'}
-                    ${contactButtons()}
-                </div>
-            </div>
-        </div>`;
-    }
-
-    // ---- Attraction Card ----
-    function attractionCard(item) {
-        return `
-        <a href="attraction-detail.html?id=${item.id}"
-            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow block group"
-            data-id="${item.id}" data-title="${item.name}" data-price="${item.entryFee || 0}" data-category="attractions">
-            <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-gray-100">
-                <img alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    src="${item.image || ''}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>
-                ${badgeHtml(item) ? `<div class="absolute top-2 left-2">${badgeHtml(item)}</div>` : ''}
-            </div>
-            <div class="flex-1 flex flex-col">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold text-text-main mb-0.5">${item.name}</h3>
-                        <div class="flex mb-1">${starIcons(item.rating)}</div>
-                        ${item.location ? `<p class="text-xs text-text-muted flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">location_on</span>${item.location}</p>` : ''}
-                        ${item.duration ? `<p class="text-xs text-text-muted flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[13px]">schedule</span>${item.duration}</p>` : ''}
-                        ${item.description ? `<p class="text-xs text-text-muted mt-2 line-clamp-2">${item.description}</p>` : ''}
-                    </div>
-                    ${ratingBadge(item)}
-                </div>
-                <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                    <p class="text-xs text-text-muted">
-                        Entry: <span class="text-lg font-black text-text-main">${item.entryFee > 0 ? '₹' + Number(item.entryFee).toLocaleString('en-IN') : 'Free'}</span>
-                    </p>
-                    ${contactButtons()}
-                </div>
-            </div>
-        </a>`;
-    }
-
-    // ---- Bus Card ----
-    function busCard(item) {
-        return `
-        <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group"
-            data-id="${item.id}" data-title="${item.name || item.route}" data-price="${item.price || 0}" data-category="buses">
+        <${Wrapper} ${hrefProp}
+            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group block"
+            data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}">
             <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-primary/5 flex items-center justify-center">
-                ${item.image
-                ? `<img alt="${item.name || item.route}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        src="${item.image}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>`
-                : `<span class="material-symbols-outlined text-[64px] text-primary/30">directions_bus</span>`
-            }
-                ${badgeHtml(item) ? `<div class="absolute top-2 left-2">${badgeHtml(item)}</div>` : ''}
+                ${item.image ? `<img alt="${titleName}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${item.image}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>` : `<span class="material-symbols-outlined text-[64px] text-primary/30">image</span>`}
+                ${item.badge ? `<div class="absolute top-2 left-2"><span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${item.badge}</span></div>` : ''}
             </div>
             <div class="flex-1 flex flex-col">
                 <div class="flex justify-between items-start mb-2">
                     <div>
-                        <h3 class="text-lg font-bold text-text-main mb-0.5">${item.name || item.route || 'Bus Route'}</h3>
-                        ${item.route ? `<p class="text-xs text-primary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">route</span>${item.route}</p>` : ''}
-                        ${item.departure ? `<p class="text-xs text-text-muted mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">schedule</span>Departure: ${item.departure}</p>` : ''}
-                        ${item.duration ? `<p class="text-xs text-text-muted flex items-center gap-1 mt-0.5"><span class="material-symbols-outlined text-[13px]">timer</span>Duration: ${item.duration}</p>` : ''}
-                        ${item.type ? `<span class="mt-1 inline-block bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">${item.type}</span>` : ''}
+                        <h3 class="text-lg font-bold text-text-main mb-0.5">${titleName}</h3>
+                        ${lines.join('\n                        ')}
+                        ${tagHtml}
                     </div>
                     ${ratingBadge(item)}
                 </div>
                 <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-                    ${item.price ? `<p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">₹${Number(item.price).toLocaleString('en-IN')}</span> / person</p>` : '<div></div>'}
+                    <p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">${priceStr}</span> / ${perUnit}</p>
                     ${contactButtons()}
                 </div>
             </div>
-        </div>`;
+        </${Wrapper}>`;
     }
 
 })();

@@ -64,7 +64,50 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSearch();
     initializeBookingButtons();
     initializeMobileInteractions();
+    initializeGlobalTopBar();
 });
+
+// ==========================================
+// GLOBAL DYNAMIC CONTENT
+// ==========================================
+async function initializeGlobalTopBar() {
+    try {
+        // Cache this lightly or just fetch. Since it's a small JSON, fetching is fine.
+        const res = await fetch('/api/homepage-content');
+        if (!res.ok) return;
+        const hpData = await res.json();
+        const hero = hpData.hero;
+
+        if (!hero) return;
+
+        // Contact Bar
+        const phoneLink = document.getElementById('hp-phone-link');
+        const phoneText = document.getElementById('hp-phone-text');
+        if (phoneLink && hero.phone) phoneLink.href = `tel:${hero.phone.replace(/\\s+/g, '')}`;
+        if (phoneText && hero.phone) phoneText.textContent = hero.phone;
+
+        const waLink = document.getElementById('hp-wa-link');
+        if (waLink && hero.whatsapp) waLink.href = `https://wa.me/${hero.whatsapp.replace(/\\s+/g, '')}`;
+
+        // Save globally for other scripts (like listings.js)
+        window.dynamicContact = {
+            phone: hero.phone || '+918600968888',
+            whatsapp: hero.whatsapp ? hero.whatsapp.replace(/\\D/g, '') : '918600968888'
+        };
+
+        // Marquee
+        const marquee = document.getElementById('hp-marquee');
+        if (marquee && hero.marqueeItems && hero.marqueeItems.length > 0) {
+            // Function esc() might not exist globally yet, so duplicate a small esc here
+            const esc = (str) => String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            const itemsHtml = hero.marqueeItems.map(item => `<span class="mx-4">${esc(item)}</span>`).join('');
+            const hiddenHtml = hero.marqueeItems.map(item => `<span class="mx-4" aria-hidden="true">${esc(item)}</span>`).join('');
+            marquee.innerHTML = itemsHtml + hiddenHtml;
+        }
+    } catch (err) {
+        console.warn('Failed to load global top bar:', err);
+    }
+}
 
 // ==========================================
 // MOBILE INTERACTIONS
