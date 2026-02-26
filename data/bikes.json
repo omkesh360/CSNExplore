@@ -1,0 +1,67 @@
+[
+    {
+        "id": "1",
+        "name": "Bajaj Pulsar 220F",
+        "type": "Sports Bike",
+        "location": "Station Road, CSN",
+        "description": "High-performance sports bike for thrilling rides across the city and highways.",
+        "dailyRate": 600,
+        "rating": 8.6,
+        "reviews": 134,
+        "badge": "Popular",
+        "features": "Disc Brakes, Alloy Wheels, Digital Meter",
+        "image": "/images/bajaj-pulsar.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Honda Activa 6G",
+        "type": "Scooter",
+        "location": "CIDCO, CSN",
+        "description": "India's most trusted scooter. Easy to ride, fuel-efficient, and perfect for daily city commuting.",
+        "dailyRate": 350,
+        "rating": 8.9,
+        "reviews": 210,
+        "badge": "Bestseller",
+        "features": "Front Disc Brake, Mobile Charging, LED",
+        "image": "/images/honda-activa.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Royal Enfield Classic 350",
+        "type": "Cruiser",
+        "location": "Padegaon, CSN",
+        "description": "Iconic cruiser for long-distance rides with timeless Royal Enfield retro style.",
+        "dailyRate": 900,
+        "rating": 9.0,
+        "reviews": 88,
+        "badge": "Flagship",
+        "features": "Classic Design, Powerful Engine, Trip Meter",
+        "image": "/images/royal-enfield.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Revolt RV400 (Electric)",
+        "type": "Electric Bike",
+        "location": "Garkheda, CSN",
+        "description": "Zero-emission electric bike. Eco-friendly, quiet, and perfect for city travel.",
+        "dailyRate": 500,
+        "rating": 8.4,
+        "reviews": 62,
+        "badge": "Eco-Friendly",
+        "features": "AI Enabled, 4 Riding Modes, 150km Range",
+        "image": "/images/revolt-rv400.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Electric City Bike",
+        "type": "Electric Bike",
+        "location": "Waluj, CSN",
+        "description": "Smooth and silent e-bike ideal for short city trips with zero carbon footprint.",
+        "dailyRate": 450,
+        "rating": 8.1,
+        "reviews": 45,
+        "badge": "",
+        "features": "Pedal Assist, Long Range Battery",
+        "image": "/images/electric-bike.jpg"
+    }
+]

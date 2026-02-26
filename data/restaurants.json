@@ -1,0 +1,67 @@
+[
+    {
+        "id": "1",
+        "name": "Naivedya Thali Restaurant",
+        "type": "Traditional",
+        "cuisine": "Maharashtrian",
+        "location": "Nirala Bazaar, Chhatrapati Sambhajinagar",
+        "description": "The most authentic Maharashtrian Thali in the city. Unlimited servings of traditional dishes – a cultural experience on a plate.",
+        "pricePerPerson": 350,
+        "rating": 9.0,
+        "reviews": 287,
+        "badge": "Bestseller",
+        "image": "/images/restaurant-thali.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Masala Dosa House",
+        "type": "South Indian",
+        "cuisine": "South Indian",
+        "location": "Samarth Nagar, CSN",
+        "description": "Famous for crispy masala dosas, idli, vada, and filter coffee. Authentic South Indian flavors.",
+        "pricePerPerson": 200,
+        "rating": 8.7,
+        "reviews": 195,
+        "badge": "Popular",
+        "image": "/images/masala-dosa.jpg"
+    },
+    {
+        "id": "3",
+        "name": "The Grill Room",
+        "type": "North Indian",
+        "cuisine": "North Indian, Mughlai",
+        "location": "Cantonment Area, CSN",
+        "description": "Indulge in rich Mughlai preparations, kebabs, biryanis, and North Indian curries in a royal ambiance.",
+        "pricePerPerson": 600,
+        "rating": 8.5,
+        "reviews": 156,
+        "badge": "",
+        "image": "/images/north-indian-thali.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Chaat Street Corner",
+        "type": "Street Food",
+        "cuisine": "Street Food",
+        "location": "Gulmandi, CSN",
+        "description": "Vibrant street food stall serving the best Pani Puri, Bhel, Dahi Puri, and Sev Puri in town.",
+        "pricePerPerson": 80,
+        "rating": 8.8,
+        "reviews": 412,
+        "badge": "Local Favourite",
+        "image": "/images/pani-puri.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Renaissance Dine",
+        "type": "Multi-cuisine",
+        "cuisine": "Multi-cuisine, Continental",
+        "location": "CIDCO, Chhatrapati Sambhajinagar",
+        "description": "Fine dining with a wide variety of global and local cuisines. Premium experience with garden view seating.",
+        "pricePerPerson": 900,
+        "rating": 9.1,
+        "reviews": 103,
+        "badge": "Fine Dining",
+        "image": "/images/hotel-renaissance.jpg"
+    }
+]

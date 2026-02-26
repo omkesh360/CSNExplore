@@ -1,0 +1,62 @@
+[
+    {
+        "id": "1",
+        "name": "Mahindra Scorpio N",
+        "type": "SUV",
+        "location": "Chhatrapati Sambhajinagar",
+        "provider": "CSN Wheels",
+        "description": "7-seater powerful SUV, perfect for group trips and outstation travel. Self-drive or with driver.",
+        "dailyRate": 3500,
+        "passengers": 7,
+        "transmission": "Manual",
+        "rating": 8.8,
+        "reviews": 76,
+        "badge": "Popular",
+        "image": "/images/mahindra-scorpio.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Honda City ZX",
+        "type": "Sedan",
+        "location": "Chhatrapati Sambhajinagar",
+        "provider": "City Rides",
+        "description": "Elegant sedan for business or leisure travel. Comfortable and fuel-efficient.",
+        "dailyRate": 2200,
+        "passengers": 5,
+        "transmission": "Automatic",
+        "rating": 8.5,
+        "reviews": 54,
+        "badge": "",
+        "image": "/images/honda-city.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Suzuki Swift Dzire",
+        "type": "Sedan",
+        "location": "Chhatrapati Sambhajinagar",
+        "provider": "SwiftGo Rentals",
+        "description": "Compact, comfortable sedan great for city commutes and short outstation trips.",
+        "dailyRate": 1800,
+        "passengers": 5,
+        "transmission": "Manual",
+        "rating": 8.1,
+        "reviews": 89,
+        "badge": "",
+        "image": "/images/suzuki-swift.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Toyota Fortuner",
+        "type": "Premium SUV",
+        "location": "Chhatrapati Sambhajinagar",
+        "provider": "Luxury Drive",
+        "description": "Top-of-the-line premium SUV with full comfort for long-distance and luxury travel.",
+        "dailyRate": 6500,
+        "passengers": 7,
+        "transmission": "Automatic",
+        "rating": 9.2,
+        "reviews": 43,
+        "badge": "Luxury",
+        "image": "/images/toyota-fortuner.jpg"
+    }
+]

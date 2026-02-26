@@ -1,0 +1,19 @@
+{
+  "name": "travelhub/php-backend",
+  "description": "TravelHub PHP Backend API",
+  "type": "project",
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "files": [
+      "php/config.php",
+      "php/jwt.php",
+      "php/rate-limiter.php"
+    ]
+  },
+  "scripts": {
+    "serve": "php -S localhost:8000",
+    "test": "php php/test.php"
+  }
+}

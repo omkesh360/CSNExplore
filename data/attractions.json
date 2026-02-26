@@ -1,0 +1,80 @@
+[
+    {
+        "id": "1",
+        "name": "Ajanta Caves",
+        "type": "UNESCO Heritage",
+        "location": "Ajanta, Maharashtra (105 km from CSN)",
+        "description": "Ancient Buddhist rock-cut cave monuments dating back to the 2nd century BCE. Famous for spectacular murals and sculptures. A UNESCO World Heritage Site.",
+        "entryFee": 40,
+        "duration": "3-4 hours",
+        "rating": 9.5,
+        "reviews": 1820,
+        "badge": "Must Visit",
+        "image": "/images/ajanta.png"
+    },
+    {
+        "id": "2",
+        "name": "Ellora Caves",
+        "type": "UNESCO Heritage",
+        "location": "Ellora, Maharashtra (30 km from CSN)",
+        "description": "A UNESCO World Heritage Site featuring 34 rock-cut caves representing Hindu, Buddhist, and Jain monuments from 600–1000 CE.",
+        "entryFee": 40,
+        "duration": "3-5 hours",
+        "rating": 9.4,
+        "reviews": 2100,
+        "badge": "Must Visit",
+        "image": "/images/ellora.png"
+    },
+    {
+        "id": "3",
+        "name": "Bibi Ka Maqbara",
+        "type": "Historical Monument",
+        "location": "Begumpura, Chhatrapati Sambhajinagar",
+        "description": "Known as the Taj of the Deccan, this beautiful 17th-century Mughal mausoleum was built by Prince Azam Shah in memory of his mother.",
+        "entryFee": 25,
+        "duration": "1-2 hours",
+        "rating": 9.0,
+        "reviews": 945,
+        "badge": "Iconic",
+        "image": "/images/bibi.png"
+    },
+    {
+        "id": "4",
+        "name": "Daulatabad Fort",
+        "type": "Historical Fort",
+        "location": "Daulatabad, 15 km from CSN",
+        "description": "One of the strongest forts in India's history, built on a conical hill with a 180-degree moat and labyrinthine passages.",
+        "entryFee": 25,
+        "duration": "2-3 hours",
+        "rating": 8.8,
+        "reviews": 678,
+        "badge": "",
+        "image": "/images/daulatabad.png"
+    },
+    {
+        "id": "5",
+        "name": "Panchakki (Water Mill)",
+        "type": "Heritage Site",
+        "location": "Dargah area, Chhatrapati Sambhajinagar",
+        "description": "A scenic 17th-century water mill powered by an underground stream. Part of the Sufi shrine complex, surrounded by beautiful gardens and a serene lake.",
+        "entryFee": 0,
+        "duration": "1 hour",
+        "rating": 8.5,
+        "reviews": 534,
+        "badge": "Free Entry",
+        "image": "/images/panchakki.jpg"
+    },
+    {
+        "id": "6",
+        "name": "Grishneshwar Temple",
+        "type": "Religious Site",
+        "location": "Khuldabad, 30 km from CSN",
+        "description": "One of the 12 revered Jyotirlinga shrines of Lord Shiva in India. An important pilgrimage destination with ancient architecture.",
+        "entryFee": 0,
+        "duration": "1-2 hours",
+        "rating": 9.2,
+        "reviews": 1100,
+        "badge": "Pilgrimage",
+        "image": "/images/grishneshwar-temple.jpg"
+    }
+]

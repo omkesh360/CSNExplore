@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Attractions Search Results - TravelHub</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "accent": "#FC7D05",
+                        "secondary": "#FC7D05",
+                        "background-dark": "#0f1723",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "sans": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
+                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+    <link href="css/main.css" rel="stylesheet" />
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col page-fade-in overflow-x-hidden">
+    <!-- Smooth Preloader -->
+    <div id="preloader"
+        class="fixed inset-0 z-[9999] bg-[#0f1723] flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div class="flex flex-col items-center gap-8">
+            <img src="/images/travelhub.png" alt="TravelHub"
+                class="w-[246px] md:w-[374px] object-contain animate-fade-in">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Preloader script -->
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 1000);
+            }, 1000);
+        });
+    </script>
+
+    <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
+        <!-- Contact Top Bar -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1.5">
+            <div
+                class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="tel:+918600968888" class="flex items-center gap-1 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">call</span>
+                        +91 86009 68888
+                    </a>
+                </div>
+
+                <!-- Flash Ads Ticker -->
+                <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
+                    <div class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
+                        <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                        <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                        <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 shrink-0">
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-1 hover:text-white transition-colors ml-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
+                <!-- Logo Left Side -->
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                </a>
+
+                <!-- Navigation and Auth Right Side -->
+                <div class="flex items-center gap-4 overflow-hidden">
+                    <nav class="hidden lg:flex items-center gap-1">
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="stays.html">
+                            <span class="material-symbols-outlined text-[20px]">bed</span>
+                            <span class="text-[13px] font-medium">Stays</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="car-rentals.html">
+                            <span class="material-symbols-outlined text-[20px]">directions_car</span>
+                            <span class="text-[13px] font-medium">Car Rentals</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="bike-rentals.html">
+                            <span class="material-symbols-outlined text-[20px]">directions_bike</span>
+                            <span class="text-[13px] font-medium">Bike Rentals</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="restaurant.html">
+                            <span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+                            <span class="text-[13px] font-medium">Restaurants</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white bg-white/10 transition-colors whitespace-nowrap text-white"
+                            href="attraction.html">
+                            <span class="material-symbols-outlined text-[20px]">local_activity</span>
+                            <span class="text-[13px] font-medium">Attractions</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="bus.html">
+                            <span class="material-symbols-outlined text-[20px]">directions_bus</span>
+                            <span class="text-[13px] font-medium">Buses</span>
+                        </a>
+                    </nav>
+
+                    <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
+                        <div id="auth-buttons" class="flex gap-2">
+                            <a href="register.html"
+                                class="text-white text-[13px] font-bold px-3 py-1.5 rounded hover:bg-white/10 transition-colors hidden sm:block">Register</a>
+                            <a href="login.html"
+                                class="bg-white text-primary text-[13px] font-bold px-4 py-1.5 rounded hover:bg-gray-100 transition-colors shadow-sm">Sign
+                                in</a>
+                        </div>
+                        <div id="user-profile" class="hidden">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0 overflow-hidden"
+                                    id="user-avatar-circle">
+                                    <span class="material-symbols-outlined text-sm" id="user-avatar-icon">person</span>
+                                </div>
+                                <span id="user-display-name"
+                                    class="text-white text-[13px] font-semibold hidden sm:block max-w-[100px] truncate"></span>
+                                <button id="logout-btn"
+                                    class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-[12px] font-bold px-3 py-1.5 rounded-full transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]">logout</span>
+                                    <span class="hidden sm:inline">Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant_menu</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 text-primary transition-colors font-medium border border-blue-100"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px]">local_activity</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
+                        <span class="text-sm">WhatsApp</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
+        </div>
+    </header>
+    <div class="listing-hero text-white">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <h1 class="text-4xl md:text-5xl font-black leading-tight mb-2 tracking-tight">Experience the Majesty
+                of<br />Chhatrapati Sambhajinagar.</h1>
+            <p class="text-lg md:text-xl font-normal text-white/90 mb-10">Discover the heritage, culture, and flavors of
+                Maharashtra's historic capital.</p>
+        </div>
+        <div class="listing-hero-search">
+            <div class="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl shadow-2xl border border-white/20">
+                <div
+                    class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
+                    <div class="flex-[1.5] relative group bg-white md:bg-transparent rounded-t-xl md:rounded-none">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-primary/60 text-[20px]">search</span>
+                        </div>
+                        <input
+                            class="w-full pl-12 pr-4 h-[56px] rounded-t-xl md:rounded-l-xl md:rounded-tr-none border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main placeholder-text-muted font-medium bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-base"
+                            placeholder="Where are you going?" type="text" value="Chhatrapati Sambhajinagar, India" />
+                    </div>
+                    <div
+                        class="flex-1 relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent rounded-b-xl lg:rounded-none mb-2 md:mb-0">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-primary/60 text-[20px]">calendar_month</span>
+                        </div>
+                        <div class="absolute inset-y-0 left-12 flex flex-col justify-center pointer-events-none">
+                            <span
+                                class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5">Dates</span>
+                        </div>
+                        <input
+                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-b-xl lg:rounded-none border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
+                            type="date" id="search-date" />
+                    </div>
+                    <button
+                        class="bg-primary hover:bg-primary-hover text-white font-bold text-lg h-[56px] px-10 rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-primary/30 active:scale-95">
+                        SEARCH
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="listing-main max-w-[1140px] mx-auto px-4 md:px-6 w-full flex-grow mb-16 sm:mb-24 pt-6">
+        <div class="flex flex-col lg:flex-row gap-6 relative">
+            <div id="filter-sidebar-placeholder" class="hidden lg:block"></div>
+            <section class="flex-1 min-w-0">
+                <div id="sort-bar-placeholder"></div>
+                <div id="attractions-container" class="space-y-4"></div>
+            </section>
+        </div>
+    </main>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity backdrop-blur-sm"></div>
+
+    <script>
+        window.LISTING_CONFIG = {
+            category: 'attractions',
+            containerId: 'attractions-container'
+        };
+    </script>
+
+    <footer class="bg-primary text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <!-- Footer Links Removed -->
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
+                    <div class="text-center md:text-right">
+                        Copyright © 1996–2024 TravelHub. All rights reserved.
+                    </div>
+                    <span class="hidden md:inline">•</span>
+                    <a href="login.html"
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>
+                        Admin Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/listings.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/search-custom.js"></script>
+    <script>
+        // Mobile Drawer Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerOverlay = document.getElementById('mobile-drawer-overlay');
+            const drawerClose = document.getElementById('mobile-drawer-close');
+
+            if (mobileBtn && mobileDrawer && drawerOverlay && drawerClose) {
+                const openDrawer = () => {
+                    drawerOverlay.classList.remove('hidden');
+                    void drawerOverlay.offsetWidth;
+                    drawerOverlay.classList.remove('opacity-0');
+                    drawerOverlay.classList.add('opacity-100');
+                    mobileDrawer.classList.remove('translate-x-full');
+                    document.body.classList.add('overflow-hidden');
+                };
+
+                const closeDrawer = () => {
+                    mobileDrawer.classList.add('translate-x-full');
+                    drawerOverlay.classList.remove('opacity-100');
+                    drawerOverlay.classList.add('opacity-0');
+                    setTimeout(() => {
+                        drawerOverlay.classList.add('hidden');
+                        document.body.classList.remove('overflow-hidden');
+                    }, 300);
+                };
+
+                mobileBtn.addEventListener('click', openDrawer);
+                drawerClose.addEventListener('click', closeDrawer);
+                drawerOverlay.addEventListener('click', closeDrawer);
+            }
+        });
+    </script>
+</body>
+
+</html>

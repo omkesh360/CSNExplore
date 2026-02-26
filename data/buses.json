@@ -1,0 +1,54 @@
+[
+    {
+        "id": "1",
+        "name": "MSRTC Shivneri Express",
+        "route": "CSN → Pune",
+        "type": "AC Semi-Luxury",
+        "departure": "06:00 AM",
+        "duration": "4h 30m",
+        "price": 350,
+        "rating": 8.5,
+        "reviews": 310,
+        "badge": "Fastest Route",
+        "image": "/images/msrtc-shivneri.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Dolphin Travels Night Bus",
+        "route": "CSN → Mumbai",
+        "type": "AC Sleeper",
+        "departure": "10:30 PM",
+        "duration": "7h 15m",
+        "price": 650,
+        "rating": 8.1,
+        "reviews": 198,
+        "badge": "",
+        "image": "/images/dolphin-travels-bus.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Hans Travels AC Sleeper",
+        "route": "CSN → Nagpur",
+        "type": "AC Sleeper",
+        "departure": "09:00 PM",
+        "duration": "8h 45m",
+        "price": 580,
+        "rating": 8.3,
+        "reviews": 145,
+        "badge": "AC Sleeper",
+        "image": "/images/hans-travels-bus.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Purple Travels Volvo",
+        "route": "CSN → Nashik",
+        "type": "Volvo AC",
+        "departure": "05:30 AM",
+        "duration": "5h 00m",
+        "price": 420,
+        "rating": 8.7,
+        "reviews": 88,
+        "badge": "Comfortable",
+        "image": "/images/purple-travels-bus.jpg"
+    }
+]

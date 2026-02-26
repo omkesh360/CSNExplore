@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bike Rental Detail - TravelHub</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <style>
+        .material-icons {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col page-fade-in">
+    <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
+        <!-- Contact Top Bar -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1.5">
+            <div
+                class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="tel:+918600968888" class="flex items-center gap-1 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">call</span>
+                        +91 86009 68888
+                    </a>
+                </div>
+
+                <!-- Flash Ads Ticker -->
+                <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
+                    <div class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
+                        <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                        <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                        <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
+                <!-- Logo Left Side -->
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                </a>
+
+                <!-- Navigation and Auth Right Side -->
+                <div class="flex items-center gap-4 overflow-hidden">
+                    <nav class="hidden lg:flex items-center gap-1">
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="stays.html">
+                            <span class="material-symbols-outlined text-[20px]">bed</span>
+                            <span class="text-[13px] font-medium">Stays</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="car-rentals.html">
+                            <span class="material-symbols-outlined text-[20px]">directions_car</span>
+                            <span class="text-[13px] font-medium">Car Rentals</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white bg-white/10 transition-colors whitespace-nowrap text-white"
+                            href="bike-rentals.html">
+                            <span class="material-symbols-outlined text-[20px]">pedal_bike</span>
+                            <span class="text-[13px] font-medium">Bike Rentals</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="restaurant.html">
+                            <span class="material-symbols-outlined text-[20px]">restaurant</span>
+                            <span class="text-[13px] font-medium">Restaurants</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="attraction.html">
+                            <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+                            <span class="text-[13px] font-medium">Attractions</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="bus.html">
+                            <span class="material-symbols-outlined text-[20px]">directions_bus</span>
+                            <span class="text-[13px] font-medium">Buses</span>
+                        </a>
+                    </nav>
+
+                    <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
+                        <div id="auth-buttons" class="flex gap-2">
+                            <a href="register.html"
+                                class="text-white text-[13px] font-bold px-3 py-1.5 rounded hover:bg-white/10 transition-colors hidden sm:block">Register</a>
+                            <a href="login.html"
+                                class="bg-white text-primary text-[13px] font-bold px-4 py-1.5 rounded hover:bg-gray-100 transition-colors shadow-sm">Sign
+                                in</a>
+                        </div>
+                        <div id="user-profile" class="hidden">
+                            <div class="flex items-center gap-2 cursor-pointer relative group">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white overflow-hidden">
+                                    <span class="material-symbols-outlined text-sm">person</span>
+                                </div>
+                                <div
+                                    class="absolute right-0 top-full mt-2 w-48 bg-white rounded shadow-lg py-1 text-text-main hidden group-hover:block transition-all z-50">
+                                    <a href="user-dashboard.html"
+                                        class="block px-4 py-2 hover:bg-gray-50 text-sm">Dashboard</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <button id="logout-btn"
+                                        class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-sm text-red-600">Sign
+                                        Out</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium border border-blue-100 bg-blue-50 text-primary"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px]">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">confirmation_number</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
+                        <span class="text-sm">WhatsApp</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
+        </div>
+    </header>
+
+    <div class="bg-primary/5 border-t border-white/10">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6 py-2">
+            <nav aria-label="Breadcrumb" class="flex text-xs font-medium text-text-muted">
+                <ol class="flex items-center space-x-2">
+                    <li><a class="hover:text-primary" href="index.html">Home</a></li>
+                    <li><span class="mx-1 text-gray-400">/</span></li>
+                    <li><a class="hover:text-primary" href="#">Rentals</a></li>
+                    <li><span class="mx-1 text-gray-400">/</span></li>
+                    <li><a class="hover:text-primary" href="#">Bikes</a></li>
+                    <li><span class="mx-1 text-gray-400">/</span></li>
+                    <li class="text-primary font-semibold">Specialized Turbo Levo Comp</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow py-8 px-4 md:px-6 max-w-[1140px] mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Left Column: Images & Details -->
+            <div class="lg:col-span-8 space-y-8">
+                <!-- Title & Rating Header (Mobile view usually, but good at top for structure) -->
+                <div class="block lg:hidden mb-4">
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700">Electric
+                                • Expert</span>
+                            <div class="flex items-center text-accent text-sm">
+                                <span class="material-symbols-outlined text-base">star</span>
+                                <span class="font-bold ml-1 text-text-main">4.9</span>
+                                <span class="text-gray-400 text-xs ml-1">(128 reviews)</span>
+                            </div>
+                        </div>
+                        <h1 class="text-2xl font-bold text-text-main">Specialized Turbo Levo Comp</h1>
+                        <p class="text-text-muted text-sm">San Francisco, Fisherman's Wharf Hub</p>
+                    </div>
+                </div>
+                <!-- Gallery -->
+                <div class="space-y-4">
+                    <!-- Main Image -->
+                    <div class="aspect-[16/10] w-full rounded-xl overflow-hidden bg-gray-200 relative group shadow-sm">
+                        <img alt="Electric mountain bike side profile in nature"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmsJsRROyYcZ3PtVTj1_Ovu6LdpvuuWueGmkp1VgZDY6mYwqZ0xhHzLYbffOCah09QMPScpoHYK5Tfdf0DyimhYYKHgCHSNNBXIfOmZcsxbKKtUadEYK9hlQMU_qZNepBdb3bJz8bCSgF22d3dOtj1DglN9N7PMbnqTLS6CQT2GzxMIO9nLXukuxwq4tC9Beq-uHdDxgId_uR6BejsFJZS5uxFMmFqJ7P_dAGjfGXDlxX8EhaEufBT7tw8eJnau_cR80KVPys0eEmU" />
+                        <button
+                            class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-2 hover:bg-white transition">
+                            <span class="material-symbols-outlined text-base">grid_view</span>
+                            View All Photos
+                        </button>
+                    </div>
+                    <!-- Thumbnails -->
+                    <div class="grid grid-cols-4 gap-4">
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer ring-2 ring-primary ring-offset-2">
+                            <img alt="Bike full view" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtIJ0J1sma69XEaBn_Oywu3BBJ79w-g9qjh3Yt32WdATd_pgtiiJi6R4BcohDeOe9eki2NzTtCpr9z1hzdxwA_A59Tt7fhrc1iPVYw_DzQ520J5DYlwEeVVcBUp518TLqK-M9Z5b3QlQqXp3VnguQ4t2NnicOXAHzMzlgdcmHiQ6-OvlvkjrzAAc8cTM55PHzPYM0vyzvdN2_Fefz2PwUsNxvnPtdD1WyGFJUmKxHc4aDjmEeiOrR3Pm33ocSn0cVzfjOheKoP_8uu" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer bg-gray-100 hover:opacity-80 transition">
+                            <img alt="Bike handlebars close up" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTWZA2C3la_5JnJxSK2FFp1AyhsXZzSOqyCKeYatVa6IPkHikVWX-J10Qg5FMGevQyBEogH_a8lZ8nqCICQWo0Zvt2h0Xup40d785X-sYVZBu_Zg5B1_vBpyzhGApwgWFgcPAst0DGJAP9UI15cFRJU5UwxWeLqBhzpCkDkoj3qtUlQBMk91KXAVMtAnMjtfthaNpjhQCPaMx3QTWyz2Nd0ptelGmCoyEiHt48YH8iJXdYXJMlsMweXYV4ES3bH-ndc413upjqfqmQ" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer bg-gray-100 hover:opacity-80 transition">
+                            <img alt="Person holding bike helmet" class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsrmC1T-SBbgxpAiFPPPjqEhr8lVZgxE-ZZYauhbdpDHwNApdylOSyOVLuShyRpxGCpdNxQ_el9srooWy0kcSK7Lab5arOu9sI-QAOpfUgUu1S2srcXHDdtosDlQ4ToPM0Gn8NWKIKZEz2L6K_206uO6hzFi9ectugoVP869vaQ_YQV85Vn2fhhVtASqe8jzQaBf7Upf00IE4y_WGuHAnRazfCZpp7JMloXFpmIc1PiEfjAOYqbDU_lly1jeXik5nyzSSHcgDOvQG6" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer bg-gray-100 hover:opacity-80 transition flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/5">
+                            <div class="text-center">
+                                <span class="material-symbols-outlined text-3xl">videocam</span>
+                                <p class="text-[10px] font-bold uppercase mt-1">Video</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Specs & Description -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">tune</span> Technical Specifications
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <span class="text-xs text-text-muted uppercase font-semibold">Frame</span>
+                            <span class="font-bold text-text-main">Carbon, Size L</span>
+                        </div>
+                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <span class="text-xs text-text-muted uppercase font-semibold">Battery</span>
+                            <span class="font-bold text-text-main">700Wh (40mi)</span>
+                        </div>
+                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <span class="text-xs text-text-muted uppercase font-semibold">Weight</span>
+                            <span class="font-bold text-text-main">22.5 kg</span>
+                        </div>
+                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <span class="text-xs text-text-muted uppercase font-semibold">Gears</span>
+                            <span class="font-bold text-text-main">12-speed</span>
+                        </div>
+                    </div>
+                    <div class="prose prose-slate max-w-none text-sm text-text-muted">
+                        <p>Experience the ultimate trail ride with the Specialized Turbo Levo Comp. This electric
+                            mountain bike features a lightweight carbon frame and a powerful motor that quadruples your
+                            pedaling power. Perfect for tackling the steep hills of San Francisco or the rough trails of
+                            Marin Headlands.</p>
+                        <ul class="list-disc pl-5 space-y-1 mt-2">
+                            <li>Includes high-performance helmet and heavy-duty U-lock.</li>
+                            <li>Integrated display for battery life and speed tracking.</li>
+                            <li>Hydraulic disc brakes for superior stopping power in all weather.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Terms & Insurance Accordion -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">verified_user</span> Terms &amp;
+                            Coverage
+                        </h3>
+                        <div class="space-y-3">
+                            <!-- Accordion Item 1 -->
+                            <details class="group bg-gray-50 rounded-lg border border-gray-200">
+                                <summary
+                                    class="flex items-center justify-between p-4 cursor-pointer font-medium text-text-main">
+                                    <span>Cancellation Policy</span>
+                                    <span
+                                        class="material-symbols-outlined transition-transform group-open:rotate-180 text-gray-400">expand_more</span>
+                                </summary>
+                                <div class="px-4 pb-4 text-sm text-text-muted border-t border-gray-200 pt-3">
+                                    Free cancellation up to 24 hours before the rental start time. Cancellations made
+                                    within 24 hours will incur a 50% fee.
+                                </div>
+                            </details>
+                            <!-- Accordion Item 2 -->
+                            <details class="group bg-gray-50 rounded-lg border border-gray-200">
+                                <summary
+                                    class="flex items-center justify-between p-4 cursor-pointer font-medium text-text-main">
+                                    <span>Damage Protection</span>
+                                    <span
+                                        class="material-symbols-outlined transition-transform group-open:rotate-180 text-gray-400">expand_more</span>
+                                </summary>
+                                <div class="px-4 pb-4 text-sm text-text-muted border-t border-gray-200 pt-3">
+                                    Basic damage protection is included, covering minor scratches. Structural damage or
+                                    theft requires the optional premium insurance.
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Sticky Booking Card -->
+            <div class="lg:col-span-4 relative">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Main Header Info (Desktop Only) -->
+                    <div class="hidden lg:block">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span
+                                class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700">Electric
+                                • Expert</span>
+                            <div class="flex items-center text-accent text-sm">
+                                <span class="material-symbols-outlined text-base">star</span>
+                                <span class="font-bold ml-1 text-text-main">4.9</span>
+                                <span class="text-gray-400 text-xs ml-1">(128)</span>
+                            </div>
+                        </div>
+                        <h1 class="text-3xl font-bold text-text-main leading-tight">Specialized Turbo Levo Comp</h1>
+                        <div class="flex items-center mt-2 text-text-muted text-sm">
+                            <span class="material-symbols-outlined text-lg mr-1 text-primary">location_on</span>
+                            Fisherman's Wharf Hub, SF
+                        </div>
+                    </div>
+                    <!-- Booking Widget -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden p-6">
+                        <div class="flex flex-col gap-3">
+                            <h3 class="text-xl font-bold text-text-main mb-2">Rent this bike</h3>
+                            <div class="flex gap-2">
+                                <a href="tel:+918600968888"
+                                    class="flex-1 bg-primary hover:bg-primary-hover text-white py-2.5 px-3 rounded-lg shadow-md transition-all transform active:scale-[0.98] flex justify-center items-center gap-2 text-base font-bold">
+                                    <span class="material-symbols-outlined text-lg">call</span> Call
+                                </a>
+                                <a href="https://wa.me/918600968888" target="_blank"
+                                    class="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-3 rounded-lg shadow-md transition-all transform active:scale-[0.98] flex justify-center items-center gap-2 text-base font-bold">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                                        alt="WhatsApp" alt="WhatsApp" class="w-5 h-5 brightness-0 invert"> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Similar Bikes Section -->
+        <div class="mt-16 border-t border-gray-200 pt-12">
+            <h3 class="text-xl font-bold text-text-main mb-6">Similar Bikes Available</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img alt="City cruiser bike"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE6VY240ZqkKLJ6JpsPqRPnpUdOa0f-oa3SLWUjFS0b2BntoO_fKMJdkLovwgkmas5bZ9EcPGmvBb3PHKhes5GuRRQ-KAT916BjBRYFXNTFTfIRl20coZkieAEuKI8KDDVsreUweVwwZBqzUjeiP0LXNovvi1fmp8P-pn6qLzGLTJH3JsATXVIl7MeKX932f851VrQAHoiW-lyXNfZsPUphi8ME9fizbmbioq6fieSvPdbLekqTRb4ay3asqtm9ounXQAE2IwJBTTb" />
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="text-xs font-bold text-primary uppercase mb-1">City Cruiser</div>
+                    <h4 class="font-bold text-text-main truncate">Giant Escape 3</h4>
+                    <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-[14px]">bolt</span> Manual</span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-[14px]">scale</span> 14kg</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+                class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
+                <div class="relative aspect-[4/3] overflow-hidden">
+                    <img alt="Road bike on pavement"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOhHUYV3m4LgdxCbVSv_tqjEV_GR3uzYvZSewVaJOhQTX3rQmZC415N-8T5rRykFbea2HeH-uBx-DT02FFMagRLbDUNac5YXl19mmIOMDojnBn3MyR2QYW8jAvJ5zb2Fwem7P0nlR2WTAHADtn9i7mQ9lUq_-z9ivtMV_VZZhdPbi16P0Dic0Qga1GwKiCvwaV75ZffxBpyDBD34zP1GBOM3_K73EfxrG5ExrQH3429JQ9hSE_EuiTrfpSprpM5R6uEElPEXklCbnW" />
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="text-xs font-bold text-primary uppercase mb-1">Road Performance</div>
+                <h4 class="font-bold text-text-main truncate">Trek Domane AL 2</h4>
+                <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
+                    <span class="flex items-center gap-1"><span
+                            class="material-symbols-outlined text-[14px]">bolt</span> Manual</span>
+                    <span class="flex items-center gap-1"><span
+                            class="material-symbols-outlined text-[14px]">scale</span> 9.5kg</span>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div
+            class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+                <img alt="Electric cargo bike"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXTtVJDOnIGlpvyzWMOSuh10Kr_kt2lyYYp6fPc2rcb8oXd19hQLA5jl8xEYyooiOLScEuAlhrItb4uvcQkuZB9CkM8DZ8WbuxBou3tc8G8u5a9nz2uaZB9TRnrpJid4w9gx8oYFpxkSKO0UhyHtfgNG9hyxrTTRN8GFxFoEC5diTO09QT0pv2DiA1m3yE6r75kIqSsllPR49fvJ5av6UMlEL5RHd9nYlUzzNpDv3Bjk8DSTHxZOG3_q42bnN9Hr27OJJzHe_eBCwU" />
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="text-xs font-bold text-primary uppercase mb-1">Cargo Electric</div>
+            <h4 class="font-bold text-text-main truncate">RadWagon 4</h4>
+            <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span>
+                    Electric</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">scale</span>
+                    35kg</span>
+            </div>
+        </div>
+        </div>
+        <!-- Card 4 -->
+        <div
+            class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
+            <div class="relative aspect-[4/3] overflow-hidden">
+                <img alt="Kids bike"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYy6pU_XtCgbSpz-LRQtkcIjAWCtDY_1ytxtfs7lE7jRRdEgeE4V5HOnRwimKAtncPLS4EFyL6Y0jR54D-zmIFf2NSl629vTc961qfdP-X0G_TIwl_kjYHelXd24EQ1lMnsnmM7bJUOCFluuTmZuBXKe-4D81W3LYCYbI_ExbfYcTLDjZAvbNcUyY3u94ovXT3vrkTFSLhZdaBXvRJolF_Tb4Rf_ah_hVmkephNqvN5n7FRB1tjUL5eyOXYVVXDGa1bUhkv1SNwcKk" />
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="text-xs font-bold text-primary uppercase mb-1">Kids</div>
+            <h4 class="font-bold text-text-main truncate">Specialized Riprock</h4>
+            <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span>
+                    Manual</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">scale</span>
+                    11kg</span>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </main>
+
+    <footer class="bg-primary text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Support</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Help Center</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Safety Information</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Cancellation Options</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Report a Concern</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Discover</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Genius Loyalty Program</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Seasonal Deals</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Travel Articles</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Booking Communities</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Terms &amp; Settings</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Privacy &amp; Cookies</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Terms &amp; Conditions</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Grievance Officer</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Manage Settings</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Partners</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Extranet Login</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Partner Help</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">List Your Property</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Become an Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4 col-span-2 md:col-span-4 lg:col-span-1">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">About</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">About TravelHub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">How We Work</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Press Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-12 filter brightness-0 invert">
+                </div>
+                <div class="text-xs text-white/60 text-center md:text-right">
+                    Copyright © 1996–2024 TravelHub. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "accent": "#FC7D05",
+                        "secondary": "#FC7D05",
+                        "background-dark": "#0f1723",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "sans": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
+                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Mobile Drawer Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerOverlay = document.getElementById('mobile-drawer-overlay');
+            const drawerClose = document.getElementById('mobile-drawer-close');
+
+            if (mobileBtn && mobileDrawer && drawerOverlay && drawerClose) {
+                const openDrawer = () => {
+                    drawerOverlay.classList.remove('hidden');
+                    void drawerOverlay.offsetWidth;
+                    drawerOverlay.classList.remove('opacity-0');
+                    drawerOverlay.classList.add('opacity-100');
+                    mobileDrawer.classList.remove('translate-x-full');
+                    document.body.classList.add('overflow-hidden');
+                };
+
+                const closeDrawer = () => {
+                    mobileDrawer.classList.add('translate-x-full');
+                    drawerOverlay.classList.remove('opacity-100');
+                    drawerOverlay.classList.add('opacity-0');
+                    setTimeout(() => {
+                        drawerOverlay.classList.add('hidden');
+                        document.body.classList.remove('overflow-hidden');
+                    }, 300);
+                };
+
+                mobileBtn.addEventListener('click', openDrawer);
+                drawerClose.addEventListener('click', closeDrawer);
+                drawerOverlay.addEventListener('click', closeDrawer);
+            }
+        });
+    </script>
+</body>
+
+</html>

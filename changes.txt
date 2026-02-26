@@ -1,0 +1,45 @@
+Mobile Responsiveness - Detailed Line-by-Line Breakdown of Issues
+
+## FILE: public/index.html
+
+- Line 45: `<header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">`
+  Issue: The entire header is sticky. Since the mobile navigation is placed inside this header, the sticky height becomes too large on mobile devices, consuming a large portion of vertical screen real estate unnecessarily.
+
+- Line 47: `<div class="bg-primary-dark border-b border-white/5 py-1.5">` (Top Contact Bar)
+  Issue: This bar remains fully visible on mobile (showing Phone and WhatsApp). It increases the sticky header height by another row, crowding the screen.
+
+- Line 149: `<nav class="lg:hidden flex gap-1 sm:gap-2 pb-5 overflow-x-auto no-scrollbar">`
+  Issue: The mobile navigation is currently a horizontally scrolling list placed tightly within the sticky header. It should ideally be moved to a hamburger menu (off-canvas drawer) or a fixed bottom bar to free up viewing space in the main content area.
+
+- Line 256: `<div class="bg-white rounded-xl p-2 flex flex-col md:flex-row gap-2 items-stretch shadow-inner">`
+  Issue: The main search form stacks its elements vertically on mobile (`flex-col`), but relies on generic borders (`border-t`) to separate them. This makes the tap targets feel less distinct on touch screens compared to individual card-like input fields.
+
+- Line 299: `<div id="traveler-popover" class="absolute top-[110%] left-0 md:right-0 w-[280px] ...">`
+  Issue: The popover uses a strict fixed width (`w-[280px]`) and absolute `left-0` positioning. On very small mobile devices (e.g., iPhone SE with a 320px width), this absolute positioning combined with container padding can push the popover partially off the screen, causing ugly horizontal overflow.
+
+- Line 384: `<div id="restaurant-circles-grid" class="flex gap-6 overflow-x-auto pb-4 pt-2 px-1 -mx-1 no-scrollbar snap-x">`
+  Issue: The `no-scrollbar` class hides the scrollbar entirely on mobile. While clean, it removes the crucial visual affordance that tells the user they can scroll horizontally to see more options. Partial item preview is needed.
+
+
+## FILE: public/stays.html
+
+- Lines 45-182: (Header Component)
+  Issue: Suffers from the exact same sticky header bloat and mobile navigation sizing issues as `index.html`.
+
+- Line 224: `bg-white rounded-xl p-2 flex flex-col lg:flex-row gap-2 items-stretch shadow-inner`
+  Issue: Similar to the homepage, the stacked search inputs on mobile lack distinctive touch boundaries (they use transparent borders, making it visually ambiguous where one input ends and another begins).
+
+- Line 266: `<div id="traveler-popover" class="... w-[280px] ...">`
+  Issue: Suffers from the same fixed width and absolute position issue, potentially stretching off-screen on tiny phones.
+
+
+## FILE: public/restaurant.html
+
+- Lines 45-182: (Header Component)
+  Issue: Same sticky header bloat.
+
+- Line 224: 
+  Issue: Search form stacks without distinct touch boundaries.
+
+- Line 268: `<div id="traveler-popover" class="... w-[240px] ...">`
+  Issue: Though slightly narrower, still utilizes fixed width logic that can negatively impact dynamic safe zones on mobile.
