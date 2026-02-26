@@ -1,246 +1,247 @@
 {
-  "hero": {
-    "title": "Find Your Perfect Stay<br class=\"hidden sm:inline\" /> in Chhatrapati Sambhajinagar.",
-    "description": "Comfortable hotels, homestays, and budget rooms for every traveler.",
-    "phone": "+918600968888",
-    "whatsapp": "918600968888",
-    "marqueeItems": [
-      "✨ Best places to visit in Sambhajinagar",
-      "🚀 20% OFF on your first hotel booking",
-      "🌟 Exclusive weekend deals for Car Rentals",
-      "✨ New announcement"
+    "hero": {
+        "title": "Find Your Perfect Stay<br class=\"hidden sm:inline\" /> in Chhatrapati Sambhajinagar.",
+        "description": "Comfortable hotels, homestays, and budget rooms for every traveler.",
+        "phone": "+918600968888",
+        "whatsapp": "918600968888",
+        "marqueeItems": [
+            "\u2728 Best places to visit in Sambhajinagar",
+            "\ud83d\ude80 20% OFF on your first hotel booking",
+            "\ud83c\udf1f Exclusive weekend deals for Car Rentals",
+            "\u2728 New announcement",
+            "123456789"
+        ],
+        "carousel": {
+            "stays": "/images/hotel-room-standard.jpg",
+            "cars": "/images/car-rental-hero.png",
+            "bikes": "/images/bajaj-pulsar.jpg",
+            "restaurants": "/images/restaurant-thali.jpg",
+            "attractions": "/images/ajanta.png",
+            "buses": "/images/msrtc-shivneri.jpg"
+        }
+    },
+    "trendingTransport": [
+        {
+            "title": "Premium Sedans",
+            "description": "Explore the city in comfort and style.",
+            "subtext": "Explore Deals",
+            "linkText": "Search cars",
+            "link": "car-rentals.html",
+            "image": "/images/honda-city.jpg"
+        },
+        {
+            "title": "E-Bikes & Scooters",
+            "description": "Swift travel, zero emissions.",
+            "subtext": "Explore Rentals",
+            "linkText": "Find bikes",
+            "link": "bike-rentals.html",
+            "image": "/images/electric-bike.jpg"
+        }
     ],
-    "carousel": {
-      "stays": "/images/hotel-room-standard.jpg",
-      "cars": "/images/car-rental-hero.png",
-      "bikes": "/images/bajaj-pulsar.jpg",
-      "restaurants": "/images/restaurant-thali.jpg",
-      "attractions": "/images/ajanta.png",
-      "buses": "/images/msrtc-shivneri.jpg"
+    "restaurantCircles": [
+        {
+            "name": "Naivedya Thali",
+            "type": "Authentic Local",
+            "rating": "4.9",
+            "image": "/images/indian-thali.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "South Feast",
+            "type": "South Indian",
+            "rating": "4.7",
+            "image": "/images/masala-dosa.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "Chaat Corner",
+            "type": "Street Food",
+            "rating": "4.8",
+            "image": "/images/pani-puri.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "The Grill Room",
+            "type": "North Indian",
+            "rating": "4.6",
+            "image": "/images/north-indian-thali.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "Burger Joint",
+            "type": "American",
+            "rating": "4.6",
+            "image": "/images/north-indian-thali.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "Green Bowl",
+            "type": "Vegan",
+            "rating": "4.8",
+            "image": "/images/indian-thali.jpg",
+            "link": "restaurant-detail.html"
+        }
+    ],
+    "busRoutes": [
+        {
+            "from": "CSN",
+            "to": "Pune",
+            "provider": "MSRTC Shivneri",
+            "badge": "Fastest Route",
+            "badgeColor": "green",
+            "duration": "4h 30m",
+            "departure": "06:00 AM",
+            "price": "Contact for Price",
+            "link": "bus-detail.html"
+        },
+        {
+            "from": "CSN",
+            "to": "Mumbai",
+            "provider": "Dolphin Travels",
+            "badge": "",
+            "badgeColor": "",
+            "duration": "7h 15m",
+            "departure": "10:30 PM",
+            "price": "Contact",
+            "link": "bus-detail.html"
+        },
+        {
+            "from": "CSN",
+            "to": "Nagpur",
+            "provider": "Hans Travels",
+            "badge": "AC Sleeper",
+            "badgeColor": "green",
+            "duration": "8h 45m",
+            "departure": "09:00 PM",
+            "price": "Contact",
+            "link": "bus-detail.html"
+        }
+    ],
+    "attractions": [
+        {
+            "name": "Ajanta Caves Exploration",
+            "location": "Maharashtra, India",
+            "rating": "4.8",
+            "image": "/images/ajanta.png",
+            "link": "attraction-detail.html"
+        },
+        {
+            "name": "Bibi Ka Maqbara Tour",
+            "location": "CSN city, India",
+            "rating": "4.6",
+            "image": "/images/bibi.png",
+            "link": "attraction-detail.html"
+        },
+        {
+            "name": "Ellora Caves Adventure",
+            "location": "Maharashtra, India",
+            "rating": "4.9",
+            "image": "/images/ellora.png",
+            "link": "attraction-detail.html"
+        },
+        {
+            "name": "Daulatabad Fort Hike",
+            "location": "NEAR CSN city, India",
+            "rating": "4.7",
+            "image": "/images/daulatabad.png",
+            "link": "attraction-detail.html"
+        }
+    ],
+    "bikeRentals": [
+        {
+            "name": "Bajaj Pulsar 220F",
+            "description": "Sporty & Reliable",
+            "image": "/images/bajaj-pulsar.jpg",
+            "link": "bike-rental-detail.html"
+        },
+        {
+            "name": "RE Classic 350",
+            "description": "The Royal Experience",
+            "image": "/images/royal-enfield.jpg",
+            "link": "bike-rental-detail.html"
+        },
+        {
+            "name": "Honda Activa 6G",
+            "description": "Effortless Commute",
+            "image": "/images/honda-activa.jpg",
+            "link": "bike-rental-detail.html"
+        },
+        {
+            "name": "Revolt RV400 (EV)",
+            "description": "Go Green, Go Fast",
+            "image": "/images/revolt-rv400.jpg",
+            "link": "bike-rental-detail.html"
+        }
+    ],
+    "featuredRestaurants": [
+        {
+            "name": "Naivedya Thali",
+            "type": "Traditional",
+            "rating": "4.9",
+            "description": "The most authentic Maharashtrian Thali in the city. Experience the royal taste of tradition.",
+            "tags": [
+                "Family Friendly",
+                "Authentic"
+            ],
+            "image": "/images/restaurant-thali.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "Renaissance Dine",
+            "type": "Multi-cuisine",
+            "rating": "4.7",
+            "description": "A fine dining experience with a wide variety of global and local cuisines in a lush garden setting.",
+            "tags": [
+                "Fine Dining",
+                "Scenic View"
+            ],
+            "image": "/images/hotel-renaissance.jpg",
+            "link": "restaurant-detail.html"
+        },
+        {
+            "name": "Chaat Street",
+            "type": "Street Food",
+            "rating": "4.8",
+            "description": "From spicy Pani Puri to buttery Pav Bhaji, experience the vibrant soul of Indian street food.",
+            "tags": [
+                "Quick Bite",
+                "Value for Money"
+            ],
+            "image": "/images/travel-streetfood.jpg",
+            "link": "restaurant-detail.html"
+        }
+    ],
+    "travelInsights": [
+        {
+            "category": "Heritage",
+            "readTime": "8 min read",
+            "title": "Decoding the ancient murals of Ajanta Caves",
+            "description": "A deep dive into the 2,000-year-old Buddhist art and the architectural marvel of the rock-cut caves.",
+            "image": "/images/ajanta.png"
+        },
+        {
+            "category": "History",
+            "readTime": "5 min read",
+            "title": "Bibi Ka Maqbara: The Deccan's Taj Mahal",
+            "description": "Discover the story behind the stunning 17th-century mausoleum built by Prince Azam Shah.",
+            "image": "/images/bibi.png"
+        },
+        {
+            "category": "Food & Drink",
+            "readTime": "6 min read",
+            "title": "The best street food spots in Chhatrapati Sambhajinagar",
+            "description": "From Naan Qalia to spicy Misal Pav, here's your guide to the city's must-try local flavors.",
+            "image": "/images/travel-streetfood.jpg"
+        }
+    ],
+    "about": {
+        "title": "",
+        "description": "",
+        "stat1Value": "",
+        "stat1Label": "",
+        "stat2Value": "",
+        "stat2Label": "",
+        "stat3Value": "",
+        "stat3Label": ""
     }
-  },
-  "trendingTransport": [
-    {
-      "title": "Premium Sedans",
-      "description": "Explore the city in comfort and style.",
-      "subtext": "Explore Deals",
-      "linkText": "Search cars",
-      "link": "car-rentals.html",
-      "image": "/images/honda-city.jpg"
-    },
-    {
-      "title": "E-Bikes & Scooters",
-      "description": "Swift travel, zero emissions.",
-      "subtext": "Explore Rentals",
-      "linkText": "Find bikes",
-      "link": "bike-rentals.html",
-      "image": "/images/electric-bike.jpg"
-    }
-  ],
-  "restaurantCircles": [
-    {
-      "name": "Naivedya Thali",
-      "type": "Authentic Local",
-      "rating": "4.9",
-      "image": "/images/indian-thali.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "South Feast",
-      "type": "South Indian",
-      "rating": "4.7",
-      "image": "/images/masala-dosa.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "Chaat Corner",
-      "type": "Street Food",
-      "rating": "4.8",
-      "image": "/images/pani-puri.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "The Grill Room",
-      "type": "North Indian",
-      "rating": "4.6",
-      "image": "/images/north-indian-thali.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "Burger Joint",
-      "type": "American",
-      "rating": "4.6",
-      "image": "/images/north-indian-thali.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "Green Bowl",
-      "type": "Vegan",
-      "rating": "4.8",
-      "image": "/images/indian-thali.jpg",
-      "link": "restaurant-detail.html"
-    }
-  ],
-  "busRoutes": [
-    {
-      "from": "CSN",
-      "to": "Pune",
-      "provider": "MSRTC Shivneri",
-      "badge": "Fastest Route",
-      "badgeColor": "green",
-      "duration": "4h 30m",
-      "departure": "06:00 AM",
-      "price": "Contact for Price",
-      "link": "bus-detail.html"
-    },
-    {
-      "from": "CSN",
-      "to": "Mumbai",
-      "provider": "Dolphin Travels",
-      "badge": "",
-      "badgeColor": "",
-      "duration": "7h 15m",
-      "departure": "10:30 PM",
-      "price": "Contact",
-      "link": "bus-detail.html"
-    },
-    {
-      "from": "CSN",
-      "to": "Nagpur",
-      "provider": "Hans Travels",
-      "badge": "AC Sleeper",
-      "badgeColor": "green",
-      "duration": "8h 45m",
-      "departure": "09:00 PM",
-      "price": "Contact",
-      "link": "bus-detail.html"
-    }
-  ],
-  "attractions": [
-    {
-      "name": "Ajanta Caves Exploration",
-      "location": "Maharashtra, India",
-      "rating": "4.8",
-      "image": "/images/ajanta.png",
-      "link": "attraction-detail.html"
-    },
-    {
-      "name": "Bibi Ka Maqbara Tour",
-      "location": "CSN city, India",
-      "rating": "4.6",
-      "image": "/images/bibi.png",
-      "link": "attraction-detail.html"
-    },
-    {
-      "name": "Ellora Caves Adventure",
-      "location": "Maharashtra, India",
-      "rating": "4.9",
-      "image": "/images/ellora.png",
-      "link": "attraction-detail.html"
-    },
-    {
-      "name": "Daulatabad Fort Hike",
-      "location": "NEAR CSN city, India",
-      "rating": "4.7",
-      "image": "/images/daulatabad.png",
-      "link": "attraction-detail.html"
-    }
-  ],
-  "bikeRentals": [
-    {
-      "name": "Bajaj Pulsar 220F",
-      "description": "Sporty & Reliable",
-      "image": "/images/bajaj-pulsar.jpg",
-      "link": "bike-rental-detail.html"
-    },
-    {
-      "name": "RE Classic 350",
-      "description": "The Royal Experience",
-      "image": "/images/royal-enfield.jpg",
-      "link": "bike-rental-detail.html"
-    },
-    {
-      "name": "Honda Activa 6G",
-      "description": "Effortless Commute",
-      "image": "/images/honda-activa.jpg",
-      "link": "bike-rental-detail.html"
-    },
-    {
-      "name": "Revolt RV400 (EV)",
-      "description": "Go Green, Go Fast",
-      "image": "/images/revolt-rv400.jpg",
-      "link": "bike-rental-detail.html"
-    }
-  ],
-  "featuredRestaurants": [
-    {
-      "name": "Naivedya Thali",
-      "type": "Traditional",
-      "rating": "4.9",
-      "description": "The most authentic Maharashtrian Thali in the city. Experience the royal taste of tradition.",
-      "tags": [
-        "Family Friendly",
-        "Authentic"
-      ],
-      "image": "/images/restaurant-thali.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "Renaissance Dine",
-      "type": "Multi-cuisine",
-      "rating": "4.7",
-      "description": "A fine dining experience with a wide variety of global and local cuisines in a lush garden setting.",
-      "tags": [
-        "Fine Dining",
-        "Scenic View"
-      ],
-      "image": "/images/hotel-renaissance.jpg",
-      "link": "restaurant-detail.html"
-    },
-    {
-      "name": "Chaat Street",
-      "type": "Street Food",
-      "rating": "4.8",
-      "description": "From spicy Pani Puri to buttery Pav Bhaji, experience the vibrant soul of Indian street food.",
-      "tags": [
-        "Quick Bite",
-        "Value for Money"
-      ],
-      "image": "/images/travel-streetfood.jpg",
-      "link": "restaurant-detail.html"
-    }
-  ],
-  "travelInsights": [
-    {
-      "category": "Heritage",
-      "readTime": "8 min read",
-      "title": "Decoding the ancient murals of Ajanta Caves",
-      "description": "A deep dive into the 2,000-year-old Buddhist art and the architectural marvel of the rock-cut caves.",
-      "image": "/images/ajanta.png"
-    },
-    {
-      "category": "History",
-      "readTime": "5 min read",
-      "title": "Bibi Ka Maqbara: The Deccan's Taj Mahal",
-      "description": "Discover the story behind the stunning 17th-century mausoleum built by Prince Azam Shah.",
-      "image": "/images/bibi.png"
-    },
-    {
-      "category": "Food & Drink",
-      "readTime": "6 min read",
-      "title": "The best street food spots in Chhatrapati Sambhajinagar",
-      "description": "From Naan Qalia to spicy Misal Pav, here's your guide to the city's must-try local flavors.",
-      "image": "/images/travel-streetfood.jpg"
-    }
-  ],
-  "about": {
-    "title": "",
-    "description": "",
-    "stat1Value": "",
-    "stat1Label": "",
-    "stat2Value": "",
-    "stat2Label": "",
-    "stat3Value": "",
-    "stat3Label": ""
-  }
 }

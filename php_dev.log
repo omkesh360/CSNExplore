@@ -40,3 +40,162 @@
 [Thu Feb 26 16:26:24 2026] [::1]:52096 Accepted
 [Thu Feb 26 16:26:29 2026] [::1]:52096 Closed without sending a request; it was probably just an unused speculative preconnection
 [Thu Feb 26 16:26:29 2026] [::1]:52096 Closing
+[Thu Feb 26 16:28:29 2026] [::1]:52129 Accepted
+[Thu Feb 26 16:28:35 2026] [::1]:52129 Closed without sending a request; it was probably just an unused speculative preconnection
+[Thu Feb 26 16:28:35 2026] [::1]:52129 Closing
+[Thu Feb 26 16:30:37 2026] [::1]:52160 Accepted
+[Thu Feb 26 16:30:37 2026] [::1]:52160 Closing
+[Thu Feb 26 16:31:44 2026] [::1]:52169 Accepted
+[Thu Feb 26 16:31:44 2026] [::1]:52169 [200]: GET /public/login.html
+[Thu Feb 26 16:31:44 2026] [::1]:52169 Closing
+[Thu Feb 26 16:31:44 2026] [::1]:52171 Accepted
+[Thu Feb 26 16:31:44 2026] [::1]:52171 [200]: GET /public/css/main.css
+[Thu Feb 26 16:31:44 2026] [::1]:52172 Accepted
+[Thu Feb 26 16:31:44 2026] [::1]:52172 [200]: GET /public/js/app.js
+[Thu Feb 26 16:31:44 2026] [::1]:52171 Closing
+[Thu Feb 26 16:31:44 2026] [::1]:52172 Closing
+[Thu Feb 26 16:31:45 2026] [::1]:52173 Accepted
+[Thu Feb 26 16:31:45 2026] [::1]:52173 Closing
+[Thu Feb 26 16:31:45 2026] [::1]:52174 Accepted
+[Thu Feb 26 16:31:46 2026] [::1]:52174 Closing
+[Thu Feb 26 16:31:48 2026] [::1]:52175 Accepted
+[Thu Feb 26 16:31:48 2026] [::1]:52175 Closing
+[Thu Feb 26 16:31:48 2026] [::1]:52176 Accepted
+[Thu Feb 26 16:31:48 2026] [::1]:52176 Closing
+[Thu Feb 26 16:31:49 2026] [::1]:52177 Accepted
+[Thu Feb 26 16:31:49 2026] [::1]:52177 [200]: GET /public/login.html
+[Thu Feb 26 16:31:49 2026] [::1]:52177 Closing
+[Thu Feb 26 16:31:49 2026] [::1]:52178 Accepted
+[Thu Feb 26 16:31:49 2026] [::1]:52178 [200]: GET /public/css/main.css
+[Thu Feb 26 16:31:49 2026] [::1]:52179 Accepted
+[Thu Feb 26 16:31:49 2026] [::1]:52179 [200]: GET /public/js/app.js
+[Thu Feb 26 16:31:49 2026] [::1]:52180 Accepted
+[Thu Feb 26 16:31:49 2026] [::1]:52178 Closing
+[Thu Feb 26 16:31:49 2026] [::1]:52181 Accepted
+[Thu Feb 26 16:31:49 2026] [::1]:52180 Closing
+[Thu Feb 26 16:31:49 2026] [::1]:52181 Closing
+[Thu Feb 26 16:31:49 2026] [::1]:52179 Closing
+[Thu Feb 26 16:31:51 2026] [::1]:52184 Accepted
+[Thu Feb 26 16:31:51 2026] [::1]:52184 Closing
+[Thu Feb 26 16:31:51 2026] [::1]:52185 Accepted
+[Thu Feb 26 16:31:52 2026] [::1]:52185 Closing
+[Thu Feb 26 16:31:52 2026] [::1]:52186 Accepted
+[Thu Feb 26 16:31:52 2026] [::1]:52186 Closing
+[Thu Feb 26 16:32:04 2026] [::1]:52193 Accepted
+[Thu Feb 26 16:32:05 2026] [::1]:52193 Closing
+[Thu Feb 26 16:32:05 2026] [::1]:52194 Accepted
+[Thu Feb 26 16:32:05 2026] [::1]:52194 Closing
+[Thu Feb 26 16:32:05 2026] [::1]:52195 Accepted
+[Thu Feb 26 16:32:05 2026] [::1]:52195 [200]: GET /public/admin-dashboard.html
+[Thu Feb 26 16:32:05 2026] [::1]:52195 Closing
+[Thu Feb 26 16:32:05 2026] [::1]:52196 Accepted
+[Thu Feb 26 16:32:05 2026] [::1]:52196 [200]: GET /public/js/admin-guard.js
+[Thu Feb 26 16:32:05 2026] [::1]:52197 Accepted
+[Thu Feb 26 16:32:05 2026] [::1]:52196 Closing
+[Thu Feb 26 16:32:05 2026] [::1]:52197 [200]: GET /public/css/main.css
+[Thu Feb 26 16:32:06 2026] [::1]:52197 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52198 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52199 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52198 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52200 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52199 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52201 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52200 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52202 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52201 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52203 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52202 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52204 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52203 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52204 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52205 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52206 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52205 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52207 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52206 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52208 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52207 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52209 Accepted
+[Thu Feb 26 16:32:06 2026] [::1]:52208 Closing
+[Thu Feb 26 16:32:06 2026] [::1]:52209 Closing
+[Thu Feb 26 16:32:08 2026] [::1]:52210 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52210 [200]: GET /public/admin-homepage.html
+[Thu Feb 26 16:32:09 2026] [::1]:52210 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52211 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52211 [200]: GET /public/css/main.css
+[Thu Feb 26 16:32:09 2026] [::1]:52211 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52212 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52213 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52212 [200]: GET /public/js/auth.js
+[Thu Feb 26 16:32:09 2026] [::1]:52213 [200]: GET /public/js/admin-guard.js
+[Thu Feb 26 16:32:09 2026] [::1]:52212 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52213 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52214 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52214 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52215 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52215 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52216 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52217 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52216 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52218 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52217 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52219 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52218 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52220 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52219 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52221 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52220 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52222 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52221 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52223 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52222 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52224 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52223 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52225 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52224 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52226 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52225 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52227 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52226 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52228 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52227 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52229 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52228 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52230 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52229 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52231 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52230 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52232 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52231 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52233 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52232 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52234 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52233 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52235 Accepted
+[Thu Feb 26 16:32:09 2026] [::1]:52234 Closing
+[Thu Feb 26 16:32:09 2026] [::1]:52235 Closing
+[Thu Feb 26 16:32:10 2026] [::1]:52236 Accepted
+[Thu Feb 26 16:32:15 2026] [::1]:52236 Closed without sending a request; it was probably just an unused speculative preconnection
+[Thu Feb 26 16:32:15 2026] [::1]:52236 Closing
+[Thu Feb 26 16:32:32 2026] [::1]:52237 Accepted
+[Thu Feb 26 16:32:32 2026] [::1]:52237 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52238 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52238 [200]: GET /public/index.html
+[Thu Feb 26 16:32:36 2026] [::1]:52238 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52239 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52239 [200]: GET /public/css/main.css
+[Thu Feb 26 16:32:36 2026] [::1]:52239 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52240 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52240 [200]: GET /public/js/homepage-content.js
+[Thu Feb 26 16:32:36 2026] [::1]:52240 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52241 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52241 [200]: GET /public/js/app.js
+[Thu Feb 26 16:32:36 2026] [::1]:52241 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52242 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52242 [200]: GET /public/js/auth.js
+[Thu Feb 26 16:32:36 2026] [::1]:52242 Closing
+[Thu Feb 26 16:32:36 2026] [::1]:52243 Accepted
+[Thu Feb 26 16:32:36 2026] [::1]:52243 [200]: GET /public/js/search-custom.js
+[Thu Feb 26 16:32:36 2026] [::1]:52243 Closing
+[Thu Feb 26 16:32:37 2026] [::1]:52246 Accepted
+[Thu Feb 26 16:32:37 2026] [::1]:52246 Closing
