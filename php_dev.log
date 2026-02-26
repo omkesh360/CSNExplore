@@ -1,3 +1,42 @@
 [Thu Feb 26 16:22:06 2026] PHP 8.5.3 Development Server (http://localhost:8000) started
 [Thu Feb 26 16:22:08 2026] [::1]:51976 Accepted
 [Thu Feb 26 16:22:08 2026] [::1]:51976 Closing
+[Thu Feb 26 16:24:00 2026] [::1]:52033 Accepted
+[Thu Feb 26 16:24:00 2026] [::1]:52033 Closing
+[Thu Feb 26 16:24:45 2026] [::1]:52046 Accepted
+[Thu Feb 26 16:24:45 2026] [::1]:52046 Closing
+[Thu Feb 26 16:24:45 2026] [::1]:52047 Accepted
+[Thu Feb 26 16:24:45 2026] [::1]:52047 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52081 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52081 [200]: GET /public/login.html
+[Thu Feb 26 16:26:19 2026] [::1]:52081 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52082 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52082 [200]: GET /public/js/app.js
+[Thu Feb 26 16:26:19 2026] [::1]:52082 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52083 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52083 [200]: GET /public/css/main.css
+[Thu Feb 26 16:26:19 2026] [::1]:52083 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52085 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52085 [200]: GET /public/login.html
+[Thu Feb 26 16:26:19 2026] [::1]:52085 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52086 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52087 Accepted
+[Thu Feb 26 16:26:19 2026] [::1]:52086 [200]: GET /public/css/main.css
+[Thu Feb 26 16:26:19 2026] [::1]:52087 [200]: GET /public/js/app.js
+[Thu Feb 26 16:26:19 2026] [::1]:52086 Closing
+[Thu Feb 26 16:26:19 2026] [::1]:52087 Closing
+[Thu Feb 26 16:26:21 2026] [::1]:52088 Accepted
+[Thu Feb 26 16:26:21 2026] [::1]:52088 Closing
+[Thu Feb 26 16:26:21 2026] [::1]:52089 Accepted
+[Thu Feb 26 16:26:21 2026] [::1]:52089 Closing
+[Thu Feb 26 16:26:22 2026] [::1]:52090 Accepted
+[Thu Feb 26 16:26:22 2026] [::1]:52091 Accepted
+[Thu Feb 26 16:26:23 2026] [::1]:52090 Closing
+[Thu Feb 26 16:26:23 2026] [::1]:52091 Closing
+[Thu Feb 26 16:26:23 2026] [::1]:52092 Accepted
+[Thu Feb 26 16:26:23 2026] [::1]:52092 Closing
+[Thu Feb 26 16:26:23 2026] [::1]:52093 Accepted
+[Thu Feb 26 16:26:23 2026] [::1]:52093 Closing
+[Thu Feb 26 16:26:24 2026] [::1]:52096 Accepted
+[Thu Feb 26 16:26:29 2026] [::1]:52096 Closed without sending a request; it was probably just an unused speculative preconnection
+[Thu Feb 26 16:26:29 2026] [::1]:52096 Closing

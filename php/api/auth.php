@@ -6,6 +6,9 @@ require_once __DIR__ . '/../rate-limiter.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $path = $_SERVER['PATH_INFO'] ?? '/';
 
+// Strip /auth prefix so routes match /login, /register, /me
+$path = preg_replace('#^/auth#', '', $path) ?: '/';
+
 // Route handling
 if ($method === 'POST' && $path === '/register') {
     register();
