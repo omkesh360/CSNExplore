@@ -65,9 +65,9 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
-            <div class="flex h-20 items-center px-6 border-b border-slate-100 shrink-0">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -96,6 +96,11 @@
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
                         <span class="material-symbols-outlined text-[20px]">edit_document</span>
                         <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
@@ -147,15 +152,15 @@
         <div class="flex h-full flex-1 flex-col overflow-hidden">
             <!-- Top Header -->
             <header
-                class="flex h-20 items-center justify-between border-b border-slate-200 bg-white px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
                     <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-slate-500 hover:text-slate-800 transition-colors">
+                        class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-slate-800 font-black text-xl tracking-tight">Manage Listings</h1>
-                        <p class="text-slate-500 text-xs font-medium">View, edit or delete inventory</p>
+                        <h1 class="text-white font-black text-xl tracking-tight">Manage Listings</h1>
+                        <p class="text-blue-100 text-xs font-medium">View, edit or delete inventory</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -220,7 +225,7 @@
                 </div>
             </main>
             <footer class="py-4 bg-primary border-t border-white/10 text-center text-xs text-white/70 shrink-0">
-                <p>Copyright &copy; 1996–2024 TravelHub Admin. All rights reserved.</p>
+                <p>Copyright &copy; 1996–2026 TravelHub Admin. All rights reserved.</p>
             </footer>
         </div>
 
@@ -396,6 +401,7 @@
             }
         </script>
         <script src="js/admin-guard.js"></script>
+    <script src="js/admin-profile.js"></script>
 </body>
 
 </html>

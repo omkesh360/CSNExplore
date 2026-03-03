@@ -1,4 +1,6 @@
 <?php
+// Dynamic authentication API
+
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 require_once __DIR__ . '/../rate-limiter.php';
@@ -6,129 +8,123 @@ require_once __DIR__ . '/../rate-limiter.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $path = $_SERVER['PATH_INFO'] ?? '/';
 
-// Strip /auth prefix so routes match /login, /register, /me
-$path = preg_replace('#^/auth#', '', $path) ?: '/';
+// Remove /auth prefix from path
+$path = preg_replace('#^/auth#', '', $path);
+if (empty($path)) $path = '/';
 
-// Route handling
-if ($method === 'POST' && $path === '/register') {
-    register();
-} elseif ($method === 'POST' && $path === '/login') {
-    login();
-} elseif ($method === 'GET' && $path === '/me') {
-    verifyMe();
-} else {
-    sendError('Not found', 404);
-}
-
-function register() {
-    $input = getJsonInput();
+try {
+    $db = getDB();
     
-    $name = trim($input['name'] ?? '');
-    $email = trim($input['email'] ?? '');
-    $password = $input['password'] ?? '';
-    
-    if (!$name || !$email || !$password) {
-        sendError('Name, email and password are required');
-    }
-    
-    if (strlen($password) < 6) {
-        sendError('Password must be at least 6 characters');
-    }
-    
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        sendError('Invalid email format');
-    }
-    
-    $users = readJsonFile('users.json');
-    
-    // Check if email already exists
-    foreach ($users as $user) {
-        if (strtolower($user['email']) === strtolower($email)) {
-            sendError('An account with this email already exists', 409);
+    // Login
+    if ($method === 'POST' && $path === '/login') {
+        $input = getJsonInput();
+        
+        if (!isset($input['email']) || !isset($input['password'])) {
+            sendError('Email and password are required', 400);
         }
-    }
-    
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    
-    $newUser = [
-        'id' => (string)(time() * 1000),
-        'name' => $name,
-        'email' => $email,
-        'role' => 'user',
-        'password' => $hashedPassword,
-        'createdAt' => date('c')
-    ];
-    
-    $users[] = $newUser;
-    writeJsonFile('users.json', $users);
-    
-    $token = createJWT([
-        'id' => $newUser['id'],
-        'email' => $newUser['email'],
-        'role' => $newUser['role'],
-        'name' => $newUser['name']
-    ], JWT_SECRET, 7200);
-    
-    sendJson([
-        'success' => true,
-        'user' => [
-            'id' => $newUser['id'],
-            'email' => $newUser['email'],
-            'name' => $newUser['name'],
-            'role' => $newUser['role']
-        ],
-        'token' => $token
-    ], 201);
-}
-
-function login() {
-    $input = getJsonInput();
-    
-    $email = trim($input['email'] ?? '');
-    $password = $input['password'] ?? '';
-    
-    if (!$email || !$password) {
-        sendError('Email and password are required');
-    }
-    
-    $users = readJsonFile('users.json');
-    
-    $user = null;
-    foreach ($users as $u) {
-        if (strtolower($u['email']) === strtolower($email)) {
-            $user = $u;
-            break;
+        
+        // Find user
+        $user = $db->fetchOne("SELECT * FROM users WHERE email = ?", [$input['email']]);
+        
+        if (!$user) {
+            sendError('Invalid credentials', 401);
         }
-    }
-    
-    if (!$user || !isset($user['password'])) {
-        sendError('Invalid credentials', 401);
-    }
-    
-    if (!password_verify($password, $user['password'])) {
-        sendError('Invalid credentials', 401);
-    }
-    
-    $token = createJWT([
-        'id' => $user['id'],
-        'email' => $user['email'],
-        'role' => $user['role'],
-        'name' => $user['name']
-    ], JWT_SECRET, 28800);
-    
-    sendJson([
-        'success' => true,
-        'user' => [
+        
+        // Verify password
+        if (!password_verify($input['password'], $user['password_hash'])) {
+            sendError('Invalid credentials', 401);
+        }
+        
+        // Generate JWT
+        $token = createJWT([
             'id' => $user['id'],
             'email' => $user['email'],
             'name' => $user['name'],
             'role' => $user['role']
-        ],
-        'token' => $token
-    ]);
-}
-
-function verifyMe() {
-    $user = verifyToken();
-    sendJson(['success' => true, 'user' => $user]);
+        ], JWT_SECRET);
+        
+        sendJson([
+            'token' => $token,
+            'user' => [
+                'id' => $user['id'],
+                'email' => $user['email'],
+                'name' => $user['name'],
+                'role' => $user['role']
+            ]
+        ]);
+    }
+    
+    // Register
+    elseif ($method === 'POST' && $path === '/register') {
+        $input = getJsonInput();
+        
+        if (!isset($input['email']) || !isset($input['password']) || !isset($input['name'])) {
+            sendError('Email, password, and name are required', 400);
+        }
+        
+        // Check if user exists
+        $existing = $db->fetchOne("SELECT id FROM users WHERE email = ?", [$input['email']]);
+        
+        if ($existing) {
+            sendError('Email already registered', 400);
+        }
+        
+        // Hash password
+        $passwordHash = password_hash($input['password'], PASSWORD_DEFAULT);
+        
+        // Insert user
+        $userId = $db->insert('users', [
+            'email' => $input['email'],
+            'password_hash' => $passwordHash,
+            'name' => $input['name'],
+            'phone' => $input['phone'] ?? null,
+            'role' => 'user',
+            'is_verified' => 0
+        ]);
+        
+        // Generate JWT
+        $token = createJWT([
+            'id' => $userId,
+            'email' => $input['email'],
+            'name' => $input['name'],
+            'role' => 'user'
+        ], JWT_SECRET);
+        
+        sendJson([
+            'token' => $token,
+            'user' => [
+                'id' => $userId,
+                'email' => $input['email'],
+                'name' => $input['name'],
+                'role' => 'user'
+            ]
+        ], 201);
+    }
+    
+    // Verify token
+    elseif ($method === 'GET' && $path === '/verify') {
+        $headers = getallheaders();
+        $token = $headers['Authorization'] ?? '';
+        $token = str_replace('Bearer ', '', $token);
+        
+        if (!$token) {
+            sendError('Token required', 401);
+        }
+        
+        $decoded = verifyJWT($token, JWT_SECRET);
+        
+        if (!$decoded) {
+            sendError('Invalid token', 401);
+        }
+        
+        sendJson(['valid' => true, 'user' => $decoded]);
+    }
+    
+    else {
+        sendError('Not found', 404);
+    }
+    
+} catch (Exception $e) {
+    error_log('Auth API error: ' . $e->getMessage());
+    sendError('Internal server error: ' . $e->getMessage(), 500);
 }

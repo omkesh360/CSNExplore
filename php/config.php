@@ -21,20 +21,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // JWT Secret Key
 define('JWT_SECRET', getenv('JWT_SECRET') ?: 'travelhub_secure_secret_key_2024');
 
-// Data directory
+// Database
+require_once __DIR__ . '/database.php';
+
+// Data directory (for backward compatibility)
 define('DATA_DIR', __DIR__ . '/../data');
 
 // Uploads directory
 define('UPLOADS_DIR', __DIR__ . '/../public/images/uploads');
 
-// Ensure data directory exists
+// Database directory
+define('DB_DIR', __DIR__ . '/../database');
+
+// Ensure directories exist
 if (!is_dir(DATA_DIR)) {
     mkdir(DATA_DIR, 0755, true);
 }
 
-// Ensure uploads directory exists
 if (!is_dir(UPLOADS_DIR)) {
     mkdir(UPLOADS_DIR, 0755, true);
+}
+
+if (!is_dir(DB_DIR)) {
+    mkdir(DB_DIR, 0755, true);
+}
+
+// Get database instance
+function getDB() {
+    return Database::getInstance();
 }
 
 // Cache control headers for API

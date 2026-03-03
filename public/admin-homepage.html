@@ -299,9 +299,9 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
-            <div class="flex h-20 items-center px-6 border-b border-slate-100 shrink-0">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -330,6 +330,11 @@
                         href="admin-manage-listings.html">
                         <span class="material-symbols-outlined text-[20px]">edit_document</span>
                         <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
@@ -381,21 +386,21 @@
         <div class="flex h-full flex-1 flex-col overflow-hidden">
             <!-- Top Header -->
             <header
-                class="flex h-20 items-center justify-between border-b border-slate-200 bg-white px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
                     <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-slate-500 hover:text-slate-800 transition-colors">
+                        class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-slate-800 font-black text-xl tracking-tight">Homepage Manager</h1>
-                        <p class="text-slate-500 text-xs font-medium">Edit all homepage content — changes go live
+                        <h1 class="text-white font-black text-xl tracking-tight">Homepage Manager</h1>
+                        <p class="text-blue-100 text-xs font-medium">Edit all homepage content — changes go live
                             instantly</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <a href="index.html" target="_blank"
-                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-slate-200 shadow-sm">
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
                         View Homepage
                     </a>
@@ -578,6 +583,9 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'restaurantCircles\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                </button>
                                 <button class="save-btn" onclick="saveSection('restaurantCircles')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Taste</span>
@@ -604,6 +612,9 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'buses\', \'busRoutes\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                </button>
                                 <button class="save-btn" onclick="saveSection('busRoutes')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Routes</span>
@@ -627,6 +638,9 @@
                                 <button class="add-btn !w-auto !py-2" onclick="addAttraction()">
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
+                                </button>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'attractions\', \'attractions\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('attractions')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -653,6 +667,9 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'bikes\', \'bikeRentals\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                </button>
                                 <button class="save-btn" onclick="saveSection('bikeRentals')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Bikes</span>
@@ -678,6 +695,9 @@
                                 <button class="add-btn !w-auto !py-2" onclick="addFeaturedRestaurant()">
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
+                                </button>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'featuredRestaurants\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('featuredRestaurants')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -718,6 +738,45 @@
             </main>
         </div><!-- end main-content flex col -->
     </div><!-- end flex wrapper -->
+
+    
+    <!-- Item Browser Modal -->
+    <div id="item-browser-modal"
+        style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,0.6);backdrop-filter:blur(4px);"
+        onclick="if(event.target===this)closeItemBrowser()">
+        <div
+            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:1.25rem;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:min(90vw,860px);max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
+            <!-- Modal Header -->
+            <div
+                style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;">
+                <div>
+                    <h2 style="font-size:17px;font-weight:800;color:#1e293b;margin:0;">Add Existing Property</h2>
+                    <p style="font-size:12px;color:#94a3b8;margin:2px 0 0;">Select a listed property to add to the homepage</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <button onclick="closeItemBrowser()"
+                        style="width:2.25rem;height:2.25rem;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:18px;">
+                        <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Search -->
+            <div style="padding:0.75rem 1.5rem;border-bottom:1px solid #f8fafc;">
+                <div style="position:relative;">
+                    <span class="material-symbols-outlined"
+                        style="position:absolute;left:0.625rem;top:50%;transform:translateY(-50%);font-size:18px;color:#94a3b8;">search</span>
+                    <input type="text" id="item-browser-search" placeholder="Search by name..."
+                        oninput="filterItemBrowser(this.value)"
+                        style="width:100%;padding:0.5rem 0.75rem 0.5rem 2.25rem;border:1px solid #e2e8f0;border-radius:0.625rem;font-size:13px;outline:none;background:#f8fafc;box-sizing:border-box;font-family:inherit;">
+                </div>
+            </div>
+            <!-- List -->
+            <div id="item-browser-list"
+                style="flex:1;overflow-y:auto;padding:1rem 1.5rem;display:grid;grid-template-columns:1fr;gap:0.625rem;">
+                <div style="text-align:center;color:#94a3b8;padding:2rem;">Loading properties...</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Image Browser Modal -->
     <div id="img-browser-modal"
@@ -771,6 +830,124 @@
 
     <script>
         // ============================================================
+        
+        // ============================================================
+        // ITEM BROWSER (existing properties)
+        // ============================================================
+        let currentItemCategory = '';
+        let currentItemTargetArray = '';
+        let loadedItems = [];
+
+        async function openItemBrowser(category, targetArray) {
+            currentItemCategory = category;
+            currentItemTargetArray = targetArray;
+            document.getElementById('item-browser-modal').style.display = 'block';
+            document.getElementById('item-browser-list').innerHTML = '<div style="text-align:center;color:#94a3b8;padding:2rem;">Loading properties...</div>';
+            
+            try {
+                const res = await fetch(`/api/${category}`);
+                if (!res.ok) throw new Error('Failed');
+                loadedItems = await res.json();
+                renderItemBrowserList(loadedItems);
+            } catch (err) {
+                document.getElementById('item-browser-list').innerHTML = '<div style="text-align:center;color:#ef4444;padding:2rem;">Error loading items</div>';
+            }
+        }
+
+        function closeItemBrowser() {
+            document.getElementById('item-browser-modal').style.display = 'none';
+        }
+
+        function filterItemBrowser(query) {
+            if(!loadedItems) return;
+            const q = query.toLowerCase();
+            const filtered = loadedItems.filter(item => 
+                (item.name && item.name.toLowerCase().includes(q)) || 
+                (item.title && item.title.toLowerCase().includes(q))
+            );
+            renderItemBrowserList(filtered);
+        }
+
+        function renderItemBrowserList(items) {
+            const list = document.getElementById('item-browser-list');
+            if (items.length === 0) {
+                list.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:2rem;">No items found.</div>';
+                return;
+            }
+            list.innerHTML = items.map(item => {
+                const title = escHtml(item.name || item.title || 'Unnamed');
+                const img = escHtml(item.image || item.image_url || 'images/placeholder.jpg');
+                const rawJson = escHtml(JSON.stringify(item));
+                
+                return `
+                <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.75rem;cursor:pointer;transition:background 0.2s;" class="hover:bg-slate-50" onclick="selectItemBrowser('${btoa(unescape(encodeURIComponent(JSON.stringify(item))))}')">
+                    <img src="${img}" style="width:3rem;height:3rem;object-fit:cover;border-radius:0.5rem;" onerror="this.src='/images/placeholder.jpg'">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:14px;color:#1e293b;">${title}</div>
+                        <div style="font-size:12px;color:#64748b;text-transform:capitalize;">ID: ${item.id || '-'} | Category: ${currentItemCategory}</div>
+                    </div>
+                    <span class="material-symbols-outlined" style="color:#003580;">add_circle</span>
+                </div>`;
+            }).join('');
+        }
+
+        function selectItemBrowser(base64item) {
+            const item = JSON.parse(decodeURIComponent(escape(atob(base64item))));
+            
+            if (!hpData[currentItemTargetArray]) {
+                hpData[currentItemTargetArray] = [];
+            }
+            
+            // Map common properties
+            let newItem = {
+                id: item.id || Date.now().toString(),
+                name: item.name || item.title || '',
+                image: item.image || item.image_url || ''
+            };
+            
+            // Map array specific properties
+            if (currentItemTargetArray === 'restaurantCircles') {
+                newItem.type = item.type || item.cuisine || '';
+                newItem.rating = item.rating || '';
+                newItem.link = `restaurant-detail.html?id=${item.id}`;
+            } else if (currentItemTargetArray === 'busRoutes') {
+                newItem.from = item.from || '';
+                newItem.to = item.to || '';
+                newItem.provider = item.provider || item.operator || '';
+                newItem.duration = item.duration || '';
+                newItem.departure = item.departure || item.departureTime || '';
+                newItem.price = item.price ? `₹${item.price}` : '';
+                newItem.link = `bus-detail.html?id=${item.id}`;
+            } else if (currentItemTargetArray === 'attractions') {
+                newItem.location = item.location || '';
+                newItem.rating = item.rating || '';
+                newItem.link = `attraction-detail.html?id=${item.id}`;
+            } else if (currentItemTargetArray === 'bikeRentals') {
+                newItem.description = item.description ? item.description.substring(0, 50) + '...' : '';
+                newItem.link = `bike-rental-detail.html?id=${item.id}`;
+            } else if (currentItemTargetArray === 'featuredRestaurants') {
+                newItem.type = item.type || item.cuisine || '';
+                newItem.rating = item.rating || '';
+                newItem.reviews = item.reviews || '0 reviews';
+                newItem.price = item.price ? `₹${item.price}` : '';
+                newItem.badge = 'Popular';
+                newItem.link = `restaurant-detail.html?id=${item.id}`;
+            }
+            
+            hpData[currentItemTargetArray].push(newItem);
+            
+            // re-render the appropriate section
+            if (currentItemTargetArray === 'restaurantCircles') renderRestaurantCircles();
+            if (currentItemTargetArray === 'busRoutes') renderBusRoutes();
+            if (currentItemTargetArray === 'attractions') renderAttractions();
+            if (currentItemTargetArray === 'bikeRentals') renderBikeRentals();
+            if (currentItemTargetArray === 'featuredRestaurants') renderFeaturedRestaurants();
+            
+            closeItemBrowser();
+            showToast('Item added to section!');
+        }
+
+
         // STATE
         // ============================================================
         let hpData = {};
@@ -1515,6 +1692,7 @@
     </script>
     <script src="js/auth.js"></script>
     <script src="js/admin-guard.js"></script>
+    <script src="js/admin-profile.js"></script>
 </body>
 
 </html>

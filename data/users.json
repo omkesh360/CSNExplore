@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Admin User",
     "email": "admin@travelhub.com",
-    "password": "$2y$12$VOWKiC6r1pk5iix7XcZPyOIKtOLCYOwQiCG9BEiaKq2ZjyQbdheNu",
+    "password": "$2b$10$tyPIY0Vhbgp6AqROfyXd/O9mSDACMTk/eTuY2Sq3Bmaistbyvn.iW",
     "role": "Admin",
     "status": "Active"
   },

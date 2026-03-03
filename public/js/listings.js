@@ -609,14 +609,11 @@
 
         const tagHtml = tag ? `<span class="mt-1 inline-block bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">${tag}</span>` : '';
         const titleName = item.name || item.route || 'Listing';
-
-        const Wrapper = category === 'restaurants' ? 'div' : 'a';
-        const hrefProp = Wrapper === 'a' ? `href="${getDetailUrl(category)}"` : '';
+        const detailUrl = getDetailUrl(category);
 
         return `
-        <${Wrapper} ${hrefProp}
-            class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group block"
-            data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}">
+        <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group cursor-pointer"
+            data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}" onclick="window.location.href='${detailUrl}'">
             <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-primary/5 flex items-center justify-center">
                 ${item.image ? `<img alt="${titleName}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${item.image}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>` : `<span class="material-symbols-outlined text-[64px] text-primary/30">image</span>`}
                 ${item.badge ? `<div class="absolute top-2 left-2"><span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${item.badge}</span></div>` : ''}
@@ -632,10 +629,51 @@
                 </div>
                 <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
                     <p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">${priceStr}</span> / ${perUnit}</p>
-                    ${contactButtons()}
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <a href="${WHATSAPP_URL}" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" class="w-4 h-4 filter brightness-0 invert"/>
+                            WhatsApp
+                        </a>
+                        <a href="tel:${PHONE}" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-[16px]">call</span>
+                            Call Now
+                        </a>
+                    </div>
                 </div>
             </div>
-        </${Wrapper}>`;
+        </div>`;
+    }
+
+
+    // ============================================================
+    // UTILITY COMPONENTS
+    // ============================================================
+    function ratingBadge(item) {
+        if (!item.rating) return '<div class="text-right shrink-0"></div>';
+        const ratingLabel = parseFloat(item.rating) >= 9 ? 'Exceptional' : (parseFloat(item.rating) >= 8 ? 'Excellent' : 'Good');
+        const reviewsHtml = item.reviews ? '<p class="text-[10px] text-text-muted">' + item.reviews + ' reviews</p>' : '';
+        return `
+        <div class="text-right shrink-0">
+            <div class="flex items-center justify-end gap-1 mb-1">
+                <span class="bg-primary text-white text-xs font-bold px-1.5 py-0.5 rounded">${item.rating}</span>
+                <span class="text-xs font-bold text-text-main">${ratingLabel}</span>
+            </div>
+            ${reviewsHtml}
+        </div>`;
+    }
+
+    function contactButtons() {
+        return `
+        <div class="flex gap-2 w-full sm:w-auto mt-3 sm:mt-0">
+            <a href="${WHATSAPP_URL}" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm" onclick="event.stopPropagation()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" class="w-4 h-4 filter brightness-0 invert"/>
+                WhatsApp
+            </a>
+            <a href="tel:${PHONE}" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm" onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined text-[16px]">call</span>
+                Call Now
+            </a>
+        </div>`;
     }
 
 })();

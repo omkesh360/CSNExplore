@@ -316,7 +316,7 @@ app.put('/api/homepage-content', verifyToken, isAdmin, (req, res) => {
 });
 
 // Upload a single image (admin only) — returns { url: '/images/uploads/filename.jpg' }
-app.post('/api/upload', verifyToken, isAdmin, upload.single('image'), (req, res) => {
+app.post('/api/upload', verifyToken, isAdmin, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'gallery', maxCount: 10 }]), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No image file provided' });
   }
@@ -444,7 +444,7 @@ function readCategoryData(category, res) {
 
 // Add a new item
 // Listings: Admin only | Bookings: any authenticated user
-app.post('/api/:category', verifyToken, upload.single('image'), (req, res) => {
+app.post('/api/:category', verifyToken, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'gallery', maxCount: 10 }]), (req, res) => {
   const category = req.params.category;
   const listingCategories = ['stays', 'cars', 'bikes', 'restaurants', 'attractions', 'buses'];
   const userCategories = ['bookings']; // Users can create bookings
@@ -461,8 +461,11 @@ app.post('/api/:category', verifyToken, upload.single('image'), (req, res) => {
   const newItem = { ...req.body };
 
   // If a file was uploaded, add its path
-  if (req.file) {
-    newItem.image = `images/uploads/${req.file.filename}`;
+  if (req.files && req.files['image']) {
+    newItem.image = `images/uploads/${req.files['image'][0].filename}`;
+  }
+  if (req.files && req.files['gallery']) {
+    newItem.gallery = req.files['gallery'].map(f => `/images/uploads/${f.filename}`);
   }
 
   // Type conversions
@@ -496,7 +499,7 @@ app.post('/api/:category', verifyToken, upload.single('image'), (req, res) => {
 });
 
 // Update item (Protected)
-app.put('/api/:category/:id', verifyToken, isAdmin, upload.single('image'), (req, res) => {
+app.put('/api/:category/:id', verifyToken, isAdmin, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'gallery', maxCount: 10 }]), (req, res) => {
   const category = req.params.category;
   const id = req.params.id; // ID is string now
   const validCategories = ['stays', 'cars', 'bikes', 'restaurants', 'attractions', 'buses'];
@@ -522,8 +525,12 @@ app.put('/api/:category/:id', verifyToken, isAdmin, upload.single('image'), (req
 
     const updatedItem = { ...items[itemIndex], ...req.body, id: id.toString() };
 
-    if (req.file) {
-      updatedItem.image = `images/uploads/${req.file.filename}`;
+    if (req.files && req.files['image']) {
+      updatedItem.image = `images/uploads/${req.files['image'][0].filename}`;
+    }
+    if (req.files && req.files['gallery']) {
+      // If a new gallery is uploaded, overwrite or append the gallery paths
+      updatedItem.gallery = req.files['gallery'].map(f => `/images/uploads/${f.filename}`);
     }
 
     if (updatedItem.rating) updatedItem.rating = parseFloat(updatedItem.rating);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>TravelHub - Car Rental Results</title>
+    <title>TravelHub - Car Rentals in Chhatrapati Sambhajinagar</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -63,15 +63,21 @@
 
     <!-- Preloader script -->
     <script>
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
+        (function() {
+            var done = false;
+            function hidePreloader() {
+                if (done) return;
+                done = true;
+                var preloader = document.getElementById('preloader');
+                if (!preloader) return;
                 preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 1000);
-            }, 1000);
-        });
+                setTimeout(function() { preloader.style.display = 'none'; }, 600);
+            }
+            // Hide after load event
+            window.addEventListener('load', function() { setTimeout(hidePreloader, 500); });
+            // Hard timeout: never stuck longer than 3s
+            setTimeout(hidePreloader, 3000);
+        })();
     </script>
 
     <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
@@ -86,15 +92,12 @@
                     </a>
                 </div>
 
+                <!-- Flash Ads Ticker -->
                 <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
                     <div id="hp-marquee" class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
                         <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
                         <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
                         <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
-                        <!-- Duplicate for seamless loop -->
-                        <span class="mx-4" aria-hidden="true">✨ Best places to visit in Sambhajinagar</span>
-                        <span class="mx-4" aria-hidden="true">🚀 20% OFF on your first hotel booking</span>
-                        <span class="mx-4" aria-hidden="true">🌟 Exclusive weekend deals for Car Rentals</span>
                     </div>
                 </div>
 
@@ -176,7 +179,7 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <!-- Mobile Menu Toggle Button -->
                 <button id="mobile-menu-btn"
                     class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
                     <span class="material-symbols-outlined text-[28px]">menu</span>
@@ -250,13 +253,7 @@
         </div>
     </header>
     <div class="listing-hero text-white">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="/images/car-rental-hero.png" alt="Car Rental Background"
-                class="w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
-        </div>
-        <div class="max-w-[1140px] mx-auto px-4 md:px-6 relative z-10">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
             <h1 class="text-4xl md:text-5xl font-black leading-tight mb-2 tracking-tight">Experience the Majesty
                 of<br />Chhatrapati Sambhajinagar.</h1>
             <p class="text-lg md:text-xl font-normal text-white/90 mb-10">Discover the heritage, culture, and flavors of
@@ -268,14 +265,15 @@
                     class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
                     <div class="flex-[1.5] relative group bg-white md:bg-transparent rounded-t-xl md:rounded-none">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-primary/60 text-[20px]">search</span>
+                            <span class="material-symbols-outlined text-primary/60 text-[20px]">directions_car</span>
                         </div>
                         <input
                             class="w-full pl-12 pr-4 h-[56px] rounded-t-xl md:rounded-l-xl md:rounded-tr-none border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main placeholder-text-muted font-medium bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-base"
-                            placeholder="Pick-up location" type="text" value="Chhatrapati Sambhajinagar, India" />
+                            placeholder="Pick-up location" type="text"
+                            value="Chhatrapati Sambhajinagar, India" />
                     </div>
                     <div
-                        class="flex-1 relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent rounded-b-xl md:rounded-none mb-2 md:mb-0">
+                        class="flex-1 relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-primary/60 text-[20px]">calendar_month</span>
                         </div>
@@ -284,8 +282,81 @@
                                 class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5">Dates</span>
                         </div>
                         <input
-                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-b-xl lg:rounded-none border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
-                            type="date" id="search-date" value="2024-11-14" />
+                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-none border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
+                            type="date" id="search-date" />
+                    </div>
+                    <div class="flex-[1.2] relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent rounded-b-xl lg:rounded-none mb-2 md:mb-0"
+                        id="traveler-selector-container">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-primary/60 text-[20px]">group</span>
+                        </div>
+                        <div class="absolute inset-y-0 left-12 flex flex-col justify-center pointer-events-none">
+                            <span
+                                class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
+                                id="traveler-label">Passengers</span>
+                        </div>
+                        <div id="search-travelers-display"
+                            class="w-full pl-12 pr-10 pt-4 pb-1 h-[56px] rounded-b-xl lg:rounded-none lg:rounded-r-xl border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer appearance-none flex items-end overflow-hidden whitespace-nowrap">
+                            2 Passengers
+                        </div>
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                            <span
+                                class="material-symbols-outlined text-text-muted text-[18px] group-hover:text-primary transition-colors">expand_more</span>
+                        </div>
+
+                        <!-- Modern Travelers Popover -->
+                        <div id="traveler-popover"
+                            class="absolute top-[110%] left-0 md:right-0 w-[280px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 z-50 hidden opacity-0 scale-95 -translate-y-2 transition-all duration-200 cursor-default">
+                            <div class="flex flex-col gap-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-gray-900">Adults</span>
+                                        <span class="text-xs text-gray-500">Age 13+</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
+                                            onclick="window.updateTraveler('adults', -1)" id="btn-adults-min">−</button>
+                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
+                                            id="count-adults">2</span>
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
+                                            onclick="window.updateTraveler('adults', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-gray-900">Children</span>
+                                        <span class="text-xs text-gray-500">Age 0-12</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
+                                            onclick="window.updateTraveler('children', -1)" id="btn-children-min">−</button>
+                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
+                                            id="count-children">0</span>
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
+                                            onclick="window.updateTraveler('children', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-gray-900">Rooms</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
+                                            onclick="window.updateTraveler('rooms', -1)" id="btn-rooms-min">−</button>
+                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
+                                            id="count-rooms">1</span>
+                                        <button type="button"
+                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
+                                            onclick="window.updateTraveler('rooms', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button
                         class="bg-primary hover:bg-primary-hover text-white font-bold text-lg h-[56px] px-10 rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-primary/30 active:scale-95">
@@ -307,34 +378,31 @@
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity backdrop-blur-sm"></div>
 
     <script>
-        window.LISTING_CONFIG = {
-            category: 'cars',
-            containerId: 'cars-container'
-        };
+        window.LISTING_CONFIG = { category: 'cars', containerId: 'cars-container' };
     </script>
-
 
     <footer class="bg-primary text-white pt-16 pb-8 mt-auto">
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <!-- Footer Links Removed -->
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
                     <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright © 1996–2024 TravelHub. All rights reserved.
+                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
                     </div>
-                    <span class="hidden md:inline">•</span>
+                    <span class="hidden md:inline">&bull;</span>
                     <a href="login.html"
-                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>
-                        Admin Login
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
+                        onclick="window.location.href='login.html'; return true;">
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="pointer-events-none">Admin Login</span>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
-
     <script src="js/listings.js"></script>
     <script src="js/app.js"></script>
     <script src="js/auth.js"></script>

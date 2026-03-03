@@ -1,35 +1,29 @@
-import glob, re
+import os
+import re
 
-files = glob.glob('public/*.html')
+with open('public/restaurant.html', 'r') as f:
+    rest_html = f.read()
 
-for f in files:
-    if f == 'public/index.html':
-        continue # Already dynamic
-        
-    with open(f, 'r') as file:
-        content = file.read()
+# Extract the header from restaurant.html
+header_match = re.search(r'(<header.*?</header>)', rest_html, re.DOTALL)
+if not header_match:
+    print("Could not find header in restaurant.html")
+    exit(1)
+header_content = header_match.group(1)
+
+# Apply header to other pages
+files = ['public/stays.html', 'public/car-rentals.html', 'public/bike-rentals.html', 'public/attraction.html']
+
+for file in files:
+    with open(file, 'r') as f:
+        content = f.read()
     
-    # Add IDs to phone link
-    content = re.sub(
-        r'<a href="tel:\+918600968888" class="flex items-center gap-1 hover:text-white transition-colors">\s*<span class="material-symbols-outlined text-\[16px\]">call</span>\s*\+91 86009 68888\s*</a>',
-        '<a href="tel:+918600968888" id="hp-phone-link" class="flex items-center gap-1 hover:text-white transition-colors">\n                        <span class="material-symbols-outlined text-[16px]">call</span>\n                        <span id="hp-phone-text">+91 86009 68888</span>\n                    </a>',
-        content
-    )
+    # Replace header
+    content = re.sub(r'<header.*?</header>', header_content, content, flags=re.DOTALL)
     
-    # Add ID to marquee
-    content = content.replace(
-        '<div class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">',
-        '<div id="hp-marquee" class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">'
-    )
+    # Also fix the hero section background if needed, make sure padding is consistent
     
-    # Add ID to WhatsApp link
-    content = re.sub(
-        r'<a href="https://wa\.me/918600968888" target="_blank"\s*class="flex items-center gap-1 hover:text-white transition-colors ml-2">',
-        '<a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"\n                        class="flex items-center gap-1 hover:text-white transition-colors ml-2">',
-        content
-    )
+    with open(file, 'w') as f:
+        f.write(content)
     
-    with open(f, 'w') as file:
-        file.write(content)
-        
-print("HTML files updated.")
+print("Updated headers for all pages")

@@ -44,42 +44,63 @@
             "type": "Authentic Local",
             "rating": "4.9",
             "image": "/images/indian-thali.jpg",
-            "link": "restaurant-detail.html"
+            "link": "restaurant-detail.html?id=1"
         },
         {
             "name": "South Feast",
             "type": "South Indian",
             "rating": "4.7",
             "image": "/images/masala-dosa.jpg",
-            "link": "restaurant-detail.html"
+            "link": "restaurant-detail.html?id=2"
         },
         {
             "name": "Chaat Corner",
             "type": "Street Food",
             "rating": "4.8",
             "image": "/images/pani-puri.jpg",
-            "link": "restaurant-detail.html"
+            "link": "restaurant-detail.html?id=4"
         },
         {
             "name": "The Grill Room",
             "type": "North Indian",
             "rating": "4.6",
             "image": "/images/north-indian-thali.jpg",
-            "link": "restaurant-detail.html"
+            "link": "restaurant-detail.html?id=3"
         },
         {
-            "name": "Burger Joint",
-            "type": "American",
-            "rating": "4.6",
-            "image": "/images/north-indian-thali.jpg",
-            "link": "restaurant-detail.html"
-        },
-        {
-            "name": "Green Bowl",
-            "type": "Vegan",
+            "name": "Biryani Blues",
+            "type": "Biryani Special",
             "rating": "4.8",
-            "image": "/images/indian-thali.jpg",
-            "link": "restaurant-detail.html"
+            "image": "/images/restaurant-north-indian.jpg",
+            "link": "restaurant-detail.html?id=6"
+        },
+        {
+            "name": "Pizza Paradise",
+            "type": "Italian",
+            "rating": "4.5",
+            "image": "/images/burger.jpg",
+            "link": "restaurant-detail.html?id=7"
+        },
+        {
+            "name": "Chinese Wok",
+            "type": "Chinese",
+            "rating": "4.4",
+            "image": "/images/restaurant-thali.jpg",
+            "link": "restaurant-detail.html?id=8"
+        },
+        {
+            "name": "Burger Junction",
+            "type": "Fast Food",
+            "rating": "4.6",
+            "image": "/images/burger.jpg",
+            "link": "restaurant-detail.html?id=9"
+        },
+        {
+            "name": "Saffron Kitchen",
+            "type": "Fine Dining",
+            "rating": "4.7",
+            "image": "/images/restaurant-north-indian.jpg",
+            "link": "restaurant-detail.html?id=10"
         }
     ],
     "busRoutes": [

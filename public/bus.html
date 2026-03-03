@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Bus Search Results - TravelHub</title>
+    <title>TravelHub - Bus Tickets (Coming Soon)</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -46,6 +46,7 @@
         }
     </script>
     <link href="css/main.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 
 <body
@@ -62,15 +63,21 @@
 
     <!-- Preloader script -->
     <script>
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
+        (function() {
+            var done = false;
+            function hidePreloader() {
+                if (done) return;
+                done = true;
+                var preloader = document.getElementById('preloader');
+                if (!preloader) return;
                 preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 1000);
-            }, 1000);
-        });
+                setTimeout(function() { preloader.style.display = 'none'; }, 600);
+            }
+            // Hide after load event
+            window.addEventListener('load', function() { setTimeout(hidePreloader, 500); });
+            // Hard timeout: never stuck longer than 3s
+            setTimeout(hidePreloader, 3000);
+        })();
     </script>
     <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
         <!-- Contact Top Bar -->
@@ -78,7 +85,8 @@
             <div
                 class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
                 <div class="flex items-center gap-3 shrink-0">
-                    <a href="tel:+918600968888" id="hp-phone-link" class="flex items-center gap-1 hover:text-white transition-colors">
+                    <a href="tel:+918600968888" id="hp-phone-link"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
                         <span class="material-symbols-outlined text-[16px]">call</span>
                         <span id="hp-phone-text">+91 86009 68888</span>
                     </a>
@@ -243,26 +251,32 @@
         </div>
     </header>
 
-    <div class="listing-hero text-white">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60"></div>
-        </div>
-        <div class="max-w-[1140px] mx-auto px-4 md:px-6 relative z-10 pt-20">
-            <h1 class="text-4xl md:text-5xl font-black leading-tight mb-2 tracking-tight">Bus Travel</h1>
-            <p class="text-lg md:text-xl font-normal text-white/90 mb-10">Explore Maharashtra by bus.</p>
-        </div>
-    </div>
 
-    <main class="listing-main max-w-[1140px] mx-auto px-4 md:px-6 w-full flex-grow mb-16 sm:mb-24 pt-6">
-        <div class="flex flex-col lg:flex-row gap-6 relative">
-            <div id="filter-sidebar-placeholder" class="hidden lg:block"></div>
-            <section class="flex-1 min-w-0">
-                <div id="sort-bar-placeholder"></div>
-                <div id="buses-container" class="space-y-4"></div>
-            </section>
+    <main class="max-w-[1140px] mx-auto px-4 md:px-6 w-full flex-grow flex items-center justify-center py-16">
+        <div
+            class="coming-soon-container bg-white rounded-2xl shadow-card border border-gray-100 p-8 md:p-12 w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
+
+            <div class="w-64 h-64 md:w-80 md:h-80 mb-6" id="lottie-bus"></div>
+
+            <h2 class="text-3xl md:text-4xl font-black text-primary mb-4">Bus Bookings Coming Soon!</h2>
+            <p class="text-gray-500 text-lg mb-8 max-w-lg">We're working hard to bring you the best intercity bus
+                booking experience. Stay tuned for seamless travel across Maharashtra and beyond.</p>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <a href="index.html"
+                    class="bg-primary hover:bg-primary-hover text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg hover:shadow-primary/30 flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">home</span>
+                    Back to Home
+                </a>
+                <a href="stays.html"
+                    class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 px-8 rounded-xl transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">explore</span>
+                    Explore Stays
+                </a>
+            </div>
         </div>
     </main>
+
 
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity backdrop-blur-sm"></div>
 
@@ -275,13 +289,14 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright © 1996–2024 TravelHub. All rights reserved.
+                        Copyright © 1996–2026 TravelHub. All rights reserved.
                     </div>
                     <span class="hidden md:inline">•</span>
                     <a href="login.html"
-                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>
-                        Admin Login
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
+                        onclick="window.location.href='login.html'; return true;">
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="pointer-events-none">Admin Login</span>
                     </a>
                 </div>
             </div>
@@ -289,15 +304,18 @@
     </footer>
 
 
-    <script>
-        window.LISTING_CONFIG = {
-            category: 'buses',
-            containerId: 'buses-container'
-        };
-    </script>
-    <script src="js/listings.js"></script>
     <script src="js/app.js"></script>
     <script src="js/auth.js"></script>
+    <script>
+        // Lottie animation init
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-bus'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_xvrofzfk.json'
+        });
+    </script>
     <script>
         // Mobile Drawer Controller
         document.addEventListener('DOMContentLoaded', () => {

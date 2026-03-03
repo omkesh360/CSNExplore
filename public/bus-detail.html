@@ -52,7 +52,8 @@
             <div
                 class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
                 <div class="flex items-center gap-3 shrink-0">
-                    <a href="tel:+918600968888" id="hp-phone-link" class="flex items-center gap-1 hover:text-white transition-colors">
+                    <a href="tel:+918600968888" id="hp-phone-link"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
                         <span class="material-symbols-outlined text-[16px]">call</span>
                         <span id="hp-phone-text">+91 86009 68888</span>
                     </a>
@@ -233,9 +234,7 @@
             class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <div class="flex items-center gap-3 mb-1">
-                    <h1 class="text-2xl font-bold text-text-main">Mumbai</h1>
-                    <span class="material-symbols-outlined text-gray-400">arrow_forward</span>
-                    <h1 class="text-2xl font-bold text-text-main">Pune</h1>
+                    <h1 class="text-2xl font-bold text-text-main" id="item-location">Mumbai → Pune</h1>
                 </div>
                 <div class="flex items-center gap-4 text-sm text-text-muted">
                     <span class="flex items-center gap-1"><span
@@ -247,7 +246,8 @@
             <div class="text-right">
                 <p class="text-sm text-text-muted">Operator</p>
                 <p class="font-semibold text-text-main flex items-center gap-2 justify-end">
-                    <span class="material-symbols-outlined text-primary">verified</span> ZingBus Premium
+                    <span class="material-symbols-outlined text-primary">verified</span> <span id="item-title">ZingBus
+                        Premium</span>
                 </p>
                 <p class="text-xs text-gray-400 mt-1">Volvo A/C Multi Axle (2+2)</p>
             </div>
@@ -488,11 +488,11 @@
                             <span class="text-text-muted">Boarding Point</span>
                             <span class="font-medium text-text-main">Dadar (06:00 AM)</span>
                         </div>
+                        <div class="flex justify-between text-sm mb-4 border-t pt-4 border-gray-100">
+                            <span class="font-bold text-text-main text-lg">Price</span>
+                            <span class="font-bold text-primary text-xl" id="item-price">₹-- / seat</span>
+                        </div>
                     </div>
-
-
-
-
                     <div class="flex gap-2 mt-6">
                         <a href="tel:+918600968888"
                             class="flex-1 bg-primary hover:bg-primary-hover text-white py-2.5 px-3 rounded-lg shadow-md transition-all transform active:scale-[0.98] flex justify-center items-center gap-2 text-base font-bold">
@@ -564,7 +564,7 @@
                     <img src="/images/travelhub.png" alt="TravelHub" class="h-12 filter brightness-0 invert">
                 </div>
                 <div class="text-xs text-white/60 text-center md:text-right">
-                    Copyright © 1996–2024 TravelHub. All rights reserved.
+                    Copyright © 1996–2026 TravelHub. All rights reserved.
                 </div>
             </div>
         </div>
@@ -603,6 +603,7 @@
     </script>
 
     <script src="js/app.js"></script>
+    <script src="js/detail-loader.js"></script>
     <script>
         // Mobile Drawer Controller
         document.addEventListener('DOMContentLoaded', () => {

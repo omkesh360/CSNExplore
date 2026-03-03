@@ -201,35 +201,36 @@ function initializeMobileInteractions() {
 // SEARCH
 // ==========================================
 function initializeSearch() {
-    // Homepage search button
-    const searchBtn = document.getElementById('main-search-btn') ||
-        document.querySelector('button.bg-primary.text-white.font-bold.text-lg');
+    // ONLY attach to the homepage search button by explicit ID
+    // Never use a class selector here — it would hijack listing page SEARCH buttons
+    const searchBtn = document.getElementById('main-search-btn');
+    if (!searchBtn) return; // Not on homepage — do nothing
+
     const locationInput = document.querySelector('input[placeholder*="Where"]') ||
         document.querySelector('input[placeholder*="where"]');
 
-    if (searchBtn && locationInput) {
-        searchBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const location = locationInput.value.trim();
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const location = locationInput ? locationInput.value.trim() : '';
 
-            // Determine active tab/category
-            const activeTab = document.querySelector('.tab-btn.active, [data-active="true"]');
-            let targetPage = 'stays.html';
-            if (activeTab) {
-                const text = activeTab.textContent.toLowerCase();
-                if (text.includes('car')) targetPage = 'car-rentals.html';
-                else if (text.includes('bike')) targetPage = 'bike-rentals.html';
-                else if (text.includes('restaurant')) targetPage = 'restaurant.html';
-                else if (text.includes('attraction')) targetPage = 'attraction.html';
-                else if (text.includes('bus')) targetPage = 'bus.html';
-            }
+        // Determine active tab/category
+        const activeTab = document.querySelector('.tab-btn.active, [data-active="true"]');
+        let targetPage = 'stays.html';
+        if (activeTab) {
+            const text = activeTab.textContent.toLowerCase();
+            if (text.includes('car')) targetPage = 'car-rentals.html';
+            else if (text.includes('bike')) targetPage = 'bike-rentals.html';
+            else if (text.includes('restaurant')) targetPage = 'restaurant.html';
+            else if (text.includes('attraction')) targetPage = 'attraction.html';
+            else if (text.includes('bus')) targetPage = 'bus.html';
+        }
 
-            // Navigate with search params
-            const params = location ? `?q=${encodeURIComponent(location)}` : '';
-            window.location.href = targetPage + params;
-        });
-    }
+        // Navigate with search params
+        const params = location ? `?q=${encodeURIComponent(location)}` : '';
+        window.location.href = targetPage + params;
+    });
 }
+
 
 // ==========================================
 // BOOKING BUTTONS

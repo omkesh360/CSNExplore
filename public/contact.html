@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact Us | TravelHub</title>
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="css/main.css" as="style" />
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        as="style" />
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        as="style" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col page-fade-in overflow-x-hidden">
+    <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
+        <!-- Contact Top Bar (Slimmed down) -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1.5">
+            <div
+                class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="tel:+918600968888" id="hp-phone-link"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">call</span>
+                        <span id="hp-phone-text">+91 86009 68888</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
+                    <div id="hp-marquee" class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
+                        <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                        <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                        <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 shrink-0">
+                    <a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"
+                        class="flex items-center gap-1 hover:text-white transition-colors ml-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
+                <!-- Logo Left Side -->
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                </a>
+
+                <!-- Navigation and Auth Right Side -->
+                <div class="flex items-center gap-4 overflow-hidden">
+                    <nav class="hidden lg:flex items-center gap-1">
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="about.html">
+                            <span class="material-symbols-outlined text-[20px]">info</span>
+                            <span class="text-[13px] font-medium">About Us</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="contact.html">
+                            <span class="material-symbols-outlined text-[20px]">contact_mail</span>
+                            <span class="text-[13px] font-medium">Contact Us</span>
+                        </a>
+
+                    </nav>
+
+                    <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
+                        <div id="auth-buttons" class="flex gap-2">
+                            <a href="register.html"
+                                class="text-white text-[13px] font-bold px-3 py-1.5 rounded hover:bg-white/10 transition-colors hidden sm:block">Register</a>
+                            <a href="login.html"
+                                class="bg-white text-primary text-[13px] font-bold px-4 py-1.5 rounded hover:bg-gray-100 transition-colors shadow-sm">Sign
+                                in</a>
+                        </div>
+                        <div id="user-profile" class="hidden">
+                            <div class="flex items-center gap-2">
+                                <!-- Avatar circle with initial -->
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0 overflow-hidden"
+                                    id="user-avatar-circle">
+                                    <span class="material-symbols-outlined text-sm" id="user-avatar-icon">person</span>
+                                </div>
+                                <!-- User name -->
+                                <span id="user-display-name"
+                                    class="text-white text-[13px] font-semibold hidden sm:block max-w-[100px] truncate"></span>
+                                <!-- Logout button -->
+                                <button id="logout-btn"
+                                    class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-[12px] font-bold px-3 py-1.5 rounded-full transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]">logout</span>
+                                    <span class="hidden sm:inline">Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="about.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">info</span>
+                    About Us
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="contact.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">contact_mail</span>
+                    Contact Us
+                </a>
+
+
+                <div class="border-t border-gray-200 my-2"></div>
+
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">confirmation_number</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
+                        <span class="text-sm">WhatsApp</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
+        </div>
+    </header>
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <div class="relative w-full h-[300px] flex items-center justify-center bg-primary overflow-hidden">
+            <div class="absolute inset-0 opacity-40 bg-cover bg-center"
+                data-alt="Customer support team working in a bright office"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcAaOS-xIzJz3EKuphw4-mtxGsdAnfzQ9FxCoBtqOd8qRQTQlo24-HPxHxko_mEBiPoVYQmXbhsFWeyKr3N7wsa5bfiyx_rhE1NC6QAIalaMl65ZrbLmFTpvdcVPqzln1_MPFslb4LPWyMG2xkxxBfFUm1ddwFSAVgBlGsMwoj6plH2TZyqc3V6Oj8TDViFbDKq2Oc1Xq5Ntj0BQOI-JD2fhAFENDyFN-7VXMW3XrcvHYGu87v05ii-rZ5-T_U6YWiOO5s-fjRDszl')">
+            </div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Contact Us</h1>
+                <p class="text-lg text-slate-100 max-w-2xl mx-auto">We're here to help you with your next adventure.
+                    Reach out to us anytime.</p>
+            </div>
+        </div>
+        <!-- Main Contact Section -->
+        <div class="max-w-7xl mx-auto px-6 md:px-20 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Form -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white">Get in Touch</h2>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Name</span>
+                                <input
+                                    class="form-input rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-primary focus:border-primary h-12 px-4"
+                                    placeholder="Your full name" type="text" />
+                            </label>
+                            <label class="flex flex-col gap-2">
+                                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email</span>
+                                <input
+                                    class="form-input rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-primary focus:border-primary h-12 px-4"
+                                    placeholder="hello@example.com" type="email" />
+                            </label>
+                        </div>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Subject</span>
+                            <select
+                                class="form-select rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-primary focus:border-primary h-12 px-4">
+                                <option>General Inquiry</option>
+                                <option>Booking Support</option>
+                                <option>Partnerships</option>
+                                <option>Feedback</option>
+                            </select>
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Message</span>
+                            <textarea
+                                class="form-textarea rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-primary focus:border-primary px-4 py-3"
+                                placeholder="How can we help you?" rows="5"></textarea>
+                        </label>
+                        <button
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg transition-all shadow-md"
+                            type="submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <!-- Contact Details & Map -->
+                <div class="flex flex-col gap-10">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">location_on</span>
+                                Visit Us
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 pl-8">Behind State Bank Of India, plot no. 273
+                                Samarth Nagar, Central Bus Stand, Chhatrapati Sambhajinagar, Maharashtra 431001</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">call</span>
+                                Call Us
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 pl-8">+91 86009 68888<br />Mon-Fri, 9am - 6pm
+                                EST</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">mail</span>
+                                Email Us
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 pl-8">
+                                support@travelhub.com<br />info@travelhub.com</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Help Center / FAQ Section -->
+        <div class="bg-white dark:bg-slate-900/50 py-16 border-t border-slate-100 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-6 md:px-20 text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Help Center &amp; FAQs</h2>
+                <p class="text-slate-600 dark:text-slate-400">Quick answers to frequently asked questions.</p>
+            </div>
+            <div class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <h4 class="font-bold text-lg mb-2">How do I change my booking?</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">You can manage your reservations through the
+                        'Bookings' section in your account profile or contact our 24/7 support line.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <h4 class="font-bold text-lg mb-2">What is your refund policy?</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Refund eligibility depends on the specific
+                        destination and provider. Generally, cancellations made 48 hours prior are eligible for partial
+                        refunds.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <h4 class="font-bold text-lg mb-2">Is travel insurance included?</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Standard bookings do not include insurance,
+                        but we offer optional comprehensive coverage packages during the checkout process.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <h4 class="font-bold text-lg mb-2">Do I need a visa for my trip?</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Visa requirements vary by nationality and
+                        destination. We provide a 'Visa Info' link on each destination page for your convenience.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a class="text-primary font-bold inline-flex items-center gap-2 hover:underline" href="#">
+                    View all FAQs <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-primary text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <!-- Footer Links Removed -->
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
+                    <div class="text-center md:text-right">
+                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
+                    </div>
+                    <span class="hidden md:inline">&bull;</span>
+                    <a href="login.html"
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
+                        onclick="window.location.href='login.html'; return true;">
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="pointer-events-none">Admin Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "accent": "#FC7D05",
+                        "secondary": "#FC7D05",
+                        "background-dark": "#0f1723",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "sans": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
+                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+    <script src="js/homepage-content.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Category Switching & Mobile Drawer Logic
+
+        // Mobile Drawer Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerOverlay = document.getElementById('mobile-drawer-overlay');
+            const drawerClose = document.getElementById('mobile-drawer-close');
+
+            if (mobileBtn && mobileDrawer && drawerOverlay && drawerClose) {
+                const openDrawer = () => {
+                    drawerOverlay.classList.remove('hidden');
+                    // Force reflow
+                    void drawerOverlay.offsetWidth;
+                    drawerOverlay.classList.remove('opacity-0');
+                    drawerOverlay.classList.add('opacity-100');
+
+                    mobileDrawer.classList.remove('translate-x-full');
+                    document.body.classList.add('overflow-hidden');
+                };
+
+                const closeDrawer = () => {
+                    mobileDrawer.classList.add('translate-x-full');
+                    drawerOverlay.classList.remove('opacity-100');
+                    drawerOverlay.classList.add('opacity-0');
+
+                    setTimeout(() => {
+                        drawerOverlay.classList.add('hidden');
+                        document.body.classList.remove('overflow-hidden');
+                    }, 300);
+                };
+
+                mobileBtn.addEventListener('click', openDrawer);
+                drawerClose.addEventListener('click', closeDrawer);
+                drawerOverlay.addEventListener('click', closeDrawer);
+            }
+        });
+        // Default fallbacks in case hpData is slow
+        let content = {
+            'btn-stays': {
+                placeholder: 'Where are you going?',
+                title: 'Find Your Perfect Stay<br class="hidden sm:inline" /> in Chhatrapati Sambhajinagar.',
+                desc: 'Comfortable hotels, homestays, and budget rooms for every traveler.',
+                slideId: 'carousel-stays'
+            },
+            'btn-cars': {
+                placeholder: 'Pick-up location',
+                title: 'Drive the City<br class="hidden sm:inline" /> on Your Terms.',
+                desc: 'Reliable self-drive and chauffeur options for smooth local travel.',
+                slideId: 'carousel-cars'
+            },
+            'btn-bikes': {
+                placeholder: 'Delivery location',
+                title: 'Explore Freely<br class="hidden sm:inline" /> on Two Wheels.',
+                desc: 'Affordable bikes for city rides and heritage trails.',
+                slideId: 'carousel-bikes'
+            },
+            'btn-restaurants': {
+                placeholder: 'Search for a restaurant',
+                title: 'Taste the Flavors<br class="hidden sm:inline" /> of Maharashtra.',
+                desc: 'From street food to fine dining, discover the city’s best kitchens.',
+                slideId: 'carousel-restaurants'
+            },
+            'btn-attractions': {
+                placeholder: 'Search for an attraction',
+                title: 'Step Into History<br class="hidden sm:inline" /> and Culture.',
+                desc: 'Explore forts, caves, monuments, and local landmarks.',
+                slideId: 'carousel-attractions'
+            },
+            'btn-buses': {
+                placeholder: 'Departure city',
+                title: 'Travel Smart<br class="hidden sm:inline" /> Across the Region.',
+                desc: 'Check routes, timings, and comfortable bus options.',
+                slideId: 'carousel-buses'
+            }
+        };
+
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        const searchInput = document.getElementById('search-location');
+
+        // Allow homepage-content.js to update the default stays title/desc
+        window.updateHeroDynamicContent = function (heroData) {
+            if (heroData && heroData.title) content['btn-stays'].title = heroData.title;
+            if (heroData && heroData.description) content['btn-stays'].desc = heroData.description;
+            // update currently visible if stays is active
+            const activeBtn = document.querySelector('.service-btn.active');
+            if (activeBtn && activeBtn.id === 'btn-stays') {
+                if (heroTitle) heroTitle.innerHTML = content['btn-stays'].title;
+                if (heroDesc) heroDesc.textContent = content['btn-stays'].desc;
+            }
+        };
+
+        Object.keys(content).forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    Object.keys(content).forEach(otherId => {
+                        const otherBtn = document.getElementById(otherId);
+                        if (otherBtn) {
+                            otherBtn.classList.remove('active');
+                        }
+                    });
+                    btn.classList.add('active');
+
+                    // Update Placeholder
+                    if (searchInput) searchInput.placeholder = content[id].placeholder;
+
+                    // Update Hero Content
+                    if (heroTitle) heroTitle.innerHTML = content[id].title;
+                    if (heroDesc) heroDesc.textContent = content[id].desc;
+
+                    // Update Carousel Slides
+                    document.querySelectorAll('.carousel-slide').forEach(slide => {
+                        slide.classList.add('opacity-0');
+                        slide.classList.remove('opacity-100');
+                    });
+                    const activeSlide = document.getElementById(content[id].slideId);
+                    if (activeSlide) {
+                        activeSlide.classList.remove('opacity-0');
+                        activeSlide.classList.add('opacity-100');
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // Search functionality
+        let selectedCategory = 'stays';
+
+        // Initialize category buttons
+        document.querySelectorAll('.service-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update UI
+                document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Set selected category
+                const id = btn.id.replace('btn-', '');
+                selectedCategory = id;
+
+                // Update placeholder
+                const input = document.getElementById('search-location');
+                if (id === 'stays') input.placeholder = "Where do you want to stay?";
+                else if (id === 'cars') input.placeholder = "Pick-up location?";
+                else if (id === 'bikes') input.placeholder = "Pick-up city?";
+                else if (id === 'restaurants') input.placeholder = "Find a restaurant...";
+                else if (id === 'attractions') input.placeholder = "Search attractions...";
+                else if (id === 'buses') input.placeholder = "From city?";
+
+                // Carousel transition (match background to service)
+                document.querySelectorAll('.carousel-slide').forEach(slide => slide.style.opacity = '0');
+                const slide = document.getElementById(`carousel-${id}`);
+                if (slide) slide.style.opacity = '1';
+                else document.getElementById('carousel-stays').style.opacity = '1'; // Fallback
+            });
+        });
+
+        // Handle Search Button Click
+        document.getElementById('search-btn').addEventListener('click', () => {
+            const location = document.getElementById('search-location').value;
+            let targetPage = 'stays.html';
+
+            switch (selectedCategory) {
+                case 'stays': targetPage = 'stays.html'; break;
+                case 'cars': targetPage = 'car-rentals.html'; break;
+                case 'bikes': targetPage = 'bike-rentals.html'; break;
+                case 'restaurants': targetPage = 'restaurant.html'; break;
+                case 'attractions': targetPage = 'attraction.html'; break;
+                case 'buses': targetPage = 'bus.html'; break;
+            }
+
+            // Redirect with query params
+            const params = new URLSearchParams();
+            if (location) params.append('search', location);
+
+            window.location.href = `${targetPage}?${params.toString()}`;
+        });
+    </script>
+    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/search-custom.js"></script>
+</body>
+
+</html>

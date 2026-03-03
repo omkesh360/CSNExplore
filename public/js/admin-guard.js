@@ -21,14 +21,14 @@
             return;
         }
 
-        if (user.role !== 'Admin') {
+        if (user.role !== 'admin' && user.role !== 'Admin') {
             redirectToLogin('Access denied. Admin privileges required.');
             return;
         }
 
         // Verify token with server (catches expired tokens)
         try {
-            const response = await fetch('/api/auth/me', {
+            const response = await fetch('/api/auth/verify', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -41,7 +41,7 @@
             }
 
             const data = await response.json();
-            if (data.user.role !== 'Admin') {
+            if (data.user.role !== 'admin' && data.user.role !== 'Admin') {
                 redirectToLogin('Access denied. Admin privileges required.');
             }
 

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cards Information Editor - TravelHub Admin</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "primary-dark": "#002357",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <link href="css/main.css" rel="stylesheet" />
+    <style>
+        .material-icons {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .tab-btn.active {
+            border-bottom: 2px solid #003580;
+            color: #003580;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
+    <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+        
+        <!-- Sidebar -->
+        <aside id="admin-sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <a href="admin-dashboard.html" class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+                </a>
+            </div>
+            <div class="flex-1 overflow-y-auto px-4 py-6">
+                <nav class="flex flex-col gap-1.5" id="sidebar-nav">
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-dashboard.html">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span><span
+                            class="text-[13px]">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-homepage.html">
+                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage
+                            Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-manage-listings.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span><span
+                            class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
+                        href="admin-cards-editor.html">
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                        <span class="material-symbols-outlined text-[20px]">view_list</span><span
+                            class="text-[13px]">Cards Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-bookings.html">
+                        <span class="material-symbols-outlined text-[20px]">confirmation_number</span><span
+                            class="text-[13px]">Bookings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-users.html">
+                        <span class="material-symbols-outlined text-[20px]">group</span><span
+                            class="text-[13px]">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-vendors.html">
+                        <span class="material-symbols-outlined text-[20px]">store</span><span
+                            class="text-[13px]">Vendors</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-financials.html">
+                        <span class="material-symbols-outlined text-[20px]">payments</span><span
+                            class="text-[13px]">Financials</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-slate-200 p-4 bg-slate-50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm"
+                        id="admin-avatar">A</div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-bold text-slate-900 truncate" id="admin-name">Admin</p>
+                        <p class="text-xs text-slate-500">Administrator</p>
+                    </div>
+                    <button onclick="logout()"
+                        class="text-slate-400 hover:text-red-500 transition-colors" title="Logout">
+                        <span class="material-symbols-outlined text-[20px]">logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex h-full flex-1 flex-col overflow-hidden">
+            <!-- Header -->
+            <header
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div>
+                        <h1 class="text-white font-black text-xl tracking-tight">System Cards Information Editor</h1>
+                        <p class="text-blue-100 text-xs font-medium">Edit the deep details (json) of all Listing Cards
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6">
+                <div class="mx-auto max-w-6xl">
+                    <!-- Tabs -->
+                    <div class="bg-white rounded-t-lg border-b border-gray-200 px-6 pt-4 mb-0">
+                        <div class="flex gap-6 overflow-x-auto pb-px" id="category-tabs">
+                            <button onclick="loadListings('stays')"
+                                class="tab-btn active pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Stays</button>
+                            <button onclick="loadListings('cars')"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Car
+                                Rentals</button>
+                            <button onclick="loadListings('bikes')"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Bike
+                                Rentals</button>
+                            <button onclick="loadListings('restaurants')"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Restaurants</button>
+                            <button onclick="loadListings('attractions')"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Attractions</button>
+                        </div>
+                    </div>
+
+                    <!-- List Area -->
+                    <div class="bg-white rounded-b-2xl shadow-sm border border-t-0 border-slate-200 p-6">
+                        <div id="loading-state" class="py-12 text-center hidden">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                            <p class="text-gray-500">Loading cards data...</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-grid">
+                            <!-- Cards will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Advanced Edit Modal -->
+    <div id="edit-modal"
+        class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div
+            class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col transform scale-100 transition-all">
+            <div class="flex items-center justify-between p-6 border-b border-gray-100">
+                <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[24px]">edit_square</span>
+                    Advanced Card Information Editor
+                </h3>
+                <button onclick="closeEditModal()" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-1 bg-slate-50" id="json-editor-container">
+                <p class="text-sm text-gray-500 mb-4">Edit all properties of this card below directly. The system
+                    dynamically generates inputs for any underlying JSON key.</p>
+                <form id="advanced-edit-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Dynamic fields injected here -->
+                </form>
+            </div>
+
+            <div class="p-6 border-t border-gray-100 flex justify-end gap-3 bg-white rounded-b-xl">
+                <button onclick="closeEditModal()"
+                    class="px-5 py-2.5 rounded-xl text-gray-700 font-bold hover:bg-gray-100 transition-colors border border-gray-200">Cancel</button>
+                <button id="save-card-btn"
+                    class="px-5 py-2.5 rounded-xl bg-primary text-white font-bold hover:bg-primary-hover shadow-md flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">save</span> Save Card Info
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-y-[150%] opacity-0 z-50 bg-green-600 font-bold">
+        Changes Saved Successfully!
+    </div>
+
+    <script src="js/admin-profile.js"></script>
+    <script>
+        let currentCategory = 'stays';
+        let currentItems = [];
+        let currentlyEditingItem = null;
+
+        // Mobile sidebar toggle
+        const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+        const adminSidebar = document.getElementById('admin-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        if (mobileSidebarToggle) {
+            mobileSidebarToggle.addEventListener('click', () => {
+                adminSidebar.classList.toggle('-translate-x-full');
+                sidebarOverlay.classList.toggle('hidden');
+            });
+        }
+
+        // Close sidebar when clicking overlay
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                adminSidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('adminName');
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'admin.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadListings('stays');
+        });
+
+        async function loadListings(category) {
+            currentCategory = category;
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.innerText.toLowerCase().includes(category.replace('s', '')) || (category === 'cars' && btn.innerText.includes('Car'))) {
+                    btn.classList.add('active', 'text-primary');
+                } else {
+                    btn.classList.remove('active', 'text-primary');
+                }
+            });
+
+            const grid = document.getElementById('cards-grid');
+            const loading = document.getElementById('loading-state');
+
+            grid.innerHTML = '';
+            loading.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`/api/${category}`);
+                currentItems = await response.json();
+                loading.classList.add('hidden');
+
+                if (currentItems.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">No cards found in ${category}</div>`;
+                    return;
+                }
+
+                grid.innerHTML = currentItems.map(item => `
+                    <div class="bg-white border text-left border-gray-200 rounded-xl overflow-hidden hover:shadow-card transition-shadow group flex flex-col h-full">
+                        <div class="h-40 w-full relative">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=No+Img'">
+                            <span class="absolute top-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded-lg backdrop-blur-md uppercase tracking-wider">ID: ${item.id}</span>
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <h4 class="font-bold text-gray-900 text-lg mb-1 leading-tight">${item.name}</h4>
+                            <p class="text-xs text-gray-500 mb-4 line-clamp-2">${item.description || item.location || ''}</p>
+                            
+                            <!-- Badges of inner data to show depth -->
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                ${Object.keys(item).filter(k => !['id', 'name', 'image', 'description'].includes(k)).slice(0, 4).map(k =>
+                    `<span class="bg-blue-50 text-blue-700 border border-blue-100 text-[10px] font-bold px-1.5 py-0.5 rounded capitalize">${k}</span>`
+                ).join('')}
+                                ${Object.keys(item).length > 6 ? `<span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-1.5 py-0.5 rounded">+${Object.keys(item).length - 6} more fields</span>` : ''}
+                            </div>
+                            
+                            <div class="mt-auto pt-4 border-t border-gray-100">
+                                <button onclick="openCardEditor('${item.id}')" class="w-full bg-primary/10 text-primary font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-[18px]">tune</span> Edit All Info Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                loading.classList.add('hidden');
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-red-500">Failed to load data details.</div>`;
+            }
+        }
+
+        function openCardEditor(id) {
+            currentlyEditingItem = currentItems.find(i => i.id == id);
+            if (!currentlyEditingItem) return;
+
+            const form = document.getElementById('advanced-edit-form');
+            form.innerHTML = '';
+
+            // Generate form fields dynamically based on the exact JSON keys
+            Object.entries(currentlyEditingItem).forEach(([key, value]) => {
+                if (key === 'id') {
+                    form.innerHTML += `
+                        <div class="col-span-full bg-yellow-50 p-3 rounded-lg border border-yellow-200 mb-2">
+                            <label class="block text-[11px] font-bold text-yellow-800 uppercase tracking-wider mb-1">ID (Read Only)</label>
+                            <input type="text" value="${value}" disabled class="w-full bg-yellow-100/50 rounded-lg border-yellow-300 text-yellow-900 text-sm opacity-80">
+                        </div>
+                    `;
+                    return;
+                }
+
+                // If value is an array (like amenities or images)
+                if (Array.isArray(value)) {
+                    form.innerHTML += `
+                        <div class="col-span-full">
+                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key} <span class="text-[10px] text-gray-400 font-normal">(comma separated list)</span></label>
+                            <textarea name="${key}" rows="2" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">${value.join(', ')}</textarea>
+                        </div>
+                    `;
+                }
+                // Large text fields
+                else if (key === 'description' || typeof value === 'string' && value.length > 50) {
+                    form.innerHTML += `
+                        <div class="col-span-full">
+                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key}</label>
+                            <textarea name="${key}" rows="3" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">${value}</textarea>
+                        </div>
+                    `;
+                }
+                // Number fields
+                else if (typeof value === 'number') {
+                    form.innerHTML += `
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key}</label>
+                            <input type="number" step="any" name="${key}" value="${value}" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">
+                        </div>
+                    `;
+                }
+                // Standard string fields
+                else {
+                    form.innerHTML += `
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key}</label>
+                            <input type="text" name="${key}" value="${value}" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+            currentlyEditingItem = null;
+        }
+
+        document.getElementById('save-card-btn').addEventListener('click', async () => {
+            if (!currentlyEditingItem) return;
+
+            const btn = document.getElementById('save-card-btn');
+            btn.innerHTML = `<div class="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div> Saving...`;
+            btn.disabled = true;
+
+            const form = document.getElementById('advanced-edit-form');
+            const newObj = { id: currentlyEditingItem.id };
+
+            // Reconstruct the JSON object based on the inputs
+            Array.from(form.elements).forEach(input => {
+                if (!input.name) return;
+
+                const origType = Array.isArray(currentlyEditingItem[input.name]) ? 'array' : typeof currentlyEditingItem[input.name];
+
+                if (origType === 'number') {
+                    newObj[input.name] = Number(input.value) || 0;
+                } else if (origType === 'array') {
+                    newObj[input.name] = input.value.split(',').map(s => s.trim()).filter(s => s);
+                } else {
+                    newObj[input.name] = input.value;
+                }
+            });
+
+            // Make the PUT request
+            try {
+                const token = localStorage.getItem('token');
+
+                const response = await fetch(`/api/${currentCategory}/${currentlyEditingItem.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                    },
+                    body: JSON.stringify(newObj)
+                });
+
+                if (response.ok) {
+                    closeEditModal();
+                    showToast();
+                    loadListings(currentCategory); // reload
+                } else {
+                    alert('Error saving details.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred during save.');
+            } finally {
+                btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">save</span> Save Card Info`;
+                btn.disabled = false;
+            }
+        });
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-[150%]', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-[150%]', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -84,9 +84,9 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
-            <div class="flex h-20 items-center px-6 border-b border-slate-100 shrink-0">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -115,6 +115,11 @@
                         href="admin-manage-listings.html">
                         <span class="material-symbols-outlined text-[20px]">edit_document</span>
                         <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
@@ -166,27 +171,32 @@
         <div class="flex h-full flex-1 flex-col overflow-hidden">
             <!-- Top Header -->
             <header
-                class="flex h-20 items-center justify-between border-b border-slate-200 bg-white px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
                     <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-slate-500 hover:text-slate-800 transition-colors">
+                        class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-slate-800 font-black text-xl tracking-tight">Add New Listing</h1>
-                        <p class="text-slate-500 text-xs font-medium">Add new inventory item to TravelHub</p>
+                        <h1 class="text-white font-black text-xl tracking-tight">Add New Listing</h1>
+                        <p class="text-blue-100 text-xs font-medium">Add new inventory item to TravelHub</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="window.adminLogout && window.adminLogout()"
-                        class="relative flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-800 border border-transparent hover:border-slate-200">
+                        class="relative flex h-10 w-10 items-center justify-center rounded-xl text-blue-100 transition-colors hover:bg-slate-50 hover:text-white border border-transparent hover:border-primary-dark">
                         <span class="material-symbols-outlined text-[20px]">notifications</span>
                         <span
-                            class="absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-red-500 border-2 border-white box-content"></span>
+                            class="absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-red-500 border-2 border-primary box-content"></span>
                     </button>
                     <a href="admin-manage-listings.html"
-                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-slate-700 text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-slate-200 shadow-sm">
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
                         <span class="hidden sm:inline">Cancel</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-blue-100 font-medium transition-all hover:bg-slate-50 hover:text-white"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
                 </div>
             </header>
@@ -233,19 +243,15 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Property Name</label>
-                                    <input type="text" name="name" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Location (City,
-                                        Country)</label>
-                                    <input type="text" name="location" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                    <select name="type"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                         <option>Hotel</option>
                                         <option>Apartment</option>
                                         <option>Resort</option>
@@ -253,33 +259,41 @@
                                         <option>Homestay</option>
                                     </select>
                                 </div>
-
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rating (0-5)</label>
-                                    <input type="number" name="rating" step="0.1" min="0" max="5" value="4.5"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="number" name="rating" step="0.1" min="0" max="5" value="4.5" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Badge (Optional)</label>
-                                    <input type="text" name="badge" placeholder="e.g. Bestseller"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Badge</label>
+                                    <input type="text" name="badge" placeholder="e.g. Bestseller" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Night (₹)</label>
+                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                                    <input type="text" name="contact" placeholder="+91..." class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Amenities</label>
+                                    <input type="text" name="amenities" placeholder="WiFi, Pool, AC..." class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                    <textarea name="description" rows="3"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary"></textarea>
+                                    <textarea name="description" rows="3" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary"></textarea>
                                 </div>
-                                <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                    <input type="file" name="image" accept="image/*" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Image</label>
+                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative image-input z-10">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
+                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative gallery-input z-10">
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover transition-colors">
-                                    Add Property
-                                </button>
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Property</button>
                             </div>
                         </form>
                     </div>
@@ -294,41 +308,57 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Car Model</label>
-                                    <input type="text" name="name" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                    <select name="type"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
-                                        <option>Sedan</option>
-                                        <option>SUV</option>
-                                        <option>Luxury</option>
-                                        <option>Compact</option>
+                                    <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Sedan</option><option>SUV</option><option>Luxury</option><option>Compact</option><option>MUV</option><option>Hatchback</option>
                                     </select>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Features</label>
-                                    <input type="text" name="features" placeholder="e.g. Automatic, 5 Seats"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Provider</label>
-                                    <input type="text" name="provider" placeholder="e.g. Hertz"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="provider" placeholder="e.g. Hertz" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day (₹)</label>
+                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Max Passengers</label>
+                                    <input type="number" name="passengers" value="5" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Transmission</label>
+                                    <select name="transmission" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Automatic</option><option>Manual</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Fuel Type</label>
+                                    <select name="fuelType" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Petrol</option><option>Diesel</option><option>Electric</option><option>CNG</option>
+                                    </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                    <input type="file" name="image" accept="image/*" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Features (comma list)</label>
+                                    <input type="text" name="features" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                    <textarea name="description" rows="2" class="w-full rounded-lg border-gray-300 focus:border-primary"></textarea>
+                                </div>
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
+                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary image-input z-10">
+                                </div>
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
+                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary gallery-input z-10">
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover transition-colors">
-                                    Add Car
-                                </button>
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Car</button>
                             </div>
                         </form>
                     </div>
@@ -343,31 +373,33 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Bike Model</label>
-                                    <input type="text" name="name" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                    <select name="type"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
-                                        <option>Cruiser</option>
-                                        <option>Sport</option>
-                                        <option>Scooter</option>
-                                        <option>Electric</option>
+                                    <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Cruiser</option><option>Sport</option><option>Scooter</option><option>Electric</option>
                                     </select>
                                 </div>
-
-                                <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                    <input type="file" name="image" accept="image/*" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day (₹)</label>
+                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Engine Capacity (cc)</label>
+                                    <input type="text" name="engine" placeholder="e.g. 150cc" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
+                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary image-input z-10">
+                                </div>
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
+                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary gallery-input z-10 relative">
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover transition-colors">
-                                    Add Bike
-                                </button>
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Bike</button>
                             </div>
                         </form>
                     </div>
@@ -382,36 +414,43 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Restaurant Name</label>
-                                    <input type="text" name="name" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Cuisine</label>
-                                    <input type="text" name="cuisine" required placeholder="e.g. Italian, Indian"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="cuisine" required placeholder="e.g. Italian, Indian" class="w-full rounded-lg border-gray-300">
                                 </div>
-
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
-                                    <input type="number" name="rating" step="0.1" max="5"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="number" name="rating" step="0.1" max="5" class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                    <input type="text" name="location" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cost for Two (₹)</label>
+                                    <input type="number" name="price" class="w-full rounded-lg border-gray-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Operating Hours</label>
+                                    <input type="text" name="hours" placeholder="e.g. 10 AM - 11 PM" class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                    <input type="file" name="image" accept="image/*" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Amenities</label>
+                                    <input type="text" name="amenities" placeholder="e.g. WiFi, Parking" class="w-full rounded-lg border-gray-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
+                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary image-input z-10 relative">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
+                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary gallery-input z-10 relative">
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover transition-colors">
-                                    Add Restaurant
-                                </button>
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Restaurant</button>
                             </div>
                         </form>
                     </div>
@@ -426,36 +465,39 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Attraction Name</label>
-                                    <input type="text" name="name" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                    <input type="text" name="location" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300">
                                 </div>
-
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
-                                    <input type="text" name="duration" placeholder="e.g. 2 hours"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="duration" placeholder="e.g. 2 hours" class="w-full rounded-lg border-gray-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Entry Fee (₹)</label>
+                                    <input type="number" name="price" placeholder="0 for Free" class="w-full rounded-lg border-gray-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Operating Hours</label>
+                                    <input type="text" name="hours" placeholder="e.g. 9 AM - 6 PM" class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                    <textarea name="description" rows="3"
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary"></textarea>
+                                    <textarea name="description" rows="3" class="w-full rounded-lg border-gray-300"></textarea>
                                 </div>
-                                <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                    <input type="file" name="image" accept="image/*" required
-                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
+                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary image-input z-10">
+                                </div>
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
+                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary gallery-input z-10">
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover transition-colors">
-                                    Add Attraction
-                                </button>
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Attraction</button>
                             </div>
                         </form>
                     </div>
@@ -463,7 +505,7 @@
                 </div>
                 <footer
                     class="mt-auto mb-4 py-6 border-t border-white/10 bg-primary text-center text-xs text-white/60 rounded-b-lg">
-                    <p>Copyright © 1996–2024 TravelHub Admin. All rights reserved.</p>
+                    <p>Copyright © 1996–2026 TravelHub Admin. All rights reserved.</p>
                 </footer>
             </main>
         </div>
@@ -584,25 +626,43 @@
                 const input = form.querySelector(`[name="${key}"]`);
                 if (input) {
                     if (input.type !== 'file') {
+                        if (Array.isArray(value)) {
+                            input.value = value.join(', ');
+                        } else {
+                            input.value = value;
+                        }
+                    }
+                }
+            }"]`);
+                if (input) {
+                    if (input.type !== 'file') {
                         input.value = value;
                     }
                 }
             }
 
             // Handle image preview differently (optional, but good UX)
-            const fileInput = form.querySelector('input[type="file"]');
+            const fileInput = form.querySelector('input[name="image"]');
             if (fileInput && data.image) {
-                // Create a preview element if it doesn't exist
                 let preview = form.querySelector('.image-preview');
                 if (!preview) {
                     preview = document.createElement('div');
-                    preview.className = 'image-preview mt-2';
+                    preview.className = 'image-preview mt-2 w-full';
                     fileInput.parentNode.appendChild(preview);
                 }
-                preview.innerHTML = `<p class="text-xs text-gray-500 mb-1">Current Image:</p><img src="${data.image}" alt="Current listing image" class="h-20 w-auto rounded border border-gray-200">`;
-
-                // Make file input optional in edit mode
+                preview.innerHTML = `<p class="text-xs text-gray-500 mb-1">Current Image:</p><img src="${data.image}" alt="Current" class="h-20 w-auto rounded border">`;
                 fileInput.removeAttribute('required');
+            }
+            
+            const galleryInput = form.querySelector('input[name="gallery"]');
+            if (galleryInput && data.gallery && data.gallery.length) {
+                let gPreview = form.querySelector('.gallery-preview');
+                if (!gPreview) {
+                    gPreview = document.createElement('div');
+                    gPreview.className = 'gallery-preview mt-2 flex gap-2 overflow-x-auto w-full';
+                    galleryInput.parentNode.appendChild(gPreview);
+                }
+                gPreview.innerHTML = data.gallery.map(img => `<img src="${img}" alt="Gallery" class="h-12 w-auto object-cover rounded border">`).join('');
             }
 
             // Change submit button text
@@ -717,6 +777,7 @@
         }
     </script>
 
+    <script src="js/admin-profile.js"></script>
 </body>
 
 </html>

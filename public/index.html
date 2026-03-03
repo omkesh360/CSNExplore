@@ -41,15 +41,21 @@
 
     <!-- Preloader script -->
     <script>
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
+        (function() {
+            var done = false;
+            function hidePreloader() {
+                if (done) return;
+                done = true;
+                var preloader = document.getElementById('preloader');
+                if (!preloader) return;
                 preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 1000);
-            }, 1000);
-        });
+                setTimeout(function() { preloader.style.display = 'none'; }, 600);
+            }
+            // Hide after load event
+            window.addEventListener('load', function() { setTimeout(hidePreloader, 500); });
+            // Hard timeout: never stuck longer than 3s
+            setTimeout(hidePreloader, 3000);
+        })();
     </script>
 
     <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
@@ -94,35 +100,16 @@
                 <div class="flex items-center gap-4 overflow-hidden">
                     <nav class="hidden lg:flex items-center gap-1">
                         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="stays.html">
-                            <span class="material-symbols-outlined text-[20px]">bed</span>
-                            <span class="text-[13px] font-medium">Stays</span>
+                            href="about.html">
+                            <span class="material-symbols-outlined text-[20px]">info</span>
+                            <span class="text-[13px] font-medium">About Us</span>
                         </a>
                         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="car-rentals.html">
-                            <span class="material-symbols-outlined text-[20px]">directions_car</span>
-                            <span class="text-[13px] font-medium">Car Rentals</span>
+                            href="contact.html">
+                            <span class="material-symbols-outlined text-[20px]">contact_mail</span>
+                            <span class="text-[13px] font-medium">Contact Us</span>
                         </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="bike-rentals.html">
-                            <span class="material-symbols-outlined text-[20px]">pedal_bike</span>
-                            <span class="text-[13px] font-medium">Bike Rentals</span>
-                        </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="restaurant.html">
-                            <span class="material-symbols-outlined text-[20px]">restaurant</span>
-                            <span class="text-[13px] font-medium">Restaurants</span>
-                        </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="attraction.html">
-                            <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
-                            <span class="text-[13px] font-medium">Attractions</span>
-                        </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
-                            href="bus.html">
-                            <span class="material-symbols-outlined text-[20px]">directions_bus</span>
-                            <span class="text-[13px] font-medium">Buses</span>
-                        </a>
+                        
                     </nav>
 
                     <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
@@ -174,6 +161,20 @@
             </div>
 
             <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="about.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">info</span>
+                    About Us
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="contact.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">contact_mail</span>
+                    Contact Us
+                </a>
+                
+                
+                <div class="border-t border-gray-200 my-2"></div>
+                
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
                     href="stays.html">
                     <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
@@ -479,13 +480,14 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright &copy; 1996&ndash;2024 TravelHub. All rights reserved.
+                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
                     </div>
                     <span class="hidden md:inline">&bull;</span>
                     <a href="login.html"
-                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">admin_panel_settings</span>
-                        Admin Login
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
+                        onclick="window.location.href='admin.html'; return true;">
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="pointer-events-none">Admin Login</span>
                     </a>
                 </div>
             </div>

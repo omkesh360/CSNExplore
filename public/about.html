@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Us | TravelHub</title>
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="css/main.css" as="style" />
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        as="style" />
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        as="style" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col page-fade-in overflow-x-hidden">
+<header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
+        <!-- Contact Top Bar (Slimmed down) -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1.5">
+            <div
+                class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="tel:+918600968888" id="hp-phone-link"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">call</span>
+                        <span id="hp-phone-text">+91 86009 68888</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
+                    <div id="hp-marquee" class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
+                        <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                        <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                        <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 shrink-0">
+                    <a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"
+                        class="flex items-center gap-1 hover:text-white transition-colors ml-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
+                <!-- Logo Left Side -->
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                </a>
+
+                <!-- Navigation and Auth Right Side -->
+                <div class="flex items-center gap-4 overflow-hidden">
+                    <nav class="hidden lg:flex items-center gap-1">
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="about.html">
+                            <span class="material-symbols-outlined text-[20px]">info</span>
+                            <span class="text-[13px] font-medium">About Us</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="contact.html">
+                            <span class="material-symbols-outlined text-[20px]">contact_mail</span>
+                            <span class="text-[13px] font-medium">Contact Us</span>
+                        </a>
+                        
+                    </nav>
+
+                    <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
+                        <div id="auth-buttons" class="flex gap-2">
+                            <a href="register.html"
+                                class="text-white text-[13px] font-bold px-3 py-1.5 rounded hover:bg-white/10 transition-colors hidden sm:block">Register</a>
+                            <a href="login.html"
+                                class="bg-white text-primary text-[13px] font-bold px-4 py-1.5 rounded hover:bg-gray-100 transition-colors shadow-sm">Sign
+                                in</a>
+                        </div>
+                        <div id="user-profile" class="hidden">
+                            <div class="flex items-center gap-2">
+                                <!-- Avatar circle with initial -->
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0 overflow-hidden"
+                                    id="user-avatar-circle">
+                                    <span class="material-symbols-outlined text-sm" id="user-avatar-icon">person</span>
+                                </div>
+                                <!-- User name -->
+                                <span id="user-display-name"
+                                    class="text-white text-[13px] font-semibold hidden sm:block max-w-[100px] truncate"></span>
+                                <!-- Logout button -->
+                                <button id="logout-btn"
+                                    class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-[12px] font-bold px-3 py-1.5 rounded-full transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]">logout</span>
+                                    <span class="hidden sm:inline">Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="about.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">info</span>
+                    About Us
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="contact.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">contact_mail</span>
+                    Contact Us
+                </a>
+                
+                
+                <div class="border-t border-gray-200 my-2"></div>
+                
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">confirmation_number</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank"
+                        class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
+                        <span class="text-sm">WhatsApp</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
+        </div>
+    </header>
+<main class="flex-grow">
+<section class="relative h-[400px] flex items-center justify-center text-center px-4 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center z-0" data-alt="Scenic aerial view of a coastal city at dusk" style='background-image: linear-gradient(0deg, rgba(0, 53, 128, 0.7) 0%, rgba(0, 53, 128, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAcb97en2Z4ZUCpJlAWpYf-RdH2IQ4KdDsMh_5TRByM4ThlWDJFJteY7e1kDbZcclFQCHDgmJmyB2EceCXDH6TrLchJfTT7hcA4vNHnXRqAguZSF61DKHPSHFCSfP0eipzrlLNDp7R3jo-fOAosXv6-IQNhTh1d6UvxlwDkJJshj1DNaHBi8dEmx3l84J4jdvCydVLFHdzEEu3bbG0MEnX7lstJNkxCf6fU_SzAUdYGYVxk7SHPzgAKlsBqZaEMRFAIsFjXuj1TwMV");'></div>
+<div class="relative z-10 max-w-3xl">
+<h1 class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">Making the World Smaller, One Journey at a Time</h1>
+<p class="text-lg md:text-xl text-white/90 font-light">Your trusted partner in discovering the hidden gems of our planet.</p>
+</div>
+</section>
+<section class="py-20 px-4">
+<div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<span class="text-primary font-bold uppercase tracking-widest text-sm">Our Mission</span>
+<h2 class="text-4xl font-bold mt-2 mb-6 text-slate-900 dark:text-slate-100">Inspiring the Global Explorer</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">
+                            To inspire and empower every traveler to explore the world with confidence and ease. We believe that travel is the ultimate catalyst for human connection and personal growth.
+                        </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+<h4 class="font-bold">Trustworthy</h4>
+<p class="text-sm text-slate-500">Verified reviews and expert guides.</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">public</span>
+<h4 class="font-bold">Global</h4>
+<p class="text-sm text-slate-500">Connecting cultures across borders.</p>
+</div>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden shadow-2xl">
+<img alt="Travelers looking at a map in a historic city" class="w-full h-full object-cover" data-alt="Two people looking at a physical map in a sunny street" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOEo7WKFXcjH5T8FhKs1ZIuyY5HQHcBEfuSPPLBYJ-yM7T3pBXBpS658tPKENZ3ubpuI_D2Ja3Z22ETmpEtxLyeQsnLUUo1E0mi6fdhOQGfKcz25N6AZEThDAjOhDyd0OkJz5Y6o9NvFi7XjqXIjalsKm4l0nA6vxjdatf2Rxpugf_haW_A6sbeO5bb8dWC7DUu0y9cZ_MrkhtuJl9_TK60FwODxacB7UKECISRd60Fd49_47WO796QUFbgcZubMdTLlOYB31HINZ_"/>
+</div>
+</div>
+</section>
+<section class="py-20 bg-primary/5 dark:bg-primary/10">
+<div class="max-w-4xl mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Our Story</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="space-y-12">
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">2012</div>
+<div class="flex-1">
+<h3 class="text-xl font-bold mb-2">The Small Blog Era</h3>
+<p class="text-slate-600 dark:text-slate-400">TravelHub started as "Miles &amp; Memories," a simple blog where our founders shared their backpacking adventures through Southeast Asia. What began as a diary for family and friends quickly resonated with a global audience looking for authentic, unpolished travel advice.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">2017</div>
+<div class="flex-1">
+<h3 class="text-xl font-bold mb-2">The Platform Evolution</h3>
+<p class="text-slate-600 dark:text-slate-400">As the community grew, we realized travelers needed more than just stories—they needed tools. We launched our first booking integration and interactive destination maps, officially rebranding as TravelHub.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">Today</div>
+<div class="flex-1">
+<h3 class="text-xl font-bold mb-2">A Comprehensive Hub</h3>
+<p class="text-slate-600 dark:text-slate-400">Today, we support millions of travelers monthly, offering everything from itinerary planning to sustainable travel initiatives. Our mission remains the same: making the world accessible to everyone.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Meet the Team</h2>
+<p class="text-slate-600 dark:text-slate-400">The passionate wanderers behind the platform.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
+<img alt="CEO Portrait" class="w-full h-full object-cover" data-alt="Portrait of a smiling professional man in a blue shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPWISoFrYJ5SlDkg69I2Ra9HBrNedxW1R9RoLr6A5XTOB5DJnVK97t2zgc83Q6NmRh8yIxOj0eDEO9DBlDM5R8Hr3TSQ9BN1wN0gL8e7B-VK8Mn1TB272yER2d-frgHf1nfV9lofQOx9iC8mOWCjKTQ8CUITivYWvo0ujOzU6QIvL5pj1KzGQAkAIZiTTkVToQgiT-lbEnIHeu4_b2MGNH1Hvom76eGB0qBzGePtno0phKuGYJrhpYr_bcA8VOyUa2XdmwsPVmFP8m"/>
+</div>
+<h4 class="text-lg font-bold">Marcus Thorne</h4>
+<p class="text-primary text-sm font-medium">Founder &amp; CEO</p>
+</div>
+<div class="text-center">
+<div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
+<img alt="Product Head Portrait" class="w-full h-full object-cover" data-alt="Portrait of a smiling professional woman with dark hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUev2R4r0N29tr9QMKtwOIoBLTX0k0-AvrJcdhhBKb4KheSK4ctVcFEF5hxNV1rOFM5Ifn8sUmW4lKY2sMI85iUCdFXkcAIgxgwAD2g3LBNV5G9-8vNhaur4ifw1BUQ5Pg9qmjqOZ44aElcqlYppHsLt13aifHT_3UfysmQW9-CB5abaqmzh-Khf0uTEL48eBfwHsf_qJYN_WlNFmAB2cAtaFAsw3oV0a72stWJngPdgL30Zt1vDP3xN8-nr5OhCkJqSL-SmUG9-D-"/>
+</div>
+<h4 class="text-lg font-bold">Elena Rodriguez</h4>
+<p class="text-primary text-sm font-medium">Head of Product</p>
+</div>
+<div class="text-center">
+<div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
+<img alt="Tech Lead Portrait" class="w-full h-full object-cover" data-alt="Portrait of a confident man in a gray sweater" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRT4x6MgOi8pZ68tinSiCo0h17e-u8tVWAnSp0n9qqsjRQYuYfBYu_IE_34ZAJ_l407rDZUo5SgFRmanI9D7JlsNm6masfM-r-eNsNjsAyk_HcIb2CaX9686Oyi5qKlNEIcDL4QiJmhmzZNiqQz9qd1IwS73apxFtBNp-W2MwMM90TY8NuargsW8smHolnzyLStt44Oc5ZFOjF_2GSLSLYTqTcGWV-3ZyKjJg4g1H0kRu2dGalgjOJId0N2DBAgLrNDpxoxB_F_x11"/>
+</div>
+<h4 class="text-lg font-bold">David Chen</h4>
+<p class="text-primary text-sm font-medium">CTO</p>
+</div>
+<div class="text-center">
+<div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
+<img alt="Marketing Head Portrait" class="w-full h-full object-cover" data-alt="Portrait of a professional woman with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTJOzvoruL3FwQogaExylCO5c0gHdGwvx_1EY-rFffMWzsnUK3NK4y6yNBKRFgRhPA-rTv4mZLrMAr1wsF76RuaU15IjnR4Rc4m7bOOej7Dk77pX64fcsqfvm90U1ard0PJxjrr4FTX-13UUXkzybqVhClFTOU1HMBz8Azah4bLnL7Cfr-j6Q3irKVS6DgdSkaMvpHLVDV6hzSFZt-oX-GqGMZHO2koeF2S9DB2VesAl_B_-DfGAqO7yLDHC9v059rOx57_iOv94wo"/>
+</div>
+<h4 class="text-lg font-bold">Sarah Jenkins</h4>
+<p class="text-primary text-sm font-medium">Head of Community</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-background-dark text-white overflow-hidden relative">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+<div class="max-w-6xl mx-auto px-4 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-4xl font-bold mb-6">Our Global Presence</h2>
+<p class="text-slate-300 mb-8 leading-relaxed">
+                                With offices in London, Tokyo, New York, and Sydney, we work around the clock to ensure your travels are seamless. Our network of over 50,000 local experts spans 140 countries.
+                            </p>
+<div class="grid grid-cols-3 gap-4">
+<div>
+<div class="text-3xl font-black text-primary">140+</div>
+<div class="text-xs text-slate-400 uppercase tracking-tighter">Countries Covered</div>
+</div>
+<div>
+<div class="text-3xl font-black text-primary">2M+</div>
+<div class="text-xs text-slate-400 uppercase tracking-tighter">Active Users</div>
+</div>
+<div>
+<div class="text-3xl font-black text-primary">50k</div>
+<div class="text-xs text-slate-400 uppercase tracking-tighter">Local Guides</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/20 p-8 rounded-2xl border border-primary/30">
+<div class="aspect-video bg-slate-800 rounded-lg overflow-hidden">
+<img alt="World Map" class="w-full h-full object-cover opacity-60 grayscale" data-alt="Stylized world map showing global connectivity" data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiBZLZTIaeycHW8b8s3zQ6jx5gI0zc8u2XKccsVKz34ePnqWWCFXx3uyK9aB-V4pRiMenDQNnoN3FXVGrWDcChs5e1f2GuanuD9cwx3t16l1gfkhbWQN1yyhAErwj0VGzpNjfHjJ9dCUcXbnyfm8cQ6PPFcvSEtPwkwWXFX4vOm6AeYzPOs0ZwIsk8-89HLcFHP2N6yX9rUyfXxt5Yuvyejg9U1YvhJmK70LXcttmgh9XlIgX1rdt4s4ePL5koORBysoZuaHkL1mJL"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-primary text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <!-- Footer Links Removed -->
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
+                    <div class="text-center md:text-right">
+                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
+                    </div>
+                    <span class="hidden md:inline">&bull;</span>
+                    <a href="login.html"
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
+                        onclick="window.location.href='login.html'; return true;">
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="pointer-events-none">Admin Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "accent": "#FC7D05",
+                        "secondary": "#FC7D05",
+                        "background-dark": "#0f1723",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#6b7280",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "sans": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
+                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+    <script src="js/homepage-content.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Category Switching & Mobile Drawer Logic
+
+        // Mobile Drawer Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerOverlay = document.getElementById('mobile-drawer-overlay');
+            const drawerClose = document.getElementById('mobile-drawer-close');
+
+            if (mobileBtn && mobileDrawer && drawerOverlay && drawerClose) {
+                const openDrawer = () => {
+                    drawerOverlay.classList.remove('hidden');
+                    // Force reflow
+                    void drawerOverlay.offsetWidth;
+                    drawerOverlay.classList.remove('opacity-0');
+                    drawerOverlay.classList.add('opacity-100');
+
+                    mobileDrawer.classList.remove('translate-x-full');
+                    document.body.classList.add('overflow-hidden');
+                };
+
+                const closeDrawer = () => {
+                    mobileDrawer.classList.add('translate-x-full');
+                    drawerOverlay.classList.remove('opacity-100');
+                    drawerOverlay.classList.add('opacity-0');
+
+                    setTimeout(() => {
+                        drawerOverlay.classList.add('hidden');
+                        document.body.classList.remove('overflow-hidden');
+                    }, 300);
+                };
+
+                mobileBtn.addEventListener('click', openDrawer);
+                drawerClose.addEventListener('click', closeDrawer);
+                drawerOverlay.addEventListener('click', closeDrawer);
+            }
+        });
+        // Default fallbacks in case hpData is slow
+        let content = {
+            'btn-stays': {
+                placeholder: 'Where are you going?',
+                title: 'Find Your Perfect Stay<br class="hidden sm:inline" /> in Chhatrapati Sambhajinagar.',
+                desc: 'Comfortable hotels, homestays, and budget rooms for every traveler.',
+                slideId: 'carousel-stays'
+            },
+            'btn-cars': {
+                placeholder: 'Pick-up location',
+                title: 'Drive the City<br class="hidden sm:inline" /> on Your Terms.',
+                desc: 'Reliable self-drive and chauffeur options for smooth local travel.',
+                slideId: 'carousel-cars'
+            },
+            'btn-bikes': {
+                placeholder: 'Delivery location',
+                title: 'Explore Freely<br class="hidden sm:inline" /> on Two Wheels.',
+                desc: 'Affordable bikes for city rides and heritage trails.',
+                slideId: 'carousel-bikes'
+            },
+            'btn-restaurants': {
+                placeholder: 'Search for a restaurant',
+                title: 'Taste the Flavors<br class="hidden sm:inline" /> of Maharashtra.',
+                desc: 'From street food to fine dining, discover the city’s best kitchens.',
+                slideId: 'carousel-restaurants'
+            },
+            'btn-attractions': {
+                placeholder: 'Search for an attraction',
+                title: 'Step Into History<br class="hidden sm:inline" /> and Culture.',
+                desc: 'Explore forts, caves, monuments, and local landmarks.',
+                slideId: 'carousel-attractions'
+            },
+            'btn-buses': {
+                placeholder: 'Departure city',
+                title: 'Travel Smart<br class="hidden sm:inline" /> Across the Region.',
+                desc: 'Check routes, timings, and comfortable bus options.',
+                slideId: 'carousel-buses'
+            }
+        };
+
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        const searchInput = document.getElementById('search-location');
+
+        // Allow homepage-content.js to update the default stays title/desc
+        window.updateHeroDynamicContent = function (heroData) {
+            if (heroData && heroData.title) content['btn-stays'].title = heroData.title;
+            if (heroData && heroData.description) content['btn-stays'].desc = heroData.description;
+            // update currently visible if stays is active
+            const activeBtn = document.querySelector('.service-btn.active');
+            if (activeBtn && activeBtn.id === 'btn-stays') {
+                if (heroTitle) heroTitle.innerHTML = content['btn-stays'].title;
+                if (heroDesc) heroDesc.textContent = content['btn-stays'].desc;
+            }
+        };
+
+        Object.keys(content).forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    Object.keys(content).forEach(otherId => {
+                        const otherBtn = document.getElementById(otherId);
+                        if (otherBtn) {
+                            otherBtn.classList.remove('active');
+                        }
+                    });
+                    btn.classList.add('active');
+
+                    // Update Placeholder
+                    if (searchInput) searchInput.placeholder = content[id].placeholder;
+
+                    // Update Hero Content
+                    if (heroTitle) heroTitle.innerHTML = content[id].title;
+                    if (heroDesc) heroDesc.textContent = content[id].desc;
+
+                    // Update Carousel Slides
+                    document.querySelectorAll('.carousel-slide').forEach(slide => {
+                        slide.classList.add('opacity-0');
+                        slide.classList.remove('opacity-100');
+                    });
+                    const activeSlide = document.getElementById(content[id].slideId);
+                    if (activeSlide) {
+                        activeSlide.classList.remove('opacity-0');
+                        activeSlide.classList.add('opacity-100');
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // Search functionality
+        let selectedCategory = 'stays';
+
+        // Initialize category buttons
+        document.querySelectorAll('.service-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update UI
+                document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Set selected category
+                const id = btn.id.replace('btn-', '');
+                selectedCategory = id;
+
+                // Update placeholder
+                const input = document.getElementById('search-location');
+                if (id === 'stays') input.placeholder = "Where do you want to stay?";
+                else if (id === 'cars') input.placeholder = "Pick-up location?";
+                else if (id === 'bikes') input.placeholder = "Pick-up city?";
+                else if (id === 'restaurants') input.placeholder = "Find a restaurant...";
+                else if (id === 'attractions') input.placeholder = "Search attractions...";
+                else if (id === 'buses') input.placeholder = "From city?";
+
+                // Carousel transition (match background to service)
+                document.querySelectorAll('.carousel-slide').forEach(slide => slide.style.opacity = '0');
+                const slide = document.getElementById(`carousel-${id}`);
+                if (slide) slide.style.opacity = '1';
+                else document.getElementById('carousel-stays').style.opacity = '1'; // Fallback
+            });
+        });
+
+        // Handle Search Button Click
+        document.getElementById('search-btn').addEventListener('click', () => {
+            const location = document.getElementById('search-location').value;
+            let targetPage = 'stays.html';
+
+            switch (selectedCategory) {
+                case 'stays': targetPage = 'stays.html'; break;
+                case 'cars': targetPage = 'car-rentals.html'; break;
+                case 'bikes': targetPage = 'bike-rentals.html'; break;
+                case 'restaurants': targetPage = 'restaurant.html'; break;
+                case 'attractions': targetPage = 'attraction.html'; break;
+                case 'buses': targetPage = 'bus.html'; break;
+            }
+
+            // Redirect with query params
+            const params = new URLSearchParams();
+            if (location) params.append('search', location);
+
+            window.location.href = `${targetPage}?${params.toString()}`;
+        });
+    </script>
+    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/search-custom.js"></script>
+</body>
+
+</html>

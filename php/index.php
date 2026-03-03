@@ -16,6 +16,8 @@ if (preg_match('#^/auth(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/auth.php';
 } elseif ($requestUri === '/homepage-content') {
     require __DIR__ . '/api/homepage.php';
+} elseif ($requestUri === '/dashboard') {
+    require __DIR__ . '/api/dashboard.php';
 } elseif ($requestUri === '/upload' || $requestUri === '/images') {
     require __DIR__ . '/api/upload.php';
 } elseif (preg_match('#^/(stays|cars|bikes|restaurants|attractions|buses|bookings|users|vendors)(/.*)?$#', $requestUri)) {
