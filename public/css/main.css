@@ -182,6 +182,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -200,6 +201,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,6 +217,7 @@ body {
         opacity: 0;
         transform: scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -229,6 +232,7 @@ body {
     0% {
         transform: translateX(0%);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -246,9 +250,11 @@ body {
     0% {
         background-position: -150% 0, -150% 0;
     }
+
     66% {
         background-position: 250% 0, -150% 0;
     }
+
     100% {
         background-position: 250% 0, 250% 0;
     }
@@ -258,6 +264,7 @@ body {
     0% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(1.1);
     }
@@ -575,11 +582,11 @@ button {
    SCROLL ANIMATIONS (INTERSECTION OBSERVER)
    ============================================ */
 [data-animate="fade-up"] {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-animate="fade-up"].is-animated {
     opacity: 1;
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animate="fade-up"].is-animated {
     transform: translateY(0);
 }

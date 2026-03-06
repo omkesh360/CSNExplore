@@ -22,6 +22,8 @@ if (preg_match('#^/auth(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/upload.php';
 } elseif (preg_match('#^/(stays|cars|bikes|restaurants|attractions|buses|bookings|users|vendors)(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/listings.php';
+} elseif (preg_match('#^/blogs(/.*)?$#', $requestUri)) {
+    require __DIR__ . '/api/blogs.php';
 } else {
     header('Content-Type: application/json');
     http_response_code(404);

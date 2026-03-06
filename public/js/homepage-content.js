@@ -54,7 +54,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (v.travelInsights === false) document.getElementById('section-travel-insights')?.remove();
         else {
             if (t.travelInsights && document.getElementById('title-travel-insights')) document.getElementById('title-travel-insights').textContent = t.travelInsights;
-            renderTravelInsights(hpData.travelInsights);
+            // Fetch live blogs from the blogs API, fall back to static data
+            try {
+                const blogsRes = await fetch('/api/blogs');
+                if (blogsRes.ok) {
+                    const allBlogs = await blogsRes.json();
+                    const publishedBlogs = allBlogs.filter(b => b.status === 'published').slice(0, 3);
+                    renderTravelInsights(publishedBlogs.length > 0 ? publishedBlogs : hpData.travelInsights, true);
+                } else {
+                    renderTravelInsights(hpData.travelInsights, false);
+                }
+            } catch (blogsErr) {
+                renderTravelInsights(hpData.travelInsights, false);
+            }
         }
 
     } catch (err) {
@@ -278,23 +290,29 @@ function renderFeaturedRestaurants(items) {
 }
 
 // 8. TRAVEL INSIGHTS
-function renderTravelInsights(items) {
+function renderTravelInsights(items, fromApi = false) {
     const container = document.getElementById('travel-insights-grid');
     if (!container || !items) return;
 
-    container.innerHTML = items.map(item => `
+    container.innerHTML = items.map(item => {
+        // Support both DB blog format and legacy JSON format
+        const category = fromApi ? (item.category || 'Insights') : (item.category || 'Insights');
+        const readTime = fromApi ? (item.read_time || '') : (item.readTime || '');
+        const image = item.image || '/images/placeholder.jpg';
+        const description = fromApi ? (item.content || '').substring(0, 160) + '...' : (item.description || '');
+        return `
         <div class="group cursor-pointer flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow">
             <div class="rounded-lg shrink-0 overflow-hidden h-[180px] mb-3 relative">
-                <img alt="${esc(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
+                <img alt="${esc(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${esc(image)}" onerror="this.src='/images/placeholder.jpg'" />
                 <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
             </div>
             <div class="flex items-center gap-2 mb-2 text-xs text-text-muted font-medium">
-                <span class="text-primary font-bold">${esc(item.category)}</span>
-                <span>•</span>
-                <span>${esc(item.readTime)}</span>
+                <span class="text-primary font-bold">${esc(category)}</span>
+                ${readTime ? `<span>•</span><span>${esc(readTime)}</span>` : ''}
             </div>
             <h3 class="text-lg font-bold text-text-main mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">${esc(item.title)}</h3>
-            <p class="text-sm text-text-muted line-clamp-2 mt-auto">${esc(item.description)}</p>
+            <p class="text-sm text-text-muted line-clamp-2 mt-auto">${esc(description)}</p>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }

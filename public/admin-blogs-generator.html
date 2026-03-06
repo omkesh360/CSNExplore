@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Blog Editor — TravelHub Admin</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#003580",
+                        "primary-hover": "#002357",
+                        "primary-dark": "#002357",
+                        "accent": "#FC7D05",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"],
+                        "sans": ["Be Vietnam Pro", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <link href="css/main.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+
+        /* ---- Quill Editor Overrides ---- */
+        .ql-toolbar.ql-snow {
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 0.75rem 0.75rem 0 0;
+            padding: 10px 12px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .ql-container.ql-snow {
+            border: none;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 15px;
+            min-height: 480px;
+        }
+
+        .ql-editor {
+            padding: 24px 32px;
+            line-height: 1.85;
+            color: #1a1a1a;
+        }
+
+        .ql-editor h1 {
+            font-size: 2em;
+            font-weight: 900;
+            margin-bottom: 0.5em;
+        }
+
+        .ql-editor h2 {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 0.4em;
+        }
+
+        .ql-editor h3 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .ql-editor p {
+            margin-bottom: 1em;
+        }
+
+        .ql-editor blockquote {
+            border-left: 4px solid #003580;
+            padding: 8px 16px;
+            background: #eff6ff;
+            border-radius: 0 8px 8px 0;
+            margin: 1.2em 0;
+            color: #003580;
+            font-style: italic;
+        }
+
+        .ql-editor img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1em auto;
+            display: block;
+        }
+
+        .ql-editor pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 13px;
+        }
+
+        .ql-editor ul,
+        .ql-editor ol {
+            padding-left: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        .ql-snow .ql-stroke {
+            stroke: #475569;
+        }
+
+        .ql-snow .ql-fill {
+            fill: #475569;
+        }
+
+        .ql-snow .ql-picker {
+            color: #475569;
+        }
+
+        .ql-snow .ql-picker-options {
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .ql-snow.ql-toolbar button:hover .ql-stroke,
+        .ql-snow.ql-toolbar button.ql-active .ql-stroke {
+            stroke: #003580;
+        }
+
+        .ql-snow.ql-toolbar button:hover .ql-fill,
+        .ql-snow.ql-toolbar button.ql-active .ql-fill {
+            fill: #003580;
+        }
+
+        .ql-snow.ql-toolbar button.ql-active,
+        .ql-snow.ql-toolbar .ql-picker-label.ql-active {
+            background: #eff6ff;
+            border-radius: 4px;
+            color: #003580;
+        }
+
+        /* ---- Editor wrapper ---- */
+        #editor-wrapper {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ---- Status badge ---- */
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* ---- Sidebar toggle ---- */
+        .sidebar-panel {
+            transition: transform 0.3s;
+        }
+
+        /* ---- Post list cards ---- */
+        .post-row {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .post-row:hover {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+            border-color: #cbd5e1;
+        }
+
+        .post-row.active-post {
+            border-color: #003580;
+            box-shadow: 0 0 0 2px #eff6ff;
+        }
+
+        /* ---- Autosave indicator ---- */
+        #autosave-indicator {
+            transition: opacity 0.4s;
+        }
+
+        /* ---- Toast ---- */
+        #toast {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        /* ---- View toggle ---- */
+        .view-btn {
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .view-btn.active {
+            background: #003580;
+            color: #fff;
+        }
+
+        .view-btn:not(.active) {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .view-btn:not(.active):hover {
+            background: #e2e8f0;
+        }
+
+        /* ---- Cover image preview ---- */
+        #cover-preview {
+            background: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #cover-preview img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        #cover-no-image {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 12px;
+            flex-direction: column;
+            gap: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 font-display text-gray-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
+    <div class="flex h-full w-full overflow-hidden">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside id="admin-sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+            <div class="flex h-16 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+                </a>
+            </div>
+            <div class="flex-1 overflow-y-auto px-4 py-5">
+                <nav class="flex flex-col gap-1">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-dashboard.html">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span><span
+                            class="text-[13px]">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-homepage.html">
+                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage
+                            Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
+                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-add-listing.html">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span><span
+                            class="text-[13px]">Add Listing</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-manage-listings.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span><span
+                            class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span><span
+                            class="text-[13px]">Cards Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-bookings.html">
+                        <span class="material-symbols-outlined text-[20px]">calendar_month</span><span
+                            class="text-[13px]">Bookings</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
+                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-users.html">
+                        <span class="material-symbols-outlined text-[20px]">group</span><span
+                            class="text-[13px]">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-vendors.html">
+                        <span class="material-symbols-outlined text-[20px]">storefront</span><span
+                            class="text-[13px]">Vendors</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-financials.html">
+                        <span class="material-symbols-outlined text-[20px]">payments</span><span
+                            class="text-[13px]">Financial Reports</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                        href="admin-images.html">
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span><span
+                            class="text-[13px]">Images Manager</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
+                        href="admin-blogs-generator.html">
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span><span
+                            class="text-[13px]">Blog Editor</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-slate-100 p-4 shrink-0">
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
+                    <span class="material-symbols-outlined text-[20px]">logout</span><span
+                        class="text-[13px]">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm"></div>
+
+        <!-- ================= MAIN AREA ================= -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+
+            <!-- Top Header -->
+            <header
+                class="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6 shrink-0 z-20">
+                <div class="flex items-center gap-3">
+                    <button class="md:hidden text-slate-500" onclick="toggleSidebar()">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <!-- View toggle -->
+                    <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+                        <button id="btn-view-editor" class="view-btn active" onclick="showView('editor')">
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-[15px]">edit</span> Editor</span>
+                        </button>
+                        <button id="btn-view-posts" class="view-btn" onclick="showView('posts')">
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-[15px]">list</span> All Posts <span
+                                    id="post-count-badge"
+                                    class="bg-slate-300 text-slate-700 rounded-full px-1.5 text-[10px] font-bold ml-1">0</span></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <!-- Autosave indicator -->
+                    <span id="autosave-indicator"
+                        class="text-[11px] text-slate-400 font-medium opacity-0 hidden sm:block">
+                        <span class="material-symbols-outlined text-[14px] align-middle">cloud_done</span> Saved
+                    </span>
+                    <button id="btn-save-draft" onclick="savePost('draft')"
+                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">save</span> Save Draft
+                    </button>
+                    <button id="btn-publish" onclick="savePost('published')"
+                        class="flex items-center gap-1.5 px-4 py-1.5 bg-primary text-white rounded-lg text-[13px] font-bold hover:bg-primary-hover transition-colors shadow-sm">
+                        <span class="material-symbols-outlined text-[16px]">publish</span> Publish
+                    </button>
+                    <button id="btn-new" onclick="newPost()"
+                        class="flex items-center gap-1.5 px-3 py-1.5 border border-primary text-primary rounded-lg text-[13px] font-bold hover:bg-blue-50 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">add</span> New
+                    </button>
+                </div>
+            </header>
+
+            <!-- ====== EDITOR VIEW ====== -->
+            <div id="view-editor" class="flex flex-1 overflow-hidden">
+
+                <!-- Left: Editor Canvas -->
+                <main class="flex-1 overflow-y-auto bg-slate-100 p-4 md:p-8">
+                    <!-- Post title -->
+                    <div class="max-w-3xl mx-auto mb-4">
+                        <input id="post-title" type="text" placeholder="Post title..."
+                            class="w-full text-3xl font-black text-slate-900 bg-transparent border-none outline-none placeholder-slate-300 leading-tight"
+                            oninput="onPostChange()">
+                        <!-- Meta info row -->
+                        <div class="flex flex-wrap items-center gap-3 mt-3 text-[12px] text-slate-400">
+                            <span id="word-count" class="font-medium">0 words</span>
+                            <span>•</span>
+                            <span id="read-time-estimate" class="font-medium">~0 min read</span>
+                            <span>•</span>
+                            <span id="current-status-label" class="font-bold">Draft</span>
+                        </div>
+                    </div>
+
+                    <!-- Rich Text Editor -->
+                    <div class="max-w-3xl mx-auto" id="editor-wrapper">
+                        <div id="quill-editor"></div>
+                    </div>
+
+                    <!-- Generate Bar -->
+                    <div
+                        class="max-w-3xl mx-auto mt-6 bg-gradient-to-r from-blue-900 to-primary rounded-xl p-4 flex flex-col sm:flex-row items-center gap-3 shadow-lg">
+                        <span class="material-symbols-outlined text-white text-[28px] shrink-0">auto_awesome</span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-white font-bold text-[13px]">AI Blog Generator</p>
+                            <p class="text-blue-200 text-[11px]">Enter a topic and auto-generate a starter draft
+                                instantly</p>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <input id="gen-topic" type="text" placeholder="e.g. Ajanta Caves travel tips"
+                                class="flex-1 sm:w-56 px-3 py-2 rounded-lg bg-white/10 text-white placeholder-blue-300 border border-white/20 text-[13px] outline-none focus:bg-white/20 transition-colors">
+                            <button onclick="generateDraft()" id="gen-btn"
+                                class="flex items-center gap-1.5 px-4 py-2 bg-accent text-white rounded-lg text-[13px] font-bold hover:bg-orange-500 transition-colors whitespace-nowrap shrink-0">
+                                <span class="material-symbols-outlined text-[16px]" id="gen-icon">auto_fix_high</span>
+                                Generate
+                            </button>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Right: Meta Sidebar -->
+                <aside id="meta-sidebar"
+                    class="w-72 shrink-0 bg-white border-l border-slate-200 overflow-y-auto flex flex-col hidden xl:flex">
+                    <div class="p-5 border-b border-slate-100">
+                        <h3 class="text-[13px] font-black text-slate-700 uppercase tracking-wide mb-4">Post Settings
+                        </h3>
+
+                        <!-- Status -->
+                        <div class="mb-4">
+                            <label
+                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Status</label>
+                            <select id="post-status"
+                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-4">
+                            <label
+                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Category</label>
+                            <input id="post-category" type="text" placeholder="e.g. Heritage, Food & Drink"
+                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                                list="category-suggestions" oninput="onPostChange()">
+                            <datalist id="category-suggestions">
+                                <option value="Heritage">
+                                <option value="History">
+                                <option value="Food & Drink">
+                                <option value="Travel Tips">
+                                <option value="Adventure">
+                                <option value="Culture">
+                                <option value="Nature">
+                                <option value="Lifestyle">
+                            </datalist>
+                        </div>
+
+                        <!-- Author -->
+                        <div class="mb-4">
+                            <label
+                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Author</label>
+                            <input id="post-author" type="text" placeholder="Author name"
+                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                                oninput="onPostChange()">
+                        </div>
+
+                        <!-- Read Time -->
+                        <div class="mb-4">
+                            <label
+                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Read
+                                Time <span class="font-normal text-slate-400">(auto-calculated)</span></label>
+                            <input id="post-readtime" type="text" placeholder="e.g. 5 min read"
+                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary transition-colors"
+                                oninput="onPostChange()">
+                        </div>
+                    </div>
+
+                    <!-- Cover Image -->
+                    <div class="p-5 border-b border-slate-100">
+                        <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Cover
+                            Image</label>
+                        <div id="cover-preview">
+                            <div id="cover-no-image">
+                                <span class="material-symbols-outlined text-[28px] text-slate-300">image</span>
+                                <span>No cover image set</span>
+                            </div>
+                            <img id="cover-preview-img" src="" alt="Cover" class="hidden">
+                        </div>
+                        <input id="post-image" type="text" placeholder="Image URL or /images/..."
+                            class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] mt-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                            oninput="updateCoverPreview()" onchange="onPostChange()">
+                    </div>
+
+                    <!-- Danger zone -->
+                    <div class="p-5 mt-auto">
+                        <button id="btn-delete" onclick="deleteCurrentPost()"
+                            class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-red-200 text-red-500 text-[13px] font-bold hover:bg-red-50 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">delete</span> Delete Post
+                        </button>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- ====== POSTS LIST VIEW ====== -->
+            <div id="view-posts" class="flex-1 overflow-y-auto p-6 hidden">
+                <div class="max-w-4xl mx-auto space-y-4">
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total Posts</p>
+                            <h3 class="text-3xl font-black text-slate-900 mt-1" id="stat-total">0</h3>
+                        </div>
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Published</p>
+                            <h3 class="text-3xl font-black text-green-600 mt-1" id="stat-published">0</h3>
+                        </div>
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Drafts</p>
+                            <h3 class="text-3xl font-black text-amber-500 mt-1" id="stat-drafts">0</h3>
+                        </div>
+                    </div>
+
+                    <!-- Search & Filter -->
+                    <div class="flex items-center gap-3 bg-white rounded-xl border border-slate-200 p-3 shadow-sm">
+                        <div class="relative flex-1">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+                            <input id="posts-search" type="text" placeholder="Search posts..."
+                                class="w-full pl-9 pr-3 py-2 text-[13px] bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-primary transition-colors"
+                                oninput="filterPosts()">
+                        </div>
+                        <select id="posts-filter-status"
+                            class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary"
+                            onchange="filterPosts()">
+                            <option value="">All Status</option>
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                        <button onclick="newPost(); showView('editor')"
+                            class="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-lg text-[13px] font-bold hover:bg-primary-hover transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">add</span> New Post
+                        </button>
+                    </div>
+
+                    <!-- Posts List -->
+                    <div id="posts-list" class="flex flex-col gap-3">
+                        <div class="bg-white rounded-xl border border-slate-200 p-10 text-center">
+                            <span class="material-symbols-outlined text-4xl text-slate-300"
+                                style="animation: spin 1s linear infinite;">data_usage</span>
+                            <p class="text-slate-400 mt-3 text-sm">Loading posts...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /main area -->
+    </div><!-- /flex wrapper -->
+
+    <!-- Toast -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-white font-bold text-sm opacity-0 pointer-events-none transform translate-y-4 transition-all duration-300">
+        <span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
+        <span id="toast-msg">Saved!</span>
+    </div>
+
+    <style>
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script src="js/admin-auth.js"></script>
+    <script>
+        // =================== STATE ===================
+        let quill;
+        let allPosts = [];
+        let currentPostId = null;
+        let isDirty = false;
+        let autosaveTimer = null;
+
+        // =================== INIT ===================
+        document.addEventListener('DOMContentLoaded', async () => {
+            initEditor();
+            await fetchPosts();
+            document.getElementById('sidebar-overlay')?.addEventListener('click', toggleSidebar);
+        });
+
+        function initEditor() {
+            quill = new Quill('#quill-editor', {
+                theme: 'snow',
+                placeholder: 'Start writing your story...',
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ color: [] }, { background: [] }],
+                        ['blockquote', 'code-block'],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        [{ indent: '-1' }, { indent: '+1' }],
+                        ['link', 'image'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            quill.on('text-change', () => {
+                updateWordCount();
+                onPostChange();
+            });
+
+            // Custom image handler — prompt for URL
+            quill.getModule('toolbar').addHandler('image', () => {
+                const url = prompt('Enter image URL:');
+                if (url) {
+                    const range = quill.getSelection();
+                    quill.insertEmbed(range ? range.index : 0, 'image', url);
+                }
+            });
+        }
+
+        // =================== VIEWS ===================
+        function showView(view) {
+            document.getElementById('view-editor').classList.toggle('hidden', view !== 'editor');
+            document.getElementById('view-editor').classList.toggle('flex', view === 'editor');
+            document.getElementById('view-posts').classList.toggle('hidden', view !== 'posts');
+            document.getElementById('btn-view-editor').classList.toggle('active', view === 'editor');
+            document.getElementById('btn-view-posts').classList.toggle('active', view === 'posts');
+            document.getElementById('btn-save-draft').classList.toggle('hidden', view !== 'editor');
+            document.getElementById('btn-publish').classList.toggle('hidden', view !== 'editor');
+        }
+
+        // =================== POSTS CRUD ===================
+        async function fetchPosts() {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch('/api/blogs', { headers: { 'Authorization': 'Bearer ' + (token || '') } });
+                if (!res.ok) throw new Error('Failed to fetch');
+                allPosts = await res.json();
+                updateStats();
+                renderPostsList(allPosts);
+                document.getElementById('post-count-badge').textContent = allPosts.length;
+            } catch (e) {
+                document.getElementById('posts-list').innerHTML = `<div class="bg-white rounded-xl border border-red-100 p-10 text-center text-red-500 font-bold">Failed to load posts.</div>`;
+            }
+        }
+
+        function updateStats() {
+            const pub = allPosts.filter(p => p.status === 'published').length;
+            const dra = allPosts.filter(p => p.status === 'draft').length;
+            document.getElementById('stat-total').textContent = allPosts.length;
+            document.getElementById('stat-published').textContent = pub;
+            document.getElementById('stat-drafts').textContent = dra;
+        }
+
+        function filterPosts() {
+            const q = document.getElementById('posts-search').value.toLowerCase();
+            const st = document.getElementById('posts-filter-status').value;
+            const filtered = allPosts.filter(p =>
+                (!q || p.title.toLowerCase().includes(q) || (p.author || '').toLowerCase().includes(q)) &&
+                (!st || p.status === st)
+            );
+            renderPostsList(filtered);
+        }
+
+        function renderPostsList(posts) {
+            const list = document.getElementById('posts-list');
+            if (!posts.length) {
+                list.innerHTML = `<div class="bg-white rounded-xl border border-slate-200 p-10 text-center">
+            <span class="material-symbols-outlined text-4xl text-slate-300">article</span>
+            <p class="text-slate-400 mt-3 text-sm font-medium">No posts found. Click "New Post" to get started!</p>
+        </div>`;
+                return;
+            }
+            list.innerHTML = posts.map(p => `
+        <div class="post-row ${currentPostId == p.id ? 'active-post' : ''}" onclick="openPost(${p.id})">
+            ${p.image ? `<img src="${p.image}" alt="" class="w-14 h-14 rounded-lg object-cover shrink-0">` :
+                    `<div class="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-slate-400">article</span>
+                 </div>`}
+            <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-slate-900 text-[14px] truncate">${p.title || 'Untitled Post'}</h3>
+                <div class="flex items-center gap-2 mt-1 text-slate-400 text-[11px]">
+                    <span class="status-dot ${p.status === 'published' ? 'bg-green-500' : 'bg-amber-400'}"></span>
+                    <span class="font-bold ${p.status === 'published' ? 'text-green-600' : 'text-amber-500'}">${p.status === 'published' ? 'Published' : 'Draft'}</span>
+                    ${p.category ? `<span>•</span><span>${p.category}</span>` : ''}
+                    ${p.read_time ? `<span>•</span><span>${p.read_time}</span>` : ''}
+                    <span>•</span><span>${new Date(p.created_at).toLocaleDateString('en-IN')}</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+                <button onclick="event.stopPropagation(); openPost(${p.id}); showView('editor')"
+                    class="text-slate-400 hover:text-primary hover:bg-blue-50 p-2 rounded-lg transition-colors" title="Edit">
+                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                </button>
+                <button onclick="event.stopPropagation(); deletePost(${p.id})"
+                    class="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors" title="Delete">
+                    <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // =================== EDITOR ACTIONS ===================
+        function newPost() {
+            currentPostId = null;
+            isDirty = false;
+            document.getElementById('post-title').value = '';
+            quill.setContents([{ insert: '\n' }]);
+            document.getElementById('post-status').value = 'draft';
+            document.getElementById('post-category').value = '';
+            document.getElementById('post-author').value = 'TravelHub Team';
+            document.getElementById('post-readtime').value = '';
+            document.getElementById('post-image').value = '';
+            document.getElementById('btn-delete').style.display = 'none';
+            updateCoverPreview();
+            updateWordCount();
+            updateStatusLabel();
+            document.getElementById('post-title').focus();
+            showToast('New post started', 'info', 'add');
+        }
+
+        function openPost(id) {
+            const post = allPosts.find(p => p.id == id);
+            if (!post) return;
+            currentPostId = post.id;
+            isDirty = false;
+            document.getElementById('post-title').value = post.title || '';
+            // Try to parse content as HTML Delta, fallback to plain text
+            try {
+                quill.setContents(quill.clipboard.convert(post.content || ''));
+            } catch (e) {
+                quill.setText(post.content || '');
+            }
+            document.getElementById('post-status').value = post.status || 'draft';
+            document.getElementById('post-category').value = post.category || '';
+            document.getElementById('post-author').value = post.author || '';
+            document.getElementById('post-readtime').value = post.read_time || '';
+            document.getElementById('post-image').value = post.image || '';
+            document.getElementById('btn-delete').style.display = '';
+            updateCoverPreview();
+            updateWordCount();
+            updateStatusLabel();
+            // Highlight in list
+            document.querySelectorAll('.post-row').forEach(el => el.classList.remove('active-post'));
+            renderPostsList(allPosts);
+        }
+
+        async function savePost(status) {
+            const title = document.getElementById('post-title').value.trim();
+            const content = quill.root.innerHTML;
+            const author = document.getElementById('post-author').value.trim() || 'TravelHub Team';
+            const category = document.getElementById('post-category').value.trim();
+            const read_time = document.getElementById('post-readtime').value.trim() || document.getElementById('read-time-estimate').textContent;
+            const image = document.getElementById('post-image').value.trim();
+            const finalStatus = status || document.getElementById('post-status').value;
+
+            if (!title) { showToast('Please add a title!', 'error', 'error'); document.getElementById('post-title').focus(); return; }
+
+            const payload = { title, content, author, category, read_time, image, status: finalStatus };
+            const method = currentPostId ? 'PUT' : 'POST';
+            if (currentPostId) payload.id = currentPostId;
+
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                document.getElementById('btn-publish').disabled = true;
+                const res = await fetch('/api/blogs', {
+                    method,
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (token || '') },
+                    body: JSON.stringify(payload)
+                });
+                const result = await res.json();
+                if (result.id) {
+                    currentPostId = result.id;
+                    isDirty = false;
+                    document.getElementById('post-status').value = finalStatus;
+                    document.getElementById('btn-delete').style.display = '';
+                    updateStatusLabel();
+                    showAutosaveIndicator();
+                    showToast(finalStatus === 'published' ? '🎉 Post published!' : 'Draft saved!', 'success', finalStatus === 'published' ? 'publish' : 'save');
+                    await fetchPosts();
+                } else {
+                    showToast(result.error || 'Save failed', 'error', 'error');
+                }
+            } catch (e) {
+                showToast('Network error', 'error', 'error');
+            } finally {
+                document.getElementById('btn-publish').disabled = false;
+            }
+        }
+
+        async function deletePost(id) {
+            if (!confirm('Delete this post permanently?')) return;
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch(`/api/blogs?id=${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + (token || '') }
+                });
+                const result = await res.json();
+                if (result.success) {
+                    showToast('Post deleted', 'success', 'delete');
+                    if (currentPostId == id) newPost();
+                    await fetchPosts();
+                } else {
+                    showToast(result.error || 'Delete failed', 'error', 'error');
+                }
+            } catch (e) {
+                showToast('Network error', 'error', 'error');
+            }
+        }
+
+        function deleteCurrentPost() {
+            if (!currentPostId) { showToast('No post selected', 'error', 'error'); return; }
+            deletePost(currentPostId);
+        }
+
+        // =================== GENERATOR ===================
+        function generateDraft() {
+            const topic = document.getElementById('gen-topic').value.trim();
+            if (!topic) { showToast('Enter a topic first!', 'error', 'error'); return; }
+
+            const icon = document.getElementById('gen-icon');
+            const btn = document.getElementById('gen-btn');
+            icon.style.animation = 'spin 1s linear infinite';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const titles = [
+                    `${topic}: A Complete Travel Guide`,
+                    `Exploring ${topic}: Everything You Need to Know`,
+                    `Your Ultimate Guide to ${topic}`,
+                    `Discover ${topic}: Tips, Highlights & More`,
+                    `${topic}: Hidden Gems & Local Secrets`,
+                ];
+                const generatedTitle = titles[Math.floor(Math.random() * titles.length)];
+
+                const htmlContent = `<h2>Introduction</h2>
+<p>${topic} is one of the most remarkable experiences a traveler can have. Whether you are a seasoned explorer or planning your first journey, understanding what makes ${topic} special is the first step toward an unforgettable adventure.</p>
+<h2>Why ${topic} Stands Out</h2>
+<p>If you are searching for that perfect blend of culture, history, and natural beauty, look no further. ${topic} offers a unique tapestry woven from centuries of tradition and modern vibrancy. Every corner tells a story, and every visit reveals something new.</p>
+<blockquote>${topic} is not just a place — it is a feeling that stays with you long after you leave.</blockquote>
+<h2>Best Time to Visit</h2>
+<p>The ideal time to experience ${topic} depends on what you are looking for. Those seeking vibrant outdoor activities will thrive during the spring and autumn months, while winter travelers will appreciate the quieter, more intimate atmosphere.</p>
+<h2>Top Highlights</h2>
+<ol>
+<li>Rich cultural heritage and local architecture</li>
+<li>Must-try local cuisine and dining experiences</li>
+<li>Natural landscapes and scenic viewpoints</li>
+<li>Hidden gems off the beaten tourist trail</li>
+<li>Friendly locals and unique community experiences</li>
+</ol>
+<h2>Practical Travel Tips</h2>
+<ul>
+<li>Book accommodations well in advance during peak season</li>
+<li>Carry local currency for street markets</li>
+<li>Respect local customs and traditions</li>
+<li>Download offline maps for better navigation</li>
+<li>Try local transport for an authentic experience</li>
+</ul>
+<h2>Conclusion</h2>
+<p>${topic} is more than just a destination — it is an experience that will stay with you long after you return home. Whether it is the flavors, the faces, or the landscapes, something about ${topic} has a way of calling travelers back. Pack your bags, embrace the journey, and let ${topic} leave its mark on your story.</p>`;
+
+                document.getElementById('post-title').value = generatedTitle;
+                quill.clipboard.dangerouslyPasteHTML(htmlContent);
+                document.getElementById('post-category').value = 'Travel Tips';
+                updateWordCount();
+                onPostChange();
+
+                icon.style.animation = '';
+                btn.disabled = false;
+                showToast('Draft generated! Review and publish.', 'success', 'auto_awesome');
+            }, 1800);
+        }
+
+        // =================== HELPERS ===================
+        function updateWordCount() {
+            const text = quill.getText().trim();
+            const words = text.split(/\s+/).filter(w => w.length > 0).length;
+            const mins = Math.max(1, Math.ceil(words / 200));
+            document.getElementById('word-count').textContent = words.toLocaleString() + ' words';
+            document.getElementById('read-time-estimate').textContent = `~${mins} min read`;
+            // Auto-fill read time if empty
+            const rtInput = document.getElementById('post-readtime');
+            if (!rtInput.dataset.userSet) {
+                rtInput.value = `${mins} min read`;
+            }
+        }
+
+        function onPostChange() {
+            isDirty = true;
+            updateStatusLabel();
+            clearTimeout(autosaveTimer);
+            autosaveTimer = setTimeout(() => {
+                if (isDirty && currentPostId) savePost(document.getElementById('post-status').value);
+            }, 5000); // autosave every 5 seconds when editing existing post
+        }
+
+        function updateStatusLabel() {
+            const s = document.getElementById('post-status').value;
+            const label = document.getElementById('current-status-label');
+            label.textContent = s === 'published' ? '✓ Published' : '✎ Draft';
+            label.className = s === 'published' ? 'font-bold text-green-600' : 'font-bold text-amber-500';
+        }
+
+        function updateCoverPreview() {
+            const url = document.getElementById('post-image').value.trim();
+            const noImg = document.getElementById('cover-no-image');
+            const img = document.getElementById('cover-preview-img');
+            if (url) {
+                img.src = url;
+                img.classList.remove('hidden');
+                noImg.classList.add('hidden');
+            } else {
+                img.classList.add('hidden');
+                noImg.classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('post-readtime')?.addEventListener('input', function () {
+            this.dataset.userSet = this.value ? '1' : '';
+        });
+
+        function showAutosaveIndicator() {
+            const el = document.getElementById('autosave-indicator');
+            el.classList.remove('hidden');
+            el.style.opacity = '1';
+            setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.classList.add('hidden'), 400); }, 2500);
+        }
+
+        function showToast(msg, type = 'success', icon = 'check_circle') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            document.getElementById('toast-icon').textContent = icon;
+            toast.className = `fixed bottom-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-white font-bold text-sm transform transition-all duration-300`;
+            if (type === 'success') toast.classList.add('bg-green-600');
+            else if (type === 'error') toast.classList.add('bg-red-600');
+            else toast.classList.add('bg-blue-600');
+            setTimeout(() => { toast.classList.remove('opacity-0', 'translate-y-4'); toast.classList.add('opacity-100', 'translate-y-0'); }, 10);
+            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-4'); toast.classList.remove('opacity-100', 'translate-y-0'); }, 3500);
+        }
+
+        function toggleSidebar() {
+            document.getElementById('admin-sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.toggle('hidden');
+        }
+
+        // Keyboard shortcut: Ctrl+S to save
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                savePost(document.getElementById('post-status').value);
+            }
+        });
+
+        // Init state
+        document.getElementById('btn-delete').style.display = 'none';
+        updateStatusLabel();
+    </script>
+</body>
+
+</html>

@@ -9,7 +9,19 @@
         "rating": 8.9,
         "reviews": 312,
         "badge": "Bestseller",
-        "amenities": ["WiFi", "Pool", "Restaurant", "Parking", "AC"],
+        "amenities": [
+            "WiFi",
+            "Pool",
+            "Restaurant",
+            "Parking",
+            "AC"
+        ],
+        "gallery": [
+            "https://placehold.co/800x600/10B981/ffffff?text=Gallery+1",
+            "https://placehold.co/800x600/3B82F6/ffffff?text=Gallery+2",
+            "https://placehold.co/800x600/F59E0B/ffffff?text=Gallery+3",
+            "https://placehold.co/800x600/EF4444/ffffff?text=Gallery+4"
+        ],
         "image": "/images/hotel-renaissance.jpg"
     },
     {
@@ -22,7 +34,12 @@
         "rating": 8.2,
         "reviews": 184,
         "badge": "",
-        "amenities": ["WiFi", "Garden", "Restaurant", "Parking"],
+        "amenities": [
+            "WiFi",
+            "Garden",
+            "Restaurant",
+            "Parking"
+        ],
         "image": "/images/panchakki.jpg"
     },
     {
@@ -35,7 +52,11 @@
         "rating": 7.4,
         "reviews": 97,
         "badge": "",
-        "amenities": ["WiFi", "AC", "Parking"],
+        "amenities": [
+            "WiFi",
+            "AC",
+            "Parking"
+        ],
         "image": "/images/hotel-room-1.jpg"
     },
     {
@@ -48,7 +69,10 @@
         "rating": 7.8,
         "reviews": 56,
         "badge": "",
-        "amenities": ["WiFi", "Parking"],
+        "amenities": [
+            "WiFi",
+            "Parking"
+        ],
         "image": "/images/grishneshwar-temple.jpg"
     },
     {
@@ -61,7 +85,12 @@
         "rating": 8.0,
         "reviews": 142,
         "badge": "Popular",
-        "amenities": ["WiFi", "Restaurant", "AC", "Parking"],
+        "amenities": [
+            "WiFi",
+            "Restaurant",
+            "AC",
+            "Parking"
+        ],
         "image": "/images/hotel-room-standard.jpg"
     },
     {
@@ -74,7 +103,15 @@
         "rating": 9.1,
         "reviews": 245,
         "badge": "Luxury",
-        "amenities": ["WiFi", "Pool", "Spa", "Restaurant", "Gym", "Parking", "AC"],
+        "amenities": [
+            "WiFi",
+            "Pool",
+            "Spa",
+            "Restaurant",
+            "Gym",
+            "Parking",
+            "AC"
+        ],
         "image": "/images/hotel-renaissance.jpg"
     },
     {
@@ -87,7 +124,13 @@
         "rating": 8.4,
         "reviews": 178,
         "badge": "",
-        "amenities": ["WiFi", "Conference Room", "Restaurant", "Parking", "AC"],
+        "amenities": [
+            "WiFi",
+            "Conference Room",
+            "Restaurant",
+            "Parking",
+            "AC"
+        ],
         "image": "/images/hotel-room-1.jpg"
     },
     {
@@ -100,7 +143,11 @@
         "rating": 8.6,
         "reviews": 89,
         "badge": "Homestay",
-        "amenities": ["WiFi", "Home-cooked meals", "Parking"],
+        "amenities": [
+            "WiFi",
+            "Home-cooked meals",
+            "Parking"
+        ],
         "image": "/images/hotel-room-standard.jpg"
     },
     {
@@ -113,7 +160,13 @@
         "rating": 7.9,
         "reviews": 134,
         "badge": "",
-        "amenities": ["WiFi", "24hr Check-in", "Restaurant", "Parking", "AC"],
+        "amenities": [
+            "WiFi",
+            "24hr Check-in",
+            "Restaurant",
+            "Parking",
+            "AC"
+        ],
         "image": "/images/hotel-room-1.jpg"
     },
     {
@@ -126,7 +179,11 @@
         "rating": 8.2,
         "reviews": 267,
         "badge": "Budget Friendly",
-        "amenities": ["WiFi", "Common Kitchen", "Lounge"],
+        "amenities": [
+            "WiFi",
+            "Common Kitchen",
+            "Lounge"
+        ],
         "image": "/images/hotel-room-1.jpg"
     }
 ]

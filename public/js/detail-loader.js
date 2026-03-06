@@ -70,6 +70,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             mainImg.alt = data.name || data.title || 'Item image';
         }
 
+        // Gallery Images (replace hardcoded grid images if available)
+        if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+            // Most pages use a grid for images. We try to find the container
+            // The main image is typically the first one or specific ID, so we find other imgs
+            const allGridImgs = Array.from(document.querySelectorAll('.grid img')).filter(img => img.id !== 'item-main-image');
+
+            for (let i = 0; i < Math.min(allGridImgs.length, data.gallery.length); i++) {
+                allGridImgs[i].src = data.gallery[i];
+            }
+        }
+
         // Set data attributes on body for booking logic
         document.body.dataset.id = id;
         document.body.dataset.title = data.name || data.title || '';

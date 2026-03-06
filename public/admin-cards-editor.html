@@ -57,7 +57,7 @@
     <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
         <!-- Mobile Sidebar Overlay -->
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
-        
+
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
@@ -78,13 +78,14 @@
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage
+                            Editor</span>
                     </a>
-                    
+
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Listings</p>
                     </div>
-                    
+
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span><span
@@ -101,11 +102,11 @@
                         <span class="material-symbols-outlined text-[20px]">view_list</span><span
                             class="text-[13px]">Cards Editor</span>
                     </a>
-                    
+
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Management</p>
                     </div>
-                    
+
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
                         <span class="material-symbols-outlined text-[20px]">calendar_month</span><span
@@ -126,6 +127,16 @@
                         <span class="material-symbols-outlined text-[20px]">payments</span><span
                             class="text-[13px]">Financial Reports</span>
                     </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-images.html">
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span>
+                        <span class="text-[13px]">Images Manager</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-blogs-generator.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                        <span class="text-[13px]">Blogs Generator</span>
+                    </a>
                 </nav>
             </div>
             <div class="border-t border-slate-200 p-4 bg-slate-50">
@@ -136,8 +147,8 @@
                         <p class="text-sm font-bold text-slate-900 truncate" id="admin-name">Admin</p>
                         <p class="text-xs text-slate-500">Administrator</p>
                     </div>
-                    <button onclick="logout()"
-                        class="text-slate-400 hover:text-red-500 transition-colors" title="Logout">
+                    <button onclick="logout()" class="text-slate-400 hover:text-red-500 transition-colors"
+                        title="Logout">
                         <span class="material-symbols-outlined text-[20px]">logout</span>
                     </button>
                 </div>
@@ -247,7 +258,7 @@
         const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
         const adminSidebar = document.getElementById('admin-sidebar');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
-        
+
         if (mobileSidebarToggle) {
             mobileSidebarToggle.addEventListener('click', () => {
                 adminSidebar.classList.toggle('-translate-x-full');
@@ -353,6 +364,8 @@
                     return;
                 }
 
+                if (key === 'gallery') return; // Skip gallery because it's rendered explicitly at the bottom
+
                 // If value is an array (like amenities or images)
                 if (Array.isArray(value)) {
                     form.innerHTML += `
@@ -391,6 +404,20 @@
                 }
             });
 
+            // Always inject Gallery field
+            const galleryArr = Array.isArray(currentlyEditingItem.gallery) ? currentlyEditingItem.gallery : [];
+            form.innerHTML += `
+                <div class="col-span-full border-t border-gray-200 mt-4 pt-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="block text-xs font-bold text-gray-700 capitalize">Gallery Images <span class="text-[10px] text-gray-400 font-normal">(comma separated list)</span></label>
+                        <button type="button" onclick="openGalleryBrowser('gallery-input')" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse Images
+                        </button>
+                    </div>
+                    <textarea id="gallery-input" name="gallery" rows="3" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">${galleryArr.join(', ')}</textarea>
+                </div>
+            `;
+
             document.getElementById('edit-modal').classList.remove('hidden');
         }
 
@@ -411,7 +438,12 @@
 
             // Reconstruct the JSON object based on the inputs
             Array.from(form.elements).forEach(input => {
-                if (!input.name) return;
+                if (!input.name || input.type === 'button') return;
+
+                if (input.name === 'gallery') {
+                    newObj.gallery = input.value.split(',').map(s => s.trim()).filter(s => s);
+                    return;
+                }
 
                 const origType = Array.isArray(currentlyEditingItem[input.name]) ? 'array' : typeof currentlyEditingItem[input.name];
 
@@ -459,6 +491,165 @@
             setTimeout(() => {
                 toast.classList.add('translate-y-[150%]', 'opacity-0');
             }, 3000);
+        }
+    </script>
+    <!-- Image Browser Modal -->
+    <div id="img-browser-modal"
+        style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,0.6);backdrop-filter:blur(4px);"
+        onclick="if(event.target===this)closeImgBrowser()">
+        <div
+            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:1.25rem;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:min(90vw,860px);max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
+            <!-- Modal Header -->
+            <div
+                style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;">
+                <div>
+                    <h2 style="font-size:17px;font-weight:800;color:#1e293b;margin:0;">Choose an Image</h2>
+                    <p style="font-size:12px;color:#94a3b8;margin:2px 0 0;">Click any image to select it, or upload a
+                        new one</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <label
+                        class="upload-btn border bg-gray-50 hover:bg-gray-100 rounded-md cursor-pointer transition-colors"
+                        style="font-size:13px;padding:0.5rem 0.875rem;" title="Upload new image">
+                        <span class="material-symbols-outlined align-middle" style="font-size:16px;">upload</span>
+                        Upload New
+                        <input type="file" accept="image/*" style="display:none" onchange="uploadFromBrowser(this)">
+                    </label>
+                    <button onclick="closeImgBrowser()"
+                        style="width:2.25rem;height:2.25rem;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:18px;">
+                        <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Search -->
+            <div style="padding:0.75rem 1.5rem;border-bottom:1px solid #f8fafc;">
+                <div style="position:relative;">
+                    <span class="material-symbols-outlined"
+                        style="position:absolute;left:0.625rem;top:50%;transform:translateY(-50%);font-size:18px;color:#94a3b8;">search</span>
+                    <input type="text" id="img-browser-search" placeholder="Filter images..."
+                        oninput="filterImgBrowser(this.value)"
+                        style="width:100%;padding:0.5rem 0.75rem 0.5rem 2.25rem;border:1px solid #e2e8f0;border-radius:0.625rem;font-size:13px;outline:none;background:#f8fafc;box-sizing:border-box;font-family:inherit;">
+                </div>
+            </div>
+            <!-- Grid -->
+            <div id="img-browser-grid"
+                style="flex:1;overflow-y:auto;padding:1rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:0.625rem;">
+                <div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">Loading images...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-white font-bold text-sm opacity-0 pointer-events-none transform translate-y-4">
+        <span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
+        <span id="toast-msg">Saved!</span>
+    </div>
+
+    <script>
+        // --- Image Browser Logic ---
+        let _imgBrowserTarget = null;
+        let _allImages = [];
+
+        async function openGalleryBrowser(pathInputId) {
+            _imgBrowserTarget = { pathInputId };
+            const modal = document.getElementById('img-browser-modal');
+            const grid = document.getElementById('img-browser-grid');
+            const searchEl = document.getElementById('img-browser-search');
+            modal.style.display = 'block';
+            searchEl.value = '';
+
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">Loading images...</div>';
+
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch('/api/images', {
+                    headers: { 'Authorization': 'Bearer ' + (token || '') }
+                });
+                if (!res.ok) throw new Error("HTTP error");
+                _allImages = await res.json();
+                renderImgGrid(_allImages);
+            } catch (e) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#ef4444;padding:2rem;">Failed to load images.</div>';
+            }
+        }
+
+        function renderImgGrid(images) {
+            const grid = document.getElementById('img-browser-grid');
+            if (!images.length) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">No images found. Upload one first.</div>';
+                return;
+            }
+            grid.innerHTML = images.map(img => `
+                <div onclick="selectImgFromBrowser('${img.url}')"
+                    style="cursor:pointer;border:2px solid #e2e8f0;border-radius:0.75rem;overflow:hidden;aspect-ratio:1;background:#f8fafc;transition:border-color 0.15s,transform 0.15s;display:flex;flex-direction:column;"
+                    onmouseover="this.style.borderColor='#003580';this.style.transform='scale(1.04)'"
+                    onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='scale(1)'">
+                    <img src="${img.url}" alt="${img.name}"
+                        style="width:100%;flex:1;object-fit:cover;"
+                        onerror="this.parentElement.style.background='#f1f5f9';this.style.display='none'">
+                    <div style="padding:4px 6px;font-size:10px;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border-top:1px solid #f1f5f9;"
+                        title="${img.name}">${img.name}</div>
+                </div>`).join('');
+        }
+
+        function filterImgBrowser(query) {
+            const q = query.trim().toLowerCase();
+            const filtered = q ? _allImages.filter(img => img.name.toLowerCase().includes(q)) : _allImages;
+            renderImgGrid(filtered);
+        }
+
+        function selectImgFromBrowser(url) {
+            if (!_imgBrowserTarget) return;
+            const { pathInputId } = _imgBrowserTarget;
+            const pathInput = document.getElementById(pathInputId);
+            if (pathInput) {
+                // If it already has content, append a comma. Otherwise just set the value.
+                if (pathInput.value.trim().length > 0) {
+                    pathInput.value = pathInput.value.trim() + ', ' + url;
+                } else {
+                    pathInput.value = url;
+                }
+                pathInput.dispatchEvent(new Event('input'));
+            }
+            closeImgBrowser();
+        }
+
+        function closeImgBrowser() {
+            document.getElementById('img-browser-modal').style.display = 'none';
+            _imgBrowserTarget = null;
+        }
+
+        async function uploadFromBrowser(fileInput) {
+            const file = fileInput.files[0];
+            if (!file) return;
+            const label = fileInput.closest('label');
+            if (label) { label.style.opacity = '0.6'; label.style.pointerEvents = 'none'; }
+            const formData = new FormData();
+            formData.append('image', file);
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + (token || '') },
+                    body: formData
+                });
+                const result = await res.json();
+                if (result.success && result.url) {
+                    // Refresh image list
+                    const refreshRes = await fetch('/api/images', { headers: { 'Authorization': 'Bearer ' + (token || '') } });
+                    _allImages = await refreshRes.json();
+                    const searchVal = document.getElementById('img-browser-search').value;
+                    filterImgBrowser(searchVal);
+                } else {
+                    alert('Upload failed: ' + (result.message || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Upload failed due to a network error.');
+            } finally {
+                if (label) { label.style.opacity = '1'; label.style.pointerEvents = 'auto'; }
+                fileInput.value = '';
+            }
         }
     </script>
 </body>

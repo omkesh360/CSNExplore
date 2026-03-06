@@ -22,36 +22,36 @@
     },
     "trendingTransport": [
         {
-            "title": "Premium Sedans",
-            "description": "Explore the city in comfort and style.",
-            "subtext": "Explore Deals",
-            "linkText": "Search cars",
-            "link": "car-rentals.html",
-            "image": "/images/honda-city.jpg"
-        },
-        {
             "title": "E-Bikes & Scooters",
             "description": "Swift travel, zero emissions.",
             "subtext": "Explore Rentals",
             "linkText": "Find bikes",
             "link": "bike-rentals.html",
             "image": "/images/electric-bike.jpg"
+        },
+        {
+            "title": "Premium Sedans",
+            "description": "Explore the city in comfort and style.",
+            "subtext": "Explore Deals",
+            "linkText": "Search cars",
+            "link": "car-rentals.html",
+            "image": "/images/honda-city.jpg"
         }
     ],
     "restaurantCircles": [
-        {
-            "name": "Naivedya Thali",
-            "type": "Authentic Local",
-            "rating": "4.9",
-            "image": "/images/indian-thali.jpg",
-            "link": "restaurant-detail.html?id=1"
-        },
         {
             "name": "South Feast",
             "type": "South Indian",
             "rating": "4.7",
             "image": "/images/masala-dosa.jpg",
             "link": "restaurant-detail.html?id=2"
+        },
+        {
+            "name": "Naivedya Thali",
+            "type": "Authentic Local",
+            "rating": "4.9",
+            "image": "/images/indian-thali.jpg",
+            "link": "restaurant-detail.html?id=1"
         },
         {
             "name": "Chaat Corner",
@@ -121,17 +121,6 @@
     "busRoutes": [
         {
             "from": "CSN",
-            "to": "Pune",
-            "provider": "MSRTC Shivneri",
-            "badge": "Fastest Route",
-            "badgeColor": "green",
-            "duration": "4h 30m",
-            "departure": "06:00 AM",
-            "price": "Contact for Price",
-            "link": "bus-detail.html"
-        },
-        {
-            "from": "CSN",
             "to": "Mumbai",
             "provider": "Dolphin Travels",
             "badge": "",
@@ -139,6 +128,17 @@
             "duration": "7h 15m",
             "departure": "10:30 PM",
             "price": "Contact",
+            "link": "bus-detail.html"
+        },
+        {
+            "from": "CSN",
+            "to": "Pune",
+            "provider": "MSRTC Shivneri",
+            "badge": "Fastest Route",
+            "badgeColor": "green",
+            "duration": "4h 30m",
+            "departure": "06:00 AM",
+            "price": "Contact for Price",
             "link": "bus-detail.html"
         },
         {
@@ -155,13 +155,6 @@
     ],
     "attractions": [
         {
-            "name": "Ajanta Caves Exploration",
-            "location": "Maharashtra, India",
-            "rating": "4.8",
-            "image": "/images/ajanta.png",
-            "link": "attraction-detail.html"
-        },
-        {
             "name": "Bibi Ka Maqbara Tour",
             "location": "CSN city, India",
             "rating": "4.6",
@@ -169,10 +162,10 @@
             "link": "attraction-detail.html"
         },
         {
-            "name": "Ellora Caves Adventure",
+            "name": "Ajanta Caves Exploration",
             "location": "Maharashtra, India",
-            "rating": "4.9",
-            "image": "/images/ellora.png",
+            "rating": "4.8",
+            "image": "/images/ajanta.png",
             "link": "attraction-detail.html"
         },
         {
@@ -181,9 +174,22 @@
             "rating": "4.7",
             "image": "/images/daulatabad.png",
             "link": "attraction-detail.html"
+        },
+        {
+            "name": "Ellora Caves Adventure",
+            "location": "Maharashtra, India",
+            "rating": "4.9",
+            "image": "/images/ellora.png",
+            "link": "attraction-detail.html"
         }
     ],
     "bikeRentals": [
+        {
+            "name": "Revolt RV400 (EV)",
+            "description": "Go Green, Go Fast",
+            "image": "/images/revolt-rv400.jpg",
+            "link": "bike-rental-detail.html"
+        },
         {
             "name": "Bajaj Pulsar 220F",
             "description": "Sporty & Reliable",
@@ -201,15 +207,21 @@
             "description": "Effortless Commute",
             "image": "/images/honda-activa.jpg",
             "link": "bike-rental-detail.html"
-        },
-        {
-            "name": "Revolt RV400 (EV)",
-            "description": "Go Green, Go Fast",
-            "image": "/images/revolt-rv400.jpg",
-            "link": "bike-rental-detail.html"
         }
     ],
     "featuredRestaurants": [
+        {
+            "name": "Chaat Street",
+            "type": "Street Food",
+            "rating": "4.8",
+            "description": "From spicy Pani Puri to buttery Pav Bhaji, experience the vibrant soul of Indian street food.",
+            "tags": [
+                "Quick Bite",
+                "Value for Money"
+            ],
+            "image": "/images/travel-streetfood.jpg",
+            "link": "restaurant-detail.html"
+        },
         {
             "name": "Naivedya Thali",
             "type": "Traditional",
@@ -233,21 +245,16 @@
             ],
             "image": "/images/hotel-renaissance.jpg",
             "link": "restaurant-detail.html"
-        },
-        {
-            "name": "Chaat Street",
-            "type": "Street Food",
-            "rating": "4.8",
-            "description": "From spicy Pani Puri to buttery Pav Bhaji, experience the vibrant soul of Indian street food.",
-            "tags": [
-                "Quick Bite",
-                "Value for Money"
-            ],
-            "image": "/images/travel-streetfood.jpg",
-            "link": "restaurant-detail.html"
         }
     ],
     "travelInsights": [
+        {
+            "category": "Food & Drink",
+            "readTime": "6 min read",
+            "title": "The best street food spots in Chhatrapati Sambhajinagar",
+            "description": "From Naan Qalia to spicy Misal Pav, here's your guide to the city's must-try local flavors.",
+            "image": "/images/travel-streetfood.jpg"
+        },
         {
             "category": "Heritage",
             "readTime": "8 min read",
@@ -261,13 +268,6 @@
             "title": "Bibi Ka Maqbara: The Deccan's Taj Mahal",
             "description": "Discover the story behind the stunning 17th-century mausoleum built by Prince Azam Shah.",
             "image": "/images/bibi.png"
-        },
-        {
-            "category": "Food & Drink",
-            "readTime": "6 min read",
-            "title": "The best street food spots in Chhatrapati Sambhajinagar",
-            "description": "From Naan Qalia to spicy Misal Pav, here's your guide to the city's must-try local flavors.",
-            "image": "/images/travel-streetfood.jpg"
         }
     ],
     "about": {
@@ -287,5 +287,14 @@
         "attractions": true,
         "bikeRentals": true,
         "featuredRestaurants": true
+    },
+    "sectionTitles": {
+        "trendingTransport": "Trending Transport",
+        "restaurantCircles": "Taste the City",
+        "busRoutes": "Travel Your Way",
+        "attractions": "Explore Attractions",
+        "bikeRentals": "Quick Bike Rentals",
+        "featuredRestaurants": "Featured Restaurants",
+        "travelInsights": "Travel Insights"
     }
 }
