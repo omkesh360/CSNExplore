@@ -1,29 +1,24 @@
 <?php
-// Dynamic homepage content API
+// Homepage content API - Fast JSON file approach
 
 require_once __DIR__ . '/../config.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
+$dataFile = __DIR__ . '/../../data/homepage-content.json';
 
 try {
-    $db = getDB();
-    
     if ($method === 'GET') {
-        // Get homepage content from database
-        $content = $db->fetchOne("SELECT content FROM homepage_content WHERE section = 'full_content' AND is_active = 1");
-        
-        if ($content) {
-            $data = json_decode($content['content'], true);
+        // Read directly from JSON file - fastest approach
+        if (file_exists($dataFile)) {
+            $data = json_decode(file_get_contents($dataFile), true);
             sendJson($data);
         } else {
-            // Fallback to JSON file if database is empty
-            $data = readJsonFile('homepage-content.json');
-            sendJson($data);
+            sendError('Homepage content not found', 404);
         }
     }
     
     elseif ($method === 'PUT') {
-        // Update homepage content (admin only)
+        // Save directly to JSON file - no database overhead
         $headers = getallheaders();
         $token = $headers['Authorization'] ?? '';
         $token = str_replace('Bearer ', '', $token);
@@ -33,33 +28,22 @@ try {
         }
         
         require_once __DIR__ . '/../jwt.php';
-        $decoded = verifyJWT($token);
+        $decoded = verifyJWT($token, JWT_SECRET);
         
-        if (!$decoded || $decoded['role'] !== 'admin') {
+        if (!$decoded || strtolower($decoded['role']) !== 'admin') {
             sendError('Forbidden - Admin access required', 403);
         }
         
         $input = getJsonInput();
         
-        // Check if content exists
-        $existing = $db->fetchOne("SELECT id FROM homepage_content WHERE section = 'full_content'");
+        // Write to JSON file immediately
+        $jsonData = json_encode($input, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         
-        if ($existing) {
-            // Update existing
-            $db->update('homepage_content', [
-                'content' => json_encode($input),
-                'updated_at' => date('Y-m-d H:i:s')
-            ], 'section = ?', [':section' => 'full_content']);
-        } else {
-            // Insert new
-            $db->insert('homepage_content', [
-                'section' => 'full_content',
-                'content' => json_encode($input),
-                'display_order' => 1
-            ]);
+        if (file_put_contents($dataFile, $jsonData) === false) {
+            sendError('Failed to save homepage content', 500);
         }
         
-        sendJson(['message' => 'Homepage content updated successfully']);
+        sendJson(['message' => 'Homepage content saved successfully', 'success' => true]);
     }
     
     else {

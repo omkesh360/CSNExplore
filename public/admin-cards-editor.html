@@ -61,12 +61,15 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
-            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+            <div class="flex h-20 items-center justify-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="admin-dashboard.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-10">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
+                <div class="mb-4">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-2">Main Menu</p>
+                </div>
                 <nav class="flex flex-col gap-1.5" id="sidebar-nav">
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
@@ -75,8 +78,17 @@
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage
-                            Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage Editor</span>
+                    </a>
+                    
+                    <div class="mt-3 mb-2">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Listings</p>
+                    </div>
+                    
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-add-listing.html">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span><span
+                            class="text-[13px]">Add Listing</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-manage-listings.html">
@@ -89,9 +101,14 @@
                         <span class="material-symbols-outlined text-[20px]">view_list</span><span
                             class="text-[13px]">Cards Editor</span>
                     </a>
+                    
+                    <div class="mt-3 mb-2">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Management</p>
+                    </div>
+                    
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">confirmation_number</span><span
+                        <span class="material-symbols-outlined text-[20px]">calendar_month</span><span
                             class="text-[13px]">Bookings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
@@ -101,13 +118,13 @@
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">store</span><span
+                        <span class="material-symbols-outlined text-[20px]">storefront</span><span
                             class="text-[13px]">Vendors</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-financials.html">
                         <span class="material-symbols-outlined text-[20px]">payments</span><span
-                            class="text-[13px]">Financials</span>
+                            class="text-[13px]">Financial Reports</span>
                     </a>
                 </nav>
             </div>

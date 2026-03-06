@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeBookingButtons();
     initializeMobileInteractions();
     initializeGlobalTopBar();
+    initScrollAnimations();
 });
 
 // ==========================================
@@ -483,4 +484,27 @@ function logout() {
     updateAuthUI(false);
     utils.showNotification('Logged out successfully');
     setTimeout(() => window.location.href = 'index.html', 500);
+}
+
+// ==========================================
+// SCROLL ANIMATIONS
+// ==========================================
+function initScrollAnimations() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px', // Trigger slightly before element comes fully into view
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-animated');
+                observer.unobserve(entry.target); // Optional: animate only once
+            }
+        });
+    }, observerOptions);
+
+    const animObjects = document.querySelectorAll('[data-animate]');
+    animObjects.forEach(el => observer.observe(el));
 }

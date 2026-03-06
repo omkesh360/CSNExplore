@@ -11,13 +11,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hpData = await res.json();
 
         renderHero(hpData.hero);
-        renderTrendingTransport(hpData.trendingTransport);
-        renderRestaurantCircles(hpData.restaurantCircles);
-        renderBusRoutes(hpData.busRoutes);
-        renderAttractions(hpData.attractions);
-        renderBikeRentals(hpData.bikeRentals);
-        renderFeaturedRestaurants(hpData.featuredRestaurants);
-        renderTravelInsights(hpData.travelInsights);
+
+        const v = hpData.visibility || {};
+        const t = hpData.sectionTitles || {};
+
+        if (v.trendingTransport === false) document.getElementById('section-trending-transport')?.remove();
+        else {
+            if (t.trendingTransport && document.getElementById('title-trending-transport')) document.getElementById('title-trending-transport').textContent = t.trendingTransport;
+            renderTrendingTransport(hpData.trendingTransport);
+        }
+
+        if (v.restaurantCircles === false) document.getElementById('section-taste-city')?.remove();
+        else {
+            if (t.restaurantCircles && document.getElementById('title-restaurant-circles')) document.getElementById('title-restaurant-circles').textContent = t.restaurantCircles;
+            renderRestaurantCircles(hpData.restaurantCircles);
+        }
+
+        if (v.busRoutes === false) document.getElementById('section-bus-routes')?.remove();
+        else {
+            if (t.busRoutes && document.getElementById('title-bus-routes')) document.getElementById('title-bus-routes').textContent = t.busRoutes;
+            renderBusRoutes(hpData.busRoutes);
+        }
+
+        if (v.attractions === false) document.getElementById('section-attractions')?.remove();
+        else {
+            if (t.attractions && document.getElementById('title-attractions')) document.getElementById('title-attractions').textContent = t.attractions;
+            renderAttractions(hpData.attractions);
+        }
+
+        if (v.bikeRentals === false) document.getElementById('section-bike-rentals')?.remove();
+        else {
+            if (t.bikeRentals && document.getElementById('title-bike-rentals')) document.getElementById('title-bike-rentals').textContent = t.bikeRentals;
+            renderBikeRentals(hpData.bikeRentals);
+        }
+
+        if (v.featuredRestaurants === false) document.getElementById('section-featured-restaurants')?.remove();
+        else {
+            if (t.featuredRestaurants && document.getElementById('title-featured-restaurants')) document.getElementById('title-featured-restaurants').textContent = t.featuredRestaurants;
+            renderFeaturedRestaurants(hpData.featuredRestaurants);
+        }
+
+        if (v.travelInsights === false) document.getElementById('section-travel-insights')?.remove();
+        else {
+            if (t.travelInsights && document.getElementById('title-travel-insights')) document.getElementById('title-travel-insights').textContent = t.travelInsights;
+            renderTravelInsights(hpData.travelInsights);
+        }
 
     } catch (err) {
         console.error('Error loading homepage content:', err);

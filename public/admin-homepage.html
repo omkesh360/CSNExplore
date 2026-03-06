@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -44,7 +45,71 @@
             border-radius: 1rem;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            cursor: move;
+            transition: all 0.2s;
         }
+
+        .section-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 53, 128, 0.1);
+            border-color: #003580;
+        }
+
+        .section-card.sortable-ghost {
+            opacity: 0.4;
+            background: #eff6ff;
+        }
+
+        .section-card.sortable-drag {
+            opacity: 0.8;
+            transform: rotate(2deg);
+        }
+
+        .drag-handle {
+            cursor: grab;
+            padding: 0.5rem;
+            margin: -0.5rem 0.5rem -0.5rem -0.5rem;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .drag-handle:hover {
+            color: #003580;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .card-drag-handle {
+            cursor: grab;
+            padding: 0.25rem;
+            color: #94a3b8;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-drag-handle:hover {
+            color: #003580;
+        }
+
+        .card-drag-handle:active {
+            cursor: grabbing;
+        }
+
+        /* Make cards within grids draggable */
+        #trending-transport-items>div,
+        #restaurant-circles-items>div,
+        #bus-routes-items>div,
+        #attractions-items>div,
+        #bike-rentals-items>div,
+        #featured-restaurants-items>div,
+        #travel-insights-items>div,
+        #marquee-items>div {
+            cursor: move;
+        }
+
 
         .section-header {
             display: flex;
@@ -388,8 +453,7 @@
             <header
                 class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
-                    <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-white hover:text-white transition-colors">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
@@ -416,7 +480,8 @@
             <main class="flex-1 overflow-y-auto p-4 md:p-8" id="main-content">
 
                 <!-- Page Top Bar -->
-                <div class="flex items-center justify-between mb-8 max-w-5xl mx-auto">
+                <div
+                    class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 max-w-5xl mx-auto">
                     <div class="flex items-center gap-3">
                         <span id="status-indicator"
                             class="status-pill bg-slate-100 text-slate-500 border border-slate-200">
@@ -425,14 +490,24 @@
                         </span>
                         <span id="last-saved" class="text-[11px] font-medium text-slate-400"></span>
                     </div>
+                    <div class="relative w-full md:w-80">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+                            <span class="material-symbols-outlined text-[20px]">search</span>
+                        </span>
+                        <input type="text" id="section-search" placeholder="Search sections..."
+                            class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all bg-white" />
+                    </div>
                 </div>
 
-                <div class="max-w-5xl mx-auto space-y-6">
+                <div class="max-w-5xl mx-auto space-y-6" id="sections-container">
 
                     <!-- ========= HERO SECTION ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="hero">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">web_asset</span>
                                 </div>
                                 <div class="flex-1">
@@ -489,9 +564,12 @@
                     </div>
 
                     <!-- ========= ABOUT (OUR STORY) ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="about">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">auto_awesome</span>
                                 </div>
                                 <div class="flex-1">
@@ -546,14 +624,21 @@
                     </div>
 
                     <!-- ========= TRENDING TRANSPORT ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="transport">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">directions_car</span>
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Trending Transport</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Two side-by-side promo cards below
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-trendingTransport"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Trending Transport"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.trendingTransport=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">Two side-by-side promo cards
+                                        below
                                         the hero</p>
                                 </div>
                             </div>
@@ -566,15 +651,21 @@
                     </div>
 
                     <!-- ========= RESTAURANT CIRCLES ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="restaurants">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">restaurant</span>
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Taste the City (Restaurant Circles)
-                                    </h2>
-                                    <p class="text-xs font-semibold text-slate-400">Circular restaurant spotlights row
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-restaurantCircles"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Taste the City"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.restaurantCircles=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">Circular restaurant spotlights
+                                        row
                                     </p>
                                 </div>
                             </div>
@@ -583,8 +674,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'restaurantCircles\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
-                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                <button class="add-btn !w-auto !py-2"
+                                    onclick="openItemBrowser('restaurants', 'restaurantCircles')"
+                                    style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span
+                                        class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('restaurantCircles')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -597,14 +691,20 @@
                     </div>
 
                     <!-- ========= BUS ROUTES ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="buses">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">directions_bus</span>
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Travel Your Way (Bus Routes)</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Bus route cards section</p>
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-busRoutes"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Travel Your Way"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.busRoutes=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">Bus route cards section</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -612,8 +712,10 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'buses\', \'busRoutes\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
-                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('buses', 'busRoutes')"
+                                    style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span
+                                        class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('busRoutes')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -625,13 +727,19 @@
                     </div>
 
                     <!-- ========= ATTRACTIONS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="attractions">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">castle</span></div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Explore Attractions</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Four attraction cards grid</p>
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-attractions"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Explore Attractions"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.attractions=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">Four attraction cards grid</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -639,8 +747,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'attractions\', \'attractions\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
-                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                <button class="add-btn !w-auto !py-2"
+                                    onclick="openItemBrowser('attractions', 'attractions')"
+                                    style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span
+                                        class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('attractions')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -652,14 +763,20 @@
                     </div>
 
                     <!-- ========= BIKE RENTALS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="bikes">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">pedal_bike</span>
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Quick Bike Rentals</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Four bike cards grid</p>
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-bikeRentals"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Quick Bike Rentals"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.bikeRentals=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">Four bike cards grid</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -667,8 +784,10 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'bikes\', \'bikeRentals\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
-                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('bikes', 'bikeRentals')"
+                                    style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span
+                                        class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('bikeRentals')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -680,14 +799,21 @@
                     </div>
 
                     <!-- ========= FEATURED RESTAURANTS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="featured-restaurants">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">local_dining</span>
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Featured Restaurants</h2>
-                                    <p class="text-xs font-semibold text-slate-400">3-column detailed restaurant cards
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-featuredRestaurants"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Featured Restaurants"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.featuredRestaurants=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">3-column detailed restaurant
+                                        cards
                                     </p>
                                 </div>
                             </div>
@@ -696,8 +822,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'featuredRestaurants\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
-                                    <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
+                                <button class="add-btn !w-auto !py-2"
+                                    onclick="openItemBrowser('restaurants', 'featuredRestaurants')"
+                                    style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                    <span class="material-symbols-outlined text-[18px]">list</span> <span
+                                        class="hidden sm:inline">Existing</span>
                                 </button>
                                 <button class="save-btn" onclick="saveSection('featuredRestaurants')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
@@ -710,13 +839,19 @@
                     </div>
 
                     <!-- ========= TRAVEL INSIGHTS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section="blog">
                         <div class="section-header">
                             <div class="section-header-title">
+                                <div class="drag-handle">
+                                    <span class="material-symbols-outlined">drag_indicator</span>
+                                </div>
                                 <div class="section-icon"><span class="material-symbols-outlined">article</span></div>
-                                <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Travel Insights (Blog)</h2>
-                                    <p class="text-xs font-semibold text-slate-400">3 article/blog preview cards</p>
+                                <div class="flex-1 mr-4">
+                                    <input type="text" id="title-input-travelInsights"
+                                        class="font-black text-lg text-slate-800 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-primary outline-none transition-colors w-full"
+                                        value="Travel Insights"
+                                        oninput="if(!hpData.sectionTitles) hpData.sectionTitles={}; hpData.sectionTitles.travelInsights=this.value">
+                                    <p class="text-xs font-semibold text-slate-400 mt-1">3-column article/blog cards</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -739,7 +874,7 @@
         </div><!-- end main-content flex col -->
     </div><!-- end flex wrapper -->
 
-    
+
     <!-- Item Browser Modal -->
     <div id="item-browser-modal"
         style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,0.6);backdrop-filter:blur(4px);"
@@ -751,7 +886,8 @@
                 style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;">
                 <div>
                     <h2 style="font-size:17px;font-weight:800;color:#1e293b;margin:0;">Add Existing Property</h2>
-                    <p style="font-size:12px;color:#94a3b8;margin:2px 0 0;">Select a listed property to add to the homepage</p>
+                    <p style="font-size:12px;color:#94a3b8;margin:2px 0 0;">Select a listed property to add to the
+                        homepage</p>
                 </div>
                 <div style="display:flex;align-items:center;gap:0.5rem;">
                     <button onclick="closeItemBrowser()"
@@ -830,7 +966,104 @@
 
     <script>
         // ============================================================
-        
+        // SECTION ORDER MANAGEMENT
+        // ============================================================
+        function saveSectionOrder() {
+            const sections = document.querySelectorAll('.section-card');
+            const order = Array.from(sections).map(section => section.dataset.section);
+
+            // Save to localStorage
+            localStorage.setItem('homepage-section-order', JSON.stringify(order));
+
+            console.log('Section order saved:', order);
+            showToast('Section order saved!', 'success');
+        }
+
+        function loadSectionOrder() {
+            const savedOrder = localStorage.getItem('homepage-section-order');
+            if (!savedOrder) return;
+
+            try {
+                const order = JSON.parse(savedOrder);
+                const container = document.getElementById('sections-container');
+                if (!container) return;
+
+                // Reorder sections based on saved order
+                order.forEach(sectionName => {
+                    const section = container.querySelector(`[data-section="${sectionName}"]`);
+                    if (section) {
+                        container.appendChild(section);
+                    }
+                });
+            } catch (err) {
+                console.error('Error loading section order:', err);
+            }
+        }
+
+        function saveCardOrder(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            // Map container IDs to hpData array keys
+            const map = {
+                'marquee-items': 'hero.marqueeItems', // Handle specially since it's a string array
+                'trending-transport-items': 'trendingTransport',
+                'restaurant-circles-items': 'restaurantCircles',
+                'bus-routes-items': 'busRoutes',
+                'attractions-items': 'attractions',
+                'bike-rentals-items': 'bikeRentals',
+                'featured-restaurants-items': 'featuredRestaurants',
+                'travel-insights-items': 'travelInsights'
+            };
+
+            const dataKey = map[containerId];
+            if (!dataKey) return;
+
+            if (dataKey === 'hero.marqueeItems') {
+                const inputs = container.querySelectorAll('input[data-marquee]');
+                const newOrder = Array.from(inputs).map(inp => inp.value);
+                if (hpData.hero) hpData.hero.marqueeItems = newOrder;
+                renderMarquee(); // Rebind exact indices
+                return;
+            }
+
+            // Object arrays
+            const cards = container.querySelectorAll('[data-card-id]');
+            const newArray = [];
+
+            cards.forEach(card => {
+                const parts = card.dataset.cardId.split('-');
+                const oldIndex = parseInt(parts[parts.length - 1], 10);
+                if (!isNaN(oldIndex) && hpData[dataKey][oldIndex]) {
+                    newArray.push(hpData[dataKey][oldIndex]);
+                }
+            });
+
+            hpData[dataKey] = newArray;
+
+            // Re-render to fix all `[${i}]` inline bindings so they reflect new positions
+            if (dataKey === 'trendingTransport') renderTrendingTransport();
+            if (dataKey === 'restaurantCircles') renderRestaurantCircles();
+            if (dataKey === 'busRoutes') renderBusRoutes();
+            if (dataKey === 'attractions') renderAttractions();
+            if (dataKey === 'bikeRentals') renderBikeRentals();
+            if (dataKey === 'featuredRestaurants') renderFeaturedRestaurants();
+            if (dataKey === 'travelInsights') renderTravelInsights();
+
+            console.log(`Array ${dataKey} reordered and saved to hpData`);
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // ============================================================
+
         // ============================================================
         // ITEM BROWSER (existing properties)
         // ============================================================
@@ -843,7 +1076,7 @@
             currentItemTargetArray = targetArray;
             document.getElementById('item-browser-modal').style.display = 'block';
             document.getElementById('item-browser-list').innerHTML = '<div style="text-align:center;color:#94a3b8;padding:2rem;">Loading properties...</div>';
-            
+
             try {
                 const res = await fetch(`/api/${category}`);
                 if (!res.ok) throw new Error('Failed');
@@ -859,10 +1092,10 @@
         }
 
         function filterItemBrowser(query) {
-            if(!loadedItems) return;
+            if (!loadedItems) return;
             const q = query.toLowerCase();
-            const filtered = loadedItems.filter(item => 
-                (item.name && item.name.toLowerCase().includes(q)) || 
+            const filtered = loadedItems.filter(item =>
+                (item.name && item.name.toLowerCase().includes(q)) ||
                 (item.title && item.title.toLowerCase().includes(q))
             );
             renderItemBrowserList(filtered);
@@ -878,7 +1111,7 @@
                 const title = escHtml(item.name || item.title || 'Unnamed');
                 const img = escHtml(item.image || item.image_url || 'images/placeholder.jpg');
                 const rawJson = escHtml(JSON.stringify(item));
-                
+
                 return `
                 <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.75rem;cursor:pointer;transition:background 0.2s;" class="hover:bg-slate-50" onclick="selectItemBrowser('${btoa(unescape(encodeURIComponent(JSON.stringify(item))))}')">
                     <img src="${img}" style="width:3rem;height:3rem;object-fit:cover;border-radius:0.5rem;" onerror="this.src='/images/placeholder.jpg'">
@@ -893,18 +1126,18 @@
 
         function selectItemBrowser(base64item) {
             const item = JSON.parse(decodeURIComponent(escape(atob(base64item))));
-            
+
             if (!hpData[currentItemTargetArray]) {
                 hpData[currentItemTargetArray] = [];
             }
-            
+
             // Map common properties
             let newItem = {
                 id: item.id || Date.now().toString(),
                 name: item.name || item.title || '',
                 image: item.image || item.image_url || ''
             };
-            
+
             // Map array specific properties
             if (currentItemTargetArray === 'restaurantCircles') {
                 newItem.type = item.type || item.cuisine || '';
@@ -933,16 +1166,16 @@
                 newItem.badge = 'Popular';
                 newItem.link = `restaurant-detail.html?id=${item.id}`;
             }
-            
+
             hpData[currentItemTargetArray].push(newItem);
-            
+
             // re-render the appropriate section
             if (currentItemTargetArray === 'restaurantCircles') renderRestaurantCircles();
             if (currentItemTargetArray === 'busRoutes') renderBusRoutes();
             if (currentItemTargetArray === 'attractions') renderAttractions();
             if (currentItemTargetArray === 'bikeRentals') renderBikeRentals();
             if (currentItemTargetArray === 'featuredRestaurants') renderFeaturedRestaurants();
-            
+
             closeItemBrowser();
             showToast('Item added to section!');
         }
@@ -967,6 +1200,92 @@
             if (adminNameEl && user.name) {
                 adminNameEl.textContent = user.name;
                 if (adminAvatarEl) adminAvatarEl.textContent = user.name[0].toUpperCase();
+            }
+
+            // Load saved section order
+            loadSectionOrder();
+
+            // Initialize SortableJS for sections
+            const sectionsContainer = document.getElementById('sections-container');
+            if (sectionsContainer) {
+                new Sortable(sectionsContainer, {
+                    animation: 200,
+                    handle: '.drag-handle',
+                    ghostClass: 'sortable-ghost',
+                    dragClass: 'sortable-drag',
+                    onEnd: function (evt) {
+                        console.log('Section moved from', evt.oldIndex, 'to', evt.newIndex);
+                        saveSectionOrder();
+                    }
+                });
+            }
+
+            // Initialize SortableJS for card containers within sections
+            const cardContainers = [
+                'marquee-items',
+                'carousel-images',
+                'trending-transport-items',
+                'restaurant-circles-items',
+                'bus-routes-items',
+                'attractions-items',
+                'bike-rentals-items',
+                'featured-restaurants-items',
+                'travel-insights-items'
+            ];
+
+            // Function to initialize sortable on a container
+            function initCardSortable(containerId) {
+                const container = document.getElementById(containerId);
+                if (container) {
+                    new Sortable(container, {
+                        animation: 200,
+                        ghostClass: 'sortable-ghost',
+                        dragClass: 'sortable-drag',
+                        handle: '.card-drag-handle',
+                        onEnd: function (evt) {
+                            console.log(`Card in ${containerId} moved from`, evt.oldIndex, 'to', evt.newIndex);
+                            // Auto-save the reordered data
+                            saveCardOrder(containerId);
+                        }
+                    });
+                }
+            }
+
+            // Wait a bit for cards to be rendered, then initialize sortable
+            setTimeout(() => {
+                cardContainers.forEach(containerId => {
+                    initCardSortable(containerId);
+                });
+            }, 1000);
+
+            // Re-initialize after any card is added/removed
+            window.reinitCardSortable = function () {
+                setTimeout(() => {
+                    cardContainers.forEach(containerId => {
+                        initCardSortable(containerId);
+                    });
+                }, 100);
+            };
+
+            // Search functionality
+            const searchInput = document.getElementById('section-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase();
+                    const sections = document.querySelectorAll('.section-card');
+
+                    sections.forEach(section => {
+                        const title = section.querySelector('h2')?.textContent.toLowerCase() || '';
+                        const description = section.querySelector('.text-xs')?.textContent.toLowerCase() || '';
+                        const sectionName = section.dataset.section || '';
+
+                        if (title.includes(query) || description.includes(query) || sectionName.includes(query)) {
+                            section.style.display = '';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                });
             }
 
             // Load data
@@ -1001,6 +1320,81 @@
             renderBikeRentals();
             renderFeaturedRestaurants();
             renderTravelInsights();
+            renderVisibilityToggles();
+            renderSectionTitles();
+        }
+
+        // ============================================================
+        // SECTION TITLES
+        // ============================================================
+        function renderSectionTitles() {
+            const t = hpData.sectionTitles || {};
+            const map = {
+                'trendingTransport': 'Trending Transport',
+                'restaurantCircles': 'Taste the City',
+                'busRoutes': 'Travel Your Way',
+                'attractions': 'Explore Attractions',
+                'bikeRentals': 'Quick Bike Rentals',
+                'featuredRestaurants': 'Featured Restaurants',
+                'travelInsights': 'Travel Insights'
+            };
+
+            if (!hpData.sectionTitles) hpData.sectionTitles = {};
+
+            for (const key in map) {
+                const el = document.getElementById(`title-input-${key}`);
+                if (el) {
+                    if (t[key] !== undefined) {
+                        el.value = t[key];
+                    } else {
+                        el.value = map[key];
+                        hpData.sectionTitles[key] = map[key];
+                    }
+                }
+            }
+        }
+
+        // ============================================================
+        // VISIBILITY TOGGLES
+        // ============================================================
+        function renderVisibilityToggles() {
+            if (!hpData.visibility) hpData.visibility = {};
+
+            const map = {
+                'transport': 'trendingTransport',
+                'restaurants': 'restaurantCircles',
+                'buses': 'busRoutes',
+                'attractions': 'attractions',
+                'bikes': 'bikeRentals',
+                'featured-restaurants': 'featuredRestaurants',
+                'travel-insights': 'travelInsights'
+            };
+
+            document.querySelectorAll('.section-card').forEach(card => {
+                const secId = card.getAttribute('data-section');
+                const hpKey = map[secId];
+                if (!hpKey) return; // Skip Hero and About
+
+                // Default true if undefined
+                if (hpData.visibility[hpKey] === undefined) {
+                    hpData.visibility[hpKey] = true;
+                }
+
+                const headerTitle = card.querySelector('.section-header-title');
+                if (headerTitle && !card.querySelector('.visibility-toggle-wrapper')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'visibility-toggle-wrapper flex flex-col items-center justify-center shrink-0 ml-4 px-3 py-1 bg-slate-100 rounded-lg border border-slate-200';
+
+                    wrapper.innerHTML = `
+                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1 mt-0.5">Visible</span>
+                        <label class="relative inline-flex items-center cursor-pointer pb-0.5">
+                            <input type="checkbox" class="sr-only peer" ${hpData.visibility[hpKey] ? 'checked' : ''} onchange="hpData.visibility['${hpKey}'] = this.checked">
+                            <div class="w-9 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    `;
+                    headerTitle.appendChild(wrapper);
+                }
+            });
         }
 
         // ============================================================
@@ -1099,8 +1493,13 @@
             const items = hpData.trendingTransport || [];
             const c = document.getElementById('trending-transport-items');
             c.innerHTML = items.map((item, i) => `
-            <div class="item-card">
-                <div class="text-xs font-bold text-gray-400 uppercase mb-3">Card ${i + 1}</div>
+            <div class="item-card" data-card-id="transport-${i}">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="text-xs font-bold text-gray-400 uppercase">Card ${i + 1}</div>
+                    <div class="card-drag-handle">
+                        <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                    </div>
+                </div>
                 <div class="space-y-2">
                     <div><label class="field-label">Title</label><input type="text" class="field-input font-bold" value="${escHtml(item.title || '')}" oninput="hpData.trendingTransport[${i}].title=this.value"></div>
                     <div><label class="field-label">Description</label><textarea class="field-textarea" rows="2" oninput="hpData.trendingTransport[${i}].description=this.value">${escHtml(item.description || '')}</textarea></div>
@@ -1135,10 +1534,16 @@
             const items = hpData.restaurantCircles || [];
             const c = document.getElementById('restaurant-circles-items');
             c.innerHTML = items.map((item, i) => restaurantCircleCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function restaurantCircleCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('restaurantCircles',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="restaurant-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('restaurantCircles',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <div class="flex flex-col items-center mb-3">
                 <img id="rc-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-16 h-16 rounded-full object-cover mb-2 border-2 border-gray-200" onerror="this.style.opacity=0.2">
                 <span class="text-xs font-bold text-gray-600">${escHtml(item.name || 'New Restaurant')}</span>
@@ -1173,10 +1578,16 @@
             const items = hpData.busRoutes || [];
             const c = document.getElementById('bus-routes-items');
             c.innerHTML = items.map((item, i) => busRouteCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function busRouteCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('busRoutes',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="bus-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('busRoutes',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <div class="text-xs font-bold text-gray-400 uppercase mb-3">Route ${i + 1}</div>
             <div class="space-y-1.5">
                 <div class="grid grid-cols-2 gap-2">
@@ -1202,10 +1613,16 @@
             const items = hpData.attractions || [];
             const c = document.getElementById('attractions-items');
             c.innerHTML = items.map((item, i) => attractionCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function attractionCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('attractions',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="attraction-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('attractions',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <img id="attr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.attractions[${i}].name=this.value"></div>
@@ -1237,10 +1654,16 @@
             const items = hpData.bikeRentals || [];
             const c = document.getElementById('bike-rentals-items');
             c.innerHTML = items.map((item, i) => bikeCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function bikeCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('bikeRentals',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="bike-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('bikeRentals',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <img id="bike-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Bike Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.bikeRentals[${i}].name=this.value"></div>
@@ -1271,10 +1694,16 @@
             const items = hpData.featuredRestaurants || [];
             const c = document.getElementById('featured-restaurants-items');
             c.innerHTML = items.map((item, i) => featuredRestCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function featuredRestCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('featuredRestaurants',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="featured-rest-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('featuredRestaurants',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <img id="fr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.featuredRestaurants[${i}].name=this.value"></div>
@@ -1308,10 +1737,16 @@
             const items = hpData.travelInsights || [];
             const c = document.getElementById('travel-insights-items');
             c.innerHTML = items.map((item, i) => insightCard(item, i)).join('');
+            if (window.reinitCardSortable) window.reinitCardSortable();
         }
         function insightCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('travelInsights',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="insight-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <div class="card-drag-handle">
+                    <span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+                </div>
+                <button class="remove-btn" onclick="removeFromArray('travelInsights',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <img id="ins-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Category Label</label><input type="text" class="field-input" placeholder="Heritage" value="${escHtml(item.category || '')}" oninput="hpData.travelInsights[${i}].category=this.value"></div>

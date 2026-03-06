@@ -81,7 +81,7 @@ function verifyToken() {
 }
 
 function isAdmin($user) {
-    return isset($user['role']) && $user['role'] === 'Admin';
+    return isset($user['role']) && strtolower($user['role']) === 'admin';
 }
 
 function requireAdmin() {
