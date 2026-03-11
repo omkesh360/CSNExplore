@@ -274,8 +274,6 @@
 
         // Reset UI
         document.querySelectorAll('.filter-type-cb').forEach(cb => cb.checked = false);
-        const searchInput = document.getElementById('filter-search');
-        if (searchInput) searchInput.value = '';
         const ratingInput = document.getElementById('filter-rating');
         if (ratingInput) { ratingInput.value = 0; updateRatingDisplay(0); }
         const minPrice = document.getElementById('filter-min-price');
@@ -315,18 +313,6 @@
             </div>
 
             <div class="bg-white border border-gray-200 rounded-xl shadow-soft overflow-hidden">
-                <!-- Search -->
-                <div class="p-4 border-b border-gray-100">
-                    <label class="block text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Search</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
-                            <span class="material-symbols-outlined text-[18px]">search</span>
-                        </span>
-                        <input id="filter-search" type="text" placeholder="Name, location…"
-                            class="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"/>
-                    </div>
-                </div>
-
                 <!-- Popular Only -->
                 <div class="p-4 border-b border-gray-100">
                     <label class="flex items-center gap-3 cursor-pointer group">
@@ -440,19 +426,6 @@
     // BIND FILTER EVENTS
     // ============================================================
     function bindFilterEvents(cfg) {
-        // Search (debounced)
-        const searchInput = document.getElementById('filter-search');
-        if (searchInput) {
-            let debounce;
-            searchInput.addEventListener('input', () => {
-                clearTimeout(debounce);
-                debounce = setTimeout(() => {
-                    activeFilters.search = searchInput.value.trim();
-                    renderResults(cfg);
-                }, 300);
-            });
-        }
-
         // Popular
         const popularCb = document.getElementById('filter-popular');
         if (popularCb) {
