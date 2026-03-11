@@ -224,8 +224,8 @@
                         </td>
                         <td class="px-6 py-4 text-gray-600">${user.email}</td>
                         <td class="px-6 py-4 text-gray-600">
-                             <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium ${(user.role || '').toLowerCase() === 'admin' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-600'}">
-                                ${(user.role || '').charAt(0).toUpperCase() + (user.role || '').slice(1)}
+                             <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium ${user.role === 'Admin' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-600'}">
+                                ${user.role}
                             </span>
                         </td>
                         <td class="px-6 py-4">
@@ -344,6 +344,7 @@
             }
         </script>
         <script src="js/admin-guard.js"></script>
+<<<<<<< HEAD
         <script src="js/admin-profile.js"></script>
 
     <!-- Edit User Modal -->
@@ -378,6 +379,9 @@
             </div>
         </div>
     </div>
+=======
+    <script src="js/admin-profile.js"></script>
+>>>>>>> parent of 112dbb6 (one of the main update in php)
 </body>
 
 </html>

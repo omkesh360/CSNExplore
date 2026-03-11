@@ -55,24 +55,6 @@ function getListings($db, $category, $adminCategories) {
         }
     }
     
-    if ($category === 'users') {
-        $users = $db->fetchAll("SELECT id, email, name, role, CASE WHEN is_verified=1 THEN 'Active' ELSE 'Inactive' END as status, created_at FROM users ORDER BY created_at DESC");
-        sendJson($users);
-        return;
-    }
-    
-    if ($category === 'vendors') {
-        $vendors = $db->fetchAll("SELECT * FROM vendors ORDER BY name ASC");
-        sendJson($vendors);
-        return;
-    }
-    
-    if ($category === 'bookings') {
-        $bookings = $db->fetchAll("SELECT * FROM bookings ORDER BY created_at DESC");
-        sendJson($bookings);
-        return;
-    }
-    
     $where = ['is_active = 1'];
     $params = [];
     
@@ -150,11 +132,7 @@ function getListingById($db, $category, $id, $adminCategories) {
         }
     }
     
-    if (in_array($category, ['users', 'vendors', 'bookings'])) {
-        $item = $db->fetchOne("SELECT * FROM $category WHERE id = ?", [$id]);
-    } else {
-        $item = $db->fetchOne("SELECT * FROM $category WHERE id = ? AND is_active = 1", [$id]);
-    }
+    $item = $db->fetchOne("SELECT * FROM $category WHERE id = ? AND is_active = 1", [$id]);
     
     if (!$item) {
         sendError('Item not found', 404);
@@ -185,11 +163,8 @@ function createListing($db, $category, $validCategories) {
         $imageUrl = handleImageUpload($_FILES['image']);
     }
     
-    // Get form data or JSON body
+    // Get form data
     $newItem = $_POST;
-    if (empty($newItem)) {
-        $newItem = getJsonInput();
-    }
     
     if ($imageUrl) {
         $newItem['image'] = $imageUrl;
@@ -229,11 +204,8 @@ function updateListing($db, $category, $id) {
         $imageUrl = handleImageUpload($_FILES['image']);
     }
     
-    // Get form data or JSON body
+    // Get form data
     $updateData = $_POST;
-    if (empty($updateData)) {
-        $updateData = getJsonInput();
-    }
     
     if ($imageUrl) {
         $updateData['image'] = $imageUrl;
@@ -243,16 +215,8 @@ function updateListing($db, $category, $id) {
     $data = prepareDataForInsert($updateData, $category);
     $data['updated_at'] = date('Y-m-d H:i:s');
     
-    // Remove "id" from data to prevent "UNIQUE constraint failed" or index errors
-    if (isset($data['id'])) {
-        unset($data['id']);
-    }
-    if (isset($data['created_at'])) {
-        unset($data['created_at']);
-    }
-
     // Update in database
-    $db->update($category, $data, 'id = :id', [':id' => $id]);
+    $db->update($category, $data, 'id = ?', [':id' => $id]);
     
     // Fetch updated item
     $item = $db->fetchOne("SELECT * FROM $category WHERE id = ?", [$id]);
@@ -282,7 +246,7 @@ function deleteListing($db, $category, $id) {
     }
     
     // Soft delete
-    $deleted = $db->update($category, ['is_active' => 0], 'id = :id', [':id' => $id]);
+    $deleted = $db->update($category, ['is_active' => 0], 'id = ?', [':id' => $id]);
     
     if ($deleted === 0) {
         sendError('Item not found', 404);

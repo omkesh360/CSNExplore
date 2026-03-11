@@ -52,16 +52,20 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+<<<<<<< HEAD
             <div class="flex h-20 items-center justify-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="admin-dashboard.html" class="flex items-center gap-2">
                     <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-10">
+=======
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+>>>>>>> parent of 112dbb6 (one of the main update in php)
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <div class="mb-4">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-2">Main Menu</p>
-                </div>
                 <nav class="flex flex-col gap-1.5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
@@ -73,10 +77,15 @@
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
 
+<<<<<<< HEAD
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Listings</p>
                     </div>
 
+=======
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
+                    </p>
+>>>>>>> parent of 112dbb6 (one of the main update in php)
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-add-listing.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
@@ -93,16 +102,22 @@
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
+<<<<<<< HEAD
 
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Management</p>
                     </div>
 
+=======
+>>>>>>> parent of 112dbb6 (one of the main update in php)
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
                         <span class="material-symbols-outlined text-[20px]">calendar_month</span>
                         <span class="text-[13px]">Bookings</span>
                     </a>
+
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
+                    </p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
@@ -130,18 +145,26 @@
                     </a>
                 </nav>
             </div>
-            <div class="border-t border-slate-200 p-4 bg-slate-50">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm"
+            <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left mb-2">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-[13px]">Logout</span>
+                </button>
+                <div class="flex items-center gap-3 px-3 py-2">
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm"
                         id="admin-avatar">A</div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-bold text-slate-900 truncate" id="admin-name">Admin</p>
-                        <p class="text-xs text-slate-500">Administrator</p>
+                    <div class="flex flex-col flex-1">
+                        <span class="text-[13px] font-bold text-slate-900" id="admin-name">Admin</span>
+                        <span class="text-[11px] font-medium text-slate-500">Super Admin</span>
                     </div>
+<<<<<<< HEAD
                     <button onclick="logout()" class="text-slate-400 hover:text-red-500 transition-colors"
                         title="Logout">
                         <span class="material-symbols-outlined text-[20px]">logout</span>
                     </button>
+=======
+>>>>>>> parent of 112dbb6 (one of the main update in php)
                 </div>
             </div>
         </aside>
@@ -1093,6 +1116,7 @@
     </script>
 
     <script src="js/admin-profile.js"></script>
+<<<<<<< HEAD
     <script>
         // Logout function
         function logout() {
@@ -1261,6 +1285,8 @@
             }
         }
     </script>
+=======
+>>>>>>> parent of 112dbb6 (one of the main update in php)
 </body>
 
 </html>

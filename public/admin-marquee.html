@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Marquee Announcements — CSNExplore Admin</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <style>
+        .announcement-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .announcement-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 53, 128, 0.08);
+            border-color: #003580;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.375rem;
+        }
+
+        .field-input {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.625rem 0.75rem;
+            font-size: 14px;
+            color: #1e293b;
+            background: rgba(248, 250, 252, 0.5);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .field-input:focus {
+            border-color: #003580;
+            box-shadow: 0 0 0 4px rgba(0, 53, 128, 0.08);
+            background: #fff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #003580;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .preview-marquee {
+            background: linear-gradient(90deg, #003580 0%, #0066cc 100%);
+            color: white;
+            padding: 0.75rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .preview-marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-primary antialiased bg-slate-50 text-slate-900">
+    <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
+        <!-- Sidebar -->
+        <aside id="admin-sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <img src="/images/travelhub.png" alt="CSNExplore" class="h-10" />
+            </div>
+            <div class="flex-1 overflow-y-auto px-4 py-6">
+                <nav class="flex flex-col gap-1.5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-dashboard.html">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-homepage.html">
+                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span>Homepage Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-primary/10 text-primary font-semibold"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span>Marquee Announcements</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
+                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-add-listing.html">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        <span>Add Listing</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-manage-listings.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        <span>Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span>Cards Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-bookings.html">
+                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                        <span>Bookings</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
+                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-users.html">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                        <span>Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-vendors.html">
+                        <span class="material-symbols-outlined text-[20px]">storefront</span>
+                        <span>Vendors</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-financials.html">
+                        <span class="material-symbols-outlined text-[20px]">payments</span>
+                        <span>Financial Reports</span>
+                    </a>
+                </nav>
+            </div>
+            <div id="admin-profile-footer"></div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay"
+            class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            <header
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-black text-white tracking-tight">Marquee Announcements</h1>
+                        <p class="text-xs md:text-sm text-white/80 font-medium">Manage scrolling announcements across
+                            all pages</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="save-btn"
+                        class="flex items-center gap-2 bg-white text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-white/90 transition-all shadow-lg">
+                        <span class="material-symbols-outlined text-[18px]">save</span>
+                        <span class="hidden sm:inline">Save Changes</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-4 md:p-8">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Save Status -->
+                    <div id="save-status"
+                        class="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 font-semibold text-sm flex items-center gap-2 hidden">
+                        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                        <span>All changes saved</span>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-primary text-[28px]">visibility</span>
+                            <h2 class="text-lg font-bold text-slate-900">Live Preview</h2>
+                        </div>
+                        <div id="preview-container" class="border border-slate-200 rounded-lg overflow-hidden">
+                            <div class="preview-marquee">
+                                <div class="preview-marquee-content" id="preview-content">
+                                    Loading...
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2">This is how announcements will appear on all pages</p>
+                    </div>
+
+                    <!-- Global Settings -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-[28px]">settings</span>
+                                <h2 class="text-lg font-bold text-slate-900">Global Settings</h2>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="marquee-enabled" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="field-label">Animation Speed (seconds)</label>
+                                <input type="number" id="animation-speed" class="field-input" value="20" min="5"
+                                    max="60" step="1">
+                            </div>
+                            <div>
+                                <label class="field-label">Separator</label>
+                                <input type="text" id="separator" class="field-input" value=" • " maxlength="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Announcements List -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-[28px]">campaign</span>
+                                <h2 class="text-lg font-bold text-slate-900">Announcements</h2>
+                            </div>
+                            <button id="add-announcement-btn"
+                                class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-primary-hover transition-all">
+                                <span class="material-symbols-outlined text-[18px]">add</span>
+                                <span>Add New</span>
+                            </button>
+                        </div>
+                        <div id="announcements-list" class="space-y-3">
+                            <!-- Announcements will be rendered here -->
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4">Announcements are displayed in order. Drag to reorder.
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/admin-guard.js"></script>
+    <script src="js/admin-profile.js"></script>
+    <script>
+        // Mobile Sidebar Logic
+        const sidebar = document.getElementById('admin-sidebar');
+        const toggleBtn = document.getElementById('mobile-sidebar-toggle');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSidebar();
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', toggleSidebar);
+        }
+
+        // Marquee Manager Logic
+        let announcements = [];
+        let settings = {
+            enabled: true,
+            speed: 20,
+            separator: ' • '
+        };
+
+        // Load data
+        async function loadData() {
+            try {
+                const response = await fetch('/php/api/homepage.php');
+                const data = await response.json();
+                if (data.marqueeAnnouncements) {
+                    announcements = data.marqueeAnnouncements;
+                }
+                if (data.marqueeSettings) {
+                    settings = { ...settings, ...data.marqueeSettings };
+                }
+                renderUI();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                renderUI();
+            }
+        }
+
+        // Render UI
+        function renderUI() {
+            // Update settings
+            document.getElementById('marquee-enabled').checked = settings.enabled;
+            document.getElementById('animation-speed').value = settings.speed;
+            document.getElementById('separator').value = settings.separator;
+
+            // Render announcements
+            const list = document.getElementById('announcements-list');
+            if (announcements.length === 0) {
+                list.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">No announcements yet. Click "Add New" to create one.</p>';
+            } else {
+                list.innerHTML = announcements.map((ann, index) => `
+                    <div class="announcement-item" data-index="${index}">
+                        <div class="flex items-start gap-3">
+                            <div class="flex-1">
+                                <input type="text" class="field-input mb-2" placeholder="Announcement text" 
+                                    value="${ann.text || ''}" onchange="updateAnnouncement(${index}, 'text', this.value)">
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2 text-sm text-slate-600">
+                                        <input type="checkbox" class="rounded" ${ann.enabled ? 'checked' : ''} 
+                                            onchange="updateAnnouncement(${index}, 'enabled', this.checked)">
+                                        <span>Enabled</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button onclick="deleteAnnouncement(${index})" 
+                                class="text-red-500 hover:text-red-700 transition-colors p-2">
+                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            updatePreview();
+        }
+
+        // Update preview
+        function updatePreview() {
+            const enabledAnnouncements = announcements.filter(a => a.enabled && a.text);
+            const previewContent = document.getElementById('preview-content');
+            const previewContainer = document.querySelector('.preview-marquee-content');
+
+            if (enabledAnnouncements.length === 0 || !settings.enabled) {
+                previewContent.textContent = 'No active announcements';
+            } else {
+                const text = enabledAnnouncements.map(a => a.text).join(settings.separator);
+                previewContent.textContent = text + settings.separator + text;
+            }
+
+            // Update animation speed
+            previewContainer.style.animationDuration = `${settings.speed}s`;
+        }
+
+        // Add announcement
+        document.getElementById('add-announcement-btn').addEventListener('click', () => {
+            announcements.push({ text: '', enabled: true });
+            renderUI();
+        });
+
+        // Update announcement
+        window.updateAnnouncement = function (index, field, value) {
+            announcements[index][field] = value;
+            updatePreview();
+        };
+
+        // Delete announcement
+        window.deleteAnnouncement = function (index) {
+            if (confirm('Delete this announcement?')) {
+                announcements.splice(index, 1);
+                renderUI();
+            }
+        };
+
+        // Update settings
+        document.getElementById('marquee-enabled').addEventListener('change', (e) => {
+            settings.enabled = e.target.checked;
+            updatePreview();
+        });
+
+        document.getElementById('animation-speed').addEventListener('input', (e) => {
+            settings.speed = parseInt(e.target.value);
+            updatePreview();
+        });
+
+        document.getElementById('separator').addEventListener('input', (e) => {
+            settings.separator = e.target.value;
+            updatePreview();
+        });
+
+        // Save data
+        document.getElementById('save-btn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/php/api/homepage.php');
+                const currentData = await response.json();
+
+                const updatedData = {
+                    ...currentData,
+                    marqueeAnnouncements: announcements,
+                    marqueeSettings: settings
+                };
+
+                const saveResponse = await fetch('/php/api/homepage.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(updatedData)
+                });
+
+                if (saveResponse.ok) {
+                    const status = document.getElementById('save-status');
+                    status.classList.remove('hidden');
+                    setTimeout(() => status.classList.add('hidden'), 3000);
+                } else {
+                    alert('Failed to save changes');
+                }
+            } catch (error) {
+                console.error('Error saving:', error);
+                alert('Error saving changes');
+            }
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+
+</html>

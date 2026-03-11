@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hpData = await res.json();
 
         renderHero(hpData.hero);
+<<<<<<< HEAD
 
         const v = hpData.visibility || {};
         const t = hpData.sectionTitles || {};
@@ -68,6 +69,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 renderTravelInsights(hpData.travelInsights, false);
             }
         }
+=======
+        renderTrendingTransport(hpData.trendingTransport);
+        renderRestaurantCircles(hpData.restaurantCircles);
+        renderBusRoutes(hpData.busRoutes);
+        renderAttractions(hpData.attractions);
+        renderBikeRentals(hpData.bikeRentals);
+        renderFeaturedRestaurants(hpData.featuredRestaurants);
+        renderTravelInsights(hpData.travelInsights);
+>>>>>>> parent of 112dbb6 (one of the main update in php)
 
     } catch (err) {
         console.error('Error loading homepage content:', err);

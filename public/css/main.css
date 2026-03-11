@@ -618,6 +618,7 @@ button {
     filter: grayscale(100%);
     opacity: 0.8;
 }
+<<<<<<< HEAD
 
 /* ============================================
    SCROLL ANIMATIONS (INTERSECTION OBSERVER)
@@ -631,3 +632,5 @@ button {
 [data-animate="fade-up"].is-animated {
     transform: translateY(0);
 }
+=======
+>>>>>>> parent of 112dbb6 (one of the main update in php)

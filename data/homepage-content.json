@@ -5,7 +5,15 @@
         "phone": "+918600968888",
         "whatsapp": "918600968888",
         "marqueeItems": [
+<<<<<<< HEAD
             "✨ Best places to visit in Sambhajinagar"
+=======
+            "\u2728 Best places to visit in Sambhajinagar",
+            "\ud83d\ude80 20% OFF on your first hotel booking",
+            "\ud83c\udf1f Exclusive weekend deals for Car Rentals",
+            "\u2728 New announcement",
+            "123456789"
+>>>>>>> parent of 112dbb6 (one of the main update in php)
         ],
         "carousel": {
             "stays": "/images/hotel-room-standard.jpg",
@@ -97,21 +105,6 @@
             "rating": "4.7",
             "image": "/images/restaurant-north-indian.jpg",
             "link": "restaurant-detail.html?id=10"
-        },
-        {
-            "name": "New Restaurant",
-            "type": "Local",
-            "rating": "4.5",
-            "image": "",
-            "link": "restaurant-detail.html"
-        },
-        {
-            "id": 5,
-            "name": "Renaissance Dine",
-            "image": "/images/hotel-renaissance.jpg",
-            "type": "Multi-cuisine",
-            "rating": 9.1,
-            "link": "restaurant-detail.html?id=5"
         }
     ],
     "busRoutes": [
@@ -275,6 +268,7 @@
         "stat2Label": "",
         "stat3Value": "",
         "stat3Label": ""
+<<<<<<< HEAD
     },
     "visibility": {
         "restaurantCircles": true,
@@ -292,5 +286,7 @@
         "bikeRentals": "Quick Bike Rentals",
         "featuredRestaurants": "Featured Restaurants",
         "travelInsights": "Travel Insights"
+=======
+>>>>>>> parent of 112dbb6 (one of the main update in php)
     }
 }

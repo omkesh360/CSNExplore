@@ -42,7 +42,7 @@
 
     <!-- Preloader script -->
     <script>
-        (function () {
+        (function() {
             var done = false;
             function hidePreloader() {
                 if (done) return;
@@ -50,10 +50,10 @@
                 var preloader = document.getElementById('preloader');
                 if (!preloader) return;
                 preloader.style.opacity = '0';
-                setTimeout(function () { preloader.style.display = 'none'; }, 600);
+                setTimeout(function() { preloader.style.display = 'none'; }, 600);
             }
             // Hide after load event
-            window.addEventListener('load', function () { setTimeout(hidePreloader, 500); });
+            window.addEventListener('load', function() { setTimeout(hidePreloader, 500); });
             // Hard timeout: never stuck longer than 3s
             setTimeout(hidePreloader, 3000);
         })();
@@ -104,10 +104,12 @@
                     <nav class="hidden lg:flex items-center gap-1">
                         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
                             href="about.html">
+                            <span class="material-symbols-outlined text-[20px]">info</span>
                             <span class="text-[13px] font-medium">About Us</span>
                         </a>
                         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
                             href="contact.html">
+                            <span class="material-symbols-outlined text-[20px]">contact_mail</span>
                             <span class="text-[13px] font-medium">Contact Us</span>
                         </a>
                         <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
@@ -167,16 +169,18 @@
             <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
                     href="about.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">info</span>
                     About Us
                 </a>
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
                     href="contact.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">contact_mail</span>
                     Contact Us
                 </a>
-
-
+                
+                
                 <div class="border-t border-gray-200 my-2"></div>
-
+                
                 <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
                     href="stays.html">
                     <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
@@ -441,16 +445,16 @@
     <main class="flex-grow pt-16 pb-12 max-w-[1140px] mx-auto px-4 md:px-6 w-full space-y-8 md:space-y-12"
         id="homepage-main">
         <!-- Trending Transport -->
-        <section data-animate="fade-up" id="section-trending-transport">
+        <section class="animate-slide-up" id="section-trending-transport">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-trending-transport">Trending Transport</h2>
+                <h2 class="text-2xl font-bold text-text-main">Trending Transport</h2>
             </div>
             <div id="trending-transport-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
         <!-- Taste the City -->
-        <section data-animate="fade-up" id="section-taste-city">
+        <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-taste-city">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-restaurant-circles">Taste the City</h2>
+                <h2 class="text-2xl font-bold text-text-main">Taste the City</h2>
                 <a class="text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors"
                     href="restaurant.html">See all restaurants</a>
             </div>
@@ -459,30 +463,30 @@
             </div>
         </section>
         <!-- Travel Your Way -->
-        <section data-animate="fade-up" id="section-bus-routes">
+        <section id="section-bus-routes">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-bus-routes">Travel Your Way</h2>
+                <h2 class="text-2xl font-bold text-text-main">Travel Your Way</h2>
             </div>
             <div id="bus-routes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </section>
         <!-- Explore Attractions -->
-        <section data-animate="fade-up" id="section-attractions">
+        <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-attractions">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-attractions">Explore Attractions</h2>
+                <h2 class="text-2xl font-bold text-text-main">Explore Attractions</h2>
             </div>
             <div id="attractions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </section>
         <!-- Quick Bike Rentals -->
-        <section data-animate="fade-up" id="section-bike-rentals">
+        <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-bike-rentals">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-bike-rentals">Quick Bike Rentals</h2>
+                <h2 class="text-2xl font-bold text-text-main">Quick Bike Rentals</h2>
             </div>
             <div id="bike-rentals-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </section>
         <!-- Featured Restaurants -->
-        <section data-animate="fade-up" id="section-featured-restaurants">
+        <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-featured-restaurants">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-featured-restaurants">Featured Restaurants</h2>
+                <h2 class="text-2xl font-bold text-text-main">Featured Restaurants</h2>
             </div>
             <div id="featured-restaurants-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
