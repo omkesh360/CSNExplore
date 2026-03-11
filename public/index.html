@@ -307,17 +307,45 @@
                 <div
                     class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
                     <div
-                        class="flex-1 relative group cursor-pointer bg-white md:bg-transparent rounded-t-xl md:rounded-none">
+                        class="flex-[1.5] relative group cursor-pointer bg-white md:bg-transparent rounded-t-xl md:rounded-l-xl md:rounded-tr-none border-b border-gray-100 md:border-b-0">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-primary/60 text-[20px]">calendar_month</span>
+                            <span class="material-symbols-outlined text-primary/60 text-[22px]">search</span>
                         </div>
-                        <div class="absolute inset-y-0 left-12 flex flex-col justify-center pointer-events-none">
-                            <span
-                                class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5">Dates</span>
+                        <input id="search-location"
+                            class="w-full pl-12 pr-4 h-[56px] rounded-t-xl md:rounded-l-xl border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-semibold placeholder:text-text-muted bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm sm:text-base outline-none"
+                            placeholder="Where do you want to stay?" type="text" />
+                    </div>
+
+                    <div
+                        class="flex-[1.5] relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent md:border-l-0 border-b border-gray-100 md:border-b-0">
+                        <div class="flex w-full h-[56px]" id="hp-date-range-container">
+                            <!-- Check In -->
+                            <div
+                                class="flex-1 relative border-r border-gray-100 hover:bg-gray-50/50 md:hover:bg-gray-100/50 transition-all overflow-hidden md:bg-gray-50/50 bg-transparent">
+                                <div class="absolute inset-y-0 left-4 flex flex-col justify-center pointer-events-none">
+                                    <span
+                                        class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
+                                        id="date-label-1">Check
+                                        in</span>
+                                    <div class="checkin-display text-sm font-bold text-text-muted truncate">Add date
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Check Out -->
+                            <div class="flex-1 relative hover:bg-gray-50/50 md:hover:bg-gray-100/50 transition-all overflow-hidden md:bg-gray-50/50 bg-transparent"
+                                id="hp-checkout-box">
+                                <div class="absolute inset-y-0 left-4 flex flex-col justify-center pointer-events-none">
+                                    <span
+                                        class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
+                                        id="date-label-2">Check
+                                        out</span>
+                                    <div class="checkout-display text-sm font-bold text-text-muted truncate">Add date
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <input
-                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-t-xl md:rounded-l-lg border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
-                            type="date" id="search-date" />
+                        <input type="text" id="search-date"
+                            class="date-range-picker absolute inset-0 w-full h-[56px] opacity-0 cursor-pointer z-10" />
                     </div>
 
                     <div class="flex-1 relative group cursor-pointer bg-white md:bg-transparent rounded-b-xl md:rounded-none mb-2 md:mb-0"
@@ -646,6 +674,39 @@
                 else if (id === 'restaurants') input.placeholder = "Find a restaurant...";
                 else if (id === 'attractions') input.placeholder = "Search attractions...";
                 else if (id === 'buses') input.placeholder = "From city?";
+
+                // Update Date Picker Mode
+                const checkoutBox = document.getElementById('hp-checkout-box');
+                const dateLabel1 = document.getElementById('date-label-1');
+                const dateLabel2 = document.getElementById('date-label-2');
+                const dateContainer = document.getElementById('hp-date-range-container');
+                const searchDateInput = document.getElementById('search-date');
+
+                if (id === 'restaurants' || id === 'attractions') {
+                    if (checkoutBox) checkoutBox.style.display = 'none';
+                    if (dateLabel1) dateLabel1.innerText = 'Date';
+                    const cIn = dateContainer ? dateContainer.querySelector('.checkin-display') : null;
+                    if (cIn) cIn.innerText = 'Add date';
+
+                    if (searchDateInput && searchDateInput._flatpickr) {
+                        searchDateInput._flatpickr.clear();
+                        searchDateInput._flatpickr.set('mode', 'single');
+                    }
+                } else {
+                    if (checkoutBox) checkoutBox.style.display = 'block';
+                    if (dateLabel1) dateLabel1.innerText = (id === 'cars' || id === 'bikes') ? 'Pick-up' : 'Check in';
+                    if (dateLabel2) dateLabel2.innerText = (id === 'cars' || id === 'bikes') ? 'Drop-off' : 'Check out';
+
+                    const cIn = dateContainer ? dateContainer.querySelector('.checkin-display') : null;
+                    const cOut = dateContainer ? dateContainer.querySelector('.checkout-display') : null;
+                    if (cIn) cIn.innerText = 'Add date';
+                    if (cOut) cOut.innerText = 'Add date';
+
+                    if (searchDateInput && searchDateInput._flatpickr) {
+                        searchDateInput._flatpickr.clear();
+                        searchDateInput._flatpickr.set('mode', 'range');
+                    }
+                }
 
                 // Carousel transition (match background to service)
                 document.querySelectorAll('.carousel-slide').forEach(slide => slide.style.opacity = '0');
