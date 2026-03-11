@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Manage Listings - TravelHub Admin</title>
+    <title>Manage Listings - CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,30 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -57,6 +33,8 @@
             color: #003580;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
@@ -67,7 +45,8 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -164,8 +143,7 @@
             <header
                 class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
-                    <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-white hover:text-white transition-colors">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
@@ -189,17 +167,17 @@
                     <!-- Tabs -->
                     <div class="bg-white rounded-t-lg border-b border-gray-200 px-6 pt-4 mb-0">
                         <div class="flex gap-6 overflow-x-auto pb-px" id="category-tabs">
-                            <button onclick="loadListings('stays')"
+                            <button onclick="loadListings('stays', this)" data-category="stays"
                                 class="tab-btn active pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Stays</button>
-                            <button onclick="loadListings('cars')"
+                            <button onclick="loadListings('cars', this)" data-category="cars"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Car
                                 Rentals</button>
-                            <button onclick="loadListings('bikes')"
+                            <button onclick="loadListings('bikes', this)" data-category="bikes"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Bike
                                 Rentals</button>
-                            <button onclick="loadListings('restaurants')"
+                            <button onclick="loadListings('restaurants', this)" data-category="restaurants"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Restaurants</button>
-                            <button onclick="loadListings('attractions')"
+                            <button onclick="loadListings('attractions', this)" data-category="attractions"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Attractions</button>
                         </div>
                     </div>
@@ -235,7 +213,7 @@
                 </div>
             </main>
             <footer class="py-4 bg-primary border-t border-white/10 text-center text-xs text-white/70 shrink-0">
-                <p>Copyright &copy; 1996–2026 TravelHub Admin. All rights reserved.</p>
+                <p>Copyright &copy; 1996–2026 CSNExplore Admin. All rights reserved.</p>
             </footer>
         </div>
 
@@ -264,20 +242,17 @@
                 loadListings('stays');
             });
 
-            async function loadListings(category) {
+            async function loadListings(category, clickedBtn) {
                 currentCategory = category;
 
                 // Update tabs
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active', 'text-primary'));
-                const activeBtn = Array.from(document.querySelectorAll('.tab-btn'))
-                    .find(btn => btn.innerText.toLowerCase().includes(category.replace('s', '')) || btn.innerText.toLowerCase() === 'car rentals' && category === 'cars');
-                if (event && event.target.classList.contains('tab-btn')) {
-                    event.target.classList.add('active', 'text-primary');
-                } else if (activeBtn) {
-                    activeBtn.classList.add('active', 'text-primary');
+                if (clickedBtn) {
+                    clickedBtn.classList.add('active', 'text-primary');
                 } else {
-                    // Fallback to first tab if logic fails
-                    document.querySelector('.tab-btn').classList.add('active', 'text-primary');
+                    // Called programmatically (e.g. DOMContentLoaded)
+                    const btn = document.querySelector(`.tab-btn[data-category="${category}"]`);
+                    if (btn) btn.classList.add('active', 'text-primary');
                 }
 
                 const tbody = document.getElementById('listings-table-body');
@@ -302,7 +277,7 @@
                     tbody.innerHTML = items.map(item => `
                     <tr class="hover:bg-gray-50 transition-colors group">
                         <td class="px-6 py-4">
-                            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover border border-gray-200" onerror="this.src='https://placehold.co/100?text=No+Img'">
+                            <img loading="lazy" decoding="async" src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover border border-gray-200" onerror="this.src='https://placehold.co/100?text=No+Img'">
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900">${item.name}</td>
                         <td class="px-6 py-4 text-gray-500">${item.location}</td>
@@ -411,7 +386,7 @@
             }
         </script>
         <script src="js/admin-guard.js"></script>
-    <script src="js/admin-profile.js"></script>
+        <script src="js/admin-profile.js"></script>
 </body>
 
 </html>

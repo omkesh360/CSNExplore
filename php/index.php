@@ -1,4 +1,11 @@
 <?php
+// Enable GZIP output compression for faster API responses
+if (extension_loaded('zlib') && !headers_sent()) {
+    ob_start('ob_gzhandler');
+} else {
+    ob_start();
+}
+
 // Main router for PHP API
 
 // Get the request URI and remove query string

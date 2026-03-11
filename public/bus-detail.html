@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Bus Trip Detail - TravelHub</title>
+    <title>Bus Trip Detail - CSNExplore</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -42,6 +41,8 @@
             transform: scale(1.1);
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -71,7 +72,8 @@
                 <div class="flex items-center gap-3 shrink-0">
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -82,7 +84,8 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
 
                 <!-- Navigation and Auth Right Side -->
@@ -208,7 +211,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -446,7 +450,7 @@
                 <!-- Amenities -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <h3 class="text-lg font-semibold text-text-main mb-4">Amenities</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="item-amenities">
                         <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
                             <span class="material-symbols-outlined text-primary text-xl">ac_unit</span>
                             <span class="text-sm font-medium text-text-muted">AC</span>
@@ -500,7 +504,8 @@
                         </a>
                         <a href="https://wa.me/918600968888" target="_blank"
                             class="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-3 rounded-lg shadow-md transition-all transform active:scale-[0.98] flex justify-center items-center gap-2 text-base font-bold">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            <img loading="lazy" decoding="async"
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                                 alt="WhatsApp" class="w-5 h-5 brightness-0 invert"> WhatsApp
                         </a>
                     </div>
@@ -551,7 +556,7 @@
                 <div class="space-y-4 col-span-2 md:col-span-4 lg:col-span-1">
                     <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">About</h4>
                     <ul class="space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white transition-colors" href="#">About TravelHub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">About CSNExplore</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">How We Work</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
@@ -561,46 +566,15 @@
             </div>
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-12 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-12 filter brightness-0 invert">
                 </div>
                 <div class="text-xs text-white/60 text-center md:text-right">
-                    Copyright © 1996–2026 TravelHub. All rights reserved.
+                    Copyright © 1996–2026 CSNExplore. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
 
     <script src="js/app.js"></script>
     <script src="js/detail-loader.js"></script>

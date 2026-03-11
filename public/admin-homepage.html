@@ -4,38 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Homepage Manager — TravelHub Admin</title>
+    <title>Homepage Manager — CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
-    <link href="css/main.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+        <link href="css/main.css" rel="stylesheet" />
     <style>
         /* Section card */
         .section-card {
@@ -356,6 +333,8 @@
             transition: opacity 0.3s, transform 0.3s;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-50 font-display text-gray-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
@@ -366,7 +345,7 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -1124,7 +1103,7 @@
 
                 return `
                 <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.75rem;cursor:pointer;transition:background 0.2s;" class="hover:bg-slate-50" onclick="selectItemBrowser('${btoa(unescape(encodeURIComponent(JSON.stringify(item))))}')">
-                    <img src="${img}" style="width:3rem;height:3rem;object-fit:cover;border-radius:0.5rem;" onerror="this.src='/images/placeholder.jpg'">
+                    <img loading="lazy" decoding="async" src="${img}" style="width:3rem;height:3rem;object-fit:cover;border-radius:0.5rem;" onerror="this.src='/images/placeholder.jpg'">
                     <div style="flex:1;">
                         <div style="font-weight:700;font-size:14px;color:#1e293b;">${title}</div>
                         <div style="font-size:12px;color:#64748b;text-transform:capitalize;">ID: ${item.id || '-'} | Category: ${currentItemCategory}</div>
@@ -1469,7 +1448,7 @@
             <div class="item-card flex flex-col gap-2">
                 <label class="field-label capitalize mb-0">${key}</label>
                 <div class="w-full h-20 rounded-lg bg-gray-100 overflow-hidden shrink-0 flex items-center justify-center relative border border-gray-200">
-                    <img id="carousel-preview-${key}" src="${carousel[key] || ''}" alt="" class="w-full h-full object-cover absolute inset-0" onerror="this.style.display='none'">
+                    <img loading="lazy" decoding="async" id="carousel-preview-${key}" src="${carousel[key] || ''}" alt="" class="w-full h-full object-cover absolute inset-0" onerror="this.style.display='none'">
                     <span class="material-symbols-outlined text-gray-300 text-sm absolute z-10" id="carousel-icon-${key}" style="${carousel[key] ? 'display:none' : ''}">image</span>
                 </div>
                 <div class="flex gap-1.5 items-center mt-1">
@@ -1518,7 +1497,7 @@
                     <div><label class="field-label">Link URL</label><input type="text" class="field-input" value="${escHtml(item.link || '')}" oninput="hpData.trendingTransport[${i}].link=this.value"></div>
                     <div><label class="field-label">Image</label>
                         <div class="img-upload-row">
-                            <img id="tt-img-${i}" src="${escHtml(item.image || '')}" alt="" class="img-thumb" onerror="this.style.opacity=0.1">
+                            <img loading="lazy" decoding="async" id="tt-img-${i}" src="${escHtml(item.image || '')}" alt="" class="img-thumb" onerror="this.style.opacity=0.1">
                             <div class="img-upload-col">
                                 <input type="text" id="tt-path-${i}" class="field-input text-xs" value="${escHtml(item.image || '')}" oninput="hpData.trendingTransport[${i}].image=this.value;updateImgPreview('tt-img-${i}',this.value)">
                                 <div style="display:flex;gap:0.375rem;flex-wrap:wrap;">
@@ -1555,7 +1534,7 @@
                 <button class="remove-btn" onclick="removeFromArray('restaurantCircles',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
             <div class="flex flex-col items-center mb-3">
-                <img id="rc-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-16 h-16 rounded-full object-cover mb-2 border-2 border-gray-200" onerror="this.style.opacity=0.2">
+                <img loading="lazy" decoding="async" id="rc-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-16 h-16 rounded-full object-cover mb-2 border-2 border-gray-200" onerror="this.style.opacity=0.2">
                 <span class="text-xs font-bold text-gray-600">${escHtml(item.name || 'New Restaurant')}</span>
             </div>
             <div class="space-y-1.5">
@@ -1633,7 +1612,7 @@
                 </div>
                 <button class="remove-btn" onclick="removeFromArray('attractions',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
-            <img id="attr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
+            <img loading="lazy" decoding="async" id="attr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.attractions[${i}].name=this.value"></div>
                 <div><label class="field-label">Location</label><input type="text" class="field-input" value="${escHtml(item.location || '')}" oninput="hpData.attractions[${i}].location=this.value"></div>
@@ -1674,7 +1653,7 @@
                 </div>
                 <button class="remove-btn" onclick="removeFromArray('bikeRentals',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
-            <img id="bike-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
+            <img loading="lazy" decoding="async" id="bike-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Bike Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.bikeRentals[${i}].name=this.value"></div>
                 <div><label class="field-label">Description</label><input type="text" class="field-input" value="${escHtml(item.description || '')}" oninput="hpData.bikeRentals[${i}].description=this.value"></div>
@@ -1714,7 +1693,7 @@
                 </div>
                 <button class="remove-btn" onclick="removeFromArray('featuredRestaurants',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
-            <img id="fr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
+            <img loading="lazy" decoding="async" id="fr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.featuredRestaurants[${i}].name=this.value"></div>
                 <div><label class="field-label">Type</label><input type="text" class="field-input" value="${escHtml(item.type || '')}" oninput="hpData.featuredRestaurants[${i}].type=this.value"></div>
@@ -1757,7 +1736,7 @@
                 </div>
                 <button class="remove-btn" onclick="removeFromArray('travelInsights',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
-            <img id="ins-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
+            <img loading="lazy" decoding="async" id="ins-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
             <div class="space-y-1.5">
                 <div><label class="field-label">Category Label</label><input type="text" class="field-input" placeholder="Heritage" value="${escHtml(item.category || '')}" oninput="hpData.travelInsights[${i}].category=this.value"></div>
                 <div><label class="field-label">Read Time</label><input type="text" class="field-input" placeholder="8 min read" value="${escHtml(item.readTime || '')}" oninput="hpData.travelInsights[${i}].readTime=this.value"></div>
@@ -1944,7 +1923,7 @@
                     style="cursor:pointer;border:2px solid #e2e8f0;border-radius:0.75rem;overflow:hidden;aspect-ratio:1;background:#f8fafc;transition:border-color 0.15s,transform 0.15s;display:flex;flex-direction:column;"
                     onmouseover="this.style.borderColor='#003580';this.style.transform='scale(1.04)'"
                     onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='scale(1)'">
-                    <img src="${escHtml(img.url)}" alt="${escHtml(img.name)}"
+                    <img loading="lazy" decoding="async" src="${escHtml(img.url)}" alt="${escHtml(img.name)}"
                         style="width:100%;flex:1;object-fit:cover;"
                         onerror="this.parentElement.style.background='#f1f5f9';this.style.display='none'">
                     <div style="padding:4px 6px;font-size:10px;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border-top:1px solid #f1f5f9;"

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Restaurant Booking Detail - TravelHub</title>
+    <title>Restaurant Booking Detail - CSNExplore</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -38,6 +37,8 @@
             scrollbar-width: none;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -67,7 +68,8 @@
                 <div class="flex items-center gap-3 shrink-0">
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -78,7 +80,8 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
 
                 <!-- Navigation and Auth Right Side -->
@@ -204,7 +207,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -265,7 +269,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 h-96 md:h-[500px]">
             <!-- Main Large Image -->
             <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl">
-                <img alt="Restaurant interior with warm lighting" id="item-main-image"
+                <img loading="lazy" decoding="async" alt="Restaurant interior with warm lighting" id="item-main-image"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://placehold.co/800x600?text=Loading" />
                 <div
@@ -274,22 +278,22 @@
             </div>
             <!-- Smaller Images -->
             <div class="relative group overflow-hidden rounded-xl">
-                <img alt="Chef preparing pasta dish"
+                <img loading="lazy" decoding="async" alt="Chef preparing pasta dish"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC65rubyKvt5ULQXQSqsFbjgfgySlqfMAGqIgTmIcu3wPozobjrXqrzh1Q-tbgYpcHs2s7criGkAmHoWKzuknPqwbLDhSg3Wz9kJ8uWhcZM1yBpEsSOSt73Cv51Qya8uMAb6yEchQXGp_6begP_l9b_xn8EdAfWDflUIYFTNgGZLBMDo8Q6WZ5sWlYwhoZaWwY31e3_zKE8hEOAu_R9kB2o6oVhb5Q7e8r1sp0VoXsl_y-LsRKwLvES5N5z944BjOnHHDeKcMzWNOQ" />
             </div>
             <div class="relative group overflow-hidden rounded-xl">
-                <img alt="Platter of authentic Italian appetizers"
+                <img loading="lazy" decoding="async" alt="Platter of authentic Italian appetizers"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsYEo-GpigBBTbPiJ-OlJ1Skvs-REhblKUBoTNAf6Y2oxJmP1M5JFjvCZb4gee0jBS3Zdsnc_EyHywqFD_LFFL9Hdo2xfN8Q8munACsqhkpNggICAEvpFc7b2ca1a5U5ouqk0g0jHZwy2j_KyiYg4EmvFn1SgvS2fzlwjWyDXQKTPhsUKH-CFMsmB-DDjI_dXu2p6hLx38u9WHSWrL13g8h_MpNGG9MKTZR0a1c_6vdP6yNAdsPLGXJbvzis2dLIrBDqixbWq2raEB" />
             </div>
             <div class="relative group overflow-hidden rounded-xl">
-                <img alt="Detail of a dessert tiramisu"
+                <img loading="lazy" decoding="async" alt="Detail of a dessert tiramisu"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-0pe98XnfdkX9_wKS0vgWDUyAIhQnZkHNjCPKGBwrZ1_JdcMTSD4_ZzMm5eKVhPSqrWN3z874EklNwkPs-RcEUXV5Bl1Gq9QVr-GNgCvifM4sQRTRbTn7TjMQY91ZYEJERHUNoKp1bt9UnbmXwtVnY7SHMNWiz_seHvHo6PxyLRqq7TcZwPWRlFStdaZVpD5rdDNSwR5oYHcj8FADA89mVAg6em1BLLKn5vG4_OHIpWLe4MdENS2Z0Y97EtcOFlv_6xDFoaxJgm3N" />
             </div>
             <div class="relative group overflow-hidden rounded-xl">
-                <img alt="Dining table set for two"
+                <img loading="lazy" decoding="async" alt="Dining table set for two"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjIoGB3PHws1EH-YQrXD93E8BYLKhoEGhH-WpgUaAKxzHEr3z3fLOH0keWMLg-C0o5WugpCz8W4KDJP679z3Oa47AM9Z5ntUjlfX2m_419Zdx3XpvidtDt2Ozs1FVJEMxuV2fIpEEhbBb1vlm5nV8lyM_QRGCvLVpnB18SL_sL5jgTZqYrorDvHzGPSqs4_KGOxcQJD52jj46WeOfn0OlmDT6fk9qbDblxzWImS-SXpAArs7x9aIfxb0pfpaywm8Mf3Q_wNsTrsYxv" />
                 <div
@@ -317,7 +321,7 @@
                         Our signature dishes include the traditional Osso Buco and the vibrant Saffron Risotto. We pride
                         ourselves on offering a true taste of Northern Italy.
                     </p>
-                    <div class="mt-6 flex flex-wrap gap-3">
+                    <div class="mt-6 flex flex-wrap gap-3" id="item-amenities">
                         <span
                             class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
                             <span class="material-symbols-outlined text-sm mr-1">check</span> Outdoor Seating
@@ -345,11 +349,12 @@
                             View full menu <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
                         </a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="menu-highlights-container">
                         <!-- Menu Item 1 -->
                         <div
                             class="flex items-start space-x-4 p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow">
-                            <img alt="Osso Buco dish" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                            <img loading="lazy" decoding="async" alt="Osso Buco dish"
+                                class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhGKJNFZHD-EOcpcnOaysDjHayI5aOSvLnfAJqwrh2k7Oj_JHSp3mK4nIcYsBsRpnfOyy4RjvsntmTpFXPFKLCK2kMEYBqqpDYhZEs7MKwXutYGvhNdmW8iITIofrbw7HNkIyMlQRWsWyuJ6wLrAqgvjAjpDAhbxXvGJak0Z8xX_3zh2QsWz_E4K3Vy0rEtm6Zrrda8q-5LwLeyt6ULMETvo3Xu65jJc6RV-JLw2LSeYtapeybOGEfePiNvzCwdDjmlgLCs7ZVELLn" />
                             <div>
                                 <h3 class="font-bold text-text-main">Osso Buco</h3>
@@ -361,7 +366,8 @@
                         <!-- Menu Item 2 -->
                         <div
                             class="flex items-start space-x-4 p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow">
-                            <img alt="Saffron Risotto" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                            <img loading="lazy" decoding="async" alt="Saffron Risotto"
+                                class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ000jpmJulbl_oxTVjjwBCFfZXZWlCdjo-YYyCM8TgFGTTiXnQr6sBc_TkVaWippFUNS6tPM1tnM9i-jdUtiA9udJeUF5GUbuKQR5gFxPjdejPPIOpqnV8x4gsh95bxFXVdMmKOX-sojHJbeQE2Y5heGYPz3doM2MfUnSyKRicxL2AV3lMEFkIYXiyewmqaFY-3vcmwqXBATCdIxcxODwfPZYZ49jDlXE8roFvD_k-KircbUFvbyIsqtkn_gQAxpRRX9vc5lSleQh" />
                             <div>
                                 <h3 class="font-bold text-text-main">Saffron Risotto</h3>
@@ -373,7 +379,8 @@
                         <!-- Menu Item 3 -->
                         <div
                             class="flex items-start space-x-4 p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow">
-                            <img alt="Tiramisu Slice" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                            <img loading="lazy" decoding="async" alt="Tiramisu Slice"
+                                class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuA62yroR_GYttkLJCra0dtB_mH82I-8Em1fOHXAr-sDoP0PGCyKU1pVzE9QrEINRMablG-N264QkFCVYRpUXP7KIqV3bsqrEr3dFNAwWC3xu06tz8swZAy0_FXDQY4AbmIV64Gb9ipQyymWz5x7aUfAMx6bLjL5V_SDmRd08LJHWRN0gNbOXel7YAr3gKbSOTRH2369DouiL8sRFiEpbcCqNks2LLAcwKILuP8cmpVNPY7Z94BFNJ33R0ZYWgFnYWDfVXUNe0iLgQ8l" />
                             <div>
                                 <h3 class="font-bold text-text-main">Classic Tiramisu</h3>
@@ -385,7 +392,8 @@
                         <!-- Menu Item 4 -->
                         <div
                             class="flex items-start space-x-4 p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow">
-                            <img alt="Caprese Salad" class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                            <img loading="lazy" decoding="async" alt="Caprese Salad"
+                                class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqtvclEyeT7gou1tG--0qArmCnAEM2ANK4KLCuKiFPe9ZdibkMMwO_FTkGtJ9fjdmHv__pyF2VX9dCQ4H2AprK2IdZeQVmYKrRpS2Mp9F5dc4dv2OR3vaw4Yzyh5YsaCKlzFSEG5Cj0qZ_Tw1vKvF0QUXWlDNgmJoMeokFpqnOsbBuoGQO-zrF3xL4uqrl7Z5PDJ1Wqqr147E1yZM6k45eAvFOFvAK6zyekTJIt452gyBCFk85FmtgNt8NDC66jg84WE6pwO912kmf" />
                             <div>
                                 <h3 class="font-bold text-text-main">Caprese Salad</h3>
@@ -437,6 +445,26 @@
                         </div>
                     </div>
                 </section>
+                <hr class="border-gray-200" />
+                <!-- Reviews -->
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-text-main">Customer Reviews</h2>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-bold text-text-main" id="reviews-summary-rating">5.0</span>
+                            <div class="flex text-yellow-400 text-lg">
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-6" id="guest-reviews-container">
+                        <p class="text-text-muted">Loading reviews...</p>
+                    </div>
+                </section>
             </div>
             <!-- Right Column: Sticky Booking Widget -->
             <div class="lg:col-span-1">
@@ -452,7 +480,8 @@
                         </a>
                         <a href="https://wa.me/918600968888" target="_blank"
                             class="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 px-3 rounded-lg shadow-md transition-all transform active:scale-[0.98] flex justify-center items-center gap-2 text-base font-bold">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            <img loading="lazy" decoding="async"
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                                 alt="WhatsApp" class="w-5 h-5 brightness-0 invert"> WhatsApp
                         </a>
                     </div>
@@ -503,7 +532,7 @@
                 <div class="space-y-4 col-span-2 md:col-span-4 lg:col-span-1">
                     <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">About</h4>
                     <ul class="space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white transition-colors" href="#">About TravelHub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">About CSNExplore</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">How We Work</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
@@ -513,46 +542,15 @@
             </div>
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-12 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-12 filter brightness-0 invert">
                 </div>
                 <div class="text-xs text-white/60 text-center md:text-right">
-                    Copyright © 1996–2026 TravelHub. All rights reserved.
+                    Copyright © 1996–2026 CSNExplore. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
 
     <script src="js/app.js"></script>
     <script src="js/detail-loader.js"></script>

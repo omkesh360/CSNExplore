@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Vendors - TravelHub Admin</title>
+    <title>Vendors - CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,31 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
-    <link href="css/main.css" rel="stylesheet" />
+            <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
             font-family: 'Material Symbols Outlined';
@@ -52,6 +28,8 @@
             direction: ltr;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -64,7 +42,7 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-background-dark shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-16 items-center px-6 border-b border-slate-100 shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-9 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-9 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-3 py-4">
@@ -203,7 +181,7 @@
                 </div>
             </main>
             <footer class="py-3 bg-white border-t border-slate-200 text-center text-xs text-slate-400 shrink-0">
-                <p>Copyright &copy; 1996&ndash;2026 TravelHub Admin. All rights reserved.</p>
+                <p>Copyright &copy; 1996&ndash;2026 CSNExplore Admin. All rights reserved.</p>
             </footer>
         </div>
 
@@ -244,7 +222,7 @@
                         </td>
                         <td class="px-6 py-4 text-right">
                              <div class="flex items-center justify-end gap-2">
-                                <button class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors">
+                                <button onclick="editVendor('${vendor.id}', '${vendor.name}', '${vendor.type}', '${vendor.contact}', '${vendor.status}')" class="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors">
                                     <span class="material-symbols-outlined text-[18px]">edit</span>
                                 </button>
                                 <button onclick="deleteVendor('${vendor.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors">
@@ -282,6 +260,49 @@
                     alert('An error occurred while deleting the vendor');
                 }
             }
+
+            async function editVendor(id, name, type, contact, status) {
+                document.getElementById('edit-vendor-id').value = id;
+                document.getElementById('edit-vendor-name').value = name;
+                document.getElementById('edit-vendor-type').value = type;
+                document.getElementById('edit-vendor-contact').value = contact;
+                document.getElementById('edit-vendor-status').value = status;
+                document.getElementById('edit-vendor-modal').classList.remove('hidden');
+            }
+
+            async function saveVendor() {
+                const id = document.getElementById('edit-vendor-id').value;
+                const name = document.getElementById('edit-vendor-name').value.trim();
+                const type = document.getElementById('edit-vendor-type').value.trim();
+                const contact = document.getElementById('edit-vendor-contact').value.trim();
+                const status = document.getElementById('edit-vendor-status').value;
+                const token = localStorage.getItem('token');
+                if (!name) { alert('Name cannot be empty.'); return; }
+                try {
+                    const response = await fetch(`/api/vendors/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                        },
+                        body: JSON.stringify({ name, type, contact, status })
+                    });
+                    if (response.ok) {
+                        closeEditVendorModal();
+                        loadVendors();
+                    } else {
+                        const data = await response.json();
+                        alert(data.error || 'Failed to update vendor');
+                    }
+                } catch (error) {
+                    console.error('Error updating vendor:', error);
+                    alert('An error occurred while updating the vendor');
+                }
+            }
+
+            function closeEditVendorModal() {
+                document.getElementById('edit-vendor-modal').classList.add('hidden');
+            }
         </script>
         <script>
             // Mobile Sidebar Logic
@@ -315,6 +336,47 @@
         </script>
         <script src="js/admin-guard.js"></script>
     <script src="js/admin-profile.js"></script>
+
+    <!-- Edit Vendor Modal -->
+    <div id="edit-vendor-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm">
+            <div class="flex items-center justify-between p-5 border-b border-gray-100">
+                <h3 class="font-bold text-gray-900 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[20px]">storefront</span>
+                    Edit Vendor
+                </h3>
+                <button onclick="closeEditVendorModal()" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-5 space-y-4">
+                <input type="hidden" id="edit-vendor-id">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Vendor Name</label>
+                    <input type="text" id="edit-vendor-name" class="w-full rounded-lg border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Service Type</label>
+                    <input type="text" id="edit-vendor-type" class="w-full rounded-lg border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Contact</label>
+                    <input type="text" id="edit-vendor-contact" class="w-full rounded-lg border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Status</label>
+                    <select id="edit-vendor-status" class="w-full rounded-lg border-gray-300 text-sm">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-100 flex justify-end gap-3">
+                <button onclick="closeEditVendorModal()" class="px-4 py-2 rounded-lg text-gray-600 font-medium hover:bg-gray-100">Cancel</button>
+                <button onclick="saveVendor()" class="px-4 py-2 rounded-lg bg-primary text-white font-bold hover:bg-primary-hover">Save Changes</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

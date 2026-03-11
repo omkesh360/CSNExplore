@@ -33,6 +33,47 @@ body {
 }
 
 /* ============================================
+   GLOBAL FORM STYLES FIX (TAILWIND RESET OVERRIDE)
+   ============================================ */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="date"],
+textarea,
+select {
+    border-width: 1px;
+    background-color: #fff;
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+    border-color: #d1d5db;
+    /* gray-300 to ensure color is consistent if tailwind class misses it */
+}
+
+select {
+    padding-right: 2.5rem;
+    /* Ensure space for the default dropdown arrow */
+    appearance: auto;
+    /* Ensure browser arrow renders properly */
+}
+
+textarea {
+    min-height: 120px;
+}
+
+/* Fix global label spacing across forms */
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Adjust from standard mb-1 to mb-2 equivalent */
+    color: #374151;
+    /* gray-700 */
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+/* ============================================
    RESPONSIVE TYPOGRAPHY
    ============================================ */
 .responsive-heading-xl {

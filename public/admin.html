@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Admin Login - TravelHub</title>
+    <title>Admin Login - CSNExplore</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="css/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+    <script>
+        // Auto-redirect if already logged in as admin
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                const userStr = localStorage.getItem('user');
+                if (token && userStr) {
+                    const user = JSON.parse(userStr);
+                    if (user.role === 'admin' || user.role === 'Admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    }
+                }
+            } catch (e) { }
+        });
+    </script>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
+
 <body class="bg-slate-50 font-display text-text-main antialiased min-h-screen flex items-center justify-center">
     <div class="w-full max-w-md px-6">
         <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
@@ -76,39 +96,39 @@
     <script>
         document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('login-error');
             const errorText = document.getElementById('login-error-text');
             const loginBtn = document.getElementById('login-btn');
-            
+
             loginBtn.disabled = true;
             loginBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span><span>Logging in...</span>';
             errorDiv.classList.add('hidden');
-            
+
             try {
                 const response = await fetch('/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (!response.ok) {
                     throw new Error(data.error || 'Login failed');
                 }
-                
+
                 if (data.user.role !== 'admin' && data.user.role !== 'Admin') {
                     throw new Error('Access denied. Admin privileges required.');
                 }
-                
+
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                
+
                 window.location.href = 'admin-dashboard.html';
-                
+
             } catch (error) {
                 errorText.textContent = error.message;
                 errorDiv.classList.remove('hidden');
@@ -118,4 +138,5 @@
         });
     </script>
 </body>
+
 </html>

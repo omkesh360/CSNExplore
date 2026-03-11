@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>About Us | TravelHub</title>
+    <title>About Us | CSNExplore</title>
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/main.css" as="style" />
@@ -22,9 +22,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="css/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -53,7 +54,8 @@
                 <div class="flex items-center gap-4 shrink-0">
                     <a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors ml-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -64,7 +66,8 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
 
                 <!-- Navigation and Auth Right Side -->
@@ -78,7 +81,10 @@
                             href="contact.html">
                             <span class="text-[13px] font-medium">Contact Us</span>
                         </a>
-
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="blogs.html">
+                            <span class="text-[13px] font-medium">Blogs</span>
+                        </a>
                     </nav>
 
                     <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
@@ -184,7 +190,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -233,7 +240,8 @@
                     </div>
                 </div>
                 <div class="rounded-xl overflow-hidden shadow-2xl">
-                    <img alt="Travelers looking at a map in a historic city" class="w-full h-full object-cover"
+                    <img loading="lazy" decoding="async" alt="Travelers looking at a map in a historic city"
+                        class="w-full h-full object-cover"
                         data-alt="Two people looking at a physical map in a sunny street"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOEo7WKFXcjH5T8FhKs1ZIuyY5HQHcBEfuSPPLBYJ-yM7T3pBXBpS658tPKENZ3ubpuI_D2Ja3Z22ETmpEtxLyeQsnLUUo1E0mi6fdhOQGfKcz25N6AZEThDAjOhDyd0OkJz5Y6o9NvFi7XjqXIjalsKm4l0nA6vxjdatf2Rxpugf_haW_A6sbeO5bb8dWC7DUu0y9cZ_MrkhtuJl9_TK60FwODxacB7UKECISRd60Fd49_47WO796QUFbgcZubMdTLlOYB31HINZ_" />
                 </div>
@@ -250,7 +258,8 @@
                         <div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">2012</div>
                         <div class="flex-1">
                             <h3 class="text-xl font-bold mb-2">The Small Blog Era</h3>
-                            <p class="text-slate-600 dark:text-slate-400">TravelHub started as "Miles &amp; Memories," a
+                            <p class="text-slate-600 dark:text-slate-400">CSNExplore started as "Miles &amp; Memories,"
+                                a
                                 simple blog where our founders shared their backpacking adventures through Southeast
                                 Asia. What began as a diary for family and friends quickly resonated with a global
                                 audience looking for authentic, unpolished travel advice.</p>
@@ -262,7 +271,7 @@
                             <h3 class="text-xl font-bold mb-2">The Platform Evolution</h3>
                             <p class="text-slate-600 dark:text-slate-400">As the community grew, we realized travelers
                                 needed more than just stories—they needed tools. We launched our first booking
-                                integration and interactive destination maps, officially rebranding as TravelHub.</p>
+                                integration and interactive destination maps, officially rebranding as CSNExplore.</p>
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row gap-8 items-start">
@@ -286,7 +295,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="text-center">
                         <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img alt="CEO Portrait" class="w-full h-full object-cover"
+                            <img loading="lazy" decoding="async" alt="CEO Portrait" class="w-full h-full object-cover"
                                 data-alt="Portrait of a smiling professional man in a blue shirt"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPWISoFrYJ5SlDkg69I2Ra9HBrNedxW1R9RoLr6A5XTOB5DJnVK97t2zgc83Q6NmRh8yIxOj0eDEO9DBlDM5R8Hr3TSQ9BN1wN0gL8e7B-VK8Mn1TB272yER2d-frgHf1nfV9lofQOx9iC8mOWCjKTQ8CUITivYWvo0ujOzU6QIvL5pj1KzGQAkAIZiTTkVToQgiT-lbEnIHeu4_b2MGNH1Hvom76eGB0qBzGePtno0phKuGYJrhpYr_bcA8VOyUa2XdmwsPVmFP8m" />
                         </div>
@@ -295,7 +304,8 @@
                     </div>
                     <div class="text-center">
                         <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img alt="Product Head Portrait" class="w-full h-full object-cover"
+                            <img loading="lazy" decoding="async" alt="Product Head Portrait"
+                                class="w-full h-full object-cover"
                                 data-alt="Portrait of a smiling professional woman with dark hair"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUev2R4r0N29tr9QMKtwOIoBLTX0k0-AvrJcdhhBKb4KheSK4ctVcFEF5hxNV1rOFM5Ifn8sUmW4lKY2sMI85iUCdFXkcAIgxgwAD2g3LBNV5G9-8vNhaur4ifw1BUQ5Pg9qmjqOZ44aElcqlYppHsLt13aifHT_3UfysmQW9-CB5abaqmzh-Khf0uTEL48eBfwHsf_qJYN_WlNFmAB2cAtaFAsw3oV0a72stWJngPdgL30Zt1vDP3xN8-nr5OhCkJqSL-SmUG9-D-" />
                         </div>
@@ -304,7 +314,8 @@
                     </div>
                     <div class="text-center">
                         <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img alt="Tech Lead Portrait" class="w-full h-full object-cover"
+                            <img loading="lazy" decoding="async" alt="Tech Lead Portrait"
+                                class="w-full h-full object-cover"
                                 data-alt="Portrait of a confident man in a gray sweater"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRT4x6MgOi8pZ68tinSiCo0h17e-u8tVWAnSp0n9qqsjRQYuYfBYu_IE_34ZAJ_l407rDZUo5SgFRmanI9D7JlsNm6masfM-r-eNsNjsAyk_HcIb2CaX9686Oyi5qKlNEIcDL4QiJmhmzZNiqQz9qd1IwS73apxFtBNp-W2MwMM90TY8NuargsW8smHolnzyLStt44Oc5ZFOjF_2GSLSLYTqTcGWV-3ZyKjJg4g1H0kRu2dGalgjOJId0N2DBAgLrNDpxoxB_F_x11" />
                         </div>
@@ -313,7 +324,8 @@
                     </div>
                     <div class="text-center">
                         <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img alt="Marketing Head Portrait" class="w-full h-full object-cover"
+                            <img loading="lazy" decoding="async" alt="Marketing Head Portrait"
+                                class="w-full h-full object-cover"
                                 data-alt="Portrait of a professional woman with glasses"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTJOzvoruL3FwQogaExylCO5c0gHdGwvx_1EY-rFffMWzsnUK3NK4y6yNBKRFgRhPA-rTv4mZLrMAr1wsF76RuaU15IjnR4Rc4m7bOOej7Dk77pX64fcsqfvm90U1ard0PJxjrr4FTX-13UUXkzybqVhClFTOU1HMBz8Azah4bLnL7Cfr-j6Q3irKVS6DgdSkaMvpHLVDV6hzSFZt-oX-GqGMZHO2koeF2S9DB2VesAl_B_-DfGAqO7yLDHC9v059rOx57_iOv94wo" />
                         </div>
@@ -352,7 +364,8 @@
                     </div>
                     <div class="bg-primary/20 p-8 rounded-2xl border border-primary/30">
                         <div class="aspect-video bg-slate-800 rounded-lg overflow-hidden">
-                            <img alt="World Map" class="w-full h-full object-cover opacity-60 grayscale"
+                            <img loading="lazy" decoding="async" alt="World Map"
+                                class="w-full h-full object-cover opacity-60 grayscale"
                                 data-alt="Stylized world map showing global connectivity" data-location="Global"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiBZLZTIaeycHW8b8s3zQ6jx5gI0zc8u2XKccsVKz34ePnqWWCFXx3uyK9aB-V4pRiMenDQNnoN3FXVGrWDcChs5e1f2GuanuD9cwx3t16l1gfkhbWQN1yyhAErwj0VGzpNjfHjJ9dCUcXbnyfm8cQ6PPFcvSEtPwkwWXFX4vOm6AeYzPOs0ZwIsk8-89HLcFHP2N6yX9rUyfXxt5Yuvyejg9U1YvhJmK70LXcttmgh9XlIgX1rdt4s4ePL5koORBysoZuaHkL1mJL" />
                         </div>
@@ -366,11 +379,12 @@
             <!-- Footer Links Removed -->
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="filter brightness-0 invert h-6 md:h-8">
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
+                        Copyright &copy; 1996&ndash;2026 CSNExplore. All rights reserved.
                     </div>
                     <span class="hidden md:inline">&bull;</span>
                     <a href="login.html"
@@ -384,38 +398,6 @@
             </div>
         </div>
     </footer>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
     <script src="js/homepage-content.js"></script>
     <script src="js/app.js"></script>
     <script>
@@ -579,7 +561,8 @@
 
         // Handle Search Button Click
         document.getElementById('search-btn').addEventListener('click', () => {
-            const location = document.getElementById('search-location').value;
+            const locInput = document.getElementById('search-location');
+            const location = locInput ? locInput.value : '';
             let targetPage = 'stays.html';
 
             switch (selectedCategory) {

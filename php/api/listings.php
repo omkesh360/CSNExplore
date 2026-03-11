@@ -384,6 +384,15 @@ function parseJsonFields($item, $category) {
     if (isset($item['features']) && $item['features']) {
         $item['features'] = json_decode($item['features'], true);
     }
+    if (isset($item['rooms']) && $item['rooms']) {
+        $item['rooms'] = json_decode($item['rooms'], true);
+    }
+    if (isset($item['guest_reviews']) && $item['guest_reviews']) {
+        $item['guest_reviews'] = json_decode($item['guest_reviews'], true);
+    }
+    if (isset($item['menu_highlights']) && $item['menu_highlights']) {
+        $item['menu_highlights'] = json_decode($item['menu_highlights'], true);
+    }
     
     // Convert numeric strings
     if (isset($item['rating'])) $item['rating'] = (float)$item['rating'];
@@ -394,6 +403,10 @@ function parseJsonFields($item, $category) {
     
     // CamelCase conversions
     if (isset($item['room_type'])) $item['roomType'] = $item['room_type'];
+    if (isset($item['top_location_rating'])) $item['topLocationRating'] = $item['top_location_rating'];
+    if (isset($item['breakfast_info'])) $item['breakfastInfo'] = $item['breakfast_info'];
+    if (isset($item['guest_reviews'])) $item['guestReviews'] = $item['guest_reviews'];
+    if (isset($item['menu_highlights'])) $item['menuHighlights'] = $item['menu_highlights'];
     if (isset($item['fuel_type'])) $item['fuelType'] = $item['fuel_type'];
     if (isset($item['bus_type'])) $item['busType'] = $item['bus_type'];
     if (isset($item['from_location'])) $item['from'] = $item['from_location'];
@@ -419,6 +432,9 @@ function prepareDataForInsert($input, $category) {
     if (isset($input['reviews'])) $data['reviews'] = $input['reviews'];
     if (isset($input['badge'])) $data['badge'] = $input['badge'];
     if (isset($input['image'])) $data['image'] = $input['image'];
+    if (isset($input['gallery'])) {
+        $data['gallery'] = is_array($input['gallery']) ? json_encode($input['gallery']) : $input['gallery'];
+    }
     
     // Category-specific fields
     switch ($category) {
@@ -428,12 +444,17 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['amenities'])) $data['amenities'] = is_array($input['amenities']) ? json_encode($input['amenities']) : $input['amenities'];
             if (isset($input['roomType'])) $data['room_type'] = $input['roomType'];
             if (isset($input['maxGuests'])) $data['max_guests'] = $input['maxGuests'];
+            if (isset($input['topLocationRating'])) $data['top_location_rating'] = $input['topLocationRating'];
+            if (isset($input['breakfastInfo'])) $data['breakfast_info'] = $input['breakfastInfo'];
+            if (isset($input['rooms'])) $data['rooms'] = is_array($input['rooms']) ? json_encode($input['rooms']) : $input['rooms'];
+            if (isset($input['guestReviews'])) $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
             break;
             
         case 'cars':
             if (isset($input['pricePerDay'])) $data['price_per_day'] = $input['pricePerDay'];
             if (isset($input['price'])) $data['price_per_day'] = $input['price'];
             if (isset($input['features'])) $data['features'] = is_array($input['features']) ? json_encode($input['features']) : $input['features'];
+            if (isset($input['guestReviews'])) $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
             if (isset($input['fuelType'])) $data['fuel_type'] = $input['fuelType'];
             if (isset($input['transmission'])) $data['transmission'] = $input['transmission'];
             if (isset($input['seats'])) $data['seats'] = $input['seats'];
@@ -443,6 +464,7 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['pricePerDay'])) $data['price_per_day'] = $input['pricePerDay'];
             if (isset($input['price'])) $data['price_per_day'] = $input['price'];
             if (isset($input['features'])) $data['features'] = is_array($input['features']) ? json_encode($input['features']) : $input['features'];
+            if (isset($input['guestReviews'])) $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
             if (isset($input['fuelType'])) $data['fuel_type'] = $input['fuelType'];
             if (isset($input['cc'])) $data['cc'] = $input['cc'];
             break;
@@ -451,6 +473,8 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['pricePerPerson'])) $data['price_per_person'] = $input['pricePerPerson'];
             if (isset($input['price'])) $data['price_per_person'] = $input['price'];
             if (isset($input['cuisine'])) $data['cuisine'] = $input['cuisine'];
+            if (isset($input['guestReviews'])) $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
+            if (isset($input['menuHighlights'])) $data['menu_highlights'] = is_array($input['menuHighlights']) ? json_encode($input['menuHighlights']) : $input['menuHighlights'];
             break;
             
         case 'attractions':
@@ -458,6 +482,7 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['price'])) $data['entry_fee'] = $input['price'];
             if (isset($input['openingHours'])) $data['opening_hours'] = $input['openingHours'];
             if (isset($input['bestTime'])) $data['best_time'] = $input['bestTime'];
+            if (isset($input['guestReviews'])) $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
             break;
             
         case 'buses':

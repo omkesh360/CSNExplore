@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Create Admin User Utility for TravelHub
+ * Create Admin User Utility for CSNExplore
  * Creates a new admin user account
  * 
  * Usage: php php/create_admin.php
@@ -10,7 +10,7 @@
 require_once __DIR__ . '/config.php';
 
 echo "===========================================\n";
-echo "TravelHub - Create Admin User\n";
+echo "CSNExplore - Create Admin User\n";
 echo "===========================================\n\n";
 
 // Get user input

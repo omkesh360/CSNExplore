@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Stay Property Detail - TravelHub</title>
+    <title>Stay Property Detail - CSNExplore</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -41,6 +40,8 @@
             grid-row: 1 / 3;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -51,7 +52,8 @@
             <div
                 class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
                 <div class="flex items-center gap-3 shrink-0">
-                    <a href="tel:+918600968888" id="hp-phone-link" class="flex items-center gap-1 hover:text-white transition-colors">
+                    <a href="tel:+918600968888" id="hp-phone-link"
+                        class="flex items-center gap-1 hover:text-white transition-colors">
                         <span class="material-symbols-outlined text-[16px]">call</span>
                         <span id="hp-phone-text">+91 86009 68888</span>
                     </a>
@@ -69,7 +71,8 @@
                 <div class="flex items-center gap-3 shrink-0">
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -80,7 +83,8 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
 
                 <!-- Navigation and Auth Right Side -->
@@ -206,7 +210,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -272,7 +277,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-2 rounded font-semibold transition-colors flex items-center gap-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             alt="WhatsApp" class="w-5 h-5 brightness-0 invert"> WhatsApp
                     </a>
                 </div>
@@ -282,28 +288,28 @@
         <!-- Image Gallery -->
         <div class="grid grid-cols-4 grid-rows-2 gap-2 h-96 mb-8 rounded-xl overflow-hidden">
             <div class="col-span-2 row-span-2 relative group cursor-pointer">
-                <img alt="Detail Image" id="item-main-image"
+                <img loading="lazy" decoding="async" alt="Detail Image" id="item-main-image"
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://placehold.co/800x600?text=Loading" />
 
             </div>
             <div class="col-span-1 row-span-1 relative group cursor-pointer">
-                <img alt="Modern hotel lobby with elegant seating"
+                <img loading="lazy" decoding="async" alt="Modern hotel lobby with elegant seating"
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKoi6dFjZahwEXvOiKtDMjeJ4W-MYCNFz-KMLgKgctlSqu6mERCxtyIvdM4dG10SLGNLRwrFfhh-ngP23pGtJMkNWeec2CzAyQ-rWcolPNkgnpVTuCIweTfNwJ3QhLcCsCQKAHsArF4ToWpDdrVL7PDgMDLFOnBRBw4AFCZBcoaP_LyY0RyDQEwO528IdUu9abuxcsYhg8k6aJLzkESv2zBdSAHtbYkUVGl7W7mrT8W7u1hpvdO73zzXi0kua1zcg2Tn34l8Ej8aLg" />
             </div>
             <div class="col-span-1 row-span-1 relative group cursor-pointer">
-                <img alt="Spacious hotel bedroom with king size bed"
+                <img loading="lazy" decoding="async" alt="Spacious hotel bedroom with king size bed"
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYyuDkrczKAW6wMnNxCdBdNHhbZ089AMczJrgHCYqo4wgPD118F02RtHDQdn-Fc8crcR_9_9t1sZwbZDolvXRL7aJqh_02K5R5H5yGjt7h0FblnwrZnkw-cQJazuDk7dOq18AovQY05RRAKBuitnkRR3NVOP-8X7OjVNDBW_u7P2Cs6aMMs5-F1-DcAK9CEwNowhIoU5SJH2lG4-5R9v-pA8ozYyPTy6TTZz86p6f0ikV1yAhDf2-SQ2uXw2E3pDqOPCbON_yST3LK" />
             </div>
             <div class="col-span-1 row-span-1 relative group cursor-pointer">
-                <img alt="Marble bathroom with luxury amenities"
+                <img loading="lazy" decoding="async" alt="Marble bathroom with luxury amenities"
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK66d3R6Zbvf0AnVH0SG4kcI4PVrjNEHJozdsSU2BS1UXd4osetwMsWFsPtAt0TyFzLGCJ2qEJ998ADe7vOOn1FE1j1_AAPMk9vOJfvOpv8KO07uGfqkb4tNDJgCpu0ooAJWT3qX7vvgnBcJSZmM8lR5hTkJDfifmRc-yek1epme9hflkqBjNZLzxUSez8VSxasuD4jhQ2DQJhZE9iEe_ksqtpCWhvdT5a-K-MIaaS7h8evfAHIQv3jrKixeM6JjH3y2cEaShOjtJp" />
             </div>
             <div class="col-span-1 row-span-1 relative group cursor-pointer overflow-hidden">
-                <img alt="Hotel resort pool area with lounge chairs"
+                <img loading="lazy" decoding="async" alt="Hotel resort pool area with lounge chairs"
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKF7WVG0WSisbe5abrauLwRfJqDfrdEQIMLm11SegUfejma7Zw9ovw_twvsrIzfYnh28eYO-9iQv3aun4KyAEJdQv0fbNaMOs2ghfLMZX3RN-PnlLDHhGvp-v-_gwBHKjMW662cm_QWrqUup9llD_-gh4daMVWyNX7Sry-6fDDwr0qXrUepgoy-vrmg4katsweqVT7RNDv2_wOol_lMUmycWffJRRhzx4KZdUq1gTAcEdJhCFr_mZfFDErpGkNMRHW8Gq2MlkVJRJW" />
                 <div
@@ -330,7 +336,7 @@
                 </div>
                 <div class="mb-8">
                     <h3 class="text-lg font-bold text-text-main mb-4">Most popular facilities</h3>
-                    <div class="flex flex-wrap gap-3">
+                    <div class="flex flex-wrap gap-3" id="item-amenities">
                         <div
                             class="flex items-center gap-2 text-green-700 bg-green-50 px-3 py-2 rounded-lg text-sm font-medium">
                             <span class="material-symbols-outlined text-base">wifi</span> Free WiFi
@@ -360,7 +366,6 @@
             </div>
             <!-- Right Column: Highlight Card & Map -->
             <div class="lg:col-span-1 space-y-6">
-                <!-- Highlights Box -->
                 <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
                     <h3 class="font-bold text-text-main mb-3">Property Highlights</h3>
                     <div class="space-y-3">
@@ -368,7 +373,7 @@
                             <span class="material-symbols-outlined text-primary text-xl mt-0.5">favorite</span>
                             <div>
                                 <p class="font-semibold text-sm text-text-main">Top Location: Highly rated by recent
-                                    guests (9.6)</p>
+                                    guests (<span id="item-top-location-rating">9.6</span>)</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
@@ -383,7 +388,8 @@
                             <span class="material-symbols-outlined text-primary text-xl mt-0.5">local_dining</span>
                             <div>
                                 <p class="font-semibold text-sm text-text-main">Breakfast Info</p>
-                                <p class="text-xs text-text-muted">Continental, Full English/Irish, Vegetarian,
+                                <p class="text-xs text-text-muted" id="item-breakfast-info">Continental, Full
+                                    English/Irish, Vegetarian,
                                     Gluten-free</p>
                             </div>
                         </div>
@@ -395,14 +401,16 @@
                         </a>
                         <a href="https://wa.me/918600968888" target="_blank"
                             class="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white py-2 rounded font-semibold transition-colors shadow-sm flex items-center justify-center gap-2 text-sm">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            <img loading="lazy" decoding="async"
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                                 alt="WhatsApp" class="w-4 h-4 brightness-0 invert"> WhatsApp
                         </a>
                     </div>
                 </div>
                 <!-- Mini Map -->
                 <div class="relative h-40 rounded-xl overflow-hidden border border-gray-200">
-                    <img alt="Map view of London city streets" class="w-full h-full object-cover opacity-70"
+                    <img loading="lazy" decoding="async" alt="Map view of London city streets"
+                        class="w-full h-full object-cover opacity-70"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgXVH08m-NbcjCsWeHpw_uC7GfDXYZSKitNu2zP2SPsaQhU2lfIS5XJ3M2GpbuJyxpfnBFpkOnonjWbUcIPgiaxlvwOR401yl_ZGdBe71gIUXY5h8ys7zjGc6cNm6v2neWGkYOScUoJZdpSI-m6yueHFPZcbSlmgr7qNZ9tCX4ZgtBZYFFz7CV3JxQQgCUTXHBrck5ok8yD3kX1jTUa-EX_5bKlvB8KT8DfwWGNGUGJiDA6isS3Z_JAaX5oK9QGJahbrY3S-omZdpz" />
 
                 </div>
@@ -421,7 +429,7 @@
                             <th class="p-4 font-semibold w-32">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white">
+                    <tbody class="divide-y divide-gray-200 bg-white" id="item-rooms-list">
                         <!-- Row 1 -->
                         <tr>
                             <td class="p-4 align-top">
@@ -499,7 +507,8 @@
                         </a>
                         <a href="https://wa.me/918600968888" target="_blank"
                             class="bg-[#25D366] hover:bg-[#128C7E] text-white px-5 py-2.5 rounded text-base font-bold shadow-md transition-colors flex items-center gap-2">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            <img loading="lazy" decoding="async"
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                                 alt="WhatsApp" class="w-5 h-5 brightness-0 invert"> WhatsApp
                         </a>
                     </div>
@@ -518,11 +527,12 @@
                     <div class="flex items-center gap-4 mb-2">
                         <div
                             class="bg-primary text-white text-xl font-bold w-12 h-12 flex items-center justify-center rounded-lg rounded-tr-none">
-                            <span id="item-rating">8.8</span>
+                            <span id="item-rating-badge">8.8</span>
                         </div>
                         <div>
-                            <div class="font-bold text-lg text-text-main">Fabulous</div>
-                            <div class="text-sm text-text-muted">1,240 reviews</div>
+                            <div class="font-bold text-lg text-text-main" id="item-rating-text">Fabulous</div>
+                            <div class="text-sm text-text-muted"><span id="item-reviews-count">1,240</span> reviews
+                            </div>
                         </div>
                     </div>
                     <div class="space-y-2 mt-4 text-sm">
@@ -544,7 +554,7 @@
                     </div>
                 </div>
                 <!-- Review List -->
-                <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-6" id="item-guest-reviews">
                     <!-- Review 1 -->
                     <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
                         <div class="flex justify-between items-start mb-3">
@@ -555,7 +565,7 @@
                                 <div>
                                     <div class="font-bold text-sm text-text-main">Sarah Jenkins</div>
                                     <div class="text-xs text-text-muted flex items-center gap-1">
-                                        <img alt="USA flag" class="w-4 h-auto"
+                                        <img loading="lazy" decoding="async" alt="USA flag" class="w-4 h-auto"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAASmaGllLMDXrlzhY8omvwA9Ior8ZqztSV1cQuwvUQxuqtozFsoKgejLn8poRcNzS6Fk7MiM_mL8g3t4CHAAom6SYns5lKnvifBHRoUmt5EY3gEfus5JhP5LnoE8MbBNlEAZJa7ffTEXLPQKP-eHmvIKuvDRXBJGgJTlMLqMWAdMILC0znQrEcv2nCsNZtF3ACcPQG5VgvpfjOB3zR2yl6YBMTMzYiVwNDN8-gMOZACrj3-1-6qAqiKd8c9kfWRsvIIqN-W6zc6vNU" />
                                         USA
                                     </div>
@@ -583,7 +593,7 @@
                                 <div>
                                     <div class="font-bold text-sm text-text-main">Michael Ross</div>
                                     <div class="text-xs text-text-muted flex items-center gap-1">
-                                        <img alt="Australia flag" class="w-4 h-auto"
+                                        <img loading="lazy" decoding="async" alt="Australia flag" class="w-4 h-auto"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaSDHTYCgHGvL4pmSry7bjqQNMP7VAR2x2pS7n_xNvF6QHYgz6ElE7mAIetUDpa3Z8hJfi_fuOMAzmIWLuwlQ2YKo_l2ZY1cxNHHOHokCCQ4H_5RjyxoKx6ZegJaob_9d40psiVzC3f8UaLChHzzozp_hLZScg6TO2uY4tnHA0P-jlCAZolGPRj0qSfB9Q0CqCRcMqzM3StaCGyr7GLxzSBqTUNDWtE2kQFthJy8wOOLBLPZsfkQHe39VrWKFDfV9NYpW961kqpgor" />
                                         Australia
                                     </div>
@@ -648,7 +658,7 @@
                 <div class="space-y-4 col-span-2 md:col-span-4 lg:col-span-1">
                     <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">About</h4>
                     <ul class="space-y-2 text-sm text-white/70">
-                        <li><a class="hover:text-white transition-colors" href="#">About TravelHub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">About CSNExplore</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">How We Work</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
                         <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
@@ -658,46 +668,15 @@
             </div>
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-12 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-12 filter brightness-0 invert">
                 </div>
                 <div class="text-xs text-white/60 text-center md:text-right">
-                    Copyright © 1996–2026 TravelHub. All rights reserved.
+                    Copyright © 1996–2026 CSNExplore. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
 
     <script src="js/app.js"></script>
     <script src="js/detail-loader.js"></script>

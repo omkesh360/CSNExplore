@@ -1,5 +1,5 @@
 <?php
-// Configuration file for TravelHub PHP Application
+// Configuration file for CSNExplore PHP Application
 
 // Error reporting
 error_reporting(E_ALL);

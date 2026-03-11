@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Join TravelHub - Create Account</title>
+    <title>Join CSNExplore - Create Account</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -13,8 +13,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="css/main.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body class="bg-white font-display text-text-main antialiased min-h-screen overflow-hidden">
@@ -26,7 +27,7 @@
             <!-- Mobile Logo -->
             <div class="lg:hidden absolute top-8 left-8">
                 <a href="index.html">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8">
                 </a>
             </div>
 
@@ -130,13 +131,13 @@
                         <div class="mt-6 grid grid-cols-2 gap-4">
                             <button
                                 class="w-full inline-flex justify-center py-3 px-4 rounded-xl border border-gray-200 bg-white text-sm font-bold text-text-main shadow-sm hover:bg-gray-50 transition-all active:scale-95">
-                                <img class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                <img loading="lazy" decoding="async" class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475656/google-color.svg"
                                     alt="Google">
                                 Google
                             </button>
                             <button
                                 class="w-full inline-flex justify-center py-3 px-4 rounded-xl border border-gray-200 bg-white text-sm font-bold text-text-main shadow-sm hover:bg-gray-50 transition-all active:scale-95">
-                                <img class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475647/facebook-color.svg"
+                                <img loading="lazy" decoding="async" class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475647/facebook-color.svg"
                                     alt="Facebook">
                                 Facebook
                             </button>
@@ -145,20 +146,20 @@
                 </div>
 
                 <div class="mt-auto pt-8 text-center text-xs text-text-muted">
-                    <p>© 2026 TravelHub. All rights reserved.</p>
+                    <p>© 2026 CSNExplore. All rights reserved.</p>
                 </div>
             </div>
         </div>
 
         <!-- Right Side: Image & Branding (Hidden on mobile) -->
         <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-primary text-right">
-            <img src="/images/register-bg.png" alt="Travel Background"
+            <img loading="lazy" decoding="async" src="/images/register-bg.png" alt="Travel Background"
                 class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80 scale-105 animate-slow-zoom">
             <div class="absolute inset-0 bg-gradient-to-tl from-primary/60 to-transparent"></div>
 
             <div class="relative z-10 w-full p-12 flex flex-col justify-between items-end">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-10 brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-10 brightness-0 invert">
                 </a>
 
                 <div class="max-w-md">
@@ -193,38 +194,6 @@
     </style>
 
     <script src="js/app.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#febb02",
-                        "background-light": "#f5f7f8",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
-</body>
+    </body>
 
 </html>

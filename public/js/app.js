@@ -457,7 +457,7 @@ async function register(name, email, password, submitBtn) {
         }
 
         updateAuthUI(true);
-        utils.showNotification(`Welcome to TravelHub, ${name}!`);
+        utils.showNotification(`Welcome to CSNExplore, ${name}!`);
 
         setTimeout(() => window.location.href = 'index.html', 800);
 
@@ -467,7 +467,7 @@ async function register(name, email, password, submitBtn) {
         localStorage.setItem('user', JSON.stringify(user));
         state.user = user;
         updateAuthUI(true);
-        utils.showNotification(`Welcome to TravelHub, ${name}!`);
+        utils.showNotification(`Welcome to CSNExplore, ${name}!`);
         setTimeout(() => window.location.href = 'index.html', 800);
     }
 

@@ -3,7 +3,7 @@
 
 require_once __DIR__ . '/database.php';
 
-echo "🚀 Starting TravelHub Database Migration...\n\n";
+echo "🚀 Starting CSNExplore Database Migration...\n\n";
 
 try {
     $db = Database::getInstance();
@@ -218,7 +218,7 @@ try {
     }
     
     echo "🎉 Migration completed successfully!\n";
-    echo "✅ Database created at: database/travelhub.db\n";
+    echo "✅ Database created at: database/csnexplore.db\n";
     
 } catch (Exception $e) {
     echo "❌ Migration failed: " . $e->getMessage() . "\n";

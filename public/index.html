@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>TravelHub - Find Your Next Adventure</title>
+    <title>CSNExplore - Find Your Next Adventure</title>
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/main.css" as="style" />
@@ -22,9 +22,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="css/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -33,7 +34,7 @@
     <div id="preloader"
         class="fixed inset-0 z-[9999] bg-[#0f1723] flex flex-col items-center justify-center transition-opacity duration-1000">
         <div class="flex flex-col items-center gap-8">
-            <img src="/images/travelhub.png" alt="TravelHub"
+            <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
                 class="w-[246px] md:w-[374px] object-contain animate-fade-in">
             <div class="loader"></div>
         </div>
@@ -82,7 +83,8 @@
                 <div class="flex items-center gap-4 shrink-0">
                     <a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors ml-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -93,7 +95,8 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
 
                 <!-- Navigation and Auth Right Side -->
@@ -107,7 +110,10 @@
                             href="contact.html">
                             <span class="text-[13px] font-medium">Contact Us</span>
                         </a>
-
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="blogs.html">
+                            <span class="text-[13px] font-medium">Blogs</span>
+                        </a>
                     </nav>
 
                     <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
@@ -211,7 +217,8 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async"
+                            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -299,16 +306,8 @@
                 <!-- Search Form -->
                 <div
                     class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
-                    <div class="flex-[1.5] relative group bg-white md:bg-transparent rounded-t-xl md:rounded-none">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-primary/60 text-[20px]">location_on</span>
-                        </div>
-                        <input
-                            class="w-full pl-12 pr-4 h-[56px] rounded-t-xl md:rounded-lg border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main placeholder-text-muted font-medium bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-base"
-                            placeholder="Where are you going?" type="text" id="search-location" />
-                    </div>
-
-                    <div class="flex-1 relative group cursor-pointer bg-white md:bg-transparent">
+                    <div
+                        class="flex-1 relative group cursor-pointer bg-white md:bg-transparent rounded-t-xl md:rounded-none">
                         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-primary/60 text-[20px]">calendar_month</span>
                         </div>
@@ -317,7 +316,7 @@
                                 class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5">Dates</span>
                         </div>
                         <input
-                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-none md:rounded-lg border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
+                            class="w-full pl-12 pr-4 pt-4 pb-1 h-[56px] rounded-t-xl md:rounded-l-lg border-x-0 border-t-0 border-b border-gray-100 md:border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer select-none"
                             type="date" id="search-date" />
                     </div>
 
@@ -459,10 +458,15 @@
             </div>
             <div id="featured-restaurants-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
-        <!-- Travel Insights -->
+        <!-- Our Travel Blogs -->
         <section data-animate="fade-up" id="section-travel-insights">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main" id="title-travel-insights">Travel Insights</h2>
+                <h2 class="text-2xl font-bold text-text-main" id="title-travel-insights">Our Travel Blogs</h2>
+                <a href="blogs.html"
+                    class="flex items-center gap-1.5 text-primary text-[13px] font-bold hover:underline">
+                    Explore More Blogs
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
             </div>
             <div id="travel-insights-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
@@ -472,16 +476,16 @@
             <!-- Footer Links Removed -->
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="filter brightness-0 invert h-6 md:h-8">
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright &copy; 1996&ndash;2026 TravelHub. All rights reserved.
+                        Copyright &copy; 1996&ndash;2026 CSNExplore. All rights reserved.
                     </div>
                     <span class="hidden md:inline">&bull;</span>
-                    <a href="login.html"
-                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer"
-                        onclick="window.location.href='admin.html'; return true;">
+                    <a href="admin.html"
+                        class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer">
                         <span
                             class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
                         <span class="pointer-events-none">Admin Login</span>
@@ -490,38 +494,6 @@
             </div>
         </div>
     </footer>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
     <script src="js/homepage-content.js"></script>
     <script src="js/app.js"></script>
     <script>
@@ -685,7 +657,8 @@
 
         // Handle Search Button Click
         document.getElementById('search-btn').addEventListener('click', () => {
-            const location = document.getElementById('search-location').value;
+            const locInput = document.getElementById('search-location');
+            const location = locInput ? locInput.value : '';
             let targetPage = 'stays.html';
 
             switch (selectedCategory) {

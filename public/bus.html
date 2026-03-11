@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>TravelHub - Bus Tickets (Coming Soon)</title>
+    <title>CSNExplore - Bus Tickets (Coming Soon)</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,41 +12,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
-    <link href="css/main.css" rel="stylesheet" />
+            <link href="css/main.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -55,7 +24,7 @@
     <div id="preloader"
         class="fixed inset-0 z-[9999] bg-[#0f1723] flex flex-col items-center justify-center transition-opacity duration-1000">
         <div class="flex flex-col items-center gap-8">
-            <img src="/images/travelhub.png" alt="TravelHub"
+            <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
                 class="w-[246px] md:w-[374px] object-contain animate-fade-in">
             <div class="loader"></div>
         </div>
@@ -103,7 +72,7 @@
                 <div class="flex items-center gap-4 shrink-0">
                     <a href="https://wa.me/918600968888" id="hp-wa-link" target="_blank"
                         class="flex items-center gap-1 hover:text-white transition-colors ml-2">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4">
                         WhatsApp
                     </a>
@@ -114,7 +83,7 @@
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
                 <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 md:h-[42px]">
                 </a>
                 <!-- Navigation and Auth Right Side -->
                 <div class="flex items-center gap-4 overflow-hidden">
@@ -237,7 +206,7 @@
                     </a>
                     <a href="https://wa.me/918600968888" target="_blank"
                         class="flex items-center gap-3 py-2 text-gray-600 hover:text-green-600">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                        <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
                             class="w-4 h-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100">
                         <span class="text-sm">WhatsApp</span>
                     </a>
@@ -285,11 +254,11 @@
             <!-- Footer Links Removed -->
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="filter brightness-0 invert h-6 md:h-8">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="filter brightness-0 invert h-6 md:h-8">
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright © 1996–2026 TravelHub. All rights reserved.
+                        Copyright © 1996–2026 CSNExplore. All rights reserved.
                     </div>
                     <span class="hidden md:inline">•</span>
                     <a href="login.html"

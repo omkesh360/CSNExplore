@@ -1,5 +1,5 @@
 /**
- * listings.js — Shared dynamic listing engine for TravelHub
+ * listings.js — Shared dynamic listing engine for CSNExplore
  * Powers: stays, car-rentals, bike-rentals, restaurant, attraction, bus
  *
  * Usage: Each page sets window.LISTING_CONFIG = { category, containerId, ... }

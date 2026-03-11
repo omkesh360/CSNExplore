@@ -5,11 +5,7 @@
         "phone": "+918600968888",
         "whatsapp": "918600968888",
         "marqueeItems": [
-            "✨ Best places to visit in Sambhajinagar",
-            "🚀 20% OFF on your first hotel booking",
-            "🌟 Exclusive weekend deals for Car Rentals",
-            "✨ New announcement",
-            "123456789"
+            "✨ Best places to visit in Sambhajinagar"
         ],
         "carousel": {
             "stays": "/images/hotel-room-standard.jpg",
@@ -40,18 +36,18 @@
     ],
     "restaurantCircles": [
         {
-            "name": "South Feast",
-            "type": "South Indian",
-            "rating": "4.7",
-            "image": "/images/masala-dosa.jpg",
-            "link": "restaurant-detail.html?id=2"
-        },
-        {
             "name": "Naivedya Thali",
             "type": "Authentic Local",
             "rating": "4.9",
             "image": "/images/indian-thali.jpg",
             "link": "restaurant-detail.html?id=1"
+        },
+        {
+            "name": "South Feast",
+            "type": "South Indian",
+            "rating": "4.7",
+            "image": "/images/masala-dosa.jpg",
+            "link": "restaurant-detail.html?id=2"
         },
         {
             "name": "Chaat Corner",
@@ -282,7 +278,7 @@
     },
     "visibility": {
         "restaurantCircles": true,
-        "busRoutes": true,
+        "busRoutes": false,
         "trendingTransport": true,
         "attractions": true,
         "bikeRentals": true,

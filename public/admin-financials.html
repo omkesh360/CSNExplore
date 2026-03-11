@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Financial Reports - TravelHub Admin</title>
+    <title>Financial Reports - CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,31 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
-    <link href="css/main.css" rel="stylesheet" />
+            <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
             font-family: 'Material Symbols Outlined';
@@ -52,6 +28,8 @@
             direction: ltr;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body
@@ -64,7 +42,7 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-background-dark shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-16 items-center px-6 border-b border-slate-100 shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-9 filter brightness-0 invert">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-9 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-3 py-4">
@@ -169,8 +147,8 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button
-                        class="inline-flex items-center gap-2 rounded-lg border border-primary-dark bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-50 transition-colors">
+                    <button onclick="exportFinancialsCSV()"
+                        class="inline-flex items-center gap-2 rounded-lg border border-primary-dark bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-50 hover:text-primary transition-colors">
                         <span class="material-symbols-outlined text-[20px]">cloud_download</span>
                         Export
                     </button>
@@ -227,13 +205,32 @@
                 </div>
             </main>
             <footer class="py-3 bg-white border-t border-slate-200 text-center text-xs text-slate-400 shrink-0">
-                <p>Copyright &copy; 1996&ndash;2026 TravelHub Admin. All rights reserved.</p>
+                <p>Copyright &copy; 1996&ndash;2026 CSNExplore Admin. All rights reserved.</p>
             </footer>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', loadFinancials);
+
+
+            function exportFinancialsCSV() {
+                if (!window._txData || !window._txData.length) { alert('No data to export.'); return; }
+                const headers = ['Date', 'Transaction ID', 'User', 'Amount', 'Status'];
+                const rows = window._txData.map(t => [
+                    new Date(t.created_at).toLocaleDateString(),
+                    t.id,
+                    t.user_name || 'Guest',
+                    t.total_price,
+                    t.status
+                ].map(v => `"${(v || '').toString().replace(/"/g, '""')}"`).join(','));
+                
+                const csv = [headers.join(','), ...rows].join('\n');
+                const a = document.createElement('a');
+                a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+                a.download = 'financials.csv';
+                a.click();
+            }
 
             async function loadFinancials() {
                 const token = localStorage.getItem('token');

@@ -290,6 +290,25 @@ function renderFeaturedRestaurants(items) {
 }
 
 // 8. TRAVEL INSIGHTS
+// Static blog slug map — links homepage cards to dedicated blog pages
+const STATIC_BLOG_LINKS = {
+    'street food': 'blog-street-food.html',
+    'ajanta': 'blog-ajanta-caves.html',
+    'bibi ka maqbara': 'blog-bibi-ka-maqbara.html',
+};
+
+function getBlogLink(item, fromApi) {
+    // For static/admin-curated items: use item.link if available
+    if (!fromApi && item.link) return item.link;
+    // Match by title keywords against known static blog pages
+    const title = (item.title || '').toLowerCase();
+    for (const [keyword, url] of Object.entries(STATIC_BLOG_LINKS)) {
+        if (title.includes(keyword)) return url;
+    }
+    // Fallback: API blogs open on the blogs listing page
+    return 'blogs.html';
+}
+
 function renderTravelInsights(items, fromApi = false) {
     const container = document.getElementById('travel-insights-grid');
     if (!container || !items) return;
@@ -300,8 +319,9 @@ function renderTravelInsights(items, fromApi = false) {
         const readTime = fromApi ? (item.read_time || '') : (item.readTime || '');
         const image = item.image || '/images/placeholder.jpg';
         const description = fromApi ? (item.content || '').substring(0, 160) + '...' : (item.description || '');
+        const blogHref = getBlogLink(item, fromApi);
         return `
-        <div class="group cursor-pointer flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow">
+        <a href="${esc(blogHref)}" target="_blank" class="group cursor-pointer flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow no-underline">
             <div class="rounded-lg shrink-0 overflow-hidden h-[180px] mb-3 relative">
                 <img alt="${esc(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${esc(image)}" onerror="this.src='/images/placeholder.jpg'" />
                 <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
@@ -312,7 +332,7 @@ function renderTravelInsights(items, fromApi = false) {
             </div>
             <h3 class="text-lg font-bold text-text-main mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">${esc(item.title)}</h3>
             <p class="text-sm text-text-muted line-clamp-2 mt-auto">${esc(description)}</p>
-        </div>
+        </a>
         `;
     }).join('');
 }

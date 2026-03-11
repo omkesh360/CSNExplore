@@ -4,22 +4,59 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Flatpickr for Date Inputs with proper date range
-    const dateInputs = document.querySelectorAll('input[type="date"]');
-    if (dateInputs.length > 0 && typeof flatpickr !== 'undefined') {
-        dateInputs.forEach(input => {
+    // 1. Initialize Flatpickr for Date Inputs (Range)
+    const rangeInputs = document.querySelectorAll('.date-range-picker');
+    if (rangeInputs.length > 0 && typeof flatpickr !== 'undefined') {
+        rangeInputs.forEach(input => {
             flatpickr(input, {
                 mode: "range",
                 dateFormat: "Y-m-d",
                 minDate: "today",
-                altInput: true,
-                altFormat: "M j, Y",
-                allowInput: false,
-                showMonths: window.innerWidth >= 768 ? 2 : 1,
-                disableMobile: false,
-                onChange: function(selectedDates, dateStr, instance) {
-                    if (selectedDates.length === 2) {
-                        console.log('Date range selected:', dateStr);
+                showMonths: window.innerWidth >= 768 ? 2 : 1, // 2 months on desktop
+                disableMobile: true, // Force custom UI over native selector
+                onChange: function (selectedDates, dateStr, instance) {
+                    const block = input.closest('.group');
+                    if (!block) return;
+                    const checkinDisplay = block.querySelector('.checkin-display');
+                    const checkoutDisplay = block.querySelector('.checkout-display');
+
+                    if (selectedDates.length > 0 && checkinDisplay) {
+                        checkinDisplay.innerText = instance.formatDate(selectedDates[0], "M j");
+                        checkinDisplay.classList.remove('text-text-muted');
+                        checkinDisplay.classList.add('text-text-main');
+                    }
+                    if (selectedDates.length === 2 && checkoutDisplay) {
+                        checkoutDisplay.innerText = instance.formatDate(selectedDates[1], "M j");
+                        checkoutDisplay.classList.remove('text-text-muted');
+                        checkoutDisplay.classList.add('text-text-main');
+                    } else if (checkoutDisplay) {
+                        checkoutDisplay.innerText = 'Add date';
+                        checkoutDisplay.classList.add('text-text-muted');
+                        checkoutDisplay.classList.remove('text-text-main');
+                    }
+                }
+            });
+        });
+    }
+
+    // 1b. Initialize Flatpickr for Date Inputs (Single)
+    const singleInputs = document.querySelectorAll('.date-single-picker');
+    if (singleInputs.length > 0 && typeof flatpickr !== 'undefined') {
+        singleInputs.forEach(input => {
+            flatpickr(input, {
+                mode: "single",
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                showMonths: 1,
+                disableMobile: true,
+                onChange: function (selectedDates, dateStr, instance) {
+                    const block = input.closest('.group');
+                    if (!block) return;
+                    const display = block.querySelector('.checkin-display');
+                    if (selectedDates.length > 0 && display) {
+                        display.innerText = instance.formatDate(selectedDates[0], "M j");
+                        display.classList.remove('text-text-muted');
+                        display.classList.add('text-text-main');
                     }
                 }
             });
@@ -27,14 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Initialize Flatpickr for Time Inputs
-    const timeInputs = document.querySelectorAll('input[type="time"]');
+    const timeInputs = document.querySelectorAll('#search-time, .time-picker');
     if (timeInputs.length > 0 && typeof flatpickr !== 'undefined') {
         flatpickr(timeInputs, {
             enableTime: true,
             noCalendar: true,
             dateFormat: "H:i",
             time_24hr: false,
-            disableMobile: false
+            disableMobile: true, // Force custom time overlay
+            onChange: function (selectedDates, dateStr, instance) {
+                const block = instance.element.closest('.group');
+                if (!block) return;
+                const display = block.querySelector('.time-display');
+                if (dateStr && display) {
+                    display.innerText = instance.formatDate(selectedDates[0], "h:i K");
+                    display.classList.remove('text-text-muted');
+                    display.classList.add('text-text-main');
+                }
+            }
         });
     }
 
@@ -104,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Click to toggle
         displayElement.parentElement.addEventListener('click', (e) => {
             e.stopPropagation();
-            
+
             if (popoverDiv.classList.contains('hidden')) {
                 openPopover();
             } else {

@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Password Reset Utility for TravelHub
+ * Password Reset Utility for CSNExplore
  * Resets the admin password to a new value
  * 
  * Usage: php php/reset_password.php

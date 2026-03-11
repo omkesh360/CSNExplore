@@ -1,31 +1,46 @@
+Options -Indexes
 RewriteEngine On
 
-# Security: Prevent access to sensitive files
-RewriteRule ^(data|php)/.*$ - [F,L]
+# ---- Security: block sensitive directories ----
+RewriteRule ^database(/.*)?$ - [F,L]
+RewriteRule ^data(/.*)?$ - [F,L]
+RewriteRule ^php(/.*)?$ - [F,L]
 RewriteRule ^\.env$ - [F,L]
+RewriteRule ^composer\.(json|lock)$ - [F,L]
 
-# Redirect API requests to PHP
+# ---- Route all /api/* requests to PHP backend ----
 RewriteCond %{REQUEST_URI} ^/api/
 RewriteRule ^api/(.*)$ php/index.php [L,QSA]
 
-# Serve static files directly if they exist
+# ---- Serve static files directly if they exist ----
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# Serve index.html for root
+# ---- Root → index.html ----
 RewriteRule ^$ public/index.html [L]
 
-# Try to serve from public directory
+# ---- Serve from public/ directory ----
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
 RewriteRule ^(.*)$ public/$1 [L]
 
-# Serve HTML files without extension
+# ---- Serve .html files without extension (e.g. /about -> about.html) ----
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI}.html -f
 RewriteRule ^(.*)$ public/$1.html [L]
 
-# If nothing matches and not API, serve index.html
+# ---- SPA fallback ----
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/index.html [L]
+
+# ---- PHP settings for shared hosting ----
+php_value upload_max_filesize 20M
+php_value post_max_size 20M
+php_value max_execution_time 60
+php_value memory_limit 128M
+
+# ---- Security headers ----
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"

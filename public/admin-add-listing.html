@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Add Listing - TravelHub Admin</title>
+    <title>Add Listing - CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -12,40 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "secondary": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px 0 rgba(26, 26, 26, 0.16)',
-                        'card': '0 2px 16px 0 rgba(0,0,0,0.08)',
-                    }
-                },
-            },
-        }
-    </script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -76,6 +42,8 @@
             border-color: #003580;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
@@ -86,7 +54,7 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-20 items-center justify-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="admin-dashboard.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-10">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-10">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -108,7 +76,7 @@
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Listings</p>
                     </div>
-                    
+
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-add-listing.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
@@ -125,11 +93,11 @@
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    
+
                     <div class="mt-3 mb-2">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Management</p>
                     </div>
-                    
+
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-bookings.html">
                         <span class="material-symbols-outlined text-[20px]">calendar_month</span>
@@ -170,8 +138,8 @@
                         <p class="text-sm font-bold text-slate-900 truncate" id="admin-name">Admin</p>
                         <p class="text-xs text-slate-500">Administrator</p>
                     </div>
-                    <button onclick="logout()"
-                        class="text-slate-400 hover:text-red-500 transition-colors" title="Logout">
+                    <button onclick="logout()" class="text-slate-400 hover:text-red-500 transition-colors"
+                        title="Logout">
                         <span class="material-symbols-outlined text-[20px]">logout</span>
                     </button>
                 </div>
@@ -188,13 +156,12 @@
             <header
                 class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
-                    <button id="mobile-sidebar-toggle"
-                        class="md:hidden text-white hover:text-white transition-colors">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
                         <h1 class="text-white font-black text-xl tracking-tight">Add New Listing</h1>
-                        <p class="text-blue-100 text-xs font-medium">Add new inventory item to TravelHub</p>
+                        <p class="text-blue-100 text-xs font-medium">Add new inventory item to CSNExplore</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
@@ -258,15 +225,18 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Property Name</label>
-                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="name" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="location" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                    <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <select name="type"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                         <option>Hotel</option>
                                         <option>Apartment</option>
                                         <option>Resort</option>
@@ -276,39 +246,98 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rating (0-5)</label>
-                                    <input type="number" name="rating" step="0.1" min="0" max="5" value="4.5" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="number" name="rating" step="0.1" min="0" max="5" value="4.5"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Badge</label>
-                                    <input type="text" name="badge" placeholder="e.g. Bestseller" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="badge" placeholder="e.g. Bestseller"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Night (₹)</label>
-                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Night
+                                        (₹)</label>
+                                    <input type="number" name="price" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
-                                    <input type="text" name="contact" placeholder="+91..." class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
-                                </div>
+
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Amenities</label>
-                                    <input type="text" name="amenities" placeholder="WiFi, Pool, AC..." class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                    <input type="text" name="amenities" placeholder="WiFi, Pool, AC..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                    <textarea name="description" rows="3" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary"></textarea>
+                                    <textarea name="description" rows="3"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary"></textarea>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Top Location
+                                        Rating</label>
+                                    <input type="text" name="topLocationRating" placeholder="e.g. 9.6"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Breakfast Info</label>
+                                    <input type="text" name="breakfastInfo"
+                                        placeholder="e.g. Continental, Full English/Irish"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                </div>
+                                <div class="col-span-2 border-t pt-4">
+                                    <h4 class="font-bold text-sm text-gray-800 mb-3">Initial Room & Review (Optional)
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Base Room
+                                                Name</label>
+                                            <input type="text" name="initRoomName" placeholder="e.g. Deluxe Suite"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Base Room
+                                                Price</label>
+                                            <input type="number" name="initRoomPrice" placeholder="e.g. 5000"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Reviewer
+                                                Name</label>
+                                            <input type="text" name="initReviewName" placeholder="e.g. John Doe"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Review
+                                                Text</label>
+                                            <input type="text" name="initReviewText"
+                                                placeholder="e.g. Amazing stay! Highly recommend."
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Main Image</label>
-                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative image-input z-10">
+                                    <input type="file" name="image" accept="image/*" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative image-input z-10">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
-                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative gallery-input z-10">
+
+                                <div class="col-span-1 md:col-span-2">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Gallery Images (comma
+                                            separated URLs)</label>
+                                        <button type="button" onclick="openGalleryBrowser('stays-gallery')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <textarea id="stays-gallery" name="gallery" rows="2"
+                                        placeholder="Image URL 1, Image URL 2..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm"></textarea>
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Property</button>
+                                <button type="submit"
+                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add
+                                    Property</button>
                             </div>
                         </form>
                     </div>
@@ -323,57 +352,119 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Car Model</label>
-                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <input type="text" name="name" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
                                     <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary">
-                                        <option>Sedan</option><option>SUV</option><option>Luxury</option><option>Compact</option><option>MUV</option><option>Hatchback</option>
+                                        <option>Sedan</option>
+                                        <option>SUV</option>
+                                        <option>Luxury</option>
+                                        <option>Compact</option>
+                                        <option>MUV</option>
+                                        <option>Hatchback</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Provider</label>
-                                    <input type="text" name="provider" placeholder="e.g. Hertz" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <input type="text" name="provider" placeholder="e.g. Hertz"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day (₹)</label>
-                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day
+                                        (₹)</label>
+                                    <input type="number" name="price" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Max Passengers</label>
-                                    <input type="number" name="passengers" value="5" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <input type="number" name="passengers" value="5"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Transmission</label>
-                                    <select name="transmission" class="w-full rounded-lg border-gray-300 focus:border-primary">
-                                        <option>Automatic</option><option>Manual</option>
+                                    <select name="transmission"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Automatic</option>
+                                        <option>Manual</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Fuel Type</label>
-                                    <select name="fuelType" class="w-full rounded-lg border-gray-300 focus:border-primary">
-                                        <option>Petrol</option><option>Diesel</option><option>Electric</option><option>CNG</option>
+                                    <select name="fuelType"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                        <option>Petrol</option>
+                                        <option>Diesel</option>
+                                        <option>Electric</option>
+                                        <option>CNG</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Features (comma list)</label>
-                                    <input type="text" name="features" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Features (comma
+                                        list)</label>
+                                    <input type="text" name="features"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                    <textarea name="description" rows="2" class="w-full rounded-lg border-gray-300 focus:border-primary"></textarea>
+                                    <textarea name="description" rows="2"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary"></textarea>
                                 </div>
-                                <div class="relative">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
-                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary image-input z-10">
+
+                                <div class="col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">reviews</span> Initial Guest
+                                        Review
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Reviewer
+                                                Name</label>
+                                            <input type="text" name="initReviewName" placeholder="e.g. John Doe"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Review
+                                                Text</label>
+                                            <input type="text" name="initReviewText"
+                                                placeholder="e.g. Smooth ride, great car."
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="relative">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
-                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary gallery-input z-10">
+
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Main Cover Image
+                                            URL</label>
+                                        <button type="button" onclick="openGalleryBrowser('cars-image')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <input type="text" id="cars-image" name="image" required placeholder="Image URL..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm">
+                                </div>
+
+                                <div class="col-span-1 md:col-span-2">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Gallery Images (comma
+                                            separated URLs)</label>
+                                        <button type="button" onclick="openGalleryBrowser('cars-gallery')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <textarea id="cars-gallery" name="gallery" rows="2"
+                                        placeholder="Image URL 1, Image URL 2..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm"></textarea>
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Car</button>
+                                <button type="submit"
+                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add
+                                    Car</button>
                             </div>
                         </form>
                     </div>
@@ -388,33 +479,84 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Bike Model</label>
-                                    <input type="text" name="name" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <input type="text" name="name" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
                                     <select name="type" class="w-full rounded-lg border-gray-300 focus:border-primary">
-                                        <option>Cruiser</option><option>Sport</option><option>Scooter</option><option>Electric</option>
+                                        <option>Cruiser</option>
+                                        <option>Sport</option>
+                                        <option>Scooter</option>
+                                        <option>Electric</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day (₹)</label>
-                                    <input type="number" name="price" required class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Price per Day
+                                        (₹)</label>
+                                    <input type="number" name="price" required
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Engine Capacity (cc)</label>
-                                    <input type="text" name="engine" placeholder="e.g. 150cc" class="w-full rounded-lg border-gray-300 focus:border-primary">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Engine Capacity
+                                        (cc)</label>
+                                    <input type="text" name="engine" placeholder="e.g. 150cc"
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary">
                                 </div>
+
+                                <div class="col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">reviews</span> Initial Guest
+                                        Review
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Reviewer
+                                                Name</label>
+                                            <input type="text" name="initReviewName" placeholder="e.g. John Doe"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Review
+                                                Text</label>
+                                            <input type="text" name="initReviewText"
+                                                placeholder="e.g. Well maintained bikes!"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
-                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary image-input z-10">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Main Cover Image
+                                            URL</label>
+                                        <button type="button" onclick="openGalleryBrowser('bikes-image')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <input type="text" id="bikes-image" name="image" required placeholder="Image URL..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm">
                                 </div>
-                                <div class="relative">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
-                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary gallery-input z-10 relative">
+
+                                <div class="col-span-1 md:col-span-2">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Gallery Images (comma
+                                            separated URLs)</label>
+                                        <button type="button" onclick="openGalleryBrowser('bikes-gallery')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <textarea id="bikes-gallery" name="gallery" rows="2"
+                                        placeholder="Image URL 1, Image URL 2..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm"></textarea>
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Bike</button>
+                                <button type="submit"
+                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add
+                                    Bike</button>
                             </div>
                         </form>
                     </div>
@@ -433,15 +575,18 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Cuisine</label>
-                                    <input type="text" name="cuisine" required placeholder="e.g. Italian, Indian" class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="cuisine" required placeholder="e.g. Italian, Indian"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
-                                    <input type="number" name="rating" step="0.1" max="5" class="w-full rounded-lg border-gray-300">
+                                    <input type="number" name="rating" step="0.1" max="5"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="location" required
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Cost for Two (₹)</label>
@@ -449,23 +594,97 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Operating Hours</label>
-                                    <input type="text" name="hours" placeholder="e.g. 10 AM - 11 PM" class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="hours" placeholder="e.g. 10 AM - 11 PM"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Amenities</label>
-                                    <input type="text" name="amenities" placeholder="e.g. WiFi, Parking" class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="amenities" placeholder="e.g. WiFi, Parking"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
-                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary image-input z-10 relative">
+
+                                <div class="col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">restaurant_menu</span> Initial
+                                        Menu Highlight
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Dish
+                                                Name</label>
+                                            <input type="text" name="initMenuName" placeholder="e.g. Truffle Pasta"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Dish
+                                                Description</label>
+                                            <input type="text" name="initMenuDesc"
+                                                placeholder="e.g. Homemade pasta with black truffle."
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Dish Image
+                                                URL</label>
+                                            <input type="text" name="initMenuImg" placeholder="https://..."
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div class="col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">reviews</span> Initial Guest
+                                        Review
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Reviewer
+                                                Name</label>
+                                            <input type="text" name="initReviewName" placeholder="e.g. Jane Doe"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Review
+                                                Text</label>
+                                            <input type="text" name="initReviewText"
+                                                placeholder="e.g. Delicious food and great vibe."
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
-                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary gallery-input z-10 relative">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Main Cover Image
+                                            URL</label>
+                                        <button type="button" onclick="openGalleryBrowser('restaurants-image')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <input type="text" id="restaurants-image" name="image" required
+                                        placeholder="Image URL..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm">
+                                </div>
+
+                                <div class="col-span-1 md:col-span-2">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Gallery Images (comma
+                                            separated URLs)</label>
+                                        <button type="button" onclick="openGalleryBrowser('restaurants-gallery')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <textarea id="restaurants-gallery" name="gallery" rows="2"
+                                        placeholder="Image URL 1, Image URL 2..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm"></textarea>
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Restaurant</button>
+                                <button type="submit"
+                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add
+                                    Restaurant</button>
                             </div>
                         </form>
                     </div>
@@ -484,35 +703,84 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                    <input type="text" name="location" required class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="location" required
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
-                                    <input type="text" name="duration" placeholder="e.g. 2 hours" class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="duration" placeholder="e.g. 2 hours"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Entry Fee (₹)</label>
-                                    <input type="number" name="price" placeholder="0 for Free" class="w-full rounded-lg border-gray-300">
+                                    <input type="number" name="price" placeholder="0 for Free"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Operating Hours</label>
-                                    <input type="text" name="hours" placeholder="e.g. 9 AM - 6 PM" class="w-full rounded-lg border-gray-300">
+                                    <input type="text" name="hours" placeholder="e.g. 9 AM - 6 PM"
+                                        class="w-full rounded-lg border-gray-300">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                    <textarea name="description" rows="3" class="w-full rounded-lg border-gray-300"></textarea>
+                                    <textarea name="description" rows="3"
+                                        class="w-full rounded-lg border-gray-300"></textarea>
                                 </div>
-                                <div class="relative">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Main Cover Image</label>
-                                    <input type="file" name="image" accept="image/*" required class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary image-input z-10">
+
+                                <div class="col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                    <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">reviews</span> Initial Guest
+                                        Review
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Reviewer
+                                                Name</label>
+                                            <input type="text" name="initReviewName" placeholder="e.g. Mark Smith"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">First Review
+                                                Text</label>
+                                            <input type="text" name="initReviewText"
+                                                placeholder="e.g. Amazing experience!"
+                                                class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="relative">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gallery Images</label>
-                                    <input type="file" name="gallery" accept="image/*" multiple class="w-full rounded-lg border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-primary/10 file:text-primary gallery-input z-10">
+
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Main Cover Image
+                                            URL</label>
+                                        <button type="button" onclick="openGalleryBrowser('attractions-image')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <input type="text" id="attractions-image" name="image" required
+                                        placeholder="Image URL..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm">
+                                </div>
+
+                                <div class="col-span-1 md:col-span-2">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Gallery Images (comma
+                                            separated URLs)</label>
+                                        <button type="button" onclick="openGalleryBrowser('attractions-gallery')"
+                                            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">imagesmode</span> Browse
+                                        </button>
+                                    </div>
+                                    <textarea id="attractions-gallery" name="gallery" rows="2"
+                                        placeholder="Image URL 1, Image URL 2..."
+                                        class="w-full rounded-lg border-gray-300 focus:border-primary text-sm"></textarea>
                                 </div>
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add Attraction</button>
+                                <button type="submit"
+                                    class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-hover">Add
+                                    Attraction</button>
                             </div>
                         </form>
                     </div>
@@ -520,7 +788,7 @@
                 </div>
                 <footer
                     class="mt-auto mb-4 py-6 border-t border-white/10 bg-primary text-center text-xs text-white/60 rounded-b-lg">
-                    <p>Copyright © 1996–2026 TravelHub Admin. All rights reserved.</p>
+                    <p>Copyright © 1996–2026 CSNExplore Admin. All rights reserved.</p>
                 </footer>
             </main>
         </div>
@@ -548,7 +816,7 @@
                 const pageTitle = document.getElementById('page-title');
                 if (pageTitle) {
                     pageTitle.textContent = 'Edit Listing';
-                    document.title = 'Edit Listing - TravelHub Admin';
+                    document.title = 'Edit Listing - CSNExplore Admin';
                 }
 
                 // Switch to correct tab and lock tabs
@@ -638,46 +906,19 @@
 
             // Populate inputs
             for (const [key, value] of Object.entries(data)) {
-                const input = form.querySelector(`[name="${key}"]`);
-                if (input) {
-                    if (input.type !== 'file') {
+                const input = form.querySelector(`[name="${category === 'stays' ? key : key}"]`); // Just ensuring we find it by name
+                // Try finding by ID first for our new inputs, fallback to name
+                let finalInput = form.querySelector(`[id="${category}-${key}"]`) || form.querySelector(`[name="${key}"]`);
+
+                if (finalInput) {
+                    if (finalInput.type !== 'file') {
                         if (Array.isArray(value)) {
-                            input.value = value.join(', ');
+                            finalInput.value = value.join(', ');
                         } else {
-                            input.value = value;
+                            finalInput.value = value;
                         }
                     }
                 }
-            }"]`);
-                if (input) {
-                    if (input.type !== 'file') {
-                        input.value = value;
-                    }
-                }
-            }
-
-            // Handle image preview differently (optional, but good UX)
-            const fileInput = form.querySelector('input[name="image"]');
-            if (fileInput && data.image) {
-                let preview = form.querySelector('.image-preview');
-                if (!preview) {
-                    preview = document.createElement('div');
-                    preview.className = 'image-preview mt-2 w-full';
-                    fileInput.parentNode.appendChild(preview);
-                }
-                preview.innerHTML = `<p class="text-xs text-gray-500 mb-1">Current Image:</p><img src="${data.image}" alt="Current" class="h-20 w-auto rounded border">`;
-                fileInput.removeAttribute('required');
-            }
-            
-            const galleryInput = form.querySelector('input[name="gallery"]');
-            if (galleryInput && data.gallery && data.gallery.length) {
-                let gPreview = form.querySelector('.gallery-preview');
-                if (!gPreview) {
-                    gPreview = document.createElement('div');
-                    gPreview.className = 'gallery-preview mt-2 flex gap-2 overflow-x-auto w-full';
-                    galleryInput.parentNode.appendChild(gPreview);
-                }
-                gPreview.innerHTML = data.gallery.map(img => `<img src="${img}" alt="Gallery" class="h-12 w-auto object-cover rounded border">`).join('');
             }
 
             // Change submit button text
@@ -697,6 +938,62 @@
             submitBtn.disabled = true;
 
             const formData = new FormData(form);
+            const bodyData = Object.fromEntries(formData.entries());
+
+            // Convert comma-separated string inputs to arrays if needed by backend conventions, or let backend handle them
+            if (bodyData.gallery && typeof bodyData.gallery === 'string') {
+                bodyData.gallery = bodyData.gallery.split(',').map(s => s.trim()).filter(Boolean);
+            }
+            if (bodyData.amenities && typeof bodyData.amenities === 'string') {
+                bodyData.amenities = bodyData.amenities.split(',').map(s => s.trim()).filter(Boolean);
+            }
+            if (bodyData.features && typeof bodyData.features === 'string') {
+                bodyData.features = bodyData.features.split(',').map(s => s.trim()).filter(Boolean);
+            }
+
+            // Map flat initial room and review inputs to Array of objects
+            if (category === 'stays' && bodyData.initRoomName) {
+                bodyData.rooms = [{
+                    name: bodyData.initRoomName,
+                    price: bodyData.initRoomPrice ? parseFloat(bodyData.initRoomPrice) : (parseFloat(bodyData.price) || 0),
+                    sleeps: 2,
+                    beds: "1 extra-large double bed",
+                    features: ["Free WiFi", "Air Conditioning"],
+                    availability: "Available"
+                }];
+            }
+
+            if (category === 'restaurants' && (bodyData.initMenuName || bodyData.initMenuDesc)) {
+                bodyData.menuHighlights = [{
+                    name: bodyData.initMenuName || 'Special Item',
+                    description: bodyData.initMenuDesc || 'A delicious treat.',
+                    image: bodyData.initMenuImg || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'
+                }];
+            }
+
+            if (bodyData.initReviewName || bodyData.initReviewText) {
+                bodyData.guestReviews = [{
+                    name: bodyData.initReviewName || 'Guest',
+                    country: 'Global',
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                    title: 'Nice experience',
+                    text: bodyData.initReviewText || 'Enjoyed my time here.',
+                    rating: parseFloat(bodyData.rating) || 5,
+                    tags: ['Excellent', 'Highly Recommended']
+                }];
+            }
+
+            // Cleanup temporary fields from payload
+            delete bodyData.initRoomName;
+            delete bodyData.initRoomPrice;
+            delete bodyData.initReviewName;
+            delete bodyData.initReviewText;
+            delete bodyData.initMenuName;
+            delete bodyData.initMenuDesc;
+            delete bodyData.initMenuImg;
+
+            // Globally force default contact number
+            bodyData.contact = '+918600968888';
 
             try {
                 let url = `/api/${category}`;
@@ -710,8 +1007,11 @@
                 const token = localStorage.getItem('token');
                 const response = await fetch(url, {
                     method: method,
-                    headers: token ? { 'Authorization': `Bearer ${token}` } : {},
-                    body: formData // allow browser to set Content-Type for multipart
+                    headers: Object.assign(
+                        { 'Content-Type': 'application/json' },
+                        token ? { 'Authorization': `Bearer ${token}` } : {}
+                    ),
+                    body: JSON.stringify(bodyData)
                 });
 
                 if (response.ok) {
@@ -729,7 +1029,7 @@
                     }
                 } else {
                     const err = await response.json();
-                    throw new Error(err.message || 'Failed to save listing');
+                    throw new Error(err.error || err.message || 'Failed to save listing');
                 }
 
             } catch (error) {
@@ -800,6 +1100,165 @@
             localStorage.removeItem('adminName');
             localStorage.removeItem('adminEmail');
             window.location.href = 'admin.html';
+        }
+    </script>
+    <!-- Image Browser Modal -->
+    <div id="img-browser-modal"
+        style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,0.6);backdrop-filter:blur(4px);"
+        onclick="if(event.target===this)closeImgBrowser()">
+        <div
+            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:1.25rem;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:min(90vw,860px);max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
+            <!-- Modal Header -->
+            <div
+                style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid #f1f5f9;">
+                <div>
+                    <h2 style="font-size:17px;font-weight:800;color:#1e293b;margin:0;">Choose an Image</h2>
+                    <p style="font-size:12px;color:#94a3b8;margin:2px 0 0;">Click any image to select it, or upload a
+                        new one</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <label
+                        class="upload-btn border bg-gray-50 hover:bg-gray-100 rounded-md cursor-pointer transition-colors"
+                        style="font-size:13px;padding:0.5rem 0.875rem;" title="Upload new image">
+                        <span class="material-symbols-outlined align-middle" style="font-size:16px;">upload</span>
+                        Upload New
+                        <input type="file" accept="image/*" style="display:none" onchange="uploadFromBrowser(this)">
+                    </label>
+                    <button onclick="closeImgBrowser()"
+                        style="width:2.25rem;height:2.25rem;border-radius:50%;background:#f1f5f9;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:18px;">
+                        <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Search -->
+            <div style="padding:0.75rem 1.5rem;border-bottom:1px solid #f8fafc;">
+                <div style="position:relative;">
+                    <span class="material-symbols-outlined"
+                        style="position:absolute;left:0.625rem;top:50%;transform:translateY(-50%);font-size:18px;color:#94a3b8;">search</span>
+                    <input type="text" id="img-browser-search" placeholder="Filter images..."
+                        oninput="filterImgBrowser(this.value)"
+                        style="width:100%;padding:0.5rem 0.75rem 0.5rem 2.25rem;border:1px solid #e2e8f0;border-radius:0.625rem;font-size:13px;outline:none;background:#f8fafc;box-sizing:border-box;font-family:inherit;">
+                </div>
+            </div>
+            <!-- Grid -->
+            <div id="img-browser-grid"
+                style="flex:1;overflow-y:auto;padding:1rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:0.625rem;">
+                <div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">Loading images...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3 rounded-xl shadow-2xl text-white font-bold text-sm opacity-0 pointer-events-none transform translate-y-4">
+        <span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
+        <span id="toast-msg">Saved!</span>
+    </div>
+
+    <script>
+        // --- Image Browser Logic ---
+        let _imgBrowserTarget = null;
+        let _allImages = [];
+
+        async function openGalleryBrowser(pathInputId) {
+            _imgBrowserTarget = { pathInputId };
+            const modal = document.getElementById('img-browser-modal');
+            const grid = document.getElementById('img-browser-grid');
+            const searchEl = document.getElementById('img-browser-search');
+            modal.style.display = 'block';
+            searchEl.value = '';
+
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">Loading images...</div>';
+
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch('/api/images', {
+                    headers: { 'Authorization': 'Bearer ' + (token || '') }
+                });
+                if (!res.ok) throw new Error("HTTP error");
+                _allImages = await res.json();
+                renderImgGrid(_allImages);
+            } catch (e) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#ef4444;padding:2rem;">Failed to load images.</div>';
+            }
+        }
+
+        function renderImgGrid(images) {
+            const grid = document.getElementById('img-browser-grid');
+            if (!images.length) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#94a3b8;padding:2rem;">No images found. Upload one first.</div>';
+                return;
+            }
+            grid.innerHTML = images.map(img => `
+                <div onclick="selectImgFromBrowser('${img.url}')"
+                    style="cursor:pointer;border:2px solid #e2e8f0;border-radius:0.75rem;overflow:hidden;aspect-ratio:1;background:#f8fafc;transition:border-color 0.15s,transform 0.15s;display:flex;flex-direction:column;"
+                    onmouseover="this.style.borderColor='#003580';this.style.transform='scale(1.04)'"
+                    onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='scale(1)'">
+                    <img loading="lazy" decoding="async" src="${img.url}" alt="${img.name}"
+                        style="width:100%;flex:1;object-fit:cover;"
+                        onerror="this.parentElement.style.background='#f1f5f9';this.style.display='none'">
+                    <div style="padding:4px 6px;font-size:10px;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border-top:1px solid #f1f5f9;"
+                        title="${img.name}">${img.name}</div>
+                </div>`).join('');
+        }
+
+        function filterImgBrowser(query) {
+            const q = query.trim().toLowerCase();
+            const filtered = q ? _allImages.filter(img => img.name.toLowerCase().includes(q)) : _allImages;
+            renderImgGrid(filtered);
+        }
+
+        function selectImgFromBrowser(url) {
+            if (!_imgBrowserTarget) return;
+            const { pathInputId } = _imgBrowserTarget;
+            const pathInput = document.getElementById(pathInputId);
+            if (pathInput) {
+                // If it already has content, append a comma. Otherwise just set the value.
+                if (pathInput.value.trim().length > 0) {
+                    pathInput.value = pathInput.value.trim() + ', ' + url;
+                } else {
+                    pathInput.value = url;
+                }
+                pathInput.dispatchEvent(new Event('input'));
+            }
+            closeImgBrowser();
+        }
+
+        function closeImgBrowser() {
+            document.getElementById('img-browser-modal').style.display = 'none';
+            _imgBrowserTarget = null;
+        }
+
+        async function uploadFromBrowser(fileInput) {
+            const file = fileInput.files[0];
+            if (!file) return;
+            const label = fileInput.closest('label');
+            if (label) { label.style.opacity = '0.6'; label.style.pointerEvents = 'none'; }
+            const formData = new FormData();
+            formData.append('image', file);
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + (token || '') },
+                    body: formData
+                });
+                const result = await res.json();
+                if (result.success && result.url) {
+                    // Refresh image list
+                    const refreshRes = await fetch('/api/images', { headers: { 'Authorization': 'Bearer ' + (token || '') } });
+                    _allImages = await refreshRes.json();
+                    const searchVal = document.getElementById('img-browser-search').value;
+                    filterImgBrowser(searchVal);
+                } else {
+                    alert('Upload failed: ' + (result.message || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Upload failed due to a network error.');
+            } finally {
+                if (label) { label.style.opacity = '1'; label.style.pointerEvents = 'auto'; }
+                fileInput.value = '';
+            }
         }
     </script>
 </body>

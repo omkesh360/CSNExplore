@@ -4,33 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Cards Information Editor - TravelHub Admin</title>
+    <title>Cards Information Editor - CSNExplore Admin</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
     <link href="css/main.css" rel="stylesheet" />
     <style>
         .material-icons {
@@ -51,6 +31,8 @@
             color: #003580;
         }
     </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
 </head>
 
 <body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
@@ -63,7 +45,7 @@
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-20 items-center justify-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="admin-dashboard.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-10">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-10">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
@@ -177,17 +159,17 @@
                     <!-- Tabs -->
                     <div class="bg-white rounded-t-lg border-b border-gray-200 px-6 pt-4 mb-0">
                         <div class="flex gap-6 overflow-x-auto pb-px" id="category-tabs">
-                            <button onclick="loadListings('stays')"
+                            <button onclick="loadListings('stays', this)" data-category="stays"
                                 class="tab-btn active pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Stays</button>
-                            <button onclick="loadListings('cars')"
+                            <button onclick="loadListings('cars', this)" data-category="cars"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Car
                                 Rentals</button>
-                            <button onclick="loadListings('bikes')"
+                            <button onclick="loadListings('bikes', this)" data-category="bikes"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Bike
                                 Rentals</button>
-                            <button onclick="loadListings('restaurants')"
+                            <button onclick="loadListings('restaurants', this)" data-category="restaurants"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Restaurants</button>
-                            <button onclick="loadListings('attractions')"
+                            <button onclick="loadListings('attractions', this)" data-category="attractions"
                                 class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap">Attractions</button>
                         </div>
                     </div>
@@ -285,16 +267,16 @@
             loadListings('stays');
         });
 
-        async function loadListings(category) {
+        async function loadListings(category, clickedBtn) {
             currentCategory = category;
 
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.innerText.toLowerCase().includes(category.replace('s', '')) || (category === 'cars' && btn.innerText.includes('Car'))) {
-                    btn.classList.add('active', 'text-primary');
-                } else {
-                    btn.classList.remove('active', 'text-primary');
-                }
-            });
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active', 'text-primary'));
+            if (clickedBtn) {
+                clickedBtn.classList.add('active', 'text-primary');
+            } else {
+                const btn = document.querySelector(`.tab-btn[data-category="${category}"]`);
+                if (btn) btn.classList.add('active', 'text-primary');
+            }
 
             const grid = document.getElementById('cards-grid');
             const loading = document.getElementById('loading-state');
@@ -315,7 +297,7 @@
                 grid.innerHTML = currentItems.map(item => `
                     <div class="bg-white border text-left border-gray-200 rounded-xl overflow-hidden hover:shadow-card transition-shadow group flex flex-col h-full">
                         <div class="h-40 w-full relative">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=No+Img'">
+                            <img loading="lazy" decoding="async" src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300?text=No+Img'">
                             <span class="absolute top-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded-lg backdrop-blur-md uppercase tracking-wider">ID: ${item.id}</span>
                         </div>
                         <div class="p-4 flex flex-col flex-1">
@@ -366,12 +348,18 @@
 
                 if (key === 'gallery') return; // Skip gallery because it's rendered explicitly at the bottom
 
-                // If value is an array (like amenities or images)
-                if (Array.isArray(value)) {
+                // If value is an array (like amenities or images) or known array key type
+                const isArrayField = Array.isArray(value) || ['rooms', 'guestReviews', 'menuHighlights', 'amenities', 'features'].includes(key);
+                if (isArrayField) {
+                    let defaultVal = value || [];
+                    let textValue = Array.isArray(defaultVal) ? defaultVal.join(', ') : defaultVal;
+                    if (Array.isArray(defaultVal) && defaultVal.length > 0 && typeof defaultVal[0] === 'object') {
+                        textValue = JSON.stringify(defaultVal, null, 2);
+                    }
                     form.innerHTML += `
                         <div class="col-span-full">
-                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key} <span class="text-[10px] text-gray-400 font-normal">(comma separated list)</span></label>
-                            <textarea name="${key}" rows="2" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm">${value.join(', ')}</textarea>
+                            <label class="block text-xs font-bold text-gray-700 mb-1 capitalize">${key} <span class="text-[10px] text-gray-400 font-normal">(comma separated list or JSON)</span></label>
+                            <textarea name="${key}" rows="2" class="w-full rounded-lg border-gray-300 focus:border-primary focus:ring-primary text-sm font-mono text-xs">${textValue}</textarea>
                         </div>
                     `;
                 }
@@ -445,12 +433,21 @@
                     return;
                 }
 
-                const origType = Array.isArray(currentlyEditingItem[input.name]) ? 'array' : typeof currentlyEditingItem[input.name];
+                const isArrayField = Array.isArray(currentlyEditingItem[input.name]) || ['rooms', 'guestReviews', 'menuHighlights', 'amenities', 'features'].includes(input.name);
+                const origType = isArrayField ? 'array' : typeof currentlyEditingItem[input.name];
 
                 if (origType === 'number') {
                     newObj[input.name] = Number(input.value) || 0;
                 } else if (origType === 'array') {
-                    newObj[input.name] = input.value.split(',').map(s => s.trim()).filter(s => s);
+                    if (input.value.trim().startsWith('[')) {
+                        try {
+                            newObj[input.name] = JSON.parse(input.value);
+                        } catch (e) {
+                            newObj[input.name] = input.value.split(',').map(s => s.trim()).filter(s => s);
+                        }
+                    } else {
+                        newObj[input.name] = input.value.split(',').map(s => s.trim()).filter(s => s);
+                    }
                 } else {
                     newObj[input.name] = input.value;
                 }
@@ -585,7 +582,7 @@
                     style="cursor:pointer;border:2px solid #e2e8f0;border-radius:0.75rem;overflow:hidden;aspect-ratio:1;background:#f8fafc;transition:border-color 0.15s,transform 0.15s;display:flex;flex-direction:column;"
                     onmouseover="this.style.borderColor='#003580';this.style.transform='scale(1.04)'"
                     onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='scale(1)'">
-                    <img src="${img.url}" alt="${img.name}"
+                    <img loading="lazy" decoding="async" src="${img.url}" alt="${img.name}"
                         style="width:100%;flex:1;object-fit:cover;"
                         onerror="this.parentElement.style.background='#f1f5f9';this.style.display='none'">
                     <div style="padding:4px 6px;font-size:10px;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border-top:1px solid #f1f5f9;"
