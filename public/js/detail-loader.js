@@ -170,19 +170,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 // Add main image (first image in array)
                 const mainDiv = document.createElement('div');
-                mainDiv.className = 'md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl';
+                mainDiv.className = 'md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl cursor-pointer';
                 mainDiv.innerHTML = `
                     <img loading="lazy" decoding="async" alt="${data.name || data.title || 'Main image'}" 
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         src="${galleryArray[0]}" 
                         onerror="this.parentElement.style.display='none'" />
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-5xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">zoom_in</span>
+                    </div>
                 `;
+                mainDiv.addEventListener('click', () => window.openGalleryViewer(galleryArray, 0));
                 galleryContainer.appendChild(mainDiv);
                 
                 // Add remaining gallery images (up to 4 more for a total of 5 visible)
                 for (let i = 1; i < Math.min(galleryArray.length, 5); i++) {
                     const div = document.createElement('div');
-                    div.className = 'relative group overflow-hidden rounded-xl';
+                    div.className = 'relative group overflow-hidden rounded-xl cursor-pointer';
                     
                     // Last image shows count if more images exist
                     if (i === 4 && galleryArray.length > 5) {
@@ -191,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 src="${galleryArray[i]}" 
                                 onerror="this.parentElement.style.display='none'" />
-                            <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                            <div class="absolute inset-0 bg-black/60 flex items-center justify-center group-hover:bg-black/70 transition-colors duration-300 cursor-pointer">
                                 <span class="text-white font-medium flex items-center gap-2">
                                     <span class="material-symbols-outlined">photo_library</span> See all ${galleryArray.length} photos
                                 </span>
@@ -203,8 +207,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 src="${galleryArray[i]}" 
                                 onerror="this.parentElement.style.display='none'" />
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">zoom_in</span>
+                            </div>
                         `;
                     }
+                    div.addEventListener('click', () => window.openGalleryViewer(galleryArray, i));
                     galleryContainer.appendChild(div);
                 }
                 
