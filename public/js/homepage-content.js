@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hpData = await res.json();
 
         renderHero(hpData.hero);
-<<<<<<< HEAD
 
         const v = hpData.visibility || {};
         const t = hpData.sectionTitles || {};
@@ -69,21 +68,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 renderTravelInsights(hpData.travelInsights, false);
             }
         }
-=======
-        renderTrendingTransport(hpData.trendingTransport);
-        renderRestaurantCircles(hpData.restaurantCircles);
-        renderBusRoutes(hpData.busRoutes);
-        renderAttractions(hpData.attractions);
-        renderBikeRentals(hpData.bikeRentals);
-        renderFeaturedRestaurants(hpData.featuredRestaurants);
-        renderTravelInsights(hpData.travelInsights);
->>>>>>> parent of 112dbb6 (one of the main update in php)
 
     } catch (err) {
         console.error('Error loading homepage content:', err);
-        // Could show a fallback or error state here if needed
     }
 });
+
 
 function esc(str) {
     return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -140,7 +130,32 @@ function renderTrendingTransport(items) {
     const container = document.getElementById('trending-transport-grid');
     if (!container || !items) return;
 
-    container.innerHTML = items.map((item, i) => `
+    // Separate cars and bikes
+    const cars = items.filter(item => item.category === 'cars' || item.title.toLowerCase().includes('car'));
+    const bikes = items.filter(item => item.category === 'bikes' || item.title.toLowerCase().includes('bike'));
+    
+    // Use first car and first bike, or create defaults
+    const carItem = cars.length > 0 ? cars[0] : {
+        title: 'Cars',
+        description: 'Explore the city in comfort and style.',
+        subtext: 'Explore Deals',
+        linkText: 'Search cars',
+        link: '/car-rentals.html',
+        image: '/images/placeholder.jpg'
+    };
+    
+    const bikeItem = bikes.length > 0 ? bikes[0] : {
+        title: 'Bikes',
+        description: 'Swift travel, zero emissions.',
+        subtext: 'Explore Rentals',
+        linkText: 'Find bikes',
+        link: '/bike-rentals.html',
+        image: '/images/placeholder.jpg'
+    };
+    
+    const displayItems = [carItem, bikeItem];
+
+    container.innerHTML = displayItems.map((item, i) => `
         <div class="bg-white rounded-lg shadow-soft overflow-hidden flex flex-row h-full min-h-[200px] cursor-pointer group hover:shadow-card transition-shadow">
             <div class="p-6 flex flex-col justify-between flex-1 z-10 relative bg-white/90 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none">
                 <div>
@@ -162,24 +177,93 @@ function renderTrendingTransport(items) {
     `).join('');
 }
 
+
 // 3. TASTE THE CITY (RESTAURANT CIRCLES)
 function renderRestaurantCircles(items) {
     const container = document.getElementById('restaurant-circles-grid');
-    if (!container || !items) return;
+    if (!container || !items || items.length === 0) return;
 
-    container.innerHTML = items.map(item => `
-        <a href="${esc(item.link)}" class="flex flex-col items-center gap-2 min-w-[120px] snap-center snap-item cursor-pointer group">
-            <div class="relative w-28 h-28 rounded-full shadow-md overflow-hidden ring-2 ring-white group-hover:ring-primary transition-all">
-                <img class="w-full h-full object-cover" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
-                <div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
-                ${item.rating ? `<div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">${esc(item.rating)}</div>` : ''}
-            </div>
-            <div class="text-center">
-                <h3 class="text-sm font-bold text-text-main group-hover:text-primary">${esc(item.name)}</h3>
-                <p class="text-xs text-text-muted">${esc(item.type)}</p>
-            </div>
-        </a>
+    const itemsPerView = 6;
+    
+    // Add carousel CSS if not already added
+    if (!document.getElementById('carousel-styles')) {
+        const style = document.createElement('style');
+        style.id = 'carousel-styles';
+        style.textContent = `
+            .carousel-wrapper {
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .carousel-track {
+                display: flex;
+                gap: 1rem;
+                transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            
+            .carousel-item {
+                flex: 0 0 calc((100% - (6 - 1) * 1rem) / 6);
+                min-width: 0;
+            }
+            
+            @media (max-width: 768px) {
+                .carousel-item {
+                    flex: 0 0 calc((100% - (3 - 1) * 1rem) / 3);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Create wrapper and track
+    container.className = 'carousel-wrapper';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    
+    // Duplicate items for infinite scroll effect
+    const allItems = [...items, ...items];
+    
+    track.innerHTML = allItems.map((item) => `
+        <div style="flex: 0 0 calc((100% - 5rem) / 6); min-width: 0;">
+            <a href="${esc(item.link)}" class="flex flex-col items-center gap-2 cursor-pointer group transition-all duration-300 h-full">
+                <div class="relative w-full aspect-square rounded-full shadow-md overflow-hidden ring-2 ring-white group-hover:ring-primary transition-all duration-300 flex-shrink-0">
+                    <img class="w-full h-full object-cover" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
+                    <div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    ${item.rating ? `<div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">${esc(item.rating)}</div>` : ''}
+                </div>
+                <div class="text-center w-full px-1 flex-1 flex flex-col justify-center">
+                    <h3 class="text-sm font-bold text-text-main group-hover:text-primary line-clamp-2 transition-colors">${esc(item.name)}</h3>
+                    <p class="text-xs text-text-muted line-clamp-1">${esc(item.type)}</p>
+                </div>
+            </a>
+        </div>
     `).join('');
+    
+    container.innerHTML = '';
+    container.appendChild(track);
+    
+    // Smooth carousel animation
+    if (items.length > itemsPerView) {
+        let currentPosition = 0;
+        const itemWidth = 100 / itemsPerView;
+        
+        setInterval(() => {
+            currentPosition += itemWidth;
+            track.style.transform = `translateX(-${currentPosition}%)`;
+            
+            // Reset to beginning when we've scrolled through one set
+            if (currentPosition >= itemWidth * items.length) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentPosition = 0;
+                    track.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }, 50);
+                }, 800);
+            }
+        }, 3000);
+    }
 }
 
 // 4. TRAVEL YOUR WAY (BUS ROUTES)
@@ -217,86 +301,189 @@ function renderBusRoutes(items) {
 // 5. EXPLORE ATTRACTIONS
 function renderAttractions(items) {
     const container = document.getElementById('attractions-grid');
-    if (!container || !items) return;
+    if (!container || !items || items.length === 0) return;
 
-    container.innerHTML = items.map(item => `
-        <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 overflow-hidden cursor-pointer group hover:shadow-card transition-all flex flex-col h-full">
-            <div class="h-48 shrink-0 overflow-hidden relative">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
-                ${item.rating ? `
-                <div class="absolute top-2 right-2 bg-white/90 backdrop-blur text-xs font-bold px-2 py-1 rounded shadow-sm flex items-center gap-1">
-                    <span class="material-symbols-outlined text-yellow-500 text-[14px] fill-current">star</span>
-                    ${esc(item.rating)}
-                </div>` : ''}
-            </div>
-            <div class="p-4 flex flex-col flex-1">
-                <h3 class="font-bold text-text-main mb-1 line-clamp-2">${esc(item.name)}</h3>
-                <p class="text-xs text-text-muted flex items-center gap-1 mt-auto pt-2">
-                    <span class="material-symbols-outlined text-[14px] shrink-0">location_on</span> <span class="line-clamp-1">${esc(item.location)}</span>
-                </p>
-            </div>
-        </a>
+    const itemsPerView = 4;
+    
+    // Create wrapper and track
+    container.className = 'carousel-wrapper';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    track.style.gap = '1rem';
+    
+    // Duplicate items for infinite scroll effect
+    const allItems = [...items, ...items];
+    
+    track.innerHTML = allItems.map((item) => `
+        <div style="flex: 0 0 calc((100% - 3rem) / 4); min-width: 0;">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 overflow-hidden cursor-pointer group hover:shadow-card transition-all flex flex-col h-full">
+                <div class="h-48 shrink-0 overflow-hidden relative">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
+                    ${item.rating ? `
+                    <div class="absolute top-2 right-2 bg-white/90 backdrop-blur text-xs font-bold px-2 py-0.5 rounded shadow-sm flex items-center gap-1">
+                        <span class="material-symbols-outlined text-yellow-500 text-[12px] fill-current">star</span>
+                        ${esc(item.rating)}
+                    </div>` : ''}
+                </div>
+                <div class="p-3 flex flex-col flex-1">
+                    <h3 class="font-bold text-text-main mb-1 line-clamp-2 text-sm">${esc(item.name)}</h3>
+                    <p class="text-xs text-text-muted flex items-center gap-1 mt-auto">
+                        <span class="material-symbols-outlined text-[12px] shrink-0">location_on</span> <span class="line-clamp-1">${esc(item.location)}</span>
+                    </p>
+                </div>
+            </a>
+        </div>
     `).join('');
+    
+    container.innerHTML = '';
+    container.appendChild(track);
+    
+    // Smooth carousel animation with infinite loop
+    if (items.length > itemsPerView) {
+        let currentPosition = 0;
+        const itemWidth = 100 / itemsPerView;
+        
+        setInterval(() => {
+            currentPosition += itemWidth;
+            track.style.transform = `translateX(-${currentPosition}%)`;
+            
+            // Reset to beginning when we've scrolled through one set
+            if (currentPosition >= itemWidth * items.length) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentPosition = 0;
+                    track.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }, 50);
+                }, 800);
+            }
+        }, 3000);
+    }
 }
 
 // 6. QUICK BIKE RENTALS
 function renderBikeRentals(items) {
     const container = document.getElementById('bike-rentals-grid');
-    if (!container || !items) return;
+    if (!container || !items || items.length === 0) return;
 
-    // Using global static hero whatsapp/phone for these CTAs 
-    // This allows the hero section edits to globally update contact numbers
-    const contactPhone = document.getElementById('hp-phone-text')?.textContent || '+91 86009 68888';
+    const itemsPerView = 4;
 
-    container.innerHTML = items.map(item => `
-        <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 p-4 flex flex-col hover:shadow-card transition-all h-full text-center">
-            <div class="w-full h-32 shrink-0 bg-gray-50 rounded mb-4 flex items-center justify-center overflow-hidden">
-                <img alt="${esc(item.name)}" class="w-full h-full object-cover" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
-            </div>
-            <h3 class="text-lg font-bold text-text-main mb-1 line-clamp-1">${esc(item.name)}</h3>
-            <p class="text-sm text-text-muted mb-3 line-clamp-2">${esc(item.description)}</p>
-            <div class="mt-auto w-full flex items-center justify-between border-t border-gray-100 pt-3">
-                <div class="flex flex-row gap-2 w-full mt-1">
-                    <object class="flex-1 min-w-0"><a href="tel:${esc(contactPhone).replace(/\s+/g, '')}" class="w-full flex items-center justify-center gap-1 bg-primary text-white text-[11px] sm:text-xs font-bold px-2 py-1.5 rounded hover:bg-primary-hover transition-colors shadow-sm whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[14px] sm:text-[16px]">call</span> Call
-                    </a></object>
-                    <object class="flex-1 min-w-0"><a href="https://wa.me/${esc(contactPhone).replace(/\D/g, '')}" target="_blank" class="w-full flex items-center justify-center gap-1 bg-[#25D366] text-white text-[11px] sm:text-xs font-bold px-2 py-1.5 rounded hover:bg-[#128C7E] transition-colors shadow-sm whitespace-nowrap">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-3 h-3 sm:w-4 sm:h-4 brightness-0 invert"> Chat
-                    </a></object>
+    // Create wrapper and track
+    container.className = 'carousel-wrapper';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    track.style.gap = '1rem';
+    
+    // Duplicate items for infinite scroll effect
+    const allItems = [...items, ...items];
+    
+    track.innerHTML = allItems.map((item) => `
+        <div style="flex: 0 0 calc((100% - 3rem) / 4); min-width: 0;">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 p-3 flex flex-col hover:shadow-card transition-all h-full text-center">
+                <div class="w-full h-40 shrink-0 bg-gray-50 rounded mb-2 flex items-center justify-center overflow-hidden">
+                    <img alt="${esc(item.name)}" class="w-full h-full object-cover" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
                 </div>
-            </div>
-        </a>
+                <h3 class="text-sm font-bold text-text-main mb-1 line-clamp-1">${esc(item.name)}</h3>
+                <p class="text-xs text-text-muted line-clamp-3">${esc(item.description)}</p>
+            </a>
+        </div>
     `).join('');
+    
+    container.innerHTML = '';
+    container.appendChild(track);
+    
+    // Smooth carousel animation with infinite loop
+    if (items.length > itemsPerView) {
+        let currentPosition = 0;
+        const itemWidth = 100 / itemsPerView;
+        
+        setInterval(() => {
+            currentPosition += itemWidth;
+            track.style.transform = `translateX(-${currentPosition}%)`;
+            
+            // Reset to beginning when we've scrolled through one set
+            if (currentPosition >= itemWidth * items.length) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentPosition = 0;
+                    track.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }, 50);
+                }, 800);
+            }
+        }, 3000);
+    }
 }
 
 // 7. FEATURED RESTAURANTS
 function renderFeaturedRestaurants(items) {
     const container = document.getElementById('featured-restaurants-grid');
-    if (!container || !items) return;
+    if (!container || !items || items.length === 0) return;
 
-    container.innerHTML = items.map(item => {
-        const tagsHtml = (item.tags || []).map(t => `<span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-1 rounded whitespace-nowrap">${esc(t)}</span>`).join('');
+    const itemsPerView = 3;
+
+    // Create wrapper and track
+    container.className = 'carousel-wrapper';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    track.style.gap = '1rem';
+    
+    // Duplicate items for infinite scroll effect
+    const allItems = [...items, ...items];
+    
+    track.innerHTML = allItems.map((item) => {
+        const tagsHtml = (item.tags || []).map(t => `<span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap">${esc(t)}</span>`).join('');
         return `
-        <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft overflow-hidden border border-gray-100 flex flex-col group hover:shadow-card transition-all h-full">
-            <div class="h-48 shrink-0 relative overflow-hidden">
-                <img alt="${esc(item.name)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
-                ${item.rating ? `<div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">${esc(item.rating)}</div>` : ''}
-            </div>
-            <div class="p-5 flex flex-col flex-1">
-                <div class="flex items-start justify-between mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold text-text-main line-clamp-1">${esc(item.name)}</h3>
-                        <p class="text-sm text-text-muted line-clamp-1">${esc(item.type)}</p>
+        <div style="flex: 0 0 calc((100% - 2rem) / 3); min-width: 0;">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft overflow-hidden border border-gray-100 flex flex-col group hover:shadow-card transition-all h-full">
+                <div class="h-48 shrink-0 relative overflow-hidden">
+                    <img alt="${esc(item.name)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
+                    ${item.rating ? `<div class="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded">${esc(item.rating)}</div>` : ''}
+                </div>
+                <div class="p-3 flex flex-col flex-1">
+                    <div class="flex items-start justify-between mb-1">
+                        <div>
+                            <h3 class="text-sm font-bold text-text-main line-clamp-1">${esc(item.name)}</h3>
+                            <p class="text-xs text-text-muted line-clamp-1">${esc(item.type)}</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-text-muted line-clamp-2 mb-2">${esc(item.description)}</p>
+                    <div class="flex flex-wrap gap-1 mt-auto pt-2 border-t border-gray-50">
+                        ${tagsHtml}
                     </div>
                 </div>
-                <p class="text-sm text-text-muted line-clamp-2 mb-4">${esc(item.description)}</p>
-                <div class="flex flex-wrap gap-2 mt-auto pt-2 border-t border-gray-50">
-                    ${tagsHtml}
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
         `;
     }).join('');
+    
+    container.innerHTML = '';
+    container.appendChild(track);
+    
+    // Smooth carousel animation with infinite loop
+    if (items.length > itemsPerView) {
+        let currentPosition = 0;
+        const itemWidth = 100 / itemsPerView;
+        
+        setInterval(() => {
+            currentPosition += itemWidth;
+            track.style.transform = `translateX(-${currentPosition}%)`;
+            
+            // Reset to beginning when we've scrolled through one set
+            if (currentPosition >= itemWidth * items.length) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentPosition = 0;
+                    track.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }, 50);
+                }, 800);
+            }
+        }, 3000);
+    }
 }
 
 // 8. TRAVEL INSIGHTS

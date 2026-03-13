@@ -12,6 +12,16 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json');
 
+// Cache Headers for static assets
+if (preg_match('/\.(jpg|jpeg|png|gif|css|js|svg|woff|woff2|ttf|eot)$/i', $_SERVER['REQUEST_URI'])) {
+    header('Cache-Control: public, max-age=31536000'); // 1 year for static assets
+    header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
+} else {
+    // API responses - cache for 1 hour
+    header('Cache-Control: public, max-age=3600');
+    header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+}
+
 // Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);

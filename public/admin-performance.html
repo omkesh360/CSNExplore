@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Monitor - CSNExplore Admin</title>
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
+    <link href="css/tailwind.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
+    <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
+        <!-- Sidebar -->
+        <aside id="admin-sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 filter brightness-0 invert">
+                </a>
+            </div>
+            <div class="flex-1 overflow-y-auto px-4 py-6">
+                <nav class="flex flex-col gap-1.5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-dashboard.html">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        <span class="text-[13px]">Dashboard</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-homepage.html">
+                        <span class="material-symbols-outlined text-[20px]">home</span>
+                        <span class="text-[13px]">Homepage Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-add-listing.html">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        <span class="text-[13px]">Add Listing</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-manage-listings.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-users.html">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                        <span class="text-[13px]">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-images.html">
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span>
+                        <span class="text-[13px]">Images Manager</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-blogs-generator.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                        <span class="text-[13px]">Blogs Generator</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
+                        href="admin-performance.html">
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-[13px]">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay"
+            class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Main Content -->
+        <div class="flex h-full flex-1 flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div>
+                        <h1 class="text-white font-black text-xl tracking-tight">Performance Monitor</h1>
+                        <p class="text-white/80 text-xs">Website caching and performance metrics</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="refreshBtn"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">refresh</span>
+                        <span class="hidden sm:inline">Refresh</span>
+                    </button>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-8">
+                <!-- Cache Stats Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Cache Statistics</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="stat-box">
+                                <div class="stat-value" id="cacheItems">0</div>
+                                <div class="stat-label">Cached Items</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value" id="cacheSize">0 MB</div>
+                                <div class="stat-label">Cache Size</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value" id="cacheStatus">Active</div>
+                                <div class="stat-label">Status</div>
+                            </div>
+                        </div>
+
+                        <!-- Cache Actions -->
+                        <div class="flex gap-3 flex-wrap">
+                            <button id="purgeBtn" class="btn btn-warning">
+                                <span class="material-symbols-outlined">delete_sweep</span>
+                                Purge Expired
+                            </button>
+                            <button id="clearBtn" class="btn btn-danger">
+                                <span class="material-symbols-outlined">delete</span>
+                                Clear All Cache
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optimization Tools -->
+                <div class="card my-6">
+                    <div class="card-header">
+                        <h2>Website Optimization</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-sm text-text-muted mb-4">Run these tools to optimize website speed, minify assets, and improve performance (powered by LiteSpeed techniques).</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <button class="btn btn-secondary justify-start opt-btn" data-type="litespeed">
+                                <span class="material-symbols-outlined text-primary">bolt</span>
+                                LiteSpeed Cache Purge
+                            </button>
+                            <button class="btn btn-secondary justify-start opt-btn" data-type="minify_css">
+                                <span class="material-symbols-outlined text-primary">css</span>
+                                Minify CSS Files
+                            </button>
+                            <button class="btn btn-secondary justify-start opt-btn" data-type="minify_js">
+                                <span class="material-symbols-outlined text-primary">javascript</span>
+                                Minify JS Files
+                            </button>
+                            <button class="btn btn-secondary justify-start opt-btn" data-type="image_opt">
+                                <span class="material-symbols-outlined text-primary">imagesmode</span>
+                                Optimize Images
+                            </button>
+                            <button class="btn btn-primary justify-start md:col-span-2 text-center opt-btn" data-type="all">
+                                <span class="material-symbols-outlined">rocket_launch</span>
+                                Run Full Optimization Suite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cache Items Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Cache Items</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="overflow-x-auto">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Size</th>
+                                        <th>Created</th>
+                                        <th>Expires</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cacheTableBody">
+                                    <tr>
+                                        <td colspan="5" class="text-center text-text-muted py-8">Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Tips -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Performance Tips</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="space-y-3">
+                            <li class="flex gap-3">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                <span>Cache is enabled for API responses and database queries</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                <span>Expired cache items are automatically cleaned up</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                <span>Use "Purge Expired" to remove only outdated cache</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                <span>Use "Clear All Cache" after major updates</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <style>
+        .stat-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table thead {
+            background-color: #f5f7fa;
+        }
+
+        .admin-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .admin-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .admin-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-expired {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+
+    <script>
+        const token = localStorage.getItem('token');
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/cache?action=stats', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Failed to load cache stats');
+                const data = await res.json();
+                
+                document.getElementById('cacheItems').textContent = data.total_items;
+                document.getElementById('cacheSize').textContent = data.total_size_mb + ' MB';
+                
+                // Populate table
+                const tbody = document.getElementById('cacheTableBody');
+                if (data.items.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="text-center text-text-muted py-8">No cache items</td></tr>';
+                } else {
+                    tbody.innerHTML = data.items.map(item => `
+                        <tr>
+                            <td class="font-mono text-sm">${escapeHtml(item.key.substring(0, 40))}</td>
+                            <td>${(item.size / 1024).toFixed(2)} KB</td>
+                            <td>${new Date(item.created * 1000).toLocaleString()}</td>
+                            <td>${new Date(item.expires * 1000).toLocaleString()}</td>
+                            <td>
+                                <span class="status-badge ${item.expired ? 'status-expired' : 'status-active'}">
+                                    ${item.expired ? 'Expired' : 'Active'}
+                                </span>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (err) {
+                console.error('Error loading stats:', err);
+                alert('Failed to load cache statistics');
+            }
+        }
+
+        async function purgeExpired() {
+            if (!confirm('Purge expired cache items?')) return;
+            
+            try {
+                const res = await fetch('/api/cache?action=purge', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Failed to purge cache');
+                const data = await res.json();
+                
+                alert(`Purged ${data.purged_items} expired items`);
+                loadStats();
+            } catch (err) {
+                console.error('Error purging cache:', err);
+                alert('Failed to purge cache');
+            }
+        }
+
+        async function clearAll() {
+            if (!confirm('Clear ALL cache? This cannot be undone.')) return;
+            
+            try {
+                const res = await fetch('/api/cache?action=clear', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Failed to clear cache');
+                const data = await res.json();
+                
+                alert(`Cleared ${data.cleared_items} cache items`);
+                loadStats();
+            } catch (err) {
+                console.error('Error clearing cache:', err);
+                alert('Failed to clear cache');
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function runOptimization(type) {
+            try {
+                const res = await fetch('/api/cache?action=optimize', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ type })
+                });
+                
+                if (!res.ok) throw new Error('Optimization failed');
+                const data = await res.json();
+                
+                alert(data.message || 'Optimization completed successfully');
+            } catch (err) {
+                console.error('Error running optimization:', err);
+                alert('Failed to run optimization task');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('refreshBtn').addEventListener('click', loadStats);
+        document.getElementById('purgeBtn').addEventListener('click', purgeExpired);
+        document.getElementById('clearBtn').addEventListener('click', clearAll);
+        
+        document.querySelectorAll('.opt-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.type;
+                if(confirm('Are you sure you want to run this optimization task? This might consume server resources.')) {
+                    runOptimization(type);
+                }
+            });
+        });
+
+        // Load stats on page load
+        loadStats();
+        
+        // Refresh every 30 seconds
+        setInterval(loadStats, 30000);
+    </script>
+</body>
+</html>

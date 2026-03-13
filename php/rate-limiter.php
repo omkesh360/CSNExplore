@@ -6,7 +6,7 @@ class RateLimiter {
     private $maxRequests;
     private $windowSeconds;
     
-    public function __construct($maxRequests = 100, $windowSeconds = 900) {
+    public function __construct($maxRequests = 1000, $windowSeconds = 900) {
         $this->storageFile = sys_get_temp_dir() . '/travelhub_rate_limit.json';
         $this->maxRequests = $maxRequests;
         $this->windowSeconds = $windowSeconds;

@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         .material-icons {
             font-family: 'Material Symbols Outlined';
@@ -52,40 +53,36 @@
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
-<<<<<<< HEAD
-            <div class="flex h-20 items-center justify-center px-6 border-b border-primary-dark bg-primary shrink-0">
-                <a href="admin-dashboard.html" class="flex items-center gap-2">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-10">
-=======
             <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
                 <a href="index.html" class="flex items-center gap-2">
-                    <img src="/images/travelhub.png" alt="TravelHub" class="h-8 filter brightness-0 invert">
->>>>>>> parent of 112dbb6 (one of the main update in php)
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 filter brightness-0 invert">
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
-
-<<<<<<< HEAD
-                    <div class="mt-3 mb-2">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Listings</p>
-                    </div>
-
-=======
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
->>>>>>> parent of 112dbb6 (one of the main update in php)
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-add-listing.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
@@ -98,40 +95,20 @@
                         <span class="text-[13px]">Manage Listings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-<<<<<<< HEAD
-
-                    <div class="mt-3 mb-2">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">Management</p>
-                    </div>
-
-=======
->>>>>>> parent of 112dbb6 (one of the main update in php)
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span class="text-[13px]">Bookings</span>
-                    </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
                         <span class="text-[13px]">Users</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span class="text-[13px]">Financial Reports</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-images.html">
@@ -143,29 +120,24 @@
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
                     </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
                 </nav>
             </div>
             <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
                 <button id="admin-logout-btn"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left mb-2">
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
                     <span class="material-symbols-outlined text-[20px]">logout</span>
                     <span class="text-[13px]">Logout</span>
                 </button>
-                <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm"
-                        id="admin-avatar">A</div>
-                    <div class="flex flex-col flex-1">
-                        <span class="text-[13px] font-bold text-slate-900" id="admin-name">Admin</span>
-                        <span class="text-[11px] font-medium text-slate-500">Super Admin</span>
-                    </div>
-<<<<<<< HEAD
-                    <button onclick="logout()" class="text-slate-400 hover:text-red-500 transition-colors"
-                        title="Logout">
-                        <span class="material-symbols-outlined text-[20px]">logout</span>
-                    </button>
-=======
->>>>>>> parent of 112dbb6 (one of the main update in php)
-                </div>
             </div>
         </aside>
 
@@ -182,10 +154,7 @@
                     <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
-                    <div>
-                        <h1 class="text-white font-black text-xl tracking-tight">Add New Listing</h1>
-                        <p class="text-blue-100 text-xs font-medium">Add new inventory item to CSNExplore</p>
-                    </div>
+                    <h1 class="text-white font-black text-xl tracking-tight">Add New Listing</h1>
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="window.adminLogout && window.adminLogout()"
@@ -339,8 +308,9 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Main Image</label>
-                                    <input type="file" name="image" accept="image/*" required
+                                    <input type="file" name="image" accept="image/*" id="stays-image-input"
                                         class="w-full rounded-lg border-gray-300 focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary relative image-input z-10">
+                                    <p class="text-xs text-gray-500 mt-1">Leave empty to keep existing image when editing</p>
                                 </div>
 
                                 <div class="col-span-1 md:col-span-2">
@@ -809,10 +779,6 @@
                     </div>
 
                 </div>
-                <footer
-                    class="mt-auto mb-4 py-6 border-t border-white/10 bg-primary text-center text-xs text-white/60 rounded-b-lg">
-                    <p>Copyright © 1996–2026 CSNExplore Admin. All rights reserved.</p>
-                </footer>
             </main>
         </div>
     </div>
@@ -842,6 +808,11 @@
                     document.title = 'Edit Listing - CSNExplore Admin';
                 }
 
+                // Make image fields optional when editing
+                document.querySelectorAll('[name="image"]').forEach(input => {
+                    input.removeAttribute('required');
+                });
+
                 // Switch to correct tab and lock tabs
                 showTab(category);
                 lockTabs(category);
@@ -849,6 +820,10 @@
                 // Load Data
                 await loadListingData(category, id);
             } else {
+                // Make image fields required when adding
+                document.querySelectorAll('[name="image"]').forEach(input => {
+                    input.setAttribute('required', 'required');
+                });
                 showTab('stays'); // Default to Add mode
             }
         });
@@ -904,44 +879,85 @@
 
         async function loadListingData(category, id) {
             try {
-                // Fetch all items (simplest way without new 'get by id' endpoint)
-                const response = await fetch(`/api/${category}`);
-                const items = await response.json();
-
-                // Loose equality for ID string/number mismatch
-                const item = items.find(i => i.id == id);
-
-                if (item) {
+                const token = localStorage.getItem('token');
+                
+                // Try to fetch the specific item first
+                const response = await fetch(`/api/${category}/${id}`, {
+                    headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    // Handle both direct item and wrapped response
+                    const item = data.item || data;
                     populateForm(category, item);
+                } else if (response.status === 404) {
+                    // Fallback: fetch all items and find by ID
+                    const allResponse = await fetch(`/api/${category}`, {
+                        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                    });
+                    const items = await allResponse.json();
+                    const item = items.find(i => String(i.id) === String(id));
+                    
+                    if (item) {
+                        populateForm(category, item);
+                    } else {
+                        throw new Error('Listing not found');
+                    }
                 } else {
-                    alert('Listing not found');
-                    window.location.href = 'admin-manage-listings.html';
+                    throw new Error(`API error: ${response.status}`);
                 }
             } catch (error) {
                 console.error('Error loading data:', error);
-                alert('Error loading listing data');
+                alert('Error loading listing data: ' + error.message);
+                window.location.href = 'admin-manage-listings.html';
             }
         }
 
         function populateForm(category, data) {
             const form = document.querySelector(`#form-${category} form`);
-            if (!form) return;
+            if (!form) {
+                console.error(`Form not found for category: ${category}`);
+                return;
+            }
 
-            // Populate inputs
-            for (const [key, value] of Object.entries(data)) {
-                const input = form.querySelector(`[name="${category === 'stays' ? key : key}"]`); // Just ensuring we find it by name
-                // Try finding by ID first for our new inputs, fallback to name
-                let finalInput = form.querySelector(`[id="${category}-${key}"]`) || form.querySelector(`[name="${key}"]`);
+            console.log('Populating form with data:', data);
 
-                if (finalInput) {
-                    if (finalInput.type !== 'file') {
+            // Populate all inputs by name attribute
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                const fieldName = input.name;
+                if (fieldName && data.hasOwnProperty(fieldName)) {
+                    const value = data[fieldName];
+                    
+                    if (input.type !== 'file') {
                         if (Array.isArray(value)) {
-                            finalInput.value = value.join(', ');
+                            input.value = value.join(', ');
+                        } else if (typeof value === 'object' && value !== null) {
+                            input.value = JSON.stringify(value);
                         } else {
-                            finalInput.value = value;
+                            input.value = value || '';
                         }
                     }
                 }
+            });
+
+            // Handle image preview if image exists
+            if (data.image) {
+                const imageInputs = form.querySelectorAll('[name="image"]');
+                imageInputs.forEach(imageInput => {
+                    // Remove old preview
+                    const oldPreview = imageInput.parentElement.querySelector('.image-preview');
+                    if (oldPreview) {
+                        oldPreview.remove();
+                    }
+                    
+                    // Add new preview
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'image-preview mt-2';
+                    previewDiv.innerHTML = `<img src="${data.image}" alt="Preview" style="max-width:200px;max-height:200px;border-radius:8px;border:1px solid #e2e8f0;object-fit:cover;">`;
+                    imageInput.parentElement.appendChild(previewDiv);
+                });
             }
 
             // Change submit button text
@@ -960,65 +976,76 @@
             submitBtn.textContent = currentMode === 'edit' ? 'Updating...' : 'Adding...';
             submitBtn.disabled = true;
 
-            const formData = new FormData(form);
-            const bodyData = Object.fromEntries(formData.entries());
-
-            // Convert comma-separated string inputs to arrays if needed by backend conventions, or let backend handle them
-            if (bodyData.gallery && typeof bodyData.gallery === 'string') {
-                bodyData.gallery = bodyData.gallery.split(',').map(s => s.trim()).filter(Boolean);
-            }
-            if (bodyData.amenities && typeof bodyData.amenities === 'string') {
-                bodyData.amenities = bodyData.amenities.split(',').map(s => s.trim()).filter(Boolean);
-            }
-            if (bodyData.features && typeof bodyData.features === 'string') {
-                bodyData.features = bodyData.features.split(',').map(s => s.trim()).filter(Boolean);
-            }
-
-            // Map flat initial room and review inputs to Array of objects
-            if (category === 'stays' && bodyData.initRoomName) {
-                bodyData.rooms = [{
-                    name: bodyData.initRoomName,
-                    price: bodyData.initRoomPrice ? parseFloat(bodyData.initRoomPrice) : (parseFloat(bodyData.price) || 0),
-                    sleeps: 2,
-                    beds: "1 extra-large double bed",
-                    features: ["Free WiFi", "Air Conditioning"],
-                    availability: "Available"
-                }];
-            }
-
-            if (category === 'restaurants' && (bodyData.initMenuName || bodyData.initMenuDesc)) {
-                bodyData.menuHighlights = [{
-                    name: bodyData.initMenuName || 'Special Item',
-                    description: bodyData.initMenuDesc || 'A delicious treat.',
-                    image: bodyData.initMenuImg || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'
-                }];
-            }
-
-            if (bodyData.initReviewName || bodyData.initReviewText) {
-                bodyData.guestReviews = [{
-                    name: bodyData.initReviewName || 'Guest',
-                    country: 'Global',
-                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-                    title: 'Nice experience',
-                    text: bodyData.initReviewText || 'Enjoyed my time here.',
-                    rating: parseFloat(bodyData.rating) || 5,
-                    tags: ['Excellent', 'Highly Recommended']
-                }];
-            }
-
-            // Cleanup temporary fields from payload
-            delete bodyData.initRoomName;
-            delete bodyData.initRoomPrice;
-            delete bodyData.initReviewName;
-            delete bodyData.initReviewText;
-            delete bodyData.initMenuName;
-            delete bodyData.initMenuDesc;
-            delete bodyData.initMenuImg;
-
-            // Globally force default contact number
-            bodyData.contact = '+918600968888';
-
             try {
+                // Use FormData to handle both file uploads and regular fields
+                const formData = new FormData(form);
+                
+                // Remove empty image field if editing (image is optional on edit)
+                if (currentMode === 'edit') {
+                    const imageFile = formData.get('image');
+                    if (!imageFile || imageFile.size === 0) {
+                        formData.delete('image');
+                    }
+                }
+
+                // Convert FormData to object for processing
+                const bodyData = Object.fromEntries(formData.entries());
+
+                // Convert comma-separated string inputs to arrays
+                if (bodyData.gallery && typeof bodyData.gallery === 'string') {
+                    bodyData.gallery = bodyData.gallery.split(',').map(s => s.trim()).filter(Boolean);
+                }
+                if (bodyData.amenities && typeof bodyData.amenities === 'string') {
+                    bodyData.amenities = bodyData.amenities.split(',').map(s => s.trim()).filter(Boolean);
+                }
+                if (bodyData.features && typeof bodyData.features === 'string') {
+                    bodyData.features = bodyData.features.split(',').map(s => s.trim()).filter(Boolean);
+                }
+
+                // Map flat initial room and review inputs to Array of objects
+                if (category === 'stays' && bodyData.initRoomName) {
+                    bodyData.rooms = [{
+                        name: bodyData.initRoomName,
+                        price: bodyData.initRoomPrice ? parseFloat(bodyData.initRoomPrice) : (parseFloat(bodyData.price) || 0),
+                        sleeps: 2,
+                        beds: "1 extra-large double bed",
+                        features: ["Free WiFi", "Air Conditioning"],
+                        availability: "Available"
+                    }];
+                }
+
+                if (category === 'restaurants' && (bodyData.initMenuName || bodyData.initMenuDesc)) {
+                    bodyData.menuHighlights = [{
+                        name: bodyData.initMenuName || 'Special Item',
+                        description: bodyData.initMenuDesc || 'A delicious treat.',
+                        image: bodyData.initMenuImg || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'
+                    }];
+                }
+
+                if (bodyData.initReviewName || bodyData.initReviewText) {
+                    bodyData.guestReviews = [{
+                        name: bodyData.initReviewName || 'Guest',
+                        country: 'Global',
+                        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                        title: 'Nice experience',
+                        text: bodyData.initReviewText || 'Enjoyed my time here.',
+                        rating: parseFloat(bodyData.rating) || 5,
+                        tags: ['Excellent', 'Highly Recommended']
+                    }];
+                }
+
+                // Cleanup temporary fields from payload
+                delete bodyData.initRoomName;
+                delete bodyData.initRoomPrice;
+                delete bodyData.initReviewName;
+                delete bodyData.initReviewText;
+                delete bodyData.initMenuName;
+                delete bodyData.initMenuDesc;
+                delete bodyData.initMenuImg;
+
+                // Globally force default contact number
+                bodyData.contact = '+918600968888';
+
                 let url = `/api/${category}`;
                 let method = 'POST';
 
@@ -1028,24 +1055,38 @@
                 }
 
                 const token = localStorage.getItem('token');
+                
+                // Use FormData for submission to handle file uploads
+                const submitFormData = new FormData();
+                for (const [key, value] of Object.entries(bodyData)) {
+                    if (Array.isArray(value)) {
+                        submitFormData.append(key, JSON.stringify(value));
+                    } else if (typeof value === 'object' && value !== null) {
+                        submitFormData.append(key, JSON.stringify(value));
+                    } else {
+                        submitFormData.append(key, value);
+                    }
+                }
+
+                // Add file if present
+                const imageInput = form.querySelector('[name="image"]');
+                if (imageInput && imageInput.files && imageInput.files[0]) {
+                    submitFormData.append('image', imageInput.files[0]);
+                }
+
                 const response = await fetch(url, {
                     method: method,
-                    headers: Object.assign(
-                        { 'Content-Type': 'application/json' },
-                        token ? { 'Authorization': `Bearer ${token}` } : {}
-                    ),
-                    body: JSON.stringify(bodyData)
+                    headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+                    body: submitFormData
                 });
 
                 if (response.ok) {
                     showToast(currentMode === 'edit' ? 'Listing updated successfully!' : 'Listing added successfully!');
                     if (currentMode === 'add') {
                         form.reset();
-                        // Reset file input preview
                         const preview = form.querySelector('.image-preview');
                         if (preview) preview.remove();
                     } else {
-                        // Optional: Redirect back to manage page after edit
                         setTimeout(() => {
                             window.location.href = 'admin-manage-listings.html';
                         }, 1500);
@@ -1116,7 +1157,6 @@
     </script>
 
     <script src="js/admin-profile.js"></script>
-<<<<<<< HEAD
     <script>
         // Logout function
         function logout() {
@@ -1285,8 +1325,6 @@
             }
         }
     </script>
-=======
->>>>>>> parent of 112dbb6 (one of the main update in php)
 </body>
 
 </html>

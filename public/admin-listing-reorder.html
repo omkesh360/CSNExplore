@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Manage Listings - CSNExplore Admin</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
+    <style>
+        .material-icons {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .tab-btn.active {
+            border-bottom: 2px solid #003580;
+            color: #003580;
+        }
+    </style>
+    <!-- Link to our pre-compiled local Tailwind CSS -->
+    <link href="css/tailwind.css" rel="stylesheet" />
+</head>
+
+<body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
+
+    <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
+        <!-- Sidebar -->
+        <aside id="admin-sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
+            <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 filter brightness-0 invert">
+                </a>
+            </div>
+            <div class="flex-1 overflow-y-auto px-4 py-6">
+                                                                                                <nav class="flex flex-col gap-1.5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-dashboard.html">
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        <span class="text-[13px]">Dashboard</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-homepage.html">
+                        <span class="material-symbols-outlined text-[20px]">home</span>
+                        <span class="text-[13px]">Homepage Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-add-listing.html">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        <span class="text-[13px]">Add Listing</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-manage-listings.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
+                        href="admin-listing-reorder.html">
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-cards-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-users.html">
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                        <span class="text-[13px]">Users</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-images.html">
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span>
+                        <span class="text-[13px]">Images Manager</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-blogs-generator.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                        <span class="text-[13px]">Blogs Generator</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-[13px]">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay"
+            class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Main Content -->
+        <div class="flex h-full flex-1 flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div>
+                        <h1 class="text-white font-black text-xl tracking-tight">Listing Order</h1>
+                        <p class="text-white/80 text-xs">Drag to reorder listings display</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="save-order-btn" onclick="saveNewOrder()"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-green-600 text-white text-[13px] font-bold rounded-xl hover:bg-green-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="material-symbols-outlined text-[18px]">save</span>
+                        <span class="hidden sm:inline">Save Order</span>
+                    </button>
+                    <a href="admin-manage-listings.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        <span class="hidden sm:inline">Back</span>
+                    </a>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <div class="max-w-6xl mx-auto">
+
+                    <!-- Tabs -->
+                    <div class="bg-white rounded-t-lg border-b border-gray-200 px-6 pt-4 mb-0">
+                        <div class="flex gap-6 overflow-x-auto pb-px" id="category-tabs">
+                            <button onclick="loadListings('stays', this)" data-category="stays"
+                                class="tab-btn active pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Stays</button>
+                            <button onclick="loadListings('cars', this)" data-category="cars"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Car
+                                Rentals</button>
+                            <button onclick="loadListings('bikes', this)" data-category="bikes"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Bike
+                                Rentals</button>
+                            <button onclick="loadListings('restaurants', this)" data-category="restaurants"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Restaurants</button>
+                            <button onclick="loadListings('attractions', this)" data-category="attractions"
+                                class="tab-btn pb-3 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors whitespace-nowrap">Attractions</button>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mt-6 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead
+                                    class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[11px] font-bold">
+                                    <tr>
+                                        <th class="px-6 py-4 w-10"></th>
+                                        <th class="px-6 py-4">Image</th>
+                                        <th class="px-6 py-4">Name</th>
+                                        <th class="px-6 py-4">Location</th>
+                                        <th class="px-6 py-4">Type/Cuisine</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listings-table-body" class="divide-y divide-gray-100">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="loading-state" class="hidden py-12 text-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                            <p class="text-gray-500">Loading listings...</p>
+                        </div>
+                        <div id="empty-state" class="hidden py-12 text-center">
+                            <span class="material-symbols-outlined text-4xl text-gray-300 mb-2">inbox</span>
+                            <p class="text-gray-500">No listings found in this category.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal"
+            class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 transform scale-100 transition-all">
+                <h3 class="text-lg font-bold text-gray-900 mb-2">Delete Listing?</h3>
+                <p class="text-gray-500 mb-6 text-sm">Are you sure you want to delete this item? This action cannot be
+                    undone.</p>
+                <div class="flex justify-end gap-3">
+                    <button onclick="closeDeleteModal()"
+                        class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors">Cancel</button>
+                    <button id="confirm-delete-btn"
+                        class="px-4 py-2 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition-colors shadow-sm">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let currentCategory = 'stays';
+            let sortable = null;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadListings('stays');
+                
+                // Initialize Sortable on the table body
+                const el = document.getElementById('listings-table-body');
+                sortable = Sortable.create(el, {
+                    animation: 150,
+                    handle: '.drag-handle',
+                    ghostClass: 'sortable-ghost',
+                    forceFallback: true,
+                    onEnd: () => {
+                        document.getElementById('save-order-btn').disabled = false;
+                    }
+                });
+            });
+
+            async function loadListings(category, clickedBtn) {
+                currentCategory = category;
+                document.getElementById('save-order-btn').disabled = true;
+
+                // Update tabs
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active', 'text-primary'));
+                if (clickedBtn) {
+                    clickedBtn.classList.add('active', 'text-primary');
+                } else {
+                    const btn = document.querySelector(`.tab-btn[data-category="${category}"]`);
+                    if (btn) btn.classList.add('active', 'text-primary');
+                }
+
+                const tbody = document.getElementById('listings-table-body');
+                const loading = document.getElementById('loading-state');
+                const empty = document.getElementById('empty-state');
+
+                tbody.innerHTML = '';
+                loading.classList.remove('hidden');
+                empty.classList.add('hidden');
+
+                try {
+                    const token = localStorage.getItem('token');
+                    const response = await fetch(`/api/${category}?admin=1`, {
+                        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                    });
+                    const items = await response.json();
+
+                    loading.classList.add('hidden');
+
+                    if (items.length === 0) {
+                        empty.classList.remove('hidden');
+                        return;
+                    }
+
+                    const _isActive = (item) => parseInt(item.is_active) !== 0;
+                    tbody.innerHTML = items.map(item => `
+                    <tr class="hover:bg-gray-50 transition-colors group ${_isActive(item) ? '' : 'bg-red-50'}" data-id="${item.id}">
+                        <td class="px-6 py-4">
+                            <span class="material-symbols-outlined text-slate-300 drag-handle cursor-grab hover:text-slate-500 select-none">drag_indicator</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <img loading="lazy" decoding="async" src="${item.image}" alt="${item.name}" class="w-10 h-10 rounded object-cover border ${_isActive(item) ? 'border-gray-200' : 'border-red-300'}" onerror="this.src='https://placehold.co/100?text=No+Img'">
+                        </td>
+                        <td class="px-6 py-4 font-medium ${_isActive(item) ? 'text-gray-900' : 'text-red-700'}">${item.name}</td>
+                        <td class="px-6 py-4 text-xs ${_isActive(item) ? 'text-gray-500' : 'text-red-600'}">${item.location}</td>
+                        <td class="px-6 py-4 ${_isActive(item) ? 'text-gray-500' : 'text-red-600'}">
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-[10px] font-bold border border-gray-200 uppercase">
+                                ${item.type || item.cuisine || 'N/A'}
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+
+                } catch (error) {
+                    console.error('Error loading listings:', error);
+                    loading.classList.add('hidden');
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-red-500">Failed to load data.</td></tr>`;
+                }
+            }
+
+            async function saveNewOrder() {
+                const btn = document.getElementById('save-order-btn');
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+                btn.disabled = true;
+
+                const tbody = document.getElementById('listings-table-body');
+                const ids = Array.from(tbody.querySelectorAll('tr')).map(tr => tr.dataset.id);
+
+                const token = localStorage.getItem('token');
+                try {
+                    const res = await fetch(`/api/${currentCategory}/reorder`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ order: ids })
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        showListingToast('✅ Order saved successfully!');
+                    } else {
+                        showListingToast('❌ ' + (result.error || 'Failed to save order'), 'error');
+                        btn.disabled = false;
+                    }
+                } catch (e) {
+                    showListingToast('❌ Network error', 'error');
+                    btn.disabled = false;
+                } finally {
+                    btn.innerHTML = originalContent;
+                }
+            }
+
+            function showListingToast(msg, type = 'success') {
+                let t = document.getElementById('listing-toast');
+                if (!t) {
+                    t = document.createElement('div');
+                    t.id = 'listing-toast';
+                    t.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;color:#fff;font-weight:700;font-size:13px;border-radius:0.75rem;padding:0.75rem 1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.2);transition:all 0.3s;transform:translateY(100px);opacity:0;';
+                    document.body.appendChild(t);
+                }
+                t.textContent = msg;
+                t.style.background = type === 'error' ? '#dc2626' : '#1e293b';
+                t.style.transform = 'translateY(0)';
+                t.style.opacity = '1';
+                setTimeout(() => { t.style.transform = 'translateY(100px)'; t.style.opacity = '0'; }, 3000);
+            }
+        </script>
+        <script>
+            // Mobile Sidebar Logic
+            const sidebar = document.getElementById('admin-sidebar');
+            const toggleBtn = document.getElementById('mobile-sidebar-toggle');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            function toggleSidebar() {
+                const isClosed = sidebar.classList.contains('-translate-x-full');
+                if (isClosed) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10); // Fade in
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300); // Wait for fade out
+                }
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleSidebar();
+                });
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', toggleSidebar);
+            }
+        </script>
+        <script src="js/admin-guard.js"></script>
+        <script src="js/admin-profile.js"></script>
+</body>
+
+</html>

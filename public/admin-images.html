@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
             <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         .item-card {
             background: #fff;
@@ -97,21 +98,30 @@
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span>
@@ -123,32 +133,20 @@
                         <span class="text-[13px]">Manage Listings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span class="text-[13px]">Bookings</span>
-                    </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
                         <span class="text-[13px]">Users</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span class="text-[13px]">Financial Reports</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-images.html">
@@ -160,6 +158,16 @@
                         href="admin-blogs-generator.html">
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
                     </a>
                 </nav>
             </div>
@@ -178,26 +186,29 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto bg-slate-50 w-full">
-            <!-- Header -->
+            <!-- Top Header -->
             <header
-                class="bg-white border-b border-slate-200 h-20 flex items-center justify-between px-6 sticky top-0 z-30 shadow-sm">
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
-                    <button class="md:hidden text-slate-500 hover:text-primary transition-colors"
-                        onclick="toggleSidebar()">
-                        <span class="material-symbols-outlined text-[24px]">menu</span>
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-[20px] font-black text-slate-800 tracking-tight leading-none">Images Manager
-                        </h1>
-                        <p class="text-[13px] font-medium text-slate-500 mt-1">View, manage, and replace all uploaded
-                            media assets.</p>
+                        <h1 class="text-white font-black text-xl tracking-tight">Images Manager</h1>
+                        <p class="text-white/80 text-xs">Upload and manage website images</p>
                     </div>
                 </div>
-                <div>
-                    <label class="upload-btn" title="Upload entirely new image">
-                        <span class="material-symbols-outlined text-[18px]">cloud_upload</span> Upload New
+                <div class="flex items-center gap-3">
+                    <label class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm cursor-pointer">
+                        <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        <span class="hidden sm:inline">Upload New</span>
                         <input type="file" accept="image/*" style="display:none" onchange="uploadImage(this)">
                     </label>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
                 </div>
             </header>
 
@@ -237,7 +248,8 @@
         <span id="toast-msg">Action successful!</span>
     </div>
 
-    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-guard.js"></script>
+    <script src="js/admin-profile.js"></script>
     <script>
         let allImages = [];
 

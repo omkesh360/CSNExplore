@@ -51,6 +51,15 @@ select {
     /* gray-300 to ensure color is consistent if tailwind class misses it */
 }
 
+/* Search inputs inside search containers should NOT inherit the global border/bg override */
+.search-field-input {
+    border-width: 0 !important;
+    background-color: transparent !important;
+    min-height: unset !important;
+    padding: 0 !important;
+    border-color: transparent !important;
+}
+
 select {
     padding-right: 2.5rem;
     /* Ensure space for the default dropdown arrow */
@@ -517,25 +526,26 @@ button {
 }
 
 .listing-hero-search {
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: -1.75rem;
+    position: relative;
+    left: 0;
+    right: 0;
     z-index: 30;
     max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: -28px auto 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 @media (min-width: 768px) {
     .listing-hero-search {
-        left: 1.5rem;
-        right: 1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        margin-top: -32px;
     }
 }
 
 .listing-main {
-    padding-top: 4rem !important;
+    padding-top: 1.5rem !important;
 }
 
 /* ============================================
@@ -618,7 +628,6 @@ button {
     filter: grayscale(100%);
     opacity: 0.8;
 }
-<<<<<<< HEAD
 
 /* ============================================
    SCROLL ANIMATIONS (INTERSECTION OBSERVER)
@@ -632,5 +641,387 @@ button {
 [data-animate="fade-up"].is-animated {
     transform: translateY(0);
 }
-=======
->>>>>>> parent of 112dbb6 (one of the main update in php)
+
+/* ============================================
+   FLATPICKR CALENDAR FIXES
+   ============================================ */
+
+/* Calendar popup */
+.flatpickr-calendar {
+    box-shadow: 0 16px 48px rgba(0,53,128,0.18) !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 16px !important;
+    overflow: visible !important;
+    font-family: inherit !important;
+    z-index: 9999 !important;
+}
+
+/* Header bar — brand blue background */
+.flatpickr-months {
+    background: #003580 !important;
+    border-radius: 16px 16px 0 0 !important;
+    height: 44px !important;
+    padding: 0 4px !important;
+    align-items: center !important;
+}
+
+.flatpickr-months .flatpickr-month {
+    height: 44px !important;
+    line-height: 44px !important;
+}
+
+/* Month+year label container — keep position:absolute from Flatpickr default
+   but widen it to prevent month select from overflowing onto year */
+.flatpickr-current-month {
+    padding-top: 0 !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    width: 80% !important;
+    left: 10% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+}
+
+/* Month dropdown select */
+.flatpickr-monthDropdown-months {
+    background: transparent !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    /* enough right-padding for native dropdown arrow */
+    padding-right: 18px !important;
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+}
+
+/* Year number input */
+.flatpickr-current-month input.cur-year {
+    background: transparent !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 56px !important;
+}
+
+/* Year up/down arrows */
+.numInputWrapper span.arrowUp::after  { border-bottom-color: rgba(255,255,255,0.7) !important; }
+.numInputWrapper span.arrowDown::after { border-top-color: rgba(255,255,255,0.7) !important; }
+
+/* Prev/Next month arrow buttons */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    color: rgba(255,255,255,0.85) !important;
+    fill: rgba(255,255,255,0.85) !important;
+    padding: 10px 12px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    top: 0 !important;
+}
+.flatpickr-prev-month:hover,
+.flatpickr-next-month:hover {
+    color: #fff !important;
+    fill: #fff !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 8px !important;
+}
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: inherit !important;
+}
+
+/* Weekday label row */
+.flatpickr-weekdays { background: #f1f5f9 !important; }
+.flatpickr-weekday  { color: #64748b !important; font-weight: 700 !important; font-size: 11px !important; }
+
+/* Selected / in-range days */
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #003580 !important;
+    border-color: #003580 !important;
+    color: #fff !important;
+}
+.flatpickr-day.inRange {
+    background: #dbeafe !important;
+    border-color: #dbeafe !important;
+    color: #1e3a5f !important;
+    box-shadow: none !important;
+}
+.flatpickr-day.today            { border-color: #003580 !important; font-weight: 700 !important; }
+.flatpickr-day.today:hover      { background: #003580 !important; color: #fff !important; }
+.flatpickr-day:hover            { background: #eff6ff !important; border-color: #eff6ff !important; }
+
+/* ============================================
+   MODERN SEARCH BOX
+   ============================================ */
+.search-container {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+}
+
+.search-inner {
+    background: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,53,128,0.12);
+}
+
+@media (min-width: 768px) {
+    .search-inner {
+        flex-direction: row;
+        align-items: stretch;
+        overflow: hidden;
+    }
+}
+
+/* Each field in the search bar */
+.search-field {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 56px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+    transition: background 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+
+.search-field:focus-within {
+    background: #f8faff;
+}
+
+@media (min-width: 768px) {
+    .search-field {
+        border-bottom: none;
+        border-right: 1px solid #f0f0f0;
+        min-height: 60px;
+    }
+    .search-field:last-of-type,
+    .search-field:has(+ .search-btn-modern),
+    .search-date-field:has(+ .search-field),
+    .search-date-field:has(+ .search-btn-modern) {
+        border-right: none;
+    }
+}
+
+/* Icon zone - fixed width column on the left */
+.search-field-icon {
+    flex-shrink: 0;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #003580;
+    opacity: 0.6;
+    font-size: 20px !important;
+    pointer-events: none;
+}
+
+/* Label + input stacked vertically */
+.search-field-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 12px 8px 0;
+    min-width: 0;
+}
+
+.search-field-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a0a8b8;
+    line-height: 1;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.search-field-input {
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: unset !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+}
+
+.search-field-input::placeholder {
+    color: #b8c0d0;
+    font-weight: 500;
+}
+
+/* Date range field - the calendar icon + two sub-boxes */
+.search-date-field {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 56px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+    transition: background 0.2s;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .search-date-field {
+        border-bottom: none;
+        border-right: 1px solid #f0f0f0;
+        min-height: 60px;
+    }
+    .search-date-field:last-of-type,
+    .search-date-field:has(+ .search-btn-modern) {
+        border-right: none;
+    }
+}
+
+.search-date-field:focus-within {
+    background: #f8faff;
+}
+
+/* Icon inside the date field */
+.search-date-icon {
+    flex-shrink: 0;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #003580;
+    opacity: 0.6;
+    font-size: 20px !important;
+    pointer-events: none;
+}
+
+/* The two date sub-boxes */
+.search-date-boxes {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    min-width: 0;
+}
+
+.search-date-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 12px 8px 0;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.search-date-box + .search-date-box {
+    border-left: 1px solid #f0f0f0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.search-date-box-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a0a8b8;
+    line-height: 1;
+    margin-bottom: 3px;
+    white-space: nowrap;
+}
+
+.search-date-box-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-date-box-value.placeholder {
+    color: #b8c0d0;
+    font-weight: 500;
+}
+
+/* Invisible flatpickr input overlay */
+.search-date-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Search button */
+.search-btn-modern {
+    background: linear-gradient(135deg, #003580 0%, #0051c3 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    padding: 0 2.5rem;
+    height: 56px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    border-radius: 0 0 16px 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .search-btn-modern {
+        width: auto;
+        min-width: 140px;
+        height: 60px;
+        border-radius: 0 16px 16px 0;
+        padding: 0 2.5rem;
+    }
+}
+
+.search-btn-modern:hover {
+    background: linear-gradient(135deg, #002357 0%, #003580 100%);
+    box-shadow: 0 12px 32px rgba(0,53,128,0.4);
+    transform: translateY(-2px);
+}
+
+.search-btn-modern:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0,53,128,0.2);
+}

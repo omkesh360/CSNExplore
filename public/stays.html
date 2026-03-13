@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>CSNExplore - Stays in Chhatrapati Sambhajinagar</title>
+        <meta name="description" content="Find and book the best hotels, guesthouses and heritage stays in Chhatrapati Sambhajinagar. Compare prices, ratings and amenities with CSNExplore." />
+    <meta name="keywords" content="hotels Aurangabad, stays Chhatrapati Sambhajinagar, guesthouses CSN, book hotel Aurangabad, CSNExplore stays" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="CSNExplore" />
+    <link rel="canonical" href="https://csnexplore.com/stays.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hotels & Stays in Chhatrapati Sambhajinagar | CSNExplore" />
+    <meta property="og:description" content="Find and book the best hotels, guesthouses and heritage stays in Chhatrapati Sambhajinagar. Compare prices, ratings and amenities with CSNExplore." />
+    <meta property="og:url" content="https://csnexplore.com/stays.html" />
+    <meta property="og:image" content="https://csnexplore.com/images/og-image.jpg" />
+    <meta property="og:site_name" content="CSNExplore" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hotels & Stays in Chhatrapati Sambhajinagar | CSNExplore" />
+    <meta name="twitter:description" content="Find and book the best hotels, guesthouses and heritage stays in Chhatrapati Sambhajinagar. Compare prices, ratings and amenities with CSNExplore." />
+    <meta name="twitter:image" content="https://csnexplore.com/images/og-image.jpg" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hotels & Stays in Chhatrapati Sambhajinagar | CSNExplore</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap"
@@ -233,86 +250,79 @@
                 Maharashtra's historic capital.</p>
         </div>
         <div class="listing-hero-search">
-            <div class="bg-white/10 backdrop-blur-md p-1.5 rounded-2xl shadow-2xl border border-white/20">
-                <div
-                    class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
-
-                    <div
-                        class="flex-[5] relative group cursor-pointer bg-white md:bg-transparent rounded-t-xl md:rounded-l-xl md:rounded-tr-none border-b border-gray-100 md:border-b-0">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-primary/60 text-[26px]">search</span>
+            <div class="search-container">
+                <div class="search-inner">
+                    <!-- Location -->
+                    <div class="search-field flex-[2]">
+                        <span class="search-field-icon material-symbols-outlined">search</span>
+                        <div class="search-field-body">
+                            <span class="search-field-label">Location / Name</span>
+                            <input id="search-location" class="search-field-input"
+                                placeholder="Search by location, name..." type="text" />
                         </div>
-                        <input id="search-location"
-                            class="w-full pl-16 pr-4 h-[64px] rounded-t-xl md:rounded-l-xl border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-semibold placeholder:text-text-muted bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-lg outline-none"
-                            placeholder="Search by location, name, or service..." type="text" />
                     </div>
-                    <div class="flex-[1.5] relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent border-b border-gray-100 md:border-b-0"
-                        id="traveler-selector-container">
-                        <div class="flex items-center h-[64px] px-4 gap-3 cursor-pointer hover:bg-gray-50/50 md:hover:bg-gray-100/50 transition-all">
-                            <div class="flex flex-col justify-center min-w-0 flex-1">
-                                <span class="text-[10px] text-gray-600 font-bold uppercase tracking-wider leading-none mb-1">Passengers</span>
-                                <div id="search-travelers-display" class="text-sm font-bold text-gray-900 truncate">2 Adults · 1 Room</div>
-                            </div>
-                            <span class="material-symbols-outlined text-text-muted text-[20px] group-hover:text-primary transition-colors flex-shrink-0">expand_more</span>
-                        </div>
 
-                        <!-- Modern Travelers Popover -->
+                    <!-- Dates -->
+                    <div class="search-date-field flex-[2]" id="hp-date-range-container">
+                        <span class="search-date-icon material-symbols-outlined">calendar_month</span>
+                        <div class="search-date-boxes">
+                            <div class="search-date-box" id="hp-checkin-box">
+                                <span class="search-date-box-label">Check in</span>
+                                <div class="search-date-box-value placeholder checkin-display">Add date</div>
+                            </div>
+                            <div class="search-date-box" id="hp-checkout-box">
+                                <span class="search-date-box-label">Check out</span>
+                                <div class="search-date-box-value placeholder checkout-display">Add date</div>
+                            </div>
+                        </div>
+                        <input type="text" id="search-date" class="search-date-overlay" />
+                    </div>
+
+                    <!-- Travelers -->
+                    <div class="search-field flex-[1.5]" id="traveler-selector-container" style="position:relative">
+                        <span class="search-field-icon material-symbols-outlined">group</span>
+                        <div class="search-field-body" style="cursor:pointer">
+                            <span class="search-field-label">Travelers</span>
+                            <div id="search-travelers-display" class="search-field-input" style="cursor:pointer;display:flex;align-items:center">
+                                2 Adults · 1 Room
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" style="color:#9ca3af;font-size:20px;align-self:center;margin-right:10px;flex-shrink:0">expand_more</span>
+
+                        <!-- Travelers Popover -->
                         <div id="traveler-popover"
-                            class="absolute top-[110%] left-0 md:right-0 w-[280px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 z-50 hidden opacity-0 scale-95 -translate-y-2 transition-all duration-200 cursor-default">
+                            class="absolute top-[calc(100%+8px)] right-0 w-[280px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 z-50 hidden cursor-default"
+                            style="opacity:0;transform:scale(0.96) translateY(-4px);transition:all 0.2s ease">
                             <div class="flex flex-col gap-4">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Adults</span>
-                                        <span class="text-xs text-gray-500">Age 13+</span>
-                                    </div>
+                                    <div><div class="text-sm font-bold text-gray-900">Adults</div><div class="text-[11px] text-gray-400">Age 13+</div></div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('adults', -1)" id="btn-adults-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-adults">2</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('adults', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('adults', -1)" id="btn-adults-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-adults">2</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('adults', 1)">+</button>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Children</span>
-                                        <span class="text-xs text-gray-500">Age 0-12</span>
-                                    </div>
+                                    <div><div class="text-sm font-bold text-gray-900">Children</div><div class="text-[11px] text-gray-400">Age 0-12</div></div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('children', -1)"
-                                            id="btn-children-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-children">0</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('children', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('children', -1)" id="btn-children-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-children">0</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('children', 1)">+</button>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Rooms</span>
-                                    </div>
+                                    <div class="text-sm font-bold text-gray-900">Rooms</div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('rooms', -1)" id="btn-rooms-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-rooms">1</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('rooms', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('rooms', -1)" id="btn-rooms-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-rooms">1</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('rooms', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button
-                        class="bg-primary hover:bg-primary-hover text-white font-bold text-lg h-[56px] px-10 rounded-lg transition-all flex items-center justify-center shadow-lg hover:shadow-primary/30 active:scale-95">
+                    <button class="search-btn-modern">
+                        <span class="material-symbols-outlined text-[20px]">search</span>
                         SEARCH
                     </button>
                 </div>
@@ -397,6 +407,7 @@
             }
         });
     </script>
+<script src="js/marquee.js"></script>
 </body>
 
 </html>

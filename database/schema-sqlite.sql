@@ -204,6 +204,16 @@ CREATE TABLE IF NOT EXISTS homepage_content (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- About & Contact Content Table
+CREATE TABLE IF NOT EXISTS about_contact (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    section VARCHAR(100) NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    is_active INTEGER DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Indexes for Performance
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_stays_location ON stays(location);

@@ -241,7 +241,7 @@
                     <li><span class="mx-1 text-gray-400">/</span></li>
                     <li><a class="hover:text-primary" href="#">Bikes</a></li>
                     <li><span class="mx-1 text-gray-400">/</span></li>
-                    <li class="text-primary font-semibold">Specialized Turbo Levo Comp</li>
+                    <li class="text-primary font-semibold" id="item-breadcrumb-title">Loading...</li>
                 </ol>
             </nav>
         </div>
@@ -260,12 +260,12 @@
                                 • Expert</span>
                             <div class="flex items-center text-accent text-sm">
                                 <span class="material-symbols-outlined text-base">star</span>
-                                <span class="font-bold ml-1 text-text-main" id="item-rating">4.9</span>
-                                <span class="text-gray-400 text-xs ml-1" id="item-reviews">(128 reviews)</span>
+                                <span class="font-bold ml-1 text-text-main" id="item-rating">0</span>
+                                <span class="text-gray-400 text-xs ml-1" id="item-reviews">(0 reviews)</span>
                             </div>
                         </div>
-                        <h1 class="text-2xl font-bold text-text-main" id="item-title">Specialized Turbo Levo Comp</h1>
-                        <p class="text-text-muted text-sm" id="item-location">San Francisco, Fisherman's Wharf Hub</p>
+                        <h1 class="text-2xl font-bold text-text-main" id="item-title">Loading...</h1>
+                        <p class="text-text-muted text-sm" id="item-location">Loading location...</p>
                     </div>
                 </div>
                 <!-- Gallery -->
@@ -316,71 +316,24 @@
                         <span class="material-symbols-outlined text-primary">tune</span> Technical Specifications
                     </h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <span class="text-xs text-text-muted uppercase font-semibold">Frame</span>
-                            <span class="font-bold text-text-main">Carbon, Size L</span>
-                        </div>
-                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <span class="text-xs text-text-muted uppercase font-semibold">Battery</span>
-                            <span class="font-bold text-text-main">700Wh (40mi)</span>
-                        </div>
-                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <span class="text-xs text-text-muted uppercase font-semibold">Weight</span>
-                            <span class="font-bold text-text-main">22.5 kg</span>
-                        </div>
-                        <div class="flex flex-col gap-1 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <span class="text-xs text-text-muted uppercase font-semibold">Gears</span>
-                            <span class="font-bold text-text-main">12-speed</span>
-                        </div>
+                        <!-- Specifications will be loaded dynamically if available in database -->
                     </div>
                     <div class="prose prose-slate max-w-none text-sm text-text-muted">
-                        <p id="item-description">Experience the ultimate trail ride with the Specialized Turbo Levo
-                            Comp. This electric
-                            mountain bike features a lightweight carbon frame and a powerful motor that quadruples your
-                            pedaling power. Perfect for tackling the steep hills of San Francisco or the rough trails of
-                            Marin Headlands.</p>
+                        <p id="item-description">Loading description...</p>
                         <ul class="list-disc pl-5 space-y-1 mt-2" id="item-amenities">
-                            <li>Includes high-performance helmet and heavy-duty U-lock.</li>
-                            <li>Integrated display for battery life and speed tracking.</li>
-                            <li>Hydraulic disc brakes for superior stopping power in all weather.</li>
+                            <!-- Features will be loaded dynamically from database -->
                         </ul>
                     </div>
                 </div>
-                <!-- Terms & Insurance Accordion -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">verified_user</span> Terms &amp;
-                            Coverage
-                        </h3>
-                        <div class="space-y-3">
-                            <!-- Accordion Item 1 -->
-                            <details class="group bg-gray-50 rounded-lg border border-gray-200">
-                                <summary
-                                    class="flex items-center justify-between p-4 cursor-pointer font-medium text-text-main">
-                                    <span>Cancellation Policy</span>
-                                    <span
-                                        class="material-symbols-outlined transition-transform group-open:rotate-180 text-gray-400">expand_more</span>
-                                </summary>
-                                <div class="px-4 pb-4 text-sm text-text-muted border-t border-gray-200 pt-3">
-                                    Free cancellation up to 24 hours before the rental start time. Cancellations made
-                                    within 24 hours will incur a 50% fee.
-                                </div>
-                            </details>
-                            <!-- Accordion Item 2 -->
-                            <details class="group bg-gray-50 rounded-lg border border-gray-200">
-                                <summary
-                                    class="flex items-center justify-between p-4 cursor-pointer font-medium text-text-main">
-                                    <span>Damage Protection</span>
-                                    <span
-                                        class="material-symbols-outlined transition-transform group-open:rotate-180 text-gray-400">expand_more</span>
-                                </summary>
-                                <div class="px-4 pb-4 text-sm text-text-muted border-t border-gray-200 pt-3">
-                                    Basic damage protection is included, covering minor scratches. Structural damage or
-                                    theft requires the optional premium insurance.
-                                </div>
-                            </details>
-                        </div>
+                <!-- Features -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-bold text-text-main mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">verified_user</span> Features & Included
+                    </h3>
+                    <div class="prose prose-slate max-w-none text-sm text-text-muted">
+                        <ul class="list-disc pl-5 space-y-1 mt-2" id="item-amenities">
+                            <!-- Features will be loaded dynamically from database -->
+                        </ul>
                     </div>
                 </div>
                 <!-- Reviews -->
@@ -416,14 +369,14 @@
                                 • Expert</span>
                             <div class="flex items-center text-accent text-sm">
                                 <span class="material-symbols-outlined text-base">star</span>
-                                <span class="font-bold ml-1 text-text-main">4.9</span>
-                                <span class="text-gray-400 text-xs ml-1">(128)</span>
+                                <span class="font-bold ml-1 text-text-main" id="item-rating-desktop">0</span>
+                                <span class="text-gray-400 text-xs ml-1" id="item-reviews-desktop">(0)</span>
                             </div>
                         </div>
-                        <h1 class="text-3xl font-bold text-text-main leading-tight">Specialized Turbo Levo Comp</h1>
+                        <h1 class="text-3xl font-bold text-text-main leading-tight" id="item-title-desktop">Loading...</h1>
                         <div class="flex items-center mt-2 text-text-muted text-sm">
                             <span class="material-symbols-outlined text-lg mr-1 text-primary">location_on</span>
-                            Fisherman's Wharf Hub, SF
+                            <span id="item-location-desktop">Loading location...</span>
                         </div>
                     </div>
                     <!-- Booking Widget -->
@@ -447,92 +400,6 @@
 
                 </div>
             </div>
-        </div>
-        <!-- Similar Bikes Section -->
-        <div class="mt-16 border-t border-gray-200 pt-12">
-            <h3 class="text-xl font-bold text-text-main mb-6">Similar Bikes Available</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div
-                    class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
-                    <div class="relative aspect-[4/3] overflow-hidden">
-                        <img loading="lazy" decoding="async" alt="City cruiser bike"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE6VY240ZqkKLJ6JpsPqRPnpUdOa0f-oa3SLWUjFS0b2BntoO_fKMJdkLovwgkmas5bZ9EcPGmvBb3PHKhes5GuRRQ-KAT916BjBRYFXNTFTfIRl20coZkieAEuKI8KDDVsreUweVwwZBqzUjeiP0LXNovvi1fmp8P-pn6qLzGLTJH3JsATXVIl7MeKX932f851VrQAHoiW-lyXNfZsPUphi8ME9fizbmbioq6fieSvPdbLekqTRb4ay3asqtm9ounXQAE2IwJBTTb" />
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="text-xs font-bold text-primary uppercase mb-1">City Cruiser</div>
-                    <h4 class="font-bold text-text-main truncate">Giant Escape 3</h4>
-                    <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
-                        <span class="flex items-center gap-1"><span
-                                class="material-symbols-outlined text-[14px]">bolt</span> Manual</span>
-                        <span class="flex items-center gap-1"><span
-                                class="material-symbols-outlined text-[14px]">scale</span> 14kg</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div
-                class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
-                <div class="relative aspect-[4/3] overflow-hidden">
-                    <img loading="lazy" decoding="async" alt="Road bike on pavement"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOhHUYV3m4LgdxCbVSv_tqjEV_GR3uzYvZSewVaJOhQTX3rQmZC415N-8T5rRykFbea2HeH-uBx-DT02FFMagRLbDUNac5YXl19mmIOMDojnBn3MyR2QYW8jAvJ5zb2Fwem7P0nlR2WTAHADtn9i7mQ9lUq_-z9ivtMV_VZZhdPbi16P0Dic0Qga1GwKiCvwaV75ZffxBpyDBD34zP1GBOM3_K73EfxrG5ExrQH3429JQ9hSE_EuiTrfpSprpM5R6uEElPEXklCbnW" />
-                </div>
-            </div>
-            <div class="p-4">
-                <div class="text-xs font-bold text-primary uppercase mb-1">Road Performance</div>
-                <h4 class="font-bold text-text-main truncate">Trek Domane AL 2</h4>
-                <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
-                    <span class="flex items-center gap-1"><span
-                            class="material-symbols-outlined text-[14px]">bolt</span> Manual</span>
-                    <span class="flex items-center gap-1"><span
-                            class="material-symbols-outlined text-[14px]">scale</span> 9.5kg</span>
-                </div>
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div
-            class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
-            <div class="relative aspect-[4/3] overflow-hidden">
-                <img loading="lazy" decoding="async" alt="Electric cargo bike"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXTtVJDOnIGlpvyzWMOSuh10Kr_kt2lyYYp6fPc2rcb8oXd19hQLA5jl8xEYyooiOLScEuAlhrItb4uvcQkuZB9CkM8DZ8WbuxBou3tc8G8u5a9nz2uaZB9TRnrpJid4w9gx8oYFpxkSKO0UhyHtfgNG9hyxrTTRN8GFxFoEC5diTO09QT0pv2DiA1m3yE6r75kIqSsllPR49fvJ5av6UMlEL5RHd9nYlUzzNpDv3Bjk8DSTHxZOG3_q42bnN9Hr27OJJzHe_eBCwU" />
-            </div>
-        </div>
-        <div class="p-4">
-            <div class="text-xs font-bold text-primary uppercase mb-1">Cargo Electric</div>
-            <h4 class="font-bold text-text-main truncate">RadWagon 4</h4>
-            <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span>
-                    Electric</span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">scale</span>
-                    35kg</span>
-            </div>
-        </div>
-        </div>
-        <!-- Card 4 -->
-        <div
-            class="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all">
-            <div class="relative aspect-[4/3] overflow-hidden">
-                <img loading="lazy" decoding="async" alt="Kids bike"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYy6pU_XtCgbSpz-LRQtkcIjAWCtDY_1ytxtfs7lE7jRRdEgeE4V5HOnRwimKAtncPLS4EFyL6Y0jR54D-zmIFf2NSl629vTc961qfdP-X0G_TIwl_kjYHelXd24EQ1lMnsnmM7bJUOCFluuTmZuBXKe-4D81W3LYCYbI_ExbfYcTLDjZAvbNcUyY3u94ovXT3vrkTFSLhZdaBXvRJolF_Tb4Rf_ah_hVmkephNqvN5n7FRB1tjUL5eyOXYVVXDGa1bUhkv1SNwcKk" />
-            </div>
-        </div>
-        <div class="p-4">
-            <div class="text-xs font-bold text-primary uppercase mb-1">Kids</div>
-            <h4 class="font-bold text-text-main truncate">Specialized Riprock</h4>
-            <div class="flex items-center gap-2 mt-2 text-xs text-text-muted">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span>
-                    Manual</span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">scale</span>
-                    11kg</span>
-            </div>
-        </div>
-        </div>
-        </div>
         </div>
     </main>
 

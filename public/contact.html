@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Contact Us | CSNExplore</title>
+        <meta name="description" content="Contact CSNExplore for queries about hotels, bike/car rentals, restaurants or attractions in Chhatrapati Sambhajinagar." />
+    <meta name="keywords" content="contact CSNExplore, help Aurangabad travel, support CSN explore" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="CSNExplore" />
+    <link rel="canonical" href="https://csnexplore.com/contact.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact CSNExplore | Get in Touch" />
+    <meta property="og:description" content="Contact CSNExplore for queries about hotels, bike/car rentals, restaurants or attractions in Chhatrapati Sambhajinagar." />
+    <meta property="og:url" content="https://csnexplore.com/contact.html" />
+    <meta property="og:image" content="https://csnexplore.com/images/og-image.jpg" />
+    <meta property="og:site_name" content="CSNExplore" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact CSNExplore | Get in Touch" />
+    <meta name="twitter:description" content="Contact CSNExplore for queries about hotels, bike/car rentals, restaurants or attractions in Chhatrapati Sambhajinagar." />
+    <meta name="twitter:image" content="https://csnexplore.com/images/og-image.jpg" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact CSNExplore | Get in Touch</title>
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/main.css" as="style" />
@@ -64,11 +81,8 @@
         </div>
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
-                <!-- Logo Left Side -->
-                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
-                        class="h-8 md:h-[42px]">
-                </a>
+                <!-- Logo Left Side - REMOVED FOR ABOUT/CONTACT PAGES -->
+                <div class="flex-1"></div>
 
                 <!-- Navigation and Auth Right Side -->
                 <div class="flex items-center gap-4 overflow-hidden">
@@ -212,8 +226,8 @@
                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcAaOS-xIzJz3EKuphw4-mtxGsdAnfzQ9FxCoBtqOd8qRQTQlo24-HPxHxko_mEBiPoVYQmXbhsFWeyKr3N7wsa5bfiyx_rhE1NC6QAIalaMl65ZrbLmFTpvdcVPqzln1_MPFslb4LPWyMG2xkxxBfFUm1ddwFSAVgBlGsMwoj6plH2TZyqc3V6Oj8TDViFbDKq2Oc1Xq5Ntj0BQOI-JD2fhAFENDyFN-7VXMW3XrcvHYGu87v05ii-rZ5-T_U6YWiOO5s-fjRDszl')">
             </div>
             <div class="relative z-10 text-center px-4">
-                <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Contact Us</h1>
-                <p class="text-lg text-slate-100 max-w-2xl mx-auto">We're here to help you with your next adventure.
+                <h1 id="contact-hero-title" class="text-4xl md:text-5xl font-black text-white mb-4">Contact Us</h1>
+                <p id="contact-hero-subtitle" class="text-lg text-slate-100 max-w-2xl mx-auto">We're here to help you with your next adventure.
                     Reach out to us anytime.</p>
             </div>
         </div>
@@ -270,7 +284,7 @@
                                 <span class="material-symbols-outlined text-primary">location_on</span>
                                 Visit Us
                             </h3>
-                            <p class="text-slate-600 dark:text-slate-400 pl-8">Behind State Bank Of India, plot no. 273
+                            <p id="contact-address" class="text-slate-600 dark:text-slate-400 pl-8">Behind State Bank Of India, plot no. 273
                                 Samarth Nagar, Central Bus Stand, Chhatrapati Sambhajinagar, Maharashtra 431001</p>
                         </div>
                         <div>
@@ -278,8 +292,7 @@
                                 <span class="material-symbols-outlined text-primary">call</span>
                                 Call Us
                             </h3>
-                            <p class="text-slate-600 dark:text-slate-400 pl-8">+91 86009 68888<br />Mon-Fri, 9am - 6pm
-                                EST</p>
+                            <p class="text-slate-600 dark:text-slate-400 pl-8"><span id="contact-phone">+91 86009 68888</span><br /><span id="contact-hours">Mon-Fri, 9am - 6pm EST</span></p>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
@@ -287,7 +300,7 @@
                                 Email Us
                             </h3>
                             <p class="text-slate-600 dark:text-slate-400 pl-8">
-                                support@travelhub.com<br />info@travelhub.com</p>
+                                <span id="contact-email1">support@travelhub.com</span><br /><span id="contact-email2">info@travelhub.com</span></p>
                         </div>
                     </div>
 
@@ -300,28 +313,8 @@
                 <h2 class="text-3xl font-bold mb-4">Help Center &amp; FAQs</h2>
                 <p class="text-slate-600 dark:text-slate-400">Quick answers to frequently asked questions.</p>
             </div>
-            <div class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-                    <h4 class="font-bold text-lg mb-2">How do I change my booking?</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">You can manage your reservations through the
-                        'Bookings' section in your account profile or contact our 24/7 support line.</p>
-                </div>
-                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-                    <h4 class="font-bold text-lg mb-2">What is your refund policy?</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Refund eligibility depends on the specific
-                        destination and provider. Generally, cancellations made 48 hours prior are eligible for partial
-                        refunds.</p>
-                </div>
-                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-                    <h4 class="font-bold text-lg mb-2">Is travel insurance included?</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Standard bookings do not include insurance,
-                        but we offer optional comprehensive coverage packages during the checkout process.</p>
-                </div>
-                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-                    <h4 class="font-bold text-lg mb-2">Do I need a visa for my trip?</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Visa requirements vary by nationality and
-                        destination. We provide a 'Visa Info' link on each destination page for your convenience.</p>
-                </div>
+            <div id="contact-faq-container" class="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- FAQs inserted here via JS -->
             </div>
             <div class="text-center mt-12">
                 <a class="text-primary font-bold inline-flex items-center gap-2 hover:underline" href="#">
@@ -540,6 +533,40 @@
     <script src="js/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="js/search-custom.js"></script>
+    <script src="js/marquee.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/about-contact?section=contact');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && Object.keys(data).length > 0) {
+                        if (data.hero) {
+                            if (data.hero.title) document.getElementById('contact-hero-title').textContent = data.hero.title;
+                            if (data.hero.subtitle) document.getElementById('contact-hero-subtitle').textContent = data.hero.subtitle;
+                        }
+                        if (data.phone) document.getElementById('contact-phone').textContent = data.phone;
+                        if (data.hours) document.getElementById('contact-hours').textContent = data.hours;
+                        if (data.email1) document.getElementById('contact-email1').textContent = data.email1;
+                        if (data.email2) document.getElementById('contact-email2').textContent = data.email2;
+                        if (data.address) document.getElementById('contact-address').textContent = data.address;
+                        
+                        if (data.faq && data.faq.length > 0) {
+                            const container = document.getElementById('contact-faq-container');
+                            container.innerHTML = data.faq.map(f => `
+                                <div class="p-6 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                                    <h4 class="font-bold text-lg mb-2">${f.question || ''}</h4>
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm">${f.answer || ''}</p>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load contact data:', error);
+            }
+        });
+    </script>
 </body>
 
 </html>

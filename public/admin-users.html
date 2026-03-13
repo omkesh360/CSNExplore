@@ -14,6 +14,7 @@
         rel="stylesheet" />
     
         <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         .material-icons {
             font-family: 'Material Symbols Outlined';
@@ -47,21 +48,30 @@
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-3 py-4">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span>
@@ -73,33 +83,21 @@
                         <span class="text-[13px]">Manage Listings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span class="text-[13px]">Bookings</span>
-                    </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-users.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
                         <span class="material-symbols-outlined text-[20px]">group</span>
                         <span class="text-[13px]">Users</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span class="text-[13px]">Financial Reports</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-images.html">
@@ -111,22 +109,24 @@
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
                     </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
                 </nav>
             </div>
             <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
                 <button id="admin-logout-btn"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left mb-2">
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
                     <span class="material-symbols-outlined text-[20px]">logout</span>
                     <span class="text-[13px]">Logout</span>
                 </button>
-                <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm"
-                        id="admin-avatar">A</div>
-                    <div class="flex flex-col flex-1">
-                        <span class="text-[13px] font-bold text-slate-900" id="admin-name">Admin</span>
-                        <span class="text-[11px] font-medium text-slate-500">Super Admin</span>
-                    </div>
-                </div>
             </div>
         </aside>
 
@@ -134,25 +134,30 @@
         <div id="sidebar-overlay"
             class="fixed inset-0 bg-black/50 z-40 hidden md:hidden backdrop-blur-sm transition-opacity opacity-0"></div>
 
-        <div class="flex h-full flex-1 flex-col overflow-hidden bg-gray-50">
+        <div class="flex h-full flex-1 flex-col overflow-hidden">
             <!-- Top Header -->
             <header
-                class="flex h-16 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30">
+                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
-                    <button id="mobile-sidebar-toggle" class="md:hidden text-white/80 hover:text-white">
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-xl font-bold text-white">Users</h1>
-                        <p class="text-xs text-blue-100">Manage all registered users</p>
+                        <h1 class="text-white font-black text-xl tracking-tight">Users</h1>
+                        <p class="text-white/80 text-xs">Manage user accounts and permissions</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button
-                        class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-hover transition-colors">
+                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm">
                         <span class="material-symbols-outlined text-[18px]">person_add</span>
-                        Add User
+                        <span class="hidden sm:inline">Add User</span>
                     </button>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
                 </div>
             </header>
 
@@ -182,9 +187,6 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-3 bg-white border-t border-slate-200 text-center text-xs text-slate-400 shrink-0">
-                <p>Copyright &copy; 1996&ndash;2026 CSNExplore Admin. All rights reserved.</p>
-            </footer>
         </div>
 
         <script>
@@ -344,8 +346,8 @@
             }
         </script>
         <script src="js/admin-guard.js"></script>
-<<<<<<< HEAD
         <script src="js/admin-profile.js"></script>
+    </div>
 
     <!-- Edit User Modal -->
     <div id="edit-user-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
@@ -363,13 +365,13 @@
                 <input type="hidden" id="edit-user-id">
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 mb-1">Name</label>
-                    <input type="text" id="edit-user-name" class="w-full rounded-lg border-gray-300 text-sm">
+                    <input type="text" id="edit-user-name" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-600 mb-1">Role</label>
-                    <select id="edit-user-role" class="w-full rounded-lg border-gray-300 text-sm">
+                    <select id="edit-user-role" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
                         <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                        <option value="Admin">Admin</option>
                     </select>
                 </div>
             </div>
@@ -379,9 +381,5 @@
             </div>
         </div>
     </div>
-=======
-    <script src="js/admin-profile.js"></script>
->>>>>>> parent of 112dbb6 (one of the main update in php)
 </body>
-
 </html>

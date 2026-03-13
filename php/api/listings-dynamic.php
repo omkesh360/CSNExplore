@@ -341,12 +341,43 @@ function parseJsonFields($item, $category) {
         }
     }
     
-    // Parse JSON fields
+    // Parse JSON fields - Common to all categories
     if (isset($item['amenities']) && $item['amenities']) {
         $item['amenities'] = json_decode($item['amenities'], true);
     }
     if (isset($item['features']) && $item['features']) {
         $item['features'] = json_decode($item['features'], true);
+    }
+    if (isset($item['gallery']) && $item['gallery']) {
+        $decoded = json_decode($item['gallery'], true);
+        // If it's a comma-separated string, split it
+        if (!$decoded && is_string($item['gallery'])) {
+            $item['gallery'] = array_map('trim', explode(',', $item['gallery']));
+        } else {
+            $item['gallery'] = $decoded;
+        }
+    }
+    if (isset($item['guest_reviews']) && $item['guest_reviews']) {
+        $item['guestReviews'] = json_decode($item['guest_reviews'], true);
+    }
+    
+    // Category-specific JSON fields
+    if ($category === 'stays') {
+        if (isset($item['rooms']) && $item['rooms']) {
+            $item['rooms'] = json_decode($item['rooms'], true);
+        }
+        if (isset($item['top_location_rating'])) {
+            $item['topLocationRating'] = $item['top_location_rating'];
+        }
+        if (isset($item['breakfast_info'])) {
+            $item['breakfastInfo'] = $item['breakfast_info'];
+        }
+    }
+    
+    if ($category === 'restaurants') {
+        if (isset($item['menu_highlights']) && $item['menu_highlights']) {
+            $item['menuHighlights'] = json_decode($item['menu_highlights'], true);
+        }
     }
     
     // Convert numeric strings
@@ -384,6 +415,16 @@ function prepareDataForInsert($input, $category) {
     if (isset($input['badge'])) $data['badge'] = $input['badge'];
     if (isset($input['image'])) $data['image'] = $input['image'];
     
+    // Gallery - common to all categories
+    if (isset($input['gallery'])) {
+        $data['gallery'] = is_array($input['gallery']) ? json_encode($input['gallery']) : $input['gallery'];
+    }
+    
+    // Guest Reviews - common to all categories
+    if (isset($input['guestReviews'])) {
+        $data['guest_reviews'] = is_array($input['guestReviews']) ? json_encode($input['guestReviews']) : $input['guestReviews'];
+    }
+    
     // Category-specific fields
     switch ($category) {
         case 'stays':
@@ -392,6 +433,9 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['amenities'])) $data['amenities'] = is_array($input['amenities']) ? json_encode($input['amenities']) : $input['amenities'];
             if (isset($input['roomType'])) $data['room_type'] = $input['roomType'];
             if (isset($input['maxGuests'])) $data['max_guests'] = $input['maxGuests'];
+            if (isset($input['topLocationRating'])) $data['top_location_rating'] = $input['topLocationRating'];
+            if (isset($input['breakfastInfo'])) $data['breakfast_info'] = $input['breakfastInfo'];
+            if (isset($input['rooms'])) $data['rooms'] = is_array($input['rooms']) ? json_encode($input['rooms']) : $input['rooms'];
             break;
             
         case 'cars':
@@ -401,6 +445,8 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['fuelType'])) $data['fuel_type'] = $input['fuelType'];
             if (isset($input['transmission'])) $data['transmission'] = $input['transmission'];
             if (isset($input['seats'])) $data['seats'] = $input['seats'];
+            if (isset($input['passengers'])) $data['seats'] = $input['passengers'];
+            if (isset($input['provider'])) $data['provider'] = $input['provider'];
             break;
             
         case 'bikes':
@@ -409,12 +455,14 @@ function prepareDataForInsert($input, $category) {
             if (isset($input['features'])) $data['features'] = is_array($input['features']) ? json_encode($input['features']) : $input['features'];
             if (isset($input['fuelType'])) $data['fuel_type'] = $input['fuelType'];
             if (isset($input['cc'])) $data['cc'] = $input['cc'];
+            if (isset($input['provider'])) $data['provider'] = $input['provider'];
             break;
             
         case 'restaurants':
             if (isset($input['pricePerPerson'])) $data['price_per_person'] = $input['pricePerPerson'];
             if (isset($input['price'])) $data['price_per_person'] = $input['price'];
             if (isset($input['cuisine'])) $data['cuisine'] = $input['cuisine'];
+            if (isset($input['menuHighlights'])) $data['menu_highlights'] = is_array($input['menuHighlights']) ? json_encode($input['menuHighlights']) : $input['menuHighlights'];
             break;
             
         case 'attractions':

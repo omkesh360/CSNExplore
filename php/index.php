@@ -23,6 +23,8 @@ if (preg_match('#^/auth(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/auth.php';
 } elseif ($requestUri === '/homepage-content') {
     require __DIR__ . '/api/homepage.php';
+} elseif ($requestUri === '/about-contact') {
+    require __DIR__ . '/api/about-contact.php';
 } elseif ($requestUri === '/dashboard') {
     require __DIR__ . '/api/dashboard.php';
 } elseif ($requestUri === '/upload' || $requestUri === '/images') {
@@ -31,6 +33,8 @@ if (preg_match('#^/auth(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/listings.php';
 } elseif (preg_match('#^/blogs(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/blogs.php';
+} elseif (preg_match('#^/cache(/.*)?$#', $requestUri)) {
+    require __DIR__ . '/api/cache.php';
 } else {
     header('Content-Type: application/json');
     http_response_code(404);

@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>About Us | CSNExplore</title>
+        <meta name="description" content="Learn about CSNExplore, the ultimate travel platform for exploring Chhatrapati Sambhajinagar's stays, transport, food and attractions." />
+    <meta name="keywords" content="about CSNExplore, Aurangabad travel platform, CSN explore about us" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="CSNExplore" />
+    <link rel="canonical" href="https://csnexplore.com/about.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="About CSNExplore – Your Local Travel Guide" />
+    <meta property="og:description" content="Learn about CSNExplore, the ultimate travel platform for exploring Chhatrapati Sambhajinagar's stays, transport, food and attractions." />
+    <meta property="og:url" content="https://csnexplore.com/about.html" />
+    <meta property="og:image" content="https://csnexplore.com/images/og-image.jpg" />
+    <meta property="og:site_name" content="CSNExplore" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About CSNExplore – Your Local Travel Guide" />
+    <meta name="twitter:description" content="Learn about CSNExplore, the ultimate travel platform for exploring Chhatrapati Sambhajinagar's stays, transport, food and attractions." />
+    <meta name="twitter:image" content="https://csnexplore.com/images/og-image.jpg" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About CSNExplore – Your Local Travel Guide</title>
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/main.css" as="style" />
@@ -64,11 +81,8 @@
         </div>
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
-                <!-- Logo Left Side -->
-                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
-                        class="h-8 md:h-[42px]">
-                </a>
+                <!-- Logo Left Side - REMOVED FOR ABOUT/CONTACT PAGES -->
+                <div class="flex-1"></div>
 
                 <!-- Navigation and Auth Right Side -->
                 <div class="flex items-center gap-4 overflow-hidden">
@@ -220,9 +234,9 @@
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <span class="text-primary font-bold uppercase tracking-widest text-sm">Our Mission</span>
-                    <h2 class="text-4xl font-bold mt-2 mb-6 text-slate-900 dark:text-slate-100">Inspiring the Global
+                    <h2 id="about-mission-title" class="text-4xl font-bold mt-2 mb-6 text-slate-900 dark:text-slate-100">Inspiring the Global
                         Explorer</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">
+                    <p id="about-mission-desc" class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">
                         To inspire and empower every traveler to explore the world with confidence and ease. We believe
                         that travel is the ultimate catalyst for human connection and personal growth.
                     </p>
@@ -253,36 +267,7 @@
                     <h2 class="text-3xl font-bold mb-4">Our Story</h2>
                     <div class="w-20 h-1 bg-primary mx-auto"></div>
                 </div>
-                <div class="space-y-12">
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">2012</div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold mb-2">The Small Blog Era</h3>
-                            <p class="text-slate-600 dark:text-slate-400">CSNExplore started as "Miles &amp; Memories,"
-                                a
-                                simple blog where our founders shared their backpacking adventures through Southeast
-                                Asia. What began as a diary for family and friends quickly resonated with a global
-                                audience looking for authentic, unpolished travel advice.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">2017</div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold mb-2">The Platform Evolution</h3>
-                            <p class="text-slate-600 dark:text-slate-400">As the community grew, we realized travelers
-                                needed more than just stories—they needed tools. We launched our first booking
-                                integration and interactive destination maps, officially rebranding as CSNExplore.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">Today</div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-bold mb-2">A Comprehensive Hub</h3>
-                            <p class="text-slate-600 dark:text-slate-400">Today, we support millions of travelers
-                                monthly, offering everything from itinerary planning to sustainable travel initiatives.
-                                Our mission remains the same: making the world accessible to everyone.</p>
-                        </div>
-                    </div>
+                <div id="about-story-container" class="space-y-12">
                 </div>
             </div>
         </section>
@@ -292,46 +277,7 @@
                     <h2 class="text-3xl font-bold mb-4">Meet the Team</h2>
                     <p class="text-slate-600 dark:text-slate-400">The passionate wanderers behind the platform.</p>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img loading="lazy" decoding="async" alt="CEO Portrait" class="w-full h-full object-cover"
-                                data-alt="Portrait of a smiling professional man in a blue shirt"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPWISoFrYJ5SlDkg69I2Ra9HBrNedxW1R9RoLr6A5XTOB5DJnVK97t2zgc83Q6NmRh8yIxOj0eDEO9DBlDM5R8Hr3TSQ9BN1wN0gL8e7B-VK8Mn1TB272yER2d-frgHf1nfV9lofQOx9iC8mOWCjKTQ8CUITivYWvo0ujOzU6QIvL5pj1KzGQAkAIZiTTkVToQgiT-lbEnIHeu4_b2MGNH1Hvom76eGB0qBzGePtno0phKuGYJrhpYr_bcA8VOyUa2XdmwsPVmFP8m" />
-                        </div>
-                        <h4 class="text-lg font-bold">Marcus Thorne</h4>
-                        <p class="text-primary text-sm font-medium">Founder &amp; CEO</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img loading="lazy" decoding="async" alt="Product Head Portrait"
-                                class="w-full h-full object-cover"
-                                data-alt="Portrait of a smiling professional woman with dark hair"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUev2R4r0N29tr9QMKtwOIoBLTX0k0-AvrJcdhhBKb4KheSK4ctVcFEF5hxNV1rOFM5Ifn8sUmW4lKY2sMI85iUCdFXkcAIgxgwAD2g3LBNV5G9-8vNhaur4ifw1BUQ5Pg9qmjqOZ44aElcqlYppHsLt13aifHT_3UfysmQW9-CB5abaqmzh-Khf0uTEL48eBfwHsf_qJYN_WlNFmAB2cAtaFAsw3oV0a72stWJngPdgL30Zt1vDP3xN8-nr5OhCkJqSL-SmUG9-D-" />
-                        </div>
-                        <h4 class="text-lg font-bold">Elena Rodriguez</h4>
-                        <p class="text-primary text-sm font-medium">Head of Product</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img loading="lazy" decoding="async" alt="Tech Lead Portrait"
-                                class="w-full h-full object-cover"
-                                data-alt="Portrait of a confident man in a gray sweater"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRT4x6MgOi8pZ68tinSiCo0h17e-u8tVWAnSp0n9qqsjRQYuYfBYu_IE_34ZAJ_l407rDZUo5SgFRmanI9D7JlsNm6masfM-r-eNsNjsAyk_HcIb2CaX9686Oyi5qKlNEIcDL4QiJmhmzZNiqQz9qd1IwS73apxFtBNp-W2MwMM90TY8NuargsW8smHolnzyLStt44Oc5ZFOjF_2GSLSLYTqTcGWV-3ZyKjJg4g1H0kRu2dGalgjOJId0N2DBAgLrNDpxoxB_F_x11" />
-                        </div>
-                        <h4 class="text-lg font-bold">David Chen</h4>
-                        <p class="text-primary text-sm font-medium">CTO</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="size-40 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
-                            <img loading="lazy" decoding="async" alt="Marketing Head Portrait"
-                                class="w-full h-full object-cover"
-                                data-alt="Portrait of a professional woman with glasses"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTJOzvoruL3FwQogaExylCO5c0gHdGwvx_1EY-rFffMWzsnUK3NK4y6yNBKRFgRhPA-rTv4mZLrMAr1wsF76RuaU15IjnR4Rc4m7bOOej7Dk77pX64fcsqfvm90U1ard0PJxjrr4FTX-13UUXkzybqVhClFTOU1HMBz8Azah4bLnL7Cfr-j6Q3irKVS6DgdSkaMvpHLVDV6hzSFZt-oX-GqGMZHO2koeF2S9DB2VesAl_B_-DfGAqO7yLDHC9v059rOx57_iOv94wo" />
-                        </div>
-                        <h4 class="text-lg font-bold">Sarah Jenkins</h4>
-                        <p class="text-primary text-sm font-medium">Head of Community</p>
-                    </div>
+                <div id="about-team-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 </div>
             </div>
         </section>
@@ -343,22 +289,22 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-4xl font-bold mb-6">Our Global Presence</h2>
-                        <p class="text-slate-300 mb-8 leading-relaxed">
+                        <p id="about-presence-desc" class="text-slate-300 mb-8 leading-relaxed">
                             With offices in London, Tokyo, New York, and Sydney, we work around the clock to ensure your
                             travels are seamless. Our network of over 50,000 local experts spans 140 countries.
                         </p>
                         <div class="grid grid-cols-3 gap-4">
                             <div>
-                                <div class="text-3xl font-black text-primary">140+</div>
-                                <div class="text-xs text-slate-400 uppercase tracking-tighter">Countries Covered</div>
+                                <div id="about-stat1-value" class="text-3xl font-black text-primary">140+</div>
+                                <div id="about-stat1-label" class="text-xs text-slate-400 uppercase tracking-tighter">Countries Covered</div>
                             </div>
                             <div>
-                                <div class="text-3xl font-black text-primary">2M+</div>
-                                <div class="text-xs text-slate-400 uppercase tracking-tighter">Active Users</div>
+                                <div id="about-stat2-value" class="text-3xl font-black text-primary">2M+</div>
+                                <div id="about-stat2-label" class="text-xs text-slate-400 uppercase tracking-tighter">Active Users</div>
                             </div>
                             <div>
-                                <div class="text-3xl font-black text-primary">50k</div>
-                                <div class="text-xs text-slate-400 uppercase tracking-tighter">Local Guides</div>
+                                <div id="about-stat3-value" class="text-3xl font-black text-primary">50k</div>
+                                <div id="about-stat3-label" class="text-xs text-slate-400 uppercase tracking-tighter">Local Guides</div>
                             </div>
                         </div>
                     </div>
@@ -368,6 +314,61 @@
                                 class="w-full h-full object-cover opacity-60 grayscale"
                                 data-alt="Stylized world map showing global connectivity" data-location="Global"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiBZLZTIaeycHW8b8s3zQ6jx5gI0zc8u2XKccsVKz34ePnqWWCFXx3uyK9aB-V4pRiMenDQNnoN3FXVGrWDcChs5e1f2GuanuD9cwx3t16l1gfkhbWQN1yyhAErwj0VGzpNjfHjJ9dCUcXbnyfm8cQ6PPFcvSEtPwkwWXFX4vOm6AeYzPOs0ZwIsk8-89HLcFHP2N6yX9rUyfXxt5Yuvyejg9U1YvhJmK70LXcttmgh9XlIgX1rdt4s4ePL5koORBysoZuaHkL1mJL" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information Cards -->
+        <section class="py-16 bg-slate-50">
+            <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-black text-slate-900 mb-3">Get In Touch</h2>
+                    <p class="text-slate-600">We're here to help you plan your perfect journey</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Visit Us Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-primary text-[32px]">location_on</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Visit Us</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Behind State Bank Of India, plot no. 273 Samarth Nagar, Central Bus Stand, Chhatrapati Sambhajinagar, Maharashtra 431001
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Call Us Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-green-600 text-[32px]">call</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Call Us</h3>
+                            <a href="tel:+918600968888" class="text-primary font-bold text-lg hover:underline mb-2">
+                                +91 86009 68888
+                            </a>
+                            <p class="text-slate-500 text-sm">Mon-Fri, 9am - 6pm EST</p>
+                        </div>
+                    </div>
+
+                    <!-- Email Us Card -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-slate-200">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-purple-600 text-[32px]">mail</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Email Us</h3>
+                            <a href="mailto:support@travelhub.com" class="text-primary hover:underline text-sm mb-1">
+                                support@travelhub.com
+                            </a>
+                            <a href="mailto:info@travelhub.com" class="text-primary hover:underline text-sm">
+                                info@travelhub.com
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -584,6 +585,60 @@
     <script src="js/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="js/search-custom.js"></script>
+<script src="js/marquee.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/about-contact?section=about');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && Object.keys(data).length > 0) {
+                        if (data.mission) {
+                            if (data.mission.title) document.getElementById('about-mission-title').textContent = data.mission.title;
+                            if (data.mission.description) document.getElementById('about-mission-desc').textContent = data.mission.description;
+                        }
+                        if (data.presence) {
+                            if (data.presence.description) document.getElementById('about-presence-desc').textContent = data.presence.description;
+                            if (data.presence.stat1Value) document.getElementById('about-stat1-value').textContent = data.presence.stat1Value;
+                            if (data.presence.stat1Label) document.getElementById('about-stat1-label').textContent = data.presence.stat1Label;
+                            if (data.presence.stat2Value) document.getElementById('about-stat2-value').textContent = data.presence.stat2Value;
+                            if (data.presence.stat2Label) document.getElementById('about-stat2-label').textContent = data.presence.stat2Label;
+                            if (data.presence.stat3Value) document.getElementById('about-stat3-value').textContent = data.presence.stat3Value;
+                            if (data.presence.stat3Label) document.getElementById('about-stat3-label').textContent = data.presence.stat3Label;
+                        }
+                        if (data.story && data.story.length > 0) {
+                            const container = document.getElementById('about-story-container');
+                            container.innerHTML = data.story.map(s => `
+                                <div class="flex flex-col md:flex-row gap-8 items-start">
+                                    <div class="bg-primary text-white px-4 py-2 rounded-lg font-bold">${s.year || ''}</div>
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-bold mb-2">${s.title || ''}</h3>
+                                        <p class="text-slate-600 dark:text-slate-400">${s.description || ''}</p>
+                                    </div>
+                                </div>
+                            `).join('');
+                        }
+                        if (data.team && data.team.length > 0) {
+                            const container = document.getElementById('about-team-container');
+                            container.innerHTML = data.team.map(t => `
+                                <div class="text-center bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                                    <div class="size-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/10">
+                                        <div class="w-full h-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-4xl text-slate-400">
+                                            <span class="material-symbols-outlined text-[48px]">person</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="text-lg font-bold">${t.name || ''}</h4>
+                                    <p class="text-primary text-sm font-medium">${t.position || ''}</p>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load about data:', error);
+            }
+        });
+    </script>
 </body>
 
 </html>

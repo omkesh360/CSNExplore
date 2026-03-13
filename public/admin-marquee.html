@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
+    <link href="css/tailwind.css" rel="stylesheet" />
     <style>
         .announcement-item {
             background: #fff;
@@ -127,74 +129,97 @@
     </style>
 </head>
 
-<body class="font-primary antialiased bg-slate-50 text-slate-900">
+<body class="bg-slate-50 font-display text-slate-900 antialiased h-screen flex flex-col overflow-hidden text-[13px]">
     <div class="flex flex-1 w-full relative overflow-hidden bg-slate-50">
         <!-- Sidebar -->
         <aside id="admin-sidebar"
             class="fixed inset-y-0 left-0 z-50 w-64 flex flex-col border-r border-slate-200 bg-white shadow-[4px_0_24px_rgba(0,0,0,0.02)] shrink-0 transform -translate-x-full md:translate-x-0 md:static md:flex transition-transform duration-300">
             <div class="flex h-20 items-center px-6 border-b border-primary-dark bg-primary shrink-0">
-                <img src="/images/travelhub.png" alt="CSNExplore" class="h-10" />
+                <a href="index.html" class="flex items-center gap-2">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 filter brightness-0 invert">
+                </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
-                        <span>Dashboard</span>
+                        <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span>
-                        <span>Homepage Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
+                        <span class="text-[13px]">Homepage Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-primary/10 text-primary font-semibold"
-                        href="admin-marquee.html">
-                        <span class="material-symbols-outlined text-[20px]">campaign</span>
-                        <span>Marquee Announcements</span>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
                     </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span>
-                        <span>Add Listing</span>
+                        <span class="text-[13px]">Add Listing</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-manage-listings.html">
                         <span class="material-symbols-outlined text-[20px]">edit_document</span>
-                        <span>Manage Listings</span>
+                        <span class="text-[13px]">Manage Listings</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
-                        <span>Cards Editor</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span>Bookings</span>
-                    </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
-                        <span>Users</span>
+                        <span class="text-[13px]">Users</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span>Vendors</span>
+                        href="admin-images.html">
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span>
+                        <span class="text-[13px]">Images Manager</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span>Financial Reports</span>
+                        href="admin-blogs-generator.html">
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                        <span class="text-[13px]">Blogs Generator</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
+                        href="admin-marquee.html">
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
                     </a>
                 </nav>
             </div>
-            <div id="admin-profile-footer"></div>
+            <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
+                <button id="admin-logout-btn"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                    <span class="text-[13px]">Logout</span>
+                </button>
+            </div>
         </aside>
 
         <!-- Mobile Sidebar Overlay -->
@@ -202,7 +227,8 @@
             class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm transition-opacity"></div>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <div class="flex h-full flex-1 flex-col overflow-hidden">
+            <!-- Top Header -->
             <header
                 class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-4">
@@ -210,17 +236,21 @@
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-xl md:text-2xl font-black text-white tracking-tight">Marquee Announcements</h1>
-                        <p class="text-xs md:text-sm text-white/80 font-medium">Manage scrolling announcements across
-                            all pages</p>
+                        <h1 class="text-white font-black text-xl tracking-tight">Marquee Announcements</h1>
+                        <p class="text-white/80 text-xs">Manage site-wide announcement messages</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button id="save-btn"
-                        class="flex items-center gap-2 bg-white text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-white/90 transition-all shadow-lg">
+                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm">
                         <span class="material-symbols-outlined text-[18px]">save</span>
                         <span class="hidden sm:inline">Save Changes</span>
                     </button>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
                 </div>
             </header>
 
@@ -341,7 +371,7 @@
         // Load data
         async function loadData() {
             try {
-                const response = await fetch('/php/api/homepage.php');
+                const response = await fetch('/api/homepage-content');
                 const data = await response.json();
                 if (data.marqueeAnnouncements) {
                     announcements = data.marqueeAnnouncements;
@@ -450,7 +480,7 @@
         // Save data
         document.getElementById('save-btn').addEventListener('click', async () => {
             try {
-                const response = await fetch('/php/api/homepage.php');
+                const response = await fetch('/api/homepage-content');
                 const currentData = await response.json();
 
                 const updatedData = {
@@ -459,7 +489,7 @@
                     marqueeSettings: settings
                 };
 
-                const saveResponse = await fetch('/php/api/homepage.php', {
+                const saveResponse = await fetch('/api/homepage-content', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

@@ -16,6 +16,7 @@
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
@@ -143,99 +144,137 @@
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
         }
 
-        /* ---- Status badge ---- */
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        /* ---- Sidebar toggle ---- */
-        .sidebar-panel {
-            transition: transform 0.3s;
-        }
-
-        /* ---- Post list cards ---- */
-        .post-row {
+        /* ---- WordPress Style Overrides ---- */
+        .wp-editor-canvas {
+            max-width: 840px;
+            margin: 0 auto;
             background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            padding: 14px 18px;
+            min-height: calc(100vh - 200px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 40px 60px;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .ql-toolbar.ql-snow {
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            padding: 12px 24px;
             display: flex;
-            align-items: center;
-            gap: 14px;
-            cursor: pointer;
-            transition: box-shadow 0.15s, border-color 0.15s;
+            justify-content: center;
         }
 
-        .post-row:hover {
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-            border-color: #cbd5e1;
+        .ql-container.ql-snow {
+            border: none;
+            font-size: 16px;
         }
 
-        .post-row.active-post {
-            border-color: #003580;
-            box-shadow: 0 0 0 2px #eff6ff;
+        .ql-editor {
+            padding: 0;
+            line-height: 1.6;
         }
 
-        /* ---- Autosave indicator ---- */
-        #autosave-indicator {
-            transition: opacity 0.4s;
-        }
-
-        /* ---- Toast ---- */
-        #toast {
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        /* ---- View toggle ---- */
-        .view-btn {
-            padding: 6px 16px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s;
-        }
-
-        .view-btn.active {
-            background: #003580;
-            color: #fff;
-        }
-
-        .view-btn:not(.active) {
-            background: #f1f5f9;
-            color: #475569;
-        }
-
-        .view-btn:not(.active):hover {
-            background: #e2e8f0;
-        }
-
-        /* ---- Cover image preview ---- */
-        #cover-preview {
-            background: #f8fafc;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        #cover-preview img {
+        #post-title {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            border: none;
             width: 100%;
-            height: 140px;
-            object-fit: cover;
-            display: block;
+            outline: none;
+            background: transparent;
         }
 
-        #cover-no-image {
-            height: 80px;
+        /* Sidebar Accordion */
+        .sidebar-section {
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .sidebar-section-header {
+            padding: 1rem 1.25rem;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .sidebar-section-header:hover {
+            background: #f8fafc;
+        }
+        .sidebar-section-content {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+        }
+
+        /* Featured Image Box */
+        .featured-image-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #94a3b8;
-            font-size: 12px;
-            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        .featured-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .featured-image-box:hover {
+            border-color: #003580;
+            background: #eff6ff;
+        }
+
+        /* Tags */
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
             gap: 4px;
+            background: #eff6ff;
+            color: #003580;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        /* SEO Snippet Preview */
+        .seo-preview {
+            background: #fff;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: arial, sans-serif;
+        }
+        .seo-preview-title {
+            color: #1a0dab;
+            font-size: 18px;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .seo-preview-url {
+            color: #006621;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .seo-preview-desc {
+            color: #545454;
+            font-size: 14px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
     <!-- Link to our pre-compiled local Tailwind CSS -->
@@ -255,67 +294,76 @@
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-5">
-                <nav class="flex flex-col gap-1">
+                                                                <nav class="flex flex-col gap-1">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
-                        <span class="material-symbols-outlined text-[20px]">dashboard</span><span
-                            class="text-[13px]">Dashboard</span>
+                        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        <span class="text-[13px]">Dashboard</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span><span class="text-[13px]">Homepage
-                            Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
+                        <span class="text-[13px]">Homepage Editor</span>
                     </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
-                        <span class="material-symbols-outlined text-[20px]">add_circle</span><span
-                            class="text-[13px]">Add Listing</span>
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        <span class="text-[13px]">Add Listing</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-manage-listings.html">
-                        <span class="material-symbols-outlined text-[20px]">edit_document</span><span
-                            class="text-[13px]">Manage Listings</span>
+                        <span class="material-symbols-outlined text-[20px]">edit_document</span>
+                        <span class="text-[13px]">Manage Listings</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
-                        <span class="material-symbols-outlined text-[20px]">view_list</span><span
-                            class="text-[13px]">Cards Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">view_list</span>
+                        <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span><span
-                            class="text-[13px]">Bookings</span>
-                    </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
-                        <span class="material-symbols-outlined text-[20px]">group</span><span
-                            class="text-[13px]">Users</span>
+                        <span class="material-symbols-outlined text-[20px]">group</span>
+                        <span class="text-[13px]">Users</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span><span
-                            class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span><span
-                            class="text-[13px]">Financial Reports</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900 transition-all"
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-images.html">
-                        <span class="material-symbols-outlined text-[20px]">perm_media</span><span
-                            class="text-[13px]">Images Manager</span>
+                        <span class="material-symbols-outlined text-[20px]">perm_media</span>
+                        <span class="text-[13px]">Images Manager</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-blogs-generator.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
-                        <span class="material-symbols-outlined text-[20px]">edit_note</span><span
-                            class="text-[13px]">Blog Editor</span>
+                        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+                        <span class="text-[13px]">Blogs Generator</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
                     </a>
                 </nav>
             </div>
@@ -379,128 +427,137 @@
             <!-- ====== EDITOR VIEW ====== -->
             <div id="view-editor" class="flex flex-1 overflow-hidden">
 
-                <!-- Left: Editor Canvas -->
-                <main class="flex-1 overflow-y-auto bg-slate-100 p-4 md:p-8">
-                    <!-- Post title -->
-                    <div class="max-w-3xl mx-auto mb-4">
-                        <input id="post-title" type="text" placeholder="Post title..."
-                            class="w-full text-3xl font-black text-slate-900 bg-transparent border-none outline-none placeholder-slate-300 leading-tight"
-                            oninput="onPostChange()">
-                        <!-- Meta info row -->
-                        <div class="flex flex-wrap items-center gap-3 mt-3 text-[12px] text-slate-400">
-                            <span id="word-count" class="font-medium">0 words</span>
-                            <span>•</span>
-                            <span id="read-time-estimate" class="font-medium">~0 min read</span>
-                            <span>•</span>
-                            <span id="current-status-label" class="font-bold">Draft</span>
-                        </div>
-                    </div>
-
-                    <!-- Rich Text Editor -->
-                    <div class="max-w-3xl mx-auto" id="editor-wrapper">
+                <!-- Main Canvas (Distraction Free) -->
+                <main class="flex-1 overflow-y-auto bg-slate-50 relative">
+                    <div class="wp-editor-canvas">
+                        <input id="post-title" type="text" placeholder="Add Title"
+                            class="outline-none" oninput="onPostChange()">
+                        
                         <div id="quill-editor"></div>
                     </div>
 
-                    <!-- Generate Bar -->
-                    <div
-                        class="max-w-3xl mx-auto mt-6 bg-gradient-to-r from-blue-900 to-primary rounded-xl p-4 flex flex-col sm:flex-row items-center gap-3 shadow-lg">
-                        <span class="material-symbols-outlined text-white text-[28px] shrink-0">auto_awesome</span>
-                        <div class="flex-1 min-w-0">
-                            <p class="text-white font-bold text-[13px]">AI Blog Generator</p>
-                            <p class="text-blue-200 text-[11px]">Enter a topic and auto-generate a starter draft
-                                instantly</p>
-                        </div>
-                        <div class="flex items-center gap-2 w-full sm:w-auto">
-                            <input id="gen-topic" type="text" placeholder="e.g. Ajanta Caves travel tips"
-                                class="flex-1 sm:w-56 px-3 py-2 rounded-lg bg-white/10 text-white placeholder-blue-300 border border-white/20 text-[13px] outline-none focus:bg-white/20 transition-colors">
+                    <!-- Floating AI Bar (Subtle) -->
+                    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-30">
+                        <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl p-2 flex items-center gap-2 shadow-2xl border border-white/10">
+                            <div class="flex items-center gap-2 px-3 text-blue-400">
+                                <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                                <span class="text-[11px] font-bold uppercase tracking-wider">AI Draft</span>
+                            </div>
+                            <input id="gen-topic" type="text" placeholder="What are we writing about today?"
+                                class="flex-1 bg-white/5 border-none outline-none text-white text-[13px] px-3 py-2 rounded-xl focus:bg-white/10 transition-all">
                             <button onclick="generateDraft()" id="gen-btn"
-                                class="flex items-center gap-1.5 px-4 py-2 bg-accent text-white rounded-lg text-[13px] font-bold hover:bg-orange-500 transition-colors whitespace-nowrap shrink-0">
-                                <span class="material-symbols-outlined text-[16px]" id="gen-icon">auto_fix_high</span>
-                                Generate
+                                class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-[12px] font-bold transition-all flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]" id="gen-icon">bolt</span> Generate
                             </button>
                         </div>
                     </div>
                 </main>
 
-                <!-- Right: Meta Sidebar -->
-                <aside id="meta-sidebar"
-                    class="w-72 shrink-0 bg-white border-l border-slate-200 overflow-y-auto flex flex-col hidden xl:flex">
-                    <div class="p-5 border-b border-slate-100">
-                        <h3 class="text-[13px] font-black text-slate-700 uppercase tracking-wide mb-4">Post Settings
-                        </h3>
-
-                        <!-- Status -->
-                        <div class="mb-4">
-                            <label
-                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Status</label>
-                            <select id="post-status"
-                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary">
-                                <option value="draft">Draft</option>
-                                <option value="published">Published</option>
-                            </select>
+                <!-- Premium Sidebar (Accordion) -->
+                <aside id="meta-sidebar" class="w-72 shrink-0 bg-white border-l border-slate-200 overflow-y-auto hidden xl:flex flex-col">
+                    
+                    <!-- Section: Summary -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-header" onclick="toggleSidebarSection(this)">
+                            <span class="text-[12px] font-bold text-slate-700">Summary</span>
+                            <span class="material-symbols-outlined text-[18px] transition-transform">expand_more</span>
                         </div>
-
-                        <!-- Category -->
-                        <div class="mb-4">
-                            <label
-                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Category</label>
-                            <input id="post-category" type="text" placeholder="e.g. Heritage, Food & Drink"
-                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                                list="category-suggestions" oninput="onPostChange()">
-                            <datalist id="category-suggestions">
-                                <option value="Heritage">
-                                <option value="History">
-                                <option value="Food & Drink">
-                                <option value="Travel Tips">
-                                <option value="Adventure">
-                                <option value="Culture">
-                                <option value="Nature">
-                                <option value="Lifestyle">
-                            </datalist>
-                        </div>
-
-                        <!-- Author -->
-                        <div class="mb-4">
-                            <label
-                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Author</label>
-                            <input id="post-author" type="text" placeholder="Author name"
-                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                                oninput="onPostChange()">
-                        </div>
-
-                        <!-- Read Time -->
-                        <div class="mb-4">
-                            <label
-                                class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Read
-                                Time <span class="font-normal text-slate-400">(auto-calculated)</span></label>
-                            <input id="post-readtime" type="text" placeholder="e.g. 5 min read"
-                                class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] focus:outline-none focus:border-primary transition-colors"
-                                oninput="onPostChange()">
-                        </div>
-                    </div>
-
-                    <!-- Cover Image -->
-                    <div class="p-5 border-b border-slate-100">
-                        <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">Cover
-                            Image</label>
-                        <div id="cover-preview">
-                            <div id="cover-no-image">
-                                <span class="material-symbols-outlined text-[28px] text-slate-300">image</span>
-                                <span>No cover image set</span>
+                        <div class="sidebar-section-content">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Visibility</label>
+                                    <select id="post-status" class="w-full bg-slate-50 border-slate-200 rounded-lg text-[13px] py-2 px-3 outline-none focus:border-primary">
+                                        <option value="draft">Public Draft</option>
+                                        <option value="published">Published</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Author</label>
+                                    <input id="post-author" type="text" class="w-full bg-slate-50 border-slate-200 rounded-lg text-[13px] py-2 px-3 outline-none focus:border-primary">
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-t border-slate-50 mt-2">
+                                    <span class="text-[11px] text-slate-500">Read Time</span>
+                                    <span id="read-time-estimate" class="text-[11px] font-bold text-slate-900">~0 min</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-t border-slate-50">
+                                    <span class="text-[11px] text-slate-500">Words</span>
+                                    <span id="word-count" class="text-[11px] font-bold text-slate-900">0</span>
+                                </div>
                             </div>
-                            <img loading="lazy" decoding="async" id="cover-preview-img" src="" alt="Cover"
-                                class="hidden">
                         </div>
-                        <input id="post-image" type="text" placeholder="Image URL or /images/..."
-                            class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[13px] mt-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                            oninput="updateCoverPreview()" onchange="onPostChange()">
                     </div>
 
-                    <!-- Danger zone -->
-                    <div class="p-5 mt-auto">
-                        <button id="btn-delete" onclick="deleteCurrentPost()"
-                            class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-red-200 text-red-500 text-[13px] font-bold hover:bg-red-50 transition-colors">
-                            <span class="material-symbols-outlined text-[16px]">delete</span> Delete Post
+                    <!-- Section: Categories -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-header" onclick="toggleSidebarSection(this)">
+                            <span class="text-[12px] font-bold text-slate-700">Categories</span>
+                            <span class="material-symbols-outlined text-[18px] transition-transform">expand_more</span>
+                        </div>
+                        <div class="sidebar-section-content">
+                            <input id="post-category" type="text" placeholder="heritage, travel tips..."
+                                class="w-full bg-slate-50 border-slate-200 rounded-lg text-[13px] py-2 px-3 outline-none focus:border-primary"
+                                list="category-suggestions">
+                        </div>
+                    </div>
+
+                    <!-- Section: Featured Image -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-header" onclick="toggleSidebarSection(this)">
+                            <span class="text-[12px] font-bold text-slate-700">Featured Image</span>
+                            <span class="material-symbols-outlined text-[18px] transition-transform">expand_more</span>
+                        </div>
+                        <div class="sidebar-section-content">
+                            <div class="featured-image-box" onclick="document.getElementById('post-image').focus()">
+                                <div id="cover-no-image" class="flex flex-col items-center">
+                                    <span class="material-symbols-outlined text-[32px] text-slate-300">image</span>
+                                    <span class="text-[11px] font-bold text-primary mt-2">Set Featured Image</span>
+                                </div>
+                                <img id="cover-preview-img" src="" class="hidden">
+                            </div>
+                            <input id="post-image" type="text" placeholder="Paste image URL here..."
+                                class="w-full bg-slate-50 border-slate-200 rounded-lg text-[11px] py-2 px-3 mt-3 outline-none focus:border-primary"
+                                oninput="updateCoverPreview()">
+                        </div>
+                    </div>
+
+                    <!-- Section: Tags -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-header" onclick="toggleSidebarSection(this)">
+                            <span class="text-[12px] font-bold text-slate-700">Tags</span>
+                            <span class="material-symbols-outlined text-[18px] transition-transform">expand_more</span>
+                        </div>
+                        <div class="sidebar-section-content">
+                            <input id="post-tags" type="text" placeholder="Separate with commas"
+                                class="w-full bg-slate-50 border-slate-200 rounded-lg text-[13px] py-2 px-3 outline-none focus:border-primary">
+                            <div id="post-tags-preview" class="flex flex-wrap gap-2 mt-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Section: SEO -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-section-header" onclick="toggleSidebarSection(this)">
+                            <span class="text-[12px] font-bold text-slate-700">SEO Settings</span>
+                            <span class="material-symbols-outlined text-[18px] transition-transform">expand_more</span>
+                        </div>
+                        <div class="sidebar-section-content">
+                            <div class="seo-preview mb-4">
+                                <div class="seo-preview-title" id="seo-title-preview">Post Title - CSNExplore</div>
+                                <div class="seo-preview-url">csnexplore.com › blogs › ...</div>
+                                <div class="seo-preview-desc" id="seo-desc-preview">No description provided yet.</div>
+                            </div>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1.5">Excerpt</label>
+                            <textarea id="post-meta-description" rows="4" 
+                                class="w-full bg-slate-50 border-slate-200 rounded-lg text-[12px] py-2 px-3 outline-none focus:border-primary resize-none"
+                                oninput="updateMetaCharCount()"></textarea>
+                            <div class="flex justify-between mt-1 text-[10px] text-slate-400">
+                                <span><span id="meta-char-count">0</span>/160 characters</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 mt-auto border-t border-slate-100">
+                        <button onclick="deleteCurrentPost()" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-100 text-red-500 text-[12px] font-bold hover:bg-red-50 transition-all">
+                            <span class="material-symbols-outlined text-[18px]">delete</span> Delete Permanently
                         </button>
                     </div>
                 </aside>
@@ -593,6 +650,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             initEditor();
             await fetchPosts();
+            showView('posts'); // Show the posts list by default
             document.getElementById('sidebar-overlay')?.addEventListener('click', toggleSidebar);
         });
 
@@ -619,6 +677,10 @@
                 onPostChange();
             });
 
+            // Adjust toolbar for mobile
+            const toolbar = document.querySelector('.ql-toolbar');
+            if (toolbar) toolbar.classList.add('sticky', 'top-0', 'bg-white', 'z-20');
+
             // Custom image handler — prompt for URL
             quill.getModule('toolbar').addHandler('image', () => {
                 const url = prompt('Enter image URL:');
@@ -628,6 +690,63 @@
                 }
             });
         }
+
+        // =================== INTERFACE HELPERS ===================
+        function toggleSidebarSection(header) {
+            const section = header.parentElement;
+            const content = section.querySelector('.sidebar-section-content');
+            const arrow = header.querySelector('.material-symbols-outlined');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(0deg)';
+                section.classList.add('bg-white');
+            } else {
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(-90deg)';
+                section.classList.remove('bg-white');
+            }
+        }
+
+
+        // =================== TAG & META HELPERS ===================
+        function renderTagsPreview() {
+            const raw = document.getElementById('post-tags').value;
+            const container = document.getElementById('post-tags-preview');
+            if (!container) return;
+            const tags = raw.split(',').map(t => t.trim()).filter(Boolean);
+            container.innerHTML = tags.map(t => `<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50 text-primary text-[11px] font-bold border border-blue-100">${t}</span>`).join('');
+        }
+
+        function updateMetaCharCount() {
+            const val = (document.getElementById('post-meta-description') || {}).value || '';
+            const count = document.getElementById('meta-char-count');
+            if (count) count.textContent = val.length;
+            
+            // Update SEO Preview
+            const seoDesc = document.getElementById('seo-desc-preview');
+            if (seoDesc) seoDesc.textContent = val || 'No description provided yet.';
+            
+            if (val.length > 160) {
+                if (count) count.classList.add('text-red-500');
+            } else {
+                if (count) count.classList.remove('text-red-500');
+            }
+        }
+
+        function updateSEOPreview() {
+            const title = document.getElementById('post-title').value.trim();
+            const seoTitle = document.getElementById('seo-title-preview');
+            if (seoTitle) {
+                seoTitle.textContent = (title || 'Post Title') + ' - CSNExplore';
+            }
+        }
+
+        // Auto-render tags preview on input
+        document.addEventListener('DOMContentLoaded', () => {
+            const tagsInput = document.getElementById('post-tags');
+            if (tagsInput) tagsInput.addEventListener('input', renderTagsPreview);
+        });
 
         // =================== VIEWS ===================
         function showView(view) {
@@ -676,40 +795,40 @@
         function renderPostsList(posts) {
             const list = document.getElementById('posts-list');
             if (!posts.length) {
-                list.innerHTML = `<div class="bg-white rounded-xl border border-slate-200 p-10 text-center">
-            <span class="material-symbols-outlined text-4xl text-slate-300">article</span>
-            <p class="text-slate-400 mt-3 text-sm font-medium">No posts found. Click "New Post" to get started!</p>
-        </div>`;
+                list.innerHTML = `<div class="bg-white rounded-2xl border border-slate-200 p-12 text-center">
+                    <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-slate-300 text-3xl">article</span>
+                    </div>
+                    <p class="text-slate-500 font-medium">No posts found matching your criteria.</p>
+                </div>`;
                 return;
             }
             list.innerHTML = posts.map(p => `
-        <div class="post-row ${currentPostId == p.id ? 'active-post' : ''}" onclick="openPost(${p.id})">
-            ${p.image ? `<img loading="lazy" decoding="async" src="${p.image}" alt="" class="w-14 h-14 rounded-lg object-cover shrink-0">` :
-                    `<div class="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-slate-400">article</span>
-                 </div>`}
-            <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-slate-900 text-[14px] truncate">${p.title || 'Untitled Post'}</h3>
-                <div class="flex items-center gap-2 mt-1 text-slate-400 text-[11px]">
-                    <span class="status-dot ${p.status === 'published' ? 'bg-green-500' : 'bg-amber-400'}"></span>
-                    <span class="font-bold ${p.status === 'published' ? 'text-green-600' : 'text-amber-500'}">${p.status === 'published' ? 'Published' : 'Draft'}</span>
-                    ${p.category ? `<span>•</span><span>${p.category}</span>` : ''}
-                    ${p.read_time ? `<span>•</span><span>${p.read_time}</span>` : ''}
-                    <span>•</span><span>${new Date(p.created_at).toLocaleDateString('en-IN')}</span>
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-4 hover:shadow-xl hover:border-primary/20 transition-all cursor-pointer group" onclick="openPost(${p.id})">
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                        ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center text-slate-300"><span class="material-symbols-outlined text-3xl">image</span></div>`}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${p.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}">${p.status}</span>
+                            ${p.category ? `<span class="text-[11px] font-bold text-slate-400 capitalize">${p.category}</span>` : ''}
+                        </div>
+                        <h3 class="font-black text-slate-900 text-[15px] truncate group-hover:text-primary transition-colors">${p.title || 'Untitled Post'}</h3>
+                        <div class="flex items-center gap-3 mt-1 text-[11px] text-slate-400 font-medium">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person</span> ${p.author || 'Admin'}</span>
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> ${new Date(p.created_at).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="event.stopPropagation(); openPost(${p.id}); showView('editor')" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:bg-primary/10 hover:text-primary transition-all">
+                            <span class="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button onclick="event.stopPropagation(); deletePost(${p.id})" class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all">
+                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="flex items-center gap-1 shrink-0">
-                <button onclick="event.stopPropagation(); openPost(${p.id}); showView('editor')"
-                    class="text-slate-400 hover:text-primary hover:bg-blue-50 p-2 rounded-lg transition-colors" title="Edit">
-                    <span class="material-symbols-outlined text-[18px]">edit</span>
-                </button>
-                <button onclick="event.stopPropagation(); deletePost(${p.id})"
-                    class="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors" title="Delete">
-                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                </button>
-            </div>
-        </div>
-    `).join('');
+            `).join('');
         }
 
         // =================== EDITOR ACTIONS ===================
@@ -723,6 +842,10 @@
             document.getElementById('post-author').value = 'CSNExplore Team';
             document.getElementById('post-readtime').value = '';
             document.getElementById('post-image').value = '';
+            document.getElementById('post-tags').value = '';
+            document.getElementById('post-meta-description').value = '';
+            document.getElementById('post-tags-preview').innerHTML = '';
+            document.getElementById('meta-char-count').textContent = '0';
             document.getElementById('btn-delete').style.display = 'none';
             updateCoverPreview();
             updateWordCount();
@@ -748,6 +871,10 @@
             document.getElementById('post-author').value = post.author || '';
             document.getElementById('post-readtime').value = post.read_time || '';
             document.getElementById('post-image').value = post.image || '';
+            document.getElementById('post-tags').value = (post.tags || []).join(', ');
+            document.getElementById('post-meta-description').value = post.meta_description || '';
+            renderTagsPreview();
+            updateMetaCharCount();
             document.getElementById('btn-delete').style.display = '';
             updateCoverPreview();
             updateWordCount();
@@ -768,7 +895,10 @@
 
             if (!title) { showToast('Please add a title!', 'error', 'error'); document.getElementById('post-title').focus(); return; }
 
-            const payload = { title, content, author, category, read_time, image, status: finalStatus };
+            const tagsRaw = document.getElementById('post-tags').value.trim();
+            const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+            const meta_description = document.getElementById('post-meta-description').value.trim();
+            const payload = { title, content, author, category, read_time, image, tags, meta_description, status: finalStatus };
             const method = currentPostId ? 'PUT' : 'POST';
             if (currentPostId) payload.id = currentPostId;
 
@@ -910,8 +1040,10 @@
         function updateStatusLabel() {
             const s = document.getElementById('post-status').value;
             const label = document.getElementById('current-status-label');
-            label.textContent = s === 'published' ? '✓ Published' : '✎ Draft';
-            label.className = s === 'published' ? 'font-bold text-green-600' : 'font-bold text-amber-500';
+            if (label) {
+                label.textContent = s === 'published' ? '✓ Published' : '✎ Draft';
+                label.className = s === 'published' ? 'font-bold text-green-600' : 'font-bold text-amber-500';
+            }
         }
 
         function updateCoverPreview() {

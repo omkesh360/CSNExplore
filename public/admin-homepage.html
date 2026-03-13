@@ -11,35 +11,9 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-<<<<<<< HEAD
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-        <link href="css/main.css" rel="stylesheet" />
-=======
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#003580",
-                        "primary-hover": "#002357",
-                        "primary-dark": "#002357",
-                        "accent": "#FC7D05",
-                        "background-dark": "#0f1723",
-                        "text-main": "#1a1a1a",
-                        "text-muted": "#6b7280",
-                    },
-                    fontFamily: {
-                        "display": ["Be Vietnam Pro", "sans-serif"],
-                        "sans": ["Be Vietnam Pro", "sans-serif"],
-                    },
-                },
-            },
-        }
-    </script>
     <link href="css/main.css" rel="stylesheet" />
->>>>>>> parent of 112dbb6 (one of the main update in php)
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         /* Section card */
         .section-card {
@@ -291,10 +265,62 @@
             gap: 0.375rem;
             flex: 1;
         }
+        /* Section drag handle */
+        .section-drag-handle {
+            cursor: grab;
+            color: #94a3b8;
+            transition: color 0.15s;
+            user-select: none;
+        }
+        .section-drag-handle:active {
+            cursor: grabbing;
+        }
+        .section-drag-handle:hover {
+            color: #475569;
+        }
+        /* Section hidden overlay */
+        .section-hidden-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(248,250,252,0.7) 0px,
+                rgba(248,250,252,0.7) 8px,
+                rgba(241,245,249,0.7) 8px,
+                rgba(241,245,249,0.7) 16px
+            );
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        [data-visible="false"] .section-hidden-overlay {
+            display: block !important;
+        }
+        [data-visible="true"] .section-hidden-overlay {
+            display: none !important;
+        }
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #eff6ff !important;
+            border: 2px dashed #003580 !important;
+        }
+        .sortable-drag {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+        }
+
 
         #toast {
             transition: opacity 0.3s, transform 0.3s;
         }
+        .card-drag-handle {
+            cursor: grab;
+            color: #94a3b8;
+            user-select: none;
+            transition: color 0.15s;
+        }
+        .card-drag-handle:active { cursor: grabbing; }
+        .card-drag-handle:hover { color: #475569; }
+        .sortable-ghost .item-card { opacity: 0.4; background: #eff6ff !important; border: 2px dashed #003580 !important; }
     </style>
     <!-- Link to our pre-compiled local Tailwind CSS -->
     <link href="css/tailwind.css" rel="stylesheet" />
@@ -312,22 +338,31 @@
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-homepage.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
-                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span>
@@ -339,32 +374,20 @@
                         <span class="text-[13px]">Manage Listings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span class="text-[13px]">Bookings</span>
-                    </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
                         <span class="text-[13px]">Users</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span class="text-[13px]">Financial Reports</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-images.html">
@@ -376,22 +399,24 @@
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
                     </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
                 </nav>
             </div>
             <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
                 <button id="admin-logout-btn"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left mb-2">
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
                     <span class="material-symbols-outlined text-[20px]">logout</span>
                     <span class="text-[13px]">Logout</span>
                 </button>
-                <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm"
-                        id="admin-avatar">A</div>
-                    <div class="flex flex-col flex-1">
-                        <span class="text-[13px] font-bold text-slate-900" id="admin-name">Admin</span>
-                        <span class="text-[11px] font-medium text-slate-500">Super Admin</span>
-                    </div>
-                </div>
             </div>
         </aside>
 
@@ -403,28 +428,24 @@
         <div class="flex h-full flex-1 flex-col overflow-hidden">
             <!-- Top Header -->
             <header
-                class="flex h-20 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
-                <div class="flex items-center gap-4">
+                class="flex h-16 items-center justify-between border-b border-primary-dark bg-primary px-4 md:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-3">
                     <button id="mobile-sidebar-toggle"
                         class="md:hidden text-white hover:text-white transition-colors">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
-                    <div>
-                        <h1 class="text-white font-black text-xl tracking-tight">Homepage Manager</h1>
-                        <p class="text-blue-100 text-xs font-medium">Edit all homepage content — changes go live
-                            instantly</p>
-                    </div>
+                    <h1 class="text-white font-black text-lg tracking-tight">Homepage Manager</h1>
                 </div>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <a href="index.html" target="_blank"
-                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        class="flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 text-white text-[12px] font-bold rounded-lg transition-all">
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
-                        View Homepage
+                        <span class="hidden sm:inline">Preview</span>
                     </a>
                     <button id="global-save-btn" onclick="saveAll()"
-                        class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-primary-hover transition-all shadow-md hover:shadow-lg">
+                        class="flex items-center gap-1.5 px-4 py-2 bg-white text-primary text-[12px] font-bold rounded-lg hover:bg-gray-100 transition-all shadow-md">
                         <span class="material-symbols-outlined text-sm">save</span>
-                        Save All Changes
+                        <span class="hidden sm:inline">Save</span>
                     </button>
                 </div>
             </header>
@@ -444,24 +465,26 @@
                     </div>
                 </div>
 
-                <div class="max-w-5xl mx-auto space-y-6">
+                <div class="max-w-5xl mx-auto space-y-6 relative" id="sections-sortable">
 
                     <!-- ========= HERO SECTION ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="hero" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">web_asset</span>
                                 </div>
                                 <div class="flex-1">
                                     <h2 class="font-black text-lg text-slate-800">Hero Section</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Main banner — headline, description,
-                                        contact info</p>
                                 </div>
                             </div>
-                            <button class="save-btn" onclick="saveSection('hero')">
-                                <span class="material-symbols-outlined text-[18px]">save</span> <span
-                                    class="hidden sm:inline">Save Hero</span>
-                            </button>
+                            <div class="flex items-center gap-2">
+                                <button class="vis-toggle-btn flex items-center gap-1 px-2 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[11px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle visibility"><span class="material-symbols-outlined text-[16px] vis-icon">visibility</span></button>
+                                <button class="save-btn" onclick="saveSection('hero')">
+                                    <span class="material-symbols-outlined text-[16px]">save</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="grid grid-cols-1 gap-5">
                             <div>
@@ -506,20 +529,23 @@
                     </div>
 
                     <!-- ========= ABOUT (OUR STORY) ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="about" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">auto_awesome</span>
                                 </div>
                                 <div class="flex-1">
                                     <h2 class="font-black text-lg text-slate-800">Our Story (About)</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Company history and stats</p>
                                 </div>
                             </div>
-                            <button class="save-btn" onclick="saveSection('about')">
-                                <span class="material-symbols-outlined text-[18px]">save</span> <span
-                                    class="hidden sm:inline">Save About</span>
-                            </button>
+                            <div class="flex items-center gap-2">
+                                <button class="vis-toggle-btn flex items-center gap-1 px-2 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[11px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle visibility"><span class="material-symbols-outlined text-[16px] vis-icon">visibility</span></button>
+                                <button class="save-btn" onclick="saveSection('about')">
+                                    <span class="material-symbols-outlined text-[16px]">save</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="grid grid-cols-1 gap-5">
                             <div>
@@ -563,29 +589,33 @@
                     </div>
 
                     <!-- ========= TRENDING TRANSPORT ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="trendingTransport" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">directions_car</span>
                                 </div>
                                 <div class="flex-1">
                                     <h2 class="font-black text-lg text-slate-800">Trending Transport</h2>
-                                    <p class="text-xs font-semibold text-slate-400">Two side-by-side promo cards below
-                                        the hero</p>
                                 </div>
                             </div>
-                            <button class="save-btn" onclick="saveSection('trendingTransport')">
-                                <span class="material-symbols-outlined text-[18px]">save</span> <span
-                                    class="hidden sm:inline">Save Transport</span>
-                            </button>
+                            <div class="flex items-center gap-2">
+                                <button class="vis-toggle-btn flex items-center gap-1 px-2 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[11px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle visibility"><span class="material-symbols-outlined text-[16px] vis-icon">visibility</span></button>
+                                <button class="save-btn" onclick="saveSection('trendingTransport')">
+                                    <span class="material-symbols-outlined text-[16px]">save</span>
+                                </button>
+                            </div>
                         </div>
                         <div id="trending-transport-items" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
                     </div>
 
                     <!-- ========= RESTAURANT CIRCLES ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="restaurantCircles" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">restaurant</span>
                                 </div>
                                 <div class="flex-1">
@@ -600,10 +630,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'restaurantCircles\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('restaurants', 'restaurantCircles')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
                                     <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('restaurantCircles')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('restaurantCircles')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Taste</span>
                                 </button>
@@ -614,9 +645,11 @@
                     </div>
 
                     <!-- ========= BUS ROUTES ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="busRoutes" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">directions_bus</span>
                                 </div>
                                 <div class="flex-1">
@@ -629,10 +662,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'buses\', \'busRoutes\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('buses', 'busRoutes')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
                                     <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('busRoutes')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('busRoutes')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Routes</span>
                                 </button>
@@ -642,9 +676,11 @@
                     </div>
 
                     <!-- ========= ATTRACTIONS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="attractions" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">castle</span></div>
                                 <div class="flex-1">
                                     <h2 class="font-black text-lg text-slate-800">Explore Attractions</h2>
@@ -656,10 +692,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'attractions\', \'attractions\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('attractions', 'attractions')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
                                     <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('attractions')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('attractions')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Attractions</span>
                                 </button>
@@ -669,9 +706,11 @@
                     </div>
 
                     <!-- ========= BIKE RENTALS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="bikeRentals" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">pedal_bike</span>
                                 </div>
                                 <div class="flex-1">
@@ -684,10 +723,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'bikes\', \'bikeRentals\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('bikes', 'bikeRentals')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
                                     <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('bikeRentals')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('bikeRentals')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Bikes</span>
                                 </button>
@@ -697,9 +737,11 @@
                     </div>
 
                     <!-- ========= FEATURED RESTAURANTS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="featuredRestaurants" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">local_dining</span>
                                 </div>
                                 <div class="flex-1">
@@ -713,10 +755,11 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser(\'restaurants\', \'featuredRestaurants\')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
+                                <button class="add-btn !w-auto !py-2" onclick="openItemBrowser('restaurants', 'featuredRestaurants')" style="border-color:#bfdbfe; color:#003580; background:#eff6ff;">
                                     <span class="material-symbols-outlined text-[18px]">list</span> <span class="hidden sm:inline">Existing</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('featuredRestaurants')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('featuredRestaurants')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Featured</span>
                                 </button>
@@ -727,9 +770,11 @@
                     </div>
 
                     <!-- ========= TRAVEL INSIGHTS ========= -->
-                    <div class="section-card">
+                    <div class="section-card" data-section-id="travelInsights" data-visible="true" style="position:relative;">
+                        <div class="section-hidden-overlay"></div>
                         <div class="section-header">
                             <div class="section-header-title">
+                                <span class="section-drag-handle material-symbols-outlined mr-1" title="Drag to reorder">drag_indicator</span>
                                 <div class="section-icon"><span class="material-symbols-outlined">article</span></div>
                                 <div class="flex-1">
                                     <h2 class="font-black text-lg text-slate-800">Travel Insights (Blog)</h2>
@@ -741,7 +786,8 @@
                                     <span class="material-symbols-outlined text-[18px]">add</span> <span
                                         class="hidden sm:inline">Add</span>
                                 </button>
-                                <button class="save-btn" onclick="saveSection('travelInsights')">
+                                <button class="vis-toggle-btn flex items-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-blue-50 hover:text-primary transition-colors text-[12px] font-bold" onclick="toggleSectionVisibility(this.closest('[data-section-id]'))" title="Toggle section visibility"><span class="material-symbols-outlined text-[18px] vis-icon">visibility</span><span class="vis-text hidden sm:inline"> Visible</span></button>
+                            <button class="save-btn" onclick="saveSection('travelInsights')">
                                     <span class="material-symbols-outlined text-[18px]">save</span> <span
                                         class="hidden sm:inline">Save Insights</span>
                                 </button>
@@ -864,7 +910,9 @@
             try {
                 const res = await fetch(`/api/${category}`);
                 if (!res.ok) throw new Error('Failed');
-                loadedItems = await res.json();
+                let items = await res.json();
+                // Filter out hidden items (is_active = 0)
+                loadedItems = items.filter(item => parseInt(item.is_active) !== 0);
                 renderItemBrowserList(loadedItems);
             } catch (err) {
                 document.getElementById('item-browser-list').innerHTML = '<div style="text-align:center;color:#ef4444;padding:2rem;">Error loading items</div>';
@@ -909,59 +957,78 @@
         }
 
         function selectItemBrowser(base64item) {
-            const item = JSON.parse(decodeURIComponent(escape(atob(base64item))));
-            
-            if (!hpData[currentItemTargetArray]) {
-                hpData[currentItemTargetArray] = [];
+            try {
+                const item = JSON.parse(decodeURIComponent(escape(atob(base64item))));
+                
+                if (!hpData[currentItemTargetArray]) {
+                    hpData[currentItemTargetArray] = [];
+                }
+                
+                // Map common properties
+                let newItem = {
+                    id: item.id || Date.now().toString(),
+                    name: item.name || item.title || '',
+                    image: item.image || item.image_url || ''
+                };
+                
+                // Map array specific properties
+                if (currentItemTargetArray === 'restaurantCircles') {
+                    newItem.type = item.type || item.cuisine || '';
+                    newItem.rating = item.rating || '';
+                    newItem.link = `restaurant-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'busRoutes') {
+                    newItem.from = item.from || item.from_location || '';
+                    newItem.to = item.to || item.to_location || '';
+                    newItem.provider = item.provider || item.operator || '';
+                    newItem.duration = item.duration || '';
+                    newItem.departure = item.departure || item.departureTime || item.departure_time || '';
+                    newItem.price = item.price ? `₹${item.price}` : '';
+                    newItem.link = `bus-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'attractions') {
+                    newItem.location = item.location || '';
+                    newItem.rating = item.rating || '';
+                    newItem.link = `attraction-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'bikeRentals') {
+                    newItem.description = item.description ? item.description.substring(0, 50) + '...' : '';
+                    newItem.price = item.price_per_day || item.dailyRate || item.price || '';
+                    newItem.link = `bike-rental-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'featuredRestaurants') {
+                    newItem.type = item.type || item.cuisine || '';
+                    newItem.rating = item.rating || '';
+                    newItem.reviews = item.reviews || '0 reviews';
+                    newItem.price = item.price_per_person || item.pricePerPerson || item.price || '';
+                    newItem.badge = 'Popular';
+                    newItem.link = `restaurant-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'trendingTransport') {
+                    newItem.title = item.name || item.title || '';
+                    newItem.description = item.description || '';
+                    newItem.subtext = item.type || item.category || '';
+                    newItem.linkText = 'Explore';
+                    newItem.link = `${currentItemCategory}-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'stays') {
+                    newItem.price = item.price_per_night || item.price || '';
+                    newItem.link = `stays-detail.html?id=${item.id}`;
+                } else if (currentItemTargetArray === 'cars') {
+                    newItem.price = item.price_per_day || item.dailyRate || item.price || '';
+                    newItem.link = `car-rental-detail.html?id=${item.id}`;
+                }
+                
+                hpData[currentItemTargetArray].push(newItem);
+                
+                // re-render the appropriate section
+                if (currentItemTargetArray === 'restaurantCircles') renderRestaurantCircles();
+                if (currentItemTargetArray === 'busRoutes') renderBusRoutes();
+                if (currentItemTargetArray === 'attractions') renderAttractions();
+                if (currentItemTargetArray === 'bikeRentals') renderBikeRentals();
+                if (currentItemTargetArray === 'featuredRestaurants') renderFeaturedRestaurants();
+                if (currentItemTargetArray === 'trendingTransport') renderTrendingTransport();
+                
+                closeItemBrowser();
+                showToast('Item added to section!');
+            } catch (err) {
+                console.error('Error selecting item:', err);
+                showToast('Error adding item. Check console.', 'error');
             }
-            
-            // Map common properties
-            let newItem = {
-                id: item.id || Date.now().toString(),
-                name: item.name || item.title || '',
-                image: item.image || item.image_url || ''
-            };
-            
-            // Map array specific properties
-            if (currentItemTargetArray === 'restaurantCircles') {
-                newItem.type = item.type || item.cuisine || '';
-                newItem.rating = item.rating || '';
-                newItem.link = `restaurant-detail.html?id=${item.id}`;
-            } else if (currentItemTargetArray === 'busRoutes') {
-                newItem.from = item.from || '';
-                newItem.to = item.to || '';
-                newItem.provider = item.provider || item.operator || '';
-                newItem.duration = item.duration || '';
-                newItem.departure = item.departure || item.departureTime || '';
-                newItem.price = item.price ? `₹${item.price}` : '';
-                newItem.link = `bus-detail.html?id=${item.id}`;
-            } else if (currentItemTargetArray === 'attractions') {
-                newItem.location = item.location || '';
-                newItem.rating = item.rating || '';
-                newItem.link = `attraction-detail.html?id=${item.id}`;
-            } else if (currentItemTargetArray === 'bikeRentals') {
-                newItem.description = item.description ? item.description.substring(0, 50) + '...' : '';
-                newItem.link = `bike-rental-detail.html?id=${item.id}`;
-            } else if (currentItemTargetArray === 'featuredRestaurants') {
-                newItem.type = item.type || item.cuisine || '';
-                newItem.rating = item.rating || '';
-                newItem.reviews = item.reviews || '0 reviews';
-                newItem.price = item.price ? `₹${item.price}` : '';
-                newItem.badge = 'Popular';
-                newItem.link = `restaurant-detail.html?id=${item.id}`;
-            }
-            
-            hpData[currentItemTargetArray].push(newItem);
-            
-            // re-render the appropriate section
-            if (currentItemTargetArray === 'restaurantCircles') renderRestaurantCircles();
-            if (currentItemTargetArray === 'busRoutes') renderBusRoutes();
-            if (currentItemTargetArray === 'attractions') renderAttractions();
-            if (currentItemTargetArray === 'bikeRentals') renderBikeRentals();
-            if (currentItemTargetArray === 'featuredRestaurants') renderFeaturedRestaurants();
-            
-            closeItemBrowser();
-            showToast('Item added to section!');
         }
 
 
@@ -1152,10 +1219,14 @@
             const items = hpData.restaurantCircles || [];
             const c = document.getElementById('restaurant-circles-items');
             c.innerHTML = items.map((item, i) => restaurantCircleCard(item, i)).join('');
+            initCardSortable('restaurant-circles-items', 'restaurantCircles');
         }
         function restaurantCircleCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('restaurantCircles',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="rc-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <span class="card-drag-handle material-symbols-outlined text-[20px] text-slate-300 cursor-grab hover:text-slate-500 select-none" title="Drag to reorder">drag_indicator</span>
+                <button class="remove-btn !relative !top-0 !right-0 !opacity-100" onclick="removeFromArray('restaurantCircles',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <div class="flex flex-col items-center mb-3">
                 <img loading="lazy" decoding="async" id="rc-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-16 h-16 rounded-full object-cover mb-2 border-2 border-gray-200" onerror="this.style.opacity=0.2">
                 <span class="text-xs font-bold text-gray-600">${escHtml(item.name || 'New Restaurant')}</span>
@@ -1190,10 +1261,14 @@
             const items = hpData.busRoutes || [];
             const c = document.getElementById('bus-routes-items');
             c.innerHTML = items.map((item, i) => busRouteCard(item, i)).join('');
+            initCardSortable('bus-routes-items', 'busRoutes');
         }
         function busRouteCard(item, i) {
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('busRoutes',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            return `<div class="item-card" data-card-id="bus-${i}">
+            <div class="flex items-center justify-between mb-2">
+                <span class="card-drag-handle material-symbols-outlined text-[20px] text-slate-300 cursor-grab hover:text-slate-500 select-none" title="Drag to reorder">drag_indicator</span>
+                <button class="remove-btn !relative !top-0 !right-0 !opacity-100" onclick="removeFromArray('busRoutes',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
+            </div>
             <div class="text-xs font-bold text-gray-400 uppercase mb-3">Route ${i + 1}</div>
             <div class="space-y-1.5">
                 <div class="grid grid-cols-2 gap-2">
@@ -1219,9 +1294,9 @@
             const items = hpData.attractions || [];
             const c = document.getElementById('attractions-items');
             c.innerHTML = items.map((item, i) => attractionCard(item, i)).join('');
+            initCardSortable('attractions-items', 'attractions');
         }
         function attractionCard(item, i) {
-<<<<<<< HEAD
             return `<div class="item-card" data-card-id="attraction-${i}">
             <div class="flex items-center justify-between mb-2">
                 <div class="card-drag-handle">
@@ -1230,11 +1305,6 @@
                 <button class="remove-btn" onclick="removeFromArray('attractions',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
             <img loading="lazy" decoding="async" id="attr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
-=======
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('attractions',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
-            <img id="attr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
->>>>>>> parent of 112dbb6 (one of the main update in php)
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.attractions[${i}].name=this.value"></div>
                 <div><label class="field-label">Location</label><input type="text" class="field-input" value="${escHtml(item.location || '')}" oninput="hpData.attractions[${i}].location=this.value"></div>
@@ -1265,9 +1335,9 @@
             const items = hpData.bikeRentals || [];
             const c = document.getElementById('bike-rentals-items');
             c.innerHTML = items.map((item, i) => bikeCard(item, i)).join('');
+            initCardSortable('bike-rentals-items', 'bikeRentals');
         }
         function bikeCard(item, i) {
-<<<<<<< HEAD
             return `<div class="item-card" data-card-id="bike-${i}">
             <div class="flex items-center justify-between mb-2">
                 <div class="card-drag-handle">
@@ -1276,11 +1346,6 @@
                 <button class="remove-btn" onclick="removeFromArray('bikeRentals',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
             <img loading="lazy" decoding="async" id="bike-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
-=======
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('bikeRentals',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
-            <img id="bike-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
->>>>>>> parent of 112dbb6 (one of the main update in php)
             <div class="space-y-1.5">
                 <div><label class="field-label">Bike Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.bikeRentals[${i}].name=this.value"></div>
                 <div><label class="field-label">Description</label><input type="text" class="field-input" value="${escHtml(item.description || '')}" oninput="hpData.bikeRentals[${i}].description=this.value"></div>
@@ -1310,9 +1375,9 @@
             const items = hpData.featuredRestaurants || [];
             const c = document.getElementById('featured-restaurants-items');
             c.innerHTML = items.map((item, i) => featuredRestCard(item, i)).join('');
+            initCardSortable('featured-restaurants-items', 'featuredRestaurants');
         }
         function featuredRestCard(item, i) {
-<<<<<<< HEAD
             return `<div class="item-card" data-card-id="featured-rest-${i}">
             <div class="flex items-center justify-between mb-2">
                 <div class="card-drag-handle">
@@ -1321,11 +1386,6 @@
                 <button class="remove-btn" onclick="removeFromArray('featuredRestaurants',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
             <img loading="lazy" decoding="async" id="fr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
-=======
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('featuredRestaurants',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
-            <img id="fr-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-28 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
->>>>>>> parent of 112dbb6 (one of the main update in php)
             <div class="space-y-1.5">
                 <div><label class="field-label">Name</label><input type="text" class="field-input" value="${escHtml(item.name || '')}" oninput="hpData.featuredRestaurants[${i}].name=this.value"></div>
                 <div><label class="field-label">Type</label><input type="text" class="field-input" value="${escHtml(item.type || '')}" oninput="hpData.featuredRestaurants[${i}].type=this.value"></div>
@@ -1358,9 +1418,9 @@
             const items = hpData.travelInsights || [];
             const c = document.getElementById('travel-insights-items');
             c.innerHTML = items.map((item, i) => insightCard(item, i)).join('');
+            initCardSortable('travel-insights-items', 'travelInsights');
         }
         function insightCard(item, i) {
-<<<<<<< HEAD
             return `<div class="item-card" data-card-id="insight-${i}">
             <div class="flex items-center justify-between mb-2">
                 <div class="card-drag-handle">
@@ -1369,11 +1429,6 @@
                 <button class="remove-btn" onclick="removeFromArray('travelInsights',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
             </div>
             <img loading="lazy" decoding="async" id="ins-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
-=======
-            return `<div class="item-card">
-            <button class="remove-btn" onclick="removeFromArray('travelInsights',${i})"><span class="material-symbols-outlined text-[16px]">close</span></button>
-            <img id="ins-img-${i}" src="${escHtml(item.image || '')}" alt="" class="w-full h-24 object-cover rounded-lg mb-3" onerror="this.style.opacity=0.1">
->>>>>>> parent of 112dbb6 (one of the main update in php)
             <div class="space-y-1.5">
                 <div><label class="field-label">Category Label</label><input type="text" class="field-input" placeholder="Heritage" value="${escHtml(item.category || '')}" oninput="hpData.travelInsights[${i}].category=this.value"></div>
                 <div><label class="field-label">Read Time</label><input type="text" class="field-input" placeholder="8 min read" value="${escHtml(item.readTime || '')}" oninput="hpData.travelInsights[${i}].readTime=this.value"></div>
@@ -1395,6 +1450,48 @@
                 </div>
             </div>
         </div>`;
+        }
+
+
+        // ============================================================
+        // CARD DRAG-DROP SORTABLE INITIALIZATION
+        // ============================================================
+        const _cardSortables = {};
+
+        function initCardSortable(containerId, dataKey) {
+            if (typeof Sortable === 'undefined') return;
+            const el = document.getElementById(containerId);
+            if (!el) return;
+            // Destroy existing
+            if (_cardSortables[containerId]) {
+                try { _cardSortables[containerId].destroy(); } catch(e){}
+            }
+            _cardSortables[containerId] = Sortable.create(el, {
+                animation: 150,
+                handle: '.card-drag-handle',
+                ghostClass: 'sortable-ghost',
+                forceFallback: true, // Better cross-browser reliability
+                fallbackClass: 'sortable-fallback',
+                onEnd: (evt) => {
+                    // Reorder hpData array to match new DOM order
+                    if (!hpData[dataKey]) return;
+                    const newOrder = Array.from(el.children).map(c => parseInt(c.dataset.cardId?.split('-').pop() ?? -1));
+                    const reordered = newOrder.filter(n => n >= 0).map(n => hpData[dataKey][n]);
+                    if (reordered.length === hpData[dataKey].length) {
+                        hpData[dataKey] = reordered;
+                        // Re-render with new indices (so oninput indices are correct)
+                        const renders = {
+                            restaurantCircles: renderRestaurantCircles,
+                            busRoutes: renderBusRoutes,
+                            attractions: renderAttractions,
+                            bikeRentals: renderBikeRentals,
+                            featuredRestaurants: renderFeaturedRestaurants,
+                            travelInsights: renderTravelInsights,
+                        };
+                        renders[dataKey]?.();
+                    }
+                }
+            });
         }
 
         // ============================================================
@@ -1754,6 +1851,70 @@
     <script src="js/auth.js"></script>
     <script src="js/admin-guard.js"></script>
     <script src="js/admin-profile.js"></script>
+
+    <!-- Section Drag-Drop + Visibility Logic -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof Sortable !== 'undefined') {
+            Sortable.create(document.getElementById('sections-sortable'), {
+                animation: 200,
+                handle: '.section-drag-handle',
+                ghostClass: 'sortable-ghost',
+                dragClass: 'sortable-drag',
+                onEnd: () => {
+                    const order = [];
+                    document.querySelectorAll('#sections-sortable [data-section-id]').forEach(el => order.push(el.dataset.sectionId));
+                    if (typeof hpData !== 'undefined') hpData.sectionOrder = order;
+                }
+            });
+        }
+        setTimeout(applyVisibilityState, 900);
+    });
+
+    function applyVisibilityState() {
+        const vis = (typeof hpData !== 'undefined' ? hpData.sectionVisibility : null) || {};
+        document.querySelectorAll('[data-section-id]').forEach(card => {
+            const sid = card.dataset.sectionId;
+            const isVisible = vis[sid] !== false;
+            card.dataset.visible = isVisible ? 'true' : 'false';
+            _updateVisBtn(card, isVisible);
+        });
+        if (typeof hpData !== 'undefined' && hpData.sectionOrder && hpData.sectionOrder.length > 0) {
+            const container = document.getElementById('sections-sortable');
+            if (container) {
+                const cards = {};
+                container.querySelectorAll('[data-section-id]').forEach(el => { cards[el.dataset.sectionId] = el; });
+                hpData.sectionOrder.forEach(sid => { if (cards[sid]) container.appendChild(cards[sid]); });
+            }
+        }
+    }
+
+    function _updateVisBtn(card, isVisible) {
+        const btn = card.querySelector('.vis-toggle-btn');
+        if (!btn) return;
+        const icon = btn.querySelector('.vis-icon');
+        const text = btn.querySelector('.vis-text');
+        if (icon) icon.textContent = isVisible ? 'visibility' : 'visibility_off';
+        if (text) text.textContent = isVisible ? ' Visible' : ' Hidden';
+        btn.className = btn.className.replace(/text-(amber|slate)-\d+/g, '').replace(/border-(amber|slate)-\d+/g, '').trim();
+        btn.classList.add(isVisible ? 'text-slate-500' : 'text-amber-600');
+        btn.classList.add(isVisible ? 'border-slate-200' : 'border-amber-300');
+    }
+
+    window.toggleSectionVisibility = function(card) {
+        if (!card) return;
+        const sid = card.dataset.sectionId;
+        const newVisible = card.dataset.visible === 'false';
+        card.dataset.visible = newVisible ? 'true' : 'false';
+        _updateVisBtn(card, newVisible);
+        if (typeof hpData !== 'undefined') {
+            hpData.sectionVisibility = hpData.sectionVisibility || {};
+            hpData.sectionVisibility[sid] = newVisible;
+        }
+        if (typeof showToast === 'function') showToast(newVisible ? 'Section shown on homepage' : 'Section hidden from homepage', newVisible ? 'success' : 'info');
+    };
+    </script>
+
 </body>
 
 </html>

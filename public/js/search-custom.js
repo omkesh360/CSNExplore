@@ -12,27 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 mode: "range",
                 dateFormat: "Y-m-d",
                 minDate: "today",
-                showMonths: window.innerWidth >= 768 ? 2 : 1, // 2 months on desktop
-                disableMobile: true, // Force custom UI over native selector
+                showMonths: 1,
+                disableMobile: true,
                 onChange: function (selectedDates, dateStr, instance) {
-                    const block = input.closest('.group');
+                    const block = input.closest('.search-date-field') || input.closest('.search-field') || input.parentElement;
                     if (!block) return;
                     const checkinDisplay = block.querySelector('.checkin-display');
                     const checkoutDisplay = block.querySelector('.checkout-display');
 
                     if (selectedDates.length > 0 && checkinDisplay) {
                         checkinDisplay.innerText = instance.formatDate(selectedDates[0], "M j");
-                        checkinDisplay.classList.remove('text-text-muted');
-                        checkinDisplay.classList.add('text-text-main');
+                        checkinDisplay.classList.remove('placeholder');
                     }
                     if (selectedDates.length === 2 && checkoutDisplay) {
                         checkoutDisplay.innerText = instance.formatDate(selectedDates[1], "M j");
-                        checkoutDisplay.classList.remove('text-text-muted');
-                        checkoutDisplay.classList.add('text-text-main');
+                        checkoutDisplay.classList.remove('placeholder');
                     } else if (checkoutDisplay) {
                         checkoutDisplay.innerText = 'Add date';
-                        checkoutDisplay.classList.add('text-text-muted');
-                        checkoutDisplay.classList.remove('text-text-main');
+                        checkoutDisplay.classList.add('placeholder');
                     }
                 }
             });
@@ -50,18 +47,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 showMonths: 1,
                 disableMobile: true,
                 onChange: function (selectedDates, dateStr, instance) {
-                    const block = input.closest('.group');
+                    const block = input.closest('.search-date-field') || input.closest('.search-field') || input.parentElement;
                     if (!block) return;
                     const display = block.querySelector('.checkin-display');
                     if (selectedDates.length > 0 && display) {
                         display.innerText = instance.formatDate(selectedDates[0], "M j");
-                        display.classList.remove('text-text-muted');
-                        display.classList.add('text-text-main');
+                        display.classList.remove('placeholder');
                     }
                 }
             });
         });
     }
+
+    // Also handle hp-date-range (homepage uses id="search-date")
+    const hpDateInput = document.getElementById('search-date');
+    if (hpDateInput && typeof flatpickr !== 'undefined') {
+        flatpickr(hpDateInput, {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            showMonths: 1,
+            disableMobile: true,
+            onChange: function (selectedDates, dateStr, instance) {
+                const block = hpDateInput.closest('.search-date-field') || hpDateInput.parentElement;
+                if (!block) return;
+                const checkinDisplay = block.querySelector('.checkin-display');
+                const checkoutDisplay = block.querySelector('.checkout-display');
+
+                if (selectedDates.length > 0 && checkinDisplay) {
+                    checkinDisplay.innerText = instance.formatDate(selectedDates[0], "M j");
+                    checkinDisplay.classList.remove('placeholder');
+                }
+                if (selectedDates.length === 2 && checkoutDisplay) {
+                    checkoutDisplay.innerText = instance.formatDate(selectedDates[1], "M j");
+                    checkoutDisplay.classList.remove('placeholder');
+                } else if (checkoutDisplay) {
+                    checkoutDisplay.innerText = 'Add date';
+                    checkoutDisplay.classList.add('placeholder');
+                }
+            }
+        });
+    }
+
+
 
     // 2. Initialize Flatpickr for Time Inputs
     const timeInputs = document.querySelectorAll('#search-time, .time-picker');
@@ -71,15 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
             noCalendar: true,
             dateFormat: "H:i",
             time_24hr: false,
-            disableMobile: true, // Force custom time overlay
+            disableMobile: true,
             onChange: function (selectedDates, dateStr, instance) {
-                const block = instance.element.closest('.group');
+                const block = instance.element.closest('.search-date-field') || instance.element.parentElement;
                 if (!block) return;
                 const display = block.querySelector('.time-display');
                 if (dateStr && display) {
                     display.innerText = instance.formatDate(selectedDates[0], "h:i K");
-                    display.classList.remove('text-text-muted');
-                    display.classList.add('text-text-main');
+                    display.classList.remove('placeholder');
                 }
             }
         });
@@ -148,8 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Click to toggle
-        displayElement.parentElement.addEventListener('click', (e) => {
+        // Click to toggle — listen on the whole container (displayElement is deeper in the DOM now)
+        popoverContainer.addEventListener('click', (e) => {
+            if (popoverDiv.contains(e.target)) return; // don't toggle when clicking inside the popover
             e.stopPropagation();
 
             if (popoverDiv.classList.contains('hidden')) {

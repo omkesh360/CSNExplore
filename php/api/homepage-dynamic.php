@@ -42,14 +42,14 @@ try {
         $input = getJsonInput();
         
         // Check if content exists
-        $existing = $db->fetchOne("SELECT id FROM homepage_content WHERE section = 'full_content'");
+        $existing = $db->fetchOne("SELECT id FROM homepage_content WHERE section = :section", [':section' => 'full_content']);
         
         if ($existing) {
             // Update existing
             $db->update('homepage_content', [
                 'content' => json_encode($input),
                 'updated_at' => date('Y-m-d H:i:s')
-            ], 'section = ?', [':section' => 'full_content']);
+            ], 'section = :section', [':section' => 'full_content']);
         } else {
             // Insert new
             $db->insert('homepage_content', [

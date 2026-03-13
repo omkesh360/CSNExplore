@@ -56,10 +56,15 @@ function getBlog($db) {
             echo json_encode(['error' => 'Blog not found']);
             return;
         }
+        $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
         echo json_encode($blog);
     } else {
         // List all, newest first
         $blogs = $db->fetchAll('SELECT * FROM blogs ORDER BY created_at DESC');
+        $blogs = array_map(function($b) {
+            $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
+            return $b;
+        }, $blogs);
         echo json_encode($blogs);
     }
 }
@@ -74,13 +79,15 @@ function createBlog($db) {
     }
 
     $id = $db->insert('blogs', [
-        'title'     => trim($data['title']),
-        'content'   => trim($data['content']),
-        'author'    => trim($data['author'] ?? 'Admin'),
-        'image'     => trim($data['image'] ?? ''),
-        'status'    => in_array($data['status'] ?? 'published', ['published', 'draft']) ? $data['status'] : 'published',
-        'category'  => trim($data['category'] ?? 'General'),
-        'read_time' => trim($data['read_time'] ?? ''),
+        'title'            => trim($data['title']),
+        'content'          => trim($data['content']),
+        'author'           => trim($data['author'] ?? 'Admin'),
+        'image'            => trim($data['image'] ?? ''),
+        'status'           => in_array($data['status'] ?? 'published', ['published', 'draft']) ? $data['status'] : 'published',
+        'category'         => trim($data['category'] ?? 'General'),
+        'read_time'        => trim($data['read_time'] ?? ''),
+        'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : []),
+        'meta_description' => trim($data['meta_description'] ?? ''),
     ]);
 
     $blog = $db->fetchOne('SELECT * FROM blogs WHERE id = ?', [$id]);
@@ -106,14 +113,16 @@ function updateBlog($db) {
     }
 
     $updated = [
-        'title'      => trim($data['title'] ?? $existing['title']),
-        'content'    => trim($data['content'] ?? $existing['content']),
-        'author'     => trim($data['author'] ?? $existing['author']),
-        'image'      => trim($data['image'] ?? $existing['image']),
-        'status'     => in_array($data['status'] ?? '', ['published', 'draft']) ? $data['status'] : $existing['status'],
-        'category'   => trim($data['category'] ?? $existing['category'] ?? 'General'),
-        'read_time'  => trim($data['read_time'] ?? $existing['read_time'] ?? ''),
-        'updated_at' => date('Y-m-d H:i:s'),
+        'title'            => trim($data['title'] ?? $existing['title']),
+        'content'          => trim($data['content'] ?? $existing['content']),
+        'author'           => trim($data['author'] ?? $existing['author']),
+        'image'            => trim($data['image'] ?? $existing['image']),
+        'status'           => in_array($data['status'] ?? '', ['published', 'draft']) ? $data['status'] : $existing['status'],
+        'category'         => trim($data['category'] ?? $existing['category'] ?? 'General'),
+        'read_time'        => trim($data['read_time'] ?? $existing['read_time'] ?? ''),
+        'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : (json_decode($existing['tags'] ?? '[]', true) ?: [])),
+        'meta_description' => trim($data['meta_description'] ?? $existing['meta_description'] ?? ''),
+        'updated_at'       => date('Y-m-d H:i:s'),
     ];
 
     $db->update('blogs', $updated, 'id = :id', [':id' => $id]);

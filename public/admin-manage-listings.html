@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/admin.css" rel="stylesheet" />
     <style>
         .material-icons {
             font-family: 'Material Symbols Outlined';
@@ -50,21 +51,30 @@
                 </a>
             </div>
             <div class="flex-1 overflow-y-auto px-4 py-6">
-                <nav class="flex flex-col gap-1.5">
+                                                                                                <nav class="flex flex-col gap-1.5">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2">Main Menu</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-dashboard.html">
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
-                        <span class="material-symbols-outlined text-[20px]">web</span>
+                        <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
                     </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings
-                    </p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-about-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">info</span>
+                        <span class="text-[13px]">About Page Editor</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-contact-editor.html">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <span class="text-[13px]">Contact Page Editor</span>
+                    </a>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-add-listing.html">
                         <span class="material-symbols-outlined text-[20px]">add_circle</span>
@@ -77,32 +87,20 @@
                         <span class="text-[13px]">Manage Listings</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-listing-reorder.html">
+                        <span class="material-symbols-outlined text-[20px]">reorder</span>
+                        <span class="text-[13px]">Listing Order</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-cards-editor.html">
                         <span class="material-symbols-outlined text-[20px]">view_list</span>
                         <span class="text-[13px]">Cards Editor</span>
                     </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-bookings.html">
-                        <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                        <span class="text-[13px]">Bookings</span>
-                    </a>
-
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management
-                    </p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Management</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-users.html">
                         <span class="material-symbols-outlined text-[20px]">group</span>
                         <span class="text-[13px]">Users</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-vendors.html">
-                        <span class="material-symbols-outlined text-[20px]">storefront</span>
-                        <span class="text-[13px]">Vendors</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-financials.html">
-                        <span class="material-symbols-outlined text-[20px]">payments</span>
-                        <span class="text-[13px]">Financial Reports</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-images.html">
@@ -114,22 +112,24 @@
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
                     </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-marquee.html">
+                        <span class="material-symbols-outlined text-[20px]">campaign</span>
+                        <span class="text-[13px]">Marquee Announcements</span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-performance.html">
+                        <span class="material-symbols-outlined text-[20px]">speed</span>
+                        <span class="text-[13px]">Performance Monitor</span>
+                    </a>
                 </nav>
             </div>
             <div class="border-t border-slate-100 p-4 shrink-0 bg-slate-50/50">
                 <button id="admin-logout-btn"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left mb-2">
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-600 transition-colors hover:bg-red-50 hover:text-red-600 font-medium w-full text-left">
                     <span class="material-symbols-outlined text-[20px]">logout</span>
                     <span class="text-[13px]">Logout</span>
                 </button>
-                <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-sm shadow-sm"
-                        id="admin-avatar">A</div>
-                    <div class="flex flex-col flex-1">
-                        <span class="text-[13px] font-bold text-slate-900" id="admin-name">Admin</span>
-                        <span class="text-[11px] font-medium text-slate-500">Super Admin</span>
-                    </div>
-                </div>
             </div>
         </aside>
 
@@ -148,14 +148,19 @@
                     </button>
                     <div>
                         <h1 class="text-white font-black text-xl tracking-tight">Manage Listings</h1>
-                        <p class="text-blue-100 text-xs font-medium">View, edit or delete inventory</p>
+                        <p class="text-white/80 text-xs">Edit and manage all property listings</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <a href="admin-add-listing.html"
-                        class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-primary-hover transition-all shadow-md">
+                        class="flex items-center gap-2 px-4 py-2.5 bg-white text-primary text-[13px] font-bold rounded-xl hover:bg-white/90 transition-all shadow-sm">
                         <span class="material-symbols-outlined text-[18px]">add</span>
                         <span class="hidden sm:inline">Add New</span>
+                    </a>
+                    <a href="index.html"
+                        class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white text-[13px] font-bold rounded-xl hover:bg-slate-50 transition-all border border-primary-dark shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                        <span class="hidden sm:inline">View Site</span>
                     </a>
                 </div>
             </header>
@@ -163,6 +168,15 @@
             <!-- Page Content -->
             <main class="flex-1 overflow-y-auto p-6">
                 <div class="max-w-6xl mx-auto">
+
+                    <!-- Search Box -->
+                    <div class="bg-white rounded-lg border border-gray-200 p-4 mb-4 shadow-sm">
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">search</span>
+                            <input id="listing-search" type="text" placeholder="Search listings by name, location, or type..." 
+                                class="w-full h-11 pl-11 pr-4 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm">
+                        </div>
+                    </div>
 
                     <!-- Tabs -->
                     <div class="bg-white rounded-t-lg border-b border-gray-200 px-6 pt-4 mb-0">
@@ -193,6 +207,7 @@
                                         <th class="px-6 py-4">Name</th>
                                         <th class="px-6 py-4">Location</th>
                                         <th class="px-6 py-4">Type/Cuisine</th>
+                                        <th class="px-6 py-4">Status</th>
                                         <th class="px-6 py-4 text-right">Actions</th>
                                     </tr>
                                 </thead>
@@ -212,9 +227,6 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-primary border-t border-white/10 text-center text-xs text-white/70 shrink-0">
-                <p>Copyright &copy; 1996–2026 CSNExplore Admin. All rights reserved.</p>
-            </footer>
         </div>
 
         <!-- Delete Confirmation Modal -->
@@ -236,11 +248,106 @@
         <script>
             let currentCategory = 'stays';
             let itemToDelete = null;
+            let allListings = []; // Store all listings for search
 
             // Load Stays by default
             document.addEventListener('DOMContentLoaded', () => {
                 loadListings('stays');
+                
+                // Add search functionality
+                const searchInput = document.getElementById('listing-search');
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        filterListings(e.target.value);
+                    });
+                }
             });
+
+            function filterListings(searchTerm) {
+                const tbody = document.getElementById('listings-table-body');
+                const empty = document.getElementById('empty-state');
+                
+                if (!searchTerm.trim()) {
+                    renderListings(allListings);
+                    return;
+                }
+                
+                const term = searchTerm.toLowerCase();
+                const filtered = allListings.filter(item => 
+                    (item.name || '').toLowerCase().includes(term) ||
+                    (item.location || '').toLowerCase().includes(term) ||
+                    (item.type || '').toLowerCase().includes(term) ||
+                    (item.cuisine || '').toLowerCase().includes(term)
+                );
+                
+                renderListings(filtered);
+            }
+
+            function getDetailPageUrl(category, id) {
+                const urlMap = {
+                    'stays': 'stay-detail.html',
+                    'cars': 'car-rental-detail.html',
+                    'bikes': 'bike-rental-detail.html',
+                    'restaurants': 'restaurant-detail.html',
+                    'attractions': 'attraction-detail.html',
+                    'buses': 'bus-detail.html'
+                };
+                return `${urlMap[category] || '#'}?id=${id}`;
+            }
+
+            function renderListings(items) {
+                const tbody = document.getElementById('listings-table-body');
+                const empty = document.getElementById('empty-state');
+                
+                if (items.length === 0) {
+                    tbody.innerHTML = '';
+                    empty.classList.remove('hidden');
+                    return;
+                }
+                
+                empty.classList.add('hidden');
+                const _isActive = (item) => parseInt(item.is_active) !== 0;
+                
+                tbody.innerHTML = items.map(item => `
+                    <tr class="hover:bg-gray-50 transition-colors group ${_isActive(item) ? '' : 'bg-red-50'}">
+                        <td class="px-6 py-4">
+                            <img loading="lazy" decoding="async" src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover border ${_isActive(item) ? 'border-gray-200' : 'border-red-300'}" onerror="this.src='https://placehold.co/100?text=No+Img'">
+                        </td>
+                        <td class="px-6 py-4 font-medium ${_isActive(item) ? 'text-gray-900' : 'text-red-700'}">${item.name}</td>
+                        <td class="px-6 py-4 ${_isActive(item) ? 'text-gray-500' : 'text-red-600'}">${item.location}</td>
+                        <td class="px-6 py-4 ${_isActive(item) ? 'text-gray-500' : 'text-red-600'}">
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium border border-gray-200">
+                                ${item.type || item.cuisine || 'N/A'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${_isActive(item) ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                                ${_isActive(item) ? 'Visible' : 'Hidden'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="${getDetailPageUrl(currentCategory, item.id)}" target="_blank"
+                                    class="p-2 text-primary hover:bg-blue-50 rounded-lg transition-colors" title="View on Site">
+                                    <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                                </a>
+                                <button onclick="toggleVisibility(${item.id}, ${item.is_active})" 
+                                    class="p-2 ${_isActive(item) ? 'text-gray-600 hover:bg-gray-100' : 'text-red-600 hover:bg-red-100'} rounded-lg transition-colors" title="${_isActive(item) ? 'Hide' : 'Show'}">
+                                    <span class="material-symbols-outlined text-[20px]">${_isActive(item) ? 'visibility' : 'visibility_off'}</span>
+                                </button>
+                                <a href="admin-add-listing.html?mode=edit&category=${currentCategory}&id=${item.id}" 
+                                   class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                                </a>
+                                <button onclick="openDeleteModal(${item.id})" 
+                                    class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
 
             async function loadListings(category, clickedBtn) {
                 currentCategory = category;
@@ -258,54 +365,76 @@
                 const tbody = document.getElementById('listings-table-body');
                 const loading = document.getElementById('loading-state');
                 const empty = document.getElementById('empty-state');
+                const searchInput = document.getElementById('listing-search');
 
                 tbody.innerHTML = '';
                 loading.classList.remove('hidden');
                 empty.classList.add('hidden');
+                if (searchInput) searchInput.value = ''; // Clear search on category change
 
                 try {
-                    const response = await fetch(`/api/${category}`);
+                    const token = localStorage.getItem('token');
+                    const response = await fetch(`/api/${category}`, {
+                        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                    });
                     const items = await response.json();
 
                     loading.classList.add('hidden');
+                    allListings = items; // Store for search
 
                     if (items.length === 0) {
                         empty.classList.remove('hidden');
                         return;
                     }
 
-                    tbody.innerHTML = items.map(item => `
-                    <tr class="hover:bg-gray-50 transition-colors group">
-                        <td class="px-6 py-4">
-                            <img loading="lazy" decoding="async" src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover border border-gray-200" onerror="this.src='https://placehold.co/100?text=No+Img'">
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900">${item.name}</td>
-                        <td class="px-6 py-4 text-gray-500">${item.location}</td>
-                        <td class="px-6 py-4 text-gray-500">
-                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium border border-gray-200">
-                                ${item.type || item.cuisine || 'N/A'}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <a href="admin-add-listing.html?mode=edit&category=${category}&id=${item.id}" 
-                                   class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
-                                    <span class="material-symbols-outlined text-[20px]">edit</span>
-                                </a>
-                                <button onclick="openDeleteModal(${item.id})" 
-                                    class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
-                                    <span class="material-symbols-outlined text-[20px]">delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
+                    renderListings(items);
 
                 } catch (error) {
                     console.error('Error loading listings:', error);
                     loading.classList.add('hidden');
-                    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-red-500">Failed to load data.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-red-500">Failed to load data.</td></tr>`;
                 }
+            }
+
+
+            async function toggleVisibility(id, currentActive) {
+                const token = localStorage.getItem('token');
+                const newActive = currentActive === 1 ? 0 : 1;
+                try {
+                    const res = await fetch(`/api/${currentCategory}/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                        },
+                        body: JSON.stringify({ is_active: newActive })
+                    });
+                    
+                    if (res.ok) {
+                        showListingToast(newActive === 1 ? 'Listing is now visible' : 'Listing hidden from public');
+                        loadListings(currentCategory);
+                    } else {
+                        const error = await res.json();
+                        alert('Failed to update visibility: ' + (error.error || error.message || 'Unknown error'));
+                    }
+                } catch(e) { 
+                    console.error('Error:', e);
+                    alert('Error: ' + e.message); 
+                }
+            }
+
+            function showListingToast(msg) {
+                let t = document.getElementById('listing-toast');
+                if (!t) {
+                    t = document.createElement('div');
+                    t.id = 'listing-toast';
+                    t.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#1e293b;color:#fff;font-weight:700;font-size:13px;border-radius:0.75rem;padding:0.75rem 1.25rem;box-shadow:0 8px 32px rgba(0,0,0,0.2);transition:all 0.3s;transform:translateY(100px);opacity:0;';
+                    document.body.appendChild(t);
+                }
+                t.textContent = msg;
+                t.style.transform = 'translateY(0)';
+                t.style.opacity = '1';
+                setTimeout(() => { t.style.transform = 'translateY(100px)'; t.style.opacity = '0'; }, 3000);
             }
 
             function openDeleteModal(id) {

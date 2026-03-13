@@ -41,7 +41,8 @@
             }
 
             const data = await response.json();
-            if (data.user.role !== 'admin' && data.user.role !== 'Admin') {
+            const userRole = (data.user && data.user.role) ? data.user.role : '';
+            if (userRole !== 'admin' && userRole !== 'Admin') {
                 redirectToLogin('Access denied. Admin privileges required.');
             }
 

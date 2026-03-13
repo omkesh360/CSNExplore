@@ -54,16 +54,37 @@
         showSkeleton(container);
 
         try {
+            // Fetch from /api/{category} endpoint (e.g., /api/stays, /api/cars)
             const res = await fetch(`/api/${cfg.category}`);
-            if (!res.ok) throw new Error('Network error');
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             allItems = await res.json();
 
+            // Only show real data - NO FALLBACK to demo data
             if (!allItems || allItems.length === 0) {
-                allItems = getDemoData(cfg.category);
+                allItems = [];
+                console.log('No listings found in database for category:', cfg.category);
             }
         } catch (err) {
-            console.error('Listing fetch error, falling back to demo data:', err);
-            allItems = getDemoData(cfg.category);
+            console.error('Listing fetch error:', err);
+            allItems = [];
+            container.innerHTML = `
+                <div class="text-center py-16">
+                    <span class="material-symbols-outlined text-[64px] text-gray-300 mb-4">cloud_off</span>
+                    <p class="text-gray-600 font-semibold text-lg mb-2">Unable to load listings</p>
+                    <p class="text-gray-500 text-sm">Please check your connection and try again.</p>
+                    <button onclick="window.location.reload()" class="mt-4 bg-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-primary-hover transition-colors">
+                        Retry
+                    </button>
+                </div>`;
+            return;
+        }
+
+        // Pre-fill search from URL ?search= param (e.g. passed from homepage)
+        const urlSearch = new URLSearchParams(window.location.search).get('search');
+        if (urlSearch) {
+            const searchInput = document.getElementById('search-location');
+            if (searchInput) searchInput.value = urlSearch;
+            activeFilters.search = urlSearch;
         }
 
         // Build filter options dynamically from data
@@ -72,73 +93,15 @@
         renderResults(cfg);
     }
 
-    function getDemoData(category) {
-        switch (category) {
-            case 'stays':
-                return [
-                    { id: 1, name: "Grand Taj Palace", location: "Downtown Mumbai", description: "Luxury 5-star hotel with sea views.", price: 8500, rating: 9.2, reviews: 342, badge: "Bestseller", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 2, name: "Sunset Beach Resort", location: "North Goa", description: "Private beach access and pool.", price: 4200, rating: 8.5, reviews: 128, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "Mountain View Cabin", location: "Manali", description: "Cozy retreat in the hills.", price: 2100, rating: 7.8, reviews: 64, badge: "Great Value", image: "https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "City Center Inn", location: "Pune", description: "Affordable stay near the station.", price: 1200, rating: 7.0, reviews: 45, image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 5, name: "Desert Camp Oasis", location: "Jaisalmer", description: "Luxury tents in the sand dunes.", price: 5500, rating: 8.8, reviews: 210, badge: "Unique", image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "Himalayan Retreat", location: "Shimla", description: "Cozy rooms with snow views.", price: 3200, rating: 8.1, reviews: 95, image: "https://images.unsplash.com/photo-1542314831-c6a4d27ce6a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            case 'cars':
-                return [
-                    { id: 1, name: "Hyundai Creta", provider: "Zoomcar", location: "Pune Station", dailyRate: 1800, passengers: 5, transmission: "Automatic", type: "SUV", rating: 8.9, reviews: 210, badge: 'Popular', image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 2, name: "Maruti Swift", provider: "Revv", location: "Airport", dailyRate: 1200, passengers: 4, transmission: "Manual", type: "Hatchback", rating: 7.5, reviews: 85, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "Honda City", provider: "Avis", location: "City Center", dailyRate: 2200, passengers: 5, transmission: "Automatic", type: "Sedan", rating: 9.4, reviews: 430, badge: 'Premium', image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "Mahindra Thar", provider: "Zoomcar", location: "North Goa", dailyRate: 3500, passengers: 4, transmission: "Manual", type: "Offroad", rating: 9.0, reviews: 320, badge: 'Adventure', image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 5, name: "Toyota Innova", provider: "Savaari", location: "Mumbai Airport", dailyRate: 2800, passengers: 7, transmission: "Automatic", type: "MUV", rating: 9.1, reviews: 512, badge: 'Family Choice', image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "Tata Nexon", provider: "Revv", location: "Pune", dailyRate: 1600, passengers: 5, transmission: "Automatic", type: "SUV", rating: 8.4, reviews: 145, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            case 'bikes':
-                return [
-                    { id: 1, name: "Royal Enfield Classic 350", type: "Cruiser", description: "Perfect for long highway rides.", features: "2 Helmets Included, Carrier", dailyRate: 800, rating: 9.1, reviews: 312, badge: 'Top Choice', image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 2, name: "Honda Activa 6G", type: "Scooter", description: "Easy and reliable city commuter.", features: "1 Helmet", dailyRate: 400, rating: 8.0, reviews: 150, image: "https://images.unsplash.com/photo-1627834575836-39149bb88ed1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "KTM Duke 200", type: "Sports", description: "Agile performance for enthusiasts.", features: "Full Gear Available", dailyRate: 1100, rating: 8.7, reviews: 92, badge: 'Sporty', image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "Bajaj Avenger 220", type: "Cruiser", description: "Relaxed riding posture.", features: "2 Helmets", dailyRate: 600, rating: 8.2, reviews: 110, image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 5, name: "TVS Jupiter", type: "Scooter", description: "Comfortable family scooter.", features: "1 Helmet, First Aid", dailyRate: 350, rating: 7.8, reviews: 88, image: "https://images.unsplash.com/photo-1627834575836-39149bb88ed1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "Yamaha R15", type: "Sports", description: "Track oriented performance.", features: "Helmet, Gloves", dailyRate: 900, rating: 8.9, reviews: 205, badge: 'Popular', image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            case 'restaurants':
-                return [
-                    { id: 1, name: "Spice Route", cuisine: "Authentic Indian", location: "Connaught Place", description: "Award-winning North Indian dishes.", pricePerPerson: 1200, rating: 9.3, reviews: 450, badge: 'Recommended', image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 2, name: "Ocean Grill", cuisine: "Seafood & Continental", location: "Baga Beach", description: "Fresh catch of the day by the waves.", pricePerPerson: 1800, rating: 8.8, reviews: 215, image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "Cafe Mocha", cuisine: "Cafe & Desserts", location: "Koregaon Park", description: "Great coffee and relaxed outdoor seating.", pricePerPerson: 600, rating: 8.5, reviews: 330, badge: 'Cozy', image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "The Steakhouse", cuisine: "Continental", location: "Bandra West", description: "Premium steaks and fine wines.", pricePerPerson: 2500, rating: 9.5, reviews: 620, badge: 'Premium', image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 5, name: "Punjabi Dhaba", cuisine: "North Indian", location: "Highway 4", description: "Authentic dhaba food with outdoor seating.", pricePerPerson: 400, rating: 8.2, reviews: 180, image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "Sushi Train", cuisine: "Japanese", location: "City Center Mall", description: "Conveyor belt sushi experience.", pricePerPerson: 1500, rating: 8.6, reviews: 290, image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            case 'attractions':
-                return [
-                    { id: 1, name: "Taj Mahal Guided Tour", location: "Agra", duration: "3h 00m", description: "Skip-the-line access to the iconic monument of love.", entryFee: 1500, rating: 9.8, reviews: 2450, badge: 'Must See', image: "https://images.unsplash.com/photo-1564507592224-2fc8c61bb2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 2, name: "Elephanta Caves Trip", location: "Gateway of India", duration: "5h 00m", description: "Ferry ride and guided exploration of ancient caves.", entryFee: 800, rating: 8.4, reviews: 520, image: "https://images.unsplash.com/photo-1627891398124-7bd08a462db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "Desert Safari", location: "Jaisalmer", duration: "6h 30m", description: "Evening dune bashing and cultural campfire dinner.", entryFee: 2500, rating: 9.1, reviews: 340, badge: 'Adventure', image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "Amber Fort Visit", location: "Jaipur", duration: "4h 00m", description: "Explore the majestic hilltop fort.", entryFee: 500, rating: 9.0, reviews: 1200, badge: 'Historic', image: "https://images.unsplash.com/photo-1564507592224-2fc8c61bb2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 5, name: "Kerala Houseboat", location: "Alleppey", duration: "1 Day", description: "Overnight stay on the peaceful backwaters.", entryFee: 6000, rating: 9.5, reviews: 850, badge: 'Popular', image: "https://images.unsplash.com/photo-1627891398124-7bd08a462db9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "City Museum", location: "Delhi", duration: "2h 30m", description: "Art and history exhibits.", entryFee: 200, rating: 7.9, reviews: 410, image: "https://images.unsplash.com/photo-1534152011707-1c667634f509?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            case 'buses':
-                return [
-                    { id: 1, name: "Purple Travels Volvo", route: "CSN → Nashik", departure: "05:30 AM", duration: "5h 00m", type: "Volvo AC", price: 420, rating: 8.7, reviews: 88, badge: 'Comfortable', image: "/images/purple-travels-bus.jpg" },
-                    { id: 2, name: "Neeta Tours", route: "CSN → Pune", departure: "08:00 PM", duration: "10h 30m", type: "Sleeper Non-AC", price: 650, rating: 7.5, reviews: 140, image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 3, name: "VRL Travels", route: "CSN → Mumbai", departure: "10:30 PM", duration: "12h 00m", type: "Volvo Multi-Axle", price: 1100, rating: 9.0, reviews: 520, badge: 'Premium', image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 4, name: "Konduskar Travels", route: "CSN → Kolhapur", departure: "07:00 PM", duration: "14h 00m", type: "AC Sleeper", price: 1250, rating: 8.5, reviews: 310, image: "/images/purple-travels-bus.jpg" },
-                    { id: 5, name: "Prasanna Purple", route: "CSN → Aurangabad", departure: "06:00 AM", duration: "3h 30m", type: "Seater Non-AC", price: 300, rating: 8.1, reviews: 195, image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-                    { id: 6, name: "Shivneri (MSRTC)", route: "CSN → Pune", departure: "Hourly", duration: "8h 00m", type: "AC Seater", price: 750, rating: 8.8, reviews: 1450, badge: 'Reliable', image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-                ];
-            default:
-                return [];
-        }
-    }
-
     // ============================================================
     // FILTER + SORT LOGIC
     // ============================================================
     function getFiltered() {
         let items = [...allItems];
         const f = activeFilters;
+
+        // Filter out hidden items (is_active = 0)
+        items = items.filter(item => parseInt(item.is_active) !== 0);
 
         // Search
         if (f.search) {
@@ -191,10 +154,18 @@
                 break;
             case 'recommended':
             default:
-                // Badges first, then by rating
+                // Sort by display_order first, then badges, then by rating
                 items.sort((a, b) => {
+                    // Primary: display_order (lower number = higher priority)
+                    const orderA = parseInt(a.display_order) || 999999;
+                    const orderB = parseInt(b.display_order) || 999999;
+                    if (orderA !== orderB) return orderA - orderB;
+                    
+                    // Secondary: badges first
                     if (b.badge && !a.badge) return 1;
                     if (a.badge && !b.badge) return -1;
+                    
+                    // Tertiary: by rating
                     return (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
                 });
         }
@@ -234,9 +205,12 @@
         if (items.length === 0) {
             container.innerHTML = `
                 <div class="text-center py-16">
-                    <span class="material-symbols-outlined text-[48px] text-gray-300 mb-3">search_off</span>
-                    <p class="text-gray-500 font-semibold">No listings match your filters.</p>
-                    <button onclick="resetFilters()" class="mt-4 text-primary text-sm font-bold hover:underline">Clear all filters</button>
+                    <span class="material-symbols-outlined text-[64px] text-gray-300 mb-4">inventory_2</span>
+                    <p class="text-gray-600 font-semibold text-lg mb-2">No listings available</p>
+                    <p class="text-gray-500 text-sm mb-4">There are currently no ${cfg.category} in the database.</p>
+                    ${activeFilters.search || activeFilters.types.length > 0 || activeFilters.minRating > 0 || activeFilters.minPrice > 0 || activeFilters.maxPrice < Infinity || activeFilters.popularOnly ? 
+                        '<button onclick="resetFilters()" class="mt-2 bg-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-primary-hover transition-colors">Clear Filters</button>' : 
+                        '<p class="text-gray-400 text-xs mt-2">Add listings via the Admin Panel</p>'}
                 </div>`;
             return;
         }
@@ -318,8 +292,9 @@
                     <label class="flex items-center gap-3 cursor-pointer group">
                         <input id="filter-popular" type="checkbox"
                             class="w-4 h-4 rounded text-primary accent-primary cursor-pointer"/>
-                        <span class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors">
-                            ⭐ Popular / Bestsellers only
+                        <span class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-primary text-[16px] leading-none">workspace_premium</span>
+                            Popular / Bestsellers only
                         </span>
                     </label>
                 </div>
@@ -426,6 +401,35 @@
     // BIND FILTER EVENTS
     // ============================================================
     function bindFilterEvents(cfg) {
+        // ── Location / Name search input ──────────────────────────
+        const searchInput = document.getElementById('search-location');
+        if (searchInput) {
+            // Live filter on every keystroke
+            searchInput.addEventListener('input', () => {
+                visibleLimit = 5; // reset to first page on new search
+                activeFilters.search = searchInput.value.trim();
+                renderResults(cfg);
+            });
+            // Also trigger on Enter key
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    visibleLimit = 5;
+                    activeFilters.search = searchInput.value.trim();
+                    renderResults(cfg);
+                }
+            });
+        }
+
+        // Hook the hero SEARCH button to also apply the text filter
+        const heroSearchBtn = document.querySelector('.search-btn-modern');
+        if (heroSearchBtn && searchInput) {
+            heroSearchBtn.addEventListener('click', () => {
+                visibleLimit = 5;
+                activeFilters.search = searchInput.value.trim();
+                renderResults(cfg);
+            });
+        }
+
         // Popular
         const popularCb = document.getElementById('filter-popular');
         if (popularCb) {
@@ -505,7 +509,7 @@
 
     function updateRatingDisplay(val) {
         const el = document.getElementById('filter-rating-display');
-        if (el) el.textContent = val > 0 ? `${val}+ ⭐` : 'Any';
+        if (el) el.textContent = val > 0 ? `${val}+ stars` : 'Any';
     }
 
     // ============================================================
@@ -587,10 +591,12 @@
         return `
         <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group cursor-pointer"
             data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}" onclick="window.location.href='${detailUrl}'">
-            <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-primary/5 flex items-center justify-center">
-                ${item.image ? `<img alt="${titleName}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${item.image}" onerror="this.src='https://placehold.co/600x400?text=No+Image'"/>` : `<span class="material-symbols-outlined text-[64px] text-primary/30">image</span>`}
+            ${item.image && item.image !== 'Array' && item.image.trim() !== '' ? `
+            <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-primary/5">
+                <img alt="${titleName}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${item.image}" onerror="this.parentElement.style.display='none'"/>
                 ${item.badge ? `<div class="absolute top-2 left-2"><span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${item.badge}</span></div>` : ''}
             </div>
+            ` : ''}
             <div class="flex-1 flex flex-col">
                 <div class="flex justify-between items-start mb-2">
                     <div>

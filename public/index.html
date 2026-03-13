@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>CSNExplore - Find Your Next Adventure</title>
+        <meta name="description" content="Discover the best stays, car rentals, bike rentals, restaurants, bus routes and attractions in Chhatrapati Sambhajinagar (Aurangabad). Book and explore with CSNExplore." />
+    <meta name="keywords" content="Chhatrapati Sambhajinagar, Aurangabad hotels, bike rental Aurangabad, car rental CSN, attractions Aurangabad, restaurants Aurangabad, CSNExplore" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="CSNExplore" />
+    <link rel="canonical" href="https://csnexplore.com/index.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CSNExplore – Hotels, Bikes, Cars & Attractions in Chhatrapati Sambhajinagar" />
+    <meta property="og:description" content="Discover the best stays, car rentals, bike rentals, restaurants, bus routes and attractions in Chhatrapati Sambhajinagar (Aurangabad). Book and explore with CSNExplore." />
+    <meta property="og:url" content="https://csnexplore.com/index.html" />
+    <meta property="og:image" content="https://csnexplore.com/images/og-image.jpg" />
+    <meta property="og:site_name" content="CSNExplore" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CSNExplore – Hotels, Bikes, Cars & Attractions in Chhatrapati Sambhajinagar" />
+    <meta name="twitter:description" content="Discover the best stays, car rentals, bike rentals, restaurants, bus routes and attractions in Chhatrapati Sambhajinagar (Aurangabad). Book and explore with CSNExplore." />
+    <meta name="twitter:image" content="https://csnexplore.com/images/og-image.jpg" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CSNExplore – Hotels, Bikes, Cars & Attractions in Chhatrapati Sambhajinagar</title>
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="css/main.css" as="style" />
@@ -66,9 +83,9 @@
                 class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
                 <div class="flex items-center gap-3 shrink-0">
                     <a href="tel:+918600968888" id="hp-phone-link"
-                        class="flex items-center gap-1 hover:text-white transition-colors">
+                        class="flex items-center gap-2 hover:text-white transition-colors px-3 py-1.5 bg-white/10 rounded-full">
                         <span class="material-symbols-outlined text-[16px]">call</span>
-                        <span id="hp-phone-text">+91 86009 68888</span>
+                        <span class="text-[13px] font-medium">Call Now</span>
                     </a>
                 </div>
 
@@ -268,167 +285,126 @@
         <div class="max-w-[1140px] mx-auto px-4 md:px-6 relative z-10 text-center md:text-left w-full">
             <h1 id="hero-title"
                 class="text-3xl md:text-5xl lg:text-6xl font-black leading-tight mb-4 tracking-tight text-white drop-shadow-lg">
-                Find Your Perfect Stay<br class="hidden sm:inline" /> in Chhatrapati Sambhajinagar.
+                Explore Chhatrapati Sambhajinagar<br class="hidden sm:inline" /> Your Way.
             </h1>
             <p id="hero-desc"
                 class="text-base md:text-xl lg:text-2xl font-normal text-white/95 mb-10 leading-relaxed max-w-2xl drop-shadow-md">
-                Comfortable hotels, homestays, and budget rooms for every traveler.
+                Book stays, rent cars & bikes, discover attractions, and explore local cuisine.
             </p>
         </div>
 
-        <!-- New Research-driven Search Component -->
-        <div class="max-w-[1140px] mx-auto px-4 md:px-6 relative z-20">
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 shadow-2xl border border-white/20">
-                <!-- Service Switches -->
-                <div class="flex flex-wrap gap-2 mb-6">
+        <!-- Modern Search Component -->
+        <div class="max-w-[1140px] mx-auto px-4 md:px-6 relative z-20 pb-6">
+            <div class="search-container">
+                <!-- Service Tabs -->
+                <div class="flex flex-wrap gap-2 mb-4">
                     <button class="service-btn active" id="btn-stays">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">bed</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">bed</span>
                         <span>Stays</span>
                     </button>
                     <button class="service-btn" id="btn-cars">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">directions_car</span>
-                        <span class="text-center leading-tight">Car Rentals</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">directions_car</span>
+                        <span>Car Rentals</span>
                     </button>
                     <button class="service-btn" id="btn-bikes">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">directions_bike</span>
-                        <span class="text-center leading-tight">Bike Rentals</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">directions_bike</span>
+                        <span>Bike Rentals</span>
                     </button>
                     <button class="service-btn" id="btn-restaurants">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">restaurant_menu</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">restaurant_menu</span>
                         <span>Restaurants</span>
                     </button>
                     <button class="service-btn" id="btn-attractions">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">local_activity</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">local_activity</span>
                         <span>Attractions</span>
                     </button>
                     <button class="service-btn" id="btn-buses">
-                        <span class="material-symbols-outlined text-[20px] md:text-[24px]">directions_bus</span>
+                        <span class="material-symbols-outlined text-[20px] md:text-[22px]">directions_bus</span>
                         <span>Buses</span>
                     </button>
                 </div>
 
-                <!-- Search Form -->
-                <div
-                    class="bg-white/5 md:bg-white rounded-xl p-0 md:p-2 flex flex-col md:flex-row gap-0.5 md:gap-2 items-stretch md:shadow-inner bg-transparent">
-                    <div
-                        class="flex-[1.5] relative group cursor-pointer bg-white md:bg-transparent rounded-t-xl md:rounded-l-xl md:rounded-tr-none border-b border-gray-100 md:border-b-0">
-                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-primary/60 text-[22px]">search</span>
+                <!-- Search Bar -->
+                <div class="search-inner">
+                    <!-- Location -->
+                    <div class="search-field flex-[2]">
+                        <span class="search-field-icon material-symbols-outlined">search</span>
+                        <div class="search-field-body">
+                            <span class="search-field-label" id="location-label">Destination</span>
+                            <input id="search-location" class="search-field-input"
+                                placeholder="Where do you want to stay?" type="text" />
                         </div>
-                        <input id="search-location"
-                            class="w-full pl-12 pr-4 h-[56px] rounded-t-xl md:rounded-l-xl border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-semibold placeholder:text-text-muted bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm sm:text-base outline-none"
-                            placeholder="Where do you want to stay?" type="text" />
                     </div>
 
-                    <div
-                        class="flex-[1.5] relative group cursor-pointer lg:border-l border-gray-100 bg-white md:bg-transparent md:border-l-0 border-b border-gray-100 md:border-b-0">
-                        <div class="flex w-full h-[56px]" id="hp-date-range-container">
-                            <!-- Check In -->
-                            <div
-                                class="flex-1 relative border-r border-gray-100 hover:bg-gray-50/50 md:hover:bg-gray-100/50 transition-all overflow-hidden md:bg-gray-50/50 bg-transparent">
-                                <div class="absolute inset-y-0 left-4 flex flex-col justify-center pointer-events-none">
-                                    <span
-                                        class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
-                                        id="date-label-1">Check
-                                        in</span>
-                                    <div class="checkin-display text-sm font-bold text-text-muted truncate">Add date
-                                    </div>
-                                </div>
+                    <!-- Dates -->
+                    <div class="search-date-field flex-[2]" id="hp-date-range-container">
+                        <span class="search-date-icon material-symbols-outlined">calendar_month</span>
+                        <div class="search-date-boxes">
+                            <div class="search-date-box" id="hp-checkin-box">
+                                <span class="search-date-box-label" id="date-label-1">Check in</span>
+                                <div class="search-date-box-value placeholder checkin-display">Add date</div>
                             </div>
-                            <!-- Check Out -->
-                            <div class="flex-1 relative hover:bg-gray-50/50 md:hover:bg-gray-100/50 transition-all overflow-hidden md:bg-gray-50/50 bg-transparent"
-                                id="hp-checkout-box">
-                                <div class="absolute inset-y-0 left-4 flex flex-col justify-center pointer-events-none">
-                                    <span
-                                        class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
-                                        id="date-label-2">Check
-                                        out</span>
-                                    <div class="checkout-display text-sm font-bold text-text-muted truncate">Add date
-                                    </div>
-                                </div>
+                            <div class="search-date-box" id="hp-checkout-box">
+                                <span class="search-date-box-label" id="date-label-2">Check out</span>
+                                <div class="search-date-box-value placeholder checkout-display">Add date</div>
                             </div>
                         </div>
-                        <input type="text" id="search-date"
-                            class="date-range-picker absolute inset-0 w-full h-[56px] opacity-0 cursor-pointer z-10" />
+                        <input type="text" id="search-date" class="search-date-overlay" />
                     </div>
 
-                    <div class="flex-1 relative group cursor-pointer bg-white md:bg-transparent rounded-b-xl md:rounded-none mb-2 md:mb-0"
-                        id="traveler-selector-container">
-                        <div class="absolute inset-y-0 left-4 flex flex-col justify-center pointer-events-none">
-                            <span
-                                class="text-[10px] text-text-muted font-bold uppercase tracking-wider leading-none mb-0.5"
-                                id="traveler-label">Travelers</span>
+                    <!-- Travelers -->
+                    <div class="search-field flex-[1.2]" id="traveler-selector-container" style="position:relative">
+                        <span class="search-field-icon material-symbols-outlined">group</span>
+                        <div class="search-field-body" style="cursor:pointer">
+                            <span class="search-field-label" id="traveler-label">Travelers</span>
+                            <div id="search-travelers-display" class="search-field-input" style="cursor:pointer;display:flex;align-items:center">
+                                2 Adults · 1 Room
+                            </div>
                         </div>
-                        <div id="search-travelers-display"
-                            class="w-full pl-4 pr-10 pt-4 pb-1 h-[56px] rounded-b-xl md:rounded-lg border-0 focus:ring-2 focus:ring-primary/20 text-text-main font-bold bg-transparent md:bg-gray-50/50 hover:bg-gray-50/50 md:hover:bg-gray-100/50 focus:bg-white transition-all text-sm cursor-pointer appearance-none flex items-end overflow-hidden whitespace-nowrap">
-                            2 Adults · 1 Room
-                        </div>
-                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                            <span
-                                class="material-symbols-outlined text-text-muted text-[18px] group-hover:text-primary transition-colors">expand_more</span>
-                        </div>
+                        <span class="material-symbols-outlined" style="color:#9ca3af;font-size:20px;align-self:center;margin-right:10px;flex-shrink:0">expand_more</span>
 
-                        <!-- Modern Travelers Popover -->
+                        <!-- Travelers Popover -->
                         <div id="traveler-popover"
-                            class="absolute top-[100%] md:top-[110%] left-1/2 -translate-x-1/2 md:-translate-x-0 md:left-auto md:right-0 w-[95vw] sm:w-[320px] md:w-[280px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 z-50 hidden opacity-0 scale-95 md:-translate-y-2 transition-all duration-200 cursor-default">
+                            class="absolute top-[calc(100%+8px)] right-0 w-[280px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 z-50 hidden cursor-default"
+                            style="opacity:0;transform:scale(0.96) translateY(-4px);transition:all 0.2s ease">
                             <div class="flex flex-col gap-4">
-                                <!-- Adults -->
                                 <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Adults</span>
-                                        <span class="text-[11px] text-gray-500">Ages 13 or above</span>
+                                    <div>
+                                        <div class="text-sm font-bold text-gray-900">Adults</div>
+                                        <div class="text-[11px] text-gray-400">Ages 13+</div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('adults', -1)" id="btn-adults-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-adults">2</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('adults', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('adults', -1)" id="btn-adults-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-adults">2</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('adults', 1)">+</button>
                                     </div>
                                 </div>
-                                <!-- Children -->
                                 <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Children</span>
-                                        <span class="text-[11px] text-gray-500">Ages 0-12</span>
+                                    <div>
+                                        <div class="text-sm font-bold text-gray-900">Children</div>
+                                        <div class="text-[11px] text-gray-400">Ages 0–12</div>
                                     </div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('children', -1)"
-                                            id="btn-children-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-children">0</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('children', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('children', -1)" id="btn-children-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-children">0</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('children', 1)">+</button>
                                     </div>
                                 </div>
-                                <!-- Rooms -->
-                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm font-bold text-gray-900">Rooms</span>
-                                    </div>
+                                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <div class="text-sm font-bold text-gray-900">Rooms</div>
                                     <div class="flex items-center gap-3">
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors disabled:opacity-30 disabled:hover:bg-transparent"
-                                            onclick="window.updateTraveler('rooms', -1)" id="btn-rooms-min">−</button>
-                                        <span class="w-4 text-center text-sm font-bold text-gray-900"
-                                            id="count-rooms">1</span>
-                                        <button type="button"
-                                            class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors"
-                                            onclick="window.updateTraveler('rooms', 1)">+</button>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('rooms', -1)" id="btn-rooms-min">−</button>
+                                        <span class="w-5 text-center text-sm font-bold" id="count-rooms">1</span>
+                                        <button type="button" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-primary hover:bg-blue-50 transition-colors" onclick="window.updateTraveler('rooms', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <button id="search-btn"
-                        class="bg-primary hover:bg-primary-hover text-white font-bold text-lg px-10 rounded-lg h-[56px] transition-all flex items-center justify-center shadow-lg hover:shadow-primary/30 active:scale-95">
+                    <!-- Search Button -->
+                    <button id="search-btn" class="search-btn-modern">
+                        <span class="material-symbols-outlined text-[20px]">search</span>
                         SEARCH
                     </button>
                 </div>
@@ -444,7 +420,11 @@
         <!-- Trending Transport -->
         <section class="animate-slide-up" id="section-trending-transport">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-text-main">Trending Transport</h2>
+                <h2 class="text-2xl font-bold text-text-main">Ride & Explore</h2>
+                <div class="flex items-center gap-3">
+                    <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="car-rentals.html">Cars <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                    <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="bike-rentals.html">Bikes <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                </div>
             </div>
             <div id="trending-transport-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
@@ -456,13 +436,14 @@
                     href="restaurant.html">See all restaurants</a>
             </div>
             <div id="restaurant-circles-grid"
-                class="flex gap-4 md:gap-6 overflow-x-auto pb-4 pt-2 px-4 md:px-1 -mx-4 md:-mx-1 pr-12 md:pr-1 no-scrollbar snap-x snap-mandatory">
+                class="flex gap-4 md:gap-6 pb-4 pt-2 px-4 md:px-0 transition-all duration-500 ease-in-out">
             </div>
         </section>
         <!-- Travel Your Way -->
         <section id="section-bus-routes">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-text-main">Travel Your Way</h2>
+                <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="bus.html">See all buses <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
             </div>
             <div id="bus-routes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </section>
@@ -470,6 +451,7 @@
         <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-attractions">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-text-main">Explore Attractions</h2>
+                <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="attraction.html">See all attractions <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
             </div>
             <div id="attractions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </section>
@@ -477,6 +459,7 @@
         <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-bike-rentals">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-text-main">Quick Bike Rentals</h2>
+                <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="bike-rentals.html">See all bikes <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
             </div>
             <div id="bike-rentals-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </section>
@@ -484,6 +467,7 @@
         <section class="animate-slide-up" style="animation-delay: 0.1s;" id="section-featured-restaurants">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold text-text-main">Featured Restaurants</h2>
+                <a class="flex items-center gap-1 text-sm font-bold text-primary hover:bg-blue-50 px-2 py-1 rounded transition-colors" href="restaurant.html">See all restaurants <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
             </div>
             <div id="featured-restaurants-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </section>
@@ -573,14 +557,14 @@
             },
             'btn-cars': {
                 placeholder: 'Pick-up location',
-                title: 'Drive the City<br class="hidden sm:inline" /> on Your Terms.',
-                desc: 'Reliable self-drive and chauffeur options for smooth local travel.',
+                title: 'Premium Sedans<br class="hidden sm:inline" /> for City Exploration.',
+                desc: 'Explore the city in comfort and style.',
                 slideId: 'carousel-cars'
             },
             'btn-bikes': {
                 placeholder: 'Delivery location',
-                title: 'Explore Freely<br class="hidden sm:inline" /> on Two Wheels.',
-                desc: 'Affordable bikes for city rides and heritage trails.',
+                title: 'Bikes and Scooters<br class="hidden sm:inline" /> for Swift Travel.',
+                desc: 'Swift travel, zero emissions.',
                 slideId: 'carousel-bikes'
             },
             'btn-restaurants': {
@@ -684,7 +668,13 @@
                 const searchDateInput = document.getElementById('search-date');
 
                 if (id === 'restaurants' || id === 'attractions') {
-                    if (checkoutBox) checkoutBox.style.display = 'none';
+                    if (checkoutBox) {
+                        checkoutBox.style.width = '0';
+                        checkoutBox.style.overflow = 'hidden';
+                        checkoutBox.style.padding = '0';
+                        checkoutBox.style.minWidth = '0';
+                        checkoutBox.style.opacity = '0';
+                    }
                     if (dateLabel1) dateLabel1.innerText = 'Date';
                     const cIn = dateContainer ? dateContainer.querySelector('.checkin-display') : null;
                     if (cIn) cIn.innerText = 'Add date';
@@ -694,7 +684,13 @@
                         searchDateInput._flatpickr.set('mode', 'single');
                     }
                 } else {
-                    if (checkoutBox) checkoutBox.style.display = 'block';
+                    if (checkoutBox) {
+                        checkoutBox.style.width = '';
+                        checkoutBox.style.overflow = '';
+                        checkoutBox.style.padding = '';
+                        checkoutBox.style.minWidth = '';
+                        checkoutBox.style.opacity = '';
+                    }
                     if (dateLabel1) dateLabel1.innerText = (id === 'cars' || id === 'bikes') ? 'Pick-up' : 'Check in';
                     if (dateLabel2) dateLabel2.innerText = (id === 'cars' || id === 'bikes') ? 'Drop-off' : 'Check out';
 
@@ -742,6 +738,7 @@
     <script src="js/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="js/search-custom.js"></script>
+<script src="js/marquee.js"></script>
 </body>
 
 </html>
