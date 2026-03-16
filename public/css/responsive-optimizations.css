@@ -1,0 +1,632 @@
+/* ============================================
+   RESPONSIVE OPTIMIZATIONS FOR ALL DEVICES
+   Mobile, Tablet, Desktop Perfect View
+   ============================================ */
+
+/* ============================================
+   MOBILE FIRST BASE (320px - 767px)
+   ============================================ */
+
+/* Ensure proper viewport behavior */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+/* Touch-friendly tap targets (minimum 44x44px) */
+button, a, input[type="button"], input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Prevent text overflow */
+h1, h2, h3, h4, h5, h6, p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Mobile-optimized images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================
+   HEADER & NAVIGATION - RESPONSIVE
+   ============================================ */
+
+/* Mobile header adjustments */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+@media (max-width: 767px) {
+    header .max-w-\[1140px\] {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Compact logo on mobile */
+    header img[alt="CSNExplore"] {
+        height: 32px !important;
+    }
+    
+    /* Hide desktop navigation on mobile */
+    header nav {
+        display: none;
+    }
+}
+
+/* Tablet header (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    header img[alt="CSNExplore"] {
+        height: 36px !important;
+    }
+}
+
+/* Desktop header (1024px+) */
+@media (min-width: 1024px) {
+    header img[alt="CSNExplore"] {
+        height: 42px !important;
+    }
+}
+
+/* ============================================
+   HERO SECTION - RESPONSIVE
+   ============================================ */
+
+/* Mobile hero */
+@media (max-width: 767px) {
+    .bg-primary.text-white.relative {
+        min-height: 400px !important;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    /* Hero title */
+    h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Hero description */
+    h1 + p {
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+}
+
+/* Tablet hero */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .bg-primary.text-white.relative {
+        min-height: 500px !important;
+    }
+    
+    h1 {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Desktop hero */
+@media (min-width: 1024px) {
+    .bg-primary.text-white.relative {
+        min-height: 600px !important;
+    }
+}
+
+/* ============================================
+   SEARCH BOX - RESPONSIVE
+   ============================================ */
+
+/* Mobile search */
+@media (max-width: 767px) {
+    .search-container {
+        padding: 0.75rem;
+        border-radius: 16px;
+    }
+    
+    .search-inner {
+        border-radius: 12px;
+    }
+    
+    .service-btn {
+        font-size: 10px !important;
+        padding: 0.5rem 0.25rem !important;
+        gap: 0.125rem !important;
+    }
+    
+    .service-btn span.material-symbols-outlined {
+        font-size: 18px !important;
+    }
+    
+    .search-field,
+    .search-date-field {
+        min-height: 52px !important;
+    }
+    
+    .search-btn-modern {
+        height: 52px !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* Tablet search */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .search-container {
+        padding: 1rem;
+    }
+    
+    .service-btn {
+        font-size: 0.875rem !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+}
+
+/* ============================================
+   CARDS & LISTINGS - RESPONSIVE
+   ============================================ */
+
+/* Mobile cards */
+@media (max-width: 767px) {
+    /* Listing cards */
+    .grid.grid-cols-1 > div {
+        margin-bottom: 1rem;
+    }
+    
+    /* Card images */
+    .rounded-xl img,
+    .rounded-lg img {
+        max-height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    /* Card text */
+    .text-2xl {
+        font-size: 1.25rem !important;
+    }
+    
+    .text-xl {
+        font-size: 1.125rem !important;
+    }
+    
+    /* Compact spacing */
+    .gap-8 {
+        gap: 1rem !important;
+    }
+    
+    .gap-6 {
+        gap: 0.75rem !important;
+    }
+}
+
+/* Tablet cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .grid.md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .grid.md\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Desktop cards */
+@media (min-width: 1024px) {
+    .grid.lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    .grid.lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* ============================================
+   FOOTER - RESPONSIVE
+   ============================================ */
+
+/* Mobile footer */
+@media (max-width: 767px) {
+    footer .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 2rem 1rem !important;
+    }
+    
+    footer .col-span-2 {
+        grid-column: span 2 !important;
+    }
+    
+    footer h4 {
+        font-size: 0.75rem !important;
+    }
+    
+    footer ul li {
+        font-size: 0.75rem !important;
+    }
+    
+    footer img[alt="CSNExplore"] {
+        height: 32px !important;
+    }
+}
+
+/* Tablet footer */
+@media (min-width: 768px) and (max-width: 1023px) {
+    footer .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 2rem !important;
+    }
+    
+    footer .lg\:col-span-1 {
+        grid-column: span 3 !important;
+    }
+}
+
+/* ============================================
+   NEWSLETTER SECTION - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    .bg-primary.py-12 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .bg-primary.py-12 h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .bg-primary.py-12 input[type="email"] {
+        font-size: 0.875rem !important;
+        padding: 0.625rem 1rem !important;
+    }
+    
+    .bg-primary.py-12 button {
+        padding: 0.625rem 1.5rem !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* ============================================
+   DETAIL PAGES - RESPONSIVE
+   ============================================ */
+
+/* Mobile detail pages */
+@media (max-width: 767px) {
+    /* Gallery grid */
+    .grid.grid-cols-1.md\:grid-cols-4 {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+        gap: 0.5rem !important;
+    }
+    
+    .grid.grid-cols-1.md\:grid-cols-4 > div {
+        height: 200px !important;
+    }
+    
+    /* Detail page spacing */
+    .pt-16 {
+        padding-top: 2rem !important;
+    }
+    
+    .pb-8 {
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Breadcrumbs */
+    nav[aria-label="Breadcrumb"] {
+        font-size: 0.75rem !important;
+    }
+    
+    nav[aria-label="Breadcrumb"] .material-symbols-outlined {
+        font-size: 14px !important;
+    }
+}
+
+/* Tablet detail pages */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .grid.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        height: auto !important;
+    }
+    
+    .md\:col-span-2 {
+        grid-column: span 2 !important;
+    }
+    
+    .md\:row-span-2 {
+        grid-row: span 1 !important;
+    }
+}
+
+/* ============================================
+   FORMS & INPUTS - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 0.75rem !important;
+    }
+    
+    button[type="submit"] {
+        width: 100%;
+        padding: 0.875rem !important;
+    }
+}
+
+/* ============================================
+   MOBILE DRAWER - OPTIMIZED
+   ============================================ */
+
+@media (max-width: 1023px) {
+    #mobile-drawer {
+        width: 280px !important;
+    }
+    
+    #mobile-drawer a {
+        padding: 0.875rem 1rem !important;
+        font-size: 0.9375rem !important;
+    }
+    
+    #mobile-drawer .material-symbols-outlined {
+        font-size: 20px !important;
+    }
+}
+
+/* ============================================
+   TABLES - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table td,
+    table th {
+        padding: 0.5rem !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* ============================================
+   MODALS & POPUPS - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    .fixed.inset-0 > div {
+        margin: 1rem !important;
+        max-height: calc(100vh - 2rem) !important;
+        overflow-y: auto !important;
+    }
+}
+
+/* ============================================
+   SPACING UTILITIES - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    .max-w-\[1140px\] {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .px-4 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .py-12 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .py-16 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
+/* ============================================
+   RESTAURANT CIRCLES - FIX CUTTING
+   ============================================ */
+
+/* Restaurant circles now use carousel-wrapper/carousel-track classes from JS */
+
+/* ============================================
+   GALLERY VIEWER - RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    #gallery-viewer button {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    #gallery-viewer .material-symbols-outlined {
+        font-size: 24px !important;
+    }
+    
+    #viewer-prev {
+        left: 0.5rem !important;
+    }
+    
+    #viewer-next {
+        right: 0.5rem !important;
+    }
+    
+    #viewer-close {
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .bg-primary.text-white.relative {
+        min-height: 300px !important;
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .search-container {
+        padding: 0.5rem;
+    }
+}
+
+/* ============================================
+   TABLET SPECIFIC (768px - 1023px)
+   ============================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Optimize for iPad and similar tablets */
+    .max-w-\[1140px\] {
+        max-width: 100% !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+    
+    /* Better card layouts */
+    .grid {
+        gap: 1.5rem !important;
+    }
+    
+    /* Comfortable touch targets */
+    button, a {
+        min-height: 48px;
+    }
+}
+
+/* ============================================
+   LARGE DESKTOP (1440px+)
+   ============================================ */
+
+@media (min-width: 1440px) {
+    .max-w-\[1140px\] {
+        max-width: 1280px !important;
+    }
+    
+    h1 {
+        font-size: 3.5rem !important;
+    }
+    
+    .text-2xl {
+        font-size: 2rem !important;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    header,
+    footer,
+    .no-print,
+    button,
+    #mobile-drawer,
+    #sidebar-overlay {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid #003580;
+    outline-offset: 2px;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    button,
+    a {
+        border: 2px solid currentColor;
+    }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* GPU acceleration for smooth animations */
+.animate-slide-up,
+.animate-fade-in,
+.animate-scale-in {
+    will-change: transform, opacity;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ============================================
+   SAFARI SPECIFIC FIXES
+   ============================================ */
+
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        font-size: 16px !important;
+    }
+    
+    /* Fix for iOS Safari bottom bar */
+    .min-h-screen {
+        min-height: -webkit-fill-available;
+    }
+}

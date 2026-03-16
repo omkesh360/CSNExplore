@@ -278,6 +278,20 @@ form label {
     animation: scaleIn 0.4s ease-out forwards;
 }
 
+/* Marquee Container Styles */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.marquee-content {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+}
+
 @keyframes marquee {
     0% {
         transform: translateX(0%);
@@ -517,31 +531,63 @@ button {
    ============================================ */
 .listing-hero {
     position: relative;
-    min-height: 250px;
-    padding-top: 5rem;
-    padding-bottom: 6rem;
+    min-height: 200px;
+    padding-top: 3rem;
+    padding-bottom: 2.5rem;
     background: linear-gradient(rgba(0, 53, 128, 0.9), rgba(0, 53, 128, 0.7)), url('../images/hotel-room-standard.jpg');
     background-size: cover;
     background-position: center;
 }
 
+.listing-hero > div:first-child {
+    margin-bottom: 0;
+}
+
+.listing-hero > div:first-child h1 {
+    margin-bottom: 0.75rem !important;
+}
+
+.listing-hero > div:first-child p {
+    margin-bottom: 2rem !important;
+}
+
 .listing-hero-search {
     position: relative;
-    left: 0;
-    right: 0;
     z-index: 30;
     max-width: 1140px;
-    margin: -28px auto 0;
+    margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
     .listing-hero-search {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
-        margin-top: -32px;
     }
+}
+
+/* search container inside hero — left-aligned under heading */
+.listing-hero-search .search-container {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+/* Slightly smaller heading in compact hero */
+.listing-hero h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+}
+
+@media (min-width: 768px) {
+    .listing-hero h1 {
+        font-size: 2.5rem !important;
+    }
+}
+
+.listing-hero p {
+    font-size: 1rem !important;
 }
 
 .listing-main {
@@ -771,13 +817,13 @@ button {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 1.25rem;
+    padding: 1.5rem;
     border: 1px solid rgba(255,255,255,0.2);
     box-shadow: 0 24px 80px rgba(0,0,0,0.25);
 }
 
 .search-inner {
-    background: #ffffff;
+    background: transparent;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
@@ -800,11 +846,15 @@ button {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    min-height: 56px;
+    min-height: 64px;
     border-bottom: 1px solid #f0f0f0;
     background: #fff;
     transition: background 0.2s, box-shadow 0.2s;
     padding: 0;
+}
+
+.search-field:first-child {
+    border-radius: 16px 16px 0 0;
 }
 
 .search-field:focus-within {
@@ -812,10 +862,14 @@ button {
 }
 
 @media (min-width: 768px) {
+    .search-field:first-child {
+        border-radius: 16px 0 0 16px;
+    }
     .search-field {
         border-bottom: none;
         border-right: 1px solid #f0f0f0;
-        min-height: 60px;
+        min-height: 68px;
+        border-radius: 0;
     }
     .search-field:last-of-type,
     .search-field:has(+ .search-btn-modern),
@@ -844,7 +898,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 8px 12px 8px 0;
+    padding: 12px 16px 12px 0;
     min-width: 0;
 }
 
@@ -887,7 +941,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    min-height: 56px;
+    min-height: 64px;
     border-bottom: 1px solid #f0f0f0;
     background: #fff;
     transition: background 0.2s;
@@ -898,11 +952,16 @@ button {
     .search-date-field {
         border-bottom: none;
         border-right: 1px solid #f0f0f0;
-        min-height: 60px;
+        min-height: 68px;
+        border-radius: 0;
     }
     .search-date-field:last-of-type,
     .search-date-field:has(+ .search-btn-modern) {
         border-right: none;
+    }
+    /* If date field is first child (no location field before it) */
+    .search-date-field:first-child {
+        border-radius: 16px 0 0 16px;
     }
 }
 
@@ -936,7 +995,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 8px 12px 8px 0;
+    padding: 12px 16px 12px 0;
     cursor: pointer;
     min-width: 0;
 }
@@ -991,7 +1050,7 @@ button {
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     padding: 0 2.5rem;
-    height: 56px;
+    height: 64px;
     border: none;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1009,7 +1068,8 @@ button {
     .search-btn-modern {
         width: auto;
         min-width: 140px;
-        height: 60px;
+        height: auto;
+        align-self: stretch;
         border-radius: 0 16px 16px 0;
         padding: 0 2.5rem;
     }
@@ -1024,4 +1084,62 @@ button {
 .search-btn-modern:active {
     transform: translateY(0);
     box-shadow: 0 4px 12px rgba(0,53,128,0.2);
+}
+
+/* ============================================
+   BOX HOVER EFFECT — listing cards & content cards
+   ============================================ */
+.box-hover,
+.blog-card,
+.listing-card {
+    transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+.box-hover:hover,
+.blog-card:hover,
+.listing-card:hover {
+    box-shadow: 0 0 0 2px var(--color-primary, #003580),
+                0 8px 32px rgba(0, 53, 128, 0.14);
+    transform: translateY(-3px);
+    border-color: var(--color-primary, #003580) !important;
+}
+
+/* Homepage section cards rendered by JS get box-hover via JS injection */
+/* About page info cards */
+.about-card {
+    transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+.about-card:hover {
+    box-shadow: 0 0 0 2px var(--color-primary, #003580),
+                0 8px 32px rgba(0, 53, 128, 0.14);
+    transform: translateY(-3px);
+    border-color: var(--color-primary, #003580) !important;
+}
+
+/* Contact page form & info cards */
+.contact-card {
+    transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+.contact-card:hover {
+    box-shadow: 0 0 0 2px var(--color-primary, #003580),
+                0 8px 32px rgba(0, 53, 128, 0.14);
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   HEADER NAV — ACTIVE PAGE INDICATOR
+   ============================================ */
+header nav a.nav-active {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #fff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+}
+header nav a:not(.nav-active):hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.20) !important;
+    border-radius: 9999px !important;
+}
+header nav a {
+    border: 1.5px solid transparent;
 }

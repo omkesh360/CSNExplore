@@ -107,7 +107,7 @@ try {
             sendError('Token required', 401);
         }
         
-        $decoded = verifyJWT($token);
+        $decoded = verifyJWT($token, JWT_SECRET);
         
         if (!$decoded) {
             sendError('Invalid token', 401);

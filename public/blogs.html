@@ -31,6 +31,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
             <link href="css/main.css" rel="stylesheet" />
+    <link href="css/responsive-optimizations.css" rel="stylesheet" />
     <style>
         .blog-card {
             transition: box-shadow 0.2s, transform 0.2s;
@@ -71,56 +72,68 @@
 
     <!-- ============= HEADER (matches site standard) ============= -->
     <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
-        <!-- Top Bar -->
-        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1.5">
-            <div
-                class="max-w-[1140px] mx-auto px-4 md:px-6 flex justify-between items-center text-[13px] font-medium opacity-90">
-                <div class="flex items-center gap-3 shrink-0">
-                    <a href="tel:+918600968888" class="flex items-center gap-1 hover:text-white transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">call</span>
-                        <span>+91 86009 68888</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex flex-1 mx-8 overflow-hidden">
-                    <div class="animate-marquee whitespace-nowrap text-white/90 text-[12px]">
-                        <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
-                        <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
-                        <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+        <!-- Contact Top Bar with Marquee -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1 overflow-hidden">
+            <div class="max-w-[1140px] mx-auto px-4 md:px-6 flex items-center gap-3 text-[11px] font-medium opacity-90">
+                <!-- Left: Marquee Announcements (takes most space) -->
+                <div class="flex-1 overflow-hidden relative min-w-0">
+                    <div class="marquee-container">
+                        <div class="marquee-content animate-marquee" id="hp-marquee">
+                            <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                            <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                            <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                            <span class="mx-4">✨ New announcement</span>
+                            <span class="mx-4" aria-hidden="true">✨ Best places to visit in Sambhajinagar</span>
+                            <span class="mx-4" aria-hidden="true">🚀 20% OFF on your first hotel booking</span>
+                            <span class="mx-4" aria-hidden="true">🌟 Exclusive weekend deals for Car Rentals</span>
+                            <span class="mx-4" aria-hidden="true">✨ New announcement</span>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-4 shrink-0">
-                    <a href="https://wa.me/918600968888" target="_blank"
-                        class="flex items-center gap-1 hover:text-white transition-colors ml-2">
-                        <img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
-                            class="w-4 h-4">
-                        WhatsApp
-                    </a>
-                </div>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/918600968888" target="_blank" class="flex items-center gap-1 hover:text-white transition-colors px-2 py-0.5 shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">chat</span>
+                    <span class="text-[11px] font-medium">WhatsApp</span>
+                </a>
+
+                <!-- Phone Call -->
+                <a href="tel:+918600968888" id="hp-phone-link"
+                    class="flex items-center gap-1 hover:text-white transition-colors px-2 py-0.5 shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span class="text-[11px] font-medium whitespace-nowrap">+91 86009 68888</span>
+                </a>
             </div>
         </div>
-        <!-- Main Nav -->
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
-                <!-- Logo -->
+                <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
-                <!-- Nav Links + Auth -->
+
+                <!-- Navigation and Auth Right Side -->
                 <div class="flex items-center gap-4 overflow-hidden">
                     <nav class="hidden lg:flex items-center gap-1">
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white"
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="index.html">
+                            <span class="text-[13px] font-medium">Home</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
                             href="about.html">
                             <span class="text-[13px] font-medium">About Us</span>
                         </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white"
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
                             href="contact.html">
                             <span class="text-[13px] font-medium">Contact Us</span>
                         </a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 text-white font-bold"
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
                             href="blogs.html">
                             <span class="text-[13px] font-medium">Blogs</span>
                         </a>
                     </nav>
+
                     <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
                         <div id="auth-buttons" class="flex gap-2">
                             <a href="register.html"
@@ -131,32 +144,120 @@
                         </div>
                         <div id="user-profile" class="hidden">
                             <div class="flex items-center gap-2">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0">
+                                <!-- Avatar circle with initial -->
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0 overflow-hidden"
+                                    id="user-avatar-circle">
                                     <span class="material-symbols-outlined text-sm" id="user-avatar-icon">person</span>
                                 </div>
+                                <!-- User name -->
                                 <span id="user-display-name"
                                     class="text-white text-[13px] font-semibold hidden sm:block max-w-[100px] truncate"></span>
+                                <!-- Logout button -->
+                                <button id="logout-btn"
+                                    class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-[12px] font-bold px-3 py-1.5 rounded-full transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]">logout</span>
+                                    <span class="hidden sm:inline">Logout</span>
+                                </button>
                             </div>
                         </div>
-                        <!-- Mobile menu -->
-                        <button id="mobile-menu-btn" class="lg:hidden text-white p-1" onclick="toggleMobileMenu()">
-                            <span class="material-symbols-outlined">menu</span>
-                        </button>
                     </div>
                 </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
             </div>
         </div>
-        <!-- Mobile nav -->
-        <div id="mobile-menu"
-            class="hidden lg:hidden bg-primary-dark border-t border-white/10 px-4 py-3 flex flex-col gap-2">
-            <a href="about.html"
-                class="text-white/90 text-[14px] font-medium py-2 px-3 rounded-lg hover:bg-white/10">About Us</a>
-            <a href="contact.html"
-                class="text-white/90 text-[14px] font-medium py-2 px-3 rounded-lg hover:bg-white/10">Contact Us</a>
-            <a href="blogs.html" class="text-white text-[14px] font-bold py-2 px-3 rounded-lg bg-white/15">Blogs</a>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="index.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">home</span>
+                    Home
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="about.html">
+                    About Us
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="contact.html">
+                    Contact Us
+                </a>
+
+
+                <div class="border-t border-gray-200 my-2"></div>
+
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">confirmation_number</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors shadow-lg"><span class="material-symbols-outlined">chat</span>WhatsApp</a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
         </div>
     </header>
+    <script>
+    (function(){
+        var path = location.pathname.replace(/\/$/, '') || '/index.html';
+        document.querySelectorAll('header nav a').forEach(function(a){
+            var href = a.getAttribute('href') || '';
+            var name = href.split('/').pop().split('?')[0] || 'index.html';
+            if (path.endsWith(name)) a.classList.add('nav-active');
+        });
+    })();
+    </script>
 
     <!-- ============= HERO BAND ============= -->
     <section class="bg-primary text-white py-12 md:py-16">
@@ -231,21 +332,69 @@
     </section>
 
     <!-- ============= FOOTER ============= -->
-    <footer class="bg-primary text-white pt-16 pb-8">
+        <footer class="bg-primary text-white pt-16 pb-8 mt-auto">
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Support</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Help Center</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Safety Information</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Cancellation Options</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Report a Concern</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Discover</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Genius Loyalty Program</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Seasonal Deals</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Travel Articles</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Booking Communities</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Terms & Settings</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Privacy & Cookies</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Terms & Conditions</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Grievance Officer</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Manage Settings</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">Partners</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">Extranet Login</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Partner Help</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">List Your Property</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Become an Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4 col-span-2 md:col-span-4 lg:col-span-1">
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-white/80">About</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a class="hover:text-white transition-colors" href="#">About CSNExplore</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">How We Work</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+                        <li><a class="hover:text-white transition-colors" href="#">Press Center</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-2">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="filter brightness-0 invert h-6 md:h-8">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-12 filter brightness-0 invert">
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-2 text-xs text-white/60">
                     <div class="text-center md:text-right">
-                        Copyright &copy; 1996&ndash;2026 CSNExplore. All rights reserved.
+                        Copyright © 1996–2026 CSNExplore. All rights reserved.
                     </div>
-                    <span class="hidden md:inline">&bull;</span>
+                    <span class="hidden md:inline">•</span>
                     <a href="admin.html"
                         class="text-white/60 hover:text-white transition-colors flex items-center gap-1 relative z-[100] cursor-pointer">
-                        <span
-                            class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
+                        <span class="material-symbols-outlined text-[14px] pointer-events-none">admin_panel_settings</span>
                         <span class="pointer-events-none">Admin Login</span>
                     </a>
                 </div>
@@ -511,7 +660,7 @@
             } catch (e) { }
         }
     </script>
-<script src="js/marquee.js"></script>
+    <script src="js/booking-popup.js"></script>
 </body>
 
 </html>

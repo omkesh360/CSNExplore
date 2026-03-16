@@ -58,21 +58,23 @@
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
+                    
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Bookings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-booking-calls.html">
+                        <span class="material-symbols-outlined text-[20px]">call</span>
+                        <span class="text-[13px]">Booking Calls</span>
+                        <span id="sidebar-booking-badge" class="ml-auto hidden bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center"></span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900" href="admin-booking-history.html">
+                        <span class="material-symbols-outlined text-[20px]">history</span>
+                        <span class="text-[13px]">Booking History</span>
+                    </a>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-homepage.html">
                         <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-about-editor.html">
-                        <span class="material-symbols-outlined text-[20px]">info</span>
-                        <span class="text-[13px]">About Page Editor</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-contact-editor.html">
-                        <span class="material-symbols-outlined text-[20px]">mail</span>
-                        <span class="text-[13px]">Contact Page Editor</span>
                     </a>
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
@@ -111,11 +113,6 @@
                         href="admin-blogs-generator.html">
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-marquee.html">
-                        <span class="material-symbols-outlined text-[20px]">campaign</span>
-                        <span class="text-[13px]">Marquee Announcements</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-performance.html">
@@ -377,29 +374,36 @@
                     const response = await fetch(`/api/${category}`, {
                         headers: token ? { 'Authorization': `Bearer ${token}` } : {}
                     });
+                    
+                    if (!response.ok) {
+                        const err = await response.json().catch(() => ({}));
+                        throw new Error(err.error || `HTTP ${response.status}`);
+                    }
+                    
                     const items = await response.json();
 
                     loading.classList.add('hidden');
-                    allListings = items; // Store for search
+                    allListings = Array.isArray(items) ? items : []; // Store for search
 
-                    if (items.length === 0) {
+                    if (allListings.length === 0) {
                         empty.classList.remove('hidden');
                         return;
                     }
 
-                    renderListings(items);
+                    renderListings(allListings);
 
                 } catch (error) {
                     console.error('Error loading listings:', error);
                     loading.classList.add('hidden');
-                    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-red-500">Failed to load data.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-red-500">Failed to load data: ${error.message}</td></tr>`;
                 }
             }
 
 
             async function toggleVisibility(id, currentActive) {
                 const token = localStorage.getItem('token');
-                const newActive = currentActive === 1 ? 0 : 1;
+                const isCurrentlyActive = parseInt(currentActive) !== 0;
+                const newActive = isCurrentlyActive ? 0 : 1;
                 try {
                     const res = await fetch(`/api/${currentCategory}/${id}`, {
                         method: 'PUT',
@@ -414,12 +418,12 @@
                         showListingToast(newActive === 1 ? 'Listing is now visible' : 'Listing hidden from public');
                         loadListings(currentCategory);
                     } else {
-                        const error = await res.json();
-                        alert('Failed to update visibility: ' + (error.error || error.message || 'Unknown error'));
+                        const error = await res.json().catch(() => ({}));
+                        showListingToast('Failed: ' + (error.error || error.message || 'Unknown error'));
                     }
                 } catch(e) { 
                     console.error('Error:', e);
-                    alert('Error: ' + e.message); 
+                    showListingToast('Error: ' + e.message); 
                 }
             }
 
@@ -465,12 +469,14 @@
                     if (response.ok) {
                         closeDeleteModal();
                         loadListings(currentCategory); // Reload table
+                        showListingToast('Listing deleted successfully');
                     } else {
-                        alert('Failed to delete item');
+                        const err = await response.json().catch(() => ({}));
+                        showListingToast('Failed to delete: ' + (err.error || 'Unknown error'));
                     }
                 } catch (error) {
                     console.error('Error deleting item:', error);
-                    alert('An error occurred while deleting');
+                    showListingToast('An error occurred while deleting');
                 } finally {
                     btn.innerText = originalText;
                     btn.disabled = false;
@@ -516,6 +522,19 @@
         </script>
         <script src="js/admin-guard.js"></script>
         <script src="js/admin-profile.js"></script>
+        <script>
+            (async function() {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch('/api/bookings', { headers: token ? { 'Authorization': `Bearer ${token}` } : {} });
+                    if (!res.ok) return;
+                    const bookings = await res.json();
+                    const working = bookings.filter(b => b.status === 'pending').length;
+                    const badge = document.getElementById('sidebar-booking-badge');
+                    if (badge && working > 0) { badge.textContent = working; badge.classList.remove('hidden'); }
+                } catch(e) {}
+            })();
+        </script>
 </body>
 
 </html>

@@ -20,6 +20,15 @@ function generateAdminSidebar(activePage = '') {
                         <span class="text-[13px]">Dashboard</span>
                     </a>
 
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Bookings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 ${activePage === 'booking-calls' ? 'bg-blue-50 text-primary font-bold' : 'text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900'} transition-all ${activePage === 'booking-calls' ? 'relative' : ''}"
+                        href="admin-booking-calls.html">
+                        ${activePage === 'booking-calls' ? '<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>' : ''}
+                        <span class="material-symbols-outlined text-[20px]">call</span>
+                        <span class="text-[13px]">Booking Calls</span>
+                        <span id="sidebar-booking-badge" class="ml-auto hidden bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center"></span>
+                    </a>
+
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 ${activePage === 'homepage' ? 'bg-blue-50 text-primary font-bold' : 'text-slate-500 font-medium hover:bg-slate-50 hover:text-slate-900'} transition-all ${activePage === 'homepage' ? 'relative' : ''}"
                         href="admin-homepage.html">
@@ -138,4 +147,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Fetch working bookings count and show red badge
+    async function updateBookingBadge() {
+        try {
+            const token = localStorage.getItem('token');
+            const res = await fetch('/api/bookings', {
+                headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+            });
+            if (!res.ok) return;
+            const bookings = await res.json();
+            const working = bookings.filter(b => b.status === 'working').length;
+            const badge = document.getElementById('sidebar-booking-badge');
+            if (badge) {
+                if (working > 0) {
+                    badge.textContent = working;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+        } catch (e) { /* silent fail */ }
+    }
+    updateBookingBadge();
 });

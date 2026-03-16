@@ -22,14 +22,16 @@ $_SERVER['PATH_INFO'] = $requestUri;
 if (preg_match('#^/auth(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/auth.php';
 } elseif ($requestUri === '/homepage-content') {
-    require __DIR__ . '/api/homepage.php';
+    require __DIR__ . '/api/homepage-dynamic.php';
 } elseif ($requestUri === '/about-contact') {
     require __DIR__ . '/api/about-contact.php';
 } elseif ($requestUri === '/dashboard') {
     require __DIR__ . '/api/dashboard.php';
 } elseif ($requestUri === '/upload' || $requestUri === '/images') {
     require __DIR__ . '/api/upload.php';
-} elseif (preg_match('#^/(stays|cars|bikes|restaurants|attractions|buses|bookings|users|vendors)(/.*)?$#', $requestUri)) {
+} elseif (preg_match('#^/bookings(/.*)?$#', $requestUri)) {
+    require __DIR__ . '/api/bookings.php';
+} elseif (preg_match('#^/(stays|cars|bikes|restaurants|attractions|buses|users|vendors)(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/listings.php';
 } elseif (preg_match('#^/blogs(/.*)?$#', $requestUri)) {
     require __DIR__ . '/api/blogs.php';

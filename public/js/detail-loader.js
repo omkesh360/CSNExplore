@@ -393,6 +393,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.dataset.price = data.price || data.dailyRate || data.pricePerNight || data.price_per_day || data.price_per_night || 0;
         document.body.dataset.category = category;
 
+        // Update all Book Now buttons with listing name and ID
+        const listingName = data.name || data.title || '';
+        document.querySelectorAll('[data-book-now]').forEach(btn => {
+            if (listingName) btn.dataset.listingName = listingName;
+            if (id) btn.dataset.listingId = id;
+        });
+
         console.log('✅ Detail page loaded successfully - all sections are dynamic');
 
     } catch (error) {

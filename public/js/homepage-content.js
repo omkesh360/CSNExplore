@@ -69,6 +69,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
+        // Apply section order from admin drag-drop
+        if (hpData.sectionOrder && hpData.sectionOrder.length > 0) {
+            const container = document.getElementById('homepage-main');
+            if (container) {
+                // Map admin section IDs to homepage DOM section IDs
+                const sectionMap = {
+                    trendingTransport: 'section-trending-transport',
+                    restaurantCircles: 'section-taste-city',
+                    busRoutes: 'section-bus-routes',
+                    attractions: 'section-attractions',
+                    bikeRentals: 'section-bike-rentals',
+                    featuredRestaurants: 'section-featured-restaurants',
+                    travelInsights: 'section-travel-insights',
+                };
+                hpData.sectionOrder.forEach(sid => {
+                    const domId = sectionMap[sid];
+                    if (domId) {
+                        const el = document.getElementById(domId);
+                        if (el) container.appendChild(el);
+                    }
+                });
+            }
+        }
+
     } catch (err) {
         console.error('Error loading homepage content:', err);
     }
@@ -156,7 +180,7 @@ function renderTrendingTransport(items) {
     const displayItems = [carItem, bikeItem];
 
     container.innerHTML = displayItems.map((item, i) => `
-        <div class="bg-white rounded-lg shadow-soft overflow-hidden flex flex-row h-full min-h-[200px] cursor-pointer group hover:shadow-card transition-shadow">
+        <div class="bg-white rounded-lg shadow-soft overflow-hidden flex flex-row h-full min-h-[200px] cursor-pointer group hover:shadow-card transition-shadow box-hover border border-gray-100">
             <div class="p-6 flex flex-col justify-between flex-1 z-10 relative bg-white/90 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none">
                 <div>
                     <h3 class="text-xl font-bold text-text-main mb-1 line-clamp-2">${esc(item.title)}</h3>
@@ -183,7 +207,7 @@ function renderRestaurantCircles(items) {
     const container = document.getElementById('restaurant-circles-grid');
     if (!container || !items || items.length === 0) return;
 
-    const itemsPerView = 6;
+    const itemsPerView = 7;
     
     // Add carousel CSS if not already added
     if (!document.getElementById('carousel-styles')) {
@@ -202,13 +226,13 @@ function renderRestaurantCircles(items) {
             }
             
             .carousel-item {
-                flex: 0 0 calc((100% - (6 - 1) * 1rem) / 6);
+                flex: 0 0 calc((100% - 6rem) / 7);
                 min-width: 0;
             }
             
             @media (max-width: 768px) {
                 .carousel-item {
-                    flex: 0 0 calc((100% - (3 - 1) * 1rem) / 3);
+                    flex: 0 0 calc((100% - 2rem) / 3);
                 }
             }
         `;
@@ -224,14 +248,14 @@ function renderRestaurantCircles(items) {
     const allItems = [...items, ...items];
     
     track.innerHTML = allItems.map((item) => `
-        <div style="flex: 0 0 calc((100% - 5rem) / 6); min-width: 0;">
-            <a href="${esc(item.link)}" class="flex flex-col items-center gap-2 cursor-pointer group transition-all duration-300 h-full">
-                <div class="relative w-full aspect-square rounded-full shadow-md overflow-hidden ring-2 ring-white group-hover:ring-primary transition-all duration-300 flex-shrink-0">
+        <div class="carousel-item">
+            <a href="${esc(item.link)}" class="flex flex-col items-center gap-2 cursor-pointer group transition-all duration-300">
+                <div class="relative w-full aspect-square rounded-full shadow-md overflow-hidden ring-2 ring-white group-hover:ring-primary transition-all duration-300">
                     <img class="w-full h-full object-cover" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
                     <div class="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
                     ${item.rating ? `<div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">${esc(item.rating)}</div>` : ''}
                 </div>
-                <div class="text-center w-full px-1 flex-1 flex flex-col justify-center">
+                <div class="text-center w-full">
                     <h3 class="text-sm font-bold text-text-main group-hover:text-primary line-clamp-2 transition-colors">${esc(item.name)}</h3>
                     <p class="text-xs text-text-muted line-clamp-1">${esc(item.type)}</p>
                 </div>
@@ -272,7 +296,7 @@ function renderBusRoutes(items) {
     if (!container || !items) return;
 
     container.innerHTML = items.map(item => `
-        <a href="${esc(item.link)}" class="bg-white p-4 rounded-lg shadow-soft border border-gray-100 hover:shadow-card transition-all cursor-pointer group flex flex-col h-full">
+        <a href="${esc(item.link)}" class="bg-white p-4 rounded-lg shadow-soft border border-gray-100 hover:shadow-card transition-all cursor-pointer group flex flex-col h-full box-hover">
             <div class="flex justify-between items-start mb-4">
                 <div class="flex gap-3 items-center">
                     <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-primary shrink-0">
@@ -316,7 +340,7 @@ function renderAttractions(items) {
     
     track.innerHTML = allItems.map((item) => `
         <div style="flex: 0 0 calc((100% - 3rem) / 4); min-width: 0;">
-            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 overflow-hidden cursor-pointer group hover:shadow-card transition-all flex flex-col h-full">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 overflow-hidden cursor-pointer group hover:shadow-card transition-all flex flex-col h-full box-hover">
                 <div class="h-48 shrink-0 overflow-hidden relative">
                     <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${esc(item.name)}" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
                     ${item.rating ? `
@@ -380,7 +404,7 @@ function renderBikeRentals(items) {
     
     track.innerHTML = allItems.map((item) => `
         <div style="flex: 0 0 calc((100% - 3rem) / 4); min-width: 0;">
-            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 p-3 flex flex-col hover:shadow-card transition-all h-full text-center">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft border border-gray-100 p-3 flex flex-col hover:shadow-card transition-all h-full text-center box-hover">
                 <div class="w-full h-40 shrink-0 bg-gray-50 rounded mb-2 flex items-center justify-center overflow-hidden">
                     <img alt="${esc(item.name)}" class="w-full h-full object-cover" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
                 </div>
@@ -437,7 +461,7 @@ function renderFeaturedRestaurants(items) {
         const tagsHtml = (item.tags || []).map(t => `<span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap">${esc(t)}</span>`).join('');
         return `
         <div style="flex: 0 0 calc((100% - 2rem) / 3); min-width: 0;">
-            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft overflow-hidden border border-gray-100 flex flex-col group hover:shadow-card transition-all h-full">
+            <a href="${esc(item.link)}" class="bg-white rounded-lg shadow-soft overflow-hidden border border-gray-100 flex flex-col group hover:shadow-card transition-all h-full box-hover">
                 <div class="h-48 shrink-0 relative overflow-hidden">
                     <img alt="${esc(item.name)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${esc(item.image)}" onerror="this.src='/images/placeholder.jpg'" />
                     ${item.rating ? `<div class="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-2 py-0.5 rounded">${esc(item.rating)}</div>` : ''}
@@ -518,7 +542,7 @@ function renderTravelInsights(items, fromApi = false) {
         const description = fromApi ? (item.content || '').substring(0, 160) + '...' : (item.description || '');
         const blogHref = getBlogLink(item, fromApi);
         return `
-        <a href="${esc(blogHref)}" target="_blank" class="group cursor-pointer flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow no-underline">
+        <a href="${esc(blogHref)}" target="_blank" class="group cursor-pointer flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow no-underline box-hover">
             <div class="rounded-lg shrink-0 overflow-hidden h-[180px] mb-3 relative">
                 <img alt="${esc(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${esc(image)}" onerror="this.src='/images/placeholder.jpg'" />
                 <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>

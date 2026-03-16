@@ -174,23 +174,22 @@ CREATE TABLE IF NOT EXISTS buses (
     FOREIGN KEY (vendor_id) REFERENCES vendors(id)
 );
 
--- Bookings Table
+-- Bookings Table (booking call requests from public users)
 CREATE TABLE IF NOT EXISTS bookings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    item_id INTEGER NOT NULL,
-    check_in DATE,
-    check_out DATE,
-    guests INTEGER DEFAULT 1,
-    total_price DECIMAL(10, 2) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    booking_date VARCHAR(100) NOT NULL,
+    number_of_people INTEGER NOT NULL,
+    service_page VARCHAR(255),
+    listing_id INTEGER,
+    listing_name VARCHAR(255),
     status VARCHAR(20) DEFAULT 'pending',
-    payment_status VARCHAR(20) DEFAULT 'pending',
+    notes TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    CHECK (status IN ('pending', 'confirmed', 'cancelled', 'completed')),
-    CHECK (payment_status IN ('pending', 'paid', 'refunded', 'failed'))
+    CHECK (status IN ('pending', 'completed', 'cancelled'))
 );
 
 -- Homepage Content Table
@@ -225,3 +224,9 @@ CREATE INDEX IF NOT EXISTS idx_buses_from ON buses(from_location);
 CREATE INDEX IF NOT EXISTS idx_buses_to ON buses(to_location);
 CREATE INDEX IF NOT EXISTS idx_bookings_user ON bookings(user_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_category ON bookings(category);
+
+
+-- Index for faster queries
+CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status);
+CREATE INDEX IF NOT EXISTS idx_bookings_created ON bookings(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_bookings_email ON bookings(email);

@@ -5,9 +5,9 @@
         "phone": "+918600968888",
         "whatsapp": "918600968888",
         "marqueeItems": [
-            "✨ Best places to visit in Sambhajinagar",
-            "🚀 20% OFF on your first hotel booking",
-            "🌟 Exclusive weekend deals for Car Rentals"
+            "\u2728 Best places to visit in Sambhajinagar",
+            "\ud83d\ude80 20% OFF on your first hotel booking",
+            "\ud83c\udf1f Exclusive weekend deals for Car Rentals"
         ],
         "carousel": {
             "stays": "/images/hotel-room-standard.jpg",
@@ -164,6 +164,14 @@
             "rating": "4.9",
             "image": "/images/ellora.png",
             "link": "attraction-detail.html"
+        },
+        {
+            "id": 6,
+            "name": "Grishneshwar Temple",
+            "image": "/images/grishneshwar-temple.jpg",
+            "location": "Khuldabad, 30 km from CSN",
+            "rating": 9.2,
+            "link": "attraction-detail.html?id=6"
         }
     ],
     "bikeRentals": [
@@ -190,6 +198,14 @@
             "description": "Effortless Commute",
             "image": "/images/honda-activa.jpg",
             "link": "bike-rental-detail.html"
+        },
+        {
+            "id": 1,
+            "name": "Bajaj Pulsar 220F",
+            "image": "/images/bajaj-pulsar.jpg",
+            "description": "High-performance sports bike for thrilling rides a...",
+            "price": "",
+            "link": "bike-rental-detail.html?id=1"
         }
     ],
     "featuredRestaurants": [
@@ -279,5 +295,16 @@
         "bikeRentals": "Quick Bike Rentals",
         "featuredRestaurants": "Featured Restaurants",
         "travelInsights": "Travel Insights"
-    }
+    },
+    "sectionOrder": [
+        "hero",
+        "about",
+        "trendingTransport",
+        "attractions",
+        "bikeRentals",
+        "restaurantCircles",
+        "busRoutes",
+        "featuredRestaurants",
+        "travelInsights"
+    ]
 }

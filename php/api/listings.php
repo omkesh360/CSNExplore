@@ -165,8 +165,22 @@ function getListingById($db, $category, $id, $adminCategories) {
             sendError('Access denied. Admin privileges required.', 403);
         }
     }
-    
-    $item = $db->fetchOne("SELECT * FROM $category WHERE id = ? AND is_active = 1", [$id]);
+
+    // Admin can see hidden items too
+    $isAdminRequest = false;
+    $authHeader = getAuthToken();
+    if ($authHeader) {
+        $decoded = verifyJWT($authHeader, JWT_SECRET);
+        if ($decoded && strtolower($decoded['role'] ?? '') === 'admin') {
+            $isAdminRequest = true;
+        }
+    }
+
+    $sql = $isAdminRequest
+        ? "SELECT * FROM $category WHERE id = ?"
+        : "SELECT * FROM $category WHERE id = ? AND is_active = 1";
+
+    $item = $db->fetchOne($sql, [$id]);
     
     if (!$item) {
         sendError('Item not found', 404);
@@ -247,7 +261,8 @@ function updateListing($db, $category, $id) {
     
     // Get input data (handle both JSON and FormData)
     $input = $_POST;
-    if (empty($input) && isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/json') {
+    $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    if (empty($input) && strpos($contentType, 'application/json') !== false) {
         $input = json_decode(file_get_contents('php://input'), true) ?? [];
     }
     
@@ -279,6 +294,12 @@ function updateListing($db, $category, $id) {
     } catch (Exception $e) {
         error_log('Database update error: ' . $e->getMessage());
         sendError('Database error: ' . $e->getMessage(), 500);
+    }
+    
+    // Clear cache for this category
+    global $cache;
+    if ($cache) {
+        $cache->clear();
     }
     
     // Fetch updated item
@@ -313,6 +334,12 @@ function deleteListing($db, $category, $id) {
     
     if ($deleted === 0) {
         sendError('Item not found', 404);
+    }
+    
+    // Clear cache
+    global $cache;
+    if ($cache) {
+        $cache->clear();
     }
     
     sendJson(['message' => 'Item deleted successfully']);

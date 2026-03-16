@@ -38,6 +38,16 @@
         bindFilterEvents(cfg);
     }
 
+    // Delegated card navigation — skip if click is on a button or anchor
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('[data-book-now]')) return; // handled by booking-popup.js
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        const card = e.target.closest('[data-detail-url]');
+        if (card) {
+            window.location.href = card.dataset.detailUrl;
+        }
+    });
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initListings);
     } else {
@@ -83,7 +93,15 @@
         const urlSearch = new URLSearchParams(window.location.search).get('search');
         if (urlSearch) {
             const searchInput = document.getElementById('search-location');
-            if (searchInput) searchInput.value = urlSearch;
+            if (searchInput) {
+                // Show the input if it's locked (reveal it for URL-based search)
+                searchInput.style.display = 'block';
+                const lockedLabel = document.getElementById('dest-locked-label');
+                const changeBtn   = document.getElementById('dest-change-btn');
+                if (lockedLabel) lockedLabel.style.display = 'none';
+                if (changeBtn)   changeBtn.style.display   = 'none';
+                searchInput.value = urlSearch;
+            }
             activeFilters.search = urlSearch;
         }
 
@@ -103,17 +121,7 @@
         // Filter out hidden items (is_active = 0)
         items = items.filter(item => parseInt(item.is_active) !== 0);
 
-        // Search
-        if (f.search) {
-            const q = f.search.toLowerCase();
-            items = items.filter(item =>
-                (item.name || '').toLowerCase().includes(q) ||
-                (item.location || '').toLowerCase().includes(q) ||
-                (item.description || '').toLowerCase().includes(q) ||
-                (item.type || '').toLowerCase().includes(q) ||
-                (item.cuisine || '').toLowerCase().includes(q)
-            );
-        }
+        // NOTE: Location/name search does not filter listings — all listings are shown regardless
 
         // Type filter
         if (f.types.length > 0) {
@@ -590,7 +598,7 @@
 
         return `
         <div class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-4 hover:shadow-card transition-shadow group cursor-pointer"
-            data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}" onclick="window.location.href='${detailUrl}'">
+            data-id="${item.id}" data-title="${titleName}" data-price="${pVal}" data-category="${category}" data-detail-url="${detailUrl}">
             ${item.image && item.image !== 'Array' && item.image.trim() !== '' ? `
             <div class="w-full md:w-56 h-44 md:h-auto shrink-0 relative rounded-lg overflow-hidden bg-primary/5">
                 <img alt="${titleName}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${item.image}" onerror="this.parentElement.style.display='none'"/>
@@ -609,11 +617,11 @@
                 <div class="mt-auto border-t border-gray-100 pt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
                     <p class="text-xs text-text-muted">from <span class="text-xl font-black text-text-main">${priceStr}</span> / ${perUnit}</p>
                     <div class="flex gap-2 w-full sm:w-auto">
-                        <a href="${WHATSAPP_URL}" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" class="w-4 h-4 filter brightness-0 invert"/>
-                            WhatsApp
-                        </a>
-                        <a href="tel:${PHONE}" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
+                        <button data-book-now data-service-page="${getDetailUrl(category).split('?')[0]}" data-listing-id="${item.id}" data-listing-name="${titleName}" data-listing-image="${item.image || ''}" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
+                            <span class="material-symbols-outlined text-[16px]">event</span>
+                            Book Now
+                        </button>
+                        <a href="tel:${PHONE}" onclick="event.stopPropagation()" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
                             <span class="material-symbols-outlined text-[16px]">call</span>
                             Call Now
                         </a>
@@ -641,13 +649,14 @@
         </div>`;
     }
 
-    function contactButtons() {
+    function contactButtons(item, category, detailPage) {
+        const titleName = item.name || item.route || 'Listing';
         return `
         <div class="flex gap-2 w-full sm:w-auto mt-3 sm:mt-0">
-            <a href="${WHATSAPP_URL}" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm" onclick="event.stopPropagation()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" class="w-4 h-4 filter brightness-0 invert"/>
-                WhatsApp
-            </a>
+            <button data-book-now data-service-page="${detailPage}" data-listing-id="${item.id}" data-listing-name="${titleName}" data-listing-image="${item.image || ''}" onclick="event.stopPropagation()" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">event</span>
+                Book Now
+            </button>
             <a href="tel:${PHONE}" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-dark text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors shadow-sm" onclick="event.stopPropagation()">
                 <span class="material-symbols-outlined text-[16px]">call</span>
                 Call Now

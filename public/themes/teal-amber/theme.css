@@ -1,0 +1,75 @@
+/* ===== Theme: Teal & Amber ===== */
+:root {
+    --color-primary:          #0D7377 !important;
+    --color-primary-hover:    #0A5457 !important;
+    --color-primary-dark:     #0A5457 !important;
+    --color-accent:           #F59E0B !important;
+    --color-secondary:        #F59E0B !important;
+    --color-background-light: #F0FAFA !important;
+    --color-background-dark:  #0A2E30 !important;
+}
+#preloader { background-color: #0A2E30 !important; }
+.bg-\[\#0f1723\] { background-color: #0A2E30 !important; }
+.bg-\[\#0f1723\]\/60 { background-color: #0A2E3099 !important; }
+.bg-primary       { --tw-bg-opacity:1; background-color: rgb(13 115 119/var(--tw-bg-opacity)) !important; }
+.bg-primary-dark  { --tw-bg-opacity:1; background-color: rgb(10 84 87/var(--tw-bg-opacity)) !important; }
+.bg-accent        { --tw-bg-opacity:1; background-color: rgb(245 158 11/var(--tw-bg-opacity)) !important; }
+.bg-background-dark  { background-color: rgb(10 46 48/var(--tw-bg-opacity)) !important; }
+.bg-background-light { background-color: rgb(240 250 250/var(--tw-bg-opacity)) !important; }
+.bg-primary\/5  { background-color: #0D73770d !important; }
+.bg-primary\/10 { background-color: #0D73771a !important; }
+.bg-primary\/20 { background-color: #0D737733 !important; }
+.bg-accent\/10  { background-color: #F59E0B1a !important; }
+.text-primary { --tw-text-opacity:1; color: rgb(13 115 119/var(--tw-text-opacity)) !important; }
+.text-accent  { --tw-text-opacity:1; color: rgb(245 158 11/var(--tw-text-opacity)) !important; }
+.text-primary\/30 { color: #0D73774d !important; }
+.text-primary\/60 { color: #0D737799 !important; }
+.border-primary      { border-color: rgb(13 115 119/var(--tw-border-opacity)) !important; }
+.border-primary-dark { border-color: rgb(10 84 87/var(--tw-border-opacity)) !important; }
+.border-primary\/10 { border-color: #0D73771a !important; }
+.border-primary\/20 { border-color: #0D737733 !important; }
+.border-primary\/30 { border-color: #0D73774d !important; }
+.ring-primary { --tw-ring-color: rgb(13 115 119/var(--tw-ring-opacity)) !important; }
+.shadow-primary\/30 { --tw-shadow-color: #0D73774d !important; }
+.hover\:bg-primary:hover      { background-color: rgb(13 115 119/var(--tw-bg-opacity)) !important; }
+.hover\:bg-primary-dark:hover,
+.hover\:bg-primary-hover:hover { background-color: rgb(10 84 87/var(--tw-bg-opacity)) !important; }
+.hover\:bg-primary\/5:hover  { background-color: #0D73770d !important; }
+.hover\:bg-primary\/20:hover { background-color: #0D737733 !important; }
+.hover\:bg-primary\/90:hover { background-color: #0D7377e6 !important; }
+.hover\:bg-blue-50:hover { background-color: #0D73770d !important; }
+.hover\:text-primary:hover       { color: rgb(13 115 119/var(--tw-text-opacity)) !important; }
+.hover\:text-primary-hover:hover { color: rgb(10 84 87/var(--tw-text-opacity)) !important; }
+.hover\:border-primary:hover      { border-color: rgb(13 115 119/var(--tw-border-opacity)) !important; }
+.hover\:border-primary-dark:hover { border-color: rgb(10 84 87/var(--tw-border-opacity)) !important; }
+.hover\:shadow-primary\/30:hover { --tw-shadow-color: #0D73774d !important; }
+.focus\:border-primary:focus { border-color: rgb(13 115 119/var(--tw-border-opacity)) !important; }
+.focus\:ring-primary:focus   { --tw-ring-color: rgb(13 115 119/var(--tw-ring-opacity)) !important; }
+.focus\:ring-primary\/10:focus { --tw-ring-color: #0D73771a !important; }
+.focus\:ring-primary\/20:focus { --tw-ring-color: #0D737733 !important; }
+.group:hover .group-hover\:text-primary { color: rgb(13 115 119/var(--tw-text-opacity)) !important; }
+.group:hover .group-hover\:ring-primary  { --tw-ring-color: rgb(13 115 119/var(--tw-ring-opacity)) !important; }
+.group:focus-within .group-focus-within\:text-primary { color: rgb(13 115 119/var(--tw-text-opacity)) !important; }
+.peer:checked ~ .peer-checked\:bg-primary { background-color: rgb(13 115 119/var(--tw-bg-opacity)) !important; }
+.file\:text-primary::file-selector-button { color: rgb(13 115 119/var(--tw-text-opacity)) !important; }
+.file\:bg-primary\/10::file-selector-button { background-color: #0D73771a !important; }
+.from-primary { --tw-gradient-from: #0D7377 var(--tw-gradient-from-position) !important; }
+.to-primary   { --tw-gradient-to: #0D7377 var(--tw-gradient-to-position) !important; }
+.from-primary\/60 { --tw-gradient-from: #0D737799 var(--tw-gradient-from-position) !important; }
+:is(.dark .dark\:bg-background-dark) { background-color: rgb(10 46 48/var(--tw-bg-opacity)) !important; }
+:is(.dark .dark\:bg-primary\/10) { background-color: #0D73771a !important; }
+.accent-primary { accent-color: #0D7377 !important; }
+header.bg-primary, header { background-color: #0D7377 !important; }
+footer.bg-primary, footer { background-color: #0D7377 !important; }
+section.bg-primary { background-color: #0D7377 !important; }
+.search-btn-modern { background: #F59E0B !important; border-color: #F59E0B !important; }
+.service-btn.active { background: #fff !important; color: #0D7377 !important; }
+.service-btn.active span { color: #0D7377 !important; }
+#mobile-drawer .text-primary { color: #0D7377 !important; }
+#mobile-drawer a:hover { color: #0D7377 !important; }
+#carousel-stays       { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/hotel-room-standard.jpg') !important; }
+#carousel-cars        { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/car-rental-hero.png') !important; }
+#carousel-bikes       { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/bajaj-pulsar.jpg') !important; }
+#carousel-restaurants { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/restaurant-thali.jpg') !important; }
+#carousel-attractions { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/ajanta.png') !important; }
+#carousel-buses       { background-image: linear-gradient(to bottom, rgba(13,115,119,0.88), rgba(10,84,87,0.50)), url('/images/msrtc-shivneri.jpg') !important; }

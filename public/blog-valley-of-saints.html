@@ -28,20 +28,174 @@ The Valley of Saints is located in Khuldabad, a town in the Aurangabad district 
 
     <!-- ============= HEADER ============= -->
     <header class="bg-primary text-white w-full sticky top-0 z-50 shadow-md">
-        <!-- Assuming same header from blogs.html -->
+        <!-- Contact Top Bar with Marquee -->
+        <div class="hidden md:block bg-primary-dark border-b border-white/5 py-1 overflow-hidden">
+            <div class="max-w-[1140px] mx-auto px-4 md:px-6 flex items-center gap-3 text-[11px] font-medium opacity-90">
+                <!-- Left: Marquee Announcements (takes most space) -->
+                <div class="flex-1 overflow-hidden relative min-w-0">
+                    <div class="marquee-container">
+                        <div class="marquee-content animate-marquee" id="hp-marquee">
+                            <span class="mx-4">✨ Best places to visit in Sambhajinagar</span>
+                            <span class="mx-4">🚀 20% OFF on your first hotel booking</span>
+                            <span class="mx-4">🌟 Exclusive weekend deals for Car Rentals</span>
+                            <span class="mx-4">✨ New announcement</span>
+                            <span class="mx-4" aria-hidden="true">✨ Best places to visit in Sambhajinagar</span>
+                            <span class="mx-4" aria-hidden="true">🚀 20% OFF on your first hotel booking</span>
+                            <span class="mx-4" aria-hidden="true">🌟 Exclusive weekend deals for Car Rentals</span>
+                            <span class="mx-4" aria-hidden="true">✨ New announcement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/918600968888" target="_blank" class="flex items-center gap-1 hover:text-white transition-colors px-2 py-0.5 shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">chat</span>
+                    <span class="text-[11px] font-medium">WhatsApp</span>
+                </a>
+
+                <!-- Phone Call -->
+                <a href="tel:+918600968888" id="hp-phone-link"
+                    class="flex items-center gap-1 hover:text-white transition-colors px-2 py-0.5 shrink-0">
+                    <span class="material-symbols-outlined text-[14px]">call</span>
+                    <span class="text-[11px] font-medium whitespace-nowrap">+91 86009 68888</span>
+                </a>
+            </div>
+        </div>
         <div class="max-w-[1140px] mx-auto px-4 md:px-6">
             <div class="flex items-center justify-between py-1.5 h-14 md:h-16">
+                <!-- Logo Left Side -->
                 <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
-                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore" class="h-8 md:h-[42px]">
+                    <img loading="lazy" decoding="async" src="/images/travelhub.png" alt="CSNExplore"
+                        class="h-8 md:h-[42px]">
                 </a>
+
+                <!-- Navigation and Auth Right Side -->
                 <div class="flex items-center gap-4 overflow-hidden">
                     <nav class="hidden lg:flex items-center gap-1">
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white" href="about.html"><span class="text-[13px] font-medium">About Us</span></a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white" href="contact.html"><span class="text-[13px] font-medium">Contact Us</span></a>
-                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 text-white font-bold" href="blogs.html"><span class="text-[13px] font-medium">Blogs</span></a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="about.html">
+                            <span class="text-[13px] font-medium">About Us</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="contact.html">
+                            <span class="text-[13px] font-medium">Contact Us</span>
+                        </a>
+                        <a class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors whitespace-nowrap text-white/90 hover:text-white group"
+                            href="blogs.html">
+                            <span class="text-[13px] font-medium">Blogs</span>
+                        </a>
                     </nav>
+
+                    <div class="flex items-center gap-2 shrink-0 ml-2 lg:border-l border-white/10 lg:pl-4">
+                        <div id="auth-buttons" class="flex gap-2">
+                            <a href="register.html"
+                                class="text-white text-[13px] font-bold px-3 py-1.5 rounded hover:bg-white/10 transition-colors hidden sm:block">Register</a>
+                            <a href="login.html"
+                                class="bg-white text-primary text-[13px] font-bold px-4 py-1.5 rounded hover:bg-gray-100 transition-colors shadow-sm">Sign
+                                in</a>
+                        </div>
+                        <div id="user-profile" class="hidden">
+                            <div class="flex items-center gap-2">
+                                <!-- Avatar circle with initial -->
+                                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center border border-white/30 text-white font-bold text-sm shrink-0 overflow-hidden"
+                                    id="user-avatar-circle">
+                                    <span class="material-symbols-outlined text-sm" id="user-avatar-icon">person</span>
+                                </div>
+                                <!-- User name -->
+                                <span id="user-display-name"
+                                    class="text-white text-[13px] font-semibold hidden sm:block max-w-[100px] truncate"></span>
+                                <!-- Logout button -->
+                                <button id="logout-btn"
+                                    class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-[12px] font-bold px-3 py-1.5 rounded-full transition-colors shadow-sm shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]">logout</span>
+                                    <span class="hidden sm:inline">Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Mobile Menu Toggle Button (Visible only on smaller screens) -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:bg-white/10 p-2 rounded-lg transition-colors focus:outline-none flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation (Off-canvas) -->
+        <div id="mobile-drawer"
+            class="fixed inset-y-0 right-0 z-[100] w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <span class="text-primary font-bold text-lg">Menu</span>
+                <button id="mobile-drawer-close"
+                    class="text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="about.html">
+                    About Us
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="contact.html">
+                    Contact Us
+                </a>
+                
+                
+                <div class="border-t border-gray-200 my-2"></div>
+                
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="stays.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">bed</span>
+                    Stays
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="car-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_car</span>
+                    Car Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bike-rentals.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">pedal_bike</span>
+                    Bike Rentals
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="restaurant.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">restaurant</span>
+                    Restaurants
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="attraction.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">confirmation_number</span>
+                    Attractions
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-50 text-gray-700 hover:text-primary transition-colors font-medium"
+                    href="bus.html">
+                    <span class="material-symbols-outlined text-[22px] text-gray-400">directions_bus</span>
+                    Buses
+                </a>
+
+                <!-- Mobile Contacts -->
+                <div class="mt-6 pt-6 border-t border-gray-100 px-4">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Contact Us</p>
+                    <a href="tel:+918600968888" class="flex items-center gap-3 py-2 text-gray-600 hover:text-primary">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span class="text-sm">+91 86009 68888</span>
+                    </a>
+                    <a href="https://wa.me/918600968888" target="_blank" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition-colors shadow-lg">
+                        <span class="material-symbols-outlined">chat</span>
+                        WhatsApp
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer-overlay"
+            class="fixed inset-0 bg-[#0f1723]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300">
         </div>
     </header>
 
@@ -108,5 +262,6 @@ The Valley of Saints is located in Khuldabad, a town in the Aurangabad district 
             </div>
         </div>
     </footer>
+    <script src="js/booking-popup.js"></script>
 </body>
 </html>

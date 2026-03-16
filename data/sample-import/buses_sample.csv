@@ -1,0 +1,13 @@
+operator,bus_type,from_location,to_location,departure_time,arrival_time,duration,price,rating,reviews,badge,image,amenities,seats_available,vendor_id
+MSRTC Shivneri Express,AC Semi-Luxury,Chhatrapati Sambhajinagar,Pune,06:00 AM,10:30 AM,4h 30m,350,8.5,310,Fastest Route,/images/msrtc-shivneri.jpg,"AC, Charging Points, Water Bottle",40,1
+Dolphin Travels Night Bus,AC Sleeper,Chhatrapati Sambhajinagar,Mumbai,10:30 PM,05:45 AM,7h 15m,650,8.1,198,,/images/dolphin-travels-bus.jpg,"AC, Blanket, Reading Light, Charging",36,2
+Hans Travels AC Sleeper,AC Sleeper,Chhatrapati Sambhajinagar,Nagpur,09:00 PM,05:45 AM,8h 45m,580,8.3,145,AC Sleeper,/images/hans-travels-bus.jpg,"AC, Blanket, Pillow, Charging",36,3
+Purple Travels Volvo,Volvo AC,Chhatrapati Sambhajinagar,Nashik,05:30 AM,10:30 AM,5h 00m,420,8.7,88,Comfortable,/images/purple-travels-bus.jpg,"AC, Reclining Seats, Entertainment, Charging",45,4
+MSRTC Shivshahi,AC Seater,Chhatrapati Sambhajinagar,Shirdi,07:00 AM,10:30 AM,3h 30m,280,8.4,234,Pilgrimage,/images/msrtc-shivneri.jpg,"AC, Charging Points",45,1
+VRL Travels,AC Sleeper,Chhatrapati Sambhajinagar,Bangalore,05:00 PM,07:30 AM,14h 30m,1200,8.6,167,Long Distance,/images/vrl-travels-bus.jpg,"AC, Blanket, Pillow, Charging, Snacks",36,2
+Orange Travels,AC Sleeper,Chhatrapati Sambhajinagar,Hyderabad,08:30 PM,06:30 AM,10h 00m,850,8.2,189,,/images/orange-travels-bus.jpg,"AC, Blanket, Charging, Entertainment",36,3
+MSRTC Hirkani,AC Semi-Luxury,Chhatrapati Sambhajinagar,Kolhapur,06:30 AM,01:00 PM,6h 30m,450,8.1,123,,/images/msrtc-shivneri.jpg,"AC, Charging Points",45,4
+Neeta Travels,AC Sleeper,Chhatrapati Sambhajinagar,Goa,04:00 PM,04:00 AM,12h 00m,1100,8.5,198,Beach Route,/images/neeta-travels-bus.jpg,"AC, Blanket, Pillow, Charging, Snacks",36,5
+MSRTC Parivartan,Non-AC Seater,Chhatrapati Sambhajinagar,Ajanta Caves,08:00 AM,10:30 AM,2h 30m,120,7.9,267,Budget,/images/msrtc-shivneri.jpg,"Fan, Basic Seating",50,1
+Sharma Travels,AC Sleeper,Chhatrapati Sambhajinagar,Indore,07:00 PM,04:30 AM,9h 30m,750,8.0,145,,/images/sharma-travels-bus.jpg,"AC, Blanket, Charging",36,2
+MSRTC Ashwamedh,AC Seater,Chhatrapati Sambhajinagar,Solapur,09:30 AM,01:30 PM,4h 00m,320,8.2,178,,/images/msrtc-shivneri.jpg,"AC, Charging Points",45,3

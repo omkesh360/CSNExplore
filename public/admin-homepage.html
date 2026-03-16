@@ -345,22 +345,24 @@
                         <span class="material-symbols-outlined text-[20px]">dashboard</span>
                         <span class="text-[13px]">Dashboard</span>
                     </a>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
+                    
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Bookings</p>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
+                        href="admin-booking-calls.html">
+                        <span class="material-symbols-outlined text-[20px]">call</span>
+                        <span class="text-[13px]">Booking Calls</span>
+                        <span id="sidebar-booking-badge" class="ml-auto hidden bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center"></span>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900" href="admin-booking-history.html">
+                        <span class="material-symbols-outlined text-[20px]">history</span>
+                        <span class="text-[13px]">Booking History</span>
+                    </a>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Page Editor</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 bg-blue-50 text-primary font-bold transition-all relative"
                         href="admin-homepage.html">
                         <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
                         <span class="material-symbols-outlined text-[20px]">home</span>
                         <span class="text-[13px]">Homepage Editor</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-about-editor.html">
-                        <span class="material-symbols-outlined text-[20px]">info</span>
-                        <span class="text-[13px]">About Page Editor</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-contact-editor.html">
-                        <span class="material-symbols-outlined text-[20px]">mail</span>
-                        <span class="text-[13px]">Contact Page Editor</span>
                     </a>
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-3 mb-2 mt-4">Listings</p>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
@@ -398,11 +400,6 @@
                         href="admin-blogs-generator.html">
                         <span class="material-symbols-outlined text-[20px]">edit_note</span>
                         <span class="text-[13px]">Blogs Generator</span>
-                    </a>
-                    <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
-                        href="admin-marquee.html">
-                        <span class="material-symbols-outlined text-[20px]">campaign</span>
-                        <span class="text-[13px]">Marquee Announcements</span>
                     </a>
                     <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-slate-500 font-medium transition-all hover:bg-slate-50 hover:text-slate-900"
                         href="admin-performance.html">
@@ -597,7 +594,7 @@
                                 <div class="section-icon"><span class="material-symbols-outlined">directions_car</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h2 class="font-black text-lg text-slate-800">Trending Transport</h2>
+                                    <h2 class="font-black text-lg text-slate-800">Ride & Explore (Trending Transport)</h2>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -606,6 +603,10 @@
                                     <span class="material-symbols-outlined text-[16px]">save</span>
                                 </button>
                             </div>
+                        </div>
+                        <div class="mb-5">
+                            <label class="field-label">Section Title</label>
+                            <input id="trending-transport-title" type="text" class="field-input" placeholder="Ride & Explore">
                         </div>
                         <div id="trending-transport-items" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
                     </div>
@@ -1182,6 +1183,13 @@
         function renderTrendingTransport() {
             const items = hpData.trendingTransport || [];
             const c = document.getElementById('trending-transport-items');
+            
+            // Load section title
+            const titleEl = document.getElementById('trending-transport-title');
+            if (titleEl) {
+                titleEl.value = (hpData.sectionTitles && hpData.sectionTitles.trendingTransport) || 'Ride & Explore';
+            }
+            
             c.innerHTML = items.map((item, i) => `
             <div class="item-card">
                 <div class="text-xs font-bold text-gray-400 uppercase mb-3">Card ${i + 1}</div>
@@ -1516,6 +1524,7 @@
         window.saveAll = async function (highlightSection) {
             collectHeroFromForm();
             collectAboutFromForm();
+            collectSectionTitles();
             setStatus('saving');
             const token = localStorage.getItem('token') || sessionStorage.getItem('token');
             try {
@@ -1541,6 +1550,14 @@
                 showToast('Network error — could not save', 'error');
             }
         };
+        
+        function collectSectionTitles() {
+            hpData.sectionTitles = hpData.sectionTitles || {};
+            const titleEl = document.getElementById('trending-transport-title');
+            if (titleEl) {
+                hpData.sectionTitles.trendingTransport = titleEl.value || 'Ride & Explore';
+            }
+        }
 
         // Alias for onclick and global use
         window.saveSection = async function (section) {
@@ -1872,7 +1889,7 @@
     });
 
     function applyVisibilityState() {
-        const vis = (typeof hpData !== 'undefined' ? hpData.sectionVisibility : null) || {};
+        const vis = (typeof hpData !== 'undefined' ? hpData.visibility : null) || {};
         document.querySelectorAll('[data-section-id]').forEach(card => {
             const sid = card.dataset.sectionId;
             const isVisible = vis[sid] !== false;
@@ -1908,11 +1925,24 @@
         card.dataset.visible = newVisible ? 'true' : 'false';
         _updateVisBtn(card, newVisible);
         if (typeof hpData !== 'undefined') {
-            hpData.sectionVisibility = hpData.sectionVisibility || {};
-            hpData.sectionVisibility[sid] = newVisible;
+            hpData.visibility = hpData.visibility || {};
+            hpData.visibility[sid] = newVisible;
         }
         if (typeof showToast === 'function') showToast(newVisible ? 'Section shown on homepage' : 'Section hidden from homepage', newVisible ? 'success' : 'info');
     };
+    </script>
+    <script>
+        (async function() {
+            try {
+                const token = localStorage.getItem('token');
+                const res = await fetch('/api/bookings', { headers: token ? { 'Authorization': `Bearer ${token}` } : {} });
+                if (!res.ok) return;
+                const bookings = await res.json();
+                const working = bookings.filter(b => b.status === 'pending').length;
+                const badge = document.getElementById('sidebar-booking-badge');
+                if (badge && working > 0) { badge.textContent = working; badge.classList.remove('hidden'); }
+            } catch(e) {}
+        })();
     </script>
 
 </body>

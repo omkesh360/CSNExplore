@@ -1,0 +1,75 @@
+/* ===== Theme: Navy & Gold ===== */
+:root {
+    --color-primary:          #003580 !important;
+    --color-primary-hover:    #002357 !important;
+    --color-primary-dark:     #002357 !important;
+    --color-accent:           #E8A020 !important;
+    --color-secondary:        #E8A020 !important;
+    --color-background-light: #F5F7FA !important;
+    --color-background-dark:  #0F1723 !important;
+}
+#preloader { background-color: #0F1723 !important; }
+.bg-\[\#0f1723\] { background-color: #0F1723 !important; }
+.bg-\[\#0f1723\]\/60 { background-color: #0F172399 !important; }
+.bg-primary       { --tw-bg-opacity:1; background-color: rgb(0 53 128/var(--tw-bg-opacity)) !important; }
+.bg-primary-dark  { --tw-bg-opacity:1; background-color: rgb(0 35 87/var(--tw-bg-opacity)) !important; }
+.bg-accent        { --tw-bg-opacity:1; background-color: rgb(232 160 32/var(--tw-bg-opacity)) !important; }
+.bg-background-dark  { background-color: rgb(15 23 35/var(--tw-bg-opacity)) !important; }
+.bg-background-light { background-color: rgb(245 247 250/var(--tw-bg-opacity)) !important; }
+.bg-primary\/5  { background-color: #0035800d !important; }
+.bg-primary\/10 { background-color: #0035801a !important; }
+.bg-primary\/20 { background-color: #00358033 !important; }
+.bg-accent\/10  { background-color: #E8A0201a !important; }
+.text-primary { --tw-text-opacity:1; color: rgb(0 53 128/var(--tw-text-opacity)) !important; }
+.text-accent  { --tw-text-opacity:1; color: rgb(232 160 32/var(--tw-text-opacity)) !important; }
+.text-primary\/30 { color: #0035804d !important; }
+.text-primary\/60 { color: #00358099 !important; }
+.border-primary      { border-color: rgb(0 53 128/var(--tw-border-opacity)) !important; }
+.border-primary-dark { border-color: rgb(0 35 87/var(--tw-border-opacity)) !important; }
+.border-primary\/10 { border-color: #0035801a !important; }
+.border-primary\/20 { border-color: #00358033 !important; }
+.border-primary\/30 { border-color: #0035804d !important; }
+.ring-primary { --tw-ring-color: rgb(0 53 128/var(--tw-ring-opacity)) !important; }
+.shadow-primary\/30 { --tw-shadow-color: #0035804d !important; }
+.hover\:bg-primary:hover      { background-color: rgb(0 53 128/var(--tw-bg-opacity)) !important; }
+.hover\:bg-primary-dark:hover,
+.hover\:bg-primary-hover:hover { background-color: rgb(0 35 87/var(--tw-bg-opacity)) !important; }
+.hover\:bg-primary\/5:hover  { background-color: #0035800d !important; }
+.hover\:bg-primary\/20:hover { background-color: #00358033 !important; }
+.hover\:bg-primary\/90:hover { background-color: #003580e6 !important; }
+.hover\:bg-blue-50:hover { background-color: #0035800d !important; }
+.hover\:text-primary:hover       { color: rgb(0 53 128/var(--tw-text-opacity)) !important; }
+.hover\:text-primary-hover:hover { color: rgb(0 35 87/var(--tw-text-opacity)) !important; }
+.hover\:border-primary:hover      { border-color: rgb(0 53 128/var(--tw-border-opacity)) !important; }
+.hover\:border-primary-dark:hover { border-color: rgb(0 35 87/var(--tw-border-opacity)) !important; }
+.hover\:shadow-primary\/30:hover { --tw-shadow-color: #0035804d !important; }
+.focus\:border-primary:focus { border-color: rgb(0 53 128/var(--tw-border-opacity)) !important; }
+.focus\:ring-primary:focus   { --tw-ring-color: rgb(0 53 128/var(--tw-ring-opacity)) !important; }
+.focus\:ring-primary\/10:focus { --tw-ring-color: #0035801a !important; }
+.focus\:ring-primary\/20:focus { --tw-ring-color: #00358033 !important; }
+.group:hover .group-hover\:text-primary { color: rgb(0 53 128/var(--tw-text-opacity)) !important; }
+.group:hover .group-hover\:ring-primary  { --tw-ring-color: rgb(0 53 128/var(--tw-ring-opacity)) !important; }
+.group:focus-within .group-focus-within\:text-primary { color: rgb(0 53 128/var(--tw-text-opacity)) !important; }
+.peer:checked ~ .peer-checked\:bg-primary { background-color: rgb(0 53 128/var(--tw-bg-opacity)) !important; }
+.file\:text-primary::file-selector-button { color: rgb(0 53 128/var(--tw-text-opacity)) !important; }
+.file\:bg-primary\/10::file-selector-button { background-color: #0035801a !important; }
+.from-primary { --tw-gradient-from: #003580 var(--tw-gradient-from-position) !important; }
+.to-primary   { --tw-gradient-to: #003580 var(--tw-gradient-to-position) !important; }
+.from-primary\/60 { --tw-gradient-from: #00358099 var(--tw-gradient-from-position) !important; }
+:is(.dark .dark\:bg-background-dark) { background-color: rgb(15 23 35/var(--tw-bg-opacity)) !important; }
+:is(.dark .dark\:bg-primary\/10) { background-color: #0035801a !important; }
+.accent-primary { accent-color: #003580 !important; }
+header.bg-primary, header { background-color: #003580 !important; }
+footer.bg-primary, footer { background-color: #003580 !important; }
+section.bg-primary { background-color: #003580 !important; }
+.search-btn-modern { background: #E8A020 !important; border-color: #E8A020 !important; }
+.service-btn.active { background: #fff !important; color: #003580 !important; }
+.service-btn.active span { color: #003580 !important; }
+#mobile-drawer .text-primary { color: #003580 !important; }
+#mobile-drawer a:hover { color: #003580 !important; }
+#carousel-stays       { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/hotel-room-standard.jpg') !important; }
+#carousel-cars        { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/car-rental-hero.png') !important; }
+#carousel-bikes       { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/bajaj-pulsar.jpg') !important; }
+#carousel-restaurants { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/restaurant-thali.jpg') !important; }
+#carousel-attractions { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/ajanta.png') !important; }
+#carousel-buses       { background-image: linear-gradient(to bottom, rgba(0,53,128,0.88), rgba(0,35,87,0.50)), url('/images/msrtc-shivneri.jpg') !important; }
