@@ -1,0 +1,7 @@
+{
+    "features": {
+        "lazy_loading": {
+            "enabled": false
+        }
+    }
+}

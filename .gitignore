@@ -1,0 +1,24 @@
+# Environment variables
+.env
+
+# Logs
+logs/*.log
+!logs/.gitkeep
+
+# Cache
+cache/*
+!cache/.gitkeep
+
+# Database
+database/*.db
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

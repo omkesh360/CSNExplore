@@ -1,0 +1,17 @@
+# Disable PHP engine
+php_flag engine off
+
+# Deny execution of scripts
+<FilesMatch "\.(php|php5|php7|php8|phtml|exe|sh|pl|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Only allow certain healthy MIME types
+<FilesMatch "\.(?i:jpe?g|png|gif|webp|svg|ico)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Force download for potentially harmful types (safety net)
+AddType application/octet-stream .exe .sh .js .html .htm

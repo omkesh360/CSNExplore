@@ -1,0 +1,420 @@
+/* ── Mobile-First Design System ── */
+
+:root {
+  --primary: #ec5b13;
+  --primary-hover: #d44e0e;
+  --primary-glow: rgba(236, 91, 19, 0.2);
+  --glass-white: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* .mobile-hide { display: none !important; } */
+.mobile-hide { display: block; } /* Now visible on mobile */
+
+/* ── Base Resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Fluid Typography ── */
+h1 { font-size: clamp(1.5rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.25rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.875rem); }
+
+/* ── Input Focus Fix (iOS prevents auto-zoom) ── */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* ── Images ── */
+img { max-width: 100%; height: auto; }
+
+/* ── Prevent horizontal overflow ── */
+section, main, article, aside, div {
+  max-width: 100%;
+}
+
+/* ── Mobile Utilities ── */
+@media (max-width: 768px) {
+  .mobile-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mobile-no-scroll {
+    overflow: hidden !important;
+  }
+
+  /* Touch-friendly tap targets */
+  button, a.btn, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .mobile-grid-1 { grid-template-columns: 1fr !important; }
+  .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .desktop-only { display: none !important; }
+
+  /* Reduce excessive padding on mobile */
+  .py-16 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .py-14 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .py-12 { padding-top: 1.75rem !important; padding-bottom: 1.75rem !important; }
+  .mb-16 { margin-bottom: 2rem !important; }
+  .mb-12 { margin-bottom: 1.5rem !important; }
+  .gap-12 { gap: 1.5rem !important; }
+  .gap-10 { gap: 1.25rem !important; }
+}
+
+/* ── Listing Page Mobile Fixes ── */
+@media (max-width: 1023px) {
+  /* Sidebar collapses vertically on mobile/tablet */
+  #sidebar-filters {
+    width: 100% !important;
+    transform: none !important;
+    transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, margin 0.35s ease !important;
+    overflow: hidden !important;
+  }
+  #sidebar-filters.collapsed {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    margin-bottom: 0 !important;
+    pointer-events: none !important;
+  }
+  #sidebar-filters:not(.collapsed) {
+    max-height: 2000px !important;
+    opacity: 1 !important;
+    margin-bottom: 12px !important;
+  }
+  #listings-wrapper {
+    gap: 0 !important;
+    flex-direction: column !important;
+  }
+  #listings-wrapper .flex-1 {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* ── Listing Grid Responsive ── */
+@media (max-width: 479px) {
+  #listings-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  #listings-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  #listings-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+/* ── Card Fixes ── */
+.listing-card-anim {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* ── Glassmorphism ── */
+.glass-panel {
+  background: var(--glass-white);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ── Optimized Global Scroll Reveal ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="left"] { transform: translateX(-40px); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal="scale"] { transform: scale(0.95); }
+
+[data-reveal].revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.4s; }
+
+.card-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Sticky Mobile Bottom Bar ── */
+.mobile-sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + var(--safe-bottom));
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+/* ── Image Zoom ── */
+.hover-zoom { overflow: hidden; }
+.hover-zoom img { transition: transform 0.5s ease; }
+.hover-zoom:hover img { transform: scale(1.08); }
+
+/* ── Fix horizontal scroll on swipe ── */
+.no-bounce { overscroll-behavior-y: contain; }
+
+/* ── Hero section mobile ── */
+@media (max-width: 768px) {
+  .hero-section { min-height: 60vh !important; }
+  .hero-title { font-size: clamp(1.5rem, 7vw, 2.5rem) !important; }
+  
+  /* Hero section mobile padding */
+  .search-box {
+    padding: 18px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* ── Footer mobile ── */
+@media (max-width: 768px) {
+  footer .grid { gap: 1.5rem !important; }
+  footer { padding-top: 2.5rem !important; padding-bottom: 2rem !important; }
+}
+
+/* ── Tablet (768px - 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .max-w-\[1140px\] {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* ── Safe area for notched phones ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  #site-header {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  #mob-menu {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ── WhatsApp float button ── */
+#whatsapp-float {
+  bottom: calc(20px + var(--safe-bottom)) !important;
+}
+
+/* ── Smooth page transitions ── */
+.page-transition {
+  animation: pageFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Listing detail mobile ── */
+@media (max-width: 768px) {
+  .listing-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .listing-detail-sidebar {
+    position: static !important;
+    width: 100% !important;
+  }
+}
+
+/* ── Specific Fine Tuning for Requested Breakpoints ── */
+@media (max-width: 320px) {
+  html, body { font-size: 14px; }
+  .max-w-\[1140px\] { padding-left: 8px !important; padding-right: 8px !important; }
+  h1.font-serif { font-size: 1.25rem !important; }
+  h2.font-serif { font-size: 1.15rem !important; }
+  .search-box { padding: 12px 10px !important; border-radius: 16px !important; }
+  .tab-btn { padding: 4px 6px !important; font-size: 11px !important; min-height: 44px !important; }
+  .search-field input, .date-field input, .search-btn { font-size: 14px !important; min-height: 48px !important; }
+  footer .grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 375px) and (min-width: 321px) {
+  html, body { font-size: 15px; }
+  .max-w-\[1140px\] { padding-left: 12px !important; padding-right: 12px !important; }
+  h1.font-serif { font-size: 1.4rem !important; }
+  .search-box { padding: 16px 12px !important; border-radius: 18px !important; }
+  .tab-btn { font-size: 12px !important; min-height: 48px !important; }
+}
+
+@media (max-width: 425px) and (min-width: 376px) {
+  html, body { font-size: 16px; }
+  .max-w-\[1140px\] { padding-left: 16px !important; padding-right: 16px !important; }
+  h1.font-serif { font-size: 1.6rem !important; }
+  .search-box { padding: 20px 16px !important; }
+}
+
+/* ── Tablet Fine Tuning ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #listings-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  .hero-section { min-height: 70vh !important; }
+  .search-box { max-width: 90% !important; margin: 0 auto; }
+}
+
+/* ── Desktop Fine Tuning ── */
+@media (min-width: 1024px) {
+  body { font-size: 16px; overflow-x: hidden; width: 100%; max-width: 100vw; }
+  .max-w-\[1140px\] { width: 100%; max-width: 1140px !important; margin: 0 auto; }
+}
+
+/* ══════════════════════════════════════════════════════
+   GLOBAL DESIGN CONSISTENCY SYSTEM
+   Ensures uniform brand colors, typography & spacing
+   across every page of the CSNExplore website
+   ══════════════════════════════════════════════════════ */
+
+/* ── Brand Color Utilities (safe fallback when Tailwind custom colors aren't loaded) ── */
+.text-primary  { color: #ec5b13 !important; }
+.bg-primary    { background-color: #ec5b13 !important; }
+.border-primary{ border-color: #ec5b13 !important; }
+.ring-primary  { --tw-ring-color: #ec5b13 !important; }
+.from-primary  { --tw-gradient-from: #ec5b13 !important; }
+
+/* ── Consistent CTA Button Style ── */
+.btn-primary, a.btn-primary, button.btn-primary {
+  background-color: #ec5b13;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-primary:hover, a.btn-primary:hover, button.btn-primary:hover {
+  background-color: #d44e0e;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(236,91,19,0.35);
+}
+
+/* ── Consistent Headings ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  line-height: 1.2;
+}
+.font-serif, h1.font-serif, h2.font-serif, h3.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Section backgrounds ── */
+.section-light { background-color: #fff; }
+.section-muted { background-color: #f8fafc; }
+.section-dark  { background-color: #0a0705; }
+
+/* ── Consistent card shadow ── */
+.card-consistent {
+  border-radius: 1rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.card-consistent:hover {
+  box-shadow: 0 8px 30px rgba(236,91,19,0.12);
+  transform: translateY(-2px);
+}
+
+/* ── Fix floating buttons conflict ──
+   Tailwind's flex/lg:hidden uses display:flex which can conflict
+   with inline display:none / display:block from JS.
+   These rules enforce the correct responsive display at CSS level.
+── */
+@media (min-width: 1024px) {
+  /* Desktop: hide Call & WhatsApp floats */
+  #call-float,
+  #whatsapp-float {
+    display: none !important;
+  }
+  /* Desktop: always allow Go-to-Top (JS controls opacity/visibility) */
+  #go-top-btn {
+    display: flex !important;
+  }
+}
+@media (max-width: 1023px) {
+  /* Mobile+Tablet: show Call & WhatsApp */
+  #call-float,
+  #whatsapp-float {
+    display: flex !important;
+  }
+  /* Mobile+Tablet: Go-to-Top now allowed */
+  #go-top-btn {
+    display: flex !important;
+  }
+}
+
+/* ── Consistent form inputs across pages ── */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], input[type="number"], select, textarea {
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background: #fff;
+  color: #0f172a;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 16px !important; /* prevents iOS zoom */
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #ec5b13;
+  box-shadow: 0 0 0 3px rgba(236,91,19,0.15);
+}
+
+/* ── Link consistency ── */
+a { color: inherit; }
+a:hover { color: #ec5b13; }
+
+/* ── Marquee bar always orange (belt+suspenders) ── */
+#marquee-bar {
+  background-color: #ec5b13 !important;
+  color: #fff !important;
+}
+

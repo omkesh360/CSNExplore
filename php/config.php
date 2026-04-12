@@ -1,101 +1,99 @@
 <?php
-// Configuration file for CSNExplore PHP Application
-
-// Error reporting
+// CSNExplore – Central config
+if (!ob_get_level()) ob_start(); // Output buffering for performance
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
+$_logDir = __DIR__ . '/../logs';
+if (!is_dir($_logDir)) @mkdir($_logDir, 0755, true);
+ini_set('error_log', $_logDir . '/php_errors.log');
 
-// CORS Headers
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Content-Type: application/json');
-
-// Cache Headers for static assets
-if (preg_match('/\.(jpg|jpeg|png|gif|css|js|svg|woff|woff2|ttf|eot)$/i', $_SERVER['REQUEST_URI'])) {
-    header('Cache-Control: public, max-age=31536000'); // 1 year for static assets
-    header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
-} else {
-    // API responses - cache for 1 hour
-    header('Cache-Control: public, max-age=3600');
-    header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+// Load .env file if exists
+if (file_exists(__DIR__ . '/../.env')) {
+    $lines = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') === false) continue;
+        list($key, $value) = explode('=', $line, 2);
+        putenv(trim($key) . '=' . trim($value));
+    }
 }
 
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
+define('JWT_SECRET', getenv('JWT_SECRET') ?: 'csnexplore_secure_jwt_2025_!@#$%');
+define('ADMIN_EMAIL', 'travelhubadmin@gmail.com');
 
-// JWT Secret Key
-define('JWT_SECRET', getenv('JWT_SECRET') ?: 'travelhub_secure_secret_key_2024');
+// MailerLite Email Configuration
+define('MAILERLITE_API_KEY', getenv('MAILERLITE_API_KEY') ?: '');
+define('MAILERLITE_FROM_EMAIL', getenv('MAILERLITE_FROM_EMAIL') ?: 'noreply@csnexplore.com');
+define('MAILERLITE_FROM_NAME', getenv('MAILERLITE_FROM_NAME') ?: 'CSN Explore');
+define('ADMIN_NOTIFICATION_EMAIL', getenv('ADMIN_NOTIFICATION_EMAIL') ?: 'supportcsnexplore@gmail.com');
 
-// Database
+// Cloudflare Turnstile
+define('TURNSTILE_SITE_KEY',   '0x4AAAAAACwv8-Es__nv5t6c');
+define('TURNSTILE_SECRET_KEY', '0x4AAAAAACwv86YKoPIGp89MIJ-yltIRW2g');
+
+// SMTP Configuration for PHPMailer
+define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
+define('SMTP_PORT', getenv('SMTP_PORT') ?: 587);
+define('SMTP_USERNAME', getenv('SMTP_USERNAME') ?: '');
+define('SMTP_PASSWORD', getenv('SMTP_PASSWORD') ?: '');
+define('SMTP_ENCRYPTION', getenv('SMTP_ENCRYPTION') ?: 'tls');
+
 require_once __DIR__ . '/database.php';
 
-// Data directory (for backward compatibility)
-define('DATA_DIR', __DIR__ . '/../data');
-
-// Uploads directory
-define('UPLOADS_DIR', __DIR__ . '/../public/images/uploads');
-
-// Database directory
-define('DB_DIR', __DIR__ . '/../database');
-
-// Ensure directories exist
-if (!is_dir(DATA_DIR)) {
-    mkdir(DATA_DIR, 0755, true);
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function sendJson($data, $code = 200) {
+    while (ob_get_level()) { ob_end_clean(); } // Prevent stray output
+    http_response_code($code);
+    header('Content-Type: application/json');
+    echo json_encode($data);
+    exit;
 }
 
-if (!is_dir(UPLOADS_DIR)) {
-    mkdir(UPLOADS_DIR, 0755, true);
+function sendError($msg, $code = 400) {
+    sendJson(['error' => $msg], $code);
 }
 
-if (!is_dir(DB_DIR)) {
-    mkdir(DB_DIR, 0755, true);
+function getJsonInput() {
+    $raw = file_get_contents('php://input');
+    return json_decode($raw, true) ?? [];
 }
-
-// Get database instance
+// Centralized Slug Generation
+function generateSlug($type, $id, $name) {
+    $t = strtolower(trim($name));
+    $t = preg_replace('/[^a-z0-9\s-]/', '', $t);
+    $t = preg_replace('/[\s-]+/', '-', $t);
+    $t = trim($t, '-');
+    return $type . '-' . $id . '-' . substr($t, 0, 60);
+}
 function getDB() {
     return Database::getInstance();
 }
 
-// Cache control headers for API
-header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-
-// Helper function to send JSON response
-function sendJson($data, $statusCode = 200) {
-    http_response_code($statusCode);
-    echo json_encode($data);
-    exit();
+function sanitize($val) {
+    return htmlspecialchars(strip_tags(trim((string)$val)), ENT_QUOTES, 'UTF-8');
 }
 
-// Helper function to send error response
-function sendError($message, $statusCode = 400) {
-    sendJson(['error' => $message], $statusCode);
-}
+// Dynamic Base Path Detection
+$_dir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
+$_base = trim($_dir, '/\\');
+$_base = str_replace(['php/api', 'php'], '', $_base);
+$_base = trim($_base, '/\\');
 
-// Helper function to get JSON input
-function getJsonInput() {
-    $input = file_get_contents('php://input');
-    return json_decode($input, true) ?: [];
-}
-
-// Helper function to read JSON file
-function readJsonFile($filename) {
-    $filepath = DATA_DIR . '/' . $filename;
-    if (!file_exists($filepath)) {
-        return [];
+// Normalize case: use actual filesystem folder name to prevent case mismatch
+// e.g. /csNexplore2.0 → /CSNexplore2.0
+if ($_base && $_base !== '.') {
+    $_realBase = basename(dirname(__DIR__));
+    // Only override if it's a case-insensitive match (same letters, different case)
+    if (strtolower($_realBase) === strtolower($_base)) {
+        $_base = $_realBase;
     }
-    $content = file_get_contents($filepath);
-    return json_decode($content, true) ?: [];
 }
+define('BASE_PATH', $_base && $_base !== '.' ? '/' . $_base : '');
 
-// Helper function to write JSON file
-function writeJsonFile($filename, $data) {
-    $filepath = DATA_DIR . '/' . $filename;
-    return file_put_contents($filepath, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-}
+// Security Headers
+header("X-Frame-Options: SAMEORIGIN");
+header("X-XSS-Protection: 1; mode=block");
+header("X-Content-Type-Options: nosniff");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+header("Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;");

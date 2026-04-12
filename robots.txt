@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /php/
+Disallow: /database/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /old code/
+Disallow: /install.php
+Disallow: /adminexplorer.php
+
+# Sitemaps
+Sitemap: https://csnexplore.com/sitemap.xml
+
+# Crawl delay for bots
+Crawl-delay: 10

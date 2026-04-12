@@ -1,154 +1,138 @@
 <?php
-/**
- * Blogs API - CRUD for Blog Posts
- * GET    /api/blogs         -> list all blogs
- * GET    /api/blogs?id=X    -> get single blog
- * POST   /api/blogs         -> create blog (admin only)
- * PUT    /api/blogs         -> update blog (admin only)
- * DELETE /api/blogs?id=X    -> delete blog (admin only)
- */
-
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 
-$db = Database::getInstance();
 $method = $_SERVER['REQUEST_METHOD'];
+$id     = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 try {
-    switch ($method) {
-        case 'GET':
-            getBlog($db);
-            break;
-        case 'POST':
-            requireAdmin();
-            createBlog($db);
-            break;
-        case 'PUT':
-            requireAdmin();
-            updateBlog($db);
-            break;
-        case 'DELETE':
-            requireAdmin();
-            deleteBlog($db);
-            break;
-        default:
-            http_response_code(405);
-            echo json_encode(['error' => 'Method not allowed']);
-    }
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
-}
+    $db = getDB();
 
-// ---- Handlers ----
+    if ($method === 'GET') {
+        // Check if request is from admin (has valid JWT)
+        $isAdmin = false;
+        try {
+            $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+            if (preg_match('/Bearer\s+(.+)/i', $authHeader, $m)) {
+                require_once __DIR__ . '/../jwt.php';
+                $payload = verifyJWT($m[1], JWT_SECRET);
+                $isAdmin = ($payload['role'] ?? '') === 'admin';
+            }
+        } catch (Exception $e) {}
 
-function getBlog($db) {
-    if (isset($_GET['id'])) {
-        $id = (int)$_GET['id'];
-        $blog = $db->fetchOne('SELECT * FROM blogs WHERE id = ?', [$id]);
-        if (!$blog) {
-            http_response_code(404);
-            echo json_encode(['error' => 'Blog not found']);
-            return;
+        if ($id) {
+            $sql = $isAdmin ? "SELECT * FROM blogs WHERE id = ?" : "SELECT * FROM blogs WHERE id = ? AND status = 'published'";
+            $blog = $db->fetchOne($sql, [$id]);
+            if (!$blog) sendError('Not found', 404);
+            $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
+            sendJson($blog);
+        } else {
+            if ($isAdmin) {
+                // Admin: filter by status param if provided
+                $status = $_GET['status'] ?? '';
+                $sql    = "SELECT * FROM blogs";
+                $params = [];
+                if ($status) { $sql .= " WHERE status = ?"; $params[] = $status; }
+                $sql .= " ORDER BY created_at DESC";
+            } else {
+                // Public: only published
+                $sql    = "SELECT * FROM blogs WHERE status = 'published' ORDER BY created_at DESC";
+                $params = [];
+            }
+            $blogs = $db->fetchAll($sql, $params);
+            foreach ($blogs as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
+            sendJson($blogs);
         }
+    }
+
+    elseif ($method === 'POST') {
+        requireAdmin();
+        $data = getJsonInput();
+        if (empty($data['title']) || empty($data['content'])) sendError('Title and content required', 400);
+
+        $newId = $db->insert('blogs', [
+            'title'            => sanitize($data['title']),
+            'content'          => $data['content'], // allow HTML
+            'author'           => sanitize($data['author'] ?? 'Admin'),
+            'image'            => sanitize($data['image'] ?? ''),
+            'status'           => in_array($data['status'] ?? '', ['published','draft']) ? $data['status'] : 'published',
+            'category'         => sanitize($data['category'] ?? 'General'),
+            'read_time'        => sanitize($data['read_time'] ?? ''),
+            'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : []),
+            'meta_description' => sanitize($data['meta_description'] ?? ''),
+        ]);
+
+        $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$newId]);
         $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
-        echo json_encode($blog);
+        // Auto-regenerate static HTML [A2.1]
+        try { regenerateBlogHtml($newId); } catch(Exception $e) { error_log('HTML regen failed: '.$e->getMessage()); }
+        sendJson($blog, 201);
+    }
+
+    elseif ($method === 'PUT' && $id) {
+        requireAdmin();
+        $data = getJsonInput();
+        $existing = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$id]);
+        if (!$existing) sendError('Not found', 404);
+
+        $db->update('blogs', [
+            'title'            => sanitize($data['title'] ?? $existing['title']),
+            'content'          => $data['content'] ?? $existing['content'],
+            'author'           => sanitize($data['author'] ?? $existing['author']),
+            'image'            => sanitize($data['image'] ?? $existing['image']),
+            'status'           => in_array($data['status'] ?? '', ['published','draft']) ? $data['status'] : $existing['status'],
+            'category'         => sanitize($data['category'] ?? $existing['category']),
+            'read_time'        => sanitize($data['read_time'] ?? $existing['read_time']),
+            'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : (json_decode($existing['tags'] ?? '[]', true) ?: [])),
+            'meta_description' => sanitize($data['meta_description'] ?? $existing['meta_description']),
+            'updated_at'       => date('Y-m-d H:i:s'),
+        ], 'id = :id', [':id' => $id]);
+
+        $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$id]);
+        $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
+        // Auto-regenerate static HTML [A2.1]
+        try { regenerateBlogHtml($id); } catch(Exception $e) { error_log('HTML regen failed: '.$e->getMessage()); }
+        sendJson($blog);
+    }
+
+    elseif ($method === 'DELETE' && $id) {
+        requireAdmin();
+        // Delete the static HTML file too [A2.1]
+        $blog = $db->fetchOne("SELECT title FROM blogs WHERE id = ?", [$id]);
+        $db->delete('blogs', 'id = ?', [$id]);
+        if ($blog) {
+            $slug = generateSlug('blogs', $id, $blog['title']);
+            $file = dirname(__DIR__, 2) . '/blogs/' . $slug . '.html';
+            if (file_exists($file)) @unlink($file);
+        }
+        sendJson(['success' => true]);
+    }
+
+    else {
+        sendError('Not found', 404);
+    }
+
+} catch (Exception $e) {
+    error_log('Blogs error: ' . $e->getMessage());
+    sendError('Server error', 500);
+}
+
+/**
+ * Regenerates a single blog's static HTML file [A2.1]
+ */
+function regenerateBlogHtml(int $blogId): void {
+    $genScript = dirname(__DIR__) . '/api/generate_html.php';
+    if (!file_exists($genScript)) return;
+    // Run in background so the API response isn't blocked
+    if (PHP_OS_FAMILY === 'Windows') {
+        pclose(popen("start /B php \"$genScript\" blog $blogId", 'r'));
     } else {
-        // List all, newest first
-        $blogs = $db->fetchAll('SELECT * FROM blogs ORDER BY created_at DESC');
-        $blogs = array_map(function($b) {
-            $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
-            return $b;
-        }, $blogs);
-        echo json_encode($blogs);
+        exec("php \"$genScript\" blog $blogId > /dev/null 2>&1 &");
     }
-}
-
-function createBlog($db) {
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (empty($data['title']) || empty($data['content'])) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Title and content are required']);
-        return;
-    }
-
-    $id = $db->insert('blogs', [
-        'title'            => trim($data['title']),
-        'content'          => trim($data['content']),
-        'author'           => trim($data['author'] ?? 'Admin'),
-        'image'            => trim($data['image'] ?? ''),
-        'status'           => in_array($data['status'] ?? 'published', ['published', 'draft']) ? $data['status'] : 'published',
-        'category'         => trim($data['category'] ?? 'General'),
-        'read_time'        => trim($data['read_time'] ?? ''),
-        'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : []),
-        'meta_description' => trim($data['meta_description'] ?? ''),
-    ]);
-
-    $blog = $db->fetchOne('SELECT * FROM blogs WHERE id = ?', [$id]);
-    http_response_code(201);
-    echo json_encode($blog);
-}
-
-function updateBlog($db) {
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (empty($data['id'])) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Blog ID is required']);
-        return;
-    }
-
-    $id = (int)$data['id'];
-    $existing = $db->fetchOne('SELECT * FROM blogs WHERE id = ?', [$id]);
-    if (!$existing) {
-        http_response_code(404);
-        echo json_encode(['error' => 'Blog not found']);
-        return;
-    }
-
-    $updated = [
-        'title'            => trim($data['title'] ?? $existing['title']),
-        'content'          => trim($data['content'] ?? $existing['content']),
-        'author'           => trim($data['author'] ?? $existing['author']),
-        'image'            => trim($data['image'] ?? $existing['image']),
-        'status'           => in_array($data['status'] ?? '', ['published', 'draft']) ? $data['status'] : $existing['status'],
-        'category'         => trim($data['category'] ?? $existing['category'] ?? 'General'),
-        'read_time'        => trim($data['read_time'] ?? $existing['read_time'] ?? ''),
-        'tags'             => json_encode(is_array($data['tags'] ?? null) ? $data['tags'] : (json_decode($existing['tags'] ?? '[]', true) ?: [])),
-        'meta_description' => trim($data['meta_description'] ?? $existing['meta_description'] ?? ''),
-        'updated_at'       => date('Y-m-d H:i:s'),
-    ];
-
-    $db->update('blogs', $updated, 'id = :id', [':id' => $id]);
-    $blog = $db->fetchOne('SELECT * FROM blogs WHERE id = ?', [$id]);
-    echo json_encode($blog);
-}
-
-function deleteBlog($db) {
-    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-    if (!$id) {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $id = isset($data['id']) ? (int)$data['id'] : 0;
-    }
-
-    if (!$id) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Blog ID is required']);
-        return;
-    }
-
-    $rows = $db->delete('blogs', 'id = ?', [$id]);
-    if ($rows === 0) {
-        http_response_code(404);
-        echo json_encode(['error' => 'Blog not found']);
-        return;
-    }
-
-    echo json_encode(['success' => true, 'message' => 'Blog deleted']);
 }

@@ -1,169 +1,142 @@
 <?php
-// Bookings API - Handle booking requests
-
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../jwt.php';
+require_once __DIR__ . '/../services/EmailService.php';
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 
 $method = $_SERVER['REQUEST_METHOD'];
+$id     = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 try {
     $db = getDB();
-    
-    if ($method === 'GET') {
-        // Get all bookings (admin only)
-        require_once __DIR__ . '/../jwt.php';
-        requireAdmin();
-        
-        // Get filter parameters
-        $status = $_GET['status'] ?? '';
-        $search = $_GET['search'] ?? '';
-        
-        $sql = "SELECT * FROM bookings WHERE 1=1";
-        $params = [];
-        
-        if ($status) {
-            $sql .= " AND status = :status";
-            $params[':status'] = $status;
-        }
-        
-        if ($search) {
-            $sql .= " AND (full_name LIKE :search OR email LIKE :search OR phone LIKE :search)";
-            $params[':search'] = '%' . $search . '%';
-        }
-        
-        $sql .= " ORDER BY created_at DESC";
-        
-        $bookings = $db->fetchAll($sql, $params);
 
-        // Resolve listing_name from DB for bookings where it's missing but listing_id exists
-        foreach ($bookings as &$booking) {
-            if (empty($booking['listing_name']) && !empty($booking['listing_id'])) {
-                $page = $booking['service_page'] ?? '';
-                // Determine table from service_page
-                if (strpos($page, 'stay') !== false) {
-                    $table = 'stays'; $col = 'name';
-                } elseif (strpos($page, 'car') !== false) {
-                    $table = 'cars'; $col = 'name';
-                } elseif (strpos($page, 'bike') !== false) {
-                    $table = 'bikes'; $col = 'name';
-                } elseif (strpos($page, 'restaurant') !== false) {
-                    $table = 'restaurants'; $col = 'name';
-                } elseif (strpos($page, 'attraction') !== false) {
-                    $table = 'attractions'; $col = 'name';
-                } elseif (strpos($page, 'bus') !== false) {
-                    $table = 'buses'; $col = 'operator';
-                } else {
-                    continue;
-                }
-                $row = $db->fetchOne("SELECT $col FROM $table WHERE id = :id", [':id' => $booking['listing_id']]);
-                if ($row) {
-                    $booking['listing_name'] = $row[$col];
-                }
+    // GET – admin only
+    if ($method === 'GET') {
+        requireAdmin();
+        $where  = ['1=1'];
+        $params = [];
+
+        if (!empty($_GET['status'])) {
+            $where[] = 'status = ?';
+            $params[] = $_GET['status'];
+        }
+        if (!empty($_GET['search'])) {
+            $where[] = '(full_name LIKE ? OR email LIKE ? OR phone LIKE ?)';
+            $s = '%' . $_GET['search'] . '%';
+            $params = array_merge($params, [$s, $s, $s]);
+        }
+
+        $sql = "SELECT * FROM bookings WHERE " . implode(' AND ', $where) . " ORDER BY created_at DESC";
+        $bookings = $db->fetchAll($sql, $params);
+        
+        // Fetch listing images
+        foreach ($bookings as &$b) {
+            $table = $b['service_type'];
+            $lid   = (int)$b['listing_id'];
+            $b['listing_image'] = null;
+            if ($table && $lid && in_array($table, ['stays','cars','bikes','restaurants','attractions','buses'])) {
+                $item = $db->fetchOne("SELECT image FROM $table WHERE id = ?", [$lid]);
+                if ($item) $b['listing_image'] = $item['image'];
             }
         }
-        unset($booking);
-
+        unset($b);
         sendJson($bookings);
     }
-    
+
+    // POST – public (create booking)
     elseif ($method === 'POST') {
-        // Create new booking (public endpoint)
-        $input = getJsonInput();
-        
-        // Validate required fields
-        $required = ['full_name', 'phone', 'email', 'booking_date', 'number_of_people'];
-        foreach ($required as $field) {
-            if (empty($input[$field])) {
-                sendError("Missing required field: $field", 400);
-            }
+        $data = getJsonInput();
+        $name  = sanitize($data['full_name'] ?? '');
+        $phone = sanitize($data['phone'] ?? '');
+        // Extract email from payload, or fallback to JWT token
+        $tokenPayload = null;
+        $token = getAuthToken();
+        if ($token) {
+            $tokenPayload = verifyJWT($token, JWT_SECRET);
         }
-        
-        // Validate email format
-        if (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-            sendError('Invalid email format', 400);
-        }
-        
-        // Validate phone number (accepts country code + digits)
-        if (!preg_match('/^\+?[0-9\s\-()]{7,25}$/', $input['phone'])) {
-            sendError('Invalid phone number format', 400);
-        }
-        
-        // Insert booking
-        $id = $db->insert('bookings', [
-            'full_name' => $input['full_name'],
-            'phone' => $input['phone'],
-            'email' => $input['email'],
-            'booking_date' => $input['booking_date'],
-            'number_of_people' => (int)$input['number_of_people'],
-            'service_page' => $input['service_page'] ?? '',
-            'listing_id' => $input['listing_id'] ?? null,
-            'listing_name' => $input['listing_name'] ?? '',
-            'status' => 'pending',
-            'notes' => $input['notes'] ?? ''
+        $email = strtolower(trim($data['email'] ?? ($tokenPayload['email'] ?? '')));
+
+        if (!$name || !$phone) sendError('Name and phone are required', 400);
+        if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) sendError('Invalid email', 400);
+
+        $newId = $db->insert('bookings', [
+            'full_name'        => $name,
+            'phone'            => $phone,
+            'email'            => $email,
+            'booking_date'     => sanitize($data['booking_date'] ?? ''),
+            'checkin_date'     => sanitize($data['checkin_date'] ?? ''),
+            'checkout_date'    => sanitize($data['checkout_date'] ?? ''),
+            'number_of_people' => max(1, (int)($data['number_of_people'] ?? 1)),
+            'service_type'     => sanitize($data['service_type'] ?? ''),
+            'listing_id'       => (int)($data['listing_id'] ?? 0) ?: null,
+            'listing_name'     => sanitize($data['listing_name'] ?? ''),
+            'notes'            => sanitize($data['notes'] ?? ''),
+            'status'           => 'pending',
         ]);
-        
-        sendJson([
-            'success' => true,
-            'message' => 'Booking request submitted successfully',
-            'id' => $id
-        ], 201);
-    }
-    
-    elseif ($method === 'PUT') {
-        // Update booking status (admin only)
-        require_once __DIR__ . '/../jwt.php';
-        requireAdmin();
-        
-        $input = getJsonInput();
-        
-        if (empty($input['id'])) {
-            sendError('Missing booking ID', 400);
+
+        try {
+            $emailResult = EmailService::sendBookingEmails($newId);
+            error_log("Booking #{$newId} email status: " . json_encode($emailResult));
+        } catch (Exception $e) {
+            error_log("Booking #{$newId} email service error: " . $e->getMessage());
         }
+
+        sendJson(['success' => true, 'id' => $newId], 201);
+    }
+
+    // PUT – admin only (update status/notes)
+    elseif ($method === 'PUT' && $id) {
+        requireAdmin();
+        $data   = getJsonInput();
+        $update = [];
+        $oldStatus = null;
+
+        // Get current status before update
+        $currentBooking = $db->fetchOne("SELECT status FROM bookings WHERE id = ?", [$id]);
+        if ($currentBooking) {
+            $oldStatus = $currentBooking['status'];
+        }
+
+        if (isset($data['status']) && in_array($data['status'], ['pending','completed','cancelled'])) {
+            $update['status'] = $data['status'];
+        }
+        if (isset($data['notes'])) $update['notes'] = sanitize($data['notes']);
+        $update['updated_at'] = date('Y-m-d H:i:s');
+
+        $db->update('bookings', $update, 'id = :id', [':id' => $id]);
         
-        $updateData = [];
-        
-        if (isset($input['status'])) {
-            if (!in_array($input['status'], ['pending', 'completed', 'cancelled'])) {
-                sendError('Invalid status value', 400);
+        // Send status update email if status changed to completed or cancelled
+        if (isset($update['status']) && $oldStatus !== $update['status']) {
+            if ($update['status'] === 'completed' || $update['status'] === 'cancelled') {
+                try {
+                    EmailService::sendStatusUpdateEmail($id, $update['status']);
+                    error_log("Booking #{$id} status update email sent: {$update['status']}");
+                } catch (Exception $e) {
+                    error_log("Booking #{$id} status update email error: " . $e->getMessage());
+                }
             }
-            $updateData['status'] = $input['status'];
         }
         
-        if (isset($input['notes'])) {
-            $updateData['notes'] = $input['notes'];
-        }
-        
-        if (empty($updateData)) {
-            sendError('No fields to update', 400);
-        }
-        
-        $updateData['updated_at'] = date('Y-m-d H:i:s');
-        
-        $db->update('bookings', $updateData, 'id = :id', [':id' => $input['id']]);
-        
-        sendJson(['success' => true, 'message' => 'Booking updated successfully']);
+        sendJson(['success' => true]);
     }
-    
-    elseif ($method === 'DELETE') {
-        // Delete booking (admin only)
-        require_once __DIR__ . '/../jwt.php';
+
+    // DELETE – admin only
+    elseif ($method === 'DELETE' && $id) {
         requireAdmin();
-        
-        $id = $_GET['id'] ?? '';
-        
-        if (!$id) {
-            sendError('Missing booking ID', 400);
-        }
-        
-        $db->delete('bookings', 'id = :id', [':id' => $id]);
-        
-        sendJson(['success' => true, 'message' => 'Booking deleted successfully']);
+        $db->delete('bookings', 'id = ?', [$id]);
+        sendJson(['success' => true]);
     }
-    
+
     else {
-        sendError('Method not allowed', 405);
+        sendError('Not found', 404);
     }
-    
+
 } catch (Exception $e) {
-    error_log('Bookings API error: ' . $e->getMessage());
-    sendError('Internal server error: ' . $e->getMessage(), 500);
+    error_log('Bookings error: ' . $e->getMessage());
+    sendError('Server error', 500);
 }

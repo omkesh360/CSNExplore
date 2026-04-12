@@ -1,77 +1,136 @@
 <?php
-/**
- * router.php
- * PHP built-in web server router. Serves all static files from public/ directory.
- */
+// router.php - Handles clean URLs for PHP built-in web server
+// Usage: php -S localhost:8000 router.php
 
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// 1. Block sensitive directories
-if (preg_match('#^/(data|php)/.*$#', $uri) && strpos($uri, '/php/index.php') === false && strpos($uri, '/php/api/') === false) {
-    http_response_code(403); echo "Access Denied"; return true;
-}
-if ($uri === '/.env') { http_response_code(403); echo "Access Denied"; return true; }
+$uri  = $_SERVER['REQUEST_URI'];
+$path = parse_url($uri, PHP_URL_PATH);
+$path = ltrim($path, '/');
 
-// 2. Route API requests to PHP backend
-if (strpos($uri, '/api/') === 0) {
-    $_SERVER['SCRIPT_NAME'] = '/php/index.php';
-    include __DIR__ . '/php/index.php';
-    return true;
+// Preserve query string for PHP files
+$qs = $_SERVER['QUERY_STRING'] ?? '';
+
+// ── 1. Real files (images, css, js, etc.) ────────────────────────────────────
+if ($path !== '' && file_exists($path) && !is_dir($path)) {
+    return false; // let built-in server handle it
 }
 
-// 3. Root -> index.html
-if ($uri === '/') {
-    header('Content-Type: text/html');
-    readfile(__DIR__ . '/public/index.html');
-    return true;
+// ── 2. Root / index ───────────────────────────────────────────────────────────
+if ($path === '' || $path === 'index.php') {
+    include 'index.php';
+    return;
+}
+// Redirect /index → / (canonical URL)
+if ($path === 'index') {
+    $base = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/');
+    header('Location: ' . $base . '/', true, 301);
+    exit;
 }
 
-// MIME type map
-$mimeTypes = [
-    'css'   => 'text/css',
-    'js'    => 'application/javascript',
-    'json'  => 'application/json',
-    'jpg'   => 'image/jpeg',
-    'jpeg'  => 'image/jpeg',
-    'png'   => 'image/png',
-    'gif'   => 'image/gif',
-    'svg'   => 'image/svg+xml',
-    'webp'  => 'image/webp',
-    'ico'   => 'image/x-icon',
-    'woff'  => 'font/woff',
-    'woff2' => 'font/woff2',
-    'html'  => 'text/html',
-    'txt'   => 'text/plain',
+// ── 3. Listing detail pages: /listing-detail/cars-5-slug ─────────────────────
+if (preg_match('#^listing-detail/([^/]+)/?$#', $path, $m)) {
+    $slug = $m[1];
+    // Check with and without .html extension
+    $htmlFile = 'listing-detail/' . $slug;
+    if (!str_ends_with($slug, '.html')) $htmlFile .= '.html';
+    
+    if (file_exists($htmlFile)) {
+        header('Content-Type: text/html; charset=UTF-8');
+        include $htmlFile; // Using include instead of readfile for potential PHP snippets inside
+        return;
+    }
+}
+
+// ── 4. Blog static HTML pages: /blogs/1-my-slug ──────────────────────────────
+if (preg_match('#^blogs/(.+)$#', $path, $m)) {
+    $htmlFile = 'blogs/' . $m[1];
+    // with or without .html
+    if (file_exists($htmlFile)) {
+        header('Content-Type: text/html; charset=UTF-8');
+        readfile($htmlFile);
+        return;
+    }
+    if (file_exists($htmlFile . '.html')) {
+        header('Content-Type: text/html; charset=UTF-8');
+        readfile($htmlFile . '.html');
+        return;
+    }
+}
+
+// ── 5. Clean URL → PHP file map ───────────────────────────────────────────────
+$routes = [
+    'about'       => 'about.php',
+    'contact'     => 'contact.php',
+    'blogs'       => 'blogs.php',
+    'login'       => 'login.php',
+    'register'    => 'register.php',
+    'privacy'     => 'privacy.php',
+    'terms'       => 'terms.php',
+    'my-booking'  => 'my-booking.php',
+    'bus'         => 'bus.php',
+    'blog-detail' => 'blog-detail.php',
+    'subscribe'   => 'subscribe.php',
+    'install'     => 'install.php',
 ];
 
-function serveFile($path, $mimeTypes) {
-    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-    if (isset($mimeTypes[$ext])) {
-        header('Content-Type: ' . $mimeTypes[$ext]);
+// Strip trailing slash for matching
+$cleanPath = rtrim($path, '/');
+
+if (isset($routes[$cleanPath])) {
+    include $routes[$cleanPath];
+    return;
+}
+
+// ── 6. /listing/type ─────────────────────────────────────────────────────────
+if (preg_match('#^listing/([a-zA-Z-]+)/?$#', $cleanPath, $m)) {
+    $_GET['type'] = $m[1];
+    include 'listing.php';
+    return;
+}
+
+if ($cleanPath === 'listing') {
+    include 'listing.php';
+    return;
+}
+
+// ── 7. Direct .php file exists ───────────────────────────────────────────────
+if (file_exists($cleanPath . '.php')) {
+    include $cleanPath . '.php';
+    return;
+}
+
+// ── 8. Direct .html file exists or extension-less html ──────────────────────
+if (file_exists($path . '.html')) {
+    header('Content-Type: text/html; charset=UTF-8');
+    include $path . '.html';
+    return;
+}
+if (file_exists($cleanPath . '.html')) {
+    header('Content-Type: text/html; charset=UTF-8');
+    include $cleanPath . '.html';
+    return;
+}
+if (file_exists($path) && !is_dir($path)) {
+    // If it's an HTML file just serve it
+    if (str_ends_with($path, '.html')) {
+        header('Content-Type: text/html; charset=UTF-8');
     }
-    $cacheable = ['jpg','jpeg','png','gif','svg','webp','ico','css','js','woff','woff2'];
-    if (in_array($ext, $cacheable)) {
-        header('Cache-Control: public, max-age=86400');
-    } else {
-        header('Cache-Control: no-cache, must-revalidate');
+    include $path;
+    return;
+}
+
+// ── 9. Admin pages (directory) ───────────────────────────────────────────────
+if (file_exists($cleanPath) && is_dir($cleanPath)) {
+    // Try index.php in directory
+    if (file_exists($cleanPath . '/index.php')) {
+        include $cleanPath . '/index.php';
+        return;
     }
-    readfile($path);
-    return true;
 }
 
-// 4. Serve static files from public/ directory
-$publicFile = __DIR__ . '/public' . $uri;
-if (file_exists($publicFile) && !is_dir($publicFile)) {
-    return serveFile($publicFile, $mimeTypes);
-}
-
-// 5. Try .html extension (e.g. /stays -> stays.html)
-$htmlFile = __DIR__ . '/public' . $uri . '.html';
-if (file_exists($htmlFile)) {
-    return serveFile($htmlFile, $mimeTypes);
-}
-
-// 6. SPA fallback - serve index.html
-header('Content-Type: text/html');
-readfile(__DIR__ . '/public/index.html');
-return true;
+// ── 10. 404 fallback ─────────────────────────────────────────────────────────
+http_response_code(404);
+include 'index.php';
+return;
