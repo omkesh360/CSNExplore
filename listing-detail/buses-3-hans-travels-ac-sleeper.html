@@ -30,12 +30,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hans Travels AC Sleeper | CSNExplore">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://csnexplore.com/images/uploads/hans-travels-bus.jpg">
+<meta property="og:image" content="https://csnexplore.com/images/uploads/dolphin-travels-bus.jpg">
 <meta property="og:url" content="https://csnexplore.com/listing-detail/buses-3-">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hans Travels AC Sleeper | CSNExplore">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://csnexplore.com/images/uploads/hans-travels-bus.jpg">
+<meta name="twitter:image" content="https://csnexplore.com/images/uploads/dolphin-travels-bus.jpg">
 <script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -366,7 +366,7 @@
 <!-- Full-width Hero Banner (under header, above all content) -->
 <div class="relative w-full overflow-hidden">
     <!-- Blurred background image -->
-    <img src="../images/uploads/hans-travels-bus.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter:blur(18px);transform:scale(1.15);" onerror="this.src='../images/travelhub.png'"/>
+    <img src="../images/uploads/dolphin-travels-bus.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter:blur(18px);transform:scale(1.15);" onerror="this.src='../images/hero_csn.png'"/>
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-6 pb-4 sm:pb-8">
         <!-- Breadcrumb -->
@@ -389,7 +389,7 @@
                 Location not specified            </span>
             <span class="flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 rounded-full">
                 <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                <span class="font-bold text-white">4.6</span>
+                <span class="font-bold text-white">8.3</span>
             </span>
         </div>
     </div>
@@ -404,10 +404,39 @@
 
                     <!-- Hero Image with Navigation below -->
                     <div class="relative w-full bg-slate-900 overflow-hidden rounded-2xl mt-3" style="height:380px">
-                    <img id="hero-image" src="../images/uploads/hans-travels-bus.jpg" alt="Hans Travels AC Sleeper" class="w-full h-full object-cover transition-opacity duration-500" onerror="this.src='../images/travelhub.png'"/>
+                    <img id="hero-image" src="../images/uploads/dolphin-travels-bus.jpg" alt="Hans Travels AC Sleeper" class="w-full h-full object-cover transition-opacity duration-500" onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     
                     <!-- Image Navigation Arrows -->
+                                        <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center transition-all z-20 border border-white/20">
+                        <span class="material-symbols-outlined text-xl">chevron_left</span>
+                    </button>
+                    <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center transition-all z-20 border border-white/20">
+                        <span class="material-symbols-outlined text-xl">chevron_right</span>
+                    </button>
+                    <div class="absolute bottom-20 right-6 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/20">
+                        <span id="image-counter">1</span> / 6                    </div>
+                    <script>
+                        var galleryImages = ["..\/images\/uploads\/hans-travels-bus.jpg","..\/images\/uploads\/dolphin-travels-bus.jpg","..\/images\/uploads\/msrtc-shivneri.jpg","..\/images\/uploads\/purple-travels-bus.jpg","..\/images\/uploads\/travel-gate.jpg","..\/images\/uploads\/map-preview.jpg"];
+                        var currentImageIndex = 0;
+                        function updateImage() {
+                            var img = document.getElementById('hero-image');
+                            img.style.opacity = '0';
+                            setTimeout(function() {
+                                img.src = galleryImages[currentImageIndex];
+                                img.style.opacity = '1';
+                                document.getElementById('image-counter').textContent = currentImageIndex + 1;
+                            }, 250);
+                        }
+                        function nextImage() {
+                            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                            updateImage();
+                        }
+                        function prevImage() {
+                            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                            updateImage();
+                        }
+                    </script>
                                     </div>
 
                 <!-- About Section -->
@@ -419,14 +448,40 @@
                         <p class="text-slate-800 leading-relaxed text-sm"></p>
                     </div>
 
-                                        
+                                                            <!-- Image Gallery (Editable from Admin Panel) -->
+                    <div class="p-6 border-t border-slate-100">
+                        <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-base">photo_library</span>Gallery
+                        </h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(0)">
+                                <img src="../images/uploads/hans-travels-bus.jpg" alt="Gallery image 1" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(1)">
+                                <img src="../images/uploads/dolphin-travels-bus.jpg" alt="Gallery image 2" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(2)">
+                                <img src="../images/uploads/msrtc-shivneri.jpg" alt="Gallery image 3" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(3)">
+                                <img src="../images/uploads/purple-travels-bus.jpg" alt="Gallery image 4" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(4)">
+                                <img src="../images/uploads/travel-gate.jpg" alt="Gallery image 5" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(5)">
+                                <img src="../images/uploads/map-preview.jpg" alt="Gallery image 6" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                    </div>
+                    </div>
+                    
                     <!-- Booking Card (Mobile only — hidden on md+) -->
                     <div class="md:hidden p-6 border-t border-slate-100">
                         <div class="bg-gradient-to-br from-slate-50 to-white rounded-xl border-2 border-primary/10 p-5 shadow-sm">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
                                 <div>
                                     <div class="flex items-baseline gap-2 mb-2">
-                                        <span class="text-3xl font-black text-primary">₹700</span>
+                                        <span class="text-3xl font-black text-primary">₹580</span>
                                         <span class="text-sm text-slate-500 font-medium">per day</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-sm text-slate-600">
@@ -478,7 +533,7 @@
                 <!-- Booking Card (Desktop/Tablet only) -->
                 <div class="hidden md:block bg-white rounded-2xl shadow-xl border border-slate-100 p-6 mb-5" data-reveal data-reveal="right">
                     <div class="flex items-baseline gap-2 mb-1">
-                        <span class="text-3xl font-black text-primary">₹700</span>
+                        <span class="text-3xl font-black text-primary">₹580</span>
                         <span class="text-sm text-slate-500 font-medium">per day</span>
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-600 mb-5">
@@ -549,69 +604,17 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-                        <a href="buses-2-.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <a href="../listing-detail/buses-1-" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
                 <div class="relative overflow-hidden" style="height:180px">
                     <img src="../images/uploads/dolphin-travels-bus.jpg"
                          alt=""
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
+                         onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <!-- Rating badge -->
                     <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
                         <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.3                    </div>
-                    <!-- Category badge -->
-                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
-                        Buses                    </div>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
-                                        <div class="mt-auto flex items-center justify-between">
-                        <div>
-                            <span class="text-primary font-black text-base">₹650</span>
-                            <span class="text-slate-400 text-xs ml-1">/ day</span>
-                        </div>
-                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
-                    </div>
-                </div>
-            </a>
-                        <a href="buses-4-.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
-                <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/purple-travels-bus.jpg"
-                         alt=""
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <!-- Rating badge -->
-                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
-                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.7                    </div>
-                    <!-- Category badge -->
-                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
-                        Buses                    </div>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
-                                        <div class="mt-auto flex items-center justify-between">
-                        <div>
-                            <span class="text-primary font-black text-base">₹450</span>
-                            <span class="text-slate-400 text-xs ml-1">/ day</span>
-                        </div>
-                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
-                    </div>
-                </div>
-            </a>
-                        <a href="buses-1-.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
-                <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/msrtc-shivneri.jpg"
-                         alt=""
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <!-- Rating badge -->
-                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
-                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
+                        8.5                    </div>
                     <!-- Category badge -->
                     <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
                         Buses                    </div>
@@ -621,6 +624,110 @@
                                         <div class="mt-auto flex items-center justify-between">
                         <div>
                             <span class="text-primary font-black text-base">₹350</span>
+                            <span class="text-slate-400 text-xs ml-1">/ day</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/buses-6-" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/hans-travels-bus.jpg"
+                         alt=""
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        8.6                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Buses                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹1,200</span>
+                            <span class="text-slate-400 text-xs ml-1">/ day</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/buses-10-" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/hans-travels-bus.jpg"
+                         alt=""
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        7.9                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Buses                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹120</span>
+                            <span class="text-slate-400 text-xs ml-1">/ day</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/buses-12-" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/hans-travels-bus.jpg"
+                         alt=""
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        8.2                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Buses                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹320</span>
+                            <span class="text-slate-400 text-xs ml-1">/ day</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/buses-8-" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/hans-travels-bus.jpg"
+                         alt=""
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        8.1                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Buses                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors"></h3>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹450</span>
                             <span class="text-slate-400 text-xs ml-1">/ day</span>
                         </div>
                         <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
@@ -638,8 +745,8 @@
 </section>
 
 <!-- Booking Modal -->
-<div id="booking-modal" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto" style="display:none;">
-    <div class="bg-white rounded-2xl max-w-md w-full relative shadow-[0_20px_60px_rgba(0,0,0,0.4)] animate-[modalSlideIn_0.3s_ease]">
+<div id="booking-modal" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-sm flex items-start justify-center p-4 overflow-y-auto" style="display:none;">
+    <div class="bg-white rounded-2xl max-w-md w-full relative shadow-[0_20px_60px_rgba(0,0,0,0.4)] animate-[modalSlideIn_0.3s_ease] my-8">
         <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition-colors">
             <span class="material-symbols-outlined text-lg">close</span>
         </button>
@@ -655,13 +762,12 @@
             </div>
             
             <div class="flex flex-col gap-3">
-                <a href="../login?redirect=%2Flisting-detail%2Fbuses-3-.html" class="flex items-center justify-center gap-2 py-3 px-6 bg-primary text-white font-bold rounded-xl text-sm hover:bg-orange-600 transition-colors">
+                <a href="../login?redirect=%2Flisting-detail%2Fbuses-3-" class="flex items-center justify-center gap-2 py-3 px-6 bg-primary text-white font-bold rounded-xl text-sm hover:bg-orange-600 transition-colors">
                     <span class="material-symbols-outlined text-base">login</span> Sign In
                 </a>
-                <a href="../register?redirect=%2Flisting-detail%2Fbuses-3-.html" class="flex items-center justify-center py-3 px-6 bg-slate-50 text-slate-900 font-bold rounded-xl text-sm border-2 border-slate-200 hover:bg-slate-100 transition-colors">
+                <a href="../register?redirect=%2Flisting-detail%2Fbuses-3-" class="flex items-center justify-center py-3 px-6 bg-slate-50 text-slate-900 font-bold rounded-xl text-sm border-2 border-slate-200 hover:bg-slate-100 transition-colors">
                     Create Account
                 </a>
-            
                 <div class="flex items-center gap-3 my-1">
                     <div class="flex-1 h-px bg-slate-200"></div>
                     <span class="text-xs text-slate-400 font-semibold">or</span>
@@ -680,7 +786,7 @@
         <!-- Booking Form View -->
         <div id="booking-form-view" class="hidden" style="display:none;">
             <div class="relative h-40 w-full rounded-t-2xl overflow-hidden mb-5">
-                <img src="../images/uploads/hans-travels-bus.jpg" class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt="Booking Item">
+                <img src="../images/uploads/dolphin-travels-bus.jpg" class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt="Booking Item" onerror="this.src='../images/hero_csn.png'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
                 <div class="absolute bottom-4 left-6 right-6">
                     <p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Complete Booking</p>
@@ -695,7 +801,7 @@
                 <input type="hidden" name="listing_name" value="Hans Travels AC Sleeper"/>
                 
                 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
                         <div class="relative">
@@ -716,7 +822,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="col-span-1">
                         <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Guests</label>
                         <div class="relative">
@@ -726,7 +832,7 @@
                             <input type="number" name="number_of_people" min="1" value="1" class="block w-full pl-10 pr-3 py-3 bg-slate-50/50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all"/>
                         </div>
                     </div>
-                    <div class="col-span-2 grid grid-cols-2 gap-4">
+                    <div class="col-span-1 sm:col-span-2 grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Check-in</label>
                             <div class="relative">
@@ -782,7 +888,7 @@
     <div style="max-width:90vw;max-height:90vh;position:relative;">
         <img id="modal-image" src="" alt="Gallery image" style="max-width:100%;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);"/>
         <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;white-space:nowrap;">
-            <span id="modal-counter">1</span> / 0        </div>
+            <span id="modal-counter">1</span> / 6        </div>
     </div>
 </div>
 
@@ -1062,7 +1168,7 @@ window.addEventListener('pageshow', function(e) {
 
 <script>
 // Booking Modal Functions
-var galleryImagesForModal = [];
+var galleryImagesForModal = ["..\/images\/uploads\/hans-travels-bus.jpg","..\/images\/uploads\/dolphin-travels-bus.jpg","..\/images\/uploads\/msrtc-shivneri.jpg","..\/images\/uploads\/purple-travels-bus.jpg","..\/images\/uploads\/travel-gate.jpg","..\/images\/uploads\/map-preview.jpg"];
 var currentModalIndex = 0;
 
 function openBookingModal() {
@@ -1093,6 +1199,9 @@ function closeBookingModal() {
 }
 
 function continueAsGuest() {
+    document.getElementById('auth-view').style.display = 'none';
+    document.getElementById('booking-form-view').style.display = 'block';
+}
     document.getElementById('auth-view').style.display = 'none';
     document.getElementById('booking-form-view').style.display = 'block';
 }

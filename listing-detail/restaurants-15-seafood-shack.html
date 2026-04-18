@@ -30,12 +30,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Seafood Shack | CSNExplore">
 <meta property="og:description" content="Fresh seafood preparations with coastal flavors. Fish, prawns, and crab specialties.">
-<meta property="og:image" content="https://csnexplore.com/images/uploads/restaurant-thali.jpg">
+<meta property="og:image" content="https://csnexplore.com/images/uploads/pani-puri.jpg">
 <meta property="og:url" content="https://csnexplore.com/listing-detail/restaurants-15-seafood-shack">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Seafood Shack | CSNExplore">
 <meta name="twitter:description" content="Fresh seafood preparations with coastal flavors. Fish, prawns, and crab specialties.">
-<meta name="twitter:image" content="https://csnexplore.com/images/uploads/restaurant-thali.jpg">
+<meta name="twitter:image" content="https://csnexplore.com/images/uploads/pani-puri.jpg">
 <script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -71,7 +71,7 @@
         }
         #site-header {
             position: fixed !important;
-            left: 0; right: 0;
+            left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 100%;
             border-radius: 0; background: #000;
             border: none; border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -79,8 +79,6 @@
             z-index: 60;
             transition:
                 top        0.5s cubic-bezier(0.32,0,0.15,1),
-                left       0.5s cubic-bezier(0.32,0,0.15,1),
-                right      0.5s cubic-bezier(0.32,0,0.15,1),
                 width      0.5s cubic-bezier(0.32,0,0.15,1),
                 max-width  0.5s cubic-bezier(0.32,0,0.15,1),
                 border-radius 0.5s cubic-bezier(0.32,0,0.15,1),
@@ -90,14 +88,12 @@
         }
         #site-header.pill-mode {
             top: 14px !important;
-            left: 16px !important; right: 16px !important;
-            width: auto !important; max-width: 1120px !important;
-            margin: 0 auto;
-            border-radius: 9999px !important;
-            background: rgba(8,5,3,0.88) !important;
-            backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important;
-            border: 1px solid rgba(255,255,255,0.10) !important;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset !important;
+            width: calc(100% - 32px); max-width: 1120px;
+            border-radius: 9999px;
+            background: rgba(8,5,3,0.88);
+            backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset;
         }
         #site-header nav { height: 64px; min-height: 64px; }
         #site-header.pill-mode nav { height: 60px !important; min-height: 60px !important; }
@@ -342,8 +338,8 @@
         var h=document.getElementById('site-header'),ph=document.getElementById('site-header-placeholder'),mb=document.getElementById('marquee-bar');
         var ticking=false, MH=0;
         function measure(){ if(!mb)return 0; mb.style.transition='none'; mb.classList.remove('hidden-bar'); var v=mb.offsetHeight; mb.style.transition=''; return v; }
-        function normal(){ if(mb){mb.style.transition='none';mb.classList.remove('hidden-bar');mb.offsetHeight;mb.style.transition='';} h.classList.remove('pill-mode'); h.style.top=MH+'px'; h.style.left=''; h.style.right=''; if(ph)ph.style.height=(MH+64)+'px'; }
-        function pill(){ if(mb)mb.classList.add('hidden-bar'); h.classList.add('pill-mode'); h.style.top='14px'; h.style.left='16px'; h.style.right='16px'; if(ph)ph.style.height=(MH+64)+'px'; }
+        function normal(){ if(mb){mb.style.transition='none';mb.classList.remove('hidden-bar');mb.offsetHeight;mb.style.transition='';} h.classList.remove('pill-mode'); h.style.top=MH+'px'; if(ph)ph.style.height=(MH+64)+'px'; }
+        function pill(){ if(mb)mb.classList.add('hidden-bar'); h.classList.add('pill-mode'); h.style.top=''; if(ph)ph.style.height=(MH+64)+'px'; }
         function upd(){ window.scrollY>40?pill():normal(); ticking=false; }
         MH=measure(); h.style.top=MH+'px'; if(ph)ph.style.height=(MH+64)+'px';
         window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
@@ -370,7 +366,7 @@
 <!-- Full-width Hero Banner (under header, above all content) -->
 <div class="relative w-full overflow-hidden">
     <!-- Blurred background image -->
-    <img src="../images/uploads/restaurant-thali.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter:blur(18px);transform:scale(1.15);" onerror="this.src='../images/travelhub.png'"/>
+    <img src="../images/uploads/pani-puri.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110" style="filter:blur(18px);transform:scale(1.15);" onerror="this.src='../images/hero_csn.png'"/>
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-6 pb-4 sm:pb-8">
         <!-- Breadcrumb -->
@@ -381,7 +377,7 @@
             <span class="material-symbols-outlined text-sm opacity-40">chevron_right</span>
             <a href="../listing/restaurants" class="hover:text-white transition-colors font-medium capitalize">Restaurants</a>
                         <span class="material-symbols-outlined text-sm opacity-40">chevron_right</span>
-            <span class="text-white/40">Chhatrapati Sambhajinagar</span>
+            <span class="text-white/40">Cantonment, Chhatrapati Sambhajinagar</span>
                         <span class="material-symbols-outlined text-sm opacity-40">chevron_right</span>
             <span class="text-white/80 font-semibold">Seafood Shack</span>
         </nav>
@@ -390,10 +386,10 @@
         <div class="flex flex-wrap items-center gap-3 text-white/80 text-sm">
             <span class="flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-base text-primary">location_on</span>
-                Chhatrapati Sambhajinagar            </span>
+                Cantonment, Chhatrapati Sambhajinagar            </span>
             <span class="flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 rounded-full">
                 <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                <span class="font-bold text-white">4.5</span>
+                <span class="font-bold text-white">8.2</span>
             </span>
         </div>
     </div>
@@ -408,10 +404,39 @@
 
                     <!-- Hero Image with Navigation below -->
                     <div class="relative w-full bg-slate-900 overflow-hidden rounded-2xl mt-3" style="height:380px">
-                    <img id="hero-image" src="../images/uploads/restaurant-thali.jpg" alt="Seafood Shack" class="w-full h-full object-cover transition-opacity duration-500" onerror="this.src='../images/travelhub.png'"/>
+                    <img id="hero-image" src="../images/uploads/pani-puri.jpg" alt="Seafood Shack" class="w-full h-full object-cover transition-opacity duration-500" onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     
                     <!-- Image Navigation Arrows -->
+                                        <button onclick="prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center transition-all z-20 border border-white/20">
+                        <span class="material-symbols-outlined text-xl">chevron_left</span>
+                    </button>
+                    <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center transition-all z-20 border border-white/20">
+                        <span class="material-symbols-outlined text-xl">chevron_right</span>
+                    </button>
+                    <div class="absolute bottom-20 right-6 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/20">
+                        <span id="image-counter">1</span> / 6                    </div>
+                    <script>
+                        var galleryImages = ["..\/images\/uploads\/restaurant-south-indian.jpg","..\/images\/uploads\/masala-dosa.jpg","..\/images\/uploads\/pani-puri.jpg","..\/images\/uploads\/restaurant-thali.jpg","..\/images\/uploads\/north-indian-thali.jpg","..\/images\/uploads\/indian-thali.jpg"];
+                        var currentImageIndex = 0;
+                        function updateImage() {
+                            var img = document.getElementById('hero-image');
+                            img.style.opacity = '0';
+                            setTimeout(function() {
+                                img.src = galleryImages[currentImageIndex];
+                                img.style.opacity = '1';
+                                document.getElementById('image-counter').textContent = currentImageIndex + 1;
+                            }, 250);
+                        }
+                        function nextImage() {
+                            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                            updateImage();
+                        }
+                        function prevImage() {
+                            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                            updateImage();
+                        }
+                    </script>
                                     </div>
 
                 <!-- About Section -->
@@ -423,14 +448,40 @@
                         <p class="text-slate-800 leading-relaxed text-sm">Fresh seafood preparations with coastal flavors. Fish, prawns, and crab specialties.</p>
                     </div>
 
-                                        
+                                                            <!-- Image Gallery (Editable from Admin Panel) -->
+                    <div class="p-6 border-t border-slate-100">
+                        <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-base">photo_library</span>Gallery
+                        </h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(0)">
+                                <img src="../images/uploads/restaurant-south-indian.jpg" alt="Gallery image 1" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(1)">
+                                <img src="../images/uploads/masala-dosa.jpg" alt="Gallery image 2" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(2)">
+                                <img src="../images/uploads/pani-puri.jpg" alt="Gallery image 3" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(3)">
+                                <img src="../images/uploads/restaurant-thali.jpg" alt="Gallery image 4" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(4)">
+                                <img src="../images/uploads/north-indian-thali.jpg" alt="Gallery image 5" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                        <div class="relative aspect-video rounded-xl overflow-hidden cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openImageModal(5)">
+                                <img src="../images/uploads/indian-thali.jpg" alt="Gallery image 6" class="w-full h-full object-cover" onerror="this.src='../images/hero_csn.png'"/>
+                                                            </div>
+                                                    </div>
+                    </div>
+                    
                     <!-- Booking Card (Mobile only — hidden on md+) -->
                     <div class="md:hidden p-6 border-t border-slate-100">
                         <div class="bg-gradient-to-br from-slate-50 to-white rounded-xl border-2 border-primary/10 p-5 shadow-sm">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
                                 <div>
                                     <div class="flex items-baseline gap-2 mb-2">
-                                        <span class="text-3xl font-black text-primary">₹300</span>
+                                        <span class="text-3xl font-black text-primary">₹650</span>
                                         <span class="text-sm text-slate-500 font-medium">per person</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-sm text-slate-600">
@@ -482,7 +533,7 @@
                 <!-- Booking Card (Desktop/Tablet only) -->
                 <div class="hidden md:block bg-white rounded-2xl shadow-xl border border-slate-100 p-6 mb-5" data-reveal data-reveal="right">
                     <div class="flex items-baseline gap-2 mb-1">
-                        <span class="text-3xl font-black text-primary">₹300</span>
+                        <span class="text-3xl font-black text-primary">₹650</span>
                         <span class="text-sm text-slate-500 font-medium">per person</span>
                     </div>
                     <div class="flex items-center gap-2 text-sm text-slate-600 mb-5">
@@ -553,45 +604,73 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-                        <a href="restaurants-5-renaissance-dine.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <a href="../listing-detail/restaurants-11-tandoor-nights" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
                 <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/restaurant-thali.jpg"
-                         alt="Renaissance Dine"
+                    <img src="../images/uploads/travel-streetfood.jpg"
+                         alt="Tandoor Nights"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
+                         onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <!-- Rating badge -->
                     <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
                         <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
+                        8.6                    </div>
                     <!-- Category badge -->
                     <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
                         Restaurants                    </div>
                 </div>
                 <div class="p-4 flex flex-col flex-1">
-                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Renaissance Dine</h3>
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Tandoor Nights</h3>
                                         <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
-                        <span class="material-symbols-outlined text-xs">location_on</span>Chhatrapati Sambhajinagar                    </p>
+                        <span class="material-symbols-outlined text-xs">location_on</span>Jalna Road, CSN                    </p>
                                         <div class="mt-auto flex items-center justify-between">
                         <div>
-                            <span class="text-primary font-black text-base">₹300</span>
+                            <span class="text-primary font-black text-base">₹500</span>
                             <span class="text-slate-400 text-xs ml-1">/ person</span>
                         </div>
                         <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
                     </div>
                 </div>
             </a>
-                        <a href="restaurants-2-masala-dosa-house.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <a href="../listing-detail/restaurants-4-chaat-street-corner" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
                 <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/masala-dosa.jpg"
-                         alt="Masala Dosa House"
+                    <img src="../images/uploads/pani-puri.jpg"
+                         alt="Chaat Street Corner"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
+                         onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <!-- Rating badge -->
                     <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
                         <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
+                        8.8                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Restaurants                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Chaat Street Corner</h3>
+                                        <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
+                        <span class="material-symbols-outlined text-xs">location_on</span>Gulmandi, CSN                    </p>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹80</span>
+                            <span class="text-slate-400 text-xs ml-1">/ person</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/restaurants-2-masala-dosa-house" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/masala-dosa.jpg"
+                         alt="Masala Dosa House"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        8.7                    </div>
                     <!-- Category badge -->
                     <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
                         Restaurants                    </div>
@@ -599,83 +678,27 @@
                 <div class="p-4 flex flex-col flex-1">
                     <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Masala Dosa House</h3>
                                         <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
-                        <span class="material-symbols-outlined text-xs">location_on</span>Chhatrapati Sambhajinagar                    </p>
+                        <span class="material-symbols-outlined text-xs">location_on</span>Samarth Nagar, CSN                    </p>
                                         <div class="mt-auto flex items-center justify-between">
                         <div>
-                            <span class="text-primary font-black text-base">₹300</span>
+                            <span class="text-primary font-black text-base">₹200</span>
                             <span class="text-slate-400 text-xs ml-1">/ person</span>
                         </div>
                         <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
                     </div>
                 </div>
             </a>
-                        <a href="restaurants-12-veg-delight.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <a href="../listing-detail/restaurants-6-biryani-blues" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
                 <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/restaurant-south-indian.jpg"
-                         alt="Veg Delight"
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <!-- Rating badge -->
-                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
-                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
-                    <!-- Category badge -->
-                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
-                        Restaurants                    </div>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Veg Delight</h3>
-                                        <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
-                        <span class="material-symbols-outlined text-xs">location_on</span>Chhatrapati Sambhajinagar                    </p>
-                                        <div class="mt-auto flex items-center justify-between">
-                        <div>
-                            <span class="text-primary font-black text-base">₹300</span>
-                            <span class="text-slate-400 text-xs ml-1">/ person</span>
-                        </div>
-                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
-                    </div>
-                </div>
-            </a>
-                        <a href="restaurants-14-cafe-coffee-day.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
-                <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/burger.jpg"
-                         alt="Cafe Coffee Day"
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <!-- Rating badge -->
-                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
-                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
-                    <!-- Category badge -->
-                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
-                        Restaurants                    </div>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Cafe Coffee Day</h3>
-                                        <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
-                        <span class="material-symbols-outlined text-xs">location_on</span>Chhatrapati Sambhajinagar                    </p>
-                                        <div class="mt-auto flex items-center justify-between">
-                        <div>
-                            <span class="text-primary font-black text-base">₹300</span>
-                            <span class="text-slate-400 text-xs ml-1">/ person</span>
-                        </div>
-                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
-                    </div>
-                </div>
-            </a>
-                        <a href="restaurants-6-biryani-blues.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
-                <div class="relative overflow-hidden" style="height:180px">
-                    <img src="../images/uploads/north-indian-thali.jpg"
+                    <img src="../images/uploads/indian-thali.jpg"
                          alt="Biryani Blues"
                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='../images/travelhub.png'"/>
+                         onerror="this.src='../images/hero_csn.png'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <!-- Rating badge -->
                     <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
                         <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-                        4.5                    </div>
+                        8.9                    </div>
                     <!-- Category badge -->
                     <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
                         Restaurants                    </div>
@@ -683,10 +706,38 @@
                 <div class="p-4 flex flex-col flex-1">
                     <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Biryani Blues</h3>
                                         <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
-                        <span class="material-symbols-outlined text-xs">location_on</span>Chhatrapati Sambhajinagar                    </p>
+                        <span class="material-symbols-outlined text-xs">location_on</span>Jalna Road, CSN                    </p>
                                         <div class="mt-auto flex items-center justify-between">
                         <div>
-                            <span class="text-primary font-black text-base">₹300</span>
+                            <span class="text-primary font-black text-base">₹400</span>
+                            <span class="text-slate-400 text-xs ml-1">/ person</span>
+                        </div>
+                        <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="../listing-detail/restaurants-7-pizza-paradise" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                <div class="relative overflow-hidden" style="height:180px">
+                    <img src="../images/uploads/burger.jpg"
+                         alt="Pizza Paradise"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='../images/hero_csn.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <!-- Rating badge -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
+                        8.3                    </div>
+                    <!-- Category badge -->
+                    <div class="absolute top-3 left-3 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                        Restaurants                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="font-bold text-sm text-slate-900 line-clamp-2 mb-1 group-hover:text-primary transition-colors">Pizza Paradise</h3>
+                                        <p class="flex items-center gap-1 text-xs text-slate-400 mb-3">
+                        <span class="material-symbols-outlined text-xs">location_on</span>Samarth Nagar, CSN                    </p>
+                                        <div class="mt-auto flex items-center justify-between">
+                        <div>
+                            <span class="text-primary font-black text-base">₹450</span>
                             <span class="text-slate-400 text-xs ml-1">/ person</span>
                         </div>
                         <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full group-hover:bg-primary group-hover:text-white transition-all">View</span>
@@ -721,10 +772,10 @@
             </div>
             
             <div class="flex flex-col gap-3">
-                <a href="../login?redirect=%2Flisting-detail%2Frestaurants-15-seafood-shack.html" class="flex items-center justify-center gap-2 py-3 px-6 bg-primary text-white font-bold rounded-xl text-sm hover:bg-orange-600 transition-colors">
+                <a href="../login?redirect=%2Flisting-detail%2Frestaurants-15-seafood-shack" class="flex items-center justify-center gap-2 py-3 px-6 bg-primary text-white font-bold rounded-xl text-sm hover:bg-orange-600 transition-colors">
                     <span class="material-symbols-outlined text-base">login</span> Sign In
                 </a>
-                <a href="../register?redirect=%2Flisting-detail%2Frestaurants-15-seafood-shack.html" class="flex items-center justify-center py-3 px-6 bg-slate-50 text-slate-900 font-bold rounded-xl text-sm border-2 border-slate-200 hover:bg-slate-100 transition-colors">
+                <a href="../register?redirect=%2Flisting-detail%2Frestaurants-15-seafood-shack" class="flex items-center justify-center py-3 px-6 bg-slate-50 text-slate-900 font-bold rounded-xl text-sm border-2 border-slate-200 hover:bg-slate-100 transition-colors">
                     Create Account
                 </a>
                 <div class="flex items-center gap-3 my-1">
@@ -745,7 +796,7 @@
         <!-- Booking Form View -->
         <div id="booking-form-view" class="hidden" style="display:none;">
             <div class="relative h-40 w-full rounded-t-2xl overflow-hidden mb-5">
-                <img src="../images/uploads/restaurant-thali.jpg" class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt="Booking Item">
+                <img src="../images/uploads/pani-puri.jpg" class="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" alt="Booking Item" onerror="this.src='../images/hero_csn.png'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
                 <div class="absolute bottom-4 left-6 right-6">
                     <p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Complete Booking</p>
@@ -847,7 +898,7 @@
     <div style="max-width:90vw;max-height:90vh;position:relative;">
         <img id="modal-image" src="" alt="Gallery image" style="max-width:100%;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);"/>
         <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;white-space:nowrap;">
-            <span id="modal-counter">1</span> / 0        </div>
+            <span id="modal-counter">1</span> / 6        </div>
     </div>
 </div>
 
@@ -1127,7 +1178,7 @@ window.addEventListener('pageshow', function(e) {
 
 <script>
 // Booking Modal Functions
-var galleryImagesForModal = [];
+var galleryImagesForModal = ["..\/images\/uploads\/restaurant-south-indian.jpg","..\/images\/uploads\/masala-dosa.jpg","..\/images\/uploads\/pani-puri.jpg","..\/images\/uploads\/restaurant-thali.jpg","..\/images\/uploads\/north-indian-thali.jpg","..\/images\/uploads\/indian-thali.jpg"];
 var currentModalIndex = 0;
 
 function openBookingModal() {

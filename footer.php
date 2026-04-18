@@ -235,8 +235,142 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
         </div>
     </div>
 </div>
+
+<?php
+$locationsFile = __DIR__ . '/locations.txt';
+$locationsData = [];
+if (file_exists($locationsFile)) {
+    $locs = file($locationsFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if (!empty($locs)) {
+        foreach ($locs as $loc) {
+            $locationsData[] = htmlspecialchars(trim($loc));
+        }
+    }
+}
+?>
+<style>
+.autocomplete-dropdown {
+    position: absolute;
+    background: #1c1410;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    z-index: 999999;
+    max-height: 250px;
+    overflow-y: auto;
+    display: none;
+    flex-direction: column;
+}
+.autocomplete-dropdown.active {
+    display: flex;
+}
+.autocomplete-item {
+    padding: 12px 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.autocomplete-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+.autocomplete-item b {
+    color: #38bdf8; /* Light blue highlight instead of orange */
+}
+.autocomplete-item.no-results {
+    color: #94a3b8;
+    cursor: default;
+}
+.autocomplete-item.no-results:hover {
+    background: transparent;
+}
+.autocomplete-item .material-symbols-outlined {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+/* Scrollbar for dropdown */
+.autocomplete-dropdown::-webkit-scrollbar { width: 6px; }
+.autocomplete-dropdown::-webkit-scrollbar-track { background: transparent; }
+.autocomplete-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+.autocomplete-dropdown::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+</style>
 <script>
+    const CSN_LOCATIONS = <?php echo json_encode($locationsData); ?>;
     (function () {
+        // ── Custom Autocomplete Logic ──
+        document.querySelectorAll('input[list="location-list"]').forEach(function(inp) {
+            inp.removeAttribute('list'); // Disable native datalist
+            
+            const dropdown = document.createElement('div');
+            dropdown.className = 'autocomplete-dropdown';
+            document.body.appendChild(dropdown);
+
+            function updatePosition() {
+                if (!dropdown.classList.contains('active')) return;
+                const rect = inp.getBoundingClientRect();
+                dropdown.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+                dropdown.style.left = (rect.left + window.scrollX) + 'px';
+                dropdown.style.width = rect.width + 'px';
+            }
+
+            document.addEventListener('click', function(e) {
+                if (e.target !== inp && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            window.addEventListener('resize', updatePosition);
+            window.addEventListener('scroll', updatePosition, true);
+
+            inp.addEventListener('input', function() {
+                const val = this.value.trim().toLowerCase();
+                dropdown.innerHTML = '';
+                
+                if (!val) {
+                    dropdown.classList.remove('active');
+                    return;
+                }
+
+                const matches = CSN_LOCATIONS.filter(l => l.toLowerCase().includes(val));
+
+                if (matches.length > 0) {
+                    matches.slice(0, 10).forEach(match => {
+                        const item = document.createElement('div');
+                        item.className = 'autocomplete-item';
+                        
+                        const startIdx = match.toLowerCase().indexOf(val);
+                        const beforeStr = match.substring(0, startIdx);
+                        const matchStr = match.substring(startIdx, startIdx + val.length);
+                        const afterStr = match.substring(startIdx + val.length);
+
+                        item.innerHTML = `<span class="material-symbols-outlined">location_on</span><span>${beforeStr}<b>${matchStr}</b>${afterStr}</span>`;
+                        
+                        item.addEventListener('click', function() {
+                            inp.value = match;
+                            dropdown.classList.remove('active');
+                        });
+                        dropdown.appendChild(item);
+                    });
+                    dropdown.classList.add('active');
+                    updatePosition();
+                } else {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            inp.addEventListener('focus', function() {
+                if (this.value.trim().length > 0) {
+                    this.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+        });
+
         // ── Go-to-top ──
         var btn = document.getElementById('go-top-btn');
         function updateBtn() {

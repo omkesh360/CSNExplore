@@ -1,16 +1,33 @@
+# CSNExplore - Robots.txt
+# Allow search engines to crawl the site
+
 User-agent: *
 Allow: /
+
+# Disallow admin and sensitive areas
 Disallow: /admin/
+Disallow: /vendor/
 Disallow: /php/
-Disallow: /database/
-Disallow: /cache/
 Disallow: /logs/
-Disallow: /old code/
-Disallow: /install.php
-Disallow: /adminexplorer.php
+Disallow: /cache/
+Disallow: /database/
 
-# Sitemaps
-Sitemap: https://csnexplore.com/sitemap.xml
+# Disallow login and registration pages
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
 
-# Crawl delay for bots
-Crawl-delay: 10
+# Allow important pages
+Allow: /index.php
+Allow: /about.php
+Allow: /contact.php
+Allow: /blogs.php
+Allow: /listing.php
+
+# Allow static assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap location
+Sitemap: https://darkorange-boar-588892.hostingersite.com/sitemap.xml

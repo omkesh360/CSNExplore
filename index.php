@@ -395,28 +395,28 @@ require 'header.php';
                 <?php endforeach; ?>
             </div>
 
-            <!-- CARS panel -->
-            <div id="panel-cars" class="search-panel active">
+            <!-- STAYS panel (Default) -->
+            <div id="panel-stays" class="search-panel active">
                 <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">trip_origin</span><input id="cars-pickup" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="cars-drop" type="text" placeholder="Drop location"/></div>
-                    <div class="date-field" onclick="document.getElementById('cars-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="cars-date" type="text" placeholder="Select date" readonly/></div>
-                    <button class="search-btn" onclick="doSearch('cars')"><span class="material-symbols-outlined">search</span>Search</button>
-                </div>
-            </div>
-            <!-- STAYS panel -->
-            <div id="panel-stays" class="search-panel">
-                <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="stays-location" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="stays-location" type="text" placeholder="Where are you going?" value="" list="location-list"/></div>
                     <div class="date-field" onclick="document.getElementById('stays-checkin').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="stays-checkin" type="text" placeholder="Check-in" readonly/></div>
                     <div class="date-field" onclick="document.getElementById('stays-checkout').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="stays-checkout" type="text" placeholder="Check-out" readonly/></div>
                     <button class="search-btn" onclick="doSearch('stays')"><span class="material-symbols-outlined">search</span>Search</button>
                 </div>
             </div>
+            <!-- CARS panel -->
+            <div id="panel-cars" class="search-panel">
+                <div class="search-row">
+                    <div class="search-field"><span class="material-symbols-outlined">trip_origin</span><input id="cars-pickup" type="text" placeholder="Pick-up location" value="" list="location-list"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="cars-drop" type="text" placeholder="Drop location" list="location-list"/></div>
+                    <div class="date-field" onclick="document.getElementById('cars-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="cars-date" type="text" placeholder="Select date" readonly/></div>
+                    <button class="search-btn" onclick="doSearch('cars')"><span class="material-symbols-outlined">search</span>Search</button>
+                </div>
+            </div>
             <!-- BIKES panel -->
             <div id="panel-bikes" class="search-panel">
                 <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="bikes-location" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="bikes-location" type="text" placeholder="Pick-up location" value="" list="location-list"/></div>
                     <div class="date-field" onclick="document.getElementById('bikes-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="bikes-date" type="text" placeholder="From date" readonly/></div>
                     <div class="date-field" onclick="document.getElementById('bikes-return').focus()"><span class="material-symbols-outlined">event_available</span><input id="bikes-return" type="text" placeholder="Return date" readonly/></div>
                     <button class="search-btn" onclick="doSearch('bikes')"><span class="material-symbols-outlined">search</span>Search</button>
@@ -425,7 +425,7 @@ require 'header.php';
             <!-- ATTRACTIONS panel -->
             <div id="panel-attractions" class="search-panel">
                 <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="attractions-location" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="attractions-location" type="text" placeholder="Search attractions" value="" list="location-list"/></div>
                     <div class="date-field" onclick="document.getElementById('attractions-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="attractions-date" type="text" placeholder="Select date" readonly/></div>
                     <button class="search-btn" onclick="doSearch('attractions')"><span class="material-symbols-outlined">search</span>Search</button>
                 </div>
@@ -433,7 +433,7 @@ require 'header.php';
             <!-- DINE panel -->
             <div id="panel-dine" class="search-panel">
                 <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="dine-location" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="dine-location" type="text" placeholder="Search restaurants" value="" list="location-list"/></div>
                     <div class="date-field" onclick="document.getElementById('dine-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="dine-date" type="text" placeholder="Select date" readonly/></div>
                     <button class="search-btn" onclick="doSearch('dine')"><span class="material-symbols-outlined">search</span>Search</button>
                 </div>
@@ -441,8 +441,8 @@ require 'header.php';
             <!-- BUSES panel -->
             <div id="panel-buses" class="search-panel">
                 <div class="search-row">
-                    <div class="search-field"><span class="material-symbols-outlined">trip_origin</span><input id="buses-from" type="text" placeholder="Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar"/></div>
-                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="buses-to" type="text" placeholder="Destination city"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">trip_origin</span><input id="buses-from" type="text" placeholder="From city" value="" list="location-list"/></div>
+                    <div class="search-field"><span class="material-symbols-outlined">location_on</span><input id="buses-to" type="text" placeholder="To city" list="location-list"/></div>
                     <div class="date-field" onclick="document.getElementById('buses-date').focus()"><span class="material-symbols-outlined">calendar_month</span><input id="buses-date" type="text" placeholder="Select date" readonly/></div>
                     <button class="search-btn" onclick="doSearch('buses')"><span class="material-symbols-outlined">search</span>Search</button>
                 </div>
@@ -498,7 +498,23 @@ function autoSwitch() {
     currentTabIndex = (currentTabIndex + 1) % tabsList.length;
     switchTab(tabsList[currentTabIndex], true);
 }
-window.heroInterval = setInterval(autoSwitch, 3000);
+window.heroInterval = setInterval(autoSwitch, 4000);
+
+// Stop auto-rotation immediately when user interacts with the search box
+document.addEventListener('DOMContentLoaded', function() {
+    var sbox = document.querySelector('.search-box');
+    if(sbox) {
+        var stopRot = function() {
+            if (window.heroInterval) {
+                clearInterval(window.heroInterval);
+                window.heroInterval = null;
+            }
+        };
+        sbox.addEventListener('focusin', stopRot);
+        sbox.addEventListener('click', stopRot);
+        sbox.addEventListener('keydown', stopRot);
+    }
+});
 
 // Initialize with the first background (cars)
 document.getElementById('hero-bg').style.backgroundImage = "url('images/car-rental-hero-section%20(3).webp')";

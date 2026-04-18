@@ -4,11 +4,27 @@ class Database {
     private $db;
 
     private function __construct() {
-        $host   = getenv('DB_HOST')     ?: 'localhost';
-        $dbName = getenv('DB_DATABASE') ?: 'csnexplore';
-        $user   = getenv('DB_USERNAME') ?: 'root';
-        $pass   = getenv('DB_PASSWORD') ?: '';
-        $port   = getenv('DB_PORT')     ?: '3306';
+        // Auto-detect environment: check if running on Hostinger or localhost
+        $isProduction = (
+            isset($_SERVER['HTTP_HOST']) && 
+            (strpos($_SERVER['HTTP_HOST'], 'hostingersite.com') !== false || 
+             strpos($_SERVER['HTTP_HOST'], 'csnexplore.com') !== false)
+        ) || getenv('APP_ENV') === 'production';
+
+        // Use production or local credentials based on environment
+        if ($isProduction) {
+            $host   = getenv('DB_HOST_PROD')   ?: 'localhost';
+            $dbName = getenv('DB_NAME_PROD')   ?: 'u108326050_csnexploredb';
+            $user   = getenv('DB_USER_PROD')   ?: 'u108326050_omkesh360';
+            $pass   = getenv('DB_PASS_PROD')   ?: 'omkeshAa.1@';
+        } else {
+            $host   = getenv('DB_HOST_LOCAL')  ?: 'localhost';
+            $dbName = getenv('DB_NAME_LOCAL')  ?: 'csnexplore';
+            $user   = getenv('DB_USER_LOCAL')  ?: 'root';
+            $pass   = getenv('DB_PASS_LOCAL')  ?: '';
+        }
+        
+        $port = getenv('DB_PORT') ?: '3306';
 
         $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=utf8mb4";
         $options = [

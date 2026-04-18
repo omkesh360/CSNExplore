@@ -47,7 +47,7 @@ ServerSignature Off
 </IfModule>
 
 # ── Block sensitive files ─────────────────────────────────────────────────────
-<FilesMatch "\.(db|sqlite|sql|log|json|lock|env|git|md|txt)$">
+<FilesMatch "\.(db|sqlite|sql|log|lock|git)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -57,7 +57,12 @@ ServerSignature Off
     </IfModule>
 </FilesMatch>
 
-# Allow robots.txt and sitemap.xml
+# Allow important files for deployment
+<Files ".env">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</Files>
 <Files "robots.txt">
     <IfModule mod_authz_core.c>
         Require all granted
@@ -194,8 +199,12 @@ ServerSignature Off
     RewriteRule ^blogs/?$ blogs.php [L,QSA]
 
     # ── 3. Handle Listing detail: /listing-detail/cars-5-slug ───────────────
-    # If a match is found, rewrite to the .html file inside listing-detail/
-    RewriteRule ^listing-detail/([a-z0-9-]+)$ listing-detail/$1.html [L]
+    # Serve static HTML files directly from listing-detail folder
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^listing-detail/([a-z]+-[0-9]+-[a-z0-9-]+)$ listing-detail/$1.html [L]
+    
+    # If .html extension is provided, serve it directly
+    RewriteRule ^listing-detail/([a-z]+-[0-9]+-[a-z0-9-]+)\.html$ listing-detail/$1.html [L]
 
     # ── 4. Serve real static files (images, CSS, JS, etc.) ──────────────────
     RewriteCond %{REQUEST_FILENAME} -f

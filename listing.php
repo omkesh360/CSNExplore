@@ -259,7 +259,7 @@ $category_nav = [
         <div class="relative flex-1 sm:w-64">
            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>"
-                  placeholder="Search <?php echo htmlspecialchars($c['label']); ?>..."
+                  placeholder="Search <?php echo htmlspecialchars($c['label']); ?>..." list="location-list"
                   class="w-full border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white text-slate-900 transition-all"/>
         </div>
         <button type="submit" class="px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-orange-600 transition-all shadow active:scale-95">Search</button>
