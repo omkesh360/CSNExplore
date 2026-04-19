@@ -37,7 +37,7 @@ require 'header.php';
                 var p = JSON.parse(atob(b64));
                 if (!p.exp || p.exp > Math.floor(Date.now()/1000)) {
                     var redirect = new URLSearchParams(window.location.search).get('redirect') || '';
-                    window.location.replace(redirect || 'index.php');
+                    window.location.replace(redirect || 'index');
                 }
             }
         } catch(e) {}
@@ -234,7 +234,7 @@ require 'header.php';
             } else if (data.user.role === 'admin') {
                 window.location.href = 'admin/dashboard.php';
             } else {
-                window.location.href = 'index.php';
+                window.location.href = 'index';
             }
         } catch (err) {
             errText.textContent = 'Network error. Please check your connection.';

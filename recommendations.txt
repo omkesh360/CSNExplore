@@ -1,0 +1,39 @@
+CSNExplore - Website Audit & Recommendations
+===========================================
+Date: April 2026
+
+I have performed a comprehensive audit of the CSNExplore website across desktop and mobile views. Below is a prioritized list of improvements to enhance functionality, local brand authenticity, and user experience.
+
+1. CRITICAL: Mobile Search Bar Fix
+----------------------------------
+- Issue: The main search tabs (Stays, Cars, Bikes, etc.) are completely hidden on mobile devices.
+- Action: Implement a responsive search UI for mobile. On smaller screens, the category tabs should become a scrollable pill-bar or a simplified search icon that opens a mobile-optimized search overlay.
+
+2. CONTENT: Local Authenticity (Blog & About)
+---------------------------------------------
+- Issue: Currently, several blog posts about Chhatrapati Sambhajinagar incorrectly display images of the Taj Mahal (Agra).
+- Action: Replace these with local landmarks like Bibi Ka Maqbara, Ellora Caves, or Grishneshwar Temple to maintain trust and geographical accuracy.
+- Action: Gradually replace AI-generated or generic stock photos in the "About Us" section with authentic photography of the city to create a premium, locally-rooted feel.
+
+3. FUNCTIONALITY: Search Enhancements
+-------------------------------------
+- Autocomplete: Add a suggestion dropdown as the user types in the search bar. This significantly helps users discover heritage sites and hotels they might not know the exact spelling of.
+- Query Persistence: Ensure that when a user searches for "Buses" on the home page, the "Buses" category is pre-selected and the search term is filled in when they arrive at the listing page.
+
+4. UI/UX: Mobile Layout Refinements
+-----------------------------------
+- Button Overlap: The "Go to Top" button currently overlaps the "WhatsApp Us" floating icon on the mobile menu overlay. Adjust the Z-index or vertical positioning (bottom property) to prevent this collision.
+- Footer Spacing: On mobile, the "Contact Info" section feels cramped. Add slight vertical margins between the Office, Phone, and Email blocks for better scanability.
+- Hero Title on Mobile: While fixed, double-check that the H1 title in the hero section doesn't wrap awkwardly on very narrow screens (e.g., iPhone SE).
+
+5. SEO & PERFORMANCE
+--------------------
+- Heading Hierarchy: Ensure all pages use a clear H1 -> H2 structure (some listing pages might have redundant heading tags from previous iterations).
+- Image Optimization: Ensure all yeni-added gallery images are served in WebP format with appropriate 'alt' tags for SEO.
+
+6. PLANNED REFINEMENTS (Admin/Vendor)
+------------------------------------
+- Dashboard Cleanup: The admin and vendor sidebars still contain some legacy .php links. These should be audited to match the new clean URL structure implemented on the front end.
+
+Summary:
+The most urgent task is enabling search on mobile. Following that, perfecting the local content (correcting the Taj Mahal images) is vital for the platform's credibility as a Chhatrapati Sambhajinagar guide.

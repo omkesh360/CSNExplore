@@ -707,7 +707,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     Talk to our local trip experts. We'll craft a customized, fully personalized itinerary for your entire trip—including cars, hotels, and ancient site guides—at no extra cost.
                 </p>
                 <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-orange-500 text-white font-black rounded-xl text-sm shadow-[0_8px_30px_rgb(236,91,19,0.3)] hover:shadow-[0_8px_30px_rgb(236,91,19,0.5)] hover:-translate-y-1 transition-all">
-                    Get Free Trip Plan <span class="material-symbols-outlined text-[18px]">support_agent</span>
+                    Trip Plan <span class="material-symbols-outlined text-[18px]">support_agent</span>
                 </a>
             </div>
             

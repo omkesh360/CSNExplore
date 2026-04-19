@@ -13,7 +13,7 @@ $db   = getDB();
 $root = dirname(__DIR__, 2); // workspace root
 
 // ── Shared HTML helpers ───────────────────────────────────────────────────────
-function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore.', $image = 'https://csnexplore.com/images/og-image.jpg', $schema = null) {
+function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore.', $image = 'https://csnexplore.com/images/og-image.jpg', $schema = null, $type = '') {
     if (!$canonical) $canonical = 'https://csnexplore.com';
     $base = str_repeat('../', $depth);
     
@@ -78,11 +78,24 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <link rel="stylesheet" href="' . $base . 'mobile-responsive.css"/>
 <script>tailwind.config={{darkMode:"class",theme:{{extend:{{colors:{{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"}},fontFamily:{{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}}}}}}</script>
 <style>
-body{opacity:0;will-change:opacity;}
-body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
+/* ── Global Enhancements (matched from header.php) ── */
+html { scroll-behavior: smooth; }
+::-moz-selection { background: rgba(236,91,19,0.2); color: #ec5b13; }
+::selection { background: rgba(236,91,19,0.2); color: #ec5b13; }
+/* Modern Thin Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+body{opacity:0;will-change:opacity;background:#fff;color:#0f172a;font-family:Inter,sans-serif;overflow-x:hidden;max-width:100vw;}
+body.page-ready{animation:pageFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;}
 @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
+body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
+* { box-sizing: border-box; }
 .material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24;font-family:"Material Symbols Outlined";font-style:normal;display:inline-block;line-height:1;}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.animate-marquee { display: flex; width: max-content; animation: marquee 120s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
 .prose h2{font-size:1.5rem;font-weight:800;margin:2rem 0 0.75rem;}
 .prose h3{font-size:1.2rem;font-weight:700;margin:1.5rem 0 0.5rem;}
 .prose p{margin-bottom:1.1rem;line-height:1.85;}
@@ -90,7 +103,8 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 .prose ul li{margin-bottom:0.4rem;line-height:1.7;}
 .prose strong{font-weight:700;}
 .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-
+/* ── Scroll Progress Bar ── */
+#csn-scroll-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#ec5b13,#f59e0b);z-index:99999;width:0%;transition:width 0.1s linear;pointer-events:none;}
 /* ── Global Motion System ── */
 [data-reveal]{opacity:0;transform:translateY(32px);transition:opacity 0.65s cubic-bezier(.22,1,.36,1),transform 0.65s cubic-bezier(.22,1,.36,1);}
 [data-reveal="left"]{transform:translateX(-40px);}
@@ -100,6 +114,13 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 [data-delay="1"]{transition-delay:0.08s;}[data-delay="2"]{transition-delay:0.16s;}
 [data-delay="3"]{transition-delay:0.24s;}[data-delay="4"]{transition-delay:0.32s;}
 [data-delay="5"]{transition-delay:0.40s;}[data-delay="6"]{transition-delay:0.48s;}
+/* Staggered transition delays */
+[data-reveal-stagger] > *:nth-child(1) { transition-delay: 50ms; }
+[data-reveal-stagger] > *:nth-child(2) { transition-delay: 100ms; }
+[data-reveal-stagger] > *:nth-child(3) { transition-delay: 150ms; }
+[data-reveal-stagger] > *:nth-child(4) { transition-delay: 200ms; }
+[data-reveal-stagger] > *:nth-child(5) { transition-delay: 250ms; }
+[data-reveal-stagger] > *:nth-child(6) { transition-delay: 300ms; }
 .card-glow{transition:transform 0.3s ease,box-shadow 0.3s ease;}
 .card-glow:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 50px rgba(236,91,19,0.18),0 4px 16px rgba(0,0,0,0.12);}
 .img-shimmer{position:relative;overflow:hidden;}
@@ -125,6 +146,10 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 .gallery-thumb:hover img{transform:scale(1.08);filter:brightness(1.05);}
 .gallery-thumb::after{content:"\e8ff";font-family:"Material Symbols Outlined";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);color:#fff;font-size:26px;opacity:0;transition:opacity 0.25s;pointer-events:none;}
 .gallery-thumb:hover::after{opacity:1;}
+/* Zoom hint badge - always visible on mobile, hover on desktop */
+.gallery-zoom-hint{position:absolute;bottom:8px;right:8px;background:rgba(236,91,19,0.9);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:all 0.3s ease;box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:2;}
+@media(min-width:769px){.gallery-zoom-hint{opacity:0;transform:scale(0.8);}.gallery-thumb:hover .gallery-zoom-hint{opacity:1;transform:scale(1);}}
+@media(max-width:768px){.gallery-zoom-hint{opacity:1;width:24px;height:24px;bottom:6px;right:6px;}.gallery-zoom-hint .material-symbols-outlined{font-size:13px !important;}}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
 #csn-gallery-modal{position:fixed !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important;background:rgba(0,0,0,0.85) !important;z-index:999999999 !important;display:none !important;align-items:center !important;justify-content:center !important;overflow:hidden !important;}
 #csn-gallery-modal.active{display:flex !important;}
@@ -155,39 +180,220 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
 @media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px;}}
 @media(max-width:480px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}}
+/* ── Marquee bar – fixed at very top ── */
+#marquee-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 70; overflow: hidden; max-height: 40px; transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease; }
+#marquee-bar.hidden-bar { opacity: 0; max-height: 0; padding-top: 0 !important; padding-bottom: 0 !important; pointer-events: none; }
+/* ══ Site Header – ALWAYS STICKY (position:fixed is permanent) ══ */
+#site-header { position: fixed !important; left: 50%; transform: translateX(-50%); width: 100%; max-width: 100%; border-radius: 0; background: #000; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; z-index: 60 !important; transition: width 0.5s cubic-bezier(0.32,0,0.15,1), max-width 0.5s cubic-bezier(0.32,0,0.15,1), border-radius 0.5s cubic-bezier(0.32,0,0.15,1), background 0.5s cubic-bezier(0.32,0,0.15,1), box-shadow 0.5s cubic-bezier(0.32,0,0.15,1), backdrop-filter 0.5s ease; }
+/* ── Pill mode: floating pill, always visible ── */
+#site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(8,5,3,0.95) !important; backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important; border: 1px solid rgba(255,255,255,0.10) !important; box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset !important; z-index: 9000 !important; }
+#site-header nav { height: 64px; min-height: 64px; }
+#site-header.pill-mode nav { height: 60px !important; min-height: 60px !important; }
+/* Call/WA buttons – pill mode shrink to icon only */
+#site-header.pill-mode .hdr-call-text, #site-header.pill-mode .hdr-wa-text { display: none !important; }
+#site-header.pill-mode .hdr-call-btn { padding: 0 !important; width: 34px !important; height: 34px !important; border-radius: 50% !important; }
+#site-header.pill-mode .hdr-wa-btn { padding: 0 !important; width: 34px !important; height: 34px !important; border-radius: 50% !important; }
+.hdr-call-btn, .hdr-wa-btn { position: relative; overflow: hidden; }
+.hdr-call-btn::before, .hdr-wa-btn::before { display: none !important; }
+#site-header-placeholder { display: block; background: #000; }
+/* ── Global mobile fixes ── */
+@media (max-width: 640px) {
+  .max-w-\[1140px\] { padding-left: 12px !important; padding-right: 12px !important; }
+  h1.font-serif, h2.font-serif { font-size: 1.5rem !important; line-height: 1.15 !important; }
+}
+@media (max-width: 360px) {
+  h1.font-serif, h2.font-serif { font-size: 1.35rem !important; }
+  #marquee-bar span { font-size: 8px !important; letter-spacing: normal !important; padding-left: 8px !important; padding-right: 8px !important; }
+}
+.hide-scrollbar::-webkit-scrollbar{display:none} .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
 </style>
 <script>
-function playBookingSound() {
-  try {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playTone(freq, start, duration) {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain); gain.connect(audioCtx.destination);
-      osc.frequency.value = freq; osc.type = "sine";
-      gain.gain.setValueAtTime(0.3, start);
-      gain.gain.exponentialRampToValueAtTime(0.01, start + duration);
-      osc.start(start); osc.stop(start + duration);
+    function playBookingSound() {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            function playTone(freq, start, duration) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                osc.frequency.value = freq; osc.type = "sine";
+                gain.gain.setValueAtTime(0.3, start);
+                gain.gain.exponentialRampToValueAtTime(0.01, start + duration);
+                osc.start(start); osc.stop(start + duration);
+            }
+            for(let i=0; i<10; i++) {
+                let t = audioCtx.currentTime + (i * 0.4);
+                playTone(880, t, 0.1);
+                playTone(880, t + 0.15, 0.1);
+            }
+        } catch(e) { console.error("Sound failed", e); }
     }
-    // "Tring Tring" 10 times
-    for(let i=0; i<10; i++) {
-        let t = audioCtx.currentTime + (i * 0.4);
-        playTone(880, t, 0.1);
-        playTone(880, t + 0.15, 0.1);
-    }
-  } catch(e) { console.error("Sound failed", e); }
-}
 </script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
-' . sharedHeader($base);
+<!-- ── Scroll Progress Bar ───────────────────────────────── -->
+<div id="csn-scroll-bar"></div>
+<script>
+(function(){
+  var bar = document.getElementById("csn-scroll-bar");
+  if(bar){
+    window.addEventListener("scroll", function(){
+      var doc = document.documentElement;
+      var scrolled = doc.scrollTop || document.body.scrollTop;
+      var total = doc.scrollHeight - doc.clientHeight;
+      bar.style.width = total > 0 ? (scrolled/total*100)+"%" : "0%";
+    }, { passive: true });
+  }
+})();
+</script>';
+    $head .= sharedHeader($base, $type);
+
+    // ── Scripts that need DOM elements (placed AFTER header HTML, same as header.php) ──
+    $head .= '
+<script>
+    var _mob = document.getElementById(\'mob-menu\');
+    function openMob() {
+        _mob.style.display = \'flex\';
+        _mob.style.opacity = \'0\';
+        requestAnimationFrame(function() {
+            _mob.classList.add(\'mob-open\');
+            document.body.style.overflow = \'hidden\';
+        });
+    }
+    function closeMob() {
+        _mob.style.opacity = \'0\';
+        _mob.style.transition = \'opacity 0.18s ease\';
+        setTimeout(function() {
+            _mob.style.display = \'none\';
+            _mob.style.opacity = \'\';
+            _mob.style.transition = \'\';
+            _mob.classList.remove(\'mob-open\');
+            document.body.style.overflow = \'\';
+        }, 180);
+    }
+    document.getElementById(\'mob-btn\').addEventListener(\'click\', openMob);
+    document.getElementById(\'mob-close\').addEventListener(\'click\', closeMob);
+
+    // ══ Scroll → Pill Header (bulletproof sticky) ══
+    (function(){
+        var h  = document.getElementById(\'site-header\');
+        var ph = document.getElementById(\'site-header-placeholder\');
+        var mb = document.getElementById(\'marquee-bar\');
+        var ticking = false;
+        var MH = 0;
+        var isPill = false;
+
+        function measureMarquee(){
+            if (!mb) return 0;
+            var old = mb.style.transition;
+            mb.style.transition = \'none\';
+            mb.classList.remove(\'hidden-bar\');
+            var v = mb.getBoundingClientRect().height || mb.offsetHeight;
+            mb.style.transition = old;
+            return v;
+        }
+
+        function setNormal(){
+            isPill = false;
+            if (mb) mb.classList.remove(\'hidden-bar\');
+            h.classList.remove(\'pill-mode\');
+            h.style.setProperty(\'position\', \'fixed\', \'important\');
+            h.style.setProperty(\'top\', MH + \'px\', \'important\');
+            h.style.setProperty(\'left\', \'50%\', \'important\');
+            h.style.setProperty(\'transform\', \'translateX(-50%)\', \'important\');
+            h.style.setProperty(\'width\', \'100%\', \'important\');
+            h.style.setProperty(\'max-width\', \'100%\', \'important\');
+            h.style.setProperty(\'border-radius\', \'0\', \'important\');
+            h.style.setProperty(\'z-index\', \'60\', \'important\');
+            if (ph) ph.style.height = (MH + 64) + \'px\';
+        }
+
+        function setPill(){
+            isPill = true;
+            if (mb) mb.classList.add(\'hidden-bar\');
+            h.classList.add(\'pill-mode\');
+            h.style.setProperty(\'position\', \'fixed\', \'important\');
+            h.style.setProperty(\'top\', \'14px\', \'important\');
+            h.style.setProperty(\'left\', \'50%\', \'important\');
+            h.style.setProperty(\'transform\', \'translateX(-50%)\', \'important\');
+            h.style.setProperty(\'width\', \'calc(100% - 32px)\', \'important\');
+            h.style.setProperty(\'max-width\', \'1120px\', \'important\');
+            h.style.setProperty(\'border-radius\', \'9999px\', \'important\');
+            h.style.setProperty(\'z-index\', \'9000\', \'important\');
+            if (ph) ph.style.height = (MH + 64) + \'px\';
+        }
+
+        function update(){
+            if (window.scrollY > 40) {
+                setPill();
+            } else {
+                setNormal();
+            }
+            ticking = false;
+        }
+
+        MH = measureMarquee();
+        update();
+
+        window.addEventListener(\'scroll\', function(){
+            if (!ticking) {
+                requestAnimationFrame(update);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener(\'resize\', function(){
+            MH = measureMarquee();
+            update();
+        }, { passive: true });
+
+        window.addEventListener(\'load\', function(){
+            MH = measureMarquee();
+            update();
+        });
+    })();
+
+    // Auth
+    (function(){
+        var tok=localStorage.getItem(\'csn_token\'), usr=JSON.parse(localStorage.getItem(\'csn_user\')||\'null\');
+        if(tok&&usr){
+            var lb=document.getElementById(\'hdr-login-btn\'); if(lb)lb.style.display=\'none\';
+            var um=document.getElementById(\'hdr-user-menu\'); if(um)um.classList.remove(\'hidden\');
+            var mal=document.getElementById(\'mob-auth-login\'); if(mal)mal.style.display=\'none\';
+            var mau=document.getElementById(\'mob-auth-user\');  if(mau)mau.style.display=\'block\';
+        }
+        var ub=document.getElementById(\'hdr-user-btn\'),dd=document.getElementById(\'hdr-dropdown\');
+        if(ub&&dd){ ub.addEventListener(\'click\',function(e){e.stopPropagation();dd.classList.toggle(\'hidden\');}); document.addEventListener(\'click\',function(){dd.classList.add(\'hidden\');}); }
+        function logout(){ [\'csn_token\',\'csn_user\',\'csn_admin_token\',\'csn_admin_user\'].forEach(function(k){localStorage.removeItem(k);}); location.reload(); }
+        var dl=document.getElementById(\'hdr-logout-btn\'); if(dl)dl.addEventListener(\'click\',logout);
+        var ml=document.getElementById(\'mob-logout-btn\'); if(ml)ml.addEventListener(\'click\',logout);
+    })();
+</script>
+';
 
     return $head;
 }
 
-function sharedHeader($base) {
+function sharedHeader($base, $type = '') {
     $content = file_get_contents(dirname(__DIR__, 2) . '/header-html.html');
-    return str_replace('{{BASE}}', $base, $content);
+    
+    // Handle active link styling
+    if ($type) {
+        $active_class = 'text-white bg-white/10';
+        $inactive_class = 'text-white/65 hover:bg-white/10 hover:text-white';
+        
+        $types = ['stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
+        foreach ($types as $t) {
+            $pattern = '/href="{{BASE}}\/listing\?type=' . $t . '"\s+class="[^"]+"/';
+            $replacement = 'href="{{BASE}}/listing?type=' . $t . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . ($t === $type ? $active_class : $inactive_class) . '"';
+            $content = preg_replace($pattern, $replacement, $content);
+        }
+    }
+    
+    // Replace {{BASE}} with the relative path, then clean up any double slashes
+    $content = str_replace('{{BASE}}', rtrim($base, '/'), $content);
+    // Fix double slashes in paths (but not in protocol like https://)
+    $content = preg_replace('#(?<!:)//+#', '/', $content);
+    return $content;
 }
 
 function sharedFooter($base) {
@@ -737,7 +943,7 @@ foreach ($types as $type) {
             'description' => $desc
         ];
 
-        $html = htmlHead(htmlspecialchars($item['name']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema);
+        $html = htmlHead(htmlspecialchars($item['name']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema, $type);
 
         // Build thumbnail strip HTML
         $thumbHtml = '';
@@ -866,10 +1072,12 @@ foreach ($types as $type) {
             </button>
           </div>
           <div class="p-4">
+            <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
               '.implode('', array_map(function($img, $i) use ($item) {
-                  return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to enlarge">
+                  return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to zoom" role="button" tabindex="0" aria-label="View '.htmlspecialchars($item['name']).' photo '.($i+1).' full screen">
                     <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.htmlspecialchars($item['name']).' photo '.($i+1).'" onerror="this.src=\'../images/travelhub.png\'"/>
+                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>';
               }, $resolvedGalleryImages, array_keys($resolvedGalleryImages))).
             '
@@ -929,7 +1137,12 @@ foreach ($types as $type) {
               <p class="font-bold text-slate-900 mb-1">Sign in to book</p>
               <p class="text-sm text-slate-700 mb-4">Please log in to make a booking request.</p>
               <a href="../login?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-[#ec5b13] text-white font-black py-3 rounded-2xl hover:bg-orange-600 transition-all text-center mb-2">Sign In</a>
-              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full border-2 border-[#ec5b13] text-[#ec5b13] font-bold py-3 rounded-2xl hover:bg-orange-50 transition-all text-center text-sm">Create Account</a>
+              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full border-2 border-[#ec5b13] text-[#ec5b13] font-bold py-3 rounded-2xl hover:bg-orange-50 transition-all text-center text-sm mb-3">Create Account</a>
+              <div class="relative my-3"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-white px-3 text-xs font-bold text-slate-400 uppercase tracking-wider">or</span></div></div>
+              <button type="button" id="btn-guest-booking" class="w-full flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-2xl transition-all text-sm border border-slate-200">
+                <span class="material-symbols-outlined text-base text-slate-600">person_outline</span>Continue as Guest
+              </button>
+              <p class="text-[10px] text-slate-400 mt-2">No account needed — just fill in your details</p>
             </div>
           </div>
           
@@ -975,7 +1188,6 @@ foreach ($types as $type) {
             </div>
             <button type="submit" class="w-full bg-[#ec5b13] text-white font-black py-4 rounded-2xl hover:bg-orange-600 transition-all shadow-lg text-base">Book Now</button>
           </form>
-          <p class="text-center text-xs text-slate-600 font-medium mt-3">Free cancellation · No hidden charges</p>
           </div>
 
           <!-- Location Map (Below Booking Card) -->
@@ -1173,6 +1385,7 @@ document.addEventListener("keydown",function(e){
   var checkSection = document.getElementById("check-availability-section");
   var form = document.getElementById("booking-form");
   var gate = document.getElementById("booking-login-gate");
+  var guestBtn = document.getElementById("btn-guest-booking");
   
   // Check Availability button click handler
   if(checkBtn) {
@@ -1208,6 +1421,17 @@ document.addEventListener("keydown",function(e){
         gate.classList.remove("hidden");
         form.classList.add("hidden");
       }
+    });
+  }
+  
+  // Guest booking button — skip login, show form directly
+  if(guestBtn) {
+    guestBtn.addEventListener("click", function() {
+      gate.classList.add("hidden");
+      form.classList.remove("hidden");
+      // Focus on the name field for quick entry
+      var nameEl = document.getElementById("b-name");
+      if(nameEl) setTimeout(function(){ nameEl.focus(); }, 100);
     });
   }
 })();
@@ -1290,6 +1514,17 @@ $log[] = "Listings: $listingCount HTML files → /listing-detail/";
 // ── Output ────────────────────────────────────────────────────────────────────
 if (php_sapi_name() === 'cli') {
     foreach ($log as $l) echo $l . PHP_EOL;
+} elseif (($_GET['format'] ?? '') === 'json' || (isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => true, 
+        'log' => $log,
+        'total' => (($blogCount ?? 0) + ($listingCount ?? 0)),
+        'breakdown' => [
+            'blogs' => ($blogCount ?? 0),
+            'listings' => ($listingCount ?? 0)
+        ]
+    ]);
 } else {
     echo '<h2 style="font-family:sans-serif">HTML Generation Complete</h2><ul style="font-family:sans-serif">';
     foreach ($log as $l) echo '<li>' . htmlspecialchars($l) . '</li>';

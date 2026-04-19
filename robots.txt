@@ -30,4 +30,4 @@ Allow: /css/
 Allow: /js/
 
 # Sitemap location
-Sitemap: https://darkorange-boar-588892.hostingersite.com/sitemap.xml
+Sitemap: https://csnexplore.com/sitemap.xml

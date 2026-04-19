@@ -36,7 +36,7 @@ require 'header.php';
                 var p = JSON.parse(atob(parts[1].replace(/-/g,'+').replace(/_/g,'/')));
                 if (!p.exp || p.exp > Math.floor(Date.now()/1000)) {
                     var redirect = new URLSearchParams(window.location.search).get('redirect') || '';
-                    window.location.replace(redirect || 'index.php');
+                    window.location.replace(redirect || 'index');
                 }
             }
         } catch(e) {}

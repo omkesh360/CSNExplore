@@ -1,6 +1,12 @@
-﻿<?php
+<?php
 $page_title   = "Bus Routes from Chhatrapati Sambhajinagar | CSNExplore";
 $current_page = "bus.php";
+$page_meta = [
+    'description' => 'Book intercity bus travel from Chhatrapati Sambhajinagar (Aurangabad). AC sleepers, Volvo coaches & MSRTC buses to Mumbai, Pune, Nashik and more.',
+    'canonical'   => 'https://csnexplore.com/bus',
+    'type'        => 'website',
+    'image'       => 'https://csnexplore.com/images/travelhub.png'
+];
 $extra_styles = "
     .glassy { background:rgba(255,255,255,0.07); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); }
     .hide-scrollbar::-webkit-scrollbar{display:none} .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}

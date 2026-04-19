@@ -37,7 +37,7 @@ require 'header.php';
       </div>
       <h2 class="text-2xl font-bold text-slate-800">Email Verified!</h2>
       <p class="text-slate-500 mt-2 mb-6">Your account is now active. You're being signed in...</p>
-      <a href="index.php" class="inline-block bg-primary text-white font-bold px-8 py-3 rounded-xl hover:bg-orange-600 transition-all">Go to Homepage</a>
+      <a href="index" class="inline-block bg-primary text-white font-bold px-8 py-3 rounded-xl hover:bg-orange-600 transition-all">Go to Homepage</a>
     </div>
 
     <!-- Error state -->
@@ -66,7 +66,7 @@ require 'header.php';
       localStorage.setItem('csn_token', data.token);
       localStorage.setItem('csn_user', JSON.stringify(data.user));
       show('state-success');
-      setTimeout(() => window.location.replace('index.php'), 2000);
+      setTimeout(() => window.location.replace('index'), 2000);
     } else {
       showError(data.error || 'Verification failed.');
     }

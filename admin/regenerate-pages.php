@@ -30,7 +30,7 @@ require 'admin-header.php';
         </div>
     </div>
 
-    <!-- Action Card -->
+        <!-- Action Card -->
     <div class="admin-card p-6">
         <div class="flex items-center justify-between mb-6">
             <div>
@@ -39,7 +39,18 @@ require 'admin-header.php';
             </div>
             <button id="regenerate-btn" class="px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-orange-600 transition-all flex items-center gap-2">
                 <span class="material-symbols-outlined">refresh</span>
-                Regenerate Now
+                Regenerate Listings
+            </button>
+        </div>
+
+        <div class="flex items-center justify-between mb-6 pt-4 border-t border-slate-100 mt-4">
+            <div>
+                <h3 class="font-bold text-slate-800 mb-1">Regenerate Entire Site</h3>
+                <p class="text-sm text-slate-600">Rebuild ALL HTML pages including blogs and listings</p>
+            </div>
+            <button id="regenerate-all-btn" class="px-6 py-3 rounded-lg bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined">public</span>
+                Regenerate All Pages
             </button>
         </div>
 
@@ -120,13 +131,7 @@ document.getElementById('regenerate-btn').addEventListener('click', async () => 
     statusLog.innerHTML = '<div>Starting regeneration...</div>';
     
     try {
-        const response = await fetch('../php/api/run-regenerate.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + (localStorage.getItem('csn_admin_token') || '')
-            }
-        });
+        const response = await fetch('../php/api/generate_html.php?secret=csnexplore_seed&only=listings&format=json');
         
         const result = await response.json();
         
@@ -157,9 +162,48 @@ document.getElementById('regenerate-btn').addEventListener('click', async () => 
         statusLog.innerHTML += `<div class="text-red-600">✗ Error: ${error.message}</div>`;
     } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span class="material-symbols-outlined">refresh</span> Regenerate Now';
+        btn.innerHTML = '<span class="material-symbols-outlined">refresh</span> Regenerate Listings';
     }
 });
+
+document.getElementById('regenerate-all-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('regenerate-all-btn');
+    const progressContainer = document.getElementById('progress-container');
+    const resultsContainer = document.getElementById('results-container');
+    const statusLog = document.getElementById('status-log');
+    
+    btn.disabled = true;
+    btn.innerHTML = '<div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div> Running...';
+    progressContainer.classList.remove('hidden');
+    resultsContainer.classList.add('hidden');
+    statusLog.innerHTML = '<div>Starting entire site regeneration...</div>';
+    
+    try {
+        const response = await fetch('../php/api/generate_html.php?secret=csnexplore_seed&format=json');
+        const result = await response.json();
+        
+        document.getElementById('progress-bar').style.width = '100%';
+        document.getElementById('progress-text').textContent = '100%';
+        
+        result.log?.forEach(line => {
+            statusLog.innerHTML += `<div class="text-slate-600">${line}</div>`;
+        });
+        statusLog.innerHTML += '<div class="text-green-600 font-bold">✓ Entire site regenerated!</div>';
+        statusLog.scrollTop = statusLog.scrollHeight;
+        
+        setTimeout(() => {
+            progressContainer.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            document.getElementById('results-summary').innerHTML = `<div><strong>Success:</strong> ${result.total} total pages generated.</div>`;
+        }, 800);
+    } catch (error) {
+        statusLog.innerHTML += `<div class="text-red-600">✗ Error: ${error.message}</div>`;
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined">public</span> Regenerate All Pages';
+    }
+});
+
 </script>
 
 <?php require 'admin-footer.php'; ?>

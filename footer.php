@@ -35,39 +35,39 @@
             <div data-reveal data-delay="2">
                 <h5 class="font-bold text-sm mb-4">Quick Links</h5>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-white/50 text-sm">
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=stays"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=stays"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Hotel
                         Bookings</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=cars"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=cars"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Car
                         Rentals</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=bikes"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=bikes"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bike
                         Rentals</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=attractions"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=attractions"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Heritage
                         Sites</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=restaurants"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Restaurants</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing.php?type=buses"
+                    <a href="<?php echo BASE_PATH; ?>/listing?type=buses"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bus
                         Tickets</a>
-                    <a href="<?php echo BASE_PATH; ?>/blogs.php"
+                    <a href="<?php echo BASE_PATH; ?>/blogs"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Travel
                         Guide</a>
-                    <a href="<?php echo BASE_PATH; ?>/about.php"
+                    <a href="<?php echo BASE_PATH; ?>/about"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">About
                         Us</a>
-                    <a href="<?php echo BASE_PATH; ?>/contact.php"
+                    <a href="<?php echo BASE_PATH; ?>/contact"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Contact
                         Us</a>
-                    <a href="<?php echo BASE_PATH; ?>/privacy.php"
+                    <a href="<?php echo BASE_PATH; ?>/privacy"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Privacy
                         Policy</a>
-                    <a href="<?php echo BASE_PATH; ?>/terms.php"
+                    <a href="<?php echo BASE_PATH; ?>/terms"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Terms
                         of Service</a>
-                    <a href="<?php echo BASE_PATH; ?>/my-booking.php"
+                    <a href="<?php echo BASE_PATH; ?>/my-booking"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Track
                         Booking</a>
                 </div>
@@ -75,37 +75,33 @@
             <!-- Contact Info -->
             <div data-reveal data-delay="3">
                 <h5 class="font-bold text-sm mb-4">Contact Info</h5>
-                <ul class="flex flex-col gap-4 text-white/50 text-sm">
-                    <li class="flex items-start gap-3">
-                        <span
-                            class="size-8 rounded-full border border-white/20 flex items-center justify-center shrink-0 mt-0.5">
-                            <span class="material-symbols-outlined text-primary text-base">location_on</span>
+<ul class="flex flex-col gap-4 text-white/50 text-sm">
+                    <li class="flex items-start gap-4">
+                        <span class="size-9 rounded-full border border-white/15 flex items-center justify-center shrink-0 mt-0.5 bg-white/5">
+                            <span class="material-symbols-outlined text-primary text-[19px]">location_on</span>
                         </span>
-                        <a href="https://maps.app.goo.gl/k5L4CHe6gJ1tyDBY8" target="_blank" rel="noopener noreferrer"
-                            class="hover:text-primary transition-colors pt-1">Jay Tower, V896+MP9, Samadhan Colony,
-                            Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005</a>
+                        <div class="flex flex-col">
+                            <span class="text-white font-bold text-xs uppercase tracking-widest mb-1">Our Office</span>
+                            <a href="https://maps.app.goo.gl/k5L4CHe6gJ1tyDBY8" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors leading-relaxed">Jay Tower, Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005</a>
+                        </div>
                     </li>
-                    <li class="flex items-center gap-3">
-                        <span
-                            class="size-8 rounded-full border border-white/20 flex items-center justify-center shrink-0">
-                            <span class="material-symbols-outlined text-primary text-base">call</span>
+                    <li class="flex items-center gap-4">
+                        <span class="size-9 rounded-full border border-white/15 flex items-center justify-center shrink-0 bg-white/5">
+                            <span class="material-symbols-outlined text-primary text-[19px]">call</span>
                         </span>
-                        <a href="tel:+918600968888" class="hover:text-primary transition-colors">+91 86009 68888</a>
+                        <div class="flex flex-col">
+                            <span class="text-white font-bold text-xs uppercase tracking-widest mb-0.5">Phone</span>
+                            <a href="tel:+918600968888" class="hover:text-primary transition-colors font-semibold tracking-tight">+91 86009 68888</a>
+                        </div>
                     </li>
-                    <li class="flex items-center gap-3">
-                        <span
-                            class="size-8 rounded-full border border-white/20 flex items-center justify-center shrink-0">
-                            <span class="material-symbols-outlined text-primary text-base">mail</span>
+                    <li class="flex items-center gap-4">
+                        <span class="size-9 rounded-full border border-white/15 flex items-center justify-center shrink-0 bg-white/5">
+                            <span class="material-symbols-outlined text-primary text-[19px]">mail</span>
                         </span>
-                        <a href="mailto:supportcsnexplore@gmail.com"
-                            class="hover:text-primary transition-colors">supportcsnexplore@gmail.com</a>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span
-                            class="size-8 rounded-full border border-white/20 flex items-center justify-center shrink-0">
-                            <span class="material-symbols-outlined text-primary text-base">schedule</span>
-                        </span>
-                        <span class="pt-0.5">Mon–Sat: 9am – 7pm</span>
+                        <div class="flex flex-col">
+                            <span class="text-white font-bold text-xs uppercase tracking-widest mb-0.5">Email</span>
+                            <a href="mailto:supportcsnexplore@gmail.com" class="hover:text-primary transition-colors font-semibold tracking-tight">supportcsnexplore@gmail.com</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -113,7 +109,7 @@
             <div data-reveal data-reveal="right" data-delay="4">
                 <h5 class="font-bold text-sm mb-4">Stay Updated</h5>
                 <p class="text-white/50 text-sm mb-4">Get travel tips and exclusive deals in your inbox.</p>
-                <form method="POST" action="subscribe.php" class="flex flex-col gap-4">
+                <form method="POST" action="subscribe" class="flex flex-col gap-4">
                     <input type="email" name="email" placeholder="Your email address" required
                         class="bg-white/5 border border-white/10 text-white placeholder:text-white/30 px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors" />
                     <button type="submit" style="background-color: #ec5b13;"

@@ -155,7 +155,7 @@ $total_grid_blogs = count($all_blogs_for_filter);
                 All Stories
             </a>
             <?php foreach ($categories as $cat): ?>
-            <a href="<?php echo BASE_PATH; ?>/blogs.php?category=<?php echo urlencode($cat['category']); ?>"
+            <a href="<?php echo BASE_PATH; ?>/blogs?category=<?php echo urlencode($cat['category']); ?>"
                class="whitespace-nowrap px-6 py-2.5 snap-start <?php echo $cat_filter === $cat['category'] ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-white border border-slate-200 text-slate-700 hover:border-primary'; ?> rounded-full font-bold text-sm transition-all active:scale-95">
                 <?php echo htmlspecialchars($cat['category']); ?>
             </a>
@@ -268,7 +268,7 @@ $total_grid_blogs = count($all_blogs_for_filter);
             <p class="text-slate-600">Weekly travel inspiration, local tips, and exclusive stories from Sambhajinagar.</p>
         </div>
         <div class="flex-1 w-full max-w-md">
-            <form method="POST" action="subscribe.php" class="flex flex-col gap-4">
+            <form method="POST" action="subscribe" class="flex flex-col gap-4">
                 <input type="email" name="email" required placeholder="Your email address"
                        class="flex-grow rounded-xl border border-slate-200 bg-white focus:ring-primary focus:border-primary px-6 py-4 text-sm outline-none text-slate-900"/>
                 <button type="submit" class="bg-primary hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-primary/20">Subscribe</button>

@@ -2,11 +2,11 @@
 require_once 'php/config.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if (!$id) { header('Location: blogs.php'); exit; }
+if (!$id) { header('Location: blogs'); exit; }
 
 $db   = getDB();
 $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ? AND status = 'published'", [$id]);
-if (!$blog) { header('Location: blogs.php'); exit; }
+if (!$blog) { header('Location: blogs'); exit; }
 
 $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
 
@@ -21,7 +21,7 @@ $current_page = 'blogs.php';
 
 $page_meta = [
     'description' => htmlspecialchars($blog['meta_description'] ?? substr(strip_tags($blog['content']), 0, 160)),
-    'canonical' => "https://csnexplore.com/blog-detail.php?id=" . $id,
+    'canonical' => "https://csnexplore.com/blog-detail?id=" . $id,
     'image' => (strpos($blog['image'] ?? '', 'http') === 0) ? $blog['image'] : "https://csnexplore.com/" . ltrim($blog['image'] ?? '', '/'),
     'type' => 'article'
 ];
@@ -55,7 +55,7 @@ require 'header.php';
                 <span class="material-symbols-outlined text-base">chevron_right</span>
                 <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-white transition-colors">Blogs</a>
                 <span class="material-symbols-outlined text-base">chevron_right</span>
-                <a href="<?php echo BASE_PATH; ?>/blogs.php?category=<?php echo urlencode($blog['category']); ?>" class="hover:text-white transition-colors">
+                <a href="<?php echo BASE_PATH; ?>/blogs?category=<?php echo urlencode($blog['category']); ?>" class="hover:text-white transition-colors">
                     <?php echo htmlspecialchars($blog['category']); ?>
                 </a>
                 <span class="material-symbols-outlined text-base">chevron_right</span>
@@ -157,7 +157,7 @@ require 'header.php';
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <?php foreach ($related as $r): ?>
-                <a href="<?php echo BASE_PATH; ?>/blog-detail.php?id=<?php echo $r['id']; ?>" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
+                <a href="<?php echo BASE_PATH; ?>/blog-detail?id=<?php echo $r['id']; ?>" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
                     <div class="aspect-video overflow-hidden">
                         <img src="<?php echo htmlspecialchars($r['image'] ?? ''); ?>"
                              alt="<?php echo htmlspecialchars($r['title']); ?>"

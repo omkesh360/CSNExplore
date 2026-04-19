@@ -3,20 +3,20 @@ require_once 'php/config.php';
 $current_page = $current_page ?? '';
 $page_title = $page_title ?? 'CSNExplore – Chhatrapati Sambhajinagar';
 $nav_links = [
-    ['href' => BASE_PATH . '/index.php', 'label' => 'Home'],
-    ['href' => BASE_PATH . '/suggestor.php', 'label' => 'Trip Planner'],
-    ['href' => BASE_PATH . '/about.php', 'label' => 'About Us'],
-    ['href' => BASE_PATH . '/contact.php', 'label' => 'Contact Us'],
-    ['href' => BASE_PATH . '/blogs.php', 'label' => 'Our Blogs'],
+    ['href' => BASE_PATH . '/index', 'label' => 'Home'],
+    ['href' => BASE_PATH . '/suggestor', 'label' => 'Trip Planner'],
+    ['href' => BASE_PATH . '/about', 'label' => 'About Us'],
+    ['href' => BASE_PATH . '/contact', 'label' => 'Contact Us'],
+    ['href' => BASE_PATH . '/blogs', 'label' => 'Our Blogs'],
 ];
 
 $listing_nav = [
-    ['href' => BASE_PATH . '/listing.php?type=stays', 'icon' => 'bed', 'label' => 'Stays', 'type' => 'stays'],
-    ['href' => BASE_PATH . '/listing.php?type=cars', 'icon' => 'directions_car', 'label' => 'Cars', 'type' => 'cars'],
-    ['href' => BASE_PATH . '/listing.php?type=bikes', 'icon' => 'motorcycle', 'label' => 'Bikes', 'type' => 'bikes'],
-    ['href' => BASE_PATH . '/listing.php?type=attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions', 'type' => 'attractions'],
-    ['href' => BASE_PATH . '/listing.php?type=restaurants', 'icon' => 'restaurant', 'label' => 'Dine', 'type' => 'restaurants'],
-    ['href' => BASE_PATH . '/listing.php?type=buses', 'icon' => 'directions_bus', 'label' => 'Buses', 'type' => 'buses'],
+    ['href' => BASE_PATH . '/listing?type=stays', 'icon' => 'bed', 'label' => 'Stays', 'type' => 'stays'],
+    ['href' => BASE_PATH . '/listing?type=cars', 'icon' => 'directions_car', 'label' => 'Cars', 'type' => 'cars'],
+    ['href' => BASE_PATH . '/listing?type=bikes', 'icon' => 'motorcycle', 'label' => 'Bikes', 'type' => 'bikes'],
+    ['href' => BASE_PATH . '/listing?type=attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions', 'type' => 'attractions'],
+    ['href' => BASE_PATH . '/listing?type=restaurants', 'icon' => 'restaurant', 'label' => 'Dine', 'type' => 'restaurants'],
+    ['href' => BASE_PATH . '/listing?type=buses', 'icon' => 'directions_bus', 'label' => 'Buses', 'type' => 'buses'],
 ];
 
 $is_listing_page = ($current_page === 'listing' || $current_page === 'listing-detail' || isset($listing_type));
@@ -129,7 +129,7 @@ $active_listing_type = $listing_type ?? '';
             right: 0;
             z-index: 70;
             overflow: hidden;
-            max-height: 60px;
+            max-height: 40px;
             transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease;
         }
         #marquee-bar.hidden-bar {
@@ -283,7 +283,7 @@ $active_listing_type = $listing_type ?? '';
 </script>
 
 <!-- Top Announcement Marquee -->
-<div id="marquee-bar" class="bg-primary text-white py-1 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13">
+<div id="marquee-bar" class="bg-primary text-white py-0.5 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13">
     <div class="overflow-hidden flex-1 relative h-full">
         <div class="animate-marquee whitespace-nowrap flex items-center h-full">
             <?php 
@@ -299,7 +299,7 @@ $active_listing_type = $listing_type ?? '';
             foreach($loop_items as $text): ?>
                 <span class="flex items-center mx-8">
                     <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
-                    <span class="text-xs font-bold text-white tracking-wide uppercase"><?php echo $text; ?></span>
+                    <span class="text-[10px] font-bold text-white tracking-wider uppercase"><?php echo $text; ?></span>
                 </span>
             <?php endforeach; ?>
         </div>

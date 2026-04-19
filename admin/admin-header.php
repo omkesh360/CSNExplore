@@ -79,13 +79,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 <aside id="sidebar" class="w-72 bg-white border-r border-slate-200 flex flex-col shrink-0 z-30">
     <!-- Logo -->
     <div class="h-20 flex items-center gap-3 px-6 border-b border-slate-50">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shrink-0">
-            <span class="material-symbols-outlined text-white text-2xl">explore</span>
-        </div>
-        <div>
-            <p class="font-bold text-lg text-slate-900 leading-tight">CSNExplore</p>
-            <p class="text-[11px] text-slate-500 font-medium">Admin Dashboard</p>
-        </div>
+        <img src="../images/travelhub.png" alt="CSNExplore" class="h-10 object-contain shrink-0"/>
         <button id="sidebar-close" class="ml-auto md:hidden text-slate-400">
             <span class="material-symbols-outlined text-xl">close</span>
         </button>

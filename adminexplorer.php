@@ -36,16 +36,10 @@ body{font-family:'Inter',sans-serif;}
         <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/90 via-slate-900/60 to-orange-600/20"></div>
         <div class="relative z-10 w-full p-12 flex flex-col justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white text-xl">explore</span>
-                </div>
-                <span class="text-white font-black text-xl">CSNExplore</span>
+                <img src="images/travelhub.png" alt="CSNExplore" class="h-10 object-contain"/>
             </div>
             <div class="max-w-md">
-                <div class="w-14 h-14 bg-orange-500/20 border border-orange-500/30 rounded-2xl flex items-center justify-center mb-6">
-                    <span class="material-symbols-outlined text-orange-400 text-3xl">admin_panel_settings</span>
-                </div>
-                <h1 class="text-4xl font-black text-white leading-tight mb-4">Admin Control Center</h1>
+                <h1 class="text-4xl font-black text-white leading-tight mb-4 mt-6">Admin Control Center</h1>
                 <p class="text-lg text-white/60">Manage listings, bookings, users and content from one place.</p>
             </div>
             <div class="flex items-center gap-6 text-white/40 text-sm">
@@ -56,10 +50,7 @@ body{font-family:'Inter',sans-serif;}
     </div>
     <div class="w-full lg:w-1/2 flex flex-col items-center px-6 md:px-12 pt-8 pb-12 lg:py-12 bg-slate-50 min-h-screen overflow-y-auto">
         <div class="lg:hidden flex items-center gap-2 mb-8 self-start">
-            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-base">explore</span>
-            </div>
-            <span class="font-black text-slate-900 text-lg">CSNExplore</span>
+            <img src="images/travelhub.png" alt="CSNExplore" class="h-8 object-contain"/>
         </div>
         <div class="w-full max-w-md lg:my-auto">
             <h2 class="text-3xl font-extrabold text-slate-900 mb-1">Admin Sign In</h2>

@@ -700,8 +700,8 @@ function openBooking(id, name, type) {
     if (!token || !user) {
         // Store intended action and show login modal
         var currentUrl = window.location.href;
-        document.getElementById('login-redirect-btn').href = 'login.php?redirect=' + encodeURIComponent(currentUrl);
-        document.getElementById('register-redirect-btn').href = 'register.php?redirect=' + encodeURIComponent(currentUrl);
+        document.getElementById('login-redirect-btn').href = 'login?redirect=' + encodeURIComponent(currentUrl);
+        document.getElementById('register-redirect-btn').href = 'register?redirect=' + encodeURIComponent(currentUrl);
         var lm = document.getElementById('login-required-modal');
         lm.classList.remove('hidden');
         lm.classList.add('flex');

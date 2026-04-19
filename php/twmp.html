@@ -403,8 +403,23 @@
                     <div class="relative w-full bg-slate-900 overflow-hidden rounded-2xl mt-3" style="height:380px">
                     <img id="hero-image" src="../images/uploads/its-home-service-apartments-stays-main.webp" alt="Its Home – Service Apartments" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <!-- Gallery Navigation Buttons -->
+                    <button onclick="prevImage()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-10" style="background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);" onmouseover="this.style.background='rgba(0,0,0,0.5)'" onmouseout="this.style.background='rgba(0,0,0,0.3)'">
+                        <span class="material-symbols-outlined text-white text-xl">chevron_left</span>
+                    </button>
+                    <button onclick="nextImage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-10" style="background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);" onmouseover="this.style.background='rgba(0,0,0,0.5)'" onmouseout="this.style.background='rgba(0,0,0,0.3)'">
+                        <span class="material-symbols-outlined text-white text-xl">chevron_right</span>
+                    </button>
                     
-                    <!-- Image Navigation Arrows -->
+                    <!-- Zoom Button -->
+                    <button onclick="openImageModal(currentImageIndex)" class="absolute bottom-3 right-3 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-10" style="background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);" onmouseover="this.style.background='rgba(0,0,0,0.5)'" onmouseout="this.style.background='rgba(0,0,0,0.3)'">
+                        <span class="material-symbols-outlined text-white text-lg">zoom_in</span>
+                    </button>
+                    
+                    <!-- Image Counter -->
+                    <div class="absolute bottom-3 left-3 px-3 py-1.5 rounded-full text-xs font-bold text-white" style="background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);">
+                        <span id="image-counter">1</span> / 1
+                    </div>
                                     </div>
 
                 <!-- About Section -->
@@ -545,7 +560,7 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
                         <a href="https://darkorange-boar-588892.hostingersite.com/listing-detail/cars-3-honda-amaze.html" class="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
                 <div class="relative overflow-hidden" style="height:180px">
                     <img src="./Maruti Suzuki Ertiga _ CSNExplore_files/travelhub.png" alt="Honda Amaze" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src=&#39;../images/travelhub.png&#39;">
@@ -1108,6 +1123,42 @@ window.addEventListener('pageshow', function(e) {
 })();
 </script>
 
+
+<script>
+// Gallery Navigation
+var galleryImages = [];
+var currentImageIndex = 0;
+
+function updateHeroImage() {
+    if (galleryImages.length === 0) return;
+    var heroImg = document.getElementById("hero-image");
+    if (heroImg) {
+        heroImg.src = galleryImages[currentImageIndex];
+    }
+    var counter = document.getElementById("image-counter");
+    if (counter) {
+        counter.textContent = (currentImageIndex + 1);
+    }
+}
+
+function nextImage() {
+    if (galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    updateHeroImage();
+}
+
+function prevImage() {
+    if (galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateHeroImage();
+}
+
+// Keyboard navigation
+document.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowLeft") prevImage();
+    if (e.key === "ArrowRight") nextImage();
+});
+</script>
 <script>
 // Booking Modal Functions
 var galleryImagesForModal = [];
