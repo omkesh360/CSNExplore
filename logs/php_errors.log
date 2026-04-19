@@ -2201,3 +2201,7 @@ Stack trace:
 #3 {main}
   thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php on line 302
 [19-Apr-2026 17:36:03 Europe/Berlin] Trip Planner API error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexplore.trip_requests' doesn't exist
+[19-Apr-2026 22:47:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Database::execute() in C:\xampp\htdocs\CSNexplore\CSNExplore\check_bikes.php:40
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\check_bikes.php on line 40

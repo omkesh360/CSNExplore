@@ -72,9 +72,9 @@ require 'header.php';
                 </div>
                 <h3 class="text-xl font-bold text-slate-800">Check your inbox!</h3>
                 <p class="text-slate-500 text-sm">We've sent a verification link to <strong id="reg-email-sent"></strong>. Click the link to activate your account.</p>
-                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 text-left">
-                    <span class="material-symbols-outlined text-amber-600 text-base align-middle mr-1">info</span>
-                    Your account is temporarily blocked until you verify your email. Check your spam folder if you don't see it.
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800 text-left">
+                    <span class="material-symbols-outlined text-blue-600 text-base align-middle mr-1">info</span>
+                    Please click the verification link we just sent you to complete your account creation. Be sure to check your spam folder!
                 </div>
                 <button id="resend-btn" onclick="resendVerification()" class="text-primary font-bold text-sm hover:underline">Didn't receive it? Resend email</button>
                 <p id="resend-msg" class="hidden text-green-600 text-sm font-medium">Verification email resent!</p>
@@ -104,7 +104,7 @@ require 'header.php';
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">alternate_email</span>
                         </span>
                         <input id="email" name="email" type="email" autocomplete="email" required
-                               class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
+                               class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
                                placeholder="john@example.com"/>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ require 'header.php';
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">phone</span>
                         </span>
                         <input id="phone" name="phone" type="tel" autocomplete="tel"
-                               class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
+                               class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
                                placeholder="+91 XXXXX XXXXX"/>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ require 'header.php';
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">lock</span>
                         </span>
                         <input id="password" name="password" type="password" required minlength="8"
-                               class="block w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
+                               class="block w-full pl-12 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
                                placeholder="Min. 8 characters"/>
                         <button type="button" id="toggle-password"
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 transition-colors">

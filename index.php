@@ -209,26 +209,32 @@ $extra_styles = "
             border: 1px solid rgba(255,255,255,0.08); padding: 6px;
         }
         .search-field, .date-field { 
-            display:flex; align-items:center; gap:12px; 
             background: transparent; border:none; border-right: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 12px; padding: 0 20px; flex:1; min-width:0; height:60px; 
+            border-radius: 12px; flex:1; min-width:0; height:60px; 
             transition:background 0.3s; position: relative;
         }
         .search-field:hover, .date-field:hover { background: rgba(255,255,255,0.05); }
         .search-field:nth-last-child(2), .date-field:nth-last-child(2) { border-right: none; }
         
-        .search-field .material-symbols-outlined, .date-field .material-symbols-outlined { color: #ec5b13; font-size:24px; flex-shrink:0; }
-        .search-field input, .date-field input { background:transparent; border:none; outline:none; color:#fff; font-size:16px; font-weight:600; width:100%; min-width:0; box-shadow:none; -webkit-appearance:none; text-overflow: ellipsis; }
-        .search-field input::placeholder, .date-field input::placeholder { color:rgba(255,255,255,0.5); font-weight:400; text-overflow: ellipsis; }
+        .search-field .material-symbols-outlined, .date-field .material-symbols-outlined { 
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            color: #ec5b13; font-size:24px; pointer-events: none;
+        }
+        .search-field input, .date-field input { 
+            background:transparent; border:none; outline:none; color:#fff; font-size:16px; font-weight:600; 
+            width:100%; height:100%; padding: 0 20px 0 56px; margin:0; box-shadow:none; -webkit-appearance:none; text-overflow: ellipsis; 
+            white-space: nowrap; overflow: hidden;
+        }
+        .search-field input::placeholder, .date-field input::placeholder { color:rgba(255,255,255,0.5); font-weight:400; }
         
         .search-btn { 
             background: #fff; color: #111; font-weight:800; font-size:16px; 
             padding:0 32px; border-radius:14px; border:none; cursor:pointer; 
-            display:flex; align-items:center; gap:8px; transition:all 0.3s; white-space:nowrap; flex-shrink:0; height:60px; 
+            display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.3s; white-space:nowrap; flex-shrink:0; height:60px; 
         }
         .search-btn:hover { background: #ec5b13; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(236,91,19,0.3); }
         .search-btn:hover .material-symbols-outlined { color: #fff; }
-        .search-btn .material-symbols-outlined { font-size:22px; color: #ec5b13; transition: color 0.3s; }
+        .search-btn .material-symbols-outlined { font-size:22px; color: #ec5b13; transition: color 0.3s; position: static; transform: none; }
         
         @media(max-width:768px){
           .search-box { padding:20px 16px; border-radius:24px; }
@@ -237,12 +243,13 @@ $extra_styles = "
             background: transparent; border: none; padding: 0; gap: 12px;
           }
           .search-field, .date-field { 
-            display: flex !important; width: 100% !important; min-height: 72px !important; flex: none !important;
-            padding: 0 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(0,0,0,0.3); align-items: center;
+            display: block !important; width: 100% !important; min-height: 72px !important; flex: none !important;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.3);
           }
+          .search-field .material-symbols-outlined, .date-field .material-symbols-outlined { left: 24px; }
           .search-field input, .date-field input { 
-            font-size: 16px; font-weight: 500; height: 100%; width: 100%;
+            font-size: 16px; font-weight: 500; height: 100%; width: 100%; padding: 0 24px 0 64px;
           }
           .search-btn { 
             width: 100%; min-height: 72px; padding: 0 24px; border-radius: 20px; 
@@ -519,6 +526,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // Initialize with the first background (cars)
 document.getElementById('hero-bg').style.backgroundImage = "url('images/car-rental-hero-section%20(3).webp')";
 
+// Fix bfcache: restore hero text when navigating back
+window.addEventListener('pageshow', function(e) {
+    ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) el.style.opacity = '1';
+    });
+    // Also make sure body is visible
+    document.body.style.opacity = '1';
+    // Restart auto-rotation if it was cleared
+    if (!window.heroInterval) {
+        window.heroInterval = setInterval(autoSwitch, 4000);
+    }
+});
+
 var searchUrls = { stays:'<?php echo BASE_PATH; ?>/listing/stays', cars:'<?php echo BASE_PATH; ?>/listing/cars', bikes:'<?php echo BASE_PATH; ?>/listing/bikes', attractions:'<?php echo BASE_PATH; ?>/listing/attractions', dine:'<?php echo BASE_PATH; ?>/listing/restaurants', buses:'<?php echo BASE_PATH; ?>/listing/buses' };
 function doSearch(tab) {
     window.location.href = searchUrls[tab];
@@ -700,7 +721,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 <div class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white/90 text-xs font-bold uppercase tracking-widest mb-4">
                     <span class="material-symbols-outlined text-[14px] text-primary">auto_awesome</span> Plan your trip now
                 </div>
-                <h3 class="font-serif text-3xl md:text-5xl text-white font-black leading-tight mb-4 text-balance">
+                <h3 class="font-serif text-3xl md:text-5xl text-white font-black leading-tight mb-4">
                     Not sure where to go? <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent italic px-1 pr-2">Let us plan it.</span>
                 </h3>
                 <p class="text-white/70 text-sm md:text-base max-w-lg mx-auto md:mx-0 mb-6 group-hover:text-white/90 transition-colors">

@@ -30,7 +30,7 @@ body.page-fade-out {
 /* ──────────────────────────────────────────────────────────
    3.  SCROLL REVEAL  [data-reveal]
    ────────────────────────────────────────────────────────── */
-[data-reveal] {
+[data-reveal], .card-reveal {
   opacity: 0;
   transform: translateY(44px);
   transition:
@@ -45,9 +45,9 @@ body.page-fade-out {
 [data-reveal='up']    { transform: translateY(44px); }
 [data-reveal='down']  { transform: translateY(-44px); }
 
-[data-reveal].revealed {
-  opacity: 1;
-  transform: none;
+[data-reveal].revealed, .card-reveal.revealed {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Stagger delays on [data-delay] */

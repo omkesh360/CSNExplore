@@ -1,0 +1,47 @@
+CSNEXPLORE PROJECT DIRECTORY & USAGE GUIDE
+==========================================
+Below is a clear, simple guide explaining the purpose of every PHP and HTML file structure in your project so you always know what each file does. 
+
+1. CORE WEBSITE PAGES (What the user sees)
+------------------------------------------
+• index.php          -> The Homepage. Displays the top header, hero image search, featured listings, and trust indicators.
+• listing.php        -> The Category Listings View. Shows grid results when users click on 'Stays', 'Cars', 'Bikes', or 'Attractions' categories.
+• blogs.php          -> Blog Hub. Shows the grid of all available travel articles and guides.
+• blog-detail.php    -> A template view for showing the full content of an individual blog post. 
+• suggestor.php      -> "Trip Planner". An AI-powered personalized trip inquiry form where users get free itineraries.
+• bus.php            -> Dedicated placeholder page specific for inter-city "Buses" transport booking.
+• about.php          -> About Us page highlighting your company mission and credibility.
+• contact.php        -> Contact page with the email form, WhatsApp links, and map info.
+• terms.php          -> Legal Terms of Service.
+• privacy.php        -> Legal Privacy Policy agreements.
+
+2. USER AUTHENTICATION & DASHBOARDS
+------------------------------------------
+• login.php          -> The standard user sign-in page.
+• register.php       -> The standard user account creation page.
+• verify-email.php   -> Handles activating a user's account when they click the link inside their email.
+• forgot-password.php-> The "I forgot my password" email recovery request loop.
+• reset-password.php -> The page where the user physically types in their new password after verifying their recovery email.
+• my-booking.php     -> User dashboard where authenticated users can view the bookings/itineraries they've requested.
+• subscribe.php      -> Landing page or endpoint handling email newsletter subscriptions.
+
+3. SHARED RESOURCES (Included automatically across pages)
+------------------------------------------
+• header.php         -> Used everywhere. Controls your navigation bar (Top Pill Menu), mobile menu popup, CSS stylesheet links, search boxes, and Google Analytics meta tags.
+• footer.php         -> Used everywhere. Controls the bottom page section, copyright info, and footer navigation links.
+• router.php         -> The traffic controller mapping friendly URLs like `/listing/cars` to the underlying PHP files seamlessly.
+
+4. ADMIN SYSTEM & GENERATOR
+------------------------------------------
+• adminexplorer.php  -> Admin Portal Login. Restricts unauthorized users from touching the database.
+• /admin/            -> (Folder) Contains `dashboard.php` and pages to add/remove Cars, Bikes, Stays, and bookings.
+• /php/api/generate_html.php -> THE REGENERATOR! This script dynamically queries your database and turns your dynamic listings into lightning-fast, statically-generated HTML pages placed in `/listing-detail/`.
+
+5. STATIC HTML DIRECTORIES (Auto-Generated)
+------------------------------------------
+• /listing-detail/   -> (Folder) Contains all the static, high-speed generated HTML pages for every individual hotel or rental car page on the site.
+• /blogs/            -> (Folder) Contains all static HTML articles.
+
+Notes on Code Health:
+- All duplicate/test code (temp.html, URGENT_FIX.html, etc) has been wiped out successfully.
+- Your global styling is held in `mobile-responsive.css` and `animations.css`.

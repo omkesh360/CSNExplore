@@ -59,7 +59,7 @@ require_once __DIR__ . '/../php/jwt.php';
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
             <input type="text" id="search-input" placeholder="Search by email..."
                    oninput="filterTable(this.value)"
-                   class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-primary">
+                   class="w-full pl-12 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-primary">
         </div>
         <select id="status-filter" onchange="filterTable()" class="border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
             <option value="">All Statuses</option>

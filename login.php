@@ -85,12 +85,12 @@ require 'header.php';
             </div>
 
             <!-- Unverified email notice -->
-            <div id="unverified-notice" class="hidden bg-amber-50 border border-amber-300 rounded-xl p-4 space-y-2">
+            <div id="unverified-notice" class="hidden bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-2">
                 <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-amber-600 shrink-0">mark_email_unread</span>
+                    <span class="material-symbols-outlined text-blue-600 shrink-0">mark_email_unread</span>
                     <div>
-                        <p class="text-sm font-bold text-amber-900">Email not verified</p>
-                        <p class="text-sm text-amber-800 mt-0.5">Please click the link we sent to <strong id="unverified-email"></strong> to activate your account.</p>
+                        <p class="text-sm font-bold text-blue-900">Email not verified</p>
+                        <p class="text-sm text-blue-800 mt-0.5">Please click the link we sent to <strong id="unverified-email"></strong> to activate your account.</p>
                     </div>
                 </div>
                 <button onclick="resendFromLogin()" id="resend-login-btn" class="text-sm font-bold text-primary hover:underline ml-9">Resend verification email</button>
@@ -106,7 +106,7 @@ require 'header.php';
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">alternate_email</span>
                         </span>
                         <input id="email" name="email" type="email" autocomplete="email" required
-                               class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
+                               class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
                                placeholder="Enter your email"/>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ require 'header.php';
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">lock</span>
                         </span>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                               class="block w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
+                               class="block w-full pl-12 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
                                placeholder="••••••••"/>
                         <button type="button" id="toggle-password"
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 transition-colors">

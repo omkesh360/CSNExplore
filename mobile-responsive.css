@@ -146,36 +146,7 @@ section, main, article, aside, div {
   border: 1px solid var(--glass-border);
 }
 
-/* ── Optimized Global Scroll Reveal ── */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: opacity, transform;
-  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-[data-reveal="left"] { transform: translateX(-40px); }
-[data-reveal="right"] { transform: translateX(40px); }
-[data-reveal="scale"] { transform: scale(0.95); }
-
-[data-reveal].revealed {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-[data-delay="1"] { transition-delay: 0.1s; }
-[data-delay="2"] { transition-delay: 0.2s; }
-[data-delay="3"] { transition-delay: 0.3s; }
-[data-delay="4"] { transition-delay: 0.4s; }
-
-.card-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.card-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* ── Optimized Global Scroll Reveal handled in animations.css ── */
 
 /* ── Sticky Mobile Bottom Bar ── */
 .mobile-sticky-cta {
@@ -391,8 +362,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Consistent form inputs across pages ── */
-input[type="text"], input[type="email"], input[type="password"],
-input[type="tel"], input[type="number"], select, textarea {
+:where(input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], input[type="number"], select, textarea) {
   border-radius: 0.75rem;
   border: 1px solid #e2e8f0;
   padding: 0.75rem 1rem;
@@ -402,7 +373,13 @@ input[type="tel"], input[type="number"], select, textarea {
   transition: border-color 0.2s, box-shadow 0.2s;
   font-size: 16px !important; /* prevents iOS zoom */
 }
-input:focus, select:focus, textarea:focus {
+
+/* Force larger padding on all inputs using pl-10 to clear icons fully */
+input.pl-10 {
+  padding-left: 3.25rem !important; /* 52px clearance */
+}
+
+:where(input:focus, select:focus, textarea:focus) {
   outline: none;
   border-color: #ec5b13;
   box-shadow: 0 0 0 3px rgba(236,91,19,0.15);

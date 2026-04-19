@@ -25,7 +25,7 @@
             <div class="relative">
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
                 <input id="picker-search" type="text" placeholder="Filter by filename..."
-                       class="w-full border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>
+                       class="w-full border border-slate-200 rounded-xl pl-11 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>
             </div>
         </div>
         <!-- Grid — fixed height, always scrollable -->

@@ -69,7 +69,7 @@ body{font-family:'Inter',sans-serif;}
                             <span class="material-symbols-outlined text-[20px] text-slate-400">person</span>
                         </span>
                         <input id="username" name="username" type="text" autocomplete="username" required
-                               class="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-primary text-sm shadow-sm transition-all"
+                               class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-primary text-sm shadow-sm transition-all"
                                placeholder="Enter your username"/>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ body{font-family:'Inter',sans-serif;}
                             <span class="material-symbols-outlined text-[20px] text-slate-400">lock</span>
                         </span>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                               class="block w-full pl-10 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-primary text-sm shadow-sm transition-all"
+                               class="block w-full pl-12 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-primary text-sm shadow-sm transition-all"
                                placeholder="••••••••"/>
                         <button type="button" id="toggle-pw" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700">
                             <span class="material-symbols-outlined text-[20px]">visibility</span>

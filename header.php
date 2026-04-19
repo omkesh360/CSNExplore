@@ -76,13 +76,11 @@ $active_listing_type = $listing_type ?? '';
         }
     </script>
     <!-- Site CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=2026041203"/>
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css?v=20260412"/>
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=<?php echo time(); ?>"/>
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css?v=<?php echo time(); ?>"/>
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
-        ::-moz-selection { background: rgba(236,91,19,0.2); color: #ec5b13; }
-        ::selection { background: rgba(236,91,19,0.2); color: #ec5b13; }
         
         /* Modern Thin Scrollbar for the entire site */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -101,26 +99,7 @@ $active_listing_type = $listing_type ?? '';
         .animate-marquee { display: flex; width: max-content; animation: marquee 120s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
         
-        /* Global Scroll-triggered Animations */
-        [data-reveal] { 
-            opacity: 0; 
-            transform: translateY(40px); 
-            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1); 
-        }
-        [data-reveal].revealed { opacity: 1; transform: translateY(0) scale(1) translateX(0); }
-        
-        [data-reveal='left'] { transform: translateX(-40px) translateY(0); }
-        [data-reveal='right'] { transform: translateX(40px) translateY(0); }
-        [data-reveal='scale'] { transform: scale(0.95) translateY(0); }
-        [data-reveal='fade'] { transform: translateY(0); }
-        
-        /* Staggered transition delays for children if needed */
-        [data-reveal-stagger] > *:nth-child(1) { transition-delay: 50ms; }
-        [data-reveal-stagger] > *:nth-child(2) { transition-delay: 100ms; }
-        [data-reveal-stagger] > *:nth-child(3) { transition-delay: 150ms; }
-        [data-reveal-stagger] > *:nth-child(4) { transition-delay: 200ms; }
-        [data-reveal-stagger] > *:nth-child(5) { transition-delay: 250ms; }
-        [data-reveal-stagger] > *:nth-child(6) { transition-delay: 300ms; }
+        /* Global Scroll-triggered Animations handled in animations.css */
         /* ── Marquee bar – fixed at very top ── */
         #marquee-bar {
             position: fixed;
@@ -344,14 +323,14 @@ $active_listing_type = $listing_type ?? '';
                 <button id="hdr-user-btn" class="size-9 flex items-center justify-center hover:bg-white/10 rounded-full transition-all">
                     <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">account_circle</span>
                 </button>
-                <div id="hdr-dropdown" class="hidden absolute right-0 top-full mt-2 w-44 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-[200]">
+                <div id="hdr-dropdown" class="hidden absolute right-0 top-full mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-[200]" style="min-width: 180px;">
                     <div class="px-4 py-2 border-b border-slate-100 mb-1">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">My Account</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">My Account</p>
                     </div>
-                    <a href="<?php echo BASE_PATH; ?>/my-booking" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors font-bold text-left">
+                    <a href="<?php echo BASE_PATH; ?>/my-booking" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors font-bold text-left whitespace-nowrap">
                         <span class="material-symbols-outlined text-slate-600 text-[18px]">calendar_today</span> My Bookings
                     </a>
-                    <button id="hdr-logout-btn" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold text-left">
+                    <button id="hdr-logout-btn" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold text-left whitespace-nowrap">
                         <span class="material-symbols-outlined text-red-500 text-[18px]">logout</span> Sign Out
                     </button>
                 </div>
@@ -409,7 +388,10 @@ $active_listing_type = $listing_type ?? '';
             </a>
             <a href="<?php echo BASE_PATH; ?>/register" style="flex:1;display:flex;align-items:center;justify-content:center;padding:11px;background:rgba(255,255,255,0.08);color:#fff;font-weight:700;border-radius:12px;font-size:13px;border:1px solid rgba(255,255,255,0.15);text-decoration:none">Register</a>
         </div>
-        <div id="mob-auth-user" style="display:none">
+        <div id="mob-auth-user" style="display:none;flex-direction:column;gap:6px">
+            <a href="<?php echo BASE_PATH; ?>/my-booking" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;color:#fff;font-weight:700;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;text-decoration:none">
+                <span class="material-symbols-outlined" style="font-size:15px">calendar_today</span> My Bookings
+            </a>
             <button id="mob-logout-btn" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;color:#f87171;font-weight:700;background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.2);border-radius:12px;font-size:13px;cursor:pointer">
                 <span class="material-symbols-outlined" style="font-size:15px">logout</span> Sign Out
             </button>
@@ -543,7 +525,7 @@ $active_listing_type = $listing_type ?? '';
                 var lb=document.getElementById('hdr-login-btn'); if(lb)lb.style.display='none';
                 var um=document.getElementById('hdr-user-menu'); if(um)um.classList.remove('hidden');
                 var mal=document.getElementById('mob-auth-login'); if(mal)mal.style.display='none';
-                var mau=document.getElementById('mob-auth-user');  if(mau)mau.style.display='block';
+                var mau=document.getElementById('mob-auth-user');  if(mau)mau.style.display='flex';
             }
             var ub=document.getElementById('hdr-user-btn'),dd=document.getElementById('hdr-dropdown');
             if(ub&&dd){ ub.addEventListener('click',function(e){e.stopPropagation();dd.classList.toggle('hidden');}); document.addEventListener('click',function(){dd.classList.add('hidden');}); }

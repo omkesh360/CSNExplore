@@ -116,14 +116,14 @@
                 <button id="hdr-user-btn" class="size-9 flex items-center justify-center hover:bg-white/10 rounded-full transition-all">
                     <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24">account_circle</span>
                 </button>
-                <div id="hdr-dropdown" class="hidden absolute right-0 top-full mt-2 w-44 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-[200]">
+                <div id="hdr-dropdown" class="hidden absolute right-0 top-full mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-[200]" style="min-width: 180px;">
                     <div class="px-4 py-2 border-b border-slate-100 mb-1">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">My Account</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">My Account</p>
                     </div>
-                    <a href="{{BASE}}/my-booking" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors font-bold text-left">
+                    <a href="{{BASE}}/my-booking" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors font-bold text-left whitespace-nowrap">
                         <span class="material-symbols-outlined text-slate-600 text-[18px]">calendar_today</span> My Bookings
                     </a>
-                    <button id="hdr-logout-btn" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold text-left">
+                    <button id="hdr-logout-btn" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors font-bold text-left whitespace-nowrap">
                         <span class="material-symbols-outlined text-red-500 text-[18px]">logout</span> Sign Out
                     </button>
                 </div>
@@ -193,7 +193,10 @@
             </a>
             <a href="{{BASE}}/register" style="flex:1;display:flex;align-items:center;justify-content:center;padding:11px;background:rgba(255,255,255,0.08);color:#fff;font-weight:700;border-radius:12px;font-size:13px;border:1px solid rgba(255,255,255,0.15);text-decoration:none">Register</a>
         </div>
-        <div id="mob-auth-user" style="display:none">
+        <div id="mob-auth-user" style="display:none;flex-direction:column;gap:6px">
+            <a href="{{BASE}}/my-booking" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;color:#fff;font-weight:700;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;font-size:13px;text-decoration:none">
+                <span class="material-symbols-outlined" style="font-size:15px">calendar_today</span> My Bookings
+            </a>
             <button id="mob-logout-btn" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;color:#f87171;font-weight:700;background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.2);border-radius:12px;font-size:13px;cursor:pointer">
                 <span class="material-symbols-outlined" style="font-size:15px">logout</span> Sign Out
             </button>
