@@ -30,7 +30,7 @@
 <meta name="theme-color" content="#000000">
 <title>Honda Amaze | CSNExplore</title>
 
-<meta name="description" content="Compact, comfortable sedan great for city commutes and short outstation trips.">
+<meta name="description" content="Comfortable Honda Amaze available for self-drive or with driver in Chhatrapati Sambhajinagar. Well-maintained, AC, and fully insured.">
 <meta name="keywords" content="Chhatrapati Sambhajinagar, Aurangabad, tourism, hotels, bike rent, car rent, attractions">
 <link rel="canonical" href="https://csnexplore.com/listing-detail/cars-3-honda-amaze" />
 
@@ -38,16 +38,16 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://csnexplore.com/listing-detail/cars-3-honda-amaze">
 <meta property="og:title" content="Honda Amaze | CSNExplore">
-<meta property="og:description" content="Compact, comfortable sedan great for city commutes and short outstation trips.">
+<meta property="og:description" content="Comfortable Honda Amaze available for self-drive or with driver in Chhatrapati Sambhajinagar. Well-maintained, AC, and fully insured.">
 <meta property="og:image" content="https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://csnexplore.com/listing-detail/cars-3-honda-amaze">
 <meta name="twitter:title" content="Honda Amaze | CSNExplore">
-<meta name="twitter:description" content="Compact, comfortable sedan great for city commutes and short outstation trips.">
+<meta name="twitter:description" content="Comfortable Honda Amaze available for self-drive or with driver in Chhatrapati Sambhajinagar. Well-maintained, AC, and fully insured.">
 <meta name="twitter:image" content="https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Honda Amaze","image":"https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp","description":"Compact, comfortable sedan great for city commutes and short outstation trips."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Honda Amaze","image":"https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp","description":"Comfortable Honda Amaze available for self-drive or with driver in Chhatrapati Sambhajinagar. Well-maintained, AC, and fully insured."}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -553,8 +553,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
   <!-- ── Full-width hero image ── -->
-  <div class="relative w-full bg-slate-900 overflow-hidden" style="height:420px">
-    <img id="slide-main" src="../images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp" alt="Honda Amaze" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'"/>
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:#0f172a;">
+    <img id="slide-main" src="../images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp" alt="Honda Amaze" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'" style=""/>
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
 
     <!-- Breadcrumb top-left -->
@@ -578,7 +578,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
           <span class="flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 rounded-full">
             <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
             <span class="font-bold text-white">4.4</span>
-            <span class="text-white/60 text-xs">(89 reviews)</span>
+            <span class="text-white/60 text-xs">(0 reviews)</span>
           </span>
         </div>
       </div>
@@ -586,30 +586,13 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 
     <!-- Prev / Next arrows -->
     
-    <button onclick="slidePrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_left</span>
-    </button>
-    <button onclick="slideNext()" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_right</span>
-    </button>
-    <div class="absolute bottom-6 right-6 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-1.5">
-      <span class="material-symbols-outlined text-sm">photo_library</span>
-      <span id="slide-current">1</span> / 7
-    </div>
-    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-28 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
+    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-6 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
       <span class="material-symbols-outlined text-base">zoom_out_map</span>
     </button>
   </div>
 
   <!-- ── Thumbnail strip ── -->
   
-  <div class="bg-slate-800 border-b border-slate-700">
-    <div class="max-w-7xl mx-auto px-4 py-2">
-      <div class="flex gap-2 overflow-x-auto hide-scrollbar" id="thumb-strip">
-        <button onclick="slideTo(0)" id="thumb-0" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 1"><img src="../images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="thumb 1" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(1)" id="thumb-1" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 2"><img src="../images/uploads/suzuki-swift.jpg" loading="lazy" alt="thumb 2" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(2)" id="thumb-2" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 3"><img src="../images/uploads/honda-city.jpg" loading="lazy" alt="thumb 3" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(3)" id="thumb-3" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 4"><img src="../images/uploads/car-rental-hero.png" loading="lazy" alt="thumb 4" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(4)" id="thumb-4" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 5"><img src="../images/uploads/mahindra-scorpio.jpg" loading="lazy" alt="thumb 5" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(5)" id="thumb-5" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 6"><img src="../images/uploads/travel-gate.jpg" loading="lazy" alt="thumb 6" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(6)" id="thumb-6" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 7"><img src="../images/uploads/map-preview.jpg" loading="lazy" alt="thumb 7" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button>
-      </div>
-    </div>
-  </div>
 
   <!-- ── Main content ── -->
   <div class="max-w-7xl mx-auto px-4 pt-8">
@@ -621,7 +604,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
         <!-- Quick specs bar -->
         
         <div class="bg-white rounded-2xl px-6 py-4 shadow-sm border border-slate-200 flex flex-wrap gap-5">
-          <div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">local_gas_station</span>Petrol</div><div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">settings</span>Manual</div><div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">airline_seat_recline_normal</span>5 seats</div>
+          <div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">local_gas_station</span>Petrol</div><div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">settings</span>Automatic</div><div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">airline_seat_recline_normal</span>5 seats</div>
         </div>
 
         <!-- Single merged info card: About + Amenities + Location with Glassmorphism -->
@@ -633,10 +616,17 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">info</span>About
             </h2>
-            <p class="text-slate-800 leading-relaxed text-sm">Compact, comfortable sedan great for city commutes and short outstation trips.</p>
+            <p class="text-slate-800 leading-relaxed text-sm">Comfortable Honda Amaze available for self-drive or with driver in Chhatrapati Sambhajinagar. Well-maintained, AC, and fully insured.</p>
           </div>
 
           
+          <!-- Amenities -->
+          <div class="p-6 border-b border-white/10">
+            <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#ec5b13] text-base">checklist</span>Features &amp; Amenities
+            </h2>
+            <ul class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>AC</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>Music System</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>GPS</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>Insurance Included</li></ul>
+          </div>
 
           <!-- Location -->
           <div class="p-6">
@@ -654,7 +644,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">photo_library</span>
               Photo Gallery
-              <span class="ml-2 bg-[#ec5b13]/10 text-[#ec5b13] text-xs font-bold px-2 py-0.5 rounded-full border border-[#ec5b13]/20">7 photos</span>
+              <span class="ml-2 bg-[#ec5b13]/10 text-[#ec5b13] text-xs font-bold px-2 py-0.5 rounded-full border border-[#ec5b13]/20">1 photo</span>
             </h2>
             <button onclick="openLightbox(0)" class="text-xs font-bold text-[#ec5b13] hover:underline flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">open_in_full</span>View All
@@ -664,25 +654,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
               <div class="gallery-thumb" onclick="openLightbox(0)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 1 full screen">
-                    <img src="../images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Honda Amaze photo 1" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(1)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 2 full screen">
-                    <img src="../images/uploads/suzuki-swift.jpg" loading="lazy" alt="Honda Amaze photo 2" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(2)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 3 full screen">
-                    <img src="../images/uploads/honda-city.jpg" loading="lazy" alt="Honda Amaze photo 3" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(3)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 4 full screen">
-                    <img src="../images/uploads/car-rental-hero.png" loading="lazy" alt="Honda Amaze photo 4" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(4)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 5 full screen">
-                    <img src="../images/uploads/mahindra-scorpio.jpg" loading="lazy" alt="Honda Amaze photo 5" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(5)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 6 full screen">
-                    <img src="../images/uploads/travel-gate.jpg" loading="lazy" alt="Honda Amaze photo 6" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(6)" title="Click to zoom" role="button" tabindex="0" aria-label="View Honda Amaze photo 7 full screen">
-                    <img src="../images/uploads/map-preview.jpg" loading="lazy" alt="Honda Amaze photo 7" onerror="this.src='../images/travelhub.png'"/>
+                    <img src="../images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Honda Amaze photo 1" style="object-fit:cover;" onerror="this.src='../images/travelhub.png'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>
             </div>
@@ -811,8 +783,82 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
       </div>
     </div>
   </div>
-</main>
-
+<div class="border-t border-slate-200 bg-slate-50 py-14 mt-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar Car Rentals</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="cars-1-maruti-suzuki-ertiga.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/maruti-suzuki-ertiga-car-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Maruti Suzuki Ertiga" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">MUV</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Maruti Suzuki Ertiga</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,800</span><span class="text-xs text-slate-400 font-medium">/ day</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="cars-2-maruti-suzuki-swift.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/maruti-suzuki-swift-car-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Maruti Suzuki Swift" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Hatchback</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Maruti Suzuki Swift</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,200</span><span class="text-xs text-slate-400 font-medium">/ day</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="cars-4-maruti-suzuki-baleno.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Maruti Suzuki Baleno" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Hatchback</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Maruti Suzuki Baleno</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,300</span><span class="text-xs text-slate-400 font-medium">/ day</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="cars-5-tata-punch.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/tata-punch-suv-rental-chhatrapati-sambhajinagar.webp" loading="lazy" alt="Tata Punch" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Compact SUV</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Tata Punch</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,500</span><span class="text-xs text-slate-400 font-medium">/ day</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div></div></div></div></main>
 <!-- ── Fullscreen Gallery Lightbox Modal ── -->
 <div id="csn-gallery-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.97);z-index:999999999;align-items:center;justify-content:center;overflow:hidden;">
   <!-- Backdrop click to close (separate layer behind everything) -->
@@ -884,18 +930,27 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 </script>
 <script>
 // ── Slideshow ──
-var _slideImages = ["..\/images\/uploads\/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp","..\/images\/uploads\/suzuki-swift.jpg","..\/images\/uploads\/honda-city.jpg","..\/images\/uploads\/car-rental-hero.png","..\/images\/uploads\/mahindra-scorpio.jpg","..\/images\/uploads\/travel-gate.jpg","..\/images\/uploads\/map-preview.jpg"];
+var _slideImages = ["..\/images\/uploads\/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp"];
 var _slideIndex = 0;
+
+// PNG flag map for dynamic hero background switching
+var _slideIsPng = [false];
 
 function slideTo(idx) {
   _slideIndex = idx;
   var img = document.getElementById("slide-main");
+  var wrap = document.getElementById("hero-img-wrap");
   var counter = document.getElementById("slide-current");
   if (!img || !_slideImages.length) return;
   img.style.opacity = "0";
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update bg + object-fit for PNG images
+    var isPng = _slideIsPng[_slideIndex] || false;
+    if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
+    img.style.objectFit = isPng ? "contain" : "cover";
+    img.style.padding = isPng ? "48px 32px" : "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state
@@ -935,7 +990,7 @@ document.addEventListener("keydown", function(e) {
 </script>
 <script>
 // ── Gallery Popup ──
-var _csnGalleryImages = ["..\/images\/uploads\/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp","..\/images\/uploads\/suzuki-swift.jpg","..\/images\/uploads\/honda-city.jpg","..\/images\/uploads\/car-rental-hero.png","..\/images\/uploads\/mahindra-scorpio.jpg","..\/images\/uploads\/travel-gate.jpg","..\/images\/uploads\/map-preview.jpg"];
+var _csnGalleryImages = ["..\/images\/uploads\/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp"];
 var _csnCurrentIndex = 0;
 var _csnZoomLevel = 1;
 

@@ -39,15 +39,15 @@
 <meta property="og:url" content="https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights">
 <meta property="og:title" content="Tandoor Nights | CSNExplore">
 <meta property="og:description" content="Specializes in tandoori dishes. Kebabs, tikkas, and naan fresh from the clay oven.">
-<meta property="og:image" content="https://csnexplore.com/images/uploads/travel-streetfood.jpg">
+<meta property="og:image" content="https://csnexplore.com/images/uploads/restaurant-north-indian.jpg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights">
 <meta name="twitter:title" content="Tandoor Nights | CSNExplore">
 <meta name="twitter:description" content="Specializes in tandoori dishes. Kebabs, tikkas, and naan fresh from the clay oven.">
-<meta name="twitter:image" content="https://csnexplore.com/images/uploads/travel-streetfood.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"Tandoor Nights","image":"https://csnexplore.com/images/uploads/travel-streetfood.jpg","description":"Specializes in tandoori dishes. Kebabs, tikkas, and naan fresh from the clay oven."}</script>
+<meta name="twitter:image" content="https://csnexplore.com/images/uploads/restaurant-north-indian.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"Tandoor Nights","image":"https://csnexplore.com/images/uploads/restaurant-north-indian.jpg","description":"Specializes in tandoori dishes. Kebabs, tikkas, and naan fresh from the clay oven."}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -553,8 +553,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
   <!-- ── Full-width hero image ── -->
-  <div class="relative w-full bg-slate-900 overflow-hidden" style="height:420px">
-    <img id="slide-main" src="../images/uploads/travel-streetfood.jpg" alt="Tandoor Nights" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'"/>
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:#0f172a;">
+    <img id="slide-main" src="../images/uploads/restaurant-north-indian.jpg" alt="Tandoor Nights" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'" style=""/>
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
 
     <!-- Breadcrumb top-left -->
@@ -571,14 +571,14 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
     <!-- Title + rating bottom-left -->
     <div class="absolute bottom-0 left-0 right-0 pb-6 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="mb-2"><span class="inline-block bg-[#ec5b13] text-white text-xs font-bold px-3 py-1 rounded-full">Tandoor Special</span></div>
+        
         <h1 class="text-white text-2xl md:text-4xl font-serif font-black leading-tight mb-2">Tandoor Nights</h1>
         <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm">
-          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-[#ec5b13]">location_on</span>Jalna Road, CSN</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-[#ec5b13]">location_on</span>Chhatrapati Sambhajinagar</span>
           <span class="flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 rounded-full">
             <span class="material-symbols-outlined text-amber-400 text-sm">star</span>
-            <span class="font-bold text-white">8.6</span>
-            <span class="text-white/60 text-xs">(178 reviews)</span>
+            <span class="font-bold text-white">4.5</span>
+            <span class="text-white/60 text-xs">(150 reviews)</span>
           </span>
         </div>
       </div>
@@ -586,30 +586,13 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 
     <!-- Prev / Next arrows -->
     
-    <button onclick="slidePrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_left</span>
-    </button>
-    <button onclick="slideNext()" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_right</span>
-    </button>
-    <div class="absolute bottom-6 right-6 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-1.5">
-      <span class="material-symbols-outlined text-sm">photo_library</span>
-      <span id="slide-current">1</span> / 7
-    </div>
-    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-28 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
+    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-6 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
       <span class="material-symbols-outlined text-base">zoom_out_map</span>
     </button>
   </div>
 
   <!-- ── Thumbnail strip ── -->
   
-  <div class="bg-slate-800 border-b border-slate-700">
-    <div class="max-w-7xl mx-auto px-4 py-2">
-      <div class="flex gap-2 overflow-x-auto hide-scrollbar" id="thumb-strip">
-        <button onclick="slideTo(0)" id="thumb-0" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 1"><img src="../images/uploads/travel-streetfood.jpg" loading="lazy" alt="thumb 1" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(1)" id="thumb-1" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 2"><img src="../images/uploads/restaurant-north-indian.jpg" loading="lazy" alt="thumb 2" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(2)" id="thumb-2" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 3"><img src="../images/uploads/north-indian-thali.jpg" loading="lazy" alt="thumb 3" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(3)" id="thumb-3" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 4"><img src="../images/uploads/indian-thali.jpg" loading="lazy" alt="thumb 4" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(4)" id="thumb-4" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 5"><img src="../images/uploads/restaurant-thali.jpg" loading="lazy" alt="thumb 5" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(5)" id="thumb-5" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 6"><img src="../images/uploads/masala-dosa.jpg" loading="lazy" alt="thumb 6" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button><button onclick="slideTo(6)" id="thumb-6" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo 7"><img src="../images/uploads/burger.jpg" loading="lazy" alt="thumb 7" class="w-full h-full object-cover" onerror="this.src='../images/travelhub.png'"/></button>
-      </div>
-    </div>
-  </div>
 
   <!-- ── Main content ── -->
   <div class="max-w-7xl mx-auto px-4 pt-8">
@@ -620,9 +603,6 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 
         <!-- Quick specs bar -->
         
-        <div class="bg-white rounded-2xl px-6 py-4 shadow-sm border border-slate-200 flex flex-wrap gap-5">
-          <div class="flex items-center gap-2 text-sm text-slate-600"><span class="material-symbols-outlined text-[#ec5b13] text-base">restaurant_menu</span>North Indian, Tandoor</div>
-        </div>
 
         <!-- Single merged info card: About + Amenities + Location with Glassmorphism -->
         <div class="glass-card rounded-2xl shadow-lg border border-white/20 overflow-hidden backdrop-blur-xl">
@@ -643,7 +623,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">location_on</span>Location
             </h2>
-            <p class="text-slate-800 text-sm font-medium">Jalna Road, CSN</p>
+            <p class="text-slate-800 text-sm font-medium">Chhatrapati Sambhajinagar</p>
           </div>
         </div>
 
@@ -654,7 +634,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">photo_library</span>
               Photo Gallery
-              <span class="ml-2 bg-[#ec5b13]/10 text-[#ec5b13] text-xs font-bold px-2 py-0.5 rounded-full border border-[#ec5b13]/20">7 photos</span>
+              <span class="ml-2 bg-[#ec5b13]/10 text-[#ec5b13] text-xs font-bold px-2 py-0.5 rounded-full border border-[#ec5b13]/20">1 photo</span>
             </h2>
             <button onclick="openLightbox(0)" class="text-xs font-bold text-[#ec5b13] hover:underline flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">open_in_full</span>View All
@@ -664,25 +644,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
               <div class="gallery-thumb" onclick="openLightbox(0)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 1 full screen">
-                    <img src="../images/uploads/travel-streetfood.jpg" loading="lazy" alt="Tandoor Nights photo 1" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(1)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 2 full screen">
-                    <img src="../images/uploads/restaurant-north-indian.jpg" loading="lazy" alt="Tandoor Nights photo 2" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(2)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 3 full screen">
-                    <img src="../images/uploads/north-indian-thali.jpg" loading="lazy" alt="Tandoor Nights photo 3" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(3)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 4 full screen">
-                    <img src="../images/uploads/indian-thali.jpg" loading="lazy" alt="Tandoor Nights photo 4" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(4)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 5 full screen">
-                    <img src="../images/uploads/restaurant-thali.jpg" loading="lazy" alt="Tandoor Nights photo 5" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(5)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 6 full screen">
-                    <img src="../images/uploads/masala-dosa.jpg" loading="lazy" alt="Tandoor Nights photo 6" onerror="this.src='../images/travelhub.png'"/>
-                    <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
-                  </div><div class="gallery-thumb" onclick="openLightbox(6)" title="Click to zoom" role="button" tabindex="0" aria-label="View Tandoor Nights photo 7 full screen">
-                    <img src="../images/uploads/burger.jpg" loading="lazy" alt="Tandoor Nights photo 7" onerror="this.src='../images/travelhub.png'"/>
+                    <img src="../images/uploads/restaurant-north-indian.jpg" loading="lazy" alt="Tandoor Nights photo 1" style="object-fit:cover;" onerror="this.src='../images/travelhub.png'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>
             </div>
@@ -702,7 +664,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
           <div class="bg-gradient-to-br from-[#ec5b13] to-orange-400 px-6 py-5 text-white">
             <p class="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Restaurants Price</p>
             <div class="flex items-baseline gap-1.5">
-              <span class="text-xs font-semibold opacity-70 mr-0.5">from</span><span class="text-3xl font-black">₹500</span>
+              <span class="text-xs font-semibold opacity-70 mr-0.5">from</span><span class="text-3xl font-black">₹300</span>
               <span class="text-sm font-semibold opacity-80"> for two</span>
             </div>
             <p class="text-xs opacity-70 mt-1.5 flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span>Free cancellation · No hidden charges</p>
@@ -713,7 +675,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             
             <div class="flex items-start gap-2 bg-slate-50 border border-slate-100 rounded-xl px-3 py-2.5">
               <span class="material-symbols-outlined text-[#ec5b13] text-base mt-0.5 shrink-0">location_on</span>
-              <p class="text-xs text-slate-700 font-medium leading-snug">Jalna Road, CSN</p>
+              <p class="text-xs text-slate-700 font-medium leading-snug">Chhatrapati Sambhajinagar</p>
             </div>
 
             <!-- Contact -->
@@ -811,8 +773,82 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
       </div>
     </div>
   </div>
-</main>
-
+<div class="border-t border-slate-200 bg-slate-50 py-14 mt-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar Restaurants</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="restaurants-1-naivedya-thali-restaurant.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/indian-thali.jpg" loading="lazy" alt="Naivedya Thali Restaurant" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Naivedya Thali Restaurant</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹300</span><span class="text-xs text-slate-400 font-medium"> for two</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="restaurants-2-masala-dosa-house.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/masala-dosa.jpg" loading="lazy" alt="Masala Dosa House" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Masala Dosa House</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹300</span><span class="text-xs text-slate-400 font-medium"> for two</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="restaurants-3-the-grill-room.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/restaurant-north-indian.jpg" loading="lazy" alt="The Grill Room" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">The Grill Room</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹300</span><span class="text-xs text-slate-400 font-medium"> for two</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="restaurants-4-chaat-street-corner.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/restaurant-south-indian.jpg" loading="lazy" alt="Chaat Street Corner" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Chaat Street Corner</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹300</span><span class="text-xs text-slate-400 font-medium"> for two</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div></div></div></div></main>
 <!-- ── Fullscreen Gallery Lightbox Modal ── -->
 <div id="csn-gallery-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.97);z-index:999999999;align-items:center;justify-content:center;overflow:hidden;">
   <!-- Backdrop click to close (separate layer behind everything) -->
@@ -884,18 +920,27 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 </script>
 <script>
 // ── Slideshow ──
-var _slideImages = ["..\/images\/uploads\/travel-streetfood.jpg","..\/images\/uploads\/restaurant-north-indian.jpg","..\/images\/uploads\/north-indian-thali.jpg","..\/images\/uploads\/indian-thali.jpg","..\/images\/uploads\/restaurant-thali.jpg","..\/images\/uploads\/masala-dosa.jpg","..\/images\/uploads\/burger.jpg"];
+var _slideImages = ["..\/images\/uploads\/restaurant-north-indian.jpg"];
 var _slideIndex = 0;
+
+// PNG flag map for dynamic hero background switching
+var _slideIsPng = [false];
 
 function slideTo(idx) {
   _slideIndex = idx;
   var img = document.getElementById("slide-main");
+  var wrap = document.getElementById("hero-img-wrap");
   var counter = document.getElementById("slide-current");
   if (!img || !_slideImages.length) return;
   img.style.opacity = "0";
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update bg + object-fit for PNG images
+    var isPng = _slideIsPng[_slideIndex] || false;
+    if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
+    img.style.objectFit = isPng ? "contain" : "cover";
+    img.style.padding = isPng ? "48px 32px" : "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state
@@ -935,7 +980,7 @@ document.addEventListener("keydown", function(e) {
 </script>
 <script>
 // ── Gallery Popup ──
-var _csnGalleryImages = ["..\/images\/uploads\/travel-streetfood.jpg","..\/images\/uploads\/restaurant-north-indian.jpg","..\/images\/uploads\/north-indian-thali.jpg","..\/images\/uploads\/indian-thali.jpg","..\/images\/uploads\/restaurant-thali.jpg","..\/images\/uploads\/masala-dosa.jpg","..\/images\/uploads\/burger.jpg"];
+var _csnGalleryImages = ["..\/images\/uploads\/restaurant-north-indian.jpg"];
 var _csnCurrentIndex = 0;
 var _csnZoomLevel = 1;
 

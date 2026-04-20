@@ -418,10 +418,12 @@ $category_nav = [
           <!-- Entire Card Link -->
           <a href="<?php echo listingSlug($type, $item); ?>" class="absolute inset-0 z-10" aria-label="View Details"></a>
 
-          <div class="relative h-52 overflow-hidden">
+          <div class="relative h-52 overflow-hidden <?php 
+              $imgSrc = $item['image'] ?? '';
+              if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; 
+          ?>">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  src="<?php 
-                    $imgSrc = $item['image'] ?? '';
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
                  ?>"
                  alt="<?php echo htmlspecialchars($item['name'] ?? $item['operator'] ?? ''); ?>"

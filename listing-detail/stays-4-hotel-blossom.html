@@ -553,8 +553,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
   <!-- ── Full-width hero image ── -->
-  <div class="relative w-full bg-slate-900 overflow-hidden" style="height:420px">
-    <img id="slide-main" src="../images/uploads/hotel-blossom-stays-main.jpeg" alt="Hotel Blossom" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'"/>
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:#0f172a;">
+    <img id="slide-main" src="../images/uploads/hotel-blossom-stays-main.jpeg" alt="Hotel Blossom" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'" style=""/>
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
 
     <!-- Breadcrumb top-left -->
@@ -622,7 +622,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">checklist</span>Features &amp; Amenities
             </h2>
-            <ul class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>Wi-Fi</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>AC</li></ul>
+            <ul class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>Wi-Fi</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>AC</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>TV</li><li class="flex items-center gap-2 text-sm text-slate-800 font-medium"><span class="material-symbols-outlined text-[#ec5b13] text-base">check_circle</span>Hot Water</li></ul>
           </div>
 
           <!-- Location -->
@@ -651,7 +651,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
               <div class="gallery-thumb" onclick="openLightbox(0)" title="Click to zoom" role="button" tabindex="0" aria-label="View Hotel Blossom photo 1 full screen">
-                    <img src="../images/uploads/hotel-blossom-stays-main.jpeg" loading="lazy" alt="Hotel Blossom photo 1" onerror="this.src='../images/travelhub.png'"/>
+                    <img src="../images/uploads/hotel-blossom-stays-main.jpeg" loading="lazy" alt="Hotel Blossom photo 1" style="object-fit:cover;" onerror="this.src='../images/travelhub.png'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>
             </div>
@@ -784,8 +784,82 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
       </div>
     </div>
   </div>
-</main>
-
+<div class="border-t border-slate-200 bg-slate-50 py-14 mt-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar Stays</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="stays-2-its-home-service-apartments.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/its-home-service-apartments-stays-main.webp" loading="lazy" alt="Its Home ΓÇô Service Apartments" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Service Apartment</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Its Home ΓÇô Service Apartments</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,499</span><span class="text-xs text-slate-400 font-medium">/ night</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="stays-3-treebo-aroma-executive.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/treebo-aroma-executive-stays-main.webp" loading="lazy" alt="Treebo Aroma Executive" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Business Hotel</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Treebo Aroma Executive</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹1,800</span><span class="text-xs text-slate-400 font-medium">/ night</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="stays-1-its-home-home-stay-inn.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/its-home-home-stay-inn-stays-main.jpeg" loading="lazy" alt="ITS HOME ΓÇô Home Stay Inn" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Homestay</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">ITS HOME ΓÇô Home Stay Inn</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Chhatrapati Sambhajinagar</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹999</span><span class="text-xs text-slate-400 font-medium">/ night</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div><div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="stays-5-hotel-the-gravity-inn.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden ">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="../images/uploads/hotel-the-gravity-inn-stays-main.webp" loading="lazy" alt="Hotel The Gravity Inn" onerror="this.onerror=null;this.src='../images/travelhub.png'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1"><p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">Premium Hotel</p><h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">Hotel The Gravity Inn</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">Silicon City, Indore</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><span class="text-xl font-black text-[#ec5b13]">₹2,172</span><span class="text-xs text-slate-400 font-medium">/ night</span></div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div></div></div></div></main>
 <!-- ── Fullscreen Gallery Lightbox Modal ── -->
 <div id="csn-gallery-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.97);z-index:999999999;align-items:center;justify-content:center;overflow:hidden;">
   <!-- Backdrop click to close (separate layer behind everything) -->
@@ -860,15 +934,24 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 var _slideImages = ["..\/images\/uploads\/hotel-blossom-stays-main.jpeg"];
 var _slideIndex = 0;
 
+// PNG flag map for dynamic hero background switching
+var _slideIsPng = [false];
+
 function slideTo(idx) {
   _slideIndex = idx;
   var img = document.getElementById("slide-main");
+  var wrap = document.getElementById("hero-img-wrap");
   var counter = document.getElementById("slide-current");
   if (!img || !_slideImages.length) return;
   img.style.opacity = "0";
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update bg + object-fit for PNG images
+    var isPng = _slideIsPng[_slideIndex] || false;
+    if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
+    img.style.objectFit = isPng ? "contain" : "cover";
+    img.style.padding = isPng ? "48px 32px" : "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state

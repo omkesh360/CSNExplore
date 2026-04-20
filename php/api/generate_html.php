@@ -935,11 +935,13 @@ foreach ($types as $type) {
 
         $html = htmlHead(htmlspecialchars($item['name']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema, $type);
 
-        // Build thumbnail strip HTML
         $thumbHtml = '';
         foreach ($resolvedGalleryImages as $idx => $img) {
+            $isPng = (stripos($img, '.png') !== false);
+            $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
+            
             $thumbHtml .= '<button onclick="slideTo('.$idx.')" id="thumb-'.$idx.'" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo '.($idx+1).'">'.
-                '<img src="'.htmlspecialchars($img).'" loading="lazy" alt="thumb '.($idx+1).'" class="w-full h-full object-cover" onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img src="'.htmlspecialchars($img).'" loading="lazy" alt="thumb '.($idx+1).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</button>';
         }
 
@@ -947,8 +949,8 @@ foreach ($types as $type) {
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
   <!-- ── Full-width hero image ── -->
-  <div class="relative w-full bg-slate-900 overflow-hidden" style="height:420px">
-    <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src=\'../images/travelhub.png\'"/>
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? '#ecf5ff' : '#0f172a' ).';">
+    <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src=\'../images/travelhub.png\'" style="'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? 'object-fit:contain;padding:48px 32px;' : '' ).'"/>
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
 
     <!-- Breadcrumb top-left -->
@@ -1065,8 +1067,10 @@ foreach ($types as $type) {
             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
               '.implode('', array_map(function($img, $i) use ($item) {
+                  $isPng = (stripos($img, '.png') !== false);
+                  $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
                   return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to zoom" role="button" tabindex="0" aria-label="View '.htmlspecialchars($item['name']).' photo '.($i+1).' full screen">
-                    <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.htmlspecialchars($item['name']).' photo '.($i+1).'" onerror="this.src=\'../images/travelhub.png\'"/>
+                    <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.htmlspecialchars($item['name']).' photo '.($i+1).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>';
               }, $resolvedGalleryImages, array_keys($resolvedGalleryImages))).
@@ -1205,8 +1209,78 @@ foreach ($types as $type) {
       </div>
     </div>
   </div>
-</main>
+</main>';
 
+        $similarHtml = '';
+        $similarItems = array_slice(array_filter($items, function($i) use ($item) { return $i['id'] != $item['id']; }), 0, 4);
+        if (!empty($similarItems)) {
+            $similarHtml = '<div class="border-t border-slate-200 bg-slate-50 py-14 mt-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar '.htmlspecialchars($meta['label']).'</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">';
+            foreach ($similarItems as $simItem) {
+                $sim_slug = generateSlug($type, $simItem['id'], $simItem['name'] ?? 'item');
+                $sim_price = $simItem[$meta['price_col']] ?? 0;
+                $sim_price_fmt = $sim_price > 0 ? '₹' . number_format($sim_price) : 'Free';
+                if ($type === 'buses') {
+                    $sim_subtitle = htmlspecialchars(($simItem['from_location'] ?? '') . ' → ' . ($simItem['to_location'] ?? ''));
+                    $sim_sub2 = htmlspecialchars(($simItem['bus_type'] ?? '') . ' · ' . ($simItem['duration'] ?? ''));
+                    $sim_name = htmlspecialchars($simItem['operator'] ?? '');
+                } else {
+                    $sim_subtitle = htmlspecialchars($simItem['location'] ?? '');
+                    $sim_sub2 = htmlspecialchars($simItem['type'] ?? '');
+                    $sim_name = htmlspecialchars($simItem['name'] ?? '');
+                }
+                $simImg = trim($simItem['image'] ?? '');
+                if (empty($simImg)) {
+                    $simImgSrc = '../images/travelhub.png';
+                } elseif (strpos($simImg, 'http') !== 0 && strpos($simImg, '../') !== 0 && strpos($simImg, '/') !== 0) {
+                    $simImgSrc = '../' . htmlspecialchars($simImg);
+                } else {
+                    $simImgSrc = htmlspecialchars($simImg);
+                }
+                $simIsPng = (stripos($simImg, '.png') !== false);
+                $simBgClass = $simIsPng ? 'bg-[#ecf5ff]' : '';
+                $simObjClass = 'object-cover';
+                
+                $similarHtml .= '<div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
+                  <a href="'.$sim_slug.'.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <div class="relative h-48 overflow-hidden '.$simBgClass.'">
+                    <img class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.png\'"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
+                    <div class="mb-1">';
+                if ($sim_sub2) {
+                    $similarHtml .= '<p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">'.$sim_sub2.'</p>';
+                }
+                $similarHtml .= '<h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">'.$sim_name.'</h3>
+                    </div>
+                    <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
+                      <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
+                      <span class="line-clamp-1">'.$sim_subtitle.'</span>
+                    </div>
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 pointer-events-auto">
+                      <div>';
+                if ($sim_price > 0) {
+                    $similarHtml .= '<span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span>';
+                }
+                $similarHtml .= '<span class="text-xl font-black text-[#ec5b13]">'.$sim_price_fmt.'</span>';
+                if ($meta['unit'] && $sim_price > 0) {
+                    $similarHtml .= '<span class="text-xs text-slate-400 font-medium">'.htmlspecialchars($meta['unit']).'</span>';
+                }
+                $similarHtml .= '</div>
+                      <span class="px-4 py-2 bg-[#ec5b13] text-white rounded-xl text-sm font-bold shadow-sm inline-block">View</span>
+                    </div>
+                  </div>
+                </div>';
+            }
+            $similarHtml .= '</div></div></div>';
+        }
+
+        $html = str_replace('</main>', $similarHtml . '</main>', $html);
+
+$html .= '
 <!-- ── Fullscreen Gallery Lightbox Modal ── -->
 <div id="csn-gallery-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.97);z-index:999999999;align-items:center;justify-content:center;overflow:hidden;">
   <!-- Backdrop click to close (separate layer behind everything) -->
@@ -1281,15 +1355,26 @@ foreach ($types as $type) {
 var _slideImages = '.$galleryJsArr.';
 var _slideIndex = 0;
 
+// PNG flag map for dynamic hero background switching
+var _slideIsPng = '.json_encode(array_map(function($img){
+    return stripos($img, '.png') !== false;
+}, $resolvedGalleryImages)).';
+
 function slideTo(idx) {
   _slideIndex = idx;
   var img = document.getElementById("slide-main");
+  var wrap = document.getElementById("hero-img-wrap");
   var counter = document.getElementById("slide-current");
   if (!img || !_slideImages.length) return;
   img.style.opacity = "0";
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update bg + object-fit for PNG images
+    var isPng = _slideIsPng[_slideIndex] || false;
+    if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
+    img.style.objectFit = isPng ? "contain" : "cover";
+    img.style.padding = isPng ? "48px 32px" : "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state
