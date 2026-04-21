@@ -2290,3 +2290,128 @@ Stack trace:
 #1 C:\xampp\htdocs\CSNexplore\CSNExplore\fix_status.php(5): Database->query('UPDATE bikes SE...')
 #2 {main}
   thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php on line 302
+[20-Apr-2026 19:52:05 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php:45
+Stack trace:
+#0 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(45): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(57): Database->__construct()
+#2 C:\xampp\htdocs\CSNexplore\CSNExplore\php\config.php(81): Database::getInstance()
+#3 C:\xampp\htdocs\CSNexplore\CSNExplore\index.php(6): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php on line 45
+[20-Apr-2026 19:52:14 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php:45
+Stack trace:
+#0 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(45): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(57): Database->__construct()
+#2 C:\xampp\htdocs\CSNexplore\CSNExplore\php\config.php(81): Database::getInstance()
+#3 C:\xampp\htdocs\CSNexplore\CSNExplore\index.php(6): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php on line 45
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 19:52:27 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:19:36 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[20-Apr-2026 20:23:18 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 08:57:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:56:54 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNexplore\CSNExplore\index.php on line 883
+[21-Apr-2026 09:57:15 Europe/Berlin] Trip Planner submit error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexplore.trip_requests' doesn't exist
+[21-Apr-2026 09:59:49 Europe/Berlin] Trip Planner submit error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexplore.trip_requests' doesn't exist
+[21-Apr-2026 09:59:49 Europe/Berlin] Trip Planner error trace: #0 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(308): PDO->prepare('INSERT INTO tri...')
+#1 C:\xampp\htdocs\CSNexplore\CSNExplore\suggestor.php(75): Database->query('INSERT INTO tri...', Array)
+#2 {main}
+[21-Apr-2026 10:00:05 Europe/Berlin] Trip Planner submit error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexplore.trip_requests' doesn't exist
+[21-Apr-2026 10:00:05 Europe/Berlin] Trip Planner error trace: #0 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(308): PDO->prepare('INSERT INTO tri...')
+#1 C:\xampp\htdocs\CSNexplore\CSNExplore\suggestor.php(75): Database->query('INSERT INTO tri...', Array)
+#2 {main}
+[21-Apr-2026 10:12:39 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:12:39 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:12:43 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:12:43 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:14:26 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:14:26 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:14:28 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:14:28 Europe/Berlin] Users error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:14:30 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:14:30 Europe/Berlin] Users error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:22:44 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:22:44 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:23:03 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:23:03 Europe/Berlin] About/Contact error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:23:03 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:23:03 Europe/Berlin] About/Contact error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:27:01 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:27:01 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:32:36 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:32:36 Europe/Berlin] About/Contact error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:33:22 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:33:22 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:38:46 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:38:46 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:49:01 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:49:01 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:49:20 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:49:20 Europe/Berlin] Listings API error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:50:41 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:50:41 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 10:53:34 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 10:53:34 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[21-Apr-2026 11:01:11 Europe/Berlin] Database credentials missing in environment variables
+[21-Apr-2026 11:01:11 Europe/Berlin] PHP Fatal error:  Uncaught Exception: Database configuration error. Please check environment variables. in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php(57): Database->__construct()
+#1 C:\xampp\htdocs\CSNexplore\CSNExplore\php\config.php(86): Database::getInstance()
+#2 C:\xampp\htdocs\CSNexplore\CSNExplore\php\api\dashboard.php(12): getDB()
+#3 {main}
+  thrown in C:\xampp\htdocs\CSNexplore\CSNExplore\php\database.php on line 30

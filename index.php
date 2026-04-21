@@ -727,7 +727,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 <p class="text-white/70 text-sm md:text-base max-w-lg mx-auto md:mx-0 mb-6 group-hover:text-white/90 transition-colors">
                     Talk to our local trip experts. We'll craft a customized, fully personalized itinerary for your entire trip—including cars, hotels, and ancient site guides—at no extra cost.
                 </p>
-                <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-orange-500 text-white font-black rounded-xl text-sm shadow-[0_8px_30px_rgb(236,91,19,0.3)] hover:shadow-[0_8px_30px_rgb(236,91,19,0.5)] hover:-translate-y-1 transition-all">
+                <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-orange-500 text-white font-black rounded-xl text-sm shadow-[0_8px_30px_rgb(236,91,19,0.3)] hover:shadow-[0_8px_30px_rgb(236,91,19,0.5)] hover:-translate-y-1 hover:text-white transition-all">
                     Trip Plan <span class="material-symbols-outlined text-[18px]">support_agent</span>
                 </a>
             </div>
@@ -849,7 +849,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1 relative z-20">'.$name.'</h5>'
                     .'<div class="flex items-center justify-between relative z-20">'
                     .'<p class="font-black text-slate-900 text-sm">'.$price.' <span class="text-xs text-slate-400 font-normal">entry</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs group-hover:bg-orange-600 transition-all">Check Details</span>'
+                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_attractions;
@@ -869,7 +869,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h5>'
                     .'<div class="flex items-center justify-between">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/day</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs group-hover:bg-orange-600 transition-all">Check Availability</span>'
+                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs  transition-all">Check Availability</span>'
                     .'</div></div></a>';
             };
             $items = $hp_bikes;
@@ -895,7 +895,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'</div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">for two</span></p>'
-                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs group-hover:bg-orange-600 transition-all whitespace-nowrap">Check Details</span>'
+                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_restaurants;
@@ -915,7 +915,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h5>'
                     .'<div class="flex items-center justify-between">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/day</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs group-hover:bg-orange-600 transition-all">Check Availability</span>'
+                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs  transition-all">Check Availability</span>'
                     .'</div></div></a>';
             };
             $items = $hp_cars;
@@ -936,7 +936,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<div class="flex items-center gap-1 text-slate-500 text-xs mb-3 relative z-20"><span style="font-family:Material Symbols Outlined;font-size:14px">location_on</span><span class="line-clamp-1">'.htmlspecialchars($s['location']??'').'</span></div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/night</span></p>'
-                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs group-hover:bg-orange-600 transition-all whitespace-nowrap">Check Details</span>'
+                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_stays;
@@ -954,7 +954,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<p class="text-white/50 text-xs mt-0.5 truncate">'.$route.'</p></div></div>'
                     .'<div class="flex items-center gap-3 shrink-0 relative z-20">'
                     .'<p class="text-primary font-black text-lg">&#8377;'.$price.'</p>'
-                    .'<span class="bg-primary text-white px-4 py-2 rounded-xl font-bold text-xs group-hover:bg-orange-600 transition-all">Check Details</span>'
+                    .'<span class="bg-primary text-white px-4 py-2 rounded-xl font-bold text-xs transition-all">Check Details</span>'
                     .'</div></a>';
             };
             $items = $hp_buses;

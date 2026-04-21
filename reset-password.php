@@ -48,7 +48,7 @@ include 'header.php';
                         <label class="text-xs font-bold text-slate-700 uppercase tracking-widest px-1">New Password</label>
                         <div class="relative">
                             <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">lock</span>
-                            <input type="password" id="password" required placeholder="Min 8 chars + number"
+                            <input type="password" id="password" required placeholder="" autocomplete="off"
                                    class="w-full bg-white border-2 border-slate-100 rounded-2xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all"/>
                         </div>
                     </div>
@@ -57,7 +57,7 @@ include 'header.php';
                         <label class="text-xs font-bold text-slate-700 uppercase tracking-widest px-1">Confirm New Password</label>
                         <div class="relative">
                             <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">verified_user</span>
-                            <input type="password" id="confirm-password" required placeholder="Repeat new password"
+                            <input type="password" id="confirm-password" required placeholder="" autocomplete="off"
                                    class="w-full bg-white border-2 border-slate-100 rounded-2xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all"/>
                         </div>
                     </div>

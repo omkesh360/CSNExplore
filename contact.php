@@ -20,8 +20,8 @@ $extra_head = '<script type="application/ld+json">
   "mainEntity": {
     "@type": "Organization",
     "name": "CSNExplore",
-    "telephone": "+91-8600968888",
-    "email": "supportcsnexplore@gmail.com",
+    "telephone": "' . CONTACT_PHONE . '",
+    "email": "' . SUPPORT_EMAIL . '",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Jay Tower, V896+MP9, Samadhan Colony, Padampura",
@@ -47,23 +47,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email   = trim($_POST['email']      ?? '');
     $interest= trim($_POST['interest']   ?? '');
     $message = trim($_POST['message']    ?? '');
-    if ($first && $email && $message) {
+    
+    // Validate required fields
+    if (!$first || !$email || !$message) {
+        $error = 'Please fill in all required fields.';
+    }
+    // Validate email format
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Please enter a valid email address.';
+    }
+    // Validate message length
+    elseif (strlen($message) > 5000) {
+        $error = 'Message is too long. Please keep it under 5000 characters.';
+    }
+    // Validate first name length
+    elseif (strlen($first) > 100 || strlen($last) > 100) {
+        $error = 'Name is too long.';
+    }
+    else {
         try {
             require_once __DIR__ . '/php/config.php';
             $db = getDB();
             $db->insert('contact_messages', [
-                'first_name' => htmlspecialchars($first),
-                'last_name'  => htmlspecialchars($last),
-                'email'      => htmlspecialchars($email),
-                'interest'   => htmlspecialchars($interest),
-                'message'    => htmlspecialchars($message),
+                'first_name' => htmlspecialchars($first, ENT_QUOTES, 'UTF-8'),
+                'last_name'  => htmlspecialchars($last, ENT_QUOTES, 'UTF-8'),
+                'email'      => htmlspecialchars($email, ENT_QUOTES, 'UTF-8'),
+                'interest'   => htmlspecialchars($interest, ENT_QUOTES, 'UTF-8'),
+                'message'    => htmlspecialchars($message, ENT_QUOTES, 'UTF-8'),
             ]);
             $success = true;
         } catch (Exception $e) {
-            $error = 'Something went wrong. Please try again.';
+            error_log('Contact form error: ' . $e->getMessage());
+            $error = 'Something went wrong. Please try again later.';
         }
-    } else {
-        $error = 'Please fill in all required fields.';
     }
 }
 require 'header.php';
@@ -114,7 +130,7 @@ require 'header.php';
                     <div>
                         <h3 class="text-lg font-bold mb-1" style="color: #0f172a;">Call Us</h3>
                         <p class="text-sm mb-2" style="color: #64748b;">Mon–Sat, 9am – 7pm IST</p>
-                        <a class="text-xl font-bold text-primary hover:underline" href="tel:+918600968888">+91 86009 68888</a>
+                        <a class="text-xl font-bold text-primary hover:underline" href="tel:<?php echo CONTACT_PHONE; ?>"><?php echo CONTACT_PHONE; ?></a>
                     </div>
                 </div>
                 
@@ -128,7 +144,7 @@ require 'header.php';
                     <div>
                         <h3 class="text-lg font-bold mb-1" style="color: #0f172a;">WhatsApp</h3>
                         <p class="text-sm mb-3" style="color: #64748b;">Instant chat with our team</p>
-                        <a href="https://wa.me/918600968888"
+                        <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>"
                            class="inline-block bg-green-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-green-700 transition-colors shadow-lg shadow-green-500/20">
                             Start Chat
                         </a>
@@ -144,8 +160,8 @@ require 'header.php';
                     <div>
                         <h3 class="text-lg font-bold mb-1" style="color: #0f172a;">Email Us</h3>
                         <p class="text-sm mb-2" style="color: #64748b;">We reply within 2 hours</p>
-                        <a href="mailto:supportcsnexplore@gmail.com" class="text-primary font-bold text-sm hover:underline">
-                            supportcsnexplore@gmail.com
+                        <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" class="text-primary font-bold text-sm hover:underline">
+                            <?php echo SUPPORT_EMAIL; ?>
                         </a>
                     </div>
                 </div>

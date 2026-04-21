@@ -184,19 +184,19 @@ body{font-family:'Inter',sans-serif;min-height:100vh;overflow:hidden}
                 <span id="err-text">Invalid credentials</span>
             </div>
 
-            <form id="login-form" autocomplete="on">
+            <form id="login-form" autocomplete="off">
                 <div class="field">
                     <label for="username">Username</label>
                     <div class="input-wrap">
                         <span class="material-symbols-outlined">person</span>
-                        <input id="username" type="text" placeholder="Enter your username" required autocomplete="username"/>
+                        <input id="username" type="text" placeholder="" required autocomplete="off"/>
                     </div>
                 </div>
                 <div class="field">
                     <label for="password">Password</label>
                     <div class="input-wrap">
                         <span class="material-symbols-outlined">lock</span>
-                        <input id="password" type="password" placeholder="••••••••" required autocomplete="current-password"/>
+                        <input id="password" type="password" placeholder="" required autocomplete="off"/>
                         <button type="button" class="pw-toggle" id="pw-toggle" title="Show/hide password">
                             <span class="material-symbols-outlined" style="font-size:18px">visibility</span>
                         </button>

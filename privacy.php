@@ -119,7 +119,7 @@ include 'header.php';
                     <li>Opt out of marketing communications at any time</li>
                     <li>Lodge a complaint with a supervisory authority</li>
                 </ul>
-                <p class="mt-3">To exercise these rights, contact us at <a href="mailto:supportcsnexplore@gmail.com" class="text-primary font-semibold hover:underline">supportcsnexplore@gmail.com</a>.</p>
+                <p class="mt-3">To exercise these rights, contact us at <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" class="text-primary font-semibold hover:underline"><?php echo SUPPORT_EMAIL; ?></a>.</p>
             </section>
 
             <section>
@@ -147,8 +147,8 @@ include 'header.php';
                 <div class="mt-4 bg-slate-50 rounded-2xl p-6 space-y-2 text-sm">
                     <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">business</span> <strong>CSNExplore</strong></p>
                     <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">location_on</span> Jay Tower, V896+MP9, Samadhan Colony, Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005</p>
-                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">mail</span> <a href="mailto:supportcsnexplore@gmail.com" class="text-primary hover:underline">supportcsnexplore@gmail.com</a></p>
-                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">call</span> <a href="tel:+918600968888" class="text-primary hover:underline">+91 86009 68888</a></p>
+                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">mail</span> <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" class="text-primary hover:underline"><?php echo SUPPORT_EMAIL; ?></a></p>
+                    <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">call</span> <a href="tel:<?php echo CONTACT_PHONE; ?>" class="text-primary hover:underline"><?php echo CONTACT_PHONE; ?></a></p>
                 </div>
             </section>
 

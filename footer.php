@@ -17,10 +17,10 @@
                     <button id="footer-share-btn" aria-label="Share" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M352 320c-22.61 0-43.33 8.35-59.39 22.18l-123.7-72.16c1.15-5.91 1.76-11.96 1.76-18.17 0-6.17-.61-12.18-1.76-18.06l123.7-72.16c16.03 13.78 36.68 22.06 59.23 22.06 49.33 0 89.33-40 89.33-89.35S401.33 5 352 5 262.67 45 262.67 94.35c0 6.17 .61 12.18 1.76 18.06l-123.7 72.16c-16.03-13.78-36.68-22.06-59.23-22.06-49.33 0-89.33 40-89.33 89.35s40 89.35 89.33 89.35c22.61 0 43.33-8.35 59.39-22.18l123.7 72.16c-1.15 5.91-1.76 11.96-1.76 18.17 0 49.35 40 89.35 89.33 89.35s89.33-40 89.33-89.35-40-89.35-89.33-89.35z"/></svg>
                     </button>
-                    <a href="mailto:supportcsnexplore@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" target="_blank" rel="noopener noreferrer" aria-label="Email Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
                     </a>
-                    <a href="https://wa.me/918600968888" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
                     </a>
                     <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
@@ -88,7 +88,7 @@
                         </span>
                         <div class="flex flex-col">
                             <span class="text-white font-bold text-xs uppercase tracking-widest mb-0.5">Phone</span>
-                            <a href="tel:+918600968888" class="hover:text-primary transition-colors font-semibold tracking-tight">+91 86009 68888</a>
+                            <a href="tel:<?php echo CONTACT_PHONE; ?>" class="hover:text-primary transition-colors font-semibold tracking-tight"><?php echo CONTACT_PHONE; ?></a>
                         </div>
                     </li>
                     <li class="flex items-center gap-4">
@@ -97,7 +97,7 @@
                         </span>
                         <div class="flex flex-col">
                             <span class="text-white font-bold text-xs uppercase tracking-widest mb-0.5">Email</span>
-                            <a href="mailto:supportcsnexplore@gmail.com" class="hover:text-primary transition-colors font-semibold tracking-tight">supportcsnexplore@gmail.com</a>
+                            <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" class="hover:text-primary transition-colors font-semibold tracking-tight"><?php echo SUPPORT_EMAIL; ?></a>
                         </div>
                     </li>
                 </ul>
@@ -149,7 +149,7 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
 <?php if (!$hide_floating_buttons): ?>
     <!-- ── Floating Action Buttons - Mobile + Tablet (hidden on desktop) ──────── -->
     <!-- Call Button - Mobile & Tablet (Blue) -->
-    <a href="tel:+918600968888" id="call-float" class="flex lg:hidden" aria-label="Call Now"
+    <a href="tel:<?php echo CONTACT_PHONE; ?>" id="call-float" class="flex lg:hidden" aria-label="Call Now"
         style="position:fixed;bottom:calc(88px + env(safe-area-inset-bottom, 0px));right:20px;z-index:9998;width:52px;height:52px;border-radius:50%;background:#2563eb;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,99,235,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
         ontouchstart="this.style.transform='scale(1.08)'" ontouchend="this.style.transform='scale(1)'">
         <span class="material-symbols-outlined"
@@ -157,7 +157,7 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
     </a>
 
     <!-- WhatsApp Button - Mobile & Tablet -->
-    <a href="https://wa.me/918600968888?text=Hi%20CSNExplore!%20I%20need%20help%20with%20my%20booking." target="_blank"
+    <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>?text=Hi%20CSNExplore!%20I%20need%20help%20with%20my%20booking." target="_blank"
         rel="noopener noreferrer" id="whatsapp-float" class="flex lg:hidden" aria-label="Chat on WhatsApp"
         style="position:fixed;bottom:calc(24px + env(safe-area-inset-bottom, 0px));right:20px;z-index:9998;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
         ontouchstart="this.style.transform='scale(1.08)'" ontouchend="this.style.transform='scale(1)'">
@@ -469,7 +469,7 @@ if (file_exists($locationsFile)) {
             setTimeout(function () { document.getElementById('cookie-banner').style.display = 'block'; }, 1200);
         }
 
-        // ── Restore opacity on page show (back/forward cache) ──
+        // ── Reinitialize reveal on pageshow (back/forward cache) ──store opacity on page show (back/forward cache) ──
         window.addEventListener('pageshow', function (e) {
             document.body.classList.remove('page-fade-out');
             document.querySelectorAll('[data-reveal], [data-reveal-children]').forEach(function(el){ el.classList.add('revealed'); });

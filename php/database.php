@@ -13,15 +13,21 @@ class Database {
 
         // Use production or local credentials based on environment
         if ($isProduction) {
-            $host   = getenv('DB_HOST_PROD')   ?: 'localhost';
-            $dbName = getenv('DB_NAME_PROD')   ?: 'u108326050_csnexploredb';
-            $user   = getenv('DB_USER_PROD')   ?: 'u108326050_omkesh360';
-            $pass   = getenv('DB_PASS_PROD')   ?: 'omkeshAa.1@';
+            $host   = getenv('DB_HOST_PROD');
+            $dbName = getenv('DB_NAME_PROD');
+            $user   = getenv('DB_USER_PROD');
+            $pass   = getenv('DB_PASS_PROD');
         } else {
-            $host   = getenv('DB_HOST_LOCAL')  ?: 'localhost';
-            $dbName = getenv('DB_NAME_LOCAL')  ?: 'csnexplore';
-            $user   = getenv('DB_USER_LOCAL')  ?: 'root';
-            $pass   = getenv('DB_PASS_LOCAL')  ?: '';
+            $host   = getenv('DB_HOST_LOCAL');
+            $dbName = getenv('DB_NAME_LOCAL');
+            $user   = getenv('DB_USER_LOCAL');
+            $pass   = getenv('DB_PASS_LOCAL');
+        }
+        
+        // Validate required credentials
+        if (!$host || !$dbName || !$user || $pass === false) {
+            error_log('Database credentials missing in environment variables');
+            throw new Exception('Database configuration error. Please check environment variables.');
         }
         
         $port = getenv('DB_PORT') ?: '3306';

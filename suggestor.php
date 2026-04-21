@@ -31,11 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_plan'])) {
         
         // Validate required fields
         $full_name = sanitize($_POST['full_name'] ?? '');
+        $email     = sanitize($_POST['email']     ?? '');
         $phone     = sanitize($_POST['phone']     ?? '');
         
-        if (empty($full_name) || empty($phone)) {
-            // Re-show form with error — don't redirect
-            $form_error = 'Please fill in your name and phone number.';
+        if (empty($full_name) || empty($email) || empty($phone)) {
+            $form_error = 'Please fill in your name, email, and phone number.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $form_error = 'Please enter a valid email address.';
         } else {
             // Process Interests
             $interests = [];
@@ -59,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_plan'])) {
 
             $data = [
                 'full_name'      => $full_name,
+                'email'          => $email,
                 'phone'          => $phone,
                 'interests'      => implode(' | ', $interests),
                 'stay_type'      => sanitize($_POST['stay_type']   ?? ''),
@@ -71,13 +74,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_plan'])) {
             $vals = implode(', ', array_fill(0, count($data), '?'));
             $db->query("INSERT INTO trip_requests ($cols) VALUES ($vals)", array_values($data));
             
-            // PRG — redirect to success state, prevents resubmit on F5
-            header('Location: ' . BASE_PATH . '/suggestor?submitted=1');
+            // Get the inserted ID for email notification
+            $tripRequestId = $db->lastInsertId();
+            
+            // Send email notifications in background (non-blocking)
+            // This happens AFTER redirect so user doesn't wait
+            if (function_exists('fastcgi_finish_request')) {
+                // PRG — redirect to success state IMMEDIATELY
+                header('Location: ' . BASE_PATH . '/suggestor?submitted=1&id=' . $tripRequestId);
+                fastcgi_finish_request(); // Close connection, continue processing
+                
+                // Send emails after user sees success page
+                require_once 'php/services/EmailService.php';
+                try {
+                    EmailService::sendTripRequestEmails($tripRequestId);
+                } catch (Exception $emailError) {
+                    error_log('Trip request email failed: ' . $emailError->getMessage());
+                }
+            } else {
+                // Fallback: redirect immediately, emails will be sent via AJAX
+                header('Location: ' . BASE_PATH . '/suggestor?submitted=1&id=' . $tripRequestId);
+            }
             exit;
         }
     } catch (Exception $e) {
         error_log('Trip Planner submit error: ' . $e->getMessage());
-        $form_error = 'Something went wrong. Please try again.';
+        error_log('Trip Planner error trace: ' . $e->getTraceAsString());
+        
+        // Show detailed error in development
+        if (defined('APP_ENV') && APP_ENV === 'local') {
+            $form_error = 'Error: ' . $e->getMessage();
+        } else {
+            $form_error = 'Something went wrong. Please try again.';
+        }
     }
 }
 
@@ -136,6 +165,17 @@ require 'header.php';
                 </div>
 
                 <script>
+                // Send emails in background via AJAX (non-blocking)
+                <?php if (isset($_GET['id'])): ?>
+                fetch('<?php echo BASE_PATH; ?>/send-pending-emails.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: 'id=<?php echo (int)$_GET['id']; ?>'
+                }).catch(function(e) {
+                    console.log('Background email sending initiated');
+                });
+                <?php endif; ?>
+                
                 function createConfetti() {
                     const container = document.getElementById('confetti-container');
                     const colors = ['#ec5b13', '#ff8c42', '#34d399', '#3b82f6', '#f59e0b'];
@@ -481,6 +521,11 @@ require 'header.php';
                                    class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>
                         </div>
                         <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Email Address</label>
+                            <input name="email" type="email" required placeholder="john@example.com"
+                                   class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
                             <label class="text-xs font-bold uppercase tracking-wider text-slate-500">WhatsApp / Phone</label>
                             <input name="phone" type="tel" required placeholder="+91 00000 00000"
                                    class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>

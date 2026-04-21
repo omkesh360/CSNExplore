@@ -37,7 +37,7 @@ include 'header.php';
                     <label class="text-xs font-bold text-slate-700 uppercase tracking-widest px-1">Email Address</label>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
-                        <input type="email" id="email" required placeholder="name@example.com"
+                        <input type="email" id="email" required placeholder="" autocomplete="off"
                                class="w-full bg-white border-2 border-slate-100 rounded-2xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all"/>
                     </div>
                 </div>

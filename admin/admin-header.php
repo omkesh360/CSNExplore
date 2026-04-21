@@ -37,7 +37,8 @@ tailwind.config = {
             primary: '#ec5b13', 
             'primary-dark': '#c94d0e',
             'admin-bg': '#f8fafc',
-            'sidebar-bg': '#ffffff'
+            'sidebar-bg': '#0f172a',
+            'header-bg': '#1e293b'
         },
         fontFamily: { 
             sans: ['Inter','sans-serif']
@@ -48,14 +49,53 @@ tailwind.config = {
 <style>
 body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
 .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
-.sidebar-link { transition: all 0.2s; }
-.sidebar-link.active { background: #f1f5f9; color: #ec5b13; }
-.sidebar-link.active .material-symbols-outlined { color: #ec5b13; }
-.glass-header { background: #ffffff; border-bottom: 1px solid #e2e8f0; }
-.admin-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
-.custom-scrollbar::-webkit-scrollbar { width: 6px; }
-.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+/* Sidebar Links - Instant transitions */
+.sidebar-link { 
+    transition: background 0.1s, color 0.1s; 
+    color: rgba(255,255,255,0.8);
+}
+.sidebar-link:hover { 
+    background: rgba(255,255,255,0.1); 
+    color: white;
+}
+.sidebar-link.active { 
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border-left: 3px solid #60a5fa;
+    font-weight: 600;
+}
+.sidebar-link.active .material-symbols-outlined { color: white; }
+
+/* Scrollbar - Minimal */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { 
+    background: rgba(255,255,255,0.2); 
+    border-radius: 10px; 
+}
+
+/* Cards - No shadow for performance */
+.admin-card { 
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+/* Fast animations */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in {
+    animation: slideIn 0.15s ease-out;
+}
+
+/* Hardware acceleration */
+#sidebar, #sidebar-overlay, .admin-card {
+    will-change: transform;
+    transform: translateZ(0);
+}
 </style>
 <?php if (!empty($extra_head)) echo $extra_head; ?>
 </head>
@@ -75,150 +115,168 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 </script>
 
 <div class="flex h-screen overflow-hidden bg-admin-bg">
+<!-- ── Mobile Overlay ──────────────────────────────────────────────────── -->
+<div id="sidebar-overlay" class="hidden fixed inset-0 bg-black/50 z-40 md:hidden" onclick="toggleSidebar()"></div>
+
 <!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
-<aside id="sidebar" class="w-72 bg-white border-r border-slate-200 flex flex-col shrink-0 z-30">
+<aside id="sidebar" class="fixed md:relative w-72 bg-sidebar-bg flex flex-col shrink-0 z-50 h-full -translate-x-full md:translate-x-0 transition-transform duration-150 ease-out shadow-2xl">
     <!-- Logo -->
-    <div class="h-20 flex items-center gap-3 px-6 border-b border-slate-50">
-        <img src="../images/travelhub.png" alt="CSNExplore" class="h-10 object-contain shrink-0"/>
-        <button id="sidebar-close" class="ml-auto md:hidden text-slate-400">
+    <div class="h-16 flex items-center gap-3 px-4 border-b border-white/10 shrink-0">
+        <img src="../images/travelhub.png" alt="CSNExplore" class="h-8 object-contain shrink-0 brightness-0 invert"/>
+        <button id="sidebar-close" class="ml-auto md:hidden text-white/60 hover:text-white p-2" onclick="toggleSidebar()">
             <span class="material-symbols-outlined text-xl">close</span>
         </button>
     </div>
 
     <!-- Nav -->
-    <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1.5 custom-scrollbar">
+    <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
         <?php
         $nav = [
             ['href'=>'dashboard.php', 'icon'=>'grid_view',       'label'=>'Dashboard',    'key'=>'dashboard'],
             ['href'=>'listings.php',  'icon'=>'database',        'label'=>'Listings',     'key'=>'listings'],
             ['href'=>'bookings.php',  'icon'=>'calendar_today',  'label'=>'Bookings',     'key'=>'bookings',  'badge'=>true],
             ['href'=>'trip-requests.php','icon'=>'flight_takeoff','label'=>'Trip Planner', 'key'=>'trip-requests'],
-            ['href'=>'regenerate-pages.php', 'icon'=>'refresh',  'label'=>'Regenerate',   'key'=>'regenerate'],
-            ['href'=>'blogs.php',     'icon'=>'article',          'label'=>'Our Blogs',    'key'=>'blogs'],
+            ['href'=>'blogs.php',     'icon'=>'article',          'label'=>'Blogs',        'key'=>'blogs'],
             ['href'=>'gallery.php',   'icon'=>'photo_library',    'label'=>'Gallery',      'key'=>'gallery'],
-            ['href'=>'vendors.php',   'icon'=>'store',           'label'=>'Vendors',      'key'=>'vendors'],
             ['href'=>'users.php',     'icon'=>'group',           'label'=>'Users',        'key'=>'users'],
-            ['href'=>'content.php',   'icon'=>'edit_note',        'label'=>'Page Content', 'key'=>'content'],
+            ['href'=>'content.php',   'icon'=>'edit_note',        'label'=>'Content',      'key'=>'content'],
         ];
         foreach ($nav as $n):
             $active = ($admin_page === $n['key']) ? 'active' : '';
         ?>
         <a href="<?php echo $n['href']; ?>"
-           class="sidebar-link <?php echo $active; ?> flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 group">
-            <span class="material-symbols-outlined text-[20px]"><?php echo $n['icon']; ?></span>
+           class="sidebar-link <?php echo $active; ?> flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium group">
+            <span class="material-symbols-outlined text-[18px]"><?php echo $n['icon']; ?></span>
             <span class="flex-1"><?php echo $n['label']; ?></span>
             <?php if (!empty($n['badge'])): ?>
-            <span id="sidebar-pending-badge" class="hidden bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
+            <span id="sidebar-pending-badge" class="hidden bg-primary text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full"></span>
             <?php endif; ?>
         </a>
         <?php endforeach; ?>
     </nav>
 
     <!-- User Profile -->
-    <div class="mx-4 mb-6 p-4 bg-slate-50/80 border border-slate-100 rounded-3xl">
-        <div class="flex items-center gap-3 mb-4">
+    <div class="mx-3 mb-4 p-3 bg-white/10 border border-white/20 rounded-xl shrink-0">
+        <div class="flex items-center gap-2 mb-3">
             <div class="relative">
-                <div class="w-10 h-10 bg-white border-2 border-primary/20 rounded-2xl flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+                <div class="w-9 h-9 bg-white/20 border-2 border-white/30 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-white text-lg">account_circle</span>
                 </div>
-                <div class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></div>
+                <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-sidebar-bg rounded-full"></div>
             </div>
-            <div class="min-w-0">
-                <p id="admin-name" class="text-[13px] font-bold text-slate-900 truncate">Admin</p>
-                <p id="admin-email" class="text-[10px] text-slate-400 truncate tracking-tight">admin@csnexplore.com</p>
+            <div class="min-w-0 flex-1">
+                <p id="admin-name" class="text-xs font-bold text-white truncate">Admin</p>
+                <p id="admin-email" class="text-[9px] text-white/60 truncate">admin@csnexplore.com</p>
             </div>
         </div>
         <button onclick="adminLogout()"
-                class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-red-500 hover:bg-red-50 hover:border-red-100 rounded-2xl transition-all font-bold text-xs shadow-sm">
-            <span class="material-symbols-outlined text-base">logout</span> Sign Out
+                class="w-full flex items-center justify-center gap-2 px-3 py-2 bg-white/10 border border-white/20 text-white hover:bg-white/20 rounded-xl transition-all font-bold text-xs">
+            <span class="material-symbols-outlined text-sm">logout</span> Sign Out
         </button>
     </div>
 </aside>
 
 <!-- ── Main ─────────────────────────────────────────────────────────────── -->
-<div class="flex-1 flex flex-col overflow-hidden relative">
+<div class="flex-1 flex flex-col overflow-hidden relative w-full">
     <!-- Top bar -->
-    <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-20">
-        <div class="flex items-center gap-4">
-            <button id="sidebar-toggle" class="md:hidden text-slate-500 hover:text-slate-700">
+    <header class="h-14 md:h-16 bg-header-bg shadow-md flex items-center justify-between px-4 md:px-6 z-20 shrink-0">
+        <div class="flex items-center gap-3">
+            <button id="sidebar-toggle" class="md:hidden text-white/80 hover:text-white p-2 -ml-2 transition-colors" onclick="toggleSidebar()">
                 <span class="material-symbols-outlined">menu</span>
             </button>
-            <h1 class="text-base font-bold text-slate-900"><?php echo htmlspecialchars($admin_title); ?></h1>
+            <h1 class="text-sm md:text-base font-bold text-white truncate"><?php echo htmlspecialchars($admin_title); ?></h1>
         </div>
         
-        <div class="flex items-center gap-4">
-            <div class="hidden lg:flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full border border-green-100">
-                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="text-[10px] font-bold">System Online</span>
+        <div class="flex items-center gap-2 md:gap-4">
+            <div class="hidden sm:flex items-center gap-1.5 px-2 md:px-3 py-1 bg-green-500/20 text-green-300 rounded-full border border-green-400/30">
+                <div class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="text-[9px] md:text-[10px] font-bold">Online</span>
             </div>
 
-            <div class="h-6 w-px bg-slate-200"></div>
+            <div class="hidden sm:block h-4 md:h-6 w-px bg-white/20"></div>
 
             <a href="../index.php" target="_blank"
-               class="text-xs font-semibold text-slate-500 hover:text-primary transition-all flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-base">open_in_new</span> View Site
+               class="text-[10px] md:text-xs font-semibold text-white/70 hover:text-white transition-all flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm md:text-base">open_in_new</span> 
+                <span class="hidden sm:inline">View Site</span>
             </a>
             
-            <div id="pending-badge" class="hidden items-center gap-1.5 bg-orange-50 text-primary text-[10px] font-bold px-3 py-1.5 rounded-full border border-primary/10">
-                <span class="material-symbols-outlined text-sm">notifications</span>
-                <span id="pending-count">0</span> PENDING
+            <div id="pending-badge" class="hidden items-center gap-1 md:gap-1.5 bg-orange-500/20 text-orange-300 rounded-full border border-orange-400/30 text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-1 md:py-1.5">
+                <span class="material-symbols-outlined text-xs md:text-sm">notifications</span>
+                <span id="pending-count">0</span>
             </div>
         </div>
     </header>
 
 <script>
-// API helper - moved to header to ensure availability before inline scripts
+// API helper - FAST with minimal logging
 async function api(url, options = {}) {
     try {
-        console.log('[API] Calling:', url, options);
         options.headers = options.headers || {};
         options.headers['Content-Type'] = 'application/json';
         
-        // Only add Authorization header if token exists
         if (window._adminToken) {
             options.headers['Authorization'] = 'Bearer ' + window._adminToken;
         }
         
         var res = await fetch(url, options);
-        console.log('[API] Response status:', res.status, res.statusText);
         
         if (res.status === 401 || res.status === 403) { 
-            console.error('[API] Unauthorized, logging out');
             adminLogout(); 
             return null; 
         }
         
-        // Check if response is JSON
         var contentType = res.headers.get('content-type');
-        console.log('[API] Content-Type:', contentType);
         
         if (contentType && contentType.includes('application/json')) {
-            var data = await res.json();
-            console.log('[API] Response data:', data);
-            return data;
+            return await res.json();
         } else {
-            var text = await res.text();
-            console.error('[API] Invalid response type:', contentType);
-            console.error('[API] Response text:', text.substring(0, 500));
+            console.error('[API] Invalid response type');
             return null;
         }
     } catch (error) {
-        console.error('[API] Exception:', error);
+        console.error('[API] Error:', error.message);
         return null;
     }
 }
 
-// Toast - moved to header to ensure availability before inline scripts
+// Toast - FAST
 function showAdminToast(msg, type) {
-    console.log('[Toast]', type || 'info', ':', msg);
     var t = document.createElement('div');
     var bg = type === 'error' ? 'bg-red-600' : 'bg-slate-900';
-    t.className = 'fixed bottom-6 right-6 ' + bg + ' text-white text-sm px-5 py-3 rounded-2xl shadow-xl z-[200]';
+    t.className = 'fixed bottom-4 right-4 ' + bg + ' text-white text-xs md:text-sm px-4 py-2 rounded-lg shadow-xl z-[200]';
     t.textContent = msg;
     document.body.appendChild(t);
-    setTimeout(function(){ t.remove(); }, 2800);
+    setTimeout(function(){ t.remove(); }, 2500);
 }
+
+// Mobile sidebar toggle - INSTANT
+function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebar-overlay');
+    var isOpen = !sidebar.classList.contains('-translate-x-full');
+    
+    if (isOpen) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+    } else {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+    }
+}
+
+// Close sidebar on window resize to desktop
+var resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        if (window.innerWidth >= 768) {
+            document.getElementById('sidebar').classList.remove('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+        }
+    }, 100);
+});
 </script>
 
     <!-- Page content -->
-    <main class="flex-1 overflow-y-auto p-6">
+    <main class="flex-1 overflow-y-auto p-4 md:p-6 w-full">

@@ -87,13 +87,13 @@ require 'header.php';
                         <label for="first-name" class="text-xs font-bold text-slate-700 ml-1 uppercase tracking-wider">First Name</label>
                         <input id="first-name" name="first_name" type="text" required
                                class="block w-full px-4 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
-                               placeholder="John"/>
+                               placeholder=""/>
                     </div>
                     <div class="space-y-1">
                         <label for="last-name" class="text-xs font-bold text-slate-700 ml-1 uppercase tracking-wider">Last Name</label>
                         <input id="last-name" name="last_name" type="text" required
                                class="block w-full px-4 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
-                               placeholder="Doe"/>
+                               placeholder=""/>
                     </div>
                 </div>
 
@@ -103,9 +103,9 @@ require 'header.php';
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">alternate_email</span>
                         </span>
-                        <input id="email" name="email" type="email" autocomplete="email" required
+                        <input id="email" name="email" type="email" autocomplete="off" required
                                class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
-                               placeholder="john@example.com"/>
+                               placeholder=""/>
                     </div>
                 </div>
 
@@ -115,9 +115,9 @@ require 'header.php';
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">phone</span>
                         </span>
-                        <input id="phone" name="phone" type="tel" autocomplete="tel"
+                        <input id="phone" name="phone" type="tel" autocomplete="off"
                                class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
-                               placeholder="+91 XXXXX XXXXX"/>
+                               placeholder=""/>
                     </div>
                 </div>
 
@@ -127,9 +127,9 @@ require 'header.php';
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-[20px] text-slate-400 group-focus-within:text-primary transition-colors">lock</span>
                         </span>
-                        <input id="password" name="password" type="password" required minlength="8"
+                        <input id="password" name="password" type="password" autocomplete="off" required minlength="8"
                                class="block w-full pl-12 pr-10 py-3 border border-slate-200 rounded-xl bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all shadow-sm"
-                               placeholder="Min. 8 characters"/>
+                               placeholder=""/>
                         <button type="button" id="toggle-password"
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 transition-colors">
                             <span class="material-symbols-outlined text-[20px]">visibility</span>

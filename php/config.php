@@ -15,12 +15,28 @@ if (file_exists(__DIR__ . '/../.env')) {
         if (strpos(trim($line), '#') === 0) continue;
         if (strpos($line, '=') === false) continue;
         list($key, $value) = explode('=', $line, 2);
-        putenv(trim($key) . '=' . trim($value));
+        $key   = trim($key);
+        $value = trim($value);
+        // Strip surrounding quotes (single or double)
+        if (strlen($value) >= 2 && (
+            ($value[0] === '"'  && $value[-1] === '"') ||
+            ($value[0] === "'"  && $value[-1] === "'")
+        )) {
+            $value = substr($value, 1, -1);
+        }
+        putenv($key . '=' . $value);
     }
 }
 
+// Define APP_ENV if not set
+if (!defined('APP_ENV')) {
+    define('APP_ENV', getenv('APP_ENV') ?: 'production');
+}
+
 define('JWT_SECRET', getenv('JWT_SECRET') ?: 'csnexplore_secure_jwt_2025_!@#$%');
-define('ADMIN_EMAIL', 'travelhubadmin@gmail.com');
+define('ADMIN_EMAIL', getenv('ADMIN_EMAIL') ?: 'travelhubadmin@gmail.com');
+define('CONTACT_PHONE', getenv('CONTACT_PHONE') ?: '+91-8600968888');
+define('SUPPORT_EMAIL', getenv('SUPPORT_EMAIL') ?: 'supportcsnexplore@gmail.com');
 
 // MailerLite Email Configuration
 define('MAILERLITE_API_KEY', getenv('MAILERLITE_API_KEY') ?: '');
@@ -29,8 +45,8 @@ define('MAILERLITE_FROM_NAME', getenv('MAILERLITE_FROM_NAME') ?: 'CSN Explore');
 define('ADMIN_NOTIFICATION_EMAIL', getenv('ADMIN_NOTIFICATION_EMAIL') ?: 'supportcsnexplore@gmail.com');
 
 // Cloudflare Turnstile
-define('TURNSTILE_SITE_KEY',   '0x4AAAAAACwv8-Es__nv5t6c');
-define('TURNSTILE_SECRET_KEY', '0x4AAAAAACwv86YKoPIGp89MIJ-yltIRW2g');
+define('TURNSTILE_SITE_KEY',   getenv('TURNSTILE_SITE_KEY')   ?: '');
+define('TURNSTILE_SECRET_KEY', getenv('TURNSTILE_SECRET_KEY') ?: '');
 
 // SMTP Configuration for PHPMailer
 define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
@@ -72,6 +88,11 @@ function getDB() {
 
 function sanitize($val) {
     return htmlspecialchars(strip_tags(trim((string)$val)), ENT_QUOTES, 'UTF-8');
+}
+
+// Consistent HTML escaping wrapper
+function esc($val) {
+    return htmlspecialchars((string)$val, ENT_QUOTES, 'UTF-8');
 }
 
 // Dynamic Base Path Detection

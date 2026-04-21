@@ -221,6 +221,147 @@ class EmailService {
     }
     
     /**
+     * Send trip request emails (user confirmation + admin notification)
+     * 
+     * @param int $tripRequestId The trip request record ID
+     * @return array ['user_sent' => bool, 'admin_sent' => bool, 'errors' => array]
+     */
+    public static function sendTripRequestEmails(int $tripRequestId): array {
+        $result = [
+            'user_sent' => false,
+            'admin_sent' => false,
+            'errors' => []
+        ];
+        
+        try {
+            // Fetch complete trip request record from database
+            $db = getDB();
+            $tripRequest = $db->fetchOne("SELECT * FROM trip_requests WHERE id = ?", [$tripRequestId]);
+            
+            if (!$tripRequest) {
+                $error = "Trip request not found: ID $tripRequestId";
+                self::logError($error, ['trip_request_id' => $tripRequestId]);
+                $result['errors'][] = $error;
+                return $result;
+            }
+            
+            // Send user confirmation email
+            $result['user_sent'] = self::sendTripRequestUserConfirmation($tripRequest);
+            
+            // Send admin notification email
+            $result['admin_sent'] = self::sendTripRequestAdminNotification($tripRequest);
+            
+        } catch (Exception $e) {
+            $error = "Failed to send trip request emails: " . $e->getMessage();
+            self::logError($error, [
+                'trip_request_id' => $tripRequestId,
+                'exception' => get_class($e)
+            ]);
+            $result['errors'][] = $error;
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Send user confirmation email for trip request
+     * 
+     * @param array $tripRequest Trip request record data
+     * @return bool Success status
+     */
+    private static function sendTripRequestUserConfirmation(array $tripRequest): bool {
+        try {
+            // Validate email address
+            if (empty($tripRequest['email']) || !filter_var($tripRequest['email'], FILTER_VALIDATE_EMAIL)) {
+                self::logError("Invalid email for trip request", [
+                    'trip_request_id' => $tripRequest['id'],
+                    'email' => $tripRequest['email'] ?? 'empty'
+                ]);
+                return false;
+            }
+            
+            // Render email template
+            $htmlContent = self::renderTemplate('trip-request-user', $tripRequest);
+            
+            if ($htmlContent === false) {
+                self::logError("Failed to render trip request user template", [
+                    'trip_request_id' => $tripRequest['id']
+                ]);
+                return false;
+            }
+            
+            // Send email using PHPMailer
+            $mail = self::createMailer();
+            $mail->addAddress($tripRequest['email'], $tripRequest['full_name']);
+            $mail->Subject = 'Trip Request Received - CSN Explore';
+            $mail->Body = $htmlContent;
+            $mail->AltBody = "Hi {$tripRequest['full_name']},\n\nWe received your trip request! Our local experts will contact you within 2 hours.\n\nThank you,\nCSN Explore Team";
+            
+            if (!$mail->send()) {
+                self::logError("Failed to send trip request user email", [
+                    'trip_request_id' => $tripRequest['id'],
+                    'email' => $tripRequest['email'],
+                    'error' => $mail->ErrorInfo
+                ]);
+                return false;
+            }
+            
+            return true;
+            
+        } catch (Exception $e) {
+            self::logError("Exception in sendTripRequestUserConfirmation", [
+                'trip_request_id' => $tripRequest['id'],
+                'error' => $e->getMessage()
+            ]);
+            return false;
+        }
+    }
+    
+    /**
+     * Send admin notification email for trip request
+     * 
+     * @param array $tripRequest Trip request record data
+     * @return bool Success status
+     */
+    private static function sendTripRequestAdminNotification(array $tripRequest): bool {
+        try {
+            // Render email template
+            $htmlContent = self::renderTemplate('trip-request-admin', $tripRequest);
+            
+            if ($htmlContent === false) {
+                self::logError("Failed to render trip request admin template", [
+                    'trip_request_id' => $tripRequest['id']
+                ]);
+                return false;
+            }
+            
+            // Send email using PHPMailer
+            $mail = self::createMailer();
+            $mail->addAddress(ADMIN_NOTIFICATION_EMAIL, 'CSN Explore Admin');
+            $mail->Subject = "New Trip Request #{$tripRequest['id']} - {$tripRequest['full_name']}";
+            $mail->Body = $htmlContent;
+            $mail->AltBody = "New trip request from {$tripRequest['full_name']}\nPhone: {$tripRequest['phone']}\nEmail: {$tripRequest['email']}";
+            
+            if (!$mail->send()) {
+                self::logError("Failed to send trip request admin email", [
+                    'trip_request_id' => $tripRequest['id'],
+                    'error' => $mail->ErrorInfo
+                ]);
+                return false;
+            }
+            
+            return true;
+            
+        } catch (Exception $e) {
+            self::logError("Exception in sendTripRequestAdminNotification", [
+                'trip_request_id' => $tripRequest['id'],
+                'error' => $e->getMessage()
+            ]);
+            return false;
+        }
+    }
+    
+    /**
      * Send email verification link to newly registered user
      */
     public static function sendVerificationEmail(string $email, string $name, string $verifyLink): bool {
