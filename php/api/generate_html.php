@@ -948,13 +948,14 @@ foreach ($types as $type) {
         $html .= '
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
-  <!-- ── Full-width hero image ── -->
-  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? '#ecf5ff' : '#0f172a' ).';">
-    <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src=\'../images/travelhub.png\'" style="'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? 'object-fit:contain;padding:48px 32px;' : '' ).'"/>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
+  <!-- ── Full-width hero banner (Reduced height & Blurred) ── -->
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:240px;background-color:'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? '#ecf5ff' : '#0f172a' ).';">
+    <!-- Blurred background layer -->
+    <div data-blur="1" style="position:absolute;inset:0;background-image:url(\''.htmlspecialchars($resolvedGalleryImages[0]).'\');background-size:cover;background-position:center;filter:blur(24px) brightness(0.45);transform:scale(1.1);overflow:hidden;border-radius:0;"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" style="z-index:3;overflow:hidden;"></div>
 
     <!-- Breadcrumb top-left -->
-    <div class="absolute top-0 left-0 right-0 pt-5 px-6">
+    <div class="absolute top-0 left-0 right-0 pt-5 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-white/70 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
@@ -965,7 +966,7 @@ foreach ($types as $type) {
     </div>
 
     <!-- Title + rating bottom-left -->
-    <div class="absolute bottom-0 left-0 right-0 pb-6 px-6">
+    <div class="absolute bottom-0 left-0 right-0 pb-6 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto">
         '.(!empty($item['badge']) ? '<div class="mb-2"><span class="inline-block bg-[#ec5b13] text-white text-xs font-bold px-3 py-1 rounded-full">'.htmlspecialchars($item['badge']).'</span></div>' : '').'
         <h1 class="text-white text-2xl md:text-4xl font-serif font-black leading-tight mb-2">'.htmlspecialchars($item['name']).'</h1>
@@ -980,19 +981,7 @@ foreach ($types as $type) {
       </div>
     </div>
 
-    <!-- Prev / Next arrows -->
-    '.( count($resolvedGalleryImages) > 1 ? '
-    <button onclick="slidePrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_left</span>
-    </button>
-    <button onclick="slideNext()" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10">
-      <span class="material-symbols-outlined text-xl">chevron_right</span>
-    </button>
-    <div class="absolute bottom-6 right-6 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-1.5">
-      <span class="material-symbols-outlined text-sm">photo_library</span>
-      <span id="slide-current">1</span> / '.count($resolvedGalleryImages).'
-    </div>' : '' ).'
-    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 '.( count($resolvedGalleryImages) > 1 ? 'right-28' : 'right-6' ).' w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
+    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-6 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all backdrop-blur-sm border border-white/10" style="z-index:15;" title="View fullscreen">
       <span class="material-symbols-outlined text-base">zoom_out_map</span>
     </button>
   </div>
@@ -1013,6 +1002,25 @@ foreach ($types as $type) {
 
       <!-- ── LEFT: Details (2/3) ── -->
       <div class="lg:col-span-2 space-y-5">
+
+        <!-- ── Main Image Display ── -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
+           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; '.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? 'object-fit:contain;background:#ecf5ff;' : 'object-fit:cover;' ).'"/>
+           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+           
+           '.( count($resolvedGalleryImages) > 1 ? '
+           <div class="absolute bottom-4 right-4 flex gap-2">
+             <button onclick="slidePrev()" class="w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all">
+               <span class="material-symbols-outlined">chevron_left</span>
+             </button>
+             <button onclick="slideNext()" class="w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-md border border-white/10 transition-all">
+               <span class="material-symbols-outlined">chevron_right</span>
+             </button>
+           </div>
+           <div class="absolute top-4 right-4 bg-black/40 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+             <span id="slide-current">1</span> / '.count($resolvedGalleryImages).'
+           </div>' : '').'
+        </div>
 
         <!-- Quick specs bar -->
         '.(trim($extraMeta) ? '
@@ -1370,11 +1378,15 @@ function slideTo(idx) {
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update blurred background layer
+    var bgLayer = wrap ? wrap.querySelector("div[style*=\"filter:blur\"]") : null;
+    if (bgLayer) bgLayer.style.backgroundImage = "url(\'" + _slideImages[_slideIndex] + "\')";
     // Update bg + object-fit for PNG images
     var isPng = _slideIsPng[_slideIndex] || false;
     if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
     img.style.objectFit = isPng ? "contain" : "cover";
-    img.style.padding = isPng ? "48px 32px" : "0";
+    img.style.background = isPng ? "#ecf5ff" : "";
+    img.style.padding = "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state
@@ -1396,7 +1408,7 @@ document.addEventListener("keydown", function(e) {
 
 // Touch swipe
 (function() {
-  var el = document.getElementById("slide-main");
+  var el = document.getElementById("hero-img-wrap");
   if (!el) return;
   var startX = 0;
   el.addEventListener("touchstart", function(e) { startX = e.touches[0].clientX; }, {passive:true});

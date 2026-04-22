@@ -552,13 +552,14 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
-  <!-- ── Full-width hero image ── -->
-  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:420px;background-color:#0f172a;">
-    <img id="slide-main" src="../images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp" alt="Honda Grazia" class="w-full h-full object-cover transition-opacity duration-300" onerror="this.src='../images/travelhub.png'" style=""/>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30"></div>
+  <!-- ── Full-width hero banner (Reduced height & Blurred) ── -->
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:240px;background-color:#0f172a;">
+    <!-- Blurred background layer -->
+    <div data-blur="1" style="position:absolute;inset:0;background-image:url('../images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp');background-size:cover;background-position:center;filter:blur(24px) brightness(0.45);transform:scale(1.1);overflow:hidden;border-radius:0;"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" style="z-index:3;overflow:hidden;"></div>
 
     <!-- Breadcrumb top-left -->
-    <div class="absolute top-0 left-0 right-0 pt-5 px-6">
+    <div class="absolute top-0 left-0 right-0 pt-5 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-white/70 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
@@ -569,7 +570,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
     </div>
 
     <!-- Title + rating bottom-left -->
-    <div class="absolute bottom-0 left-0 right-0 pb-6 px-6">
+    <div class="absolute bottom-0 left-0 right-0 pb-6 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto">
         
         <h1 class="text-white text-2xl md:text-4xl font-serif font-black leading-tight mb-2">Honda Grazia</h1>
@@ -584,9 +585,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
       </div>
     </div>
 
-    <!-- Prev / Next arrows -->
-    
-    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-6 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all z-10 backdrop-blur-sm border border-white/10" title="View fullscreen">
+    <button onclick="openLightbox(_slideIndex)" class="absolute bottom-6 right-6 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-all backdrop-blur-sm border border-white/10" style="z-index:15;" title="View fullscreen">
       <span class="material-symbols-outlined text-base">zoom_out_map</span>
     </button>
   </div>
@@ -600,6 +599,14 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 
       <!-- ── LEFT: Details (2/3) ── -->
       <div class="lg:col-span-2 space-y-5">
+
+        <!-- ── Main Image Display ── -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
+           <img id="slide-main" src="../images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp" alt="Honda Grazia" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src='../images/travelhub.png'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+           
+           
+        </div>
 
         <!-- Quick specs bar -->
         
@@ -946,11 +953,15 @@ function slideTo(idx) {
   setTimeout(function() {
     img.src = _slideImages[_slideIndex];
     img.style.opacity = "1";
+    // Update blurred background layer
+    var bgLayer = wrap ? wrap.querySelector("div[style*=\"filter:blur\"]") : null;
+    if (bgLayer) bgLayer.style.backgroundImage = "url('" + _slideImages[_slideIndex] + "')";
     // Update bg + object-fit for PNG images
     var isPng = _slideIsPng[_slideIndex] || false;
     if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
     img.style.objectFit = isPng ? "contain" : "cover";
-    img.style.padding = isPng ? "48px 32px" : "0";
+    img.style.background = isPng ? "#ecf5ff" : "";
+    img.style.padding = "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;
   // Update thumb active state
@@ -972,7 +983,7 @@ document.addEventListener("keydown", function(e) {
 
 // Touch swipe
 (function() {
-  var el = document.getElementById("slide-main");
+  var el = document.getElementById("hero-img-wrap");
   if (!el) return;
   var startX = 0;
   el.addEventListener("touchstart", function(e) { startX = e.touches[0].clientX; }, {passive:true});
