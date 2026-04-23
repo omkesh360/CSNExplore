@@ -1141,10 +1141,23 @@ foreach ($types as $type) {
           <!-- Price header -->
           <div class="bg-gradient-to-br from-[#ec5b13] to-orange-400 px-6 py-5 text-white">
             <p class="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">'.htmlspecialchars($meta['label']).' Price</p>
+            '.($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0 ? '
+            <div class="space-y-2">
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-xs font-semibold opacity-70">Self-Drive:</span>
+                <span class="text-2xl font-black">₹'.number_format((float)$price_val).'</span>
+                <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
+              </div>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-xs font-semibold opacity-70">With Driver:</span>
+                <span class="text-2xl font-black">₹'.number_format((float)($item['price_with_driver'] ?? 0)).'</span>
+                <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
+              </div>
+            </div>' : '
             <div class="flex items-baseline gap-1.5">
               '.($price_val > 0 ? '<span class="text-xs font-semibold opacity-70 mr-0.5">from</span>' : '').'<span class="text-3xl font-black">'.$price_fmt.'</span>
               '.($meta['unit'] && $price_val > 0 ? '<span class="text-sm font-semibold opacity-80">'.htmlspecialchars($meta['unit']).'</span>' : '').'
-            </div>
+            </div>').'
             <p class="text-xs opacity-70 mt-1.5 flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span>Free cancellation · No hidden charges</p>
           </div>
 
@@ -1223,6 +1236,27 @@ foreach ($types as $type) {
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Date *</label>
               <input type="date" id="b-date" required class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
             </div>').'
+            '.($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0 ? '
+            <div>
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">Rental Type *</label>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
+                  <input type="radio" name="b-driver" value="0" checked class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
+                  <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900">Self-Drive</p>
+                    <p class="text-xs text-slate-500">₹'.number_format((float)$price_val).' '.$meta['unit'].'</p>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
+                  <input type="radio" name="b-driver" value="1" class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
+                  <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900">With Driver</p>
+                    <p class="text-xs text-slate-500">₹'.number_format((float)($item['price_with_driver'] ?? 0)).' '.$meta['unit'].'</p>
+                  </div>
+                </label>
+              </div>
+              <input type="hidden" id="b-driver" value="0"/>
+            </div>' : '').'
             <div>
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Guests</label>
               <input type="number" id="b-guests" min="1" max="20" value="1" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
@@ -1695,6 +1729,12 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
         listing_id: '.(int)$item['id'].',
         listing_name: "'.addslashes($item['name']).'",
     };
+    '.($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0 ? '
+    var driverRadios = document.querySelectorAll("input[name=\"b-driver\"]");
+    if(driverRadios.length > 0) {
+        var selectedDriver = Array.from(driverRadios).find(r => r.checked);
+        if(selectedDriver) payload.with_driver = parseInt(selectedDriver.value);
+    }' : '').'
     '.($type === 'stays' ? '
     var checkin = document.getElementById("b-checkin");
     var checkout = document.getElementById("b-checkout");

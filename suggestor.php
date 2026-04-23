@@ -51,23 +51,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_plan'])) {
             
             // Process Travel Details
             $travel_mode    = sanitize($_POST['travel_mode'] ?? '');
+            $num_people     = max(1, (int)($_POST['num_people'] ?? 1));
             $travel_details = [];
             if ($travel_mode === 'Car') {
                 $travel_details[] = 'Service: ' . sanitize($_POST['car_service_type'] ?? '');
                 $travel_details[] = 'Type: '    . sanitize($_POST['car_sub_type']      ?? '');
             } elseif ($travel_mode === 'Bike') {
                 $travel_details[] = 'Type: ' . sanitize($_POST['bike_sub_type'] ?? '');
+            } elseif ($travel_mode === 'MiniBus') {
+                $travel_details[] = 'Mini Bus (group travel)';
             }
 
             $data = [
-                'full_name'      => $full_name,
-                'email'          => $email,
-                'phone'          => $phone,
-                'interests'      => implode(' | ', $interests),
-                'stay_type'      => sanitize($_POST['stay_type']   ?? ''),
-                'travel_mode'    => $travel_mode,
-                'travel_details' => implode(' | ', $travel_details),
-                'extra_notes'    => sanitize($_POST['extra_notes'] ?? ''),
+                'full_name'         => $full_name,
+                'email'             => $email,
+                'phone'             => $phone,
+                'interests'         => implode(' | ', $interests),
+                'stay_type'         => sanitize($_POST['stay_type']   ?? ''),
+                'travel_mode'       => $travel_mode,
+                'travel_details'    => implode(' | ', $travel_details),
+                'num_people'        => $num_people,
+                'car_service_type'  => $travel_mode === 'Car' ? sanitize($_POST['car_service_type'] ?? '') : null,
+                'car_sub_type'      => $travel_mode === 'Car' ? sanitize($_POST['car_sub_type'] ?? '') : null,
+                'bike_sub_type'     => $travel_mode === 'Bike' ? sanitize($_POST['bike_sub_type'] ?? '') : null,
+                'extra_notes'       => sanitize($_POST['extra_notes'] ?? ''),
             ];
             
             $cols = implode(', ', array_keys($data));
@@ -430,6 +437,31 @@ require 'header.php';
                                     </div>
                                     <div class="text-primary opacity-0 has-[:checked]:opacity-100"><span class="material-symbols-outlined">check_circle</span></div>
                                 </label>
+                                <label class="flex items-center gap-4 p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
+                                    <input type="radio" name="travel_mode" value="MiniBus" class="sr-only travel-toggle" data-target="none">
+                                    <div class="bg-white p-3 rounded-xl shadow-sm"><span class="material-symbols-outlined text-primary">airport_shuttle</span></div>
+                                    <div class="flex-1">
+                                        <div class="font-bold text-gray-900">Mini Bus</div>
+                                        <div class="text-xs text-gray-500">Groups of 10–20 people</div>
+                                    </div>
+                                    <div class="text-primary opacity-0 has-[:checked]:opacity-100"><span class="material-symbols-outlined">check_circle</span></div>
+                                </label>
+                            </div>
+
+                            <!-- Number of Travellers -->
+                            <div class="mt-6">
+                                <label class="text-xs font-black uppercase tracking-widest text-gray-400 mb-3 block text-center">Number of People Travelling</label>
+                                <div class="flex items-center justify-center gap-4">
+                                    <button type="button" onclick="changePeople(-1)"
+                                            class="w-11 h-11 rounded-full border-2 border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:border-primary hover:text-primary transition-all font-bold text-xl select-none">−</button>
+                                    <div class="text-center min-w-[80px]">
+                                        <span id="people-display" class="text-3xl font-black text-slate-900">1</span>
+                                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mt-0.5">person(s)</p>
+                                    </div>
+                                    <button type="button" onclick="changePeople(1)"
+                                            class="w-11 h-11 rounded-full border-2 border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:border-primary hover:text-primary transition-all font-bold text-xl select-none">+</button>
+                                    <input type="hidden" name="num_people" id="num-people-input" value="1">
+                                </div>
                             </div>
 
                             <!-- Sub-options for Travel -->
@@ -454,7 +486,7 @@ require 'header.php';
                                 <!-- Vehicle Type Selection -->
                                 <div>
                                     <label class="text-xs font-black uppercase tracking-widest text-gray-400 mb-3 block text-center">Select Vehicle Type</label>
-                                    <div class="grid grid-cols-3 gap-3">
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                         <label class="flex flex-col items-center p-3 rounded-xl border border-gray-200 bg-white cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
                                             <input type="radio" name="car_sub_type" value="SUV" class="sr-only">
                                             <span class="font-bold text-gray-800 text-sm">SUV</span>
@@ -469,6 +501,11 @@ require 'header.php';
                                             <input type="radio" name="car_sub_type" value="MUV" class="sr-only">
                                             <span class="font-bold text-gray-800 text-sm">MUV</span>
                                             <span class="text-[10px] text-gray-500">Ertiga/Innova</span>
+                                        </label>
+                                        <label class="flex flex-col items-center p-3 rounded-xl border border-gray-200 bg-white cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 transition-all">
+                                            <input type="radio" name="car_sub_type" value="MiniBus">
+                                            <span class="font-bold text-gray-800 text-sm">Mini Bus</span>
+                                            <span class="text-[10px] text-gray-500">10–20 seats</span>
                                         </label>
                                     </div>
                                 </div>
@@ -780,6 +817,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Number of people +/- counter
+function changePeople(delta) {
+    const input = document.getElementById('num-people-input');
+    const display = document.getElementById('people-display');
+    let val = parseInt(input.value) + delta;
+    val = Math.max(1, Math.min(50, val));
+    input.value = val;
+    display.textContent = val;
+    // Animate the number
+    display.style.transform = 'scale(1.3)';
+    display.style.color = '#ec5b13';
+    setTimeout(function(){ display.style.transform = ''; display.style.color = ''; }, 200);
+}
 </script>
 
 <?php require 'footer.php'; ?>

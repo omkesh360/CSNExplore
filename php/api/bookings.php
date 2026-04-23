@@ -76,6 +76,7 @@ try {
             'service_type'     => sanitize($data['service_type'] ?? ''),
             'listing_id'       => (int)($data['listing_id'] ?? 0) ?: null,
             'listing_name'     => sanitize($data['listing_name'] ?? ''),
+            'with_driver'      => (int)($data['with_driver'] ?? 0),
             'notes'            => sanitize($data['notes'] ?? ''),
             'status'           => 'pending',
         ]);

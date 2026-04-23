@@ -179,7 +179,7 @@ var priceLabels = {
 
 var extraFieldsDef = {
     stays:       [['f-room_type','Room Type','text'],['f-max_guests','Max Guests','number'],['f-amenities','Amenities (comma-sep)','text']],
-    cars:        [['f-fuel_type','Fuel Type','text'],['f-transmission','Transmission','text'],['f-seats','Seats','number']],
+    cars:        [['f-fuel_type','Fuel Type','text'],['f-transmission','Transmission','text'],['f-seats','Seats','number'],['f-driver_available','Driver Available','checkbox'],['f-price_with_driver','Price With Driver (₹)','number']],
     bikes:       [['f-fuel_type','Fuel Type','text'],['f-cc','CC','text']],
     restaurants: [['f-cuisine','Cuisine','text']],
     attractions: [['f-opening_hours','Opening Hours','text'],['f-best_time','Best Time to Visit','text']],
@@ -271,8 +271,15 @@ function buildExtraFields(cat) {
     container.innerHTML = '';
     (extraFieldsDef[cat] || []).forEach(function(f) {
         var div = document.createElement('div');
-        div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
-            '<input id="' + f[0] + '" type="' + f[2] + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>';
+        if (f[2] === 'checkbox') {
+            div.innerHTML = '<div class="flex items-center gap-2">' +
+                '<input id="' + f[0] + '" type="checkbox" class="w-4 h-4 text-primary border-slate-300 rounded focus:ring-primary/30 focus:ring-2 focus:ring-offset-0"/>' +
+                '<label for="' + f[0] + '" class="block text-xs font-semibold text-slate-600">' + f[1] + '</label>' +
+            '</div>';
+        } else {
+            div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
+                '<input id="' + f[0] + '" type="' + f[2] + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>';
+        }
         container.appendChild(div);
     });
     document.getElementById('price-label').textContent = priceLabels[cat] || 'Price';
@@ -322,8 +329,12 @@ async function openEditModal(id) {
         if (!el) return;
         var key = f[0].replace('f-','');
         var val = item[key];
-        if (Array.isArray(val)) val = val.join(', ');
-        el.value = val || '';
+        if (f[2] === 'checkbox') {
+            el.checked = val == 1;
+        } else {
+            if (Array.isArray(val)) val = val.join(', ');
+            el.value = val || '';
+        }
     });
     document.getElementById('form-error').classList.add('hidden');
     document.getElementById('listing-modal').classList.remove('hidden');
@@ -402,9 +413,14 @@ document.getElementById('listing-form').addEventListener('submit', async functio
         var el = document.getElementById(f[0]);
         if (!el) return;
         var key = f[0].replace('f-','');
-        var val = el.value;
-        if (key === 'amenities' || key === 'features' || key === 'menu_highlights') {
-            val = val.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+        var val;
+        if (f[2] === 'checkbox') {
+            val = el.checked ? 1 : 0;
+        } else {
+            val = el.value;
+            if (key === 'amenities' || key === 'features' || key === 'menu_highlights') {
+                val = val.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+            }
         }
         data[key] = val;
     });

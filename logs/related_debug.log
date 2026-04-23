@@ -137,3 +137,4 @@
 2026-04-23 12:50:06 - Request: type=bikes, exclude=2
 2026-04-23 15:19:44 - Request: type=stays, exclude=2
 2026-04-23 15:26:34 - Request: type=bikes, exclude=4
+2026-04-23 16:23:15 - Request: type=cars, exclude=1

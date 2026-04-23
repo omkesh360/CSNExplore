@@ -183,6 +183,7 @@ async function openModal(id) {
             modalRow('Email Address', b.email || '—', 'mail') +
             modalRow('Booking Date', '<span class="text-slate-900 font-bold">' + (b.booking_date || b.created_at || '—') + '</span>', 'calendar_today') +
             modalRow('Guests', b.number_of_people + ' Person(s)', 'group') +
+            (b.service_type === 'cars' ? modalRow('Rental Type', b.with_driver ? 'With Driver' : 'Self-Drive', b.with_driver ? 'person' : 'directions_car') : '') +
             modalRow('Booked On', b.created_at || '—', 'history') +
             modalRow('Last Update', b.updated_at || '—', 'update') +
         '</div>' +

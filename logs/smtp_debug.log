@@ -1350,3 +1350,408 @@
 [2026-04-23 15:26:54] SERVER -> CLIENT: 250 2.1.5 Flushed d9443c01a7336-2b5fab32cfasm250934925ad.69 - gsmtp
 [2026-04-23 15:26:54] CLIENT -> SERVER: QUIT
 [2026-04-23 15:26:54] SERVER -> CLIENT: 221 2.0.0 closing connection d9443c01a7336-2b5fab32cfasm250934925ad.69 - gsmtp
+[2026-04-23 16:21:45] SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:45] CLIENT -> SERVER: EHLO localhost
+[2026-04-23 16:21:46] SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2409:40c2:8042:8644:892:dde2:c42b:d12a]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+[2026-04-23 16:21:46] CLIENT -> SERVER: STARTTLS
+[2026-04-23 16:21:46] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+[2026-04-23 16:21:46] CLIENT -> SERVER: EHLO localhost
+[2026-04-23 16:21:46] SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2409:40c2:8042:8644:892:dde2:c42b:d12a]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+[2026-04-23 16:21:46] CLIENT -> SERVER: AUTH LOGIN
+[2026-04-23 16:21:47] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+[2026-04-23 16:21:47] CLIENT -> SERVER: [credentials hidden]
+[2026-04-23 16:21:47] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+[2026-04-23 16:21:47] CLIENT -> SERVER: [credentials hidden]
+[2026-04-23 16:21:47] SERVER -> CLIENT: 235 2.7.0 Accepted
+[2026-04-23 16:21:47] CLIENT -> SERVER: MAIL FROM:<supportcsnexplore@gmail.com>
+[2026-04-23 16:21:48] SERVER -> CLIENT: 250 2.1.0 OK 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:48] CLIENT -> SERVER: RCPT TO:<impomkeshnarwade9@gmail.com>
+[2026-04-23 16:21:48] SERVER -> CLIENT: 250 2.1.5 OK 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:48] CLIENT -> SERVER: DATA
+[2026-04-23 16:21:49] SERVER -> CLIENT: 354 Go ahead 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:49] CLIENT -> SERVER: Date: Thu, 23 Apr 2026 16:21:45 +0200
+[2026-04-23 16:21:49] CLIENT -> SERVER: To: omkesh narwade <impomkeshnarwade9@gmail.com>
+[2026-04-23 16:21:49] CLIENT -> SERVER: From: CSN Explore <supportcsnexplore@gmail.com>
+[2026-04-23 16:21:49] CLIENT -> SERVER: Reply-To: CSN Explore <supportcsnexplore@gmail.com>
+[2026-04-23 16:21:49] CLIENT -> SERVER: Subject: Trip Request Received - CSN Explore
+[2026-04-23 16:21:49] CLIENT -> SERVER: Message-ID: <PJBXwQZQ4rSZxzE2hQMUKDOTkeBiTlKQojlI6jx1Q@localhost>
+[2026-04-23 16:21:49] CLIENT -> SERVER: X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+[2026-04-23 16:21:49] CLIENT -> SERVER: MIME-Version: 1.0
+[2026-04-23 16:21:49] CLIENT -> SERVER: Content-Type: multipart/alternative;
+[2026-04-23 16:21:49] CLIENT -> SERVER:  boundary="b1=_PJBXwQZQ4rSZxzE2hQMUKDOTkeBiTlKQojlI6jx1Q"
+[2026-04-23 16:21:49] CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: --b1=_PJBXwQZQ4rSZxzE2hQMUKDOTkeBiTlKQojlI6jx1Q
+[2026-04-23 16:21:49] CLIENT -> SERVER: Content-Type: text/plain; charset=us-ascii
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: Hi omkesh narwade,
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: We received your trip request! Our local experts will contact you within 2 hours.
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: Thank you,
+[2026-04-23 16:21:49] CLIENT -> SERVER: CSN Explore Team
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: --b1=_PJBXwQZQ4rSZxzE2hQMUKDOTkeBiTlKQojlI6jx1Q
+[2026-04-23 16:21:49] CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+[2026-04-23 16:21:49] CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: <!DOCTYPE html>
+[2026-04-23 16:21:49] CLIENT -> SERVER: <html lang="en">
+[2026-04-23 16:21:49] CLIENT -> SERVER: <head>
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <meta charset="UTF-8">
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <title>Trip Request Received - CSN Explore</title>
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <style>
+[2026-04-23 16:21:49] CLIENT -> SERVER:         body { margin: 0; padding: 0; background-color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         table { border-spacing: 0; border-collapse: collapse; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .wrapper { width: 100%; table-layout: fixed; background-color: #f3f4f6; padding: 40px 10px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .main { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .header { background: linear-gradient(135deg, #ec5b13 0%, #ff8e5e 100%); padding: 40px 30px; text-align: center; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .header-icon { background: rgba(255,255,255,0.2); width: 64px; height: 64px; border-radius: 50%; display: inline-block; line-height: 64px; font-size: 32px; margin-bottom: 20px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .header h1 { margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .header p { margin: 10px 0 0; font-size: 16px; color: rgba(255,255,255,0.9); }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .content { padding: 40px 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .greeting { font-size: 18px; color: #111827; font-weight: 600; margin: 0 0 15px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .message { font-size: 16px; color: #4b5563; line-height: 1.6; margin: 0 0 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .card { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 25px; margin-bottom: 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .card-title { font-size: 14px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 20px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .detail-row { width: 100%; margin-bottom: 15px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .detail-label { font-size: 15px; color: #6b7280; padding-bottom: 12px; border-bottom: 1px solid #f3f4f6; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .detail-value { font-size: 15px; color: #111827; font-weight: 600; text-align: right; padding-bottom: 12px; border-bottom: 1px solid #f3f4f6; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .timeline { background-color: #fffaf7; border-left: 4px solid #ec5b13; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .timeline-item { margin-bottom: 15px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .timeline-item:last-child { margin-bottom: 0; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .timeline-title { font-size: 15px; font-weight: 700; color: #111827; margin: 0 0 5px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .timeline-desc { font-size: 14px; color: #6b7280; margin: 0; line-height: 1.5; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .highlight-box { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .highlight-box h2 { margin: 0 0 10px; font-size: 20px; font-weight: 700; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .highlight-box p { margin: 0; font-size: 15px; opacity: 0.95; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .support { text-align: center; border-top: 1px solid #e5e7eb; padding-top: 30px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .support p { font-size: 15px; color: #4b5563; margin: 0 0 10px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .support a { color: #ec5b13; text-decoration: none; font-weight: 600; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .footer { background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .footer-logo { font-size: 16px; font-weight: 700; color: #111827; margin: 0 0 10px; letter-spacing: -0.5px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         .footer-text { font-size: 13px; color: #6b7280; margin: 0 0 5px; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         @media screen and (max-width: 600px) {
+[2026-04-23 16:21:49] CLIENT -> SERVER:             .wrapper { padding: 20px 0 !important; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:             .main { border-radius: 0 !important; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:             .header { padding: 30px 20px !important; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:             .content { padding: 30px 20px !important; }
+[2026-04-23 16:21:49] CLIENT -> SERVER:         }
+[2026-04-23 16:21:49] CLIENT -> SERVER:     </style>
+[2026-04-23 16:21:49] CLIENT -> SERVER: </head>
+[2026-04-23 16:21:49] CLIENT -> SERVER: <body>
+[2026-04-23 16:21:49] CLIENT -> SERVER:     <center class="wrapper">
+[2026-04-23 16:21:49] CLIENT -> SERVER:         <table class="main" width="100%">
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <!-- Header -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 <td class="header">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <div class="header-icon">✈️</div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <h1>Trip Request Received!</h1>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p>Request #1</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <!-- Content -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 <td class="content">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p class="greeting">Hi omkesh,</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p class="message">Thank you for choosing CSN Explore for your trip planning! We've received your personalized trip request and our local experts are excited to help you create an unforgettable experience.</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <!-- Highlight Box -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <div class="highlight-box">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <h2>🎉 We'll Contact You Soon!</h2>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <p>Our trip experts will reach out within 2 hours with a customized itinerary</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <!-- Details Card -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <div class="card">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <p class="card-title">Your Trip Preferences</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <table class="detail-row">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-label">Interests</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-value">Heritage</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-label">Stay Type</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-value">Budget</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-label" style="border:none;padding-bottom:0;">Travel Mode</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                                 <td class="detail-value" style="border:none;padding-bottom:0;">Car</td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         </table>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <!-- Timeline -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <div class="timeline">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <div class="timeline-item">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-title">1. Expert Review (Within 2 Hours)</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-desc">Our local trip experts will review your preferences and craft a personalized itinerary.</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <div class="timeline-item">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-title">2. Personal Contact</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-desc">We'll call or WhatsApp you at 8830148125 to discuss your trip details.</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <div class="timeline-item">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-title">3. Customized Plan</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                             <p class="timeline-desc">Receive a complete itinerary including hotels, cars, guides, and local recommendations—all at no extra cost!</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <!-- Support -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <div class="support">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <p>Have questions? We're here to help!</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <p><a href="tel:+918600968888">📞 +91 86009 68888</a></p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                         <p><a href="mailto:supportcsnexplore@gmail.com">✉️ supportcsnexplore@gmail.com</a></p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <!-- Footer -->
+[2026-04-23 16:21:49] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 <td class="footer">
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p class="footer-logo">CSN Explore</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p class="footer-text">Your Local Travel Experts in Chhatrapati Sambhajinagar</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                     <p class="footer-text">© 2026 CSN Explore. All rights reserved.</p>
+[2026-04-23 16:21:49] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:49] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:49] CLIENT -> SERVER:         </table>
+[2026-04-23 16:21:49] CLIENT -> SERVER:     </center>
+[2026-04-23 16:21:49] CLIENT -> SERVER: </body>
+[2026-04-23 16:21:49] CLIENT -> SERVER: </html>
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: --b1=_PJBXwQZQ4rSZxzE2hQMUKDOTkeBiTlKQojlI6jx1Q--
+[2026-04-23 16:21:49] CLIENT -> SERVER:
+[2026-04-23 16:21:49] CLIENT -> SERVER: .
+[2026-04-23 16:21:50] SERVER -> CLIENT: 250 2.0.0 OK  1776954112 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:50] CLIENT -> SERVER: RSET
+[2026-04-23 16:21:50] SERVER -> CLIENT: 250 2.1.5 Flushed 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:50] CLIENT -> SERVER: QUIT
+[2026-04-23 16:21:51] SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-3613fa8068csm7641452a91.2 - gsmtp
+[2026-04-23 16:21:51] SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:51] CLIENT -> SERVER: EHLO localhost
+[2026-04-23 16:21:51] SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2409:40c2:8042:8644:892:dde2:c42b:d12a]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+[2026-04-23 16:21:51] CLIENT -> SERVER: STARTTLS
+[2026-04-23 16:21:52] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+[2026-04-23 16:21:52] CLIENT -> SERVER: EHLO localhost
+[2026-04-23 16:21:52] SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2409:40c2:8042:8644:892:dde2:c42b:d12a]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+[2026-04-23 16:21:52] CLIENT -> SERVER: AUTH LOGIN
+[2026-04-23 16:21:52] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+[2026-04-23 16:21:52] CLIENT -> SERVER: [credentials hidden]
+[2026-04-23 16:21:53] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+[2026-04-23 16:21:53] CLIENT -> SERVER: [credentials hidden]
+[2026-04-23 16:21:53] SERVER -> CLIENT: 235 2.7.0 Accepted
+[2026-04-23 16:21:53] CLIENT -> SERVER: MAIL FROM:<supportcsnexplore@gmail.com>
+[2026-04-23 16:21:53] SERVER -> CLIENT: 250 2.1.0 OK 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:53] CLIENT -> SERVER: RCPT TO:<supportcsnexplore@gmail.com>
+[2026-04-23 16:21:54] SERVER -> CLIENT: 250 2.1.5 OK 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:54] CLIENT -> SERVER: DATA
+[2026-04-23 16:21:54] SERVER -> CLIENT: 354 Go ahead 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:54] CLIENT -> SERVER: Date: Thu, 23 Apr 2026 16:21:51 +0200
+[2026-04-23 16:21:54] CLIENT -> SERVER: To: CSN Explore Admin <supportcsnexplore@gmail.com>
+[2026-04-23 16:21:54] CLIENT -> SERVER: From: CSN Explore <supportcsnexplore@gmail.com>
+[2026-04-23 16:21:54] CLIENT -> SERVER: Reply-To: CSN Explore <supportcsnexplore@gmail.com>
+[2026-04-23 16:21:54] CLIENT -> SERVER: Subject: New Trip Request #1 - omkesh narwade
+[2026-04-23 16:21:54] CLIENT -> SERVER: Message-ID: <p3vc5RG8MDguxCyFGDmzUOmCVW9ol4kozixg8ghI@localhost>
+[2026-04-23 16:21:54] CLIENT -> SERVER: X-Mailer: PHPMailer 6.9.1 (https://github.com/PHPMailer/PHPMailer)
+[2026-04-23 16:21:54] CLIENT -> SERVER: MIME-Version: 1.0
+[2026-04-23 16:21:54] CLIENT -> SERVER: Content-Type: multipart/alternative;
+[2026-04-23 16:21:54] CLIENT -> SERVER:  boundary="b1=_p3vc5RG8MDguxCyFGDmzUOmCVW9ol4kozixg8ghI"
+[2026-04-23 16:21:54] CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: --b1=_p3vc5RG8MDguxCyFGDmzUOmCVW9ol4kozixg8ghI
+[2026-04-23 16:21:54] CLIENT -> SERVER: Content-Type: text/plain; charset=us-ascii
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: New trip request from omkesh narwade
+[2026-04-23 16:21:54] CLIENT -> SERVER: Phone: 8830148125
+[2026-04-23 16:21:54] CLIENT -> SERVER: Email: impomkeshnarwade9@gmail.com
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: --b1=_p3vc5RG8MDguxCyFGDmzUOmCVW9ol4kozixg8ghI
+[2026-04-23 16:21:54] CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+[2026-04-23 16:21:54] CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: <!DOCTYPE html>
+[2026-04-23 16:21:54] CLIENT -> SERVER: <html lang="en">
+[2026-04-23 16:21:54] CLIENT -> SERVER: <head>
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <meta charset="UTF-8">
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <title>New Trip Request - CSN Explore Admin</title>
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <style>
+[2026-04-23 16:21:54] CLIENT -> SERVER:         body { margin: 0; padding: 0; background-color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         table { border-spacing: 0; border-collapse: collapse; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .wrapper { width: 100%; table-layout: fixed; background-color: #f3f4f6; padding: 40px 10px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .main { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .header { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 40px 30px; text-align: center; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .header-icon { background: rgba(255,255,255,0.2); width: 64px; height: 64px; border-radius: 50%; display: inline-block; line-height: 64px; font-size: 32px; margin-bottom: 20px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .header h1 { margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .header p { margin: 10px 0 0; font-size: 16px; color: rgba(255,255,255,0.9); }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .content { padding: 40px 30px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .alert { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 30px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .alert-title { font-size: 16px; font-weight: 700; color: #92400e; margin: 0 0 8px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .alert-text { font-size: 14px; color: #78350f; margin: 0; line-height: 1.5; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .card { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .card-title { font-size: 14px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 20px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .detail-row { width: 100%; margin-bottom: 15px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .detail-label { font-size: 15px; color: #6b7280; font-weight: 600; padding-bottom: 8px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .detail-value { font-size: 15px; color: #111827; padding-bottom: 8px; line-height: 1.5; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .action-buttons { text-align: center; margin: 30px 0; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .btn { display: inline-block; padding: 14px 28px; margin: 0 8px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 15px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .btn-primary { background-color: #10b981; color: #ffffff; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .btn-secondary { background-color: #3b82f6; color: #ffffff; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .footer { background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         .footer-text { font-size: 13px; color: #6b7280; margin: 0 0 5px; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         @media screen and (max-width: 600px) {
+[2026-04-23 16:21:54] CLIENT -> SERVER:             .wrapper { padding: 20px 0 !important; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:             .main { border-radius: 0 !important; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:             .header { padding: 30px 20px !important; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:             .content { padding: 30px 20px !important; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:             .btn { display: block; margin: 10px 0 !important; }
+[2026-04-23 16:21:54] CLIENT -> SERVER:         }
+[2026-04-23 16:21:54] CLIENT -> SERVER:     </style>
+[2026-04-23 16:21:54] CLIENT -> SERVER: </head>
+[2026-04-23 16:21:54] CLIENT -> SERVER: <body>
+[2026-04-23 16:21:54] CLIENT -> SERVER:     <center class="wrapper">
+[2026-04-23 16:21:54] CLIENT -> SERVER:         <table class="main" width="100%">
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <!-- Header -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 <td class="header">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <div class="header-icon">🔔</div>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <h1>New Trip Request</h1>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <p>Request #1</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <!-- Content -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 <td class="content">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <!-- Alert -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <div class="alert">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <p class="alert-title">⏰ Action Required</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <p class="alert-text">A new trip planning request has been submitted. Please contact the customer within 2 hours.</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <!-- Customer Info -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <div class="card">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <p class="card-title">Customer Information</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <table class="detail-row">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Name:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">omkesh narwade</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Email:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value"><a href="mailto:impomkeshnarwade9@gmail.com" style="color: #ec5b13; text-decoration: none;">impomkeshnarwade9@gmail.com</a></td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Phone:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value"><a href="tel:8830148125" style="color: #ec5b13; text-decoration: none;">8830148125</a></td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Submitted:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">2026-04-23 19:51:45</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         </table>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <!-- Trip Preferences -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <div class="card">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <p class="card-title">Trip Preferences</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <table class="detail-row">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Interests:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">Heritage</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Stay Type:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">Budget</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Travel Mode:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">Car</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Travel Details:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">Service: SelfDrive | Type: Sedan</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-label">Special Requests:</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                                 <td class="detail-value">efrghth</td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         </table>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <!-- Action Buttons -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <div class="action-buttons">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <a href="tel:8830148125" class="btn btn-primary">📞 Call Customer</a>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                         <a href="https://wa.me/8830148125" class="btn btn-secondary">💬 WhatsApp</a>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     </div>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <!-- Footer -->
+[2026-04-23 16:21:54] CLIENT -> SERVER:             <tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 <td class="footer">
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <p class="footer-text">CSN Explore Admin Panel</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                     <p class="footer-text">© 2026 CSN Explore. All rights reserved.</p>
+[2026-04-23 16:21:54] CLIENT -> SERVER:                 </td>
+[2026-04-23 16:21:54] CLIENT -> SERVER:             </tr>
+[2026-04-23 16:21:54] CLIENT -> SERVER:         </table>
+[2026-04-23 16:21:54] CLIENT -> SERVER:     </center>
+[2026-04-23 16:21:54] CLIENT -> SERVER: </body>
+[2026-04-23 16:21:54] CLIENT -> SERVER: </html>
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: --b1=_p3vc5RG8MDguxCyFGDmzUOmCVW9ol4kozixg8ghI--
+[2026-04-23 16:21:54] CLIENT -> SERVER:
+[2026-04-23 16:21:54] CLIENT -> SERVER: .
+[2026-04-23 16:21:56] SERVER -> CLIENT: 250 2.0.0 OK  1776954117 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:56] CLIENT -> SERVER: RSET
+[2026-04-23 16:21:56] SERVER -> CLIENT: 250 2.1.5 Flushed 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp
+[2026-04-23 16:21:56] CLIENT -> SERVER: QUIT
+[2026-04-23 16:21:56] SERVER -> CLIENT: 221 2.0.0 closing connection 98e67ed59e1d1-361417748aesm19910238a91.0 - gsmtp

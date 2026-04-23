@@ -88,7 +88,7 @@ require 'admin-header.php';
                 </a>
             </div>
             <div class="flex gap-2">
-                <button onclick="showDetails(<?php echo htmlspecialchars(json_encode($req)); ?>)" class="flex-1 text-xs bg-primary hover:bg-orange-600 text-white font-bold py-2.5 px-3 rounded-lg transition-all shadow-sm">
+                <button onclick="showDetails(this)" data-req="<?php echo htmlspecialchars(json_encode($req), ENT_QUOTES); ?>" class="flex-1 text-xs bg-primary hover:bg-orange-600 text-white font-bold py-2.5 px-3 rounded-lg transition-all shadow-sm">
                     View Details
                 </button>
                 <form method="POST" class="flex-1">
@@ -150,6 +150,15 @@ require 'admin-header.php';
                                 <div class="truncate"><strong>Interests:</strong> <?php echo htmlspecialchars($req['interests'] ?? 'N/A'); ?></div>
                                 <div><strong>Stay:</strong> <?php echo htmlspecialchars($req['stay_type'] ?? 'N/A'); ?></div>
                                 <div><strong>Travel:</strong> <?php echo htmlspecialchars($req['travel_mode'] ?? 'N/A'); ?></div>
+                                <?php if (!empty($req['num_people'])): ?>
+                                <div><strong>Travelers:</strong> <?php echo (int)$req['num_people']; ?></div>
+                                <?php endif; ?>
+                                <?php if (!empty($req['car_service_type'])): ?>
+                                <div><strong>Driver:</strong> <?php echo $req['car_service_type'] === 'SelfDrive' ? 'Self Driven' : 'With Driver'; ?></div>
+                                <?php endif; ?>
+                                <?php if (!empty($req['car_sub_type'])): ?>
+                                <div><strong>Vehicle:</strong> <?php echo htmlspecialchars($req['car_sub_type']); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </td>
@@ -173,7 +182,7 @@ require 'admin-header.php';
                         <?php echo date('M d, Y', strtotime($req['created_at'])); ?>
                     </td>
                     <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button onclick="showDetails(<?php echo htmlspecialchars(json_encode($req)); ?>)" class="text-primary hover:text-orange-600 font-semibold transition-colors">
+                        <button onclick="showDetails(this)" data-req="<?php echo htmlspecialchars(json_encode($req), ENT_QUOTES); ?>" class="text-primary hover:text-orange-600 font-semibold transition-colors">
                             View
                         </button>
                     </td>
@@ -241,7 +250,8 @@ function filterRequests() {
     }, 150);
 }
 
-function showDetails(req) {
+function showDetails(btn) {
+    const req = JSON.parse(btn.dataset.req);
     const modal = document.getElementById('details-modal');
     const content = document.getElementById('details-content');
     
@@ -276,6 +286,22 @@ function showDetails(req) {
                 <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">Travel Mode</label>
                 <p class="text-sm text-slate-700">${req.travel_mode || 'N/A'}</p>
             </div>
+            ${req.num_people ? `<div class="admin-card p-3">
+                <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">No. of Travellers</label>
+                <p class="text-sm font-bold text-slate-900">${req.num_people} person(s)</p>
+            </div>` : ''}
+            ${req.car_service_type ? `<div class="admin-card p-3">
+                <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">Driver Preference</label>
+                <p class="text-sm text-slate-700 font-medium">${req.car_service_type === 'SelfDrive' ? 'Self Driven' : 'With Driver'}</p>
+            </div>` : ''}
+            ${req.car_sub_type ? `<div class="admin-card p-3">
+                <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">Vehicle Type</label>
+                <p class="text-sm text-slate-700 font-medium">${req.car_sub_type}</p>
+            </div>` : ''}
+            ${req.bike_sub_type ? `<div class="admin-card p-3">
+                <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">Bike Type</label>
+                <p class="text-sm text-slate-700 font-medium">${req.bike_sub_type}</p>
+            </div>` : ''}
             <div class="admin-card p-3 md:col-span-2">
                 <label class="text-xs font-semibold text-slate-500 uppercase block mb-1">Travel Details</label>
                 <p class="text-sm text-slate-700">${req.travel_details || 'N/A'}</p>

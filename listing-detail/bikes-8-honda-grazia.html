@@ -682,6 +682,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
           <!-- Price header -->
           <div class="bg-gradient-to-br from-[#ec5b13] to-orange-400 px-6 py-5 text-white">
             <p class="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Bike Rentals Price</p>
+            
             <div class="flex items-baseline gap-1.5">
               <span class="text-xs font-semibold opacity-70 mr-0.5">from</span><span class="text-3xl font-black">₹1,050</span>
               <span class="text-sm font-semibold opacity-80">/ day</span>
@@ -756,6 +757,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Date *</label>
               <input type="date" id="b-date" required class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
             </div>
+            
             <div>
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Guests</label>
               <input type="number" id="b-guests" min="1" max="20" value="1" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
@@ -1230,6 +1232,7 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
         listing_id: 8,
         listing_name: "Honda Grazia",
     };
+    
     
     var dateEl = document.getElementById("b-date");
     if(dateEl) payload.booking_date = dateEl.value;
