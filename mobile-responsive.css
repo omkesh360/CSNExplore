@@ -395,3 +395,7 @@ a:hover { color: #ec5b13; }
   color: #fff !important;
 }
 
+/* ── Card image zoom — override Tailwind group-hover:scale-110 with smoother value ── */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.06) !important;
+}

@@ -47,7 +47,7 @@
 <meta name="twitter:title" content="Hotel The Gravity Inn | CSNExplore">
 <meta name="twitter:description" content="A top-rated premium hotel in Silicon City, Indore. Featuring free Wi-Fi, complimentary breakfast, and world-class amenities for a luxurious stay.">
 <meta name="twitter:image" content="https://csnexplore.com/images/uploads/hotel-the-gravity-inn-stays-main.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Hotel The Gravity Inn","image":"https://csnexplore.com/images/uploads/hotel-the-gravity-inn-stays-main.webp","description":"A top-rated premium hotel in Silicon City, Indore. Featuring free Wi-Fi, complimentary breakfast, and world-class amenities for a luxurious stay."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Hotel The Gravity Inn","image":"https://csnexplore.com/images/uploads/hotel-the-gravity-inn-stays-main.webp","description":"A top-rated premium hotel in Silicon City, Indore. Featuring free Wi-Fi, complimentary breakfast, and world-class amenities for a luxurious stay.","url":"https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn","address":{"@type":"PostalAddress","addressLocality":"Silicon City, Indore","addressRegion":"Maharashtra","addressCountry":"IN"},"offers":{"@type":"Offer","priceCurrency":"INR","price":"2172.00","availability":"https://schema.org/InStock"}}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -202,6 +202,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
         } catch(e) { console.error("Sound failed", e); }
     }
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What amenities does Hotel The Gravity Inn offer?","acceptedAnswer":{"@type":"Answer","text":"Free Wi-Fi, Free Breakfast, AC, Parking, Room Service, Swimming Pool"}},{"@type":"Question","name":"What is the price of Hotel The Gravity Inn?","acceptedAnswer":{"@type":"Answer","text":"₹2,172 / night. Contact CSNExplore at +91-8600968888 for current rates."}},{"@type":"Question","name":"How do I book Hotel The Gravity Inn?","acceptedAnswer":{"@type":"Answer","text":"You can book Hotel The Gravity Inn directly on CSNExplore.com or call/WhatsApp +91-8600968888."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://csnexplore.com/"},{"@type":"ListItem","position":2,"name":"Stays","item":"https://csnexplore.com/listing/stays"},{"@type":"ListItem","position":3,"name":"Hotel The Gravity Inn","item":"https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn"}]}</script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
@@ -990,8 +992,8 @@ function slideTo(idx) {
     // Update bg + object-fit for PNG images
     var isPng = _slideIsPng[_slideIndex] || false;
     if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
-    img.style.objectFit = isPng ? "contain" : "cover";
-    img.style.background = isPng ? "#ecf5ff" : "";
+    img.style.objectFit = "cover";
+    img.style.background = "";
     img.style.padding = "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;

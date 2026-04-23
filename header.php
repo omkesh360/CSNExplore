@@ -90,14 +90,25 @@ $active_listing_type = $listing_type ?? '';
         
         .glass-dark { background:#000000; backdrop-filter:blur(20px); border-b:1px solid rgba(255,255,255,0.05); }
         .header-solid { background:#000000 !important; }
-        /* Force base visibility — prevents transparent/invisible text on all pages */
-        body { background:#fff; color:#0f172a; font-family:Inter,sans-serif; animation: pageFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
-        body.page-fade-out { opacity: 0 !important; transition: opacity 0.4s ease-in-out; }
+        body {
+            background:#fff; color:#0f172a; font-family:Inter,sans-serif;
+            overflow-x:hidden; max-width:100vw;
+            opacity:0;
+            animation: pageFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.05s forwards;
+        }
+        @keyframes pageFadeIn { from { opacity:0; } to { opacity:1; } }
+        body.page-ready { opacity:1 !important; animation:none !important; }
+        body.page-fade-out { opacity:0 !important; transition:opacity 0.35s ease !important; animation:none !important; }
         .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: marquee 120s linear infinite; }
-        .animate-marquee:hover { animation-play-state: paused; }
+
+        /* ── Marquee ── */
+        @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+        .animate-marquee {
+            display:flex; width:max-content;
+            animation: marquee 28s linear infinite;
+            will-change: transform;
+        }
+        .animate-marquee:hover { animation-play-state:paused; }
         
         /* Global Scroll-triggered Animations handled in animations.css */
         /* ── Marquee bar – fixed at very top ── */
@@ -201,36 +212,83 @@ $active_listing_type = $listing_type ?? '';
         <?php if (!empty($extra_styles)) echo $extra_styles; ?>
     </style>
     <?php
-    // ── Dynamic SEO Meta Tags [A4.1] ─────────────────────────────────────────
+    // ── Dynamic SEO Meta Tags — powered by php/seo-meta.php ─────────────────
+    require_once __DIR__ . '/php/seo-meta.php';
+
     $page_meta = $page_meta ?? [];
-    $meta_description = $page_meta['description'] ?? 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore — your premium travel partner.';
-    $meta_canonical   = $page_meta['canonical'] ?? 'https://csnexplore.com';
-    $meta_image       = $page_meta['image'] ?? 'https://csnexplore.com/images/og-image.jpg';
+
+    // Build seo_meta context from whatever the page has set
+    $seo_type = $page_meta['seo_type'] ?? match($current_page ?? '') {
+        'home'         => 'home',
+        'listing.php'  => $listing_type ?? 'stays',
+        'blogs.php'    => 'blogs',
+        'blog-detail'  => 'blog',
+        'about.php'    => 'about',
+        'contact.php'  => 'contact',
+        default        => 'home',
+    };
+
+    $seo_ctx = [
+        'type'        => $seo_type,
+        'item'        => $page_meta['item'] ?? [],
+        'breadcrumbs' => $page_meta['breadcrumbs'] ?? [],
+        'faqs'        => $page_meta['faqs'] ?? [],
+        'price'       => $page_meta['price'] ?? '',
+        'price_unit'  => $page_meta['price_unit'] ?? '',
+        'canonical'   => $page_meta['canonical'] ?? '',
+    ];
+
+    $seo = seo_meta($seo_ctx);
+
+    // Allow pages to override title/description directly
+    if (!empty($page_meta['description'])) $seo['description'] = $page_meta['description'];
+    if (!empty($page_meta['canonical']))   $seo['canonical']   = $page_meta['canonical'];
+    if (!empty($page_meta['image']))       $seo['img_abs']     = $page_meta['image'];
+
+    $meta_description = $seo['description'];
+    $meta_canonical   = $seo['canonical'];
+    $meta_image       = $seo['img_abs'];
     $meta_type        = $page_meta['type'] ?? 'website';
+
+    echo seo_render($seo, $meta_type);
+
+    // Always include WebSite + SearchAction schema on every page
     ?>
-    <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <link rel="canonical" href="<?php echo htmlspecialchars($meta_canonical); ?>">
-    <meta property="og:type" content="<?php echo htmlspecialchars($meta_type); ?>">
-    <meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
-    <meta property="og:description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <meta property="og:image" content="<?php echo htmlspecialchars($meta_image); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars($meta_canonical); ?>">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>">
-    <meta name="twitter:description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <meta name="twitter:image" content="<?php echo htmlspecialchars($meta_image); ?>">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "<?php echo htmlspecialchars($page_title); ?>",
-      "url": "<?php echo htmlspecialchars($meta_canonical); ?>",
-      "description": "<?php echo htmlspecialchars($meta_description); ?>",
+      "name": "CSNExplore",
+      "url": "https://csnexplore.com",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://csnexplore.com/listing/stays?search={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+    <!-- LocalBusiness schema — always present for local SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "CSNExplore",
+      "telephone": "+91-8600968888",
+      "email": "supportcsnexplore@gmail.com",
+      "url": "https://csnexplore.com",
+      "image": "https://csnexplore.com/images/travelhub.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jay Tower, Padampura",
+        "addressLocality": "Chhatrapati Sambhajinagar",
+        "addressRegion": "Maharashtra",
+        "postalCode": "431005",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 19.8762, "longitude": 75.3433 },
+      "openingHours": "Mo-Su 09:00-21:00",
+      "priceRange": "₹₹",
+      "sameAs": ["https://www.instagram.com/csnexplore_/"]
     }
     </script>
     <?php if (!empty($extra_head)) echo $extra_head; ?>

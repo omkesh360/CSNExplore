@@ -1,288 +1,267 @@
 /**
- * CSNExplore - Global Animation System
- * Handles scroll-based animations across all pages
+ * CSNExplore — Global Animation System v3.0
+ * Scroll reveals · Stack cards · Page transitions · Counters · Parallax
  */
+(function () {
+  'use strict';
 
-(function() {
-    'use strict';
+  /* ─── Easing helpers ─────────────────────────────────────────────────── */
+  var EASE_EXPO  = 'cubic-bezier(0.19,1,0.22,1)';
+  var EASE_SPRING= 'cubic-bezier(0.175,0.885,0.32,1.15)';
 
-    // Configuration
-    const config = {
-        threshold: 0.1,        // Percentage of element visible before animating
-        rootMargin: '0px 0px -50px 0px',  // Trigger slightly before element enters viewport
-        once: true             // Animate only once
-    };
+  /* ─── 1. Page fade-in ────────────────────────────────────────────────── */
+  function initPageFade() {
+    // body starts at opacity:0 via CSS @keyframes pageFadeIn in header.php
+    // Just add page-ready class once loaded so CSS animation completes cleanly
+    window.addEventListener('load', function() {
+      document.body.classList.add('page-ready');
+    });
 
-    // Track animated elements
-    const animatedElements = new Set();
+    // Fade out on navigation (cross-page links only)
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('javascript') ||
+          href.startsWith('mailto') || href.startsWith('tel') ||
+          a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      document.body.classList.add('page-fade-out');
+      setTimeout(function () { window.location.href = href; }, 320);
+    });
+  }
 
-    /**
-     * Initialize Intersection Observer
-     */
-    function initAnimationObserver() {
-        // Check if IntersectionObserver is supported
-        if (!('IntersectionObserver' in window)) {
-            // Fallback: show all elements immediately
-            document.querySelectorAll('[data-animate]').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            });
-            return;
+  /* ─── 2. Scroll reveal — [data-reveal] ──────────────────────────────── */
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-reveal]').forEach(function (el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-        // Create observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    
-                    // Add visible class to trigger animation
-                    element.classList.add('animate-visible');
-                    
-                    // Track animated element
-                    animatedElements.add(element);
-                    
-                    // Stop observing if once is true
-                    if (config.once) {
-                        observer.unobserve(element);
-                    }
-                } else if (!config.once) {
-                    // Remove animation class if element leaves viewport (when once is false)
-                    entry.target.classList.remove('animate-visible');
-                }
-            });
-        }, {
-            threshold: config.threshold,
-            rootMargin: config.rootMargin
-        });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      observer.observe(el);
+    });
 
-        // Observe all elements with data-animate attribute
-        document.querySelectorAll('[data-animate]').forEach(element => {
-            observer.observe(element);
-        });
-
-        return observer;
-    }
-
-    /**
-     * Add animations to dynamically loaded content
-     */
-    function observeNewElements(observer) {
-        // Watch for new elements added to the DOM
-        const mutationObserver = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === 1) { // Element node
-                        // Check if the node itself has data-animate
-                        if (node.hasAttribute('data-animate')) {
-                            observer.observe(node);
-                        }
-                        // Check children
-                        node.querySelectorAll('[data-animate]').forEach(el => {
-                            observer.observe(el);
-                        });
-                    }
-                });
-            });
-        });
-
-        mutationObserver.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        return mutationObserver;
-    }
-
-    /**
-     * Add stagger animation to children
-     */
-    function initStaggerAnimations() {
-        document.querySelectorAll('.stagger-children').forEach(container => {
-            const children = container.children;
-            Array.from(children).forEach((child, index) => {
-                child.style.animationDelay = `${(index + 1) * 0.1}s`;
-            });
-        });
-    }
-
-    /**
-     * Add hover effects to cards
-     */
-    function initHoverEffects() {
-        // Add hover-lift to all cards
-        document.querySelectorAll('.card, .admin-card, [class*="card-"]').forEach(card => {
-            if (!card.classList.contains('hover-lift') && !card.classList.contains('no-hover')) {
-                card.classList.add('hover-lift');
-            }
-        });
-
-        // Add img-zoom to images in containers
-        document.querySelectorAll('.gallery-thumb, .listing-card, [class*="image-container"]').forEach(container => {
-            const img = container.querySelector('img');
-            if (img && !container.classList.contains('img-zoom-container')) {
-                container.classList.add('img-zoom-container');
-                img.classList.add('img-zoom');
-            }
-        });
-    }
-
-    /**
-     * Animate counters (for stats)
-     */
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-count') || element.textContent.replace(/\D/g, ''));
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
-        let current = 0;
-
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                element.textContent = Math.floor(current).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target.toLocaleString();
-            }
-        };
-
-        updateCounter();
-    }
-
-    /**
-     * Initialize counter animations
-     */
-    function initCounterAnimations() {
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('[data-counter], .stat-num').forEach(counter => {
-            counterObserver.observe(counter);
-        });
-    }
-
-    /**
-     * Add parallax effect to hero sections
-     */
-    function initParallax() {
-        const parallaxElements = document.querySelectorAll('[data-parallax]');
-        
-        if (parallaxElements.length === 0) return;
-
-        let ticking = false;
-
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-
-            parallaxElements.forEach(element => {
-                const speed = parseFloat(element.getAttribute('data-parallax')) || 0.5;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-            });
-
-            ticking = false;
+    // Also handle [data-reveal-children]
+    var childObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          childObserver.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
 
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }, { passive: true });
+    document.querySelectorAll('[data-reveal-children]').forEach(function (el) {
+      childObserver.observe(el);
+    });
+  }
+
+  /* ─── 3. Stack card carousel (trip planner section) ─────────────────── */
+  function initStackCards(wrapId, interval) {
+    var wrap = document.getElementById(wrapId);
+    if (!wrap) return;
+
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll('.stack-card, .img-stack-card'));
+    if (!cards.length) return;
+
+    var n = cards.length;
+    var current = 0;
+
+    // 4-layer visual states: front → mid1 → mid2 → hidden-back
+    var states = [
+      { z: 4, opacity: 1,    tx: 0,  ty: 0,  scale: 1,    rot: 0,    shadow: '0 28px 60px -12px rgba(0,0,0,0.55), 0 0 40px -10px rgba(236,91,19,0.18)' },
+      { z: 3, opacity: 0.75, tx: 0,  ty: 12, scale: 0.93, rot: -2.5, shadow: '0 16px 36px -8px rgba(0,0,0,0.32)' },
+      { z: 2, opacity: 0.45, tx: 0,  ty: 22, scale: 0.86, rot: 3,    shadow: '0 8px 18px -4px rgba(0,0,0,0.18)' },
+      { z: 1, opacity: 0,    tx: 0,  ty: 32, scale: 0.80, rot: -1.5, shadow: 'none' },
+    ];
+
+    function buildTransform(s) {
+      return 'translateX(' + s.tx + 'px) translateY(' + s.ty + 'px) scale(' + s.scale + ') rotate(' + s.rot + 'deg)';
     }
 
-    /**
-     * Add smooth scroll to anchor links
-     */
-    function initSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || href === '#!') return;
+    function applyState(card, s, animate) {
+      if (!animate) {
+        card.style.transition = 'none';
+      }
+      card.style.zIndex     = s.z;
+      card.style.opacity    = s.opacity;
+      card.style.transform  = buildTransform(s);
+      card.style.boxShadow  = s.shadow;
+    }
 
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    // Init without transition so cards snap to position silently
+    cards.forEach(function (card, i) {
+      applyState(card, states[i % n], false);
+    });
+
+    // Single reflow to flush the no-transition state
+    void wrap.offsetWidth;
+
+    // Re-enable transitions on all cards
+    cards.forEach(function (card) {
+      card.style.transition =
+        'transform 0.6s cubic-bezier(0.22,1,0.36,1),' +
+        'opacity 0.6s cubic-bezier(0.22,1,0.36,1),' +
+        'box-shadow 0.6s cubic-bezier(0.22,1,0.36,1)';
+    });
+
+    // Advance every `interval` ms
+    setInterval(function () {
+      current = (current + 1) % n;
+      cards.forEach(function (card, i) {
+        var si = (i - current + n) % n;
+        applyState(card, states[si], true);
+      });
+    }, interval || 3200);
+  }
+
+  /* ─── 4. Scroll progress bar ─────────────────────────────────────────── */
+  function initScrollBar() {
+    var bar = document.getElementById('csn-scroll-bar');
+    if (!bar) return;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var doc   = document.documentElement;
+        var total = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = total > 0 ? (doc.scrollTop / total * 100) + '%' : '0%';
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* ─── 5. Counter animation ───────────────────────────────────────────── */
+  function animateCounter(el) {
+    var raw    = el.getAttribute('data-count') || el.textContent.replace(/\D/g, '');
+    var target = parseInt(raw, 10);
+    if (!target) return;
+    var start    = performance.now();
+    var duration = 1800;
+    function step(now) {
+      var p = Math.min((now - start) / duration, 1);
+      // ease-out cubic
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initCounters() {
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animateCounter(e.target); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-counter], .stat-num').forEach(function (el) {
+      obs.observe(el);
+    });
+  }
+
+  /* ─── 6. Parallax ────────────────────────────────────────────────────── */
+  function initParallax() {
+    var els = document.querySelectorAll('[data-parallax]');
+    if (!els.length) return;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var scrolled = window.pageYOffset;
+        els.forEach(function (el) {
+          var speed = parseFloat(el.getAttribute('data-parallax')) || 0.4;
+          el.style.transform = 'translate3d(0,' + (-scrolled * speed) + 'px,0)';
         });
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* ─── 7. Smooth anchor scroll ────────────────────────────────────────── */
+  function initSmoothScroll() {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (href === '#' || href === '#!') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  /* ─── 8. Image shimmer while loading ─────────────────────────────────── */
+  function initImageLoading() {
+    document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      if (img.complete) return;
+      img.style.transition = 'opacity 0.5s ease';
+      img.style.opacity = '0';
+      img.addEventListener('load', function () {
+        img.style.opacity = '1';
+      }, { once: true });
+    });
+  }
+
+  /* ─── 9. Hover lift for cards that don't use Tailwind group ─────────── */
+  function initHoverEffects() {
+    document.querySelectorAll('.card-hover, .listing-card-anim').forEach(function (card) {
+      // already handled by CSS — just ensure will-change is set
+      card.style.willChange = 'transform';
+    });
+  }
+
+  /* ─── INIT ───────────────────────────────────────────────────────────── */
+  function init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+      return;
     }
 
-    /**
-     * Add loading animation to images
-     */
-    function initImageLoading() {
-        const images = document.querySelectorAll('img[data-src], img[loading="lazy"]');
-        
-        images.forEach(img => {
-            // Add shimmer effect while loading
-            if (!img.complete) {
-                img.classList.add('shimmer');
-                img.addEventListener('load', () => {
-                    img.classList.remove('shimmer');
-                    img.classList.add('animate-visible');
-                }, { once: true });
-            }
-        });
-    }
+    initPageFade();
+    initScrollReveal();
+    initScrollBar();
+    initCounters();
+    initParallax();
+    initSmoothScroll();
+    initImageLoading();
+    initHoverEffects();
 
-    /**
-     * Initialize all animations
-     */
-    function init() {
-        // Wait for DOM to be ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-            return;
-        }
+    // Stack cards — init after a short delay so CSS transitions are registered
+    setTimeout(function () {
+      initStackCards('trip-stack-wrap', 1500);
+      initStackCards('suggestor-stack-wrap', 1500);
+    }, 120);
 
-        // Initialize animation observer
-        const observer = initAnimationObserver();
+    document.body.classList.add('animations-loaded');
+  }
 
-        // Initialize other features
-        if (observer) {
-            observeNewElements(observer);
-        }
-        
-        initStaggerAnimations();
-        initHoverEffects();
-        initCounterAnimations();
-        initParallax();
-        initSmoothScroll();
-        initImageLoading();
+  init();
 
-        // Add loaded class to body
-        document.body.classList.add('animations-loaded');
-
-        console.log('✨ CSNExplore animations initialized');
-    }
-
-    // Auto-initialize
-    init();
-
-    // Expose API for manual control
-    window.CSNAnimations = {
-        init: init,
-        animateElement: function(element) {
-            if (element && element.hasAttribute('data-animate')) {
-                element.classList.add('animate-visible');
-            }
-        },
-        resetElement: function(element) {
-            if (element) {
-                element.classList.remove('animate-visible');
-            }
-        }
-    };
+  // Public API
+  window.CSNAnimations = {
+    init: init,
+    initStackCards: initStackCards,
+    animateElement: function (el) { if (el) el.classList.add('revealed'); },
+    resetElement:   function (el) { if (el) el.classList.remove('revealed'); }
+  };
 
 })();

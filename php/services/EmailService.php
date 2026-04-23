@@ -366,72 +366,58 @@ class EmailService {
      */
     public static function sendVerificationEmail(string $email, string $name, string $verifyLink): bool {
         try {
-            $htmlContent = self::renderTemplate('verify-email', ['name' => $name, 'verifyLink' => $verifyLink]);
+            // Pass data as $booking so template can access $booking['name'] and $booking['verifyLink']
+            $data = ['name' => $name, 'verifyLink' => $verifyLink];
+            $htmlContent = self::renderTemplate('verify-email', $data);
             if ($htmlContent === false) {
-                self::logError("Failed to render verify-email template", ['email' => $email]);
-                return false;
+                // Fallback: send plain-text if template fails
+                $htmlContent = '<p>Hi ' . htmlspecialchars($name) . ',</p>'
+                    . '<p>Please verify your email by clicking: <a href="' . htmlspecialchars($verifyLink) . '">' . htmlspecialchars($verifyLink) . '</a></p>'
+                    . '<p>This link expires in 24 hours.</p>';
+                self::logError("verify-email template failed, using fallback HTML", ['email' => $email]);
             }
             $mail = self::createMailer();
             $mail->addAddress($email, $name);
-            $mail->Subject = 'Verify Your Email - CSN Explore';
+            $mail->Subject = 'Verify Your Email — CSN Explore';
             $mail->Body    = $htmlContent;
-            $mail->AltBody = "Hi $name,\n\nVerify your email: $verifyLink\n\nThis link expires in 24 hours.";
+            $mail->AltBody = "Hi $name,\n\nVerify your email by visiting:\n$verifyLink\n\nThis link expires in 24 hours.\n\nCSN Explore Team";
             if (!$mail->send()) {
-                self::logError("Failed to send verification email", ['email' => $email, 'error' => $mail->ErrorInfo]);
+                self::logError("PHPMailer send() returned false for verification email", ['email' => $email, 'error' => $mail->ErrorInfo]);
                 return false;
             }
             return true;
-        } catch (Exception $e) {
-            self::logError("Exception in sendVerificationEmail", ['email' => $email, 'error' => $e->getMessage()]);
+        } catch (\Exception $e) {
+            self::logError("Exception in sendVerificationEmail: " . $e->getMessage(), ['email' => $email]);
             return false;
         }
     }
 
     /**
      * Send password reset email to user
-     * 
-     * @param string $email User email
-     * @param string $name User name
-     * @param string $resetLink Password reset link
-     * @return bool Success status
      */
     public static function sendPasswordResetEmail(string $email, string $name, string $resetLink): bool {
         try {
-            // Render email template
-            $htmlContent = self::renderTemplate('password-reset', ['name' => $name, 'resetLink' => $resetLink]);
-            
+            $data = ['name' => $name, 'resetLink' => $resetLink];
+            $htmlContent = self::renderTemplate('password-reset', $data);
             if ($htmlContent === false) {
-                self::logError("Failed to render password reset template", [
-                    'email' => $email,
-                    'email_type' => 'password_reset'
-                ]);
-                return false;
+                // Fallback plain HTML
+                $htmlContent = '<p>Hi ' . htmlspecialchars($name) . ',</p>'
+                    . '<p>Reset your password by clicking: <a href="' . htmlspecialchars($resetLink) . '">' . htmlspecialchars($resetLink) . '</a></p>'
+                    . '<p>This link expires in 30 minutes. If you did not request this, ignore this email.</p>';
+                self::logError("password-reset template failed, using fallback HTML", ['email' => $email]);
             }
-            
-            // Send email using PHPMailer
             $mail = self::createMailer();
             $mail->addAddress($email, $name);
-            $mail->Subject = 'Reset Your Password - CSN Explore';
-            $mail->Body = $htmlContent;
-            $mail->AltBody = strip_tags($htmlContent);
-            
+            $mail->Subject = 'Reset Your Password — CSN Explore';
+            $mail->Body    = $htmlContent;
+            $mail->AltBody = "Hi $name,\n\nReset your password:\n$resetLink\n\nExpires in 30 minutes.\n\nCSN Explore Team";
             if (!$mail->send()) {
-                self::logError("Failed to send password reset email", [
-                    'email' => $email,
-                    'email_type' => 'password_reset',
-                    'error' => $mail->ErrorInfo
-                ]);
+                self::logError("PHPMailer send() returned false for password reset", ['email' => $email, 'error' => $mail->ErrorInfo]);
                 return false;
             }
-            
             return true;
-            
-        } catch (Exception $e) {
-            self::logError("Exception in sendPasswordResetEmail", [
-                'email' => $email,
-                'email_type' => 'password_reset',
-                'error' => $e->getMessage()
-            ]);
+        } catch (\Exception $e) {
+            self::logError("Exception in sendPasswordResetEmail: " . $e->getMessage(), ['email' => $email]);
             return false;
         }
     }
@@ -495,35 +481,47 @@ class EmailService {
         
         // Server settings
         $mail->isSMTP();
-        $mail->Host = SMTP_HOST;
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USERNAME;
-        $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = SMTP_ENCRYPTION;
-        $mail->Port = SMTP_PORT;
-        
-        // Performance optimizations
-        $mail->Timeout = 10; // Reduce timeout from default 300s to 10s
-        $mail->SMTPKeepAlive = true; // Keep connection alive for multiple emails
-        
-        // Sender info — use SMTP username as from address (required by Gmail)
+        $mail->Host       = SMTP_HOST;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = SMTP_USERNAME;
+        $mail->Password   = SMTP_PASSWORD;
+        $mail->SMTPSecure = SMTP_ENCRYPTION === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = (int)SMTP_PORT;
+
+        // Timeouts — generous enough for slow SMTP but not blocking forever
+        $mail->Timeout     = 30;
+        $mail->getSMTPInstance()->Timeout = 30;
+
+        // Keep connection alive for multiple sends in one request
+        $mail->SMTPKeepAlive = true;
+
+        // SSL options — needed on some XAMPP/localhost setups
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ],
+        ];
+
+        // Sender — must match SMTP username for Gmail
         $fromEmail = SMTP_USERNAME ?: MAILERLITE_FROM_EMAIL;
-        $mail->setFrom($fromEmail, MAILERLITE_FROM_NAME);
-        $mail->addReplyTo($fromEmail, MAILERLITE_FROM_NAME);
-        
+        $fromName  = MAILERLITE_FROM_NAME ?: 'CSN Explore';
+        $mail->setFrom($fromEmail, $fromName);
+        $mail->addReplyTo($fromEmail, $fromName);
+
         // Content
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
-        
-        // Disable SSL verification for development (remove in production)
-        $mail->SMTPOptions = array(
-            'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );
-        
+
+        // Debug to log file (not stdout) — set to 0 in production
+        $debugLevel = (APP_ENV === 'production') ? 0 : 2;
+        $mail->SMTPDebug = $debugLevel;
+        $logFile = __DIR__ . '/../../logs/smtp_debug.log';
+        $mail->Debugoutput = function($str, $level) use ($logFile) {
+            @file_put_contents($logFile, date('[Y-m-d H:i:s] ') . trim($str) . "\n", FILE_APPEND | LOCK_EX);
+        };
+
         return $mail;
     }
     

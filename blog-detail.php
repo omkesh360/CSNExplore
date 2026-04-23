@@ -20,10 +20,17 @@ $page_title   = htmlspecialchars($blog['title']) . ' | CSNExplore';
 $current_page = 'blogs.php';
 
 $page_meta = [
+    'seo_type'    => 'blog',
+    'item'        => $blog,
     'description' => htmlspecialchars($blog['meta_description'] ?? substr(strip_tags($blog['content']), 0, 160)),
-    'canonical' => "https://csnexplore.com/blog-detail?id=" . $id,
-    'image' => (strpos($blog['image'] ?? '', 'http') === 0) ? $blog['image'] : "https://csnexplore.com/" . ltrim($blog['image'] ?? '', '/'),
-    'type' => 'article'
+    'canonical'   => 'https://csnexplore.com/blogs/' . $blog['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $blog['title']), '-')),
+    'image'       => (strpos($blog['image'] ?? '', 'http') === 0) ? $blog['image'] : 'https://csnexplore.com/' . ltrim($blog['image'] ?? '', '/'),
+    'type'        => 'article',
+    'breadcrumbs' => [
+        ['name' => 'Home',  'url' => '/'],
+        ['name' => 'Blogs', 'url' => '/blogs'],
+        ['name' => htmlspecialchars($blog['title']), 'url' => ''],
+    ],
 ];
 
 $extra_styles = "

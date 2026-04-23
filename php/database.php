@@ -256,6 +256,25 @@ class Database {
           INDEX `idx_room_type` (`room_type_id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         ");
+
+        // Activity logs table (always safe — IF NOT EXISTS)
+        $this->db->exec("
+        CREATE TABLE IF NOT EXISTS `activity_logs` (
+          `id`          INT          NOT NULL AUTO_INCREMENT,
+          `actor_id`    INT          NULL,
+          `actor_name`  VARCHAR(255) NOT NULL DEFAULT 'System',
+          `actor_role`  VARCHAR(50)  NOT NULL DEFAULT 'system',
+          `action_type` VARCHAR(80)  NOT NULL DEFAULT 'info',
+          `description` TEXT         NOT NULL,
+          `meta`        JSON         NULL,
+          `ip_address`  VARCHAR(64)  NULL,
+          `created_at`  DATETIME     DEFAULT CURRENT_TIMESTAMP,
+          PRIMARY KEY (`id`),
+          KEY `idx_actor`  (`actor_id`),
+          KEY `idx_type`   (`action_type`),
+          KEY `idx_created`(`created_at`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        ");
         
         // Add vendor_id columns if they don't exist
         try {

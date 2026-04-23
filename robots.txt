@@ -1,10 +1,7 @@
-# CSNExplore - Robots.txt
-# Allow search engines to crawl the site
-
 User-agent: *
 Allow: /
 
-# Disallow admin and sensitive areas
+# Block admin and sensitive areas
 Disallow: /admin/
 Disallow: /vendor/
 Disallow: /php/
@@ -12,22 +9,41 @@ Disallow: /logs/
 Disallow: /cache/
 Disallow: /database/
 
-# Disallow login and registration pages
+# Block auth pages (no SEO value)
 Disallow: /login
 Disallow: /register
 Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /resend-verification
+Disallow: /verification-required
 
-# Allow important pages
-Allow: /index.php
-Allow: /about.php
-Allow: /contact.php
-Allow: /blogs.php
-Allow: /listing.php
+# Block utility/dev scripts
+Disallow: /create-admin
+Disallow: /create-trip-table
+Disallow: /fix-table-now
+Disallow: /add-verification-columns
+Disallow: /adminexplorer
+Disallow: /test-email
+Disallow: /send-pending-emails
 
-# Allow static assets
+# Allow important content
 Allow: /images/
-Allow: /css/
-Allow: /js/
+Allow: /blogs/
+Allow: /listing-detail/
+Allow: /listing/
+Allow: /sitemap*.xml
 
-# Sitemap location
+# Crawl-delay for bots that respect it
+Crawl-delay: 1
+
+# Sitemap index + split sitemaps
 Sitemap: https://csnexplore.com/sitemap.xml
+Sitemap: https://csnexplore.com/sitemap-static.xml
+Sitemap: https://csnexplore.com/sitemap-stays.xml
+Sitemap: https://csnexplore.com/sitemap-cars.xml
+Sitemap: https://csnexplore.com/sitemap-bikes.xml
+Sitemap: https://csnexplore.com/sitemap-attractions.xml
+Sitemap: https://csnexplore.com/sitemap-restaurants.xml
+Sitemap: https://csnexplore.com/sitemap-buses.xml
+Sitemap: https://csnexplore.com/sitemap-blogs.xml

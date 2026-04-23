@@ -47,7 +47,7 @@
 <meta name="twitter:title" content="Hotel Blossom | CSNExplore">
 <meta name="twitter:description" content="Clean and affordable hotel in Chhatrapati Sambhajinagar. Great value for money with all essential amenities for a comfortable stay.">
 <meta name="twitter:image" content="https://csnexplore.com/images/uploads/hotel-blossom-stays-main.jpeg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Hotel Blossom","image":"https://csnexplore.com/images/uploads/hotel-blossom-stays-main.jpeg","description":"Clean and affordable hotel in Chhatrapati Sambhajinagar. Great value for money with all essential amenities for a comfortable stay."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Hotel Blossom","image":"https://csnexplore.com/images/uploads/hotel-blossom-stays-main.jpeg","description":"Clean and affordable hotel in Chhatrapati Sambhajinagar. Great value for money with all essential amenities for a comfortable stay.","url":"https://csnexplore.com/listing-detail/stays-4-hotel-blossom","address":{"@type":"PostalAddress","addressLocality":"Chhatrapati Sambhajinagar","addressRegion":"Maharashtra","addressCountry":"IN"},"offers":{"@type":"Offer","priceCurrency":"INR","price":"1200.00","availability":"https://schema.org/InStock"}}</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -202,6 +202,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
         } catch(e) { console.error("Sound failed", e); }
     }
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What amenities does Hotel Blossom offer?","acceptedAnswer":{"@type":"Answer","text":"Wi-Fi, AC, TV, Hot Water"}},{"@type":"Question","name":"What is the price of Hotel Blossom?","acceptedAnswer":{"@type":"Answer","text":"₹1,200 / night. Contact CSNExplore at +91-8600968888 for current rates."}},{"@type":"Question","name":"How do I book Hotel Blossom?","acceptedAnswer":{"@type":"Answer","text":"You can book Hotel Blossom directly on CSNExplore.com or call/WhatsApp +91-8600968888."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://csnexplore.com/"},{"@type":"ListItem","position":2,"name":"Stays","item":"https://csnexplore.com/listing/stays"},{"@type":"ListItem","position":3,"name":"Hotel Blossom","item":"https://csnexplore.com/listing-detail/stays-4-hotel-blossom"}]}</script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
@@ -960,8 +962,8 @@ function slideTo(idx) {
     // Update bg + object-fit for PNG images
     var isPng = _slideIsPng[_slideIndex] || false;
     if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
-    img.style.objectFit = isPng ? "contain" : "cover";
-    img.style.background = isPng ? "#ecf5ff" : "";
+    img.style.objectFit = "cover";
+    img.style.background = "";
     img.style.padding = "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;

@@ -925,15 +925,57 @@ foreach ($types as $type) {
             'buses'       => 'BusReservation',
         ];
         $schemaType = $schemaTypeMap[$type] ?? 'LocalBusiness';
+        $rating_val = (float)($item['rating'] ?? 0);
+        $review_cnt = (int)($item['reviews'] ?? 0);
+
         $schema = [
-            '@context' => 'https://schema.org',
-            '@type' => $schemaType,
-            'name' => $item['name'],
-            'image' => $absImg,
-            'description' => $desc
+            '@context'    => 'https://schema.org',
+            '@type'       => $schemaType,
+            'name'        => $item['name'],
+            'image'       => $absImg,
+            'description' => $desc,
+            'url'         => $canonical,
         ];
+        if ($location) {
+            $schema['address'] = ['@type' => 'PostalAddress', 'addressLocality' => $location, 'addressRegion' => 'Maharashtra', 'addressCountry' => 'IN'];
+        }
+        if ($rating_val > 0 && $review_cnt > 0) {
+            $schema['aggregateRating'] = ['@type' => 'AggregateRating', 'ratingValue' => $rating_val, 'reviewCount' => $review_cnt, 'bestRating' => 5];
+        }
+        if ($price_val > 0) {
+            $schema['offers'] = ['@type' => 'Offer', 'priceCurrency' => 'INR', 'price' => $price_val, 'availability' => 'https://schema.org/InStock'];
+        }
+
+        // Auto-generate FAQ schema from features/amenities
+        $faqSchema = '';
+        $faqItems  = [];
+        if (!empty($feats)) {
+            $faqItems[] = ['@type' => 'Question', 'name' => 'What amenities does ' . $item['name'] . ' offer?',
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => implode(', ', array_slice($feats, 0, 8))]];
+        }
+        if ($price_val > 0) {
+            $faqItems[] = ['@type' => 'Question', 'name' => 'What is the price of ' . $item['name'] . '?',
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => '₹' . number_format($price_val) . ' ' . $meta['unit'] . '. Contact CSNExplore at +91-8600968888 for current rates.']];
+        }
+        $faqItems[] = ['@type' => 'Question', 'name' => 'How do I book ' . $item['name'] . '?',
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'You can book ' . $item['name'] . ' directly on CSNExplore.com or call/WhatsApp +91-8600968888.']];
+        if (!empty($faqItems)) {
+            $faqSchema = '<script type="application/ld+json">' . json_encode(['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $faqItems], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
+        }
+
+        // Breadcrumb schema
+        $breadcrumbSchema = '<script type="application/ld+json">' . json_encode([
+            '@context' => 'https://schema.org',
+            '@type'    => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home',                    'item' => 'https://csnexplore.com/'],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => $meta['label'],             'item' => 'https://csnexplore.com/listing/' . $type],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $item['name'],              'item' => $canonical],
+            ],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
         $html = htmlHead(htmlspecialchars($item['name']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema, $type);
+        $html = str_replace('</head>', $faqSchema . "\n" . $breadcrumbSchema . "\n</head>", $html);
 
         $thumbHtml = '';
         foreach ($resolvedGalleryImages as $idx => $img) {
@@ -1005,7 +1047,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; '.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? 'object-fit:contain;background:#ecf5ff;' : 'object-fit:cover;' ).'"/>
+           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '
@@ -1384,8 +1426,8 @@ function slideTo(idx) {
     // Update bg + object-fit for PNG images
     var isPng = _slideIsPng[_slideIndex] || false;
     if (wrap) wrap.style.backgroundColor = isPng ? "#ecf5ff" : "#0f172a";
-    img.style.objectFit = isPng ? "contain" : "cover";
-    img.style.background = isPng ? "#ecf5ff" : "";
+    img.style.objectFit = "cover";
+    img.style.background = "";
     img.style.padding = "0";
   }, 150);
   if (counter) counter.textContent = _slideIndex + 1;

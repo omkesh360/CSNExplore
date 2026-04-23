@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 require_once __DIR__ . '/../services/EmailService.php';
+require_once __DIR__ . '/../activity_logger.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -86,6 +87,19 @@ try {
             error_log("Booking #{$newId} email service error: " . $e->getMessage());
         }
 
+        // Log the booking
+        $actorId   = $tokenPayload ? (int)($tokenPayload['id'] ?? 0) : 0;
+        $actorName = $tokenPayload ? ($tokenPayload['name'] ?? 'Guest') : ($name . ' (guest)');
+        $actorRole = $tokenPayload ? ($tokenPayload['role'] ?? 'user') : 'guest';
+        $svcType   = sanitize($data['service_type'] ?? '');
+        $lstName   = sanitize($data['listing_name'] ?? '');
+        log_activity(
+            'booking_created',
+            $actorName . ' made a booking' . ($lstName ? " for \"$lstName\"" : '') . ($svcType ? " ($svcType)" : ''),
+            ['booking_id' => $newId, 'listing' => $lstName, 'service_type' => $svcType, 'phone' => $phone],
+            $actorId, $actorRole, $actorName
+        );
+
         sendJson(['success' => true, 'id' => $newId], 201);
     }
 
@@ -110,8 +124,18 @@ try {
 
         $db->update('bookings', $update, 'id = :id', [':id' => $id]);
         
-        // Send status update email if status changed to completed or cancelled
+        // Log status change
         if (isset($update['status']) && $oldStatus !== $update['status']) {
+            $admin = verifyToken();
+            $booking = $db->fetchOne("SELECT full_name, listing_name, service_type FROM bookings WHERE id = ?", [$id]);
+            $guestName = $booking['full_name'] ?? "Booking #$id";
+            $lstName   = $booking['listing_name'] ?? '';
+            log_activity(
+                'booking_updated',
+                ($admin['name'] ?? 'Admin') . " changed booking #$id ($guestName" . ($lstName ? " — $lstName" : '') . ") status: $oldStatus → {$update['status']}",
+                ['booking_id' => $id, 'old_status' => $oldStatus, 'new_status' => $update['status']],
+                (int)($admin['id'] ?? 0), $admin['role'] ?? 'admin', $admin['name'] ?? 'Admin'
+            );
             if ($update['status'] === 'completed' || $update['status'] === 'cancelled') {
                 try {
                     EmailService::sendStatusUpdateEmail($id, $update['status']);
@@ -127,8 +151,15 @@ try {
 
     // DELETE – admin only
     elseif ($method === 'DELETE' && $id) {
-        requireAdmin();
+        $admin = requireAdmin();
+        $booking = $db->fetchOne("SELECT full_name, listing_name FROM bookings WHERE id = ?", [$id]);
         $db->delete('bookings', 'id = ?', [$id]);
+        log_activity(
+            'booking_deleted',
+            ($admin['name'] ?? 'Admin') . " deleted booking #$id" . ($booking ? " ({$booking['full_name']}" . ($booking['listing_name'] ? " — {$booking['listing_name']}" : '') . ')' : ''),
+            ['booking_id' => $id],
+            (int)($admin['id'] ?? 0), $admin['role'] ?? 'admin', $admin['name'] ?? 'Admin'
+        );
         sendJson(['success' => true]);
     }
 

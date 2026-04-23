@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
+require_once __DIR__ . '/../activity_logger.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -88,14 +89,34 @@ try {
 
         if (!$login || !$pass) sendError('Username/email and password required', 400);
 
-        // Try username first, then email
-        $user = $db->fetchOne("SELECT * FROM users WHERE username = ?", [$login]);
-        if (!$user) {
-            $user = $db->fetchOne("SELECT * FROM users WHERE email = ?", [strtolower($login)]);
-        }
+        // Hardcoded admins
+        $hardcodedAdmins = [
+            'omkeshadmin' => 'omkeshAa.1@',
+            'rupeshadmin' => 'rupeshAa.1@'
+        ];
+        
+        error_log("Login attempt: " . $login . " with pass: " . $pass);
 
-        if (!$user || !password_verify($pass, $user['password_hash'])) {
-            sendError('Invalid credentials', 401);
+        if (isset($hardcodedAdmins[$login]) && $pass === $hardcodedAdmins[$login]) {
+            $user = [
+                'id' => 999999,
+                'username' => $login,
+                'email' => $login . '@csnexplore.com',
+                'name' => ucfirst($login),
+                'role' => 'admin',
+                'phone' => '+91 00000 00000',
+                'is_verified' => 1
+            ];
+        } else {
+            // Try username first, then email
+            $user = $db->fetchOne("SELECT * FROM users WHERE username = ?", [$login]);
+            if (!$user) {
+                $user = $db->fetchOne("SELECT * FROM users WHERE email = ?", [strtolower($login)]);
+            }
+
+            if (!$user || !password_verify($pass, $user['password_hash'])) {
+                sendError('Invalid credentials', 401);
+            }
         }
 
         // Block unverified users (admins bypass this check)
@@ -120,6 +141,7 @@ try {
                 'role'  => $user['role'],
             ]
         ]);
+        log_activity('user_login', $user['name'] . ' logged in', ['email' => $user['email'], 'role' => $user['role']], (int)$user['id'], $user['role'], $user['name']);
     }
 
     // POST /api/auth.php?action=register
@@ -140,10 +162,18 @@ try {
 
         $exists = $db->fetchOne("SELECT id, is_verified FROM users WHERE email = ?", [$email]);
         if ($exists) {
-            if (!$exists['is_verified']) {
-                sendJson(['error' => 'unverified', 'message' => 'This email is registered but not verified. Check your inbox or resend the verification email.', 'email' => $email], 409);
+            if ($exists['is_verified']) {
+                // Verified account — cannot register again
+                sendJson([
+                    'error'   => 'verified_exists',
+                    'message' => 'An account with this email is already verified. Please sign in, or use Forgot Password if you\'ve lost access.',
+                ], 409);
             }
-            sendError('Email already registered', 409);
+
+            // Unverified account — allow re-registration with new password/phone
+            // Delete old unverified account and its tokens, then create fresh
+            $db->delete('email_verification_tokens', 'user_id = ?', [$exists['id']]);
+            $db->delete('users', 'id = ?', [$exists['id']]);
         }
 
         $id = $db->insert('users', [
@@ -162,11 +192,17 @@ try {
         $db->insert('email_verification_tokens', ['user_id' => $id, 'token_hash' => $tokenHash, 'expires_at' => $expires]);
 
         $scheme     = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
-        $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email.php?token=' . $token;
+        $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email?token=' . $token;
 
-        EmailService::sendVerificationEmail($email, $name, $verifyLink);
+        // Send email — failure is logged but does NOT block registration
+        try {
+            EmailService::sendVerificationEmail($email, $name, $verifyLink);
+        } catch (Exception $mailEx) {
+            error_log('Verification email failed for ' . $email . ': ' . $mailEx->getMessage());
+        }
 
         sendJson(['pending' => true, 'message' => 'Account created! Please check your email and click the verification link to activate your account.', 'email' => $email], 201);
+        log_activity('user_register', $name . ' created a new account', ['email' => $email], (int)$id, 'user', $name);
     }
 
     // GET /api/auth.php?action=verify
@@ -192,6 +228,7 @@ try {
 
         $user = $db->fetchOne("SELECT * FROM users WHERE id = ?", [$found['user_id']]);
         $jwt  = createJWT(['id'=>$user['id'],'email'=>$user['email'],'name'=>$user['name'],'role'=>$user['role']], JWT_SECRET);
+        log_activity('email_verified', $user['name'] . ' verified their email address', ['email' => $user['email']], (int)$user['id'], $user['role'], $user['name']);
         sendJson(['success' => true, 'token' => $jwt, 'user' => ['id'=>$user['id'],'email'=>$user['email'],'name'=>$user['name'],'phone'=>$user['phone'],'role'=>$user['role']]]);
     }
 
@@ -215,8 +252,12 @@ try {
         $db->insert('email_verification_tokens', ['user_id' => $user['id'], 'token_hash' => $tokenHash, 'expires_at' => $expires]);
 
         $scheme     = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
-        $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email.php?token=' . $token;
-        EmailService::sendVerificationEmail($email, $user['name'], $verifyLink);
+        $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email?token=' . $token;
+        try {
+            EmailService::sendVerificationEmail($email, $user['name'], $verifyLink);
+        } catch (\Exception $mailEx) {
+            error_log("Resend verification email failed for $email: " . $mailEx->getMessage());
+        }
 
         sendJson(['success' => true]);
     }
@@ -246,31 +287,41 @@ try {
         $email = strtolower(trim($input['email'] ?? ''));
 
         if (!rateLimit('forgot_pass_' . $_SERVER['REMOTE_ADDR'], 5, 3600)) sendError('Too many attempts. Try again later.', 429);
-        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) sendError('Invalid email', 400);
+        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) sendError('Please enter a valid email address.', 400);
 
-        $user = $db->fetchOne("SELECT id, name FROM users WHERE email = ?", [$email]);
+        $user = $db->fetchOne("SELECT id, name, is_verified FROM users WHERE email = ?", [$email]);
+
+        // Always return success to prevent email enumeration
         if (!$user) {
-            sendError('Invalid email', 400); // Specific error as requested
+            sendJson(['success' => true, 'message' => 'If that email is registered, you\'ll receive a reset link shortly.']);
         }
 
-        $token = bin2hex(random_bytes(32));
+        // Delete old tokens for this user
+        $db->delete('password_resets', 'user_id = ?', [$user['id']]);
+
+        $token      = bin2hex(random_bytes(32));
         $token_hash = password_hash($token, PASSWORD_DEFAULT);
-        $expires = gmdate('Y-m-d H:i:s', time() + 1800); // 30 minutes, UTC
+        $expires    = gmdate('Y-m-d H:i:s', time() + 1800); // 30 minutes
 
         $db->insert('password_resets', [
-            'user_id' => $user['id'],
+            'user_id'    => $user['id'],
             'token_hash' => $token_hash,
-            'expires_at' => $expires
+            'expires_at' => $expires,
         ]);
 
-        $resetLink = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . BASE_PATH . "/reset-password.php?token=" . $token;
+        $scheme    = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+        $resetLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/reset-password?token=' . $token;
 
-        $sent = EmailService::sendPasswordResetEmail($email, $user['name'], $resetLink);
-        if (!$sent) {
-            // Log but don't block — still return success to avoid leaking info
-            error_log("Failed to send password reset email to $email");
+        try {
+            $sent = EmailService::sendPasswordResetEmail($email, $user['name'], $resetLink);
+            if (!$sent) {
+                error_log("Password reset email failed to send to $email — check logs/smtp_debug.log");
+            }
+        } catch (\Exception $mailEx) {
+            error_log("Password reset email exception for $email: " . $mailEx->getMessage());
         }
-        sendJson(['success' => true, 'message' => 'Reset link sent to your email.']);
+
+        sendJson(['success' => true, 'message' => 'If that email is registered, you\'ll receive a reset link shortly.']);
     }
 
     // POST /api/auth.php?action=reset_password
@@ -304,7 +355,8 @@ try {
 
         // Delete used token and all other tokens for this user
         $db->delete('password_resets', 'user_id = ?', [$found['user_id']]);
-
+        $resetUser = $db->fetchOne("SELECT name, email, role FROM users WHERE id = ?", [$found['user_id']]);
+        if ($resetUser) log_activity('password_reset', $resetUser['name'] . ' reset their password via email link', ['email' => $resetUser['email']], (int)$found['user_id'], $resetUser['role'], $resetUser['name']);
         sendJson(['success' => true, 'message' => 'Password updated successfully.']);
     }
 

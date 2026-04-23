@@ -85,16 +85,27 @@ require 'header.php';
             </div>
 
             <!-- Unverified email notice -->
-            <div id="unverified-notice" class="hidden bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-2">
+            <div id="unverified-notice" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 space-y-3">
                 <div class="flex items-start gap-3">
-                    <span class="material-symbols-outlined text-blue-600 shrink-0">mark_email_unread</span>
+                    <span class="material-symbols-outlined text-amber-600 shrink-0 mt-0.5">mark_email_unread</span>
                     <div>
-                        <p class="text-sm font-bold text-blue-900">Email not verified</p>
-                        <p class="text-sm text-blue-800 mt-0.5">Please click the link we sent to <strong id="unverified-email"></strong> to activate your account.</p>
+                        <p class="text-sm font-bold text-amber-900">Email not verified</p>
+                        <p class="text-sm text-amber-800 mt-0.5">
+                            This email is registered but not yet verified. Please click the link sent to <strong id="unverified-email"></strong> to activate your account.
+                        </p>
                     </div>
                 </div>
-                <button onclick="resendFromLogin()" id="resend-login-btn" class="text-sm font-bold text-primary hover:underline ml-9">Resend verification email</button>
-                <p id="resend-login-msg" class="hidden text-green-600 text-sm font-medium ml-9">Verification email sent!</p>
+                <div class="flex flex-wrap gap-3 ml-9">
+                    <button onclick="resendFromLogin()" id="resend-login-btn"
+                            class="text-sm font-bold text-primary hover:underline">
+                        Resend verification email
+                    </button>
+                    <span class="text-slate-300">·</span>
+                    <a href="register" class="text-sm font-bold text-slate-600 hover:text-primary hover:underline">
+                        Register again with new password
+                    </a>
+                </div>
+                <p id="resend-login-msg" class="hidden text-green-700 text-sm font-medium ml-9">✓ Verification email sent! Check your inbox.</p>
             </div>
 
             <form id="login-form" class="space-y-5">
@@ -212,10 +223,16 @@ require 'header.php';
                 if (data.error === 'unverified') {
                     document.getElementById('unverified-email').textContent = data.email || email;
                     document.getElementById('unverified-notice').classList.remove('hidden');
+                    document.getElementById('login-error').classList.add('hidden');
                     window._loginEmail = data.email || email;
                 } else {
-                    errText.textContent = data.error || 'Login failed. Please try again.';
+                    // Make "Invalid credentials" friendlier
+                    const msg = (data.error === 'Invalid credentials')
+                        ? 'Incorrect email or password. Please try again, or use Forgot Password.'
+                        : (data.error || 'Login failed. Please try again.');
+                    errText.textContent = msg;
                     errBox.classList.remove('hidden');
+                    document.getElementById('unverified-notice').classList.add('hidden');
                 }
                 return;
             }

@@ -421,7 +421,7 @@ if (file_exists($locationsFile)) {
                         revealObs.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+            }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
             document.querySelectorAll('[data-reveal], [data-reveal-children]').forEach(function (el) {
                 revealObs.observe(el);
             });

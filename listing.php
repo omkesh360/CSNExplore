@@ -139,10 +139,15 @@ function listingSlug($type, $item) {
 }
 
 $page_meta = [
+    'seo_type'    => $type,
     'description' => "Find the best " . strtolower($c['label']) . " in Chhatrapati Sambhajinagar. " . $c['hero_sub'],
-    'canonical' => "https://csnexplore.com/listing/" . htmlspecialchars($type),
-    'image' => "https://csnexplore.com" . $c['hero_bg'],
-    'type' => 'website'
+    'canonical'   => "https://csnexplore.com/listing/" . htmlspecialchars($type),
+    'image'       => "https://csnexplore.com" . $c['hero_bg'],
+    'type'        => 'website',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => $c['label'], 'url' => '/listing/' . $type],
+    ],
 ];
 
 $itemListElements = [];

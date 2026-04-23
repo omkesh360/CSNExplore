@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
+require_once __DIR__ . '/../activity_logger.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -46,6 +47,11 @@ try {
         if (isset($data['is_verified'])) $update['is_verified'] = (int)$data['is_verified'] ? 1 : 0;
         $update['updated_at'] = date('Y-m-d H:i:s');
         $db->update('users', $update, 'id = :id', [':id' => $id]);
+        $targetUser = $db->fetchOne("SELECT name, email FROM users WHERE id = ?", [$id]);
+        $desc = 'Admin ' . ($admin['name'] ?? 'Admin') . ' updated user ' . ($targetUser['name'] ?? "#$id");
+        if (isset($data['role'])) $desc .= " — role changed to {$data['role']}";
+        if (isset($data['is_verified'])) $desc .= ' — verification status updated';
+        log_activity('admin_user_update', $desc, ['target_id' => $id, 'changes' => array_keys($update)], (int)($admin['id'] ?? 0), 'admin', $admin['name'] ?? 'Admin');
         sendJson(['success' => true]);
     }
 
@@ -55,6 +61,8 @@ try {
         $thisUser   = $db->fetchOne("SELECT role FROM users WHERE id = ?", [$id]);
         if ($thisUser['role'] === 'admin' && $adminCount <= 1) sendError('Cannot delete last admin', 400);
         $db->delete('users', 'id = ?', [$id]);
+        $desc = 'Admin ' . ($admin['name'] ?? 'Admin') . ' deleted user #' . $id;
+        log_activity('admin_user_delete', $desc, ['deleted_id' => $id], (int)($admin['id'] ?? 0), 'admin', $admin['name'] ?? 'Admin');
         sendJson(['success' => true]);
     }
 

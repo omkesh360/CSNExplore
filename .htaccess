@@ -241,6 +241,7 @@ ServerSignature Off
 
     # Dynamic sitemap (note: updated path to match your structure)
     RewriteRule ^sitemap\.xml$ php/api/generate_sitemap.php [L]
+    RewriteRule ^sitemap-([a-z-]+)\.xml$ php/api/generate_sitemap.php [L,QSA]
 </IfModule>
 
 # ── Custom Error Pages ────────────────────────────────────────────────────────

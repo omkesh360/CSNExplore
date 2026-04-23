@@ -132,14 +132,15 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
     <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
         <?php
         $nav = [
-            ['href'=>'dashboard.php', 'icon'=>'grid_view',       'label'=>'Dashboard',    'key'=>'dashboard'],
-            ['href'=>'listings.php',  'icon'=>'database',        'label'=>'Listings',     'key'=>'listings'],
-            ['href'=>'bookings.php',  'icon'=>'calendar_today',  'label'=>'Bookings',     'key'=>'bookings',  'badge'=>true],
-            ['href'=>'trip-requests.php','icon'=>'flight_takeoff','label'=>'Trip Planner', 'key'=>'trip-requests'],
-            ['href'=>'blogs.php',     'icon'=>'article',          'label'=>'Blogs',        'key'=>'blogs'],
-            ['href'=>'gallery.php',   'icon'=>'photo_library',    'label'=>'Gallery',      'key'=>'gallery'],
-            ['href'=>'users.php',     'icon'=>'group',           'label'=>'Users',        'key'=>'users'],
-            ['href'=>'content.php',   'icon'=>'edit_note',        'label'=>'Content',      'key'=>'content'],
+            ['href'=>'dashboard.php',      'icon'=>'grid_view',        'label'=>'Dashboard',      'key'=>'dashboard'],
+            ['href'=>'listings.php',        'icon'=>'database',         'label'=>'Listings',       'key'=>'listings'],
+            ['href'=>'bookings.php',        'icon'=>'calendar_today',   'label'=>'Bookings',       'key'=>'bookings',  'badge'=>true],
+            ['href'=>'trip-requests.php',   'icon'=>'flight_takeoff',   'label'=>'Trip Planner',   'key'=>'trip-requests'],
+            ['href'=>'blogs.php',           'icon'=>'article',          'label'=>'Blogs',          'key'=>'blogs'],
+            ['href'=>'gallery.php',         'icon'=>'photo_library',    'label'=>'Gallery',        'key'=>'gallery'],
+            ['href'=>'users.php',           'icon'=>'group',            'label'=>'Users',          'key'=>'users'],
+            ['href'=>'content.php',         'icon'=>'edit_note',        'label'=>'Content',        'key'=>'content'],
+            ['href'=>'activity-logs.php',   'icon'=>'history',          'label'=>'Activity Logs',  'key'=>'activity-logs'],
         ];
         foreach ($nav as $n):
             $active = ($admin_page === $n['key']) ? 'active' : '';

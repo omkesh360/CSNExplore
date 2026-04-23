@@ -99,10 +99,14 @@ async function loadBookings() {
     if (currentStatus !== 'all') url += 'status=' + currentStatus + '&';
     if (search) url += 'search=' + encodeURIComponent(search);
     var tbody = document.getElementById('bookings-tbody');
-    tbody.innerHTML = '<tr><td colspan="9" class="text-center py-12 text-slate-400">Loading...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-12"><div class="inline-block w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div></td></tr>';
     var items = await api(url);
-    if (!items || !items.length) {
-        tbody.innerHTML = '<tr><td colspan="9" class="text-center py-12 text-slate-400">No bookings found</td></tr>';
+    if (items === null) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-12 text-red-400">Failed to load — check your connection or re-login</td></tr>';
+        return;
+    }
+    if (!items.length) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-12 text-slate-400">No bookings found</td></tr>';
         return;
     }
     // Cache all loaded bookings for fast modal access
@@ -229,7 +233,8 @@ document.getElementById('search-input').addEventListener('input', function(){
     window._st = setTimeout(loadBookings, 400);
 });
 
-filterStatus('all');
+// Small defer ensures _adminToken is set from localStorage before first API call
+setTimeout(function(){ filterStatus('all'); }, 0);
 </script>
 JS;
 require 'admin-footer.php';

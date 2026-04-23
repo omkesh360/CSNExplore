@@ -74,10 +74,18 @@ require 'header.php';
                 <p class="text-slate-500 text-sm">We've sent a verification link to <strong id="reg-email-sent"></strong>. Click the link to activate your account.</p>
                 <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800 text-left">
                     <span class="material-symbols-outlined text-blue-600 text-base align-middle mr-1">info</span>
-                    Please click the verification link we just sent you to complete your account creation. Be sure to check your spam folder!
+                    Click the verification link in your email to complete account creation. Check your spam folder if you don't see it.
                 </div>
                 <button id="resend-btn" onclick="resendVerification()" class="text-primary font-bold text-sm hover:underline">Didn't receive it? Resend email</button>
-                <p id="resend-msg" class="hidden text-green-600 text-sm font-medium">Verification email resent!</p>
+                <p id="resend-msg" class="hidden text-green-600 text-sm font-medium">✓ Verification email resent!</p>
+            </div>
+
+            <!-- Info note about deleted accounts -->
+            <div class="hidden" id="reg-deleted-note">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+                    <span class="material-symbols-outlined text-amber-600 text-base align-middle mr-1">info</span>
+                    If your account was deleted by mistake, you can register again using the same email address — as long as it's not linked to a verified account.
+                </div>
             </div>
 
             <form id="registration-form" class="space-y-4">
@@ -221,8 +229,8 @@ require 'header.php';
             });
             const data = await res.json();
 
+            // ── Success: account created, check email ──────────────────────
             if (data.pending) {
-                // Show check-email screen
                 document.getElementById('registration-form').classList.add('hidden');
                 document.getElementById('reg-email-sent').textContent = email;
                 document.getElementById('reg-success').classList.remove('hidden');
@@ -230,28 +238,40 @@ require 'header.php';
                 return;
             }
 
-            if (data.error === 'unverified') {
-                document.getElementById('registration-form').classList.add('hidden');
-                document.getElementById('reg-email-sent').textContent = data.email || email;
-                document.getElementById('reg-success').classList.remove('hidden');
-                window._regEmail = data.email || email;
+            // ── Verified account already exists ───────────────────────────
+            if (data.error === 'verified_exists') {
+                showError(
+                    data.message,
+                    `<a href="<?php echo BASE_PATH; ?>/login" class="font-bold text-primary hover:underline">Sign in here</a> &nbsp;·&nbsp; <a href="<?php echo BASE_PATH; ?>/forgot-password" class="font-bold text-primary hover:underline">Forgot password?</a>`
+                );
                 return;
             }
 
-            if (!res.ok) {
-                errText.textContent = data.error || 'Registration failed. Please try again.';
-                errBox.classList.remove('hidden');
-                return;
-            }
+            // ── Any other error ────────────────────────────────────────────
+            showError(data.error || 'Registration failed. Please try again.');
+
         } catch (err) {
-            errText.textContent = 'Network error. Please check your connection.';
-            errBox.classList.remove('hidden');
+            showError('Network error. Please check your connection and try again.');
         } finally {
             btn.disabled = false;
             btnText.textContent = 'Create Account';
             spinner.classList.add('hidden');
         }
     });
+
+    function showError(msg, extraHtml) {
+        const errBox  = document.getElementById('reg-error');
+        const errText = document.getElementById('reg-error-text');
+        errText.textContent = msg;
+        if (extraHtml) {
+            const extra = document.createElement('p');
+            extra.className = 'mt-2 text-sm';
+            extra.innerHTML = extraHtml;
+            errText.parentNode.appendChild(extra);
+        }
+        errBox.classList.remove('hidden');
+        errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
 
     async function resendVerification() {
         const email = window._regEmail;

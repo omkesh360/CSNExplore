@@ -581,8 +581,7 @@ require 'header.php';
                 </a>
             </div>
             
-            <div data-reveal="right" class="relative h-[450px] w-full flex items-center justify-center perspective-1000">
-                <!-- Stacking Images Animation Style -->
+            <div data-reveal="right" class="relative h-[450px] w-full flex items-center justify-center" id="suggestor-stack-wrap">
                 <style>
                     .img-stack-card {
                         position: absolute;
@@ -590,73 +589,97 @@ require 'header.php';
                         height: 380px;
                         border-radius: 2rem;
                         overflow: hidden;
-                        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-                        border: 4px solid white;
-                        opacity: 0;
-                        animation: stackCycle 12s infinite cubic-bezier(0.4, 0, 0.2, 1);
-                        transform-origin: bottom center;
+                        border: 3px solid rgba(255,255,255,0.85);
+                        will-change: transform, opacity;
+                        transition: transform 0.6s cubic-bezier(0.22,1,0.36,1),
+                                    opacity   0.6s cubic-bezier(0.22,1,0.36,1),
+                                    box-shadow 0.6s cubic-bezier(0.22,1,0.36,1);
                     }
                     .img-stack-overlay {
                         position: absolute;
                         inset: 0;
-                        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+                        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
                         z-index: 1;
                     }
                     .img-stack-title {
                         position: absolute;
-                        bottom: 24px;
-                        left: 24px;
-                        right: 24px;
-                        color: white;
-                        z-index: 2;
-                        font-weight: 900;
-                        font-size: 1.5rem;
+                        bottom: 24px; left: 24px; right: 24px;
+                        color: white; z-index: 2;
+                        font-weight: 900; font-size: 1.5rem;
                         font-family: "Playfair Display", serif;
                         letter-spacing: 1px;
                         text-shadow: 0 4px 12px rgba(0,0,0,0.5);
                     }
-                    @keyframes stackCycle {
-                        0% { opacity: 0; transform: translateY(40px) scale(0.9) rotateX(-5deg); z-index: 0; }
-                        5% { opacity: 1; transform: translateY(20px) scale(0.95); z-index: 1; }
-                        10% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); z-index: 4; }
-                        25% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); z-index: 4; box-shadow: 0 35px 60px -15px rgba(236,91,19,0.3); }
-                        30% { opacity: 1; transform: translateY(-30px) scale(1.05) rotateZ(3deg); z-index: 5; }
-                        35% { opacity: 0; transform: translateY(-60px) scale(1.1) rotateZ(5deg); z-index: 5; }
-                        100% { opacity: 0; transform: translateY(40px) scale(0.9); z-index: 0; }
-                    }
-                    .img-stack-card:nth-child(1) { animation-delay: 0s; }
-                    .img-stack-card:nth-child(2) { animation-delay: 3s; }
-                    .img-stack-card:nth-child(3) { animation-delay: 6s; }
-                    .img-stack-card:nth-child(4) { animation-delay: 9s; }
                 </style>
 
-                <!-- 4 Changing Image Cards -->
                 <div class="img-stack-card">
-                    <img src="images/uploads/ellora.png" alt="Ellora Caves" class="w-full h-full object-cover">
+                    <img src="<?php echo BASE_PATH; ?>/images/uploads/ellora.png" alt="Ellora Caves" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Ellora Caves Retreat</div>
                 </div>
                 <div class="img-stack-card">
                     <div class="absolute inset-0 bg-primary/20 z-10 mix-blend-overlay"></div>
-                    <img src="images/uploads/ajanta.png" alt="Ajanta Caves" class="w-full h-full object-cover">
+                    <img src="<?php echo BASE_PATH; ?>/images/uploads/ajanta.png" alt="Ajanta Caves" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Ancient Ajanta</div>
                 </div>
                 <div class="img-stack-card">
-                    <img src="images/uploads/masala-dosa.jpg" alt="Local Cuisine" class="w-full h-full object-cover">
+                    <img src="<?php echo BASE_PATH; ?>/images/uploads/masala-dosa.jpg" alt="Local Cuisine" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Exquisite Local Dining</div>
                 </div>
                 <div class="img-stack-card">
-                    <img src="images/uploads/daulatabad.png" alt="Daulatabad Fort" class="w-full h-full object-cover">
+                    <img src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.png" alt="Daulatabad Fort" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Daulatabad Fort</div>
                 </div>
-                
-                <!-- Floating Decorative Elements -->
-                <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-orange-100/50 blur-xl animate-pulse"></div>
-                <div class="absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-blue-100/50 blur-xl animate-pulse" style="animation-delay: 1.5s;"></div>
+
+                <!-- Decorative blobs -->
+                <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-orange-100/50 blur-xl pointer-events-none" style="animation:float 4s ease-in-out infinite;"></div>
+                <div class="absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-blue-100/50 blur-xl pointer-events-none" style="animation:float 5s 1.5s ease-in-out infinite;"></div>
             </div>
+            <script>
+            (function(){
+                var wrap  = document.getElementById('suggestor-stack-wrap');
+                if (!wrap) return;
+                var cards = wrap.querySelectorAll('.img-stack-card');
+                if (!cards.length) return;
+                var n = cards.length, current = 0;
+
+                var states = [
+                    { z:4, opacity:1,    transform:'translateY(0px) scale(1) rotate(0deg)',       shadow:'0 28px 56px -12px rgba(0,0,0,0.5), 0 0 40px -10px rgba(236,91,19,0.2)' },
+                    { z:3, opacity:0.7,  transform:'translateY(12px) scale(0.93) rotate(-2.5deg)',shadow:'0 16px 32px -8px rgba(0,0,0,0.3)' },
+                    { z:2, opacity:0.42, transform:'translateY(22px) scale(0.86) rotate(3deg)',   shadow:'0 8px 16px -4px rgba(0,0,0,0.18)' },
+                    { z:1, opacity:0,    transform:'translateY(30px) scale(0.8) rotate(-1.5deg)', shadow:'none' },
+                ];
+
+                function applyState(card, state) {
+                    card.style.zIndex    = state.z;
+                    card.style.opacity   = state.opacity;
+                    card.style.transform = state.transform;
+                    card.style.boxShadow = state.shadow;
+                }
+
+                // Init without transition
+                cards.forEach(function(card, i) {
+                    card.style.transition = 'none';
+                    applyState(card, states[i % n]);
+                });
+                void wrap.offsetWidth; // reflow
+                cards.forEach(function(card) {
+                    card.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1),'
+                                          + 'opacity .55s cubic-bezier(.22,1,.36,1),'
+                                          + 'box-shadow .55s cubic-bezier(.22,1,.36,1)';
+                });
+
+                setInterval(function() {
+                    current = (current + 1) % n;
+                    cards.forEach(function(card, i) {
+                        applyState(card, states[(i - current + n) % n]);
+                    });
+                }, 1000);
+            })();
+            </script>
         </div>
     </section>
 </main>

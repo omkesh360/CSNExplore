@@ -12,6 +12,11 @@ $path = ltrim($path, '/');
 // Preserve query string for PHP files
 $qs = $_SERVER['QUERY_STRING'] ?? '';
 
+// ── 301 redirects (legacy URLs) ───────────────────────────────────────────────
+if (file_exists('php/redirects.php')) {
+    require_once 'php/redirects.php';
+}
+
 // ── 1. Real files (images, css, js, etc.) ────────────────────────────────────
 if ($path !== '' && file_exists($path) && !is_dir($path)) {
     return false; // let built-in server handle it
