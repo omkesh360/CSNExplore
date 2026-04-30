@@ -389,6 +389,25 @@ input.pl-10 {
 a { color: inherit; }
 a:hover { color: #ec5b13; }
 
+/* ── Override for header buttons - keep text white on hover ── */
+.hdr-call-btn:hover,
+.hdr-call-btn:hover *,
+.hdr-wa-btn:hover,
+.hdr-wa-btn:hover *,
+#hdr-login-btn:hover {
+  color: #ffffff !important;
+}
+
+/* ── Universal fix: any <a> or <button> with text-white class stays white on hover ── */
+/* Beats the global a:hover { color: #ec5b13; } which has lower specificity */
+a.text-white:hover,
+a.text-white:hover *,
+button.text-white:hover,
+button.text-white:hover * {
+  color: #ffffff !important;
+}
+
+
 /* ── Marquee bar always orange (belt+suspenders) ── */
 #marquee-bar {
   background-color: #ec5b13 !important;

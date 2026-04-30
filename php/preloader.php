@@ -1,6 +1,6 @@
-<!-- CSNExplore Preloader -->
+<!-- CSNExplore Preloader - OPTIMIZED FOR SPEED -->
 <style>
-#preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.5s ease, visibility 0.5s ease; }
+#preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.25s ease, visibility 0.25s ease; }
 #preloader.fade-out { opacity: 0; visibility: hidden; }
 
 #preloader-content {
@@ -22,15 +22,15 @@
 }
 
 #preloader-logo img {
-  height: 40px; /* Mobile logo size */
+  height: 40px;
   max-width: 90vw;
   object-fit: contain;
-  animation: pulseLogo 2s infinite ease-in-out;
+  animation: pulseLogo 1.5s infinite ease-in-out;
 }
 
 @media (min-width: 768px) {
   #preloader-logo img {
-    height: 50px; /* Desktop logo size */
+    height: 50px;
   }
 }
 
@@ -56,7 +56,7 @@
   50% { transform: scale(1.05); opacity: 1; }
 }
 
-/* From Uiverse.io by Nawsome */ 
+/* Simplified loader - FASTER animations */
 .pl {
   display: block;
   width: 6em;
@@ -67,98 +67,65 @@
 .pl__ring-rotate,
 .pl__ring-stroke,
 .pl__tick {
-  -webkit-animation-duration: 2s !important;
-  animation-duration: 2s !important;
-  -webkit-animation-timing-function: linear !important;
+  animation-duration: 1.5s !important;
   animation-timing-function: linear !important;
-  -webkit-animation-iteration-count: infinite !important;
   animation-iteration-count: infinite !important;
 }
 
 .pl__arrows {
-  -webkit-animation-name: arrows42 !important;
   animation-name: arrows42 !important;
-  -webkit-transform: rotate(45deg) !important;
   transform: rotate(45deg) !important;
-  -webkit-transform-origin: 16px 52px !important;
   transform-origin: 16px 52px !important;
 }
 
 .pl__ring-rotate,
 .pl__ring-stroke {
-  -webkit-transform-origin: 80px 80px !important;
   transform-origin: 80px 80px !important;
 }
 
 .pl__ring-rotate {
-  -webkit-animation-name: ringRotate42 !important;
   animation-name: ringRotate42 !important;
 }
 
 .pl__ring-stroke {
-  -webkit-animation-name: ringStroke42 !important;
   animation-name: ringStroke42 !important;
-  -webkit-transform: rotate(-45deg) !important;
   transform: rotate(-45deg) !important;
 }
 
 .pl__tick {
-  -webkit-animation-name: tick42 !important;
   animation-name: tick42 !important;
 }
 
-.pl__tick:nth-child(2) { -webkit-animation-delay: -1.75s; animation-delay: -1.75s; }
-.pl__tick:nth-child(3) { -webkit-animation-delay: -1.5s; animation-delay: -1.5s; }
-.pl__tick:nth-child(4) { -webkit-animation-delay: -1.25s; animation-delay: -1.25s; }
-.pl__tick:nth-child(5) { -webkit-animation-delay: -1s; animation-delay: -1s; }
-.pl__tick:nth-child(6) { -webkit-animation-delay: -0.75s; animation-delay: -0.75s; }
-.pl__tick:nth-child(7) { -webkit-animation-delay: -0.5s; animation-delay: -0.5s; }
-.pl__tick:nth-child(8) { -webkit-animation-delay: -0.25s; animation-delay: -0.25s; }
+.pl__tick:nth-child(2) { animation-delay: -1.31s; }
+.pl__tick:nth-child(3) { animation-delay: -1.13s; }
+.pl__tick:nth-child(4) { animation-delay: -0.94s; }
+.pl__tick:nth-child(5) { animation-delay: -0.75s; }
+.pl__tick:nth-child(6) { animation-delay: -0.56s; }
+.pl__tick:nth-child(7) { animation-delay: -0.38s; }
+.pl__tick:nth-child(8) { animation-delay: -0.19s; }
 
 /* Animations */
-@-webkit-keyframes arrows42 {
-  from { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-  to { -webkit-transform: rotate(405deg); transform: rotate(405deg); }
-}
 @keyframes arrows42 {
-  from { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-  to { -webkit-transform: rotate(405deg); transform: rotate(405deg); }
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
 }
 
-@-webkit-keyframes ringRotate42 {
-  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  to { -webkit-transform: rotate(720deg); transform: rotate(720deg); }
-}
 @keyframes ringRotate42 {
-  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  to { -webkit-transform: rotate(720deg); transform: rotate(720deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(720deg); }
 }
 
-@-webkit-keyframes ringStroke42 {
-  from, to {
-    stroke-dashoffset: 452;
-    -webkit-transform: rotate(-45deg); transform: rotate(-45deg);
-  }
-  50% {
-    stroke-dashoffset: 169.5;
-    -webkit-transform: rotate(-180deg); transform: rotate(-180deg);
-  }
-}
 @keyframes ringStroke42 {
   from, to {
     stroke-dashoffset: 452;
-    -webkit-transform: rotate(-45deg); transform: rotate(-45deg);
+    transform: rotate(-45deg);
   }
   50% {
     stroke-dashoffset: 169.5;
-    -webkit-transform: rotate(-180deg); transform: rotate(-180deg);
+    transform: rotate(-180deg);
   }
 }
 
-@-webkit-keyframes tick42 {
-  from, 3%, 47%, to { stroke-dashoffset: -12; }
-  14%, 36% { stroke-dashoffset: 0; }
-}
 @keyframes tick42 {
   from, 3%, 47%, to { stroke-dashoffset: -12; }
   14%, 36% { stroke-dashoffset: 0; }

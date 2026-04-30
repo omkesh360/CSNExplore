@@ -293,6 +293,23 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 .glass-overlay{background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
 .glass-section{background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.08);}
 .glass-glow{background:rgba(236,91,19,0.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(236,91,19,0.2);box-shadow:0 0 30px rgba(236,91,19,0.15);}
+/* ── Override for header buttons - keep text white on hover ── */
+.hdr-call-btn:hover,
+.hdr-call-btn:hover *,
+.hdr-wa-btn:hover,
+.hdr-wa-btn:hover *,
+#hdr-login-btn:hover,
+#mob-auth-login a:hover,
+#mob-auth-login a:hover * {
+  color: #ffffff !important;
+}
+/* ── Universal fix: any <a> or <button> with text-white stays white on hover ── */
+a.text-white:hover,
+a.text-white:hover *,
+button.text-white:hover,
+button.text-white:hover * {
+  color: #ffffff !important;
+}
 /* ── Gallery Lightbox ── */
 .gallery-thumb{cursor:zoom-in;position:relative;overflow:hidden;border-radius:12px;aspect-ratio:4/3;background:#f1f5f9;border:1px solid #e2e8f0;}
 .gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);background:#f1f5f9;}
@@ -338,8 +355,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 #marquee-bar.hidden-bar { opacity: 0; max-height: 0; padding-top: 0 !important; padding-bottom: 0 !important; pointer-events: none; }
 /* ══ Site Header – ALWAYS STICKY (position:fixed is permanent) ══ */
 #site-header { position: fixed !important; left: 50%; transform: translateX(-50%); width: 100%; max-width: 100%; border-radius: 0; background: #000; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; z-index: 60 !important; transition: width 0.5s cubic-bezier(0.32,0,0.15,1), max-width 0.5s cubic-bezier(0.32,0,0.15,1), border-radius 0.5s cubic-bezier(0.32,0,0.15,1), background 0.5s cubic-bezier(0.32,0,0.15,1), box-shadow 0.5s cubic-bezier(0.32,0,0.15,1), backdrop-filter 0.5s ease; }
-/* ── Pill mode: floating pill, always visible ── */
-#site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(8,5,3,0.95) !important; backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important; border: 1px solid rgba(255,255,255,0.10) !important; box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset !important; z-index: 9000 !important; }
+/* ── Pill mode: floating pill with iPhone liquid glass effect ── */
+#site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(0,0,0,0.72) !important; backdrop-filter: blur(40px) saturate(180%) !important; -webkit-backdrop-filter: blur(40px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.18) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.37), 0 1px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.5) inset !important; z-index: 9000 !important; }
 #site-header nav { height: 64px; min-height: 64px; }
 #site-header.pill-mode nav { height: 60px !important; min-height: 60px !important; }
 /* Call/WA buttons – pill mode shrink to icon only */
@@ -348,7 +365,6 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 #site-header.pill-mode .hdr-wa-btn { padding: 0 !important; width: 34px !important; height: 34px !important; border-radius: 50% !important; }
 .hdr-call-btn, .hdr-wa-btn { position: relative; overflow: hidden; }
 .hdr-call-btn::before, .hdr-wa-btn::before { display: none !important; }
-#site-header-placeholder { display: block; background: #000; }
 /* ── Global mobile fixes ── */
 @media (max-width: 640px) {
   .max-w-\[1140px\] { padding-left: 12px !important; padding-right: 12px !important; }
@@ -1343,10 +1359,10 @@ foreach ($types as $type) {
                 <span class="text-[#ec5b13] font-black">+91 86009 68888</span>
               </a>
               <div class="grid grid-cols-2 gap-2">
-                <a href="tel:+918600968888" class="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-2.5 rounded-xl text-sm transition-colors border border-slate-200">
-                  <span class="material-symbols-outlined text-base text-[#ec5b13]">call</span>Call
+                <a href="tel:+918600968888" class="flex items-center justify-center gap-2 bg-[#ec5b13] hover:bg-[#d94f0f] text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
+                  <span class="material-symbols-outlined text-base">call</span>Call
                 </a>
-                <a href="https://wa.me/918600968888" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-2.5 rounded-xl text-sm transition-colors">
+                <a href="https://wa.me/918600968888" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20b858] text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
                   <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.825c1.63.975 3.41 1.487 5.23 1.488 5.439 0 9.861-4.422 9.863-9.861.001-2.636-1.024-5.115-2.884-6.977-1.862-1.864-4.341-2.887-6.979-2.888-5.439 0-9.861 4.422-9.863 9.862 0 1.842.511 3.641 1.478 5.187l-.995 3.637 3.73-.978zm11.367-7.643c-.31-.155-1.837-.906-2.12-.108-.285.103-.55.515-.674.654-.124.14-.248.155-.558.001-.31-.155-1.31-.483-2.498-1.543-.924-.824-1.548-1.841-1.73-2.15-.181-.31-.019-.477.135-.631.14-.139.31-.36.465-.541.155-.181.206-.31.31-.515.103-.206.052-.386-.026-.541-.077-.155-.674-1.626-.924-2.228-.243-.585-.491-.504-.674-.513-.175-.008-.375-.01-.575-.01s-.525.075-.8.375c-.275.3-1.05 1.026-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.11 3.221 5.113 4.513.714.307 1.272.49 1.706.629.718.227 1.37.195 1.886.118.575-.085 1.837-.75 2.096-1.475.258-.725.258-1.346.181-1.475-.077-.129-.283-.206-.593-.361z"/></svg>
                   WhatsApp
                 </a>
@@ -1357,7 +1373,7 @@ foreach ($types as $type) {
           
           <!-- Check Availability Button (Always Visible) -->
           <div id="check-availability-section">
-            <button type="button" id="btn-check-availability" class="w-full bg-[#ec5b13] text-white font-black py-4 rounded-2xl hover:bg-orange-600 transition-all shadow-lg text-base flex items-center justify-center gap-2">
+            <button type="button" id="btn-check-availability" class="w-full bg-[#ec5b13] text-white font-black py-4 rounded-2xl hover:bg-[#d94f0f] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
               <span class="material-symbols-outlined text-xl">event_available</span>
               Check Availability
             </button>
@@ -1370,11 +1386,11 @@ foreach ($types as $type) {
               <span class="material-symbols-outlined text-amber-500 text-3xl mb-2 block">lock</span>
               <p class="font-bold text-slate-900 mb-1">Sign in to book</p>
               <p class="text-sm text-slate-700 mb-4">Please log in to make a booking request.</p>
-              <a href="../login?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-[#ec5b13] text-white font-black py-3 rounded-2xl hover:bg-orange-600 transition-all text-center mb-2">Sign In</a>
-              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full border-2 border-[#ec5b13] text-[#ec5b13] font-bold py-3 rounded-2xl hover:bg-orange-50 transition-all text-center text-sm mb-3">Create Account</a>
+              <a href="../login?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-[#ec5b13] text-white font-black py-3 rounded-2xl hover:bg-[#d94f0f] transition-all text-center mb-2 shadow-sm hover:shadow-md">Sign In</a>
+              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-2xl transition-all text-center text-sm mb-3 shadow-sm hover:shadow-md">Create Account</a>
               <div class="relative my-3"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-white px-3 text-xs font-bold text-slate-400 uppercase tracking-wider">or</span></div></div>
-              <button type="button" id="btn-guest-booking" class="w-full flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-2xl transition-all text-sm border border-slate-200">
-                <span class="material-symbols-outlined text-base text-slate-600">person_outline</span>Continue as Guest
+              <button type="button" id="btn-guest-booking" class="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 rounded-2xl transition-all text-sm shadow-sm hover:shadow-md">
+                <span class="material-symbols-outlined text-base">person_outline</span>Continue as Guest
               </button>
               <p class="text-[10px] text-slate-400 mt-2">No account needed — just fill in your details</p>
             </div>
@@ -1466,7 +1482,7 @@ foreach ($types as $type) {
         if (!empty($similarItems)) {
             $similarHtml = '<div class="border-t border-slate-200 bg-slate-50 py-14 mt-12">
     <div class="max-w-7xl mx-auto px-4">
-      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar '.htmlspecialchars($meta['label']).'</h3>
+      <h3 class="text-2xl font-serif font-black text-slate-900 mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Similar '.htmlspecialchars($meta['label']).'</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">';
             foreach ($similarItems as $simItem) {
                 $sim_slug = generateSlug($type, $simItem['id'], $simItem['name'] ?? 'item');
@@ -1504,7 +1520,7 @@ foreach ($types as $type) {
                 if ($sim_sub2) {
                     $similarHtml .= '<p class="text-xs text-[#ec5b13] font-bold uppercase tracking-wide mb-1">'.$sim_sub2.'</p>';
                 }
-                $similarHtml .= '<h3 class="text-base font-bold leading-tight group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">'.$sim_name.'</h3>
+                $similarHtml .= '<h3 class="text-base font-bold leading-tight text-slate-900 group-hover:text-[#ec5b13] transition-colors line-clamp-2 pointer-events-auto">'.$sim_name.'</h3>
                     </div>
                     <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
                       <span class="material-symbols-outlined text-sm text-[#ec5b13]/70">location_on</span>
