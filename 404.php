@@ -7,9 +7,12 @@ $page_meta = [
     'canonical'   => '',
     'type'        => 'website',
 ];
+// Override robots to prevent indexing of error pages
+$extra_head = '<meta name="robots" content="noindex, nofollow">';
 require_once 'php/config.php';
 require 'header.php';
 ?>
+
 
 <main class="min-h-screen bg-white flex items-center justify-center py-20 px-4">
     <div class="max-w-xl w-full text-center">

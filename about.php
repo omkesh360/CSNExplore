@@ -7,7 +7,11 @@ $page_meta = [
     'description' => 'Discover the story behind CSNExplore. Bridging the gap between ancient heritage and modern exploration in Chhatrapati Sambhajinagar (Aurangabad).',
     'canonical'   => 'https://csnexplore.com/about',
     'type'        => 'website',
-    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80'
+    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => 'About Us', 'url' => '/about'],
+    ],
 ];
 
 $extra_head = '<script type="application/ld+json">

@@ -5,9 +5,13 @@ require_once 'php/config.php';
 
 $page_meta = [
     'description' => 'Read our latest travel blogs, local tips, and stories from Chhatrapati Sambhajinagar. Discover Ellora, Ajanta, and hidden gems.',
-    'canonical'   => BASE_PATH . '/blogs',
+    'canonical'   => 'https://csnexplore.com/blogs',
     'type'        => 'website',
-    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80'
+    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => 'Blogs', 'url' => '/blogs'],
+    ],
 ];
 
 $extra_head = '<script type="application/ld+json">

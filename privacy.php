@@ -7,6 +7,11 @@ $page_meta = [
     'description' => "Read CSNExplore's Privacy Policy to understand how we collect, use, and protect your personal information.",
     'canonical'   => "https://csnexplore.com/privacy",
     'type'        => 'website',
+    'image'       => 'https://csnexplore.com/images/travelhub.png',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => 'Privacy Policy', 'url' => '/privacy'],
+    ],
 ];
 
 $extra_head = '<script type="application/ld+json">

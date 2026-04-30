@@ -7,7 +7,11 @@ $page_meta = [
     'description' => 'Get in touch with CSNExplore. We are here to help you plan your perfect Chhatrapati Sambhajinagar exploration with 24/7 support.',
     'canonical'   => 'https://csnexplore.com/contact',
     'type'        => 'website',
-    'image'       => 'images/uploads/ellora.png'
+    'image'       => 'images/uploads/ellora.png',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => 'Contact Us', 'url' => '/contact'],
+    ],
 ];
 
 $extra_head = '<script type="application/ld+json">

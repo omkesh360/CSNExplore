@@ -109,7 +109,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 .card-glow{transition:transform 0.3s ease,box-shadow 0.3s ease;}
 .card-glow:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 50px rgba(236,91,19,0.18),0 4px 16px rgba(0,0,0,0.12);}
 .img-shimmer{position:relative;overflow:hidden;}
-.img-shimmer::after{content:\"\";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s ease;}
+.img-shimmer::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s ease;}
 .img-shimmer:hover::after{transform:translateX(100%);}
 /* ── Glassmorphism Effects ── */
 .glass{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);box-shadow:0 8px 32px rgba(0,0,0,0.1);}
@@ -133,6 +133,13 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 #hdr-login-btn:hover,
 #mob-auth-login a:hover,
 #mob-auth-login a:hover * {
+  color: #ffffff !important;
+}
+/* ── Universal fix: any <a> or <button> with text-white stays white on hover ── */
+a.text-white:hover,
+a.text-white:hover *,
+button.text-white:hover,
+button.text-white:hover * {
   color: #ffffff !important;
 }
 /* ── Gallery Lightbox ── */
@@ -180,8 +187,8 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 #marquee-bar.hidden-bar { opacity: 0; max-height: 0; padding-top: 0 !important; padding-bottom: 0 !important; pointer-events: none; }
 /* ══ Site Header – ALWAYS STICKY (position:fixed is permanent) ══ */
 #site-header { position: fixed !important; left: 50%; transform: translateX(-50%); width: 100%; max-width: 100%; border-radius: 0; background: #000; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; z-index: 60 !important; transition: width 0.5s cubic-bezier(0.32,0,0.15,1), max-width 0.5s cubic-bezier(0.32,0,0.15,1), border-radius 0.5s cubic-bezier(0.32,0,0.15,1), background 0.5s cubic-bezier(0.32,0,0.15,1), box-shadow 0.5s cubic-bezier(0.32,0,0.15,1), backdrop-filter 0.5s ease; }
-/* ── Pill mode: floating pill, always visible ── */
-#site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(8,5,3,0.95) !important; backdrop-filter: blur(28px) !important; -webkit-backdrop-filter: blur(28px) !important; border: 1px solid rgba(255,255,255,0.10) !important; box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset !important; z-index: 9000 !important; }
+/* ── Pill mode: floating pill with iPhone liquid glass effect ── */
+#site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(0,0,0,0.72) !important; backdrop-filter: blur(40px) saturate(180%) !important; -webkit-backdrop-filter: blur(40px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.18) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.37), 0 1px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.5) inset !important; z-index: 9000 !important; }
 #site-header nav { height: 64px; min-height: 64px; }
 #site-header.pill-mode nav { height: 60px !important; min-height: 60px !important; }
 /* Call/WA buttons – pill mode shrink to icon only */
@@ -190,7 +197,6 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 #site-header.pill-mode .hdr-wa-btn { padding: 0 !important; width: 34px !important; height: 34px !important; border-radius: 50% !important; }
 .hdr-call-btn, .hdr-wa-btn { position: relative; overflow: hidden; }
 .hdr-call-btn::before, .hdr-wa-btn::before { display: none !important; }
-#site-header-placeholder { display: block; background: #000; }
 /* ── Global mobile fixes ── */
 @media (max-width: 640px) {
   .max-w-\[1140px\] { padding-left: 12px !important; padding-right: 12px !important; }
@@ -316,7 +322,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </div>
 
-<div id="site-header-placeholder" class="w-full"></div>
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="../" class="flex items-center shrink-0">
@@ -495,7 +500,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // ══ Scroll → Pill Header (bulletproof sticky) ══
     (function(){
         var h  = document.getElementById('site-header');
-        var ph = document.getElementById('site-header-placeholder');
         var mb = document.getElementById('marquee-bar');
         var ticking = false;
         var MH = 0;
@@ -523,7 +527,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             h.style.setProperty('max-width', '100%', 'important');
             h.style.setProperty('border-radius', '0', 'important');
             h.style.setProperty('z-index', '60', 'important');
-            if (ph) ph.style.height = (MH + 64) + 'px';
         }
 
         function setPill(){
@@ -538,7 +541,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             h.style.setProperty('max-width', '1120px', 'important');
             h.style.setProperty('border-radius', '9999px', 'important');
             h.style.setProperty('z-index', '9000', 'important');
-            if (ph) ph.style.height = (MH + 64) + 'px';
         }
 
         function update(){

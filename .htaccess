@@ -35,11 +35,9 @@ ServerSignature Off
     Header always set Referrer-Policy           "strict-origin-when-cross-origin"
     Header always set Permissions-Policy        "geolocation=(), microphone=(), camera=()"
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
-    # No-cache for HTML pages so auth state is always fresh
+    # Static listing-detail HTML pages can be cached (pre-generated, rarely change)
     <FilesMatch "\.html$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
+        Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
     </FilesMatch>
     # Remove server info
     Header unset Server
@@ -159,11 +157,14 @@ ServerSignature Off
         Header set Vary "Accept-Encoding"
     </FilesMatch>
     
-    # HTML and PHP - no cache
-    <FilesMatch "\.(html|htm|php)$">
+    # PHP pages - no cache (dynamic); HTML listing pages - 1 day cache
+    <FilesMatch "\.(php)$">
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
         Header set Expires "0"
+    </FilesMatch>
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
     </FilesMatch>
 </IfModule>
 

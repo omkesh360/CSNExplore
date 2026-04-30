@@ -62,3 +62,11 @@
 2026-04-30 22:06:51 - Request: type=attractions, exclude=1
 2026-04-30 22:11:56 - Request: type=attractions, exclude=1
 2026-04-30 22:15:01 - Request: type=attractions, exclude=1
+2026-04-30 22:18:34 - Request: type=attractions, exclude=1
+2026-04-30 22:19:40 - Request: type=bikes, exclude=4
+2026-04-30 22:19:56 - Request: type=bikes, exclude=4
+2026-04-30 22:20:25 - Request: type=cars, exclude=1
+2026-04-30 22:22:55 - Request: type=attractions, exclude=1
+2026-04-30 22:28:13 - Request: type=cars, exclude=1
+2026-04-30 22:28:13 - Request: type=attractions, exclude=1
+2026-04-30 22:50:38 - Request: type=stays, exclude=6

@@ -167,13 +167,9 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
     $head = '<!DOCTYPE html>
 <html class="light" lang="en" style="scroll-behavior:smooth">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
-new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\':\'\';j.async=true;j.src=
-\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,\'script\',\'dataLayer\',\'GTM-XXXXXXX\');</script>
-<!-- End Google Tag Manager -->
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());gtag(\'config\',\'G-58P4JE1SYS\');</script>
 <meta charset="utf-8"/>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -277,7 +273,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 .card-glow{transition:transform 0.3s ease,box-shadow 0.3s ease;}
 .card-glow:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 50px rgba(236,91,19,0.18),0 4px 16px rgba(0,0,0,0.12);}
 .img-shimmer{position:relative;overflow:hidden;}
-.img-shimmer::after{content:\"\";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s ease;}
+.img-shimmer::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s ease;}
 .img-shimmer:hover::after{transform:translateX(100%);}
 /* ── Glassmorphism Effects ── */
 .glass{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);box-shadow:0 8px 32px rgba(0,0,0,0.1);}
@@ -400,7 +396,7 @@ button.text-white:hover * {
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-58P4JE1SYS"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 \' . str_replace(\'<?php echo BASE_PATH; ?>\', rtrim($base, \'/\'), file_get_contents(dirname(__DIR__, 2) . \'/php/preloader.php\')) . \'
@@ -450,7 +446,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // ══ Scroll → Pill Header (bulletproof sticky) ══
     (function(){
         var h  = document.getElementById(\'site-header\');
-        var ph = document.getElementById(\'site-header-placeholder\');
         var mb = document.getElementById(\'marquee-bar\');
         var ticking = false;
         var MH = 0;
@@ -478,7 +473,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             h.style.setProperty(\'max-width\', \'100%\', \'important\');
             h.style.setProperty(\'border-radius\', \'0\', \'important\');
             h.style.setProperty(\'z-index\', \'60\', \'important\');
-            if (ph) ph.style.height = (MH + 64) + \'px\';
         }
 
         function setPill(){
@@ -493,7 +487,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             h.style.setProperty(\'max-width\', \'1120px\', \'important\');
             h.style.setProperty(\'border-radius\', \'9999px\', \'important\');
             h.style.setProperty(\'z-index\', \'9000\', \'important\');
-            if (ph) ph.style.height = (MH + 64) + \'px\';
         }
 
         function update(){
@@ -1359,10 +1352,10 @@ foreach ($types as $type) {
                 <span class="text-[#ec5b13] font-black">+91 86009 68888</span>
               </a>
               <div class="grid grid-cols-2 gap-2">
-                <a href="tel:+918600968888" class="flex items-center justify-center gap-2 bg-[#ec5b13] hover:bg-[#d94f0f] text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
+                <a href="tel:+918600968888" class="flex items-center justify-center gap-2 bg-[#ec5b13] hover:bg-[#d94f0f] text-white hover:!text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
                   <span class="material-symbols-outlined text-base">call</span>Call
                 </a>
-                <a href="https://wa.me/918600968888" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20b858] text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
+                <a href="https://wa.me/918600968888" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20b858] text-white hover:!text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
                   <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.825c1.63.975 3.41 1.487 5.23 1.488 5.439 0 9.861-4.422 9.863-9.861.001-2.636-1.024-5.115-2.884-6.977-1.862-1.864-4.341-2.887-6.979-2.888-5.439 0-9.861 4.422-9.863 9.862 0 1.842.511 3.641 1.478 5.187l-.995 3.637 3.73-.978zm11.367-7.643c-.31-.155-1.837-.906-2.12-.108-.285.103-.55.515-.674.654-.124.14-.248.155-.558.001-.31-.155-1.31-.483-2.498-1.543-.924-.824-1.548-1.841-1.73-2.15-.181-.31-.019-.477.135-.631.14-.139.31-.36.465-.541.155-.181.206-.31.31-.515.103-.206.052-.386-.026-.541-.077-.155-.674-1.626-.924-2.228-.243-.585-.491-.504-.674-.513-.175-.008-.375-.01-.575-.01s-.525.075-.8.375c-.275.3-1.05 1.026-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.11 3.221 5.113 4.513.714.307 1.272.49 1.706.629.718.227 1.37.195 1.886.118.575-.085 1.837-.75 2.096-1.475.258-.725.258-1.346.181-1.475-.077-.129-.283-.206-.593-.361z"/></svg>
                   WhatsApp
                 </a>
@@ -1373,7 +1366,7 @@ foreach ($types as $type) {
           
           <!-- Check Availability Button (Always Visible) -->
           <div id="check-availability-section">
-            <button type="button" id="btn-check-availability" class="w-full bg-[#ec5b13] text-white font-black py-4 rounded-2xl hover:bg-[#d94f0f] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
+            <button type="button" id="btn-check-availability" class="w-full bg-[#ec5b13] text-white hover:!text-white font-black py-4 rounded-2xl hover:bg-[#d94f0f] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
               <span class="material-symbols-outlined text-xl">event_available</span>
               Check Availability
             </button>
@@ -1386,10 +1379,10 @@ foreach ($types as $type) {
               <span class="material-symbols-outlined text-amber-500 text-3xl mb-2 block">lock</span>
               <p class="font-bold text-slate-900 mb-1">Sign in to book</p>
               <p class="text-sm text-slate-700 mb-4">Please log in to make a booking request.</p>
-              <a href="../login?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-[#ec5b13] text-white font-black py-3 rounded-2xl hover:bg-[#d94f0f] transition-all text-center mb-2 shadow-sm hover:shadow-md">Sign In</a>
-              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-2xl transition-all text-center text-sm mb-3 shadow-sm hover:shadow-md">Create Account</a>
+              <a href="../login?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-[#ec5b13] text-white hover:!text-white font-black py-3 rounded-2xl hover:bg-[#d94f0f] transition-all text-center mb-2 shadow-sm hover:shadow-md">Sign In</a>
+              <a href="../register?redirect=listing-detail/'.$slug.'.html" class="inline-block w-full bg-slate-800 hover:bg-slate-900 text-white hover:!text-white font-bold py-3 rounded-2xl transition-all text-center text-sm mb-3 shadow-sm hover:shadow-md">Create Account</a>
               <div class="relative my-3"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-white px-3 text-xs font-bold text-slate-400 uppercase tracking-wider">or</span></div></div>
-              <button type="button" id="btn-guest-booking" class="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 rounded-2xl transition-all text-sm shadow-sm hover:shadow-md">
+              <button type="button" id="btn-guest-booking" class="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-800 text-white hover:!text-white font-bold py-3 rounded-2xl transition-all text-sm shadow-sm hover:shadow-md">
                 <span class="material-symbols-outlined text-base">person_outline</span>Continue as Guest
               </button>
               <p class="text-[10px] text-slate-400 mt-2">No account needed — just fill in your details</p>

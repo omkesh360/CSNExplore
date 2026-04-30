@@ -7,6 +7,11 @@ $page_meta = [
     'description' => "Read CSNExplore's Terms of Service governing the use of our travel portal and booking services.",
     'canonical'   => "https://csnexplore.com/terms",
     'type'        => 'website',
+    'image'       => 'https://csnexplore.com/images/travelhub.png',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+        ['name' => 'Terms of Service', 'url' => '/terms'],
+    ],
 ];
 
 $extra_head = '<script type="application/ld+json">
