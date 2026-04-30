@@ -257,7 +257,7 @@ $category_nav = [
     <!-- Page Title & Search Bar -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
       <div>
-        <h1 class="text-xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight"><?php echo htmlspecialchars($c['heading']); ?></h1>
+        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight"><?php echo htmlspecialchars($c['heading']); ?></h2>
         <p class="text-slate-500 text-sm font-medium"><?php echo count($items); ?> result<?php echo count($items) !== 1 ? 's' : ''; ?> found</p>
       </div>
       <form method="GET" action="<?php echo BASE_PATH; ?>/listing/<?php echo htmlspecialchars($type); ?>" class="flex items-center gap-2 w-full sm:w-auto">

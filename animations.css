@@ -191,8 +191,8 @@ a { transition: color 0.22s ease, opacity 0.22s ease; }
   50%     { opacity:0.6; }
 }
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 @keyframes heroKen {
   0%   { transform: scale(1)    translateX(0); }
@@ -222,7 +222,7 @@ a { transition: color 0.22s ease, opacity 0.22s ease; }
 .anim-spin         { animation: spin        1s linear infinite; }
 .anim-pulse-glow   { animation: pulseGlow   2s ease-in-out infinite; }
 .anim-hero-ken     { animation: heroKen    18s ease-in-out infinite; }
-.animate-marquee   { display:flex; width:max-content; animation: marquee 120s linear infinite; }
+.animate-marquee   { display:inline-flex; width:max-content; animation: marquee 120s linear infinite; will-change: transform; }
 .animate-marquee:hover { animation-play-state: paused; }
 
 /* delay helpers */

@@ -476,6 +476,10 @@ if (file_exists($locationsFile)) {
         });
     })();
 </script>
+
+<!-- Preloader Script -->
+<script src="<?php echo BASE_PATH; ?>/js/preloader.js?v=<?php echo time(); ?>"></script>
+
 </body>
 
 </html>

@@ -94,6 +94,7 @@ class Database {
           `rating` DECIMAL(3,1) DEFAULT 0, `reviews` INT DEFAULT 0,
           `badge` VARCHAR(100), `image` VARCHAR(255), `gallery` TEXT, `features` TEXT,
           `fuel_type` VARCHAR(50), `transmission` VARCHAR(50), `seats` INT DEFAULT 5,
+          `driver_available` TINYINT(1) DEFAULT 0, `price_with_driver` DECIMAL(10,2) DEFAULT 0,
           `map_embed` LONGTEXT NULL,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -157,6 +158,7 @@ class Database {
           `full_name` VARCHAR(255) NOT NULL, `phone` VARCHAR(50) NOT NULL, `email` VARCHAR(255),
           `booking_date` VARCHAR(100), `number_of_people` INT DEFAULT 1,
           `service_type` VARCHAR(50), `listing_id` INT, `listing_name` VARCHAR(255),
+          `with_driver` TINYINT(1) DEFAULT 0,
           `status` ENUM('pending','completed','cancelled') DEFAULT 'pending',
           `notes` TEXT,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -172,6 +174,22 @@ class Database {
           `status` ENUM('published','draft') DEFAULT 'published',
           `category` VARCHAR(100) DEFAULT 'General',
           `read_time` VARCHAR(50), `tags` VARCHAR(255), `meta_description` TEXT,
+          `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+          `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+        CREATE TABLE IF NOT EXISTS `trip_requests` (
+          `id` INT AUTO_INCREMENT PRIMARY KEY,
+          `full_name` VARCHAR(255) NOT NULL,
+          `email` VARCHAR(255),
+          `phone` VARCHAR(50) NOT NULL,
+          `stay_type` VARCHAR(100),
+          `travel_mode` VARCHAR(100),
+          `budget` VARCHAR(100),
+          `duration` VARCHAR(100),
+          `interests` TEXT,
+          `special_requests` TEXT,
+          `status` ENUM('new','contacted','completed','cancelled') DEFAULT 'new',
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

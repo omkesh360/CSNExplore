@@ -19,6 +19,14 @@ body{font-family:'Inter',sans-serif;}
 .animate-slow-zoom{animation:slow-zoom 20s linear infinite alternate;}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
+<!-- Google Analytics - G-58P4JE1SYS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58P4JE1SYS');
+</script>
 </head>
 <body class="bg-white min-h-screen">
 <script>

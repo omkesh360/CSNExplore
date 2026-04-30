@@ -53,6 +53,14 @@ $active_listing_type = $listing_type ?? '';
     <meta name="publisher" content="CSNExplore">
     <meta name="keywords" content="Chhatrapati Sambhajinagar, Aurangabad, hotels, cars, bikes, attractions, restaurants, tourism, CSNExplore, travel guide, heritage sites, Ajanta, Ellora">
     <title><?php echo htmlspecialchars($page_title); ?></title>
+    <!-- Google Analytics - G-58P4JE1SYS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-58P4JE1SYS');
+    </script>
     <!-- Preconnect for critical external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +86,8 @@ $active_listing_type = $listing_type ?? '';
     <!-- Site CSS -->
     <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=<?php echo time(); ?>"/>
     <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css?v=<?php echo time(); ?>"/>
+    <!-- Preloader CSS -->
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/css/preloader.css?v=<?php echo time(); ?>"/>
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
@@ -102,9 +112,9 @@ $active_listing_type = $listing_type ?? '';
         .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; }
 
         /* ── Marquee ── */
-        @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+        @keyframes marquee { 0% { transform:translate3d(0,0,0); } 100% { transform:translate3d(-50%,0,0); } }
         .animate-marquee {
-            display:flex; width:max-content;
+            display:inline-flex; width:max-content;
             animation: marquee 28s linear infinite;
             will-change: transform;
         }
@@ -297,11 +307,17 @@ $active_listing_type = $listing_type ?? '';
     <!-- Get it from: analytics.google.com → Admin → Data Streams             -->
     <?php if (getenv('GA4_ID') || defined('GA4_ID')): ?>
     <?php $ga4 = getenv('GA4_ID') ?: (defined('GA4_ID') ? GA4_ID : ''); ?>
+    <?php if ($ga4 && $ga4 !== 'G-XXXXXXXXXX'): ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars($ga4); ?>"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','<?php echo htmlspecialchars($ga4); ?>');</script>
     <?php endif; ?>
+    <?php endif; ?>
+    
+
 </head>
 <body class="bg-white font-display text-slate-900">
+
+<?php include __DIR__ . '/php/preloader.php'; ?>
 
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>

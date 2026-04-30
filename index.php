@@ -368,7 +368,7 @@ require 'header.php';
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0705] z-10"></div>
-        <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-all duration-1000"
+        <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-opacity duration-500 ease-in-out"
              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfTDZo8LglfsdX1vCy-PfHltcZor3jl-l4xxrXMYSU-zLgoKXxY-ouUImyR0WZq69V0y63PE1wDL2_EfqYwWhgQOHPVDJVHhyGGB7H8kZNyboNAXVxWDvlFW_Z_QRXuTKMBuuk7a9HgI3Gde3PidzWIcOhtgs4QAHX2DHA2V6QUaFo6mYDZzEhvq1Y7FwjBSsjTNmfwco23Zfvdb8laeVoTMZHDGMoMrH3yPn4aQDHZ9AJE-WXiuWGVG-c0BegSoJwB1zEXVVWIUie')">
         </div>
         <!-- Floating orbs -->
@@ -477,8 +477,15 @@ function switchTab(tab, fromAuto) {
     };
     var d = heroData[tab];
     
-    // Update background image
-    if (d.img) document.getElementById('hero-bg').style.backgroundImage = "url('" + d.img + "')";
+    // Update background image smoothly
+    if (d.img) {
+        var heroBg = document.getElementById('hero-bg');
+        heroBg.style.opacity = '0.3';
+        setTimeout(function() {
+            heroBg.style.backgroundImage = "url('" + d.img + "')";
+            heroBg.style.opacity = '1';
+        }, 250);
+    }
 
     ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='0'; });
     setTimeout(function(){
@@ -661,8 +668,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ];
             foreach($highlights as $h): ?>
             <div data-reveal class="bg-white p-6 rounded-2xl shadow-xl shadow-black/5 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-400 ease-out border border-slate-100 group flex flex-col items-center text-center">
-                <div class="size-11 rounded-xl bg-orange-50 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors shadow-sm">
-                    <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors text-2xl"><?php echo $h['icon']; ?></span>
+                <div class="size-11 rounded-xl bg-orange-50 flex items-center justify-center mb-4 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-primary transition-colors text-2xl"><?php echo $h['icon']; ?></span>
                 </div>
                 <h4 class="text-slate-900 font-bold text-sm leading-tight italic"><?php echo $h['label']; ?></h4>
                 <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1.5"><?php echo $h['sub']; ?></p>

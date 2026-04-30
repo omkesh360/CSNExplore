@@ -50,9 +50,9 @@ require 'header.php';
     <div data-reveal class="relative z-10 text-center px-5 max-w-[1140px] mx-auto w-full">
         <div class="max-w-4xl mx-auto">
             <span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-widest mb-6">Established 2012</span>
-            <h2 class="text-5xl md:text-6xl font-serif font-black mb-6 text-white leading-tight">
+            <h1 class="text-5xl md:text-6xl font-serif font-black mb-6 text-white leading-tight">
                 Discover the Soul of <span class="text-primary">Maharashtra</span>
-            </h2>
+            </h1>
             <p class="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
                 Bridging the gap between ancient heritage and modern exploration in the heart of Chhatrapati Sambhajinagar.
             </p>

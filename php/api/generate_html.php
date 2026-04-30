@@ -76,6 +76,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <link rel="stylesheet" href="' . $base . 'mobile-responsive.css"/>
+<link rel="stylesheet" href="' . $base . 'css/preloader.css"/>
 <script>tailwind.config={{darkMode:"class",theme:{{extend:{{colors:{{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"}},fontFamily:{{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}}}}}}</script>
 <style>
 /* ── Global Enhancements (matched from header.php) ── */
@@ -91,8 +92,8 @@ body.page-ready{animation:pageFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forward
 body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 * { box-sizing: border-box; }
 .material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24;font-family:"Material Symbols Outlined";font-style:normal;display:inline-block;line-height:1;}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.animate-marquee { display: flex; width: max-content; animation: marquee 120s linear infinite; }
+@keyframes marquee{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
+.animate-marquee { display: inline-flex; width: max-content; animation: marquee 120s linear infinite; will-change: transform; }
 .animate-marquee:hover { animation-play-state: paused; }
 .prose h2{font-size:1.5rem;font-weight:800;margin:2rem 0 0.75rem;}
 .prose h3{font-size:1.2rem;font-weight:700;margin:1.5rem 0 0.5rem;}
@@ -228,6 +229,7 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 </script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+\' . str_replace(\'<?php echo BASE_PATH; ?>\', rtrim($base, \'/\'), file_get_contents(dirname(__DIR__, 2) . \'/php/preloader.php\')) . \'
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>
 <script>
@@ -658,6 +660,7 @@ function sharedFooter($base) {
     });
 })();
 </script>
+<script src="\' . $base . \'js/preloader.js"></script>
 <script>
 // Mark page as ready (fade in body)
 document.body.classList.add(\'page-ready\');

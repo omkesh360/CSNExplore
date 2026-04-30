@@ -98,6 +98,15 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
 }
 </style>
 <?php if (!empty($extra_head)) echo $extra_head; ?>
+
+<!-- Google Analytics - G-58P4JE1SYS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-58P4JE1SYS');
+</script>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen">
 

@@ -1,0 +1,198 @@
+/* CSNExplore Preloader - Brand Colors with Animations */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Logo Container */
+.preloader-logo {
+    margin-bottom: 2rem;
+    animation: logoFloat 2s ease-in-out infinite;
+}
+
+.preloader-logo img {
+    height: 50px;
+    filter: brightness(0) invert(1);
+}
+
+/* Animated Loader - From demo.css */
+.pl {
+    display: block;
+    width: 6em;
+    height: 6em;
+}
+
+.pl__arrows,
+.pl__ring-rotate,
+.pl__ring-stroke,
+.pl__tick {
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.pl__arrows {
+    animation-name: arrows42;
+    transform: rotate(45deg);
+    transform-origin: 16px 52px;
+}
+
+.pl__ring-rotate,
+.pl__ring-stroke {
+    transform-origin: 80px 80px;
+}
+
+.pl__ring-rotate {
+    animation-name: ringRotate42;
+}
+
+.pl__ring-stroke {
+    animation-name: ringStroke42;
+    transform: rotate(-45deg);
+}
+
+.pl__tick {
+    animation-name: tick42;
+}
+
+.pl__tick:nth-child(2) {
+    animation-delay: -1.75s;
+}
+
+.pl__tick:nth-child(3) {
+    animation-delay: -1.5s;
+}
+
+.pl__tick:nth-child(4) {
+    animation-delay: -1.25s;
+}
+
+.pl__tick:nth-child(5) {
+    animation-delay: -1s;
+}
+
+.pl__tick:nth-child(6) {
+    animation-delay: -0.75s;
+}
+
+.pl__tick:nth-child(7) {
+    animation-delay: -0.5s;
+}
+
+.pl__tick:nth-child(8) {
+    animation-delay: -0.25s;
+}
+
+/* Loading Text */
+.preloader-text {
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+    animation: textPulse 1.5s ease-in-out infinite;
+}
+
+.preloader-subtext {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Animations - From demo.css */
+@keyframes arrows42 {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(405deg);
+    }
+}
+
+@keyframes ringRotate42 {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(720deg);
+    }
+}
+
+@keyframes ringStroke42 {
+    from,
+    to {
+        stroke-dashoffset: 452;
+        transform: rotate(-45deg);
+    }
+    50% {
+        stroke-dashoffset: 169.5;
+        transform: rotate(-180deg);
+    }
+}
+
+@keyframes tick42 {
+    from,
+    3%,
+    47%,
+    to {
+        stroke-dashoffset: -12;
+    }
+    14%,
+    36% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pl {
+        width: 5em;
+        height: 5em;
+    }
+    
+    .preloader-logo img {
+        height: 40px;
+    }
+    
+    .preloader-text {
+        font-size: 1rem;
+    }
+    
+    .preloader-subtext {
+        font-size: 0.75rem;
+    }
+}
