@@ -12,6 +12,153 @@ if (php_sapi_name() !== 'cli' && $secret !== 'csnexplore_seed') {
 $db   = getDB();
 $root = dirname(__DIR__, 2); // workspace root
 
+// ── Content Quality Validation Helper Functions ───────────────────────────────
+
+/**
+ * Optimize title to ensure it's 50-60 characters for SEO
+ * @param string $title The original title
+ * @param string $suffix The suffix to append (e.g., " | CSNExplore")
+ * @return string Optimized title between 50-60 characters
+ */
+function optimizeTitle($title, $suffix = ' | CSNExplore') {
+    $title = trim($title);
+    $withSuffix = $title . $suffix;
+    $length = strlen($withSuffix);
+    
+    // If too short (< 50 chars), pad with descriptive text
+    if ($length < 50) {
+        $padding = ' - Best Deals in Chhatrapati Sambhajinagar';
+        $withPadding = $title . $padding . $suffix;
+        
+        // If still too short after padding, use the padded version
+        if (strlen($withPadding) <= 60) {
+            return $withPadding;
+        }
+        // Otherwise, use a shorter padding
+        $shortPadding = ' - Chhatrapati Sambhajinagar';
+        return $title . $shortPadding . $suffix;
+    }
+    
+    // If too long (> 60 chars), truncate
+    if ($length > 60) {
+        $maxTitleLength = 60 - strlen($suffix) - 3; // Reserve space for "..." and suffix
+        $truncated = substr($title, 0, $maxTitleLength);
+        // Truncate at last space to avoid cutting words
+        $lastSpace = strrpos($truncated, ' ');
+        if ($lastSpace !== false && $lastSpace > $maxTitleLength * 0.8) {
+            $truncated = substr($truncated, 0, $lastSpace);
+        }
+        return $truncated . '...' . $suffix;
+    }
+    
+    // Perfect length (50-60 chars)
+    return $withSuffix;
+}
+
+/**
+ * Capitalize heading to ensure proper title case
+ * @param string $text The heading text
+ * @return string Properly capitalized heading
+ */
+function capitalizeHeading($text) {
+    $text = trim($text);
+    if (empty($text)) {
+        return $text;
+    }
+    // Ensure first character is uppercase
+    return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
+}
+
+/**
+ * Generate descriptive alt tag (minimum 3 words)
+ * @param string $context The context (e.g., "blog", "car rental", "hotel")
+ * @param string $itemName The item name
+ * @param int $index The image index for variation
+ * @return string Descriptive alt tag with at least 3 words
+ */
+function generateDescriptiveAlt($context, $itemName, $index = 0) {
+    $descriptors = ['showing', 'featuring', 'displaying', 'highlighting', 'presenting'];
+    $descriptor = $descriptors[$index % count($descriptors)];
+    
+    // Clean item name
+    $itemName = trim($itemName);
+    
+    // Build descriptive alt tag
+    $alt = ucfirst($context) . ' ' . $descriptor . ' ' . $itemName;
+    
+    // Add location context if not already present
+    if (stripos($alt, 'Sambhajinagar') === false && stripos($alt, 'Aurangabad') === false) {
+        $alt .= ' in Chhatrapati Sambhajinagar';
+    }
+    
+    return $alt;
+}
+
+/**
+ * Generate descriptive anchor text (minimum 2 words)
+ * @param string $itemName The item name
+ * @param string $type The type (e.g., "blog", "hotel", "car")
+ * @return string Descriptive anchor text with at least 2 words
+ */
+function generateDescriptiveAnchor($itemName, $type) {
+    $itemName = trim($itemName);
+    $type = trim($type);
+    
+    // Build descriptive anchor text
+    if (!empty($type)) {
+        return 'View ' . $itemName . ' ' . $type . ' details';
+    }
+    
+    return 'View ' . $itemName . ' details';
+}
+
+// ── Page Speed Optimization Helper Functions ──────────────────────────────────
+
+/**
+ * Generate optimized image with WebP support, dimensions, and lazy loading
+ * @param string $src The image source URL
+ * @param string $alt The alt text for the image
+ * @param int $width The image width in pixels
+ * @param int $height The image height in pixels
+ * @param bool $lazy Whether to add lazy loading (default: true)
+ * @param string $class Additional CSS classes (default: '')
+ * @param string $style Additional inline styles (default: '')
+ * @param string $errorFallback Fallback image on error (default: '../images/travelhub.png')
+ * @return string HTML for picture element with WebP source and fallback
+ */
+function generateOptimizedImage($src, $alt, $width = 800, $height = 600, $lazy = true, $class = '', $style = '', $errorFallback = '../images/travelhub.png') {
+    $src = trim($src);
+    $alt = trim($alt);
+    
+    // Generate WebP version by replacing extension
+    $webpSrc = preg_replace('/\.(jpg|jpeg|png|gif)$/i', '.webp', $src);
+    
+    // Build lazy loading attribute
+    $lazyAttr = $lazy ? ' loading="lazy"' : '';
+    
+    // Build class attribute
+    $classAttr = !empty($class) ? ' class="' . htmlspecialchars($class) . '"' : '';
+    
+    // Build style attribute
+    $styleAttr = !empty($style) ? ' style="' . htmlspecialchars($style) . '"' : '';
+    
+    // Build picture element with WebP source and fallback
+    $html = '<picture>';
+    $html .= '<source srcset="' . htmlspecialchars($webpSrc) . '" type="image/webp">';
+    $html .= '<img src="' . htmlspecialchars($src) . '" ';
+    $html .= 'alt="' . htmlspecialchars($alt) . '" ';
+    $html .= 'width="' . intval($width) . '" ';
+    $html .= 'height="' . intval($height) . '"';
+    $html .= $lazyAttr;
+    $html .= $classAttr;
+    $html .= $styleAttr;
+    $html .= ' onerror="this.onerror=null;this.src=\'' . htmlspecialchars($errorFallback) . '\'"';
+    $html .= '>';
+    $html .= '</picture>';
+    
+    return $html;
+}
+
 // ── Shared HTML helpers ───────────────────────────────────────────────────────
 function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore.', $image = 'https://csnexplore.com/images/og-image.jpg', $schema = null, $type = '') {
     if (!$canonical) $canonical = 'https://csnexplore.com';
@@ -20,6 +167,13 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
     $head = '<!DOCTYPE html>
 <html class="light" lang="en" style="scroll-behavior:smooth">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
+new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\':\'\';j.async=true;j.src=
+\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,\'script\',\'dataLayer\',\'GTM-XXXXXXX\');</script>
+<!-- End Google Tag Manager -->
 <meta charset="utf-8"/>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,6 +383,10 @@ body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 </script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 \' . str_replace(\'<?php echo BASE_PATH; ?>\', rtrim($base, \'/\'), file_get_contents(dirname(__DIR__, 2) . \'/php/preloader.php\')) . \'
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>
@@ -420,7 +578,7 @@ function sharedFooter($base) {
                     <a href="https://wa.me/918600968888" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary hover:scale-110 transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#E1306C] hover:border-[#E1306C] hover:scale-110 transition-all duration-300">
+                    <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary hover:scale-110 transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M224.1 141.6c-45.6 0-82.6 37-82.6 82.6s37 82.6 82.6 82.6 82.6-37 82.6-82.6-37.1-82.6-82.6-82.6zm0 136.4c-29.7 0-53.8-24.1-53.8-53.8s24.1-53.8 53.8-53.8 53.8 24.1 53.8 53.8-24.1 53.8-53.8 53.8zm76.5-115.5c-9.5 0-17.2-7.7-17.2-17.2s7.7-17.2 17.2-17.2 17.2 7.7 17.2 17.2-7.8 17.2-17.2 17.2zM448 224v113c0 60.1-48.9 109-109 109H109C48.9 446 0 397.1 0 337V109C0 48.9 48.9 0 109 0h230C399.1 0 448 48.9 448 109v115h0zm-41.6 0v-115c0-37.2-30.2-67.4-67.4-67.4H109c-37.2 0-67.4 30.2-67.4 67.4v228c0 37.2 30.2 67.4 67.4 67.4h230c37.2 0 67.4-30.2 67.4-67.4v-113h0z"/></svg>
                     </a>
                 </div>
@@ -638,9 +796,11 @@ function sharedFooter($base) {
             if (url.origin !== window.location.origin) return;
         } catch(err) { return; }
         e.preventDefault();
-        document.body.style.transition = \'opacity 0.18s ease\';
+        document.body.style.transition = \'opacity 0.15s ease-out\';
         document.body.style.opacity = \'0\';
-        setTimeout(function(){ window.location.href = href; }, 190);
+        // Safety: restore if navigation stalls
+        var _st = setTimeout(function() { document.body.style.opacity = \'1\'; }, 800);
+        setTimeout(function(){ clearTimeout(_st); window.location.href = href; }, 150);
     });
 
     // ── Cookie consent ──
@@ -696,14 +856,17 @@ foreach ($blogs as $blog) {
     $relatedHtml = '';
     foreach ($related as $r) {
         $rSlug = generateSlug('blogs', $r['id'], $r['title']);
+        $rIndex = array_search($r, $related, true);
+        $rAlt = generateDescriptiveAlt('Related blog', $r['title'], $rIndex + 1);
+        $rAnchor = generateDescriptiveAnchor($r['title'], 'blog');
         $relatedHtml .= '
-        <a href="'.$rSlug.'" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
+        <a href="'.$rSlug.'" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow" aria-label="'.htmlspecialchars($rAnchor).'">
           <div class="aspect-video overflow-hidden">
-            <img src="'.htmlspecialchars($r['image'] ?? '').'" alt="'.htmlspecialchars($r['title']).'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.src=\'../images/travelhub.png\'"/>
+            '.generateOptimizedImage($r['image'] ?? '../images/travelhub.png', $rAlt, 400, 225, true, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500').'
           </div>
           <div class="p-4">
             <span class="text-xs font-bold text-[#ec5b13] uppercase mb-2 block">'.htmlspecialchars($r['category']).'</span>
-            <h4 class="text-sm font-bold line-clamp-2 group-hover:text-[#ec5b13] transition-colors">'.htmlspecialchars($r['title']).'</h4>
+            <h4 class="text-sm font-bold line-clamp-2 group-hover:text-[#ec5b13] transition-colors">'.capitalizeHeading(htmlspecialchars($r['title'])).'</h4>
             <p class="text-xs text-slate-400 mt-2">'.date('M d, Y', strtotime($r['created_at'])).'</p>
           </div>
         </a>';
@@ -741,12 +904,12 @@ foreach ($blogs as $blog) {
         ]]
     ];
 
-    $html = htmlHead(htmlspecialchars($blog['title']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema);
+    $html = htmlHead(optimizeTitle($blog['title']), 1, $canonical, $desc, $absImg, $schema);
     $html .= '
 <main class="bg-white min-h-screen">
   <!-- Hero: shared image with breadcrumb at top, blog title at bottom -->
   <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden">
-    <img src="'.htmlspecialchars($mainImg).'" alt="Blog Hero" class="w-full h-full object-cover" loading="lazy"/>
+    '.generateOptimizedImage($mainImg, generateDescriptiveAlt('Blog', $blog['title'], 0), 1200, 500, false, 'w-full h-full object-cover').'
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     <!-- Breadcrumb at very top -->
     <div class="absolute top-0 left-0 right-0 pt-5">
@@ -762,7 +925,7 @@ foreach ($blogs as $blog) {
     </div>
     <div class="absolute bottom-0 left-0 right-0 max-w-4xl mx-auto px-4 pb-10">
       <span class="inline-block bg-[#ec5b13] text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">'.htmlspecialchars($blog['category']).'</span>
-      <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-serif font-black leading-tight">'.htmlspecialchars($blog['title']).'</h1>
+      <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-serif font-black leading-tight">'.capitalizeHeading(htmlspecialchars($blog['title'])).'</h1>
     </div>
   </div>
   <div class="max-w-4xl mx-auto px-4 py-10">
@@ -789,7 +952,7 @@ foreach ($blogs as $blog) {
   '.($relatedHtml ? '
   <div class="border-t border-slate-100 bg-slate-50 py-14">
     <div class="max-w-4xl mx-auto px-4">
-      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>Related Stories</h3>
+      <h3 class="text-2xl font-serif font-black mb-8 flex items-center gap-3"><span class="w-8 h-1 bg-[#ec5b13] rounded-full inline-block"></span>'.capitalizeHeading('Related Stories').'</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">'.$relatedHtml.'</div>
     </div>
   </div>' : '').'
@@ -883,7 +1046,7 @@ foreach ($types as $type) {
         // Build gallery HTML
         foreach ($resolvedGalleryImages as $idx => $resolvedImg) {
             $galleryHtml .= '<div class="gallery-thumb" onclick="openLightbox('.$idx.')" title="Click to zoom">'.
-                '<img src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.htmlspecialchars($item['name']).' photo '.($idx+1).'" onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</div>';
         }
         // Build JS array of gallery images for lightbox
@@ -977,7 +1140,7 @@ foreach ($types as $type) {
             ],
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
-        $html = htmlHead(htmlspecialchars($item['name']) . ' | CSNExplore', 1, $canonical, $desc, $absImg, $schema, $type);
+        $html = htmlHead(optimizeTitle($item['name']), 1, $canonical, $desc, $absImg, $schema, $type);
         $html = str_replace('</head>', $faqSchema . "\n" . $breadcrumbSchema . "\n</head>", $html);
 
         $thumbHtml = '';
@@ -986,7 +1149,7 @@ foreach ($types as $type) {
             $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
             
             $thumbHtml .= '<button onclick="slideTo('.$idx.')" id="thumb-'.$idx.'" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo '.($idx+1).'">'.
-                '<img src="'.htmlspecialchars($img).'" loading="lazy" alt="thumb '.($idx+1).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</button>';
         }
 
@@ -1014,7 +1177,7 @@ foreach ($types as $type) {
     <div class="absolute bottom-0 left-0 right-0 pb-6 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto">
         '.(!empty($item['badge']) ? '<div class="mb-2"><span class="inline-block bg-[#ec5b13] text-white text-xs font-bold px-3 py-1 rounded-full">'.htmlspecialchars($item['badge']).'</span></div>' : '').'
-        <h1 class="text-white text-2xl md:text-4xl font-serif font-black leading-tight mb-2">'.htmlspecialchars($item['name']).'</h1>
+        <h1 class="text-white text-2xl md:text-4xl font-serif font-black leading-tight mb-2">'.capitalizeHeading(htmlspecialchars($item['name'])).'</h1>
         <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm">
           <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base text-[#ec5b13]">location_on</span>'.$location.'</span>
           <span class="flex items-center gap-1.5 bg-amber-400/20 border border-amber-400/30 px-2.5 py-1 rounded-full">
@@ -1050,7 +1213,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.htmlspecialchars($item['name']).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '
@@ -1119,11 +1282,11 @@ foreach ($types as $type) {
           <div class="p-4">
             <p class="text-xs text-slate-500 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-sm">touch_app</span>Tap any photo to zoom in full screen</p>
             <div class="gallery-grid">
-              '.implode('', array_map(function($img, $i) use ($item) {
+              '.implode('', array_map(function($img, $i) use ($item, $type) {
                   $isPng = (stripos($img, '.png') !== false);
                   $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
                   return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to zoom" role="button" tabindex="0" aria-label="View '.htmlspecialchars($item['name']).' photo '.($i+1).' full screen">
-                    <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.htmlspecialchars($item['name']).' photo '.($i+1).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
+                    <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $i).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>';
               }, $resolvedGalleryImages, array_keys($resolvedGalleryImages))).
@@ -1133,7 +1296,7 @@ foreach ($types as $type) {
         </div>' : '' ).'
 
         <a href="../listing/'.$type.'" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold text-sm hover:underline">
-          <span class="material-symbols-outlined text-base">arrow_back</span>Back to '.htmlspecialchars($meta['label']).'
+          <span class="material-symbols-outlined text-base">arrow_back</span>'.generateDescriptiveAnchor($meta['label'], 'listing').'
         </a>
       </div>
 

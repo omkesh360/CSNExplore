@@ -150,6 +150,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e29
             ['href'=>'users.php',           'icon'=>'group',            'label'=>'Users',          'key'=>'users'],
             ['href'=>'content.php',         'icon'=>'edit_note',        'label'=>'Content',        'key'=>'content'],
             ['href'=>'activity-logs.php',   'icon'=>'history',          'label'=>'Activity Logs',  'key'=>'activity-logs'],
+            ['href'=>'caching.php',         'icon'=>'memory',           'label'=>'Caching',        'key'=>'caching'],
         ];
         foreach ($nav as $n):
             $active = ($admin_page === $n['key']) ? 'active' : '';

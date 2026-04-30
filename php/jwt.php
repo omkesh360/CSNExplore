@@ -65,6 +65,13 @@ function getAuthToken() {
 function verifyToken() {
     $token = getAuthToken();
     if (!$token) sendError('Unauthorized', 401);
+    
+    // Ensure JWT_SECRET is defined
+    if (!defined('JWT_SECRET')) {
+        error_log('JWT_SECRET is not defined in verifyToken()');
+        sendError('Server configuration error', 500);
+    }
+    
     $payload = verifyJWT($token, JWT_SECRET);
     if (!$payload) sendError('Invalid or expired token', 401);
     return $payload;

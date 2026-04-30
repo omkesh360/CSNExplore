@@ -2,6 +2,8 @@
 class Database {
     private static $instance = null;
     private $db;
+    private $useCache = false;
+    private $cacheDir = __DIR__ . '/../cache/db_query_cache/';
 
     private function __construct() {
         // Auto-detect environment: check if running on Hostinger or localhost
@@ -50,6 +52,47 @@ class Database {
             $this->initSchema();
             if (!is_dir(dirname($flagFile))) @mkdir(dirname($flagFile), 0755, true);
             @file_put_contents($flagFile, date('Y-m-d H:i:s'));
+        }
+        
+        $settingsFile = __DIR__ . '/settings.json';
+        if (file_exists($settingsFile)) {
+            $settings = json_decode(file_get_contents($settingsFile), true);
+            $this->useCache = $settings['features']['caching']['enabled'] ?? false;
+        }
+        if ($this->useCache && !is_dir($this->cacheDir)) {
+            @mkdir($this->cacheDir, 0755, true);
+        }
+    }
+
+    private function getCacheKey($sql, $params) {
+        return md5($sql . serialize($params));
+    }
+
+    private function readCache($key) {
+        if (!$this->useCache) return null;
+        $file = $this->cacheDir . $key . '.json';
+        if (file_exists($file)) {
+            if (filemtime($file) > time() - 3600) {
+                return json_decode(file_get_contents($file), true);
+            }
+        }
+        return null;
+    }
+
+    private function writeCache($key, $data) {
+        if (!$this->useCache) return;
+        $file = $this->cacheDir . $key . '.json';
+        @file_put_contents($file, json_encode($data));
+    }
+
+    public function clearCache() {
+        if (is_dir($this->cacheDir)) {
+            $files = glob($this->cacheDir . '*.*');
+            if ($files) {
+                foreach ($files as $file) {
+                    @unlink($file);
+                }
+            }
         }
     }
 
@@ -348,10 +391,26 @@ class Database {
     }
 
     public function fetchAll($sql, $params = []) {
+        if ($this->useCache && stripos(trim($sql), 'SELECT') === 0) {
+            $key = $this->getCacheKey($sql, $params);
+            $cached = $this->readCache($key);
+            if ($cached !== null) return $cached;
+            $res = $this->query($sql, $params)->fetchAll();
+            $this->writeCache($key, $res);
+            return $res;
+        }
         return $this->query($sql, $params)->fetchAll();
     }
 
     public function fetchOne($sql, $params = []) {
+        if ($this->useCache && stripos(trim($sql), 'SELECT') === 0) {
+            $key = $this->getCacheKey($sql, $params);
+            $cached = $this->readCache($key);
+            if ($cached !== null) return $cached;
+            $res = $this->query($sql, $params)->fetch();
+            $this->writeCache($key, $res);
+            return $res;
+        }
         return $this->query($sql, $params)->fetch();
     }
 
@@ -362,6 +421,7 @@ class Database {
         $params = [];
         foreach ($data as $k => $v) $params[":$k"] = $v;
         $this->query($sql, $params);
+        $this->clearCache();
         return $this->db->lastInsertId();
     }
 
@@ -372,11 +432,13 @@ class Database {
         $params = [];
         foreach ($data as $k => $v) $params[":set_$k"] = $v;
         $stmt = $this->query($sql, array_merge($params, $whereParams));
+        $this->clearCache();
         return $stmt->rowCount();
     }
 
     public function delete($table, $where, $params = []) {
         $stmt = $this->query("DELETE FROM $table WHERE $where", $params);
+        $this->clearCache();
         return $stmt->rowCount();
     }
 

@@ -443,21 +443,23 @@ if (file_exists($locationsFile)) {
                 if (url.origin !== window.location.origin) return;
             } catch (err) { return; }
             e.preventDefault();
-            document.body.classList.add('page-fade-out');
+            document.body.style.transition = 'opacity 0.15s ease-out';
+            document.body.style.opacity = '0';
             // Safety: restore if navigation stalls
-            var _st = setTimeout(function () { document.body.classList.remove('page-fade-out'); }, 1200);
-            setTimeout(function () { clearTimeout(_st); window.location.href = href; }, 400);
+            var _st = setTimeout(function () { document.body.style.opacity = '1'; }, 800);
+            setTimeout(function () { clearTimeout(_st); window.location.href = href; }, 150);
         });
 
         // ── Always restore opacity on any page show/load (fixes invisible text) ──
         function _restoreBody() {
-            document.body.classList.remove('page-fade-out');
+            document.body.style.transition = '';
+            document.body.style.opacity = '1';
             document.body.style.visibility = 'visible';
         }
         window.addEventListener('pageshow', _restoreBody);
         window.addEventListener('load', _restoreBody);
-        // Hard safety net after 300ms in case events don't fire
-        setTimeout(_restoreBody, 300);
+        // Hard safety net after 150ms in case events don't fire
+        setTimeout(_restoreBody, 150);
 
         // ── Cookie consent ──
         function getCookie(name) { var v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'); return v ? v.pop() : ''; }

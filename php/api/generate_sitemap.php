@@ -72,7 +72,14 @@ if ($which === 'sitemap-blogs') {
     try {
         $blogs = $db->fetchAll("SELECT id, title, updated_at FROM blogs WHERE status = 'published' ORDER BY id DESC LIMIT 600");
         foreach ($blogs as $blog) {
-            $slug    = $blog['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $blog['title']), '-'));
+            $slug    = 'blogs-' . $blog['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $blog['title']), '-'));
+            $file    = dirname(__DIR__, 2) . '/blogs/' . $slug . '.html';
+            
+            // Only include if file exists and is readable (returns 200 OK)
+            if (!file_exists($file) || !is_readable($file)) {
+                continue;
+            }
+            
             $lastmod = substr($blog['updated_at'] ?? $today, 0, 10);
             $urls[]  = ['loc' => 'blogs/' . $slug, 'priority' => '0.6', 'changefreq' => 'monthly', 'lastmod' => $lastmod];
         }
@@ -99,6 +106,13 @@ if (isset($listingMap[$which])) {
         $rows = $db->fetchAll("SELECT id, {$lt['nameCol']} as name, updated_at FROM {$lt['table']} WHERE is_active = 1");
         foreach ($rows as $row) {
             $slug    = $type . '-' . $row['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $row['name']), '-'));
+            $file    = dirname(__DIR__, 2) . '/listing-detail/' . $slug . '.html';
+            
+            // Only include if file exists and is readable (returns 200 OK)
+            if (!file_exists($file) || !is_readable($file)) {
+                continue;
+            }
+            
             $lastmod = substr($row['updated_at'] ?? $today, 0, 10);
             $urls[]  = ['loc' => 'listing-detail/' . $slug, 'priority' => $lt['priority'], 'changefreq' => 'weekly', 'lastmod' => $lastmod];
         }

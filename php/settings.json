@@ -2,6 +2,9 @@
     "features": {
         "lazy_loading": {
             "enabled": false
+        },
+        "caching": {
+            "enabled": true
         }
     }
 }
