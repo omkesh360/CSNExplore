@@ -136,7 +136,8 @@ $extra_head = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpic
     "contactType": "customer service"
   }
 }
-</script>';
+</script>
+<link rel="preload" as="image" href="images/car-rental-hero-section%20(3).webp" fetchpriority="high">';
 $extra_styles = "
         .hide-scrollbar::-webkit-scrollbar { display:none; }
         .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
@@ -211,7 +212,7 @@ $extra_styles = "
         }
         .search-field, .date-field { 
             background: transparent; border:none; border-right: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 12px; flex:1; min-width:0; height:60px; 
+            border-radius: 12px; flex:1; min-width:0; height:64px; 
             transition:background 0.3s; position: relative;
         }
         .search-field:hover, .date-field:hover { background: rgba(255,255,255,0.05); }
@@ -231,7 +232,7 @@ $extra_styles = "
         .search-btn { 
             background: #fff; color: #111; font-weight:800; font-size:16px; 
             padding:0 32px; border-radius:14px; border:none; cursor:pointer; 
-            display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.3s; white-space:nowrap; flex-shrink:0; height:60px; 
+            display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.3s; white-space:nowrap; flex-shrink:0; height:64px; 
         }
         .search-btn:hover { background: #ec5b13; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(236,91,19,0.3); }
         .search-btn:hover .material-symbols-outlined { color: #fff; }
@@ -244,7 +245,7 @@ $extra_styles = "
             background: transparent; border: none; padding: 0; gap: 12px;
           }
           .search-field, .date-field { 
-            display: block !important; width: 100% !important; min-height: 72px !important; flex: none !important;
+            display: block !important; width: 100% !important; min-height: 70px !important; flex: none !important;
             border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
             background: rgba(0,0,0,0.3);
           }
@@ -253,7 +254,7 @@ $extra_styles = "
             font-size: 16px; font-weight: 500; height: 100%; width: 100%; padding: 0 24px 0 64px;
           }
           .search-btn { 
-            width: 100%; min-height: 72px; padding: 0 24px; border-radius: 20px; 
+            width: 100%; min-height: 70px; padding: 0 24px; border-radius: 20px; 
             margin-top: 4px; font-size: 18px; font-weight: 800; justify-content: center;
           }
           
@@ -265,7 +266,7 @@ $extra_styles = "
 
           .tab-btn { 
             display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important;
-            padding: 0 4px !important; font-size: 14px !important; min-height: 54px !important; width: 100% !important;
+            padding: 0 4px !important; font-size: 14px !important; min-height: 64px !important; width: 100% !important;
             border-radius: 99px !important; background: rgba(0,0,0,0.3) !important; border: 1px solid rgba(255,255,255,0.1) !important;
           }
           .tab-btn .material-symbols-outlined { display: none !important; }
@@ -364,7 +365,7 @@ require 'header.php';
 
 <main>
 <!-- Hero -->
-<section class="relative min-h-[100svh] md:min-h-[85vh] flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-24 pb-8 md:pb-12 w-full">
+<section class="homepage-hero relative min-h-[100svh] md:min-h-[85vh] flex flex-col items-center justify-start md:justify-center overflow-hidden pt-32 md:pt-24 pb-8 md:pb-12 w-full">
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0705] z-10"></div>

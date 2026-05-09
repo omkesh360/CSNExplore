@@ -104,7 +104,7 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 <div class="relative h-[60vh] min-h-[400px] mt-16 overflow-hidden">
     <?php if ($image): ?>
         <div class="absolute inset-0 img-zoom-container" data-animate="zoom-in">
-            <img width="800" height="600" src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover img-zoom"/>
+            <img loading="lazy" width="800" height="600" src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover img-zoom"/>
         </div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     <?php else: ?>

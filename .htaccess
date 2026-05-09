@@ -34,14 +34,22 @@ ServerSignature Off
     Header always set X-XSS-Protection          "1; mode=block"
     Header always set Referrer-Policy           "strict-origin-when-cross-origin"
     Header always set Permissions-Policy        "geolocation=(), microphone=(), camera=()"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+    
+    # SEO-friendly headers
+    Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    
     # Static listing-detail HTML pages can be cached (pre-generated, rarely change)
     <FilesMatch "\.html$">
         Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
+        Header append Vary "Accept-Encoding"
     </FilesMatch>
-    # Remove server info
+    
+    # Remove server info for security
     Header unset Server
     Header unset X-Powered-By
+    Header unset X-AspNet-Version
+    Header unset X-AspNetMvc-Version
 </IfModule>
 
 # ── Block sensitive files ─────────────────────────────────────────────────────
@@ -176,9 +184,12 @@ ServerSignature Off
     # Pass Authorization header (required for JWT)
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # ── WWW to non-WWW Redirect ───────────────────────────────────────────────
-    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+    # ── OPTIMIZED: Combine HTTP→HTTPS and WWW→non-WWW in ONE redirect ────────
+    # This prevents redirect chains and improves performance
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
 
     # ── 0. Enforce correct folder case (CSNexplore2.0 not csNexplore2.0) ────
     RewriteCond %{REQUEST_URI} ^/[Cc][Ss][Nn][Ee][Xx][Pp][Ll][Oo][Rr][Ee]2\.0(/.*)?$ [NC]
@@ -197,9 +208,9 @@ ServerSignature Off
     RewriteCond %{REQUEST_URI} ^(.*/)index(\.php)?$
     RewriteRule ^ %1 [R=301,L]
 
-    # ── 2. Handle Blog pages: /blogs/1-my-slug → blog-detail.php?id=1 ────────
+    # ── 2. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
     # Extract blog ID from URL and route to dynamic blog-detail.php
-    RewriteRule ^blogs/([0-9]+)-[a-z0-9-]+(?:\.html)?$ blog-detail.php?id=$1 [L,QSA]
+    RewriteRule ^blogs/(?:blogs-)?([0-9]+)-[a-z0-9-]+(?:\.html)?$ blog-detail.php?id=$1 [L,QSA]
 
     # Explicitly handle /blogs to blogs.php if it's being hijacked by directory redirect
     RewriteRule ^blogs/?$ blogs.php [L,QSA]

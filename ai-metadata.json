@@ -1,0 +1,269 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CSNExplore",
+  "alternateName": "CSN Explore - Chhatrapati Sambhajinagar Tourism Portal",
+  "url": "https://csnexplore.com",
+  "description": "Comprehensive tourism portal for Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and bus routes. 500+ verified listings with best prices and 24/7 support.",
+  "inLanguage": ["en-IN", "hi-IN"],
+  "about": {
+    "@type": "Place",
+    "name": "Chhatrapati Sambhajinagar",
+    "alternateName": "Aurangabad",
+    "description": "Historic city in Maharashtra, India, known for UNESCO World Heritage Sites Ajanta and Ellora Caves",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.8762,
+      "longitude": 75.3433
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chhatrapati Sambhajinagar",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN",
+      "postalCode": "431001"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CSNExplore",
+    "url": "https://csnexplore.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://csnexplore.com/images/travelhub.png",
+      "width": 800,
+      "height": 600
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-8600968888",
+      "contactType": "customer service",
+      "email": "supportcsnexplore@gmail.com",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jay Tower, Padampura",
+      "addressLocality": "Chhatrapati Sambhajinagar",
+      "addressRegion": "Maharashtra",
+      "postalCode": "431005",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.instagram.com/csnexplore_/",
+      "https://www.facebook.com/csnexplore",
+      "https://twitter.com/csnexplore"
+    ]
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://csnexplore.com/listing/stays?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": [
+    {
+      "@type": "TouristAttraction",
+      "name": "Ajanta Caves",
+      "description": "UNESCO World Heritage Site featuring ancient Buddhist cave monuments",
+      "url": "https://csnexplore.com/listing/attractions",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.5519,
+        "longitude": 75.7033
+      }
+    },
+    {
+      "@type": "TouristAttraction",
+      "name": "Ellora Caves",
+      "description": "UNESCO World Heritage Site with rock-cut temples representing Buddhism, Hinduism, and Jainism",
+      "url": "https://csnexplore.com/listing/attractions",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.0269,
+        "longitude": 75.1791
+      }
+    },
+    {
+      "@type": "TouristAttraction",
+      "name": "Bibi Ka Maqbara",
+      "description": "Mughal mausoleum known as the 'Taj of the Deccan'",
+      "url": "https://csnexplore.com/listing/attractions",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.9012,
+        "longitude": 75.3212
+      }
+    }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "offerCount": "1500",
+    "offers": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hotel Booking",
+          "description": "500+ hotels and accommodations in Chhatrapati Sambhajinagar"
+        },
+        "priceCurrency": "INR",
+        "priceRange": "₹500-₹10000"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Car Rental",
+          "description": "Self-drive and chauffeur-driven car rentals"
+        },
+        "priceCurrency": "INR",
+        "priceRange": "₹800-₹5000"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Bike Rental",
+          "description": "Scooters and motorcycles for rent"
+        },
+        "priceCurrency": "INR",
+        "priceRange": "₹300-₹1500"
+      }
+    ]
+  },
+  "keywords": [
+    "Chhatrapati Sambhajinagar tourism",
+    "Aurangabad travel",
+    "Ajanta Caves tour",
+    "Ellora Caves visit",
+    "hotels Aurangabad",
+    "car rental Sambhajinagar",
+    "bike rental Aurangabad",
+    "Bibi Ka Maqbara",
+    "Daulatabad Fort",
+    "Aurangabad restaurants",
+    "Maharashtra tourism",
+    "UNESCO World Heritage Sites India"
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Tourists, Travelers, History Enthusiasts, Adventure Seekers",
+    "geographicArea": {
+      "@type": "Place",
+      "name": "India and International"
+    }
+  },
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.8762,
+      "longitude": 75.3433
+    },
+    "geoRadius": "100000"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1247",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Verified Customer"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Excellent service for booking hotels and car rentals in Aurangabad. Made our Ajanta Caves trip hassle-free!"
+    }
+  ],
+  "knowsAbout": [
+    "Chhatrapati Sambhajinagar (Aurangabad) tourism",
+    "Ajanta Caves UNESCO World Heritage Site",
+    "Ellora Caves UNESCO World Heritage Site",
+    "Bibi Ka Maqbara Mughal architecture",
+    "Daulatabad Fort history",
+    "Maharashtra tourism destinations",
+    "Hotel booking in Aurangabad",
+    "Car and bike rentals",
+    "Local restaurants and cuisine",
+    "Bus routes and transportation",
+    "Travel guides and itineraries",
+    "Tourist attractions and sightseeing",
+    "Budget travel tips",
+    "Luxury accommodations",
+    "Adventure tourism",
+    "Heritage tourism",
+    "Cultural tourism"
+  ],
+  "hasPart": [
+    {
+      "@type": "WebPage",
+      "name": "Hotels & Stays",
+      "url": "https://csnexplore.com/listing/stays",
+      "description": "500+ hotels, homestays, and resorts in Chhatrapati Sambhajinagar"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Car Rentals",
+      "url": "https://csnexplore.com/listing/cars",
+      "description": "Self-drive and chauffeur-driven car rentals"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Bike Rentals",
+      "url": "https://csnexplore.com/listing/bikes",
+      "description": "Scooters and motorcycles for rent"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Tourist Attractions",
+      "url": "https://csnexplore.com/listing/attractions",
+      "description": "Ajanta Caves, Ellora Caves, Bibi Ka Maqbara, and more"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Restaurants",
+      "url": "https://csnexplore.com/listing/restaurants",
+      "description": "300+ restaurants, cafes, and eateries"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Bus Routes",
+      "url": "https://csnexplore.com/listing/buses",
+      "description": "Bus schedules and ticket booking"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Travel Blog",
+      "url": "https://csnexplore.com/blogs",
+      "description": "Travel guides, tips, and itineraries"
+    }
+  ],
+  "datePublished": "2024-01-01",
+  "dateModified": "2026-05-10",
+  "copyrightYear": "2024",
+  "copyrightHolder": {
+    "@type": "Organization",
+    "name": "CSNExplore"
+  },
+  "license": "https://csnexplore.com/terms",
+  "isAccessibleForFree": true,
+  "accessMode": ["textual", "visual"],
+  "accessModeSufficient": ["textual", "visual"],
+  "accessibilityAPI": ["ARIA"],
+  "accessibilityControl": ["fullKeyboardControl", "fullMouseControl", "fullTouchControl"],
+  "accessibilityFeature": ["alternativeText", "structuredNavigation", "tableOfContents"],
+  "accessibilityHazard": ["noFlashingHazard", "noMotionSimulationHazard", "noSoundHazard"]
+}

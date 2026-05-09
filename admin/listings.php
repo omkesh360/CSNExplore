@@ -130,7 +130,7 @@ require 'admin-header.php';
                         </button>
                     </div>
                     <div id="main-img-preview" class="mt-2 hidden">
-                        <img width="800" height="600" id="main-img-preview-img" src="" class="h-24 rounded-xl object-cover border border-slate-200"/>
+                        <img loading="lazy" width="800" height="600" id="main-img-preview-img" src="" class="h-24 rounded-xl object-cover border border-slate-200"/>
                     </div>
                 </div>
                 <div class="col-span-2">
@@ -143,7 +143,22 @@ require 'admin-header.php';
                     <input type="hidden" id="f-gallery"/>
                 </div>
                 <div class="col-span-2">
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Mini Description <span class="text-slate-400 font-normal">(SEO Content)</span></label>
+                    <textarea id="f-mini_description" rows="2" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none" placeholder="e.g. Hello it is mini description for this page"></textarea>
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">SEO Keywords Stuffing</label>
+                    <div id="keyword-tags" class="flex flex-wrap gap-2 mb-2 min-h-[32px] p-2 border border-dashed border-slate-200 rounded-xl"></div>
+                    <div class="flex gap-2">
+                        <select id="keyword-select" class="flex-1 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                            <option value="">Select keyword to add...</option>
+                        </select>
+                        <button type="button" onclick="addNewKeywordPrompt()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-all">Add New</button>
+                    </div>
+                    <input type="hidden" id="f-keywords"/>
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Full Description</label>
                     <textarea id="f-description" rows="3" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"></textarea>
                 </div>
                 <div class="col-span-2">
@@ -152,6 +167,34 @@ require 'admin-header.php';
                 </div>
                 <!-- Extra fields shown per category -->
                 <div id="extra-fields" class="col-span-2 grid grid-cols-2 gap-4"></div>
+                
+                <!-- Policies & Terms Section -->
+                <div class="col-span-2 border-t border-slate-100 pt-4 mt-2">
+                    <h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-base">gavel</span> Policies & Terms
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-2 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">id_card</span> Driving Licence / ID Requirements
+                            </label>
+                            <div id="policy-req-container" class="space-y-2"></div>
+                            <button type="button" onclick="addPolicyItem('req')" class="mt-2 text-xs font-semibold text-primary flex items-center gap-1 hover:underline">
+                                <span class="material-symbols-outlined text-[16px]">add_circle</span> Add Requirement
+                            </button>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-2 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">info</span> General Terms & Conditions
+                            </label>
+                            <div id="policy-terms-container" class="space-y-2"></div>
+                            <button type="button" onclick="addPolicyItem('terms')" class="mt-2 text-xs font-semibold text-primary flex items-center gap-1 hover:underline">
+                                <span class="material-symbols-outlined text-[16px]">add_circle</span> Add Term
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="f-policies"/>
+                </div>
             </div>
             <div id="form-error" class="hidden text-sm text-red-600 bg-red-50 px-4 py-2 rounded-xl"></div>
             <div class="flex gap-3 pt-2">
@@ -167,6 +210,8 @@ $extra_js = <<<'JS'
 <script>
 var currentCat = 'stays';
 var editingId   = null;
+var allKeywords = [];
+var selectedKeywords = [];
 
 var priceLabels = {
     stays: 'Price / Night (₹)',
@@ -208,6 +253,69 @@ function switchCat(cat) {
     loadListings();
 }
 
+async function loadKeywords() {
+    allKeywords = await api('../php/api/keywords.php');
+    updateKeywordSelect();
+}
+
+function updateKeywordSelect() {
+    var sel = document.getElementById('keyword-select');
+    sel.innerHTML = '<option value="">Select keyword to add...</option>';
+    allKeywords.forEach(function(k) {
+        if (!selectedKeywords.includes(k.keyword)) {
+            sel.innerHTML += '<option value="' + escHtml(k.keyword) + '">' + escHtml(k.keyword) + '</option>';
+        }
+    });
+}
+
+document.getElementById('keyword-select').addEventListener('change', function() {
+    if (this.value) {
+        addKeywordTag(this.value);
+        this.value = '';
+    }
+});
+
+function addKeywordTag(kw) {
+    if (!selectedKeywords.includes(kw)) {
+        selectedKeywords.push(kw);
+        renderKeywordTags();
+        updateKeywordSelect();
+    }
+}
+
+function removeKeywordTag(kw) {
+    selectedKeywords = selectedKeywords.filter(function(k) { return k !== kw; });
+    renderKeywordTags();
+    updateKeywordSelect();
+}
+
+function renderKeywordTags() {
+    var container = document.getElementById('keyword-tags');
+    container.innerHTML = selectedKeywords.map(function(kw) {
+        return '<span class="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-[11px] font-bold rounded-lg border border-primary/20">' + 
+               escHtml(kw) + 
+               '<button type="button" onclick="removeKeywordTag(\'' + kw.replace(/'/g, "\\'") + '\')" class="hover:text-red-500"><span class="material-symbols-outlined text-[14px]">close</span></button></span>';
+    }).join('');
+    document.getElementById('f-keywords').value = selectedKeywords.join(', ');
+}
+
+async function addNewKeywordPrompt() {
+    var kw = prompt("Enter new keyword:");
+    if (kw && kw.trim()) {
+        kw = kw.trim();
+        var res = await api('../php/api/keywords.php', 'POST', { keyword: kw });
+        if (res.success) {
+            if (!allKeywords.find(k => k.keyword === res.keyword)) {
+                allKeywords.push({ id: res.id, keyword: res.keyword });
+            }
+            addKeywordTag(res.keyword);
+        }
+    }
+}
+
+// Initial keywords load
+loadKeywords();
+
 async function loadListings() {
     var search = document.getElementById('search-input').value;
     var url = '../php/api/listings.php?category=' + currentCat + (search ? '&search=' + encodeURIComponent(search) : '');
@@ -240,7 +348,7 @@ async function loadListings() {
             '</td>' +
             '<td data-label="Listing" class="py-4 px-4">' +
                 '<div class="flex items-center gap-3">' +
-                    '<img width="800" height="600" src="' + escHtml(imgUrl) + '" class="w-11 h-11 rounded-xl object-cover border border-slate-100 shadow-sm" onerror="this.src=\'../images/placeholder.jpg\'">' +
+                    '<img loading="lazy" width="800" height="600" src="' + escHtml(imgUrl) + '" class="w-11 h-11 rounded-xl object-cover border border-slate-100 shadow-sm" onerror="this.src=\'../images/placeholder.jpg\'">' +
                     '<div>' +
                         '<p class="font-bold text-slate-900 leading-tight text-sm">' + escHtml(item.name) + '</p>' +
                         '<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">' + escHtml(item.type || 'Standard') + '</p>' +
@@ -373,6 +481,50 @@ function getPkgData(id) {
     return Object.keys(obj).length === 0 ? '' : JSON.stringify(obj);
 }
 
+function addPolicyItem(type, data = {icon: 'check_circle', text: ''}) {
+    var c = document.getElementById('policy-' + type + '-container');
+    if (!c) return;
+    var div = document.createElement('div');
+    div.className = 'flex gap-2 items-start bg-slate-50 p-2 rounded-xl border border-slate-100 group';
+    div.innerHTML = `
+        <select class="p-1 text-[10px] bg-white border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-primary w-20">
+            <option value="check_circle" ${data.icon=='check_circle'?'selected':''}>Check</option>
+            <option value="id_card" ${data.icon=='id_card'?'selected':''}>ID Card</option>
+            <option value="badge" ${data.icon=='badge'?'selected':''}>Badge</option>
+            <option value="public" ${data.icon=='public'?'selected':''}>IDP/Global</option>
+            <option value="info" ${data.icon=='info'?'selected':''}>Info</option>
+            <option value="gavel" ${data.icon=='gavel'?'selected':''}>Legal</option>
+            <option value="schedule" ${data.icon=='schedule'?'selected':''}>Time</option>
+            <option value="payments" ${data.icon=='payments'?'selected':''}>Payment</option>
+            <option value="no_smoking" ${data.icon=='no_smoking'?'selected':''}>No Smoke</option>
+            <option value="local_gas_station" ${data.icon=='local_gas_station'?'selected':''}>Fuel</option>
+            <option value="location_off" ${data.icon=='location_off'?'selected':''}>No Local</option>
+            <option value="groups" ${data.icon=='groups'?'selected':''}>Groups</option>
+        </select>
+        <textarea class="flex-1 text-xs border-0 bg-transparent focus:ring-0 p-0 resize-none min-h-[40px]" placeholder="Enter policy text...">${escHtml(data.text)}</textarea>
+        <button type="button" onclick="this.parentElement.remove()" class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined text-sm">delete</span>
+        </button>
+    `;
+    c.appendChild(div);
+}
+
+function getPoliciesData() {
+    var reqs = [];
+    document.querySelectorAll('#policy-req-container > div').forEach(div => {
+        var icon = div.querySelector('select').value;
+        var text = div.querySelector('textarea').value.trim();
+        if (text) reqs.push({icon, text});
+    });
+    var terms = [];
+    document.querySelectorAll('#policy-terms-container > div').forEach(div => {
+        var icon = div.querySelector('select').value;
+        var text = div.querySelector('textarea').value.trim();
+        if (text) terms.push({icon, text});
+    });
+    return JSON.stringify({requirements: reqs, terms: terms});
+}
+
 function openAddModal() {
     editingId = null;
     document.getElementById('modal-title').textContent = 'Add ' + currentCat.charAt(0).toUpperCase() + currentCat.slice(1);
@@ -382,6 +534,12 @@ function openAddModal() {
     document.getElementById('gallery-thumbs').innerHTML = '';
     document.getElementById('main-img-preview').classList.add('hidden');
     document.getElementById('f-map_embed').value = '';
+    document.getElementById('f-mini_description').value = 'Hello it is mini description for this page';
+    document.getElementById('policy-req-container').innerHTML = '';
+    document.getElementById('policy-terms-container').innerHTML = '';
+    selectedKeywords = [];
+    renderKeywordTags();
+    updateKeywordSelect();
     buildExtraFields(currentCat);
     document.getElementById('form-error').classList.add('hidden');
     document.getElementById('listing-modal').classList.remove('hidden');
@@ -400,11 +558,24 @@ async function openEditModal(id) {
     document.getElementById('f-badge').value = item.badge || '';
     document.getElementById('f-image').value = item.image || '';
     document.getElementById('f-description').value = item.description || '';
+    document.getElementById('f-mini_description').value = item.mini_description || '';
+    selectedKeywords = (item.keywords || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    renderKeywordTags();
+    updateKeywordSelect();
     document.getElementById('f-rating').value = item.rating || '';
     document.getElementById('f-active').value = item.is_active ?? 1;
     document.getElementById('f-display_order').value = item.display_order || 0;
     document.getElementById('f-map_embed').value = item.map_embed || '';
     updateMainPreview(item.image || '');
+    // Policies
+    document.getElementById('policy-req-container').innerHTML = '';
+    document.getElementById('policy-terms-container').innerHTML = '';
+    var policies = item.policies;
+    if (typeof policies === 'string') { try { policies = JSON.parse(policies); } catch(e){ policies = null; } }
+    if (policies) {
+        (policies.requirements || []).forEach(r => addPolicyItem('req', r));
+        (policies.terms || []).forEach(t => addPolicyItem('terms', t));
+    }
     // Gallery
     var gallery = Array.isArray(item.gallery) ? item.gallery : (item.gallery ? JSON.parse(item.gallery) : []);
     document.getElementById('f-gallery').value = JSON.stringify(gallery);
@@ -474,7 +645,7 @@ function renderGalleryThumbs(list) {
     }
     container.innerHTML = list.map(function(url, i) {
         return '<div class="relative group w-32 h-24">' +
-            '<img width="800" height="600" src="' + escHtml(imgSrc(url)) + '" class="w-full h-full rounded-2xl object-cover border-2 border-slate-100 shadow-sm transition-all duration-300 group-hover:scale-[1.03] group-hover:border-primary/50 group-hover:shadow-md"/>' +
+            '<img loading="lazy" width="800" height="600" src="' + escHtml(imgSrc(url)) + '" class="w-full h-full rounded-2xl object-cover border-2 border-slate-100 shadow-sm transition-all duration-300 group-hover:scale-[1.03] group-hover:border-primary/50 group-hover:shadow-md"/>' +
             '<button type="button" onclick="removeGalleryImage(' + i + ')" ' +
                 'class="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg hover:bg-red-600 hover:scale-110">' +
                 '<span class="material-symbols-outlined text-[16px]">close</span>' +
@@ -511,10 +682,13 @@ document.getElementById('listing-form').addEventListener('submit', async functio
         image: document.getElementById('f-image').value,
         gallery: getGalleryList(),
         description: document.getElementById('f-description').value,
+        mini_description: document.getElementById('f-mini_description').value,
+        keywords: document.getElementById('f-keywords').value,
         rating: parseFloat(document.getElementById('f-rating').value) || 0,
         is_active: parseInt(document.getElementById('f-active').value),
         display_order: parseInt(document.getElementById('f-display_order').value) || 0,
         map_embed: document.getElementById('f-map_embed').value.trim() || null,
+        policies: getPoliciesData(),
     };
     data[priceKey[currentCat]] = parseFloat(document.getElementById('f-price').value) || 0;    // Extra fields
     (extraFieldsDef[currentCat] || []).forEach(function(f) {

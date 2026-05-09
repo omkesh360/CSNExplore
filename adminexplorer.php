@@ -40,7 +40,7 @@ body{font-family:'Inter',sans-serif;}
 </script>
 <div class="flex min-h-screen">
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900">
-        <img width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 animate-slow-zoom"/>
+        <img loading="lazy" width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 animate-slow-zoom"/>
         <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/90 via-slate-900/60 to-orange-600/20"></div>
         <div class="relative z-10 w-full p-12 flex flex-col justify-between">
             <div class="flex items-center gap-3">

@@ -93,7 +93,7 @@ require 'header.php';
 <!-- Hero -->
 <section class="relative h-[420px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img width="800" height="600" alt="Ellora Caves Heritage Site" class="w-full h-full object-cover"
+        <img loading="lazy" width="800" height="600" alt="Ellora Caves Heritage Site" class="w-full h-full object-cover"
              src="images/uploads/ellora.png"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     </div>

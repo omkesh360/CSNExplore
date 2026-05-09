@@ -126,7 +126,7 @@ async function loadBookings() {
             '</td>' +
             '<td data-label="Service" class="py-4 px-4 mob-hide">' +
                 '<div class="flex items-center gap-3">' +
-                    '<img width="800" height="600" src="' + img + '" class="w-9 h-9 rounded-lg object-cover border border-slate-100" onerror="this.src=\'../images/placeholder.jpg\'">' +
+                    '<img loading="lazy" width="800" height="600" src="' + img + '" class="w-9 h-9 rounded-lg object-cover border border-slate-100" onerror="this.src=\'../images/placeholder.jpg\'">' +
                     '<div>' +
                         '<p class="text-[13px] font-bold text-slate-700">' + escHtml(b.listing_name || b.service_type || '—') + '</p>' +
                         '<p class="text-[10px] text-primary uppercase font-bold tracking-wider">' + escHtml(b.service_type) + '</p>' +
@@ -165,7 +165,7 @@ async function openModal(id) {
 
     document.getElementById('modal-body').innerHTML =
         '<div class="relative -mx-6 -mt-6 h-56 mb-8 overflow-hidden rounded-t-2xl">' +
-            '<img width="800" height="600" src="' + img + '" class="w-full h-full object-cover" onerror="this.src=\'../images/placeholder.jpg\'">' +
+            '<img loading="lazy" width="800" height="600" src="' + img + '" class="w-full h-full object-cover" onerror="this.src=\'../images/placeholder.jpg\'">' +
             '<div class="absolute inset-0 bg-slate-900/60"></div>' +
             '<div class="absolute bottom-6 left-6 right-6">' +
                 '<p class="text-[10px] font-bold text-primary/80 uppercase tracking-widest mb-1.5">Reservation Detail</p>' +

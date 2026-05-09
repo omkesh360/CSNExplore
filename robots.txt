@@ -1,15 +1,153 @@
+# CSNExplore Robots.txt - Optimized for Traditional & AI Search Engines
+# Updated: 2026-05-10
+# Domain: csnexplore.com
+# Location: Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, India
+
+# ════════════════════════════════════════════════════════════════════════════════
+# AI SEARCH ENGINE BOTS - EXPLICITLY ALLOWED (ChatGPT, Claude, Perplexity, Gemini)
+# ════════════════════════════════════════════════════════════════════════════════
+
+# OpenAI (ChatGPT, GPT-4, GPT-3.5)
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 0.5
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 0.5
+
+# Google AI (Bard, Gemini)
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: GoogleOther
+Allow: /
+Crawl-delay: 0.5
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 0.5
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+Crawl-delay: 1
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+Crawl-delay: 0.5
+
+# Meta AI (Facebook/Meta)
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: meta-externalagent
+Allow: /
+Crawl-delay: 0.5
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Applebot-Extended
+Allow: /
+Crawl-delay: 0.5
+
+# Diffbot (AI web scraping)
+User-agent: Diffbot
+Allow: /
+Crawl-delay: 1
+
+# ════════════════════════════════════════════════════════════════════════════════
+# TRADITIONAL SEARCH ENGINE BOTS
+# ════════════════════════════════════════════════════════════════════════════════
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Crawl-delay: 0.5
+
+User-agent: Googlebot-Video
+Allow: /
+Crawl-delay: 0.5
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: BingPreview
+Allow: /
+Crawl-delay: 1
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0.5
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# ════════════════════════════════════════════════════════════════════════════════
+# DEFAULT RULES FOR ALL OTHER BOTS
+# ════════════════════════════════════════════════════════════════════════════════
+
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Block admin and sensitive areas
+# ════════════════════════════════════════════════════════════════════════════════
+# BLOCK ADMIN AND SENSITIVE AREAS
+# ════════════════════════════════════════════════════════════════════════════════
+
 Disallow: /admin/
 Disallow: /vendor/
 Disallow: /php/
 Disallow: /logs/
 Disallow: /cache/
 Disallow: /database/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /.kiro/
 
-# Block auth pages (no SEO value)
+# ════════════════════════════════════════════════════════════════════════════════
+# BLOCK AUTH PAGES (No SEO Value)
+# ════════════════════════════════════════════════════════════════════════════════
+
 Disallow: /login
 Disallow: /register
 Disallow: /forgot-password
@@ -17,8 +155,13 @@ Disallow: /reset-password
 Disallow: /verify-email
 Disallow: /resend-verification
 Disallow: /verification-required
+Disallow: /my-booking
+Disallow: /profile
 
-# Block utility/dev scripts
+# ════════════════════════════════════════════════════════════════════════════════
+# BLOCK UTILITY SCRIPTS
+# ════════════════════════════════════════════════════════════════════════════════
+
 Disallow: /create-admin
 Disallow: /create-trip-table
 Disallow: /fix-table-now
@@ -27,15 +170,86 @@ Disallow: /adminexplorer
 Disallow: /test-email
 Disallow: /send-pending-emails
 
-# Allow important content
+# ════════════════════════════════════════════════════════════════════════════════
+# PREVENT DUPLICATE CONTENT - Block filter/sort parameters
+# ════════════════════════════════════════════════════════════════════════════════
+
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+Disallow: /*&
+
+# ════════════════════════════════════════════════════════════════════════════════
+# ALLOW IMPORTANT CONTENT FOR ALL BOTS (Including AI)
+# ════════════════════════════════════════════════════════════════════════════════
+
 Allow: /images/
 Allow: /blogs/
 Allow: /listing-detail/
 Allow: /listing/
 Allow: /sitemap*.xml
+Allow: /css/
+Allow: /js/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /about
+Allow: /contact
+Allow: /index
 
-# Crawl-delay for bots that respect it
-Crawl-delay: 1
+# ════════════════════════════════════════════════════════════════════════════════
+# SEO TOOLS - RATE LIMITED
+# ════════════════════════════════════════════════════════════════════════════════
 
-# Sitemap
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 10
+
+User-agent: DotBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: Screaming Frog SEO Spider
+Allow: /
+Crawl-delay: 5
+
+# ════════════════════════════════════════════════════════════════════════════════
+# SITEMAPS - FOR ALL SEARCH ENGINES (Traditional & AI)
+# ════════════════════════════════════════════════════════════════════════════════
+
 Sitemap: https://csnexplore.com/sitemap.xml
+Sitemap: https://csnexplore.com/sitemap-static.xml
+Sitemap: https://csnexplore.com/sitemap-stays.xml
+Sitemap: https://csnexplore.com/sitemap-cars.xml
+Sitemap: https://csnexplore.com/sitemap-bikes.xml
+Sitemap: https://csnexplore.com/sitemap-attractions.xml
+Sitemap: https://csnexplore.com/sitemap-restaurants.xml
+Sitemap: https://csnexplore.com/sitemap-buses.xml
+Sitemap: https://csnexplore.com/sitemap-blogs.xml
+
+# ════════════════════════════════════════════════════════════════════════════════
+# NOTES FOR AI SEARCH ENGINES
+# ════════════════════════════════════════════════════════════════════════════════
+# This website provides comprehensive tourism information for Chhatrapati
+# Sambhajinagar (Aurangabad), Maharashtra, India. Content includes:
+# - Hotel and accommodation listings (500+)
+# - Car and bike rental services (200+)
+# - Tourist attractions (Ajanta Caves, Ellora Caves, Bibi Ka Maqbara)
+# - Restaurant recommendations (300+)
+# - Bus routes and schedules (100+)
+# - Travel guides and blog articles (300+)
+#
+# All content is structured with schema.org markup for easy parsing.
+# Contact: supportcsnexplore@gmail.com | +91-8600968888
+# Website: https://csnexplore.com

@@ -72,7 +72,7 @@ if ($which === 'sitemap-blogs') {
     try {
         $blogs = $db->fetchAll("SELECT id, title, updated_at FROM blogs WHERE status = 'published' ORDER BY id DESC LIMIT 600");
         foreach ($blogs as $blog) {
-            $slug    = 'blogs-' . $blog['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $blog['title']), '-'));
+            $slug    = generateSlug('blogs', $blog['id'], $blog['title']);
             $file    = dirname(__DIR__, 2) . '/blogs/' . $slug . '.html';
             
             // Only include if file exists and is readable (returns 200 OK)
@@ -105,7 +105,7 @@ if (isset($listingMap[$which])) {
     try {
         $rows = $db->fetchAll("SELECT id, {$lt['nameCol']} as name, updated_at FROM {$lt['table']} WHERE is_active = 1");
         foreach ($rows as $row) {
-            $slug    = $type . '-' . $row['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $row['name']), '-'));
+            $slug    = generateSlug($type, $row['id'], $row['name']);
             $file    = dirname(__DIR__, 2) . '/listing-detail/' . $slug . '.html';
             
             // Only include if file exists and is readable (returns 200 OK)
@@ -128,7 +128,10 @@ exit;
 // ── Helper ────────────────────────────────────────────────────────────────────
 function _output_urlset(string $base, array $urls, string $today): void {
     echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ';
+    echo 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" ';
+    echo 'xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
+    
     foreach ($urls as $u) {
         $loc     = $base . '/' . ltrim($u['loc'], '/');
         $lastmod = $u['lastmod'] ?? $today;
@@ -137,6 +140,26 @@ function _output_urlset(string $base, array $urls, string $today): void {
         echo "    <lastmod>$lastmod</lastmod>\n";
         echo "    <changefreq>" . htmlspecialchars($u['changefreq'], ENT_XML1) . "</changefreq>\n";
         echo "    <priority>" . htmlspecialchars($u['priority'], ENT_XML1) . "</priority>\n";
+        
+        // Add image if provided
+        if (!empty($u['image'])) {
+            $imgUrl = strpos($u['image'], 'http') === 0 ? $u['image'] : $base . '/' . ltrim($u['image'], '/');
+            echo "    <image:image>\n";
+            echo "      <image:loc>" . htmlspecialchars($imgUrl, ENT_XML1) . "</image:loc>\n";
+            if (!empty($u['image_title'])) {
+                echo "      <image:title>" . htmlspecialchars($u['image_title'], ENT_XML1) . "</image:title>\n";
+            }
+            if (!empty($u['image_caption'])) {
+                echo "      <image:caption>" . htmlspecialchars($u['image_caption'], ENT_XML1) . "</image:caption>\n";
+            }
+            echo "    </image:image>\n";
+        }
+        
+        // Add alternate language links for multilingual support
+        echo '    <xhtml:link rel="alternate" hreflang="en" href="' . htmlspecialchars($loc, ENT_XML1) . '"/>' . "\n";
+        echo '    <xhtml:link rel="alternate" hreflang="hi" href="' . htmlspecialchars($loc, ENT_XML1) . '"/>' . "\n";
+        echo '    <xhtml:link rel="alternate" hreflang="x-default" href="' . htmlspecialchars($loc, ENT_XML1) . '"/>' . "\n";
+        
         echo "  </url>\n";
     }
     echo '</urlset>';

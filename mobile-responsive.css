@@ -181,6 +181,12 @@ section, main, article, aside, div {
     padding: 18px !important;
     border-radius: 20px !important;
   }
+  
+  /* Homepage Hero Specific Spacing */
+  .homepage-hero {
+    padding-top: 140px !important;
+    justify-content: start !important;
+  }
 }
 
 /* ── Footer mobile ── */

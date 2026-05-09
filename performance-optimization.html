@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Optimization Guide - CSNExplore</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ec5b13; border-bottom: 3px solid #ec5b13; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        h3 { color: #666; }
+        .issue { background: #fff3cd; padding: 15px; margin: 10px 0; border-left: 4px solid #ffc107; }
+        .fix { background: #d4edda; padding: 15px; margin: 10px 0; border-left: 4px solid #28a745; }
+        .critical { background: #f8d7da; padding: 15px; margin: 10px 0; border-left: 4px solid #dc3545; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .score { font-size: 48px; font-weight: bold; color: #ec5b13; }
+        .metric { display: inline-block; margin: 10px 20px 10px 0; }
+        .metric-label { font-size: 12px; color: #666; text-transform: uppercase; }
+        .metric-value { font-size: 24px; font-weight: bold; }
+        .good { color: #28a745; }
+        .warning { color: #ffc107; }
+        .bad { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Performance Optimization Guide - CSNExplore</h1>
+        <p><strong>Last Updated:</strong> May 10, 2026</p>
+        <p><strong>Status:</strong> Implementation Required</p>
+
+        <h2>📊 Current Performance Scores</h2>
+        
+        <h3>Desktop Performance</h3>
+        <div class="metric">
+            <div class="metric-label">Overall Score</div>
+            <div class="metric-value bad">0/100</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Time to Interactive</div>
+            <div class="metric-value good">97/100</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Max FID</div>
+            <div class="metric-value good">95/100</div>
+        </div>
+
+        <h3>Mobile Performance</h3>
+        <div class="metric">
+            <div class="metric-label">Time to Interactive</div>
+            <div class="metric-value warning">47/100</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Main Thread Work</div>
+            <div class="metric-value warning">50/100</div>
+        </div>
+
+        <h2>🔴 Critical Issues to Fix</h2>
+
+        <div class="critical">
+            <h3>1. Document Request Latency (Score: 0)</h3>
+            <p><strong>Issue:</strong> First network request is slow, causing delayed page load.</p>
+            <p><strong>Impact:</strong> Users see blank screen for longer, high bounce rate.</p>
+        </div>
+
+        <div class="critical">
+            <h3>2. LCP Request Discovery (Score: 0)</h3>
+            <p><strong>Issue:</strong> Largest Contentful Paint element discovered late.</p>
+            <p><strong>Impact:</strong> Main content appears slowly, poor user experience.</p>
+        </div>
+
+        <div class="critical">
+            <h3>3. LCP Breakdown (Score: 0)</h3>
+            <p><strong>Issue:</strong> LCP timing breakdown shows delays in multiple phases.</p>
+            <p><strong>Impact:</strong> Slow perceived load time.</p>
+        </div>
+
+        <h2>⚠️ Major Issues to Fix</h2>
+
+        <div class="issue">
+            <h3>4. Render Blocking Requests (Score: 0)</h3>
+            <p><strong>Issue:</strong> CSS and JavaScript files block initial page render.</p>
+            <p><strong>Files Blocking:</strong></p>
+            <ul>
+                <li>Tailwind CDN (https://cdn.tailwindcss.com)</li>
+                <li>Google Fonts CSS</li>
+                <li>Material Symbols CSS</li>
+                <li>mobile-responsive.css</li>
+                <li>animations.css</li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h3>5. Reduce Unused JavaScript (Score: 50)</h3>
+            <p><strong>Issue:</strong> Loading JavaScript that isn't used on the page.</p>
+            <p><strong>Unused JS:</strong></p>
+            <ul>
+                <li>Tailwind CDN (~300KB, only using ~30%)</li>
+                <li>Google Analytics (loaded too early)</li>
+                <li>Flatpickr library (loaded on all pages)</li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h3>6. Font Display (Score: 50)</h3>
+            <p><strong>Issue:</strong> Fonts loading without font-display: swap.</p>
+            <p><strong>Impact:</strong> Text invisible until fonts load (FOIT).</p>
+        </div>
+
+        <div class="issue">
+            <h3>7. Improve Image Delivery (Score: 0)</h3>
+            <p><strong>Issue:</strong> Images not optimized for delivery.</p>
+            <p><strong>Problems:</strong></p>
+            <ul>
+                <li>No responsive images (srcset)</li>
+                <li>No modern formats (WebP/AVIF)</li>
+                <li>No lazy loading on some images</li>
+                <li>Large image file sizes</li>
+            </ul>
+        </div>
+
+        <div class="issue">
+            <h3>8. Avoid Multiple Page Redirects (Score: 0)</h3>
+            <p><strong>Issue:</strong> Redirect chains slow down initial load.</p>
+            <p><strong>Example:</strong> http:// → https:// → www → non-www</p>
+        </div>
+
+        <div class="issue">
+            <h3>9. Network Dependency Tree (Score: 0)</h3>
+            <p><strong>Issue:</strong> Resources loaded sequentially instead of parallel.</p>
+            <p><strong>Impact:</strong> Waterfall effect delays page load.</p>
+        </div>
+
+        <div class="issue">
+            <h3>10. Forced Reflow (Score: 0)</h3>
+            <p><strong>Issue:</strong> JavaScript causing layout thrashing.</p>
+            <p><strong>Impact:</strong> Janky animations, slow interactions.</p>
+        </div>
+
+        <div class="issue">
+            <h3>11. Minimize Main-Thread Work (Score: 50 - Mobile)</h3>
+            <p><strong>Issue:</strong> Too much JavaScript execution blocking main thread.</p>
+            <p><strong>Impact:</strong> Slow Time to Interactive on mobile.</p>
+        </div>
+
+        <h2>✅ Solutions & Implementation</h2>
+
+        <div class="fix">
+            <h3>Solution 1: Optimize Document Request Latency</h3>
+            <p><strong>Actions:</strong></p>
+            <ol>
+                <li><strong>Enable HTTP/2 or HTTP/3</strong> on your server</li>
+                <li><strong>Use a CDN</strong> (Cloudflare, AWS CloudFront)</li>
+                <li><strong>Optimize server response time</strong> (PHP-FPM, OPcache)</li>
+                <li><strong>Implement server-side caching</strong></li>
+            </ol>
+            
+            <p><strong>PHP OPcache Configuration:</strong></p>
+            <pre>; Add to php.ini
+opcache.enable=1
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=10000
+opcache.revalidate_freq=2
+opcache.fast_shutdown=1</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 2: Fix LCP Issues</h3>
+            <p><strong>Actions:</strong></p>
+            <ol>
+                <li><strong>Preload LCP image:</strong></li>
+            </ol>
+            <pre>&lt;link rel="preload" as="image" href="/images/hero-image.webp" fetchpriority="high"&gt;</pre>
+            
+            <ol start="2">
+                <li><strong>Optimize hero image:</strong></li>
+            </ol>
+            <pre>&lt;img src="hero.webp" 
+     srcset="hero-400.webp 400w, hero-800.webp 800w, hero-1200.webp 1200w"
+     sizes="100vw"
+     alt="..."
+     fetchpriority="high"
+     width="1200" height="600"&gt;</pre>
+            
+            <ol start="3">
+                <li><strong>Inline critical CSS</strong> for above-the-fold content</li>
+                <li><strong>Defer non-critical CSS</strong></li>
+            </ol>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 3: Eliminate Render Blocking Resources</h3>
+            <p><strong>Replace Tailwind CDN with compiled CSS:</strong></p>
+            <pre>// Install Tailwind locally
+npm install -D tailwindcss
+npx tailwindcss init
+
+// Build optimized CSS
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify</pre>
+
+            <p><strong>Defer non-critical CSS:</strong></p>
+            <pre>&lt;link rel="preload" href="animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'"&gt;
+&lt;noscript&gt;&lt;link rel="stylesheet" href="animations.css"&gt;&lt;/noscript&gt;</pre>
+
+            <p><strong>Inline critical CSS:</strong></p>
+            <pre>&lt;style&gt;
+/* Critical above-the-fold styles */
+body { font-family: Inter, sans-serif; margin: 0; }
+header { background: #000; }
+/* ... */
+&lt;/style&gt;</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 4: Reduce Unused JavaScript</h3>
+            <p><strong>Defer Google Analytics:</strong></p>
+            <pre>&lt;script&gt;
+// Load GA only after user interaction
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS';
+        script.async = true;
+        document.head.appendChild(script);
+    }, 3000); // Load after 3 seconds
+});
+&lt;/script&gt;</pre>
+
+            <p><strong>Load Flatpickr only on pages that need it:</strong></p>
+            <pre>&lt;?php if ($current_page === 'index' || $current_page === 'listing'): ?&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/flatpickr" defer&gt;&lt;/script&gt;
+&lt;?php endif; ?&gt;</pre>
+
+            <p><strong>Use tree-shaking with local Tailwind build</strong></p>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 5: Fix Font Display</h3>
+            <p><strong>Add font-display: swap to all fonts:</strong></p>
+            <pre>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"&gt;</pre>
+
+            <p><strong>Or use local fonts with @font-face:</strong></p>
+            <pre>@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 400;
+}</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 6: Optimize Image Delivery</h3>
+            <p><strong>Convert images to WebP/AVIF:</strong></p>
+            <pre># Using cwebp (WebP)
+cwebp -q 80 input.jpg -o output.webp
+
+# Using avifenc (AVIF)
+avifenc --min 0 --max 63 -a end-usage=q -a cq-level=23 input.jpg output.avif</pre>
+
+            <p><strong>Use responsive images:</strong></p>
+            <pre>&lt;picture&gt;
+    &lt;source srcset="image-400.avif 400w, image-800.avif 800w" type="image/avif"&gt;
+    &lt;source srcset="image-400.webp 400w, image-800.webp 800w" type="image/webp"&gt;
+    &lt;img src="image-800.jpg" 
+         srcset="image-400.jpg 400w, image-800.jpg 800w"
+         sizes="(max-width: 768px) 100vw, 50vw"
+         alt="..."
+         loading="lazy"
+         width="800" height="600"&gt;
+&lt;/picture&gt;</pre>
+
+            <p><strong>Lazy load images:</strong></p>
+            <pre>&lt;img src="image.webp" loading="lazy" alt="..."&gt;</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 7: Fix Redirect Chains</h3>
+            <p><strong>Update .htaccess to avoid multiple redirects:</strong></p>
+            <pre># Combine HTTP to HTTPS and www to non-www in one redirect
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 8: Optimize Network Dependency Tree</h3>
+            <p><strong>Use resource hints:</strong></p>
+            <pre>&lt;!-- Preconnect to external domains --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+
+&lt;!-- DNS prefetch for less critical domains --&gt;
+&lt;link rel="dns-prefetch" href="https://www.googletagmanager.com"&gt;
+
+&lt;!-- Preload critical resources --&gt;
+&lt;link rel="preload" href="/css/critical.css" as="style"&gt;
+&lt;link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin&gt;</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 9: Prevent Forced Reflows</h3>
+            <p><strong>Batch DOM reads and writes:</strong></p>
+            <pre>// ❌ BAD - Causes layout thrashing
+elements.forEach(el =&gt; {
+    const height = el.offsetHeight; // Read
+    el.style.height = height + 10 + 'px'; // Write
+});
+
+// ✅ GOOD - Batch reads, then writes
+const heights = elements.map(el =&gt; el.offsetHeight); // All reads
+elements.forEach((el, i) =&gt; {
+    el.style.height = heights[i] + 10 + 'px'; // All writes
+});</pre>
+
+            <p><strong>Use requestAnimationFrame for animations:</strong></p>
+            <pre>function animate() {
+    // Update styles
+    element.style.transform = `translateX(${x}px)`;
+    
+    if (animating) {
+        requestAnimationFrame(animate);
+    }
+}
+requestAnimationFrame(animate);</pre>
+        </div>
+
+        <div class="fix">
+            <h3>Solution 10: Minimize Main-Thread Work (Mobile)</h3>
+            <p><strong>Actions:</strong></p>
+            <ol>
+                <li><strong>Code splitting:</strong> Load JS only when needed</li>
+                <li><strong>Web Workers:</strong> Move heavy computations off main thread</li>
+                <li><strong>Debounce/Throttle:</strong> Limit event handler execution</li>
+                <li><strong>Lazy load:</strong> Defer non-critical JavaScript</li>
+            </ol>
+
+            <pre>// Debounce scroll events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+    };
+}
+
+window.addEventListener('scroll', debounce(function() {
+    // Handle scroll
+}, 100));</pre>
+        </div>
+
+        <h2>📋 Implementation Checklist</h2>
+
+        <h3>Immediate (High Priority)</h3>
+        <ul>
+            <li>☐ Replace Tailwind CDN with compiled CSS</li>
+            <li>☐ Inline critical CSS</li>
+            <li>☐ Defer non-critical CSS</li>
+            <li>☐ Add font-display: swap to all fonts</li>
+            <li>☐ Preload LCP image</li>
+            <li>☐ Fix redirect chains</li>
+            <li>☐ Defer Google Analytics</li>
+        </ul>
+
+        <h3>Short-term (This Week)</h3>
+        <ul>
+            <li>☐ Convert images to WebP/AVIF</li>
+            <li>☐ Implement responsive images (srcset)</li>
+            <li>☐ Add lazy loading to all images</li>
+            <li>☐ Load Flatpickr conditionally</li>
+            <li>☐ Optimize JavaScript execution</li>
+            <li>☐ Fix forced reflows</li>
+        </ul>
+
+        <h3>Medium-term (This Month)</h3>
+        <ul>
+            <li>☐ Enable HTTP/2 or HTTP/3</li>
+            <li>☐ Implement CDN (Cloudflare)</li>
+            <li>☐ Enable PHP OPcache</li>
+            <li>☐ Implement server-side caching</li>
+            <li>☐ Code splitting for JavaScript</li>
+            <li>☐ Use Web Workers for heavy tasks</li>
+        </ul>
+
+        <h2>🎯 Expected Results After Optimization</h2>
+
+        <h3>Desktop Performance</h3>
+        <div class="metric">
+            <div class="metric-label">Overall Score</div>
+            <div class="metric-value good">95+/100</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">LCP</div>
+            <div class="metric-value good">&lt;1.5s</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">FID</div>
+            <div class="metric-value good">&lt;50ms</div>
+        </div>
+
+        <h3>Mobile Performance</h3>
+        <div class="metric">
+            <div class="metric-label">Overall Score</div>
+            <div class="metric-value good">85+/100</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">TTI</div>
+            <div class="metric-value good">&lt;3.5s</div>
+        </div>
+        <div class="metric">
+            <div class="metric-label">Main Thread</div>
+            <div class="metric-value good">&lt;2s</div>
+        </div>
+
+        <h2>🔧 Tools for Testing</h2>
+        <ul>
+            <li><strong>PageSpeed Insights:</strong> https://pagespeed.web.dev/</li>
+            <li><strong>WebPageTest:</strong> https://www.webpagetest.org/</li>
+            <li><strong>Lighthouse:</strong> Chrome DevTools → Lighthouse tab</li>
+            <li><strong>GTmetrix:</strong> https://gtmetrix.com/</li>
+            <li><strong>Chrome DevTools:</strong> Performance tab for profiling</li>
+        </ul>
+
+        <h2>📞 Support</h2>
+        <p>For implementation help, contact: <strong>supportcsnexplore@gmail.com</strong> | <strong>+91-8600968888</strong></p>
+
+        <hr style="margin: 40px 0;">
+        <p style="text-align: center; color: #666;">
+            <strong>CSNExplore Performance Optimization Guide</strong><br>
+            Last Updated: May 10, 2026 | Version 1.0
+        </p>
+    </div>
+</body>
+</html>

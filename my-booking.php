@@ -115,7 +115,7 @@ async function loadUserBookings() {
       var catLabels = {stays:'Hotel Stay', cars:'Car Rental', bikes:'Bike Rental', restaurants:'Restaurant', attractions:'Attraction', buses:'Bus'};
       var catLabel = catLabels[b.service_type] || b.service_type || '—';
       var listingDisplay = b.listing_name || b.service_type || '—';
-      var img = b.listing_image ? '<img width="800" height="600" src="' + escHtml(b.listing_image) + '" alt="' + escHtml(listingDisplay) + '" class="w-full h-48 object-cover rounded-xl mb-4">' : '';
+      var img = b.listing_image ? '<img loading="lazy" width="800" height="600" src="' + escHtml(b.listing_image) + '" alt="' + escHtml(listingDisplay) + '" class="w-full h-48 object-cover rounded-xl mb-4">' : '';
       var checkinDisplay = b.checkin_date ? '<div><p class="text-xs text-slate-400 font-semibold">Check-in</p><p class="text-slate-900">' + escHtml(b.checkin_date) + '</p></div>' : '';
       var checkoutDisplay = b.checkout_date ? '<div><p class="text-xs text-slate-400 font-semibold">Check-out</p><p class="text-slate-900">' + escHtml(b.checkout_date) + '</p></div>' : '';
       return '<div class="bg-white rounded-2xl shadow-sm p-6 border border-slate-100 hover:shadow-md transition-shadow">'

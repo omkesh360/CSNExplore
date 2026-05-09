@@ -151,7 +151,7 @@ require 'admin-header.php';
     <button class="lb-nav lb-prev" onclick="lbNav(-1)">
         <span class="material-symbols-outlined" style="font-size:22px">chevron_left</span>
     </button>
-    <img width="800" height="600" id="lb-img" src="" alt="Preview"/>
+    <img loading="lazy" width="800" height="600" id="lb-img" src="" alt="Preview"/>
     <button class="lb-nav lb-next" onclick="lbNav(1)">
         <span class="material-symbols-outlined" style="font-size:22px">chevron_right</span>
     </button>

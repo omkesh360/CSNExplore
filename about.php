@@ -38,7 +38,7 @@ require 'header.php';
 <!-- Hero -->
 <section class="relative h-[480px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img width="800" height="600" alt="Bibi Ka Maqbara Heritage Site" class="w-full h-full object-cover"
+        <img loading="lazy" width="800" height="600" alt="Bibi Ka Maqbara Heritage Site" class="w-full h-full object-cover"
              src="images/uploads/bibi.png"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
     </div>
@@ -81,15 +81,15 @@ require 'header.php';
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-4">
-                    <img width="800" height="600" alt="Ajanta Caves" class="rounded-xl h-64 w-full object-cover shadow-2xl"
+                    <img loading="lazy" width="800" height="600" alt="Ajanta Caves" class="rounded-xl h-64 w-full object-cover shadow-2xl"
                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF_R0V30Dh4YkFUxDOjhVDzUF271-ci2ylVPn_7zievZVdJAI8RsILb_bFfZMnWH4KlNwlTT9m65v1Q7xrINmrlW2rVXxFO8-g_CfGp81zdaPYjBK0XhOd4m-lWjJMNQbxQbwYzuhVwYQvGC3w9wZ9IWgHOilmKd97q-0jw0nOoLNCx402BN4apDGh7MkA_S0rBvad2YS6_uSe96DmuELCYRpnS_vg2tuNfZV4F9gQ8h8CU_ea6ivDt_1d-9fMhVegXOpRnG9gS3vD"/>
-                    <img width="800" height="600" alt="Kailasa Temple" class="rounded-xl h-48 w-full object-cover shadow-2xl"
+                    <img loading="lazy" width="800" height="600" alt="Kailasa Temple" class="rounded-xl h-48 w-full object-cover shadow-2xl"
                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiWWm7tleVlV89m0OpAU8sE1C0LJ0Vy5o_LEMdFCHZbUZdFV7d2AKsl0pmdjpWgZm1zScw2UoxsWF3y3MUHiPhR8T31U5X7if8AVvRJvShq63hPDBpR_NmTTdEesW5ClqUPUfdrBp1gTods8Ah60teqAvNOQ5iJVaCdH_eX3up3bcKsOofnfdbLX7iA7K-_TpW1GVcjq3LkVIwLbxuK8IqQjyjLw73zvP23TCV8NNouA4CR15q6IwMk0R9avBfJ8_pMD_AYJgCdcoA"/>
                 </div>
                 <div class="pt-8 space-y-4">
-                    <img width="800" height="600" alt="Bibi Ka Maqbara" class="rounded-xl h-48 w-full object-cover shadow-2xl"
+                    <img loading="lazy" width="800" height="600" alt="Bibi Ka Maqbara" class="rounded-xl h-48 w-full object-cover shadow-2xl"
                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs5mILVmU084j65DcidaLjrnTIKOz3DRU0L6wGZ70yfgayEfQ8xMP8d7JfuBznWIZuVwEmcd8hF5kW3OTJ6cJCVPIK6DMfk4BFnnhfF7CshPcgDO42W9TkL5IXycpQiqaNDc6VuJMMz2VAOTJlyAdeLb0A_ct7lg64X-efrTyVXpvgJr9HyGz6D30dFcTod5kFk_sg739EDjwOqwdknDwmKL5r2-Tm2hR07PPPjMANK0jtXrdGwv83JLh8PWeI0u2_KAVgdmelIwhj"/>
-                    <img width="800" height="600" alt="Aurangabad Gates" class="rounded-xl h-64 w-full object-cover shadow-2xl"
+                    <img loading="lazy" width="800" height="600" alt="Aurangabad Gates" class="rounded-xl h-64 w-full object-cover shadow-2xl"
                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMGkF-GU5txWzIac4pjFsFvkh0BsvYWpIGVpXn7URMLEZlQECUQPWhd8o5RZiQ4qfszSI1f5H3IaUAoPYR8MB8Hg_Kn4ltvxwcKRKbU09xgeEJ-ZvRJGetw-PsfSL3CXvd8pnMzLNzzqOfKkgRHBtbQd6VYy8Pv9Onoaty7w6V7GcbkdcdLfqBxAB53gerDL0Vm35WP9vhLBQiOkFN04jyPqXPwAwMSyPwRI2DWdYbtrubM7moA__q2c338atruVI-l53S36h5N6O6"/>
                 </div>
             </div>
@@ -149,7 +149,7 @@ require 'header.php';
     <section data-reveal="scale">
         <div class="rounded-[3rem] bg-primary p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
             <div class="absolute inset-0 opacity-10">
-                <img width="800" height="600" alt="Heritage Pattern" class="w-full h-full object-cover"
+                <img loading="lazy" width="800" height="600" alt="Heritage Pattern" class="w-full h-full object-cover"
                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWlz272LF0IoJnEIdtroG6WMXcqOoHkudt7yBJ19PqufEI-7ISJ_zn1G8dnCkJGSuT6mi0qxXFqNrcEONccUuLNshgvjmSshh-Jz76I3m8QJW8nzY_MGhbCfHxiOLiE9UG83G9Efw1DjgBGtP9SOV-kceOiHL4wkeDxyVEwFUGwifUJtUlQYU2eTj5HdEm8TGa_qGjUtgI1dHODPNb15eQQRY_ZE4ATENcXErfoYbMGNR8QQw1xclUhx8RkpuhbA4h7Fv6uWkq4hil"/>
             </div>
             <div class="relative z-10">

@@ -160,10 +160,13 @@ function generateOptimizedImage($src, $alt, $width = 800, $height = 600, $lazy =
 }
 
 // ── Shared HTML helpers ───────────────────────────────────────────────────────
-function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore.', $image = 'https://csnexplore.com/images/og-image.jpg', $schema = null, $type = '') {
+function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the best hotels, bikes, cars & attractions in Chhatrapati Sambhajinagar with CSNExplore.', $image = 'https://csnexplore.com/images/og-image.jpg', $schema = null, $type = '', $keywords = '') {
     if (!$canonical) $canonical = 'https://csnexplore.com';
     $base = str_repeat('../', $depth);
     
+    $defaultKeywords = 'Chhatrapati Sambhajinagar, Aurangabad, tourism, hotels, bike rent, car rent, attractions';
+    $finalKeywords = $keywords ? $keywords . ', ' . $defaultKeywords : $defaultKeywords;
+
     $head = '<!DOCTYPE html>
 <html class="light" lang="en" style="scroll-behavior:smooth">
 <head>
@@ -183,7 +186,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <link rel="apple-touch-icon" sizes="57x57" href="' . $base . 'images/fevicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="' . $base . 'images/fevicon/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="' . $base . 'images/fevicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="' . $base . 'images/fevicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="60x60" href="' . $base . 'images/fevicon/apple-icon-76x76.png">
 <link rel="apple-touch-icon" sizes="114x114" href="' . $base . 'images/fevicon/apple-icon-114x114.png">
 <link rel="apple-touch-icon" sizes="120x120" href="' . $base . 'images/fevicon/apple-icon-120x120.png">
 <link rel="apple-touch-icon" sizes="144x144" href="' . $base . 'images/fevicon/apple-icon-144x144.png">
@@ -200,7 +203,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <title>' . htmlspecialchars($title) . '</title>
 
 <meta name="description" content="' . htmlspecialchars($desc) . '">
-<meta name="keywords" content="Chhatrapati Sambhajinagar, Aurangabad, tourism, hotels, bike rent, car rent, attractions">
+<meta name="keywords" content="' . htmlspecialchars($finalKeywords) . '">
 <link rel="canonical" href="' . htmlspecialchars($canonical) . '" />
 
 <!-- Open Graph -->
@@ -877,6 +880,7 @@ foreach ($blogs as $blog) {
         $rAnchor = generateDescriptiveAnchor($r['title'], 'blog');
         $relatedHtml .= '
         <a href="'.$rSlug.'" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow" aria-label="'.htmlspecialchars($rAnchor).'">
+          <span class="sr-only">'.htmlspecialchars($rAnchor).'</span>
           <div class="aspect-video overflow-hidden">
             '.generateOptimizedImage($r['image'] ?? '../images/travelhub.png', $rAlt, 400, 225, true, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500').'
           </div>
@@ -920,7 +924,18 @@ foreach ($blogs as $blog) {
         ]]
     ];
 
-    $html = htmlHead(optimizeTitle($blog['title']), 1, $canonical, $desc, $absImg, $schema);
+    $seoKeywords = $blog['keywords'] ?? '';
+    $seoMiniDesc = !empty($blog['mini_description']) ? $blog['mini_description'] : $desc;
+
+    $html = htmlHead(optimizeTitle($blog['title']), 1, $canonical, $seoMiniDesc, $absImg, $schema, 1, $seoKeywords);
+    
+    // Add hidden SEO content for stuffing
+    $seoStuffing = '
+    <!-- SEO Optimization Section -->
+    <div style="display:none; visibility:hidden; height:0; width:0; overflow:hidden;" aria-hidden="true">
+        <p>' . htmlspecialchars($seoMiniDesc) . '</p>
+        <p>' . htmlspecialchars($seoKeywords) . '</p>
+    </div>';
     $html .= '
 <main class="bg-white min-h-screen">
   <!-- Hero: shared image with breadcrumb at top, blog title at bottom -->
@@ -973,6 +988,7 @@ foreach ($blogs as $blog) {
     </div>
   </div>' : '').'
 </main>';
+    $html .= $seoStuffing;
     $html .= sharedFooter('../');
 
     file_put_contents($file, $html);
@@ -1117,7 +1133,12 @@ foreach ($types as $type) {
             'image'       => $absImg,
             'description' => $desc,
             'url'         => $canonical,
+            'telephone'   => '+91-8600968888',
         ];
+        if ($schemaType === 'Product') {
+            $schema['brand'] = ['@type' => 'Brand', 'name' => 'CSNExplore'];
+            $schema['sku']   = 'CSN-' . strtoupper($type) . '-' . $item['id'];
+        }
         if ($location) {
             $schema['address'] = ['@type' => 'PostalAddress', 'addressLocality' => $location, 'addressRegion' => 'Maharashtra', 'addressCountry' => 'IN'];
         }
@@ -1156,8 +1177,19 @@ foreach ($types as $type) {
             ],
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
-        $html = htmlHead(optimizeTitle($item['name']), 1, $canonical, $desc, $absImg, $schema, $type);
+        $seoKeywords = $item['keywords'] ?? '';
+        $seoMiniDesc = !empty($item['mini_description']) ? $item['mini_description'] : $desc;
+
+        $html = htmlHead(optimizeTitle($item['name']), 1, $canonical, $seoMiniDesc, $absImg, $schema, $type, $seoKeywords);
         $html = str_replace('</head>', $faqSchema . "\n" . $breadcrumbSchema . "\n</head>", $html);
+
+        // Add hidden SEO content for stuffing
+        $seoStuffing = '
+        <!-- SEO Optimization Section -->
+        <div style="display:none; visibility:hidden; height:0; width:0; overflow:hidden;" aria-hidden="true">
+            <p>' . htmlspecialchars($seoMiniDesc) . '</p>
+            <p>' . htmlspecialchars($seoKeywords) . '</p>
+        </div>';
 
         $thumbHtml = '';
         foreach ($resolvedGalleryImages as $idx => $img) {
@@ -1165,7 +1197,7 @@ foreach ($types as $type) {
             $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
             
             $thumbHtml .= '<button onclick="slideTo('.$idx.')" id="thumb-'.$idx.'" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo '.($idx+1).'">'.
-                '<img width="180" height="40" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img width="64" height="64" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</button>';
         }
 
@@ -1229,7 +1261,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img width="180" height="40" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <img width="800" height="450" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '
@@ -1274,12 +1306,37 @@ foreach ($types as $type) {
           </div>' : '').'
 
           <!-- Location -->
-          <div class="p-6">
+          <div class="p-6 border-b border-white/10">
             <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-2">
               <span class="material-symbols-outlined text-[#ec5b13] text-base">location_on</span>Location
             </h2>
             <p class="text-slate-800 text-sm font-medium">'.$location.'</p>
           </div>
+
+          <!-- Policies & Terms -->
+          '.(function() use ($item) {
+              $policies = $item['policies'] ?? null;
+              if (is_string($policies)) $policies = json_decode($policies, true);
+              if (!$policies || (empty($policies['requirements']) && empty($policies['terms']))) return '';
+              
+              $h = '<div class="p-6 bg-slate-50/50">';
+              if (!empty($policies['requirements'])) {
+                  $h .= '<div class="mb-6"><h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-sm">id_card</span>Requirements</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                  foreach ($policies['requirements'] as $r) {
+                      $h .= '<div class="flex items-start gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm"><span class="material-symbols-outlined text-[#ec5b13] text-lg mt-0.5">'.htmlspecialchars($r['icon']).'</span><p class="text-xs font-semibold text-slate-800 leading-relaxed">'.htmlspecialchars($r['text']).'</p></div>';
+                  }
+                  $h .= '</div></div>';
+              }
+              if (!empty($policies['terms'])) {
+                  $h .= '<div><h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-sm">gavel</span>Terms & Conditions</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                  foreach ($policies['terms'] as $t) {
+                      $h .= '<div class="flex items-start gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm"><span class="material-symbols-outlined text-[#ec5b13] text-lg mt-0.5">'.htmlspecialchars($t['icon']).'</span><p class="text-xs font-semibold text-slate-800 leading-relaxed">'.htmlspecialchars($t['text']).'</p></div>';
+                  }
+                  $h .= '</div></div>';
+              }
+              $h .= '</div>';
+              return $h;
+          })().'
         </div>
 
         '.( count($resolvedGalleryImages) > 0 ? '
@@ -1672,7 +1729,9 @@ foreach ($types as $type) {
                 $simObjClass = 'object-cover';
                 
                 $similarHtml .= '<div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
-                  <a href="'.$sim_slug.'.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
+                  <a href="'.$sim_slug.'.html" class="absolute inset-0 z-10" aria-label="'.esc($sim_name).'">
+                    <span class="sr-only">View '.esc($sim_name).' details</span>
+                  </a>
                   <div class="relative h-48 overflow-hidden '.$simBgClass.'">
                     <img width="180" height="40" class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.png\'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1740,7 +1799,7 @@ $html .= '
   </div>
   <!-- Image -->
   <div onclick="event.stopPropagation()" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:85vh;z-index:1000000000;">
-    <img width="800" height="600" id="csn-modal-image" src="" alt="Gallery" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;transition:transform 0.3s ease;cursor:zoom-in;"/>
+    <img loading="lazy" width="800" height="600" id="csn-modal-image" src="" alt="Gallery" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;transition:transform 0.3s ease;cursor:zoom-in;"/>
   </div>
 </div>
 
@@ -1762,8 +1821,9 @@ $html .= '
       data.listings.forEach(function(listing){
          var slug = "../listing-detail/'.$type.'-" + listing.id + "-" + listing.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").substring(0,60) + ".html";
         var displayImg = (listing.image_url && listing.image_url.length > 0) ? (listing.image_url.startsWith("http") ? listing.image_url : "../" + listing.image_url) : "../images/travelhub.png";
-        html += "<a href=\"" + slug + "\" class=\"group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow shadow-sm\">" +
-          "<div class=\"aspect-video overflow-hidden relative\"><img width="180" height="40" src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.png\'\"/>" +
+        html += "<a href=\"" + slug + "\" class=\"group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow shadow-sm\" aria-label=\"View " + listing.name + " details\">" +
+          "<span class=\"sr-only\">View " + listing.name + " details</span>" +
+          "<div class=\"aspect-video overflow-hidden relative\"><img width=\"800\" height=\"450\" src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.png\'\"/>" +
           "<div class=\"absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity\"></div></div>" +
           "<div class=\"p-4\"><h4 class=\"text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-[#ec5b13] transition-colors\">" + listing.name + "</h4>" +
           "<div class=\"flex items-center gap-1 mt-2\"><span class=\"material-symbols-outlined text-amber-500 text-sm\">star</span><span class=\"text-xs font-bold text-slate-800\">" + (listing.rating || 0).toFixed(1) + "</span></div>" +
@@ -2122,6 +2182,7 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
     }
 });
 </script>';
+        $html .= $seoStuffing;
         $html .= sharedFooter('../');
 
         file_put_contents($file, $html);

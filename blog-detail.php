@@ -49,7 +49,7 @@ require 'header.php';
 
     <!-- Hero: shared bg image with breadcrumb at top, blog title at bottom -->
     <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden">
-        <img width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
+        <img loading="lazy" width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
              alt="Blog Hero"
              class="w-full h-full object-cover"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
@@ -166,7 +166,7 @@ require 'header.php';
                 <?php foreach ($related as $r): ?>
                 <a href="<?php echo BASE_PATH; ?>/blog-detail?id=<?php echo $r['id']; ?>" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
                     <div class="aspect-video overflow-hidden">
-                        <img width="800" height="600" src="<?php echo htmlspecialchars($r['image'] ?? ''); ?>"
+                        <img loading="lazy" width="800" height="600" src="<?php echo htmlspecialchars($r['image'] ?? ''); ?>"
                              alt="<?php echo htmlspecialchars($r['title']); ?>"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                              onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format'"/>

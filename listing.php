@@ -226,7 +226,7 @@ $category_nav = [
 
 <!-- Hero Banner with breadcrumb at top -->
 <div class="relative h-52 md:h-72 overflow-hidden">
-    <img width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
+    <img loading="lazy" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
          alt="<?php echo htmlspecialchars($c['label']); ?>"
          class="w-full h-full object-cover"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
@@ -427,7 +427,7 @@ $category_nav = [
               $imgSrc = $item['image'] ?? '';
               if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; 
           ?>">
-            <img width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            <img loading="lazy" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  src="<?php 
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
                  ?>"
