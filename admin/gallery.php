@@ -151,7 +151,7 @@ require 'admin-header.php';
     <button class="lb-nav lb-prev" onclick="lbNav(-1)">
         <span class="material-symbols-outlined" style="font-size:22px">chevron_left</span>
     </button>
-    <img id="lb-img" src="" alt="Preview"/>
+    <img width="800" height="600" id="lb-img" src="" alt="Preview"/>
     <button class="lb-nav lb-next" onclick="lbNav(1)">
         <span class="material-symbols-outlined" style="font-size:22px">chevron_right</span>
     </button>
@@ -188,7 +188,7 @@ function renderGallery() {
         var name = img.filename || '';
         var shortName = name.length > 22 ? name.substring(0, 19) + '...' : name;
         return '<div class="img-card" onclick="openLightbox(' + i + ')" title="' + name + '">' +
-            '<img class="gallery-img" src="' + img.url + '" loading="lazy" alt="' + name + '"' +
+            '<img width="180" height="40" class="gallery-img" src="' + img.url + '" loading="lazy" alt="' + name + '"' +
             '     onerror="this.src=\'../images/travelhub.png\'" />' +
             '<div class="img-actions">' +
                 '<div class="flex gap-1.5">' +
@@ -240,7 +240,7 @@ function renderLightbox() {
 }
 function buildThumbStrip() {
     document.getElementById('lb-thumbs').innerHTML = allImages.map(function(img, i) {
-        return '<img class="lb-thumb' + (i === lbIndex ? ' active' : '') + '"' +
+        return '<img width="180" height="40" class="lb-thumb' + (i === lbIndex ? ' active' : '') + '"' +
                ' src="' + img.url + '" onclick="lbGoto(' + i + ')" loading="lazy"' +
                ' onerror="this.src=\'../images/travelhub.png\'" />';
     }).join('');

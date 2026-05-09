@@ -40,11 +40,11 @@ body{font-family:'Inter',sans-serif;}
 </script>
 <div class="flex min-h-screen">
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900">
-        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 animate-slow-zoom"/>
+        <img width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 animate-slow-zoom"/>
         <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/90 via-slate-900/60 to-orange-600/20"></div>
         <div class="relative z-10 w-full p-12 flex flex-col justify-between">
             <div class="flex items-center gap-3">
-                <img src="images/travelhub.png" alt="CSNExplore" class="h-10 object-contain"/>
+                <img width="180" height="40" src="images/travelhub.png" alt="CSNExplore" class="h-10 object-contain"/>
             </div>
             <div class="max-w-md">
                 <h1 class="text-4xl font-black text-white leading-tight mb-4 mt-6">Admin Control Center</h1>
@@ -58,7 +58,7 @@ body{font-family:'Inter',sans-serif;}
     </div>
     <div class="w-full lg:w-1/2 flex flex-col items-center px-6 md:px-12 pt-8 pb-12 lg:py-12 bg-slate-50 min-h-screen overflow-y-auto">
         <div class="lg:hidden flex items-center gap-2 mb-8 self-start">
-            <img src="images/travelhub.png" alt="CSNExplore" class="h-8 object-contain"/>
+            <img width="180" height="40" src="images/travelhub.png" alt="CSNExplore" class="h-8 object-contain"/>
         </div>
         <div class="w-full max-w-md lg:my-auto">
             <h2 class="text-3xl font-extrabold text-slate-900 mb-1">Admin Sign In</h2>

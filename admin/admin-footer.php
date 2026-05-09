@@ -1,6 +1,6 @@
-    </main><!-- /main -->
-</div><!-- /flex-1 -->
-</div><!-- /flex -->
+    </main><!-- /admin-content -->
+</div><!-- /admin-main -->
+</div><!-- /admin-shell -->
 
 <!-- ── Gallery Picker Modal (shared) ──────────────────────────────────── -->
 <div id="gallery-picker-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
@@ -52,14 +52,6 @@
     }
 })();
 
-// Sidebar toggle (mobile)
-document.getElementById('sidebar-toggle')?.addEventListener('click', function(){
-    document.getElementById('sidebar').classList.toggle('-translate-x-full');
-});
-document.getElementById('sidebar-close')?.addEventListener('click', function(){
-    document.getElementById('sidebar').classList.add('-translate-x-full');
-});
-
 // Logout
 function adminLogout() {
     localStorage.removeItem('csn_admin_token');
@@ -76,12 +68,13 @@ async function loadPendingCount() {
         if (data && Array.isArray(data) && data.length > 0) {
             var count = data.length;
             // Top-bar badge
-            document.getElementById('pending-count').textContent = count;
-            document.getElementById('pending-badge').classList.remove('hidden');
-            document.getElementById('pending-badge').classList.add('flex');
+            var pb = document.getElementById('pending-badge');
+            var pc = document.getElementById('pending-count');
+            if (pb) { pb.style.display = 'inline-flex'; }
+            if (pc) { pc.textContent = count; }
             // Sidebar badge
             var sb = document.getElementById('sidebar-pending-badge');
-            if (sb) { sb.textContent = count; sb.classList.remove('hidden'); }
+            if (sb) { sb.textContent = count; sb.style.display = 'inline-block'; }
         }
     } catch(e) {}
 }

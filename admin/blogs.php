@@ -95,7 +95,7 @@ function renderBlogGrid(blogs) {
     grid.innerHTML = filtered.map(function(b) {
         var sc = b.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500';
         var img = b.image
-            ? '<img src="' + escHtml(b.image) + '" class="w-full h-40 object-cover" loading="lazy" onerror="this.style.display=\'none\'"/>'
+            ? '<img width="800" height="600" src="' + escHtml(b.image) + '" class="w-full h-40 object-cover" loading="lazy" onerror="this.style.display=\'none\'"/>'
             : '<div class="w-full h-40 bg-slate-100 flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-4xl">article</span></div>';
         return '<div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">' +
             img +

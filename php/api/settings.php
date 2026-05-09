@@ -76,6 +76,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         error_log('[Settings API] Settings updated successfully');
+        
+        // Log to activity_logs
+        try {
+            $user = requireAdmin();
+            $actionDesc = "Updated system settings";
+            if (isset($input['features']['caching']['enabled'])) {
+                $actionDesc = "Caching " . ($settings['features']['caching']['enabled'] ? "enabled" : "disabled");
+            }
+            $db = getDB();
+            $db->insert('activity_logs', [
+                'actor_id'    => $user['id'] ?? null,
+                'actor_name'  => $user['name'] ?? 'System',
+                'actor_role'  => 'admin',
+                'action_type' => 'system_init',
+                'description' => $actionDesc,
+                'ip_address'  => $_SERVER['REMOTE_ADDR'] ?? ''
+            ]);
+        } catch (Exception $e) {
+            // Ignore logging failure
+        }
+        
         sendJson(['success' => true, 'message' => 'Settings updated successfully']);
     } catch (Exception $e) {
         error_log('[Settings API] POST error: ' . $e->getMessage());

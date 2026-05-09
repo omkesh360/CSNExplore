@@ -37,12 +37,12 @@ require 'admin-header.php';
     <div class="admin-card overflow-hidden">
         <div class="overflow-x-auto overflow-y-hidden custom-scrollbar">
             <table class="w-full text-sm">
-                <thead>
+                <thead class="bookings-thead">
                     <tr class="text-xs font-bold text-slate-400 bg-slate-50 border-b border-slate-100">
                         <th class="py-3 px-4 text-left">Customer</th>
-                        <th class="py-3 px-4 text-left">Service / Item</th>
+                        <th class="py-3 px-4 text-left mob-hide">Service / Item</th>
                         <th class="py-3 px-4 text-center">Status</th>
-                        <th class="py-3 px-4 text-right">Date</th>
+                        <th class="py-3 px-4 text-right mob-hide">Date</th>
                         <th class="py-3 px-4 text-right">Actions</th>
                     </tr>
                 </thead>
@@ -114,33 +114,33 @@ async function loadBookings() {
     tbody.innerHTML = items.map(function(b) {
         var statusColor = b.status === 'pending' ? 'bg-orange-50 text-orange-600 border-orange-100' : b.status === 'completed' ? 'bg-green-50 text-green-600 border-green-100' : 'bg-red-50 text-red-600 border-red-100';
         var img = b.listing_image ? '../' + b.listing_image : '../images/placeholder.jpg';
-        return '<tr class="hover:bg-slate-50 transition-colors group cursor-pointer" onclick="openModal(' + b.id + ')">' +
-            '<td class="py-4 px-6">' +
+        return '<tr class="hover:bg-slate-50 transition-colors cursor-pointer" onclick="openModal(' + b.id + ')">' +
+            '<td data-label="Customer" class="py-4 px-4">' +
                 '<div class="flex items-center gap-3">' +
-                    '<div class="w-10 h-10 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-slate-400 text-xs">' + b.full_name.charAt(0) + '</div>' +
+                    '<div class="w-9 h-9 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-slate-400 text-xs">' + b.full_name.charAt(0) + '</div>' +
                     '<div>' +
-                        '<p class="font-bold text-slate-900">' + escHtml(b.full_name) + '</p>' +
+                        '<p class="font-bold text-slate-900 text-sm">' + escHtml(b.full_name) + '</p>' +
                         '<p class="text-[10px] text-slate-400 font-semibold">' + escHtml(b.phone) + '</p>' +
                     '</div>' +
                 '</div>' +
             '</td>' +
-            '<td class="py-4 px-6">' +
+            '<td data-label="Service" class="py-4 px-4 mob-hide">' +
                 '<div class="flex items-center gap-3">' +
-                    '<img src="' + img + '" class="w-10 h-10 rounded-lg object-cover border border-slate-100" onerror="this.src=\'../images/placeholder.jpg\'">' +
+                    '<img width="800" height="600" src="' + img + '" class="w-9 h-9 rounded-lg object-cover border border-slate-100" onerror="this.src=\'../images/placeholder.jpg\'">' +
                     '<div>' +
                         '<p class="text-[13px] font-bold text-slate-700">' + escHtml(b.listing_name || b.service_type || '—') + '</p>' +
                         '<p class="text-[10px] text-primary uppercase font-bold tracking-wider">' + escHtml(b.service_type) + '</p>' +
                     '</div>' +
                 '</div>' +
             '</td>' +
-            '<td class="py-4 px-6 text-center">' +
+            '<td data-label="Status" class="py-4 px-4 text-center">' +
                 '<span class="inline-block px-3 py-1 rounded-md text-[10px] font-bold uppercase border ' + statusColor + '">' + escHtml(b.status) + '</span>' +
             '</td>' +
-            '<td class="py-4 px-6 text-right">' +
-                '<p class="text-[13px] font-bold text-slate-700">' + escHtml(b.booking_date || b.created_at?.split(' ')[0] || '—') + '</p>' +
+            '<td data-label="Date" class="py-4 px-4 text-right mob-hide">' +
+                '<p class="text-[13px] font-bold text-slate-700">' + escHtml(b.booking_date || (b.created_at ? b.created_at.split(' ')[0] : '—')) + '</p>' +
                 '<p class="text-[10px] text-slate-400 font-medium uppercase">' + (b.number_of_people || 1) + ' Guest(s)</p>' +
             '</td>' +
-            '<td class="py-4 px-6 text-right">' +
+            '<td data-label="" class="py-4 px-4 text-right">' +
                 '<button onclick="event.stopPropagation(); deleteBooking(' + b.id + ')" class="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>' +
             '</td>' +
         '</tr>';
@@ -165,7 +165,7 @@ async function openModal(id) {
 
     document.getElementById('modal-body').innerHTML =
         '<div class="relative -mx-6 -mt-6 h-56 mb-8 overflow-hidden rounded-t-2xl">' +
-            '<img src="' + img + '" class="w-full h-full object-cover" onerror="this.src=\'../images/placeholder.jpg\'">' +
+            '<img width="800" height="600" src="' + img + '" class="w-full h-full object-cover" onerror="this.src=\'../images/placeholder.jpg\'">' +
             '<div class="absolute inset-0 bg-slate-900/60"></div>' +
             '<div class="absolute bottom-6 left-6 right-6">' +
                 '<p class="text-[10px] font-bold text-primary/80 uppercase tracking-widest mb-1.5">Reservation Detail</p>' +

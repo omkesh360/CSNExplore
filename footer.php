@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore"
+                <img width="800" height="600" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore"
                     class="h-9 object-contain mb-4"
                     onerror="this.style.display='none'; document.getElementById('footer-logo-text').style.display='flex'" />
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">

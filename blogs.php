@@ -7,7 +7,7 @@ $page_meta = [
     'description' => 'Read our latest travel blogs, local tips, and stories from Chhatrapati Sambhajinagar. Discover Ellora, Ajanta, and hidden gems.',
     'canonical'   => 'https://csnexplore.com/blogs',
     'type'        => 'website',
-    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80',
+    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format',
     'breadcrumbs' => [
         ['name' => 'Home', 'url' => '/'],
         ['name' => 'Blogs', 'url' => '/blogs'],
@@ -81,8 +81,8 @@ require 'header.php';
 <!-- Shared hero with breadcrumb at top -->
 <section class="relative h-[420px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img class="w-full h-full object-cover"
-             src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80"
+        <img width="800" height="600" class="w-full h-full object-cover"
+             src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
              alt="CSNExplore Blogs"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
     </div>
@@ -117,10 +117,10 @@ require 'header.php';
     <div class="max-w-[1140px] mx-auto px-5 text-slate-900">
         <a href="<?php echo blogSlug($featured); ?>" class="group flex flex-col md:flex-row gap-6 items-center bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl p-5 transition-all shadow-sm">
             <div class="w-full md:w-64 h-40 rounded-xl overflow-hidden shrink-0">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                <img width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                      src="<?php echo htmlspecialchars($featured['image'] ?? ''); ?>"
                      alt="<?php echo htmlspecialchars($featured['title']); ?>"
-                     onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80'"/>
+                     onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format'"/>
             </div>
             <div class="flex-1">
                 <div class="flex items-center gap-3 mb-3">
@@ -198,11 +198,11 @@ $total_grid_blogs = count($all_blogs_for_filter);
             <a href="<?php echo blogSlug($blog); ?>" class="absolute inset-0 z-10" aria-label="<?php echo htmlspecialchars($blog['title']); ?>"></a>
 
             <div class="relative rounded-2xl overflow-hidden mb-5 aspect-video shadow-lg">
-                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                <img width="800" height="600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                      src="<?php echo htmlspecialchars($blog['image'] ?? ''); ?>"
                      alt="<?php echo htmlspecialchars($blog['title']); ?>"
                      loading="lazy"
-                     onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80'"/>
+                     onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format'"/>
                 <div class="absolute top-4 left-4">
                     <span class="bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-primary uppercase relative z-20">
                         <?php echo htmlspecialchars($blog['category']); ?>

@@ -37,13 +37,5 @@ Allow: /sitemap*.xml
 # Crawl-delay for bots that respect it
 Crawl-delay: 1
 
-# Sitemap index + split sitemaps
+# Sitemap
 Sitemap: https://csnexplore.com/sitemap.xml
-Sitemap: https://csnexplore.com/sitemap-static.xml
-Sitemap: https://csnexplore.com/sitemap-stays.xml
-Sitemap: https://csnexplore.com/sitemap-cars.xml
-Sitemap: https://csnexplore.com/sitemap-bikes.xml
-Sitemap: https://csnexplore.com/sitemap-attractions.xml
-Sitemap: https://csnexplore.com/sitemap-restaurants.xml
-Sitemap: https://csnexplore.com/sitemap-buses.xml
-Sitemap: https://csnexplore.com/sitemap-blogs.xml

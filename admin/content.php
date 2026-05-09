@@ -278,7 +278,7 @@ async function loadPickItems(key) {
         container.innerHTML = items.map(function(item) {
             var isChecked = checked[item.id] ? " checked" : "";
             var thumb = item.image
-                ? "<img src=\"" + escHtml(item.image) + "\" class=\"w-8 h-8 rounded object-cover shrink-0\" onerror=\"this.style.display=\'none\'\" />"
+                ? "<img width="800" height="600" src=\"" + escHtml(item.image) + "\" class=\"w-8 h-8 rounded object-cover shrink-0\" onerror=\"this.style.display=\'none\'\" />"
                 : "<span class=\"w-8 h-8 rounded bg-slate-200 flex items-center justify-center shrink-0 text-slate-400 text-xs\">?</span>";
             return "<label class=\"flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white cursor-pointer\">" +
                 "<input type=\"checkbox\" id=\"hp-pick-" + key + "-" + item.id + "\" value=\"" + item.id + "\"" + isChecked + " class=\"accent-orange-500 shrink-0\" />" +
@@ -385,7 +385,7 @@ async function loadHomepage() {
                     container.innerHTML = items.map(function(item) {
                         var isChecked = savedPicks.indexOf(item.id) !== -1 ? " checked" : "";
                         var thumb = item.image
-                            ? "<img src=\"" + escHtml(item.image) + "\" class=\"w-8 h-8 rounded object-cover shrink-0\" onerror=\"this.style.display=\'none\'\" />"
+                            ? "<img width="800" height="600" src=\"" + escHtml(item.image) + "\" class=\"w-8 h-8 rounded object-cover shrink-0\" onerror=\"this.style.display=\'none\'\" />"
                             : "<span class=\"w-8 h-8 rounded bg-slate-200 flex items-center justify-center shrink-0 text-slate-400 text-xs\">?</span>";
                         return "<label class=\"flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white cursor-pointer\">" +
                             "<input type=\"checkbox\" id=\"hp-pick-" + k + "-" + item.id + "\" value=\"" + item.id + "\"" + isChecked + " class=\"accent-orange-500 shrink-0\" />" +

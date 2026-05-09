@@ -104,7 +104,7 @@ $blog_id = $_GET['id'] ?? '';
                     <h3 class="font-bold text-sm">Featured Image</h3>
                 </div>
                 <div id="image-preview-container" class="aspect-video bg-slate-50 border border-dashed border-slate-200 rounded-xl overflow-hidden mb-3 group relative cursor-pointer" onclick="document.getElementById('post-image').focus()">
-                    <img id="image-preview" src="" class="hidden w-full h-full object-cover">
+                    <img width="800" height="600" id="image-preview" src="" class="hidden w-full h-full object-cover">
                     <div id="image-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-slate-500">
                         <span class="material-symbols-outlined text-3xl mb-1">add_photo_alternate</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider">Set Featured Image</span>

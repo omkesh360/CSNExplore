@@ -52,13 +52,13 @@ require 'admin-header.php';
     <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-slate-50 border-b border-slate-100">
+                <thead class="bg-slate-50 border-b border-slate-100 logs-thead">
                     <tr>
                         <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 w-36">Time</th>
-                        <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Actor</th>
+                        <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 mob-hide">Actor</th>
                         <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Action</th>
                         <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Description</th>
-                        <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 w-28">IP</th>
+                        <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 w-28 mob-hide">IP</th>
                     </tr>
                 </thead>
                 <tbody id="logs-tbody">
@@ -154,19 +154,19 @@ async function loadLogs(page) {
         var icon  = ACTION_ICONS[l.action_type]  || 'info';
         var roleColor = l.actor_role === 'admin' ? 'text-primary font-bold' : 'text-slate-500';
         return '<tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors">' +
-            '<td class="py-2.5 px-4 text-slate-400 text-xs whitespace-nowrap">' + fmtDate(l.created_at) + '</td>' +
-            '<td class="py-2.5 px-4">' +
+            '<td data-label="Time" class="py-2.5 px-4 text-slate-400 text-xs whitespace-nowrap">' + fmtDate(l.created_at) + '</td>' +
+            '<td data-label="Actor" class="py-2.5 px-4 mob-hide">' +
                 '<p class="font-semibold text-slate-800 text-xs">' + escHtml(l.actor_name) + '</p>' +
                 '<p class="text-[10px] ' + roleColor + '">' + escHtml(l.actor_role) + '</p>' +
             '</td>' +
-            '<td class="py-2.5 px-4">' +
+            '<td data-label="Action" class="py-2.5 px-4">' +
                 '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ' + color + '">' +
                     '<span class="material-symbols-outlined text-[11px]">' + icon + '</span>' +
                     escHtml(l.action_type.replace(/_/g,' ')) +
                 '</span>' +
             '</td>' +
-            '<td class="py-2.5 px-4 text-slate-600 text-xs max-w-xs">' + escHtml(l.description) + '</td>' +
-            '<td class="py-2.5 px-4 text-slate-400 text-[10px] font-mono">' + escHtml(l.ip_address || '—') + '</td>' +
+            '<td data-label="Description" class="py-2.5 px-4 text-slate-600 text-xs max-w-xs">' + escHtml(l.description) + '</td>' +
+            '<td data-label="IP" class="py-2.5 px-4 text-slate-400 text-[10px] font-mono mob-hide">' + escHtml(l.ip_address || '—') + '</td>' +
         '</tr>';
     }).join('');
 

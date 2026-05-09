@@ -81,7 +81,7 @@ function img_tag(string $src, string $alt, array $attrs = [], bool $eager = fals
 
     $onerror = ' onerror="this.onerror=null;this.src=\'' . htmlspecialchars($src) . '\'"';
 
-    return '<img src="' . htmlspecialchars($final_src) . '"'
+    return '<img width="800" height="600" src="' . htmlspecialchars($final_src) . '"'
         . ' alt="' . htmlspecialchars($alt) . '"'
         . ' loading="' . $loading . '"'
         . ' decoding="' . $decoding . '"'
@@ -107,7 +107,7 @@ function img_picture(string $src, string $alt, array $img_attrs = [], bool $eage
     if ($webp && $webp !== $src) {
         $out .= '<source srcset="' . htmlspecialchars($webp) . '" type="image/webp">';
     }
-    $out .= '<img src="' . htmlspecialchars($src) . '"'
+    $out .= '<img width="800" height="600" src="' . htmlspecialchars($src) . '"'
         . ' alt="' . htmlspecialchars($alt) . '"'
         . ' loading="' . $loading . '"'
         . ' decoding="' . ($eager ? 'sync' : 'async') . '"'

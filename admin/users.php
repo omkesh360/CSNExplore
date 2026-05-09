@@ -12,15 +12,15 @@ require 'admin-header.php';
 <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
-            <thead class="bg-slate-50 border-b border-slate-100">
+            <thead class="bg-slate-50 border-b border-slate-100 users-thead">
                 <tr>
                     <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">#</th>
                     <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Name</th>
                     <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Email</th>
-                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Phone</th>
+                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 mob-hide">Phone</th>
                     <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Role</th>
-                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Verified</th>
-                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Joined</th>
+                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 mob-hide">Verified</th>
+                    <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500 mob-hide">Joined</th>
                     <th class="text-left py-3 px-4 text-xs font-semibold text-slate-500">Actions</th>
                 </tr>
             </thead>
@@ -112,15 +112,15 @@ async function loadUsers() {
             ? '<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700"><span class="material-symbols-outlined text-xs">verified</span> Verified</span>'
             : '<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700"><span class="material-symbols-outlined text-xs">pending</span> Pending</span>';
         return '<tr class="border-b border-slate-50 hover:bg-slate-50">' +
-            '<td class="py-2.5 px-4 text-slate-400 text-xs">' + u.id + '</td>' +
-            '<td class="py-2.5 px-4 font-medium">' + escHtml(u.name) + '</td>' +
-            '<td class="py-2.5 px-4 text-slate-500">' + escHtml(u.email) + '</td>' +
-            '<td class="py-2.5 px-4 text-slate-500">' + escHtml(u.phone || '—') + '</td>' +
-            '<td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded-full text-xs font-bold ' + rc + '">' + escHtml(u.role) + '</span></td>' +
-            '<td class="py-2.5 px-4">' + verifiedBadge + '</td>' +
-            '<td class="py-2.5 px-4 text-slate-500 text-xs">' + escHtml((u.created_at || '').split(' ')[0]) + '</td>' +
-            '<td class="py-2.5 px-4">' +
-                '<div class="flex gap-1">' +
+            '<td data-label="#" class="py-2.5 px-4 text-slate-400 text-xs">' + u.id + '</td>' +
+            '<td data-label="Name" class="py-2.5 px-4 font-medium">' + escHtml(u.name) + '</td>' +
+            '<td data-label="Email" class="py-2.5 px-4 text-slate-500" style="word-break:break-all;">' + escHtml(u.email) + '</td>' +
+            '<td data-label="Phone" class="py-2.5 px-4 text-slate-500 mob-hide">' + escHtml(u.phone || '—') + '</td>' +
+            '<td data-label="Role" class="py-2.5 px-4"><span class="px-2 py-0.5 rounded-full text-xs font-bold ' + rc + '">' + escHtml(u.role) + '</span></td>' +
+            '<td data-label="Verified" class="py-2.5 px-4 mob-hide">' + verifiedBadge + '</td>' +
+            '<td data-label="Joined" class="py-2.5 px-4 text-slate-500 text-xs mob-hide">' + escHtml((u.created_at || '').split(' ')[0]) + '</td>' +
+            '<td data-label="Actions" class="py-2.5 px-4">' +
+                '<div class="flex gap-1 flex-wrap">' +
                 '<button onclick="openEditRole(' + u.id + ',\'' + escHtml(u.name) + '\',\'' + escHtml(u.role) + '\')" class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Edit Role"><span class="material-symbols-outlined text-base">manage_accounts</span></button>' +
                 '<button onclick="openChangePw(' + u.id + ',\'' + escHtml(u.name) + '\')" class="p-1.5 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-all" title="Change Password"><span class="material-symbols-outlined text-base">key</span></button>' +
                 (u.is_verified != 1 ? '<button onclick="manualVerify(' + u.id + ')" class="p-1.5 text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all" title="Manually Verify"><span class="material-symbols-outlined text-base">verified</span></button>' : '') +

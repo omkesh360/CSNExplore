@@ -91,7 +91,7 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 <header class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
     <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="../" class="flex items-center">
-            <img src="../images/travelhub.png" alt="CSNExplore" class="h-8 object-contain"/>
+            <img width="180" height="40" src="../images/travelhub.png" alt="CSNExplore" class="h-8 object-contain"/>
         </a>
         <div class="flex items-center gap-4">
             <a href="../blogs" class="text-white text-sm font-bold hover:text-primary transition">All Blogs</a>
@@ -104,7 +104,7 @@ body.page-ready{animation:pageFadeIn 0.2s ease forwards;}
 <div class="relative h-[60vh] min-h-[400px] mt-16 overflow-hidden">
     <?php if ($image): ?>
         <div class="absolute inset-0 img-zoom-container" data-animate="zoom-in">
-            <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover img-zoom"/>
+            <img width="800" height="600" src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo $title; ?>" class="w-full h-full object-cover img-zoom"/>
         </div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
     <?php else: ?>

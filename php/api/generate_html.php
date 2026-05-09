@@ -217,17 +217,23 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <meta name="twitter:description" content="' . htmlspecialchars($desc) . '">
 <meta name="twitter:image" content="' . htmlspecialchars($image) . '">';
 
+    $head .= '
+<!-- Non-blocking font loading -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/></noscript>
+<!-- Material Symbols slim variant, non-blocking -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/></noscript>
+<!-- Tailwind: synchronous to prevent FOUC/black-line flash on refresh -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"},fontFamily:{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}};</script>
+<link rel="stylesheet" href="' . $base . 'mobile-responsive.css"/>';
+
     if ($schema) {
         $head .= "\n" . '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
     }
 
     $head .= '
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link rel="stylesheet" href="' . $base . 'mobile-responsive.css"/>
-<link rel="stylesheet" href="' . $base . 'css/preloader.css"/>
-<script>tailwind.config={{darkMode:"class",theme:{{extend:{{colors:{{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"}},fontFamily:{{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}}}}}}</script>
 <style>
 /* ── Global Enhancements (matched from header.php) ── */
 html { scroll-behavior: smooth; }
@@ -236,8 +242,8 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-track { background: #f8fafc; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-body{opacity:0;will-change:opacity;background:#fff;color:#0f172a;font-family:Inter,sans-serif;overflow-x:hidden;max-width:100vw;}
-body.page-ready{animation:pageFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;}
+body{background:#fff;color:#0f172a;font-family:Inter,sans-serif;overflow-x:hidden;max-width:100vw;animation:pageFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;}
+
 @keyframes pageFadeIn{from{opacity:0;}to{opacity:1;}}
 body.page-fade-out{opacity:0!important;transition:opacity 0.4s ease-in-out;}
 * { box-sizing: border-box; }
@@ -395,11 +401,12 @@ button.text-white:hover * {
 </script>
 </head>
 <body class="bg-white dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-58P4JE1SYS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-\' . str_replace(\'<?php echo BASE_PATH; ?>\', rtrim($base, \'/\'), file_get_contents(dirname(__DIR__, 2) . \'/php/preloader.php\')) . \'
+
+
+
+
+
+
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>
 <script>
@@ -570,7 +577,7 @@ function sharedFooter($base) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img src="'.$base.'images/travelhub.png" alt="CSNExplore" class="h-9 object-contain mb-4"
+                <img width="180" height="40" src="'.$base.'images/travelhub.png" alt="CSNExplore" class="h-9 object-contain mb-4"
                      onerror="this.style.display=\'none\'; document.getElementById(\'footer-logo-text\').style.display=\'flex\'"/>
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">
                     <span class="material-symbols-outlined text-primary text-2xl">explore</span>
@@ -1055,7 +1062,7 @@ foreach ($types as $type) {
         // Build gallery HTML
         foreach ($resolvedGalleryImages as $idx => $resolvedImg) {
             $galleryHtml .= '<div class="gallery-thumb" onclick="openLightbox('.$idx.')" title="Click to zoom">'.
-                '<img src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img width="180" height="40" src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</div>';
         }
         // Build JS array of gallery images for lightbox
@@ -1158,7 +1165,7 @@ foreach ($types as $type) {
             $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
             
             $thumbHtml .= '<button onclick="slideTo('.$idx.')" id="thumb-'.$idx.'" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo '.($idx+1).'">'.
-                '<img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img width="180" height="40" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
                 '</button>';
         }
 
@@ -1222,7 +1229,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <img width="180" height="40" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '
@@ -1295,7 +1302,7 @@ foreach ($types as $type) {
                   $isPng = (stripos($img, '.png') !== false);
                   $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
                   return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to zoom" role="button" tabindex="0" aria-label="View '.htmlspecialchars($item['name']).' photo '.($i+1).' full screen">
-                    <img src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $i).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
+                    <img width="180" height="40" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $i).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>';
               }, $resolvedGalleryImages, array_keys($resolvedGalleryImages))).
@@ -1316,25 +1323,129 @@ foreach ($types as $type) {
           <!-- Price header -->
           <div class="bg-gradient-to-br from-[#ec5b13] to-orange-400 px-6 py-5 text-white">
             <p class="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">'.htmlspecialchars($meta['label']).' Price</p>
-            '.($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0 ? '
-            <div class="space-y-2">
-              <div class="flex items-baseline gap-1.5">
-                <span class="text-xs font-semibold opacity-70">Self-Drive:</span>
-                <span class="text-2xl font-black">₹'.number_format((float)$price_val).'</span>
-                <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
-              </div>
-              <div class="flex items-baseline gap-1.5">
-                <span class="text-xs font-semibold opacity-70">With Driver:</span>
-                <span class="text-2xl font-black">₹'.number_format((float)($item['price_with_driver'] ?? 0)).'</span>
-                <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
-              </div>
-            </div>' : '
-            <div class="flex items-baseline gap-1.5">
-              '.($price_val > 0 ? '<span class="text-xs font-semibold opacity-70 mr-0.5">from</span>' : '').'<span class="text-3xl font-black">'.$price_fmt.'</span>
-              '.($meta['unit'] && $price_val > 0 ? '<span class="text-sm font-semibold opacity-80">'.htmlspecialchars($meta['unit']).'</span>' : '').'
-            </div>').'
+            '.(function() use ($type, $item, $price_val, $price_fmt, $meta) {
+                if ($type === 'cars' && !empty($item['pricing_packages'])) {
+                    $pkgs = json_decode($item['pricing_packages'], true);
+                    // Find the lowest / starting price to show "from ₹X"
+                    $start = null;
+                    if (isset($pkgs['packages'])) {
+                        foreach ($pkgs['packages'] as $p) {
+                            if ($start === null || $p['price'] < $start) $start = $p['price'];
+                        }
+                    }
+                    if ($start === null && isset($pkgs['flat_rate'])) $start = $pkgs['flat_rate'];
+                    if ($start === null && isset($pkgs['per_km']))    $start = null; // per-km only
+
+                    $h = '<div class="space-y-1">';
+                    if ($start !== null) {
+                        $h .= '<div>
+                          <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-none mb-1">from</p>
+                          <div class="flex items-baseline gap-1.5">
+                            <span class="text-3xl font-black">₹'.number_format($start).'</span>
+                            <span class="text-sm font-semibold opacity-80">/ day</span>
+                          </div>
+                        </div>';
+                    } elseif (isset($pkgs['per_km'])) {
+                        $h .= '<div>
+                          <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-none mb-1">from</p>
+                          <div class="flex items-baseline gap-1.5">
+                            <span class="text-3xl font-black">₹'.number_format($pkgs['per_km']).'</span>
+                            <span class="text-sm font-semibold opacity-80">/ km</span>
+                          </div>
+                        </div>';
+                    }
+                    // Show key limits inline
+                    if (isset($pkgs['packages'])) {
+                        $limits = array_map(fn($p) => $p['limit'], $pkgs['packages']);
+                        $h .= '<p class="text-[11px] font-medium opacity-90">Includes '.implode(' · ', $limits).'</p>';
+                    }
+                    if (isset($pkgs['extra_km'])) $h .= '<p class="text-[11px] font-medium opacity-80">Extra km: ₹'.$pkgs['extra_km'].'/km</p>';
+                    $h .= '</div>';
+                    return $h;
+                }
+                elseif ($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0) {
+                    return '<div class="space-y-3">
+                      <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-none mb-1">Self-Drive</p>
+                        <div class="flex items-baseline gap-1.5">
+                          <span class="text-2xl font-black">₹'.number_format((float)$price_val).'</span>
+                          <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-none mb-1">With Driver</p>
+                        <div class="flex items-baseline gap-1.5">
+                          <span class="text-2xl font-black">₹'.number_format((float)($item['price_with_driver'] ?? 0)).'</span>
+                          <span class="text-sm font-semibold opacity-80">'.$meta['unit'].'</span>
+                        </div>
+                      </div>
+                    </div>';
+                } else {
+                    return '<div>
+                      '.($price_val > 0 ? '<p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-none mb-1">from</p>' : '').'
+                      <div class="flex items-baseline gap-1.5">
+                        <span class="text-3xl font-black">'.$price_fmt.'</span>
+                        '.($meta['unit'] && $price_val > 0 ? '<span class="text-sm font-semibold opacity-80">'.htmlspecialchars($meta['unit']).'</span>' : '').'
+                      </div>
+                    </div>';
+                }
+            })().'
             <p class="text-xs opacity-70 mt-1.5 flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span>Free cancellation · No hidden charges</p>
           </div>
+
+          '.(($type === "cars" || $type === "bikes") && !empty($item["pricing_packages"]) ? (function() use ($item) {
+              $pkgs = json_decode($item["pricing_packages"], true);
+              $rows = "";
+              if (isset($pkgs["flat_rate"])) {
+                  $rows .= "<div class=\"flex items-center justify-between py-2.5 border-b border-slate-100\">
+                    <div>
+                      <p class=\"text-[10px] font-bold text-slate-400 uppercase tracking-wide\">from</p>
+                      <p class=\"text-xs font-bold text-slate-800\">Flat Daily Rate</p>
+                    </div>
+                    <div class=\"text-right\">
+                      <p class=\"text-base font-black text-slate-900\">₹".number_format($pkgs["flat_rate"])."<span class=\"text-xs font-medium text-slate-500 ml-1\">/ day</span></p>
+                    </div>
+                  </div>";
+              }
+              if (isset($pkgs["packages"])) {
+                  foreach ($pkgs["packages"] as $p) {
+                      $rows .= "<div class=\"flex items-center justify-between py-2.5 border-b border-slate-100\">
+                        <div>
+                          <p class=\"text-[10px] font-bold text-slate-400 uppercase tracking-wide\">from</p>
+                          <p class=\"text-xs font-semibold text-slate-700\">".htmlspecialchars($p["limit"])."</p>
+                        </div>
+                        <div class=\"text-right\">
+                          <p class=\"text-base font-black text-[#ec5b13]\">₹".number_format($p["price"])."<span class=\"text-xs font-medium text-slate-500 ml-1\">/ day</span></p>
+                        </div>
+                      </div>";
+                  }
+              }
+              if (isset($pkgs["per_km"])) {
+                  $note = htmlspecialchars($pkgs["per_km_note"] ?? "");
+                  $rows .= "<div class=\"flex items-center justify-between py-2.5 border-b border-slate-100\">
+                    <div>
+                      <p class=\"text-[10px] font-bold text-slate-400 uppercase tracking-wide\">from</p>
+                      <p class=\"text-xs font-semibold text-slate-700\">Per Km".($note ? " ($note)" : "")."</p>
+                    </div>
+                    <div class=\"text-right\">
+                      <p class=\"text-base font-black text-[#ec5b13]\">₹".number_format($pkgs["per_km"])."<span class=\"text-xs font-medium text-slate-500 ml-1\">/ km</span></p>
+                    </div>
+                  </div>";
+              }
+              if (isset($pkgs["extra_km"])) {
+                  $rows .= "<div class=\"flex items-center justify-between py-2.5\">
+                    <p class=\"text-xs font-semibold text-slate-600\">Extra Mileage</p>
+                    <p class=\"text-sm font-black text-slate-700\">₹".$pkgs["extra_km"]."<span class=\"text-xs font-medium text-slate-500 ml-1\">/ km</span></p>
+                  </div>";
+              }
+              if (empty($rows)) return "";
+              return "<div class=\"mt-4 mx-5 mb-1 bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden\">
+                <div class=\"px-4 py-3 border-b border-slate-200 bg-slate-100/50\">
+                  <span class=\"text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5\"><span class=\"material-symbols-outlined text-[#ec5b13] text-sm\">local_offer</span>Full Pricing Details</span>
+                </div>
+                <div class=\"px-4 pb-1\">".$rows."</div>
+              </div>";
+          })() : "").'
 
           <div class="p-5 space-y-4">
             <!-- Address -->
@@ -1411,27 +1522,50 @@ foreach ($types as $type) {
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Date *</label>
               <input type="date" id="b-date" required class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
             </div>').'
-            '.($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0 ? '
-            <div>
-              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">Rental Type *</label>
-              <div class="space-y-2">
-                <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
-                  <input type="radio" name="b-driver" value="0" checked class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
-                  <div class="flex-1">
-                    <p class="text-sm font-bold text-slate-900">Self-Drive</p>
-                    <p class="text-xs text-slate-500">₹'.number_format((float)$price_val).' '.$meta['unit'].'</p>
-                  </div>
-                </label>
-                <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
-                  <input type="radio" name="b-driver" value="1" class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
-                  <div class="flex-1">
-                    <p class="text-sm font-bold text-slate-900">With Driver</p>
-                    <p class="text-xs text-slate-500">₹'.number_format((float)($item['price_with_driver'] ?? 0)).' '.$meta['unit'].'</p>
-                  </div>
-                </label>
-              </div>
-              <input type="hidden" id="b-driver" value="0"/>
-            </div>' : '').'
+            '.(function() use ($type, $item, $price_val, $meta) {
+                if ($type === 'cars' && !empty($item['pricing_packages'])) {
+                    $pkgs = json_decode($item['pricing_packages'], true);
+                    $h = '<div><label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">Rental Option *</label><div class="space-y-2">';
+                    $idx = 0;
+                    if (isset($pkgs['flat_rate'])) {
+                        $h .= '<label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all"><input type="radio" name="b-driver" value="Flat Rate" '.($idx++==0?'checked':'').' class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/><div class="flex-1"><p class="text-sm font-bold text-slate-900">Flat Daily Rate</p><p class="text-xs text-slate-500">₹'.number_format($pkgs['flat_rate']).' / day</p></div></label>';
+                    }
+                    if (isset($pkgs['per_km'])) {
+                        $note = htmlspecialchars($pkgs['per_km_note'] ?? '');
+                        $h .= '<label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all"><input type="radio" name="b-driver" value="Per Km" '.($idx++==0?'checked':'').' class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/><div class="flex-1"><p class="text-sm font-bold text-slate-900">Per Km Rate'.($note?" ($note)":'').'</p><p class="text-xs text-slate-500">₹'.number_format($pkgs['per_km']).' / km</p></div></label>';
+                    }
+                    if (isset($pkgs['packages'])) {
+                        foreach($pkgs['packages'] as $p) {
+                            // Show the limit as the label, not "Package 1"
+                            $h .= '<label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all"><input type="radio" name="b-driver" value="'.htmlspecialchars($p['name']).'" '.($idx++==0?'checked':'').' class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/><div class="flex-1"><p class="text-sm font-bold text-slate-900">'.htmlspecialchars($p['limit']).'</p><p class="text-xs text-slate-500">₹'.number_format($p['price']).' / day</p></div></label>';
+                        }
+                    }
+                    $h .= '</div></div>';
+                    return $h;
+                }
+                elseif ($type === 'cars' && !empty($item['driver_available']) && (float)($item['price_with_driver'] ?? 0) > 0) {
+                    return '<div>
+                      <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">Rental Type *</label>
+                      <div class="space-y-2">
+                        <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
+                          <input type="radio" name="b-driver" value="Self-Drive" checked class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
+                          <div class="flex-1">
+                            <p class="text-sm font-bold text-slate-900">Self-Drive</p>
+                            <p class="text-xs text-slate-500">₹'.number_format((float)$price_val).' '.$meta['unit'].'</p>
+                          </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#ec5b13] hover:bg-orange-50 transition-all">
+                          <input type="radio" name="b-driver" value="With Driver" class="w-4 h-4 text-[#ec5b13] border-slate-300 focus:ring-[#ec5b13]"/>
+                          <div class="flex-1">
+                            <p class="text-sm font-bold text-slate-900">With Driver</p>
+                            <p class="text-xs text-slate-500">₹'.number_format((float)($item['price_with_driver'] ?? 0)).' '.$meta['unit'].'</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>';
+                }
+                return '';
+            })().'
             <div>
               <label class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-1">Guests</label>
               <input type="number" id="b-guests" min="1" max="20" value="1" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#ec5b13]/30 focus:border-[#ec5b13]"/>
@@ -1454,15 +1588,50 @@ foreach ($types as $type) {
           </form>
           </div>
 
-          <!-- Location Map (Below Booking Card) -->
-          <div class="mt-6 bg-white border border-gray-200 rounded-lg p-6 shadow-lg">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              <span class="material-symbols-outlined text-[#ec5b13] text-xl">location_on</span>
-              Location Map
+          <!-- Driving Licence & Terms (Cars & Bikes only) -->
+          '.($type === "cars" || $type === "bikes" ? '
+          <div class="mt-6 mx-5 bg-amber-50 border border-amber-200 rounded-2xl p-6">
+            <h3 class="text-sm font-black text-amber-900 mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-amber-600 text-lg">id_card</span>
+              Driving Licence Required
             </h3>
-            <div class="rounded-lg overflow-hidden border border-gray-200" style="height: 350px;">
-              '.($map_embed ? $map_embed : '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16426.329596104577!2d75.30037121099188!3d19.851617685624074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb98f39ca15447%3A0x96c2632e2aaa42c!2sKamalnayan%20Bajaj%20Hospital!5e0!3m2!1sen!2sin!4v1775290483319!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>').'
-            </div>
+            <ul class="space-y-2.5">
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-amber-500 text-sm mt-0.5 shrink-0">check_circle</span>
+                <p class="text-xs text-amber-800 font-medium leading-relaxed">Valid <strong>Indian Driving Licence</strong> (LMV / MCWG as applicable) is mandatory for all renters.</p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-amber-500 text-sm mt-0.5 shrink-0">check_circle</span>
+                <p class="text-xs text-amber-800 font-medium leading-relaxed">Foreign nationals must carry a valid <strong>International Driving Permit (IDP)</strong> along with their home-country licence.</p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-amber-500 text-sm mt-0.5 shrink-0">check_circle</span>
+                <p class="text-xs text-amber-800 font-medium leading-relaxed">Original licence must be presented at vehicle handover. Digital / photocopy not accepted.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-4 mx-5 bg-white border border-slate-200 rounded-2xl p-6 mb-6">
+            <h3 class="text-sm font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#ec5b13] text-lg">gavel</span>
+              Terms &amp; Conditions
+            </h3>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-slate-400 text-sm mt-0.5 shrink-0">info</span><p class="text-xs text-slate-600 leading-relaxed">Fuel is not included. Vehicle must be returned with the same fuel level as at pick-up.</p></li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-slate-400 text-sm mt-0.5 shrink-0">info</span><p class="text-xs text-slate-600 leading-relaxed">A refundable security deposit may be required at the time of vehicle handover.</p></li>
+              <li class="flex items-start gap-2"><span class="material-symbols-outlined text-slate-400 text-sm mt-0.5 shrink-0">info</span><p class="text-xs text-slate-600 leading-relaxed">Smoking and consumption of alcohol inside the vehicle is strictly prohibited.</p></li>
+            </ul>
+          </div>' : '').'
+        </div>
+
+        <!-- Location Map (Below Booking Card) -->
+        <div class="mt-6 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#ec5b13] text-xl">location_on</span>
+            Location Map
+          </h3>
+          <div class="rounded-xl overflow-hidden border border-gray-200" style="height: 350px;">
+            '.($map_embed ? $map_embed : '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16426.329596104577!2d75.30037121099188!3d19.851617685624074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb98f39ca15447%3A0x96c2632e2aaa42c!2sKamalnayan%20Bajaj%20Hospital!5e0!3m2!1sen!2sin!4v1775290483319!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>').'
           </div>
         </div>
       </div>
@@ -1505,7 +1674,7 @@ foreach ($types as $type) {
                 $similarHtml .= '<div class="group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-slate-100 relative">
                   <a href="'.$sim_slug.'.html" class="absolute inset-0 z-10" aria-label="View Details"></a>
                   <div class="relative h-48 overflow-hidden '.$simBgClass.'">
-                    <img class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.png\'"/>
+                    <img width="180" height="40" class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.png\'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
@@ -1571,7 +1740,7 @@ $html .= '
   </div>
   <!-- Image -->
   <div onclick="event.stopPropagation()" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:85vh;z-index:1000000000;">
-    <img id="csn-modal-image" src="" alt="Gallery" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;transition:transform 0.3s ease;cursor:zoom-in;"/>
+    <img width="800" height="600" id="csn-modal-image" src="" alt="Gallery" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;transition:transform 0.3s ease;cursor:zoom-in;"/>
   </div>
 </div>
 
@@ -1594,7 +1763,7 @@ $html .= '
          var slug = "../listing-detail/'.$type.'-" + listing.id + "-" + listing.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").substring(0,60) + ".html";
         var displayImg = (listing.image_url && listing.image_url.length > 0) ? (listing.image_url.startsWith("http") ? listing.image_url : "../" + listing.image_url) : "../images/travelhub.png";
         html += "<a href=\"" + slug + "\" class=\"group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow shadow-sm\">" +
-          "<div class=\"aspect-video overflow-hidden relative\"><img src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.png\'\"/>" +
+          "<div class=\"aspect-video overflow-hidden relative\"><img width="180" height="40" src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.png\'\"/>" +
           "<div class=\"absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity\"></div></div>" +
           "<div class=\"p-4\"><h4 class=\"text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-[#ec5b13] transition-colors\">" + listing.name + "</h4>" +
           "<div class=\"flex items-center gap-1 mt-2\"><span class=\"material-symbols-outlined text-amber-500 text-sm\">star</span><span class=\"text-xs font-bold text-slate-800\">" + (listing.rating || 0).toFixed(1) + "</span></div>" +
@@ -1959,6 +2128,20 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
         $listingCount++;
     }
 }
+// Log to activity_logs
+try {
+    $db->insert('activity_logs', [
+        'actor_id'    => null,
+        'actor_name'  => 'System',
+        'actor_role'  => 'system',
+        'action_type' => 'system_init',
+        'description' => "Regenerated HTML cache for " . ($blogCount ?? 0) . " blogs and " . ($listingCount ?? 0) . " listings.",
+        'ip_address'  => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'
+    ]);
+} catch (Exception $e) {
+    // Ignore logging failure
+}
+
 $log[] = "Listings: $listingCount HTML files → /listing-detail/";
 
 // ── Output ────────────────────────────────────────────────────────────────────

@@ -160,6 +160,11 @@ function buildData($category, $pc, $db) {
                 $f = is_array($input['features']) ? $input['features'] : array_filter(array_map('trim', explode(',', $input['features'])));
                 $data['features'] = json_encode(array_values($f));
             }
+            if (isset($input['pricing_packages'])) {
+                // If it's empty, set to null. If valid JSON string, use it.
+                $pkgs = trim($input['pricing_packages']);
+                $data['pricing_packages'] = $pkgs === '' ? null : $pkgs;
+            }
             if (isset($input['fuel_type']))        $data['fuel_type']        = sanitize($input['fuel_type']);
             if (isset($input['transmission']))     $data['transmission']     = sanitize($input['transmission']);
             if (isset($input['seats']))            $data['seats']            = (int)$input['seats'];

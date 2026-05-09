@@ -51,11 +51,11 @@ require 'admin-header.php';
     <div class="admin-card overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead>
+                <thead class="listings-thead">
                     <tr class="text-xs font-bold text-slate-400 bg-slate-50 border-b border-slate-100">
-                        <th class="py-3 px-4 text-left w-16">#</th>
+                        <th class="py-3 px-4 text-left w-16 mob-hide">#</th>
                         <th class="py-3 px-4 text-left">Listing Info</th>
-                        <th class="py-3 px-4 text-left">Location</th>
+                        <th class="py-3 px-4 text-left mob-hide">Location</th>
                         <th class="py-3 px-4 text-center">Price</th>
                         <th class="py-3 px-4 text-center">Status</th>
                         <th class="py-3 px-4 text-right">Actions</th>
@@ -130,7 +130,7 @@ require 'admin-header.php';
                         </button>
                     </div>
                     <div id="main-img-preview" class="mt-2 hidden">
-                        <img id="main-img-preview-img" src="" class="h-24 rounded-xl object-cover border border-slate-200"/>
+                        <img width="800" height="600" id="main-img-preview-img" src="" class="h-24 rounded-xl object-cover border border-slate-200"/>
                     </div>
                 </div>
                 <div class="col-span-2">
@@ -178,10 +178,10 @@ var priceLabels = {
 };
 
 var extraFieldsDef = {
-    stays:       [['f-room_type','Room Type','text'],['f-max_guests','Max Guests','number'],['f-amenities','Amenities (comma-sep)','text']],
-    cars:        [['f-fuel_type','Fuel Type','text'],['f-transmission','Transmission','text'],['f-seats','Seats','number'],['f-driver_available','Driver Available','checkbox'],['f-price_with_driver','Price With Driver (₹)','number']],
-    bikes:       [['f-fuel_type','Fuel Type','text'],['f-cc','CC','text']],
-    restaurants: [['f-cuisine','Cuisine','text']],
+    stays:       [['f-room_type','Room Type','text'],['f-max_guests','Max Guests','number'],['f-amenities','Amenities','dynamic_list']],
+    cars:        [['f-fuel_type','Fuel Type','text'],['f-transmission','Transmission','text'],['f-seats','Seats','number'],['f-driver_available','Driver Available','checkbox'],['f-price_with_driver','Price With Driver (₹)','number'],['f-features','Features','dynamic_list'],['f-pricing_packages','Pricing Packages','pricing_packages']],
+    bikes:       [['f-fuel_type','Fuel Type','text'],['f-cc','CC','text'],['f-features','Features','dynamic_list']],
+    restaurants: [['f-cuisine','Cuisine','text'],['f-menu_highlights','Menu Highlights','dynamic_list']],
     attractions: [['f-opening_hours','Opening Hours','text'],['f-best_time','Best Time to Visit','text']],
     buses:       [['f-operator','Operator','text'],['f-from_location','From','text'],['f-to_location','To','text'],['f-departure_time','Departure','text'],['f-arrival_time','Arrival','text'],['f-duration','Duration','text']],
 };
@@ -232,33 +232,33 @@ async function loadListings() {
         var imgUrl = item.image ? imgSrc(item.image) : '../images/placeholder.jpg';
         var displayOrder = parseInt(item.display_order) || 0;
         return '<tr class="hover:bg-slate-50 transition-colors group draggable-row" data-id="' + item.id + '" draggable="true">' +
-            '<td class="py-4 px-6">' +
+            '<td data-label="" class="py-4 px-4 mob-hide">' +
                 '<div class="flex items-center gap-2">' +
                     '<span class="material-symbols-outlined text-slate-300 cursor-move drag-handle group-hover:text-primary transition-colors">drag_indicator</span>' +
                     '<span class="text-[11px] font-black text-slate-400 order-number">' + displayOrder + '</span>' +
                 '</div>' +
             '</td>' +
-            '<td class="py-4 px-6">' +
+            '<td data-label="Listing" class="py-4 px-4">' +
                 '<div class="flex items-center gap-3">' +
-                    '<img src="' + escHtml(imgUrl) + '" class="w-12 h-12 rounded-2xl object-cover border border-slate-100 shadow-sm" onerror="this.src=\'../images/placeholder.jpg\'">' +
+                    '<img width="800" height="600" src="' + escHtml(imgUrl) + '" class="w-11 h-11 rounded-xl object-cover border border-slate-100 shadow-sm" onerror="this.src=\'../images/placeholder.jpg\'">' +
                     '<div>' +
-                        '<p class="font-bold text-slate-900 leading-tight">' + escHtml(item.name) + '</p>' +
+                        '<p class="font-bold text-slate-900 leading-tight text-sm">' + escHtml(item.name) + '</p>' +
                         '<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">' + escHtml(item.type || 'Standard') + '</p>' +
                     '</div>' +
                 '</div>' +
             '</td>' +
-            '<td class="py-4 px-6 text-[13px] font-semibold text-slate-500">' + escHtml(item.location) + '</td>' +
-            '<td class="py-4 px-6 text-center">' +
+            '<td data-label="Location" class="py-4 px-4 text-[13px] font-semibold text-slate-500 mob-hide">' + escHtml(item.location) + '</td>' +
+            '<td data-label="Price" class="py-4 px-4 text-center">' +
                 '<p class="text-[15px] font-black text-primary tracking-tight">₹' + (item[priceKey[currentCat]] || 0) + '</p>' +
             '</td>' +
-            '<td class="py-4 px-6 text-center">' +
+            '<td data-label="Status" class="py-4 px-4 text-center">' +
                 '<span class="inline-block px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider border ' + statusColor + '">' + statusTxt + '</span>' +
             '</td>' +
-            '<td class="py-4 px-6 text-right">' +
-                '<div class="flex justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">' +
-                    '<button onclick="openEditModal(' + item.id + ')" class="p-2.5 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">edit_note</span></button>' +
-                    '<button onclick="toggleActive(' + item.id + ',' + (item.is_active ? 0 : 1) + ')" class="p-2.5 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">' + (item.is_active ? 'visibility_off' : 'visibility') + '</span></button>' +
-                    '<button onclick="deleteListing(' + item.id + ')" class="p-2.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>' +
+            '<td data-label="" class="py-4 px-4 text-right">' +
+                '<div class="flex justify-end gap-1.5">' +
+                    '<button onclick="openEditModal(' + item.id + ')" class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">edit_note</span></button>' +
+                    '<button onclick="toggleActive(' + item.id + ',' + (item.is_active ? 0 : 1) + ')" class="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-50 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">' + (item.is_active ? 'visibility_off' : 'visibility') + '</span></button>' +
+                    '<button onclick="deleteListing(' + item.id + ')" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>' +
                 '</div>' +
             '</td>' +
         '</tr>';
@@ -276,6 +276,33 @@ function buildExtraFields(cat) {
                 '<input id="' + f[0] + '" type="checkbox" class="w-4 h-4 text-primary border-slate-300 rounded focus:ring-primary/30 focus:ring-2 focus:ring-offset-0"/>' +
                 '<label for="' + f[0] + '" class="block text-xs font-semibold text-slate-600">' + f[1] + '</label>' +
             '</div>';
+        } else if (f[2] === 'dynamic_list') {
+            div.className = 'col-span-2';
+            div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
+                '<div id="' + f[0] + '-container" class="space-y-2"></div>' +
+                '<button type="button" onclick="addDynamicItem(\'' + f[0] + '\')" class="mt-2 text-xs font-semibold text-primary flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-[16px]">add_circle</span> Add Item</button>' +
+                '<input type="hidden" id="' + f[0] + '"/>';
+        } else if (f[2] === 'pricing_packages') {
+            div.className = 'col-span-2';
+            div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
+                '<div class="p-4 border border-slate-200 rounded-xl bg-slate-50/50 space-y-4">' +
+                    '<div class="grid grid-cols-2 gap-4">' +
+                        '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Flat Rate (₹)</label><input type="number" id="' + f[0] + '_flat" class="w-full border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/></div>' +
+                        '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Extra Km Rate (₹)</label><input type="number" id="' + f[0] + '_extra" class="w-full border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/></div>' +
+                        '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Per Km Rate (₹)</label><input type="number" id="' + f[0] + '_perkm" class="w-full border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/></div>' +
+                        '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Per Km Note</label><input type="text" id="' + f[0] + '_perkmnote" placeholder="e.g. AC" class="w-full border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/></div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<label class="block text-xs font-bold text-slate-600 mb-2">Packages</label>' +
+                        '<div id="' + f[0] + '-pkgs" class="space-y-2 mb-2"></div>' +
+                        '<button type="button" onclick="addPkgItem(\'' + f[0] + '\')" class="text-xs font-semibold text-primary flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-[16px]">add_circle</span> Add Package</button>' +
+                    '</div>' +
+                '</div>' +
+                '<input type="hidden" id="' + f[0] + '"/>';
+        } else if (f[2] === 'textarea') {
+            div.className = 'col-span-2';
+            div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
+                '<textarea id="' + f[0] + '" rows="3" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-y"></textarea>';
         } else {
             div.innerHTML = '<label class="block text-xs font-semibold text-slate-600 mb-1">' + f[1] + '</label>' +
                 '<input id="' + f[0] + '" type="' + f[2] + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>';
@@ -283,6 +310,67 @@ function buildExtraFields(cat) {
         container.appendChild(div);
     });
     document.getElementById('price-label').textContent = priceLabels[cat] || 'Price';
+}
+
+function addDynamicItem(id, val = '') {
+    var c = document.getElementById(id + '-container');
+    if (!c) return;
+    var div = document.createElement('div');
+    div.className = 'flex gap-2 items-center';
+    div.innerHTML = '<input type="text" value="' + escHtml(val) + '" class="flex-1 border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/>' +
+        '<button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-red-500 p-1"><span class="material-symbols-outlined text-[20px]">remove_circle</span></button>';
+    c.appendChild(div);
+}
+
+function getDynamicList(id) {
+    var c = document.getElementById(id + '-container');
+    if (!c) return [];
+    var arr = [];
+    c.querySelectorAll('input').forEach(i => { if (i.value.trim()) arr.push(i.value.trim()); });
+    return arr;
+}
+
+function addPkgItem(id, pkg = {name:'', price:'', limit:''}) {
+    var c = document.getElementById(id + '-pkgs');
+    if (!c) return;
+    var div = document.createElement('div');
+    div.className = 'flex gap-2 items-center bg-white p-2 border border-slate-200 rounded-lg';
+    div.innerHTML = '<input type="text" placeholder="Name (e.g. Package 1)" value="' + escHtml(pkg.name) + '" class="flex-1 min-w-[100px] border border-slate-200 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/>' +
+        '<input type="number" placeholder="Price" value="' + escHtml(pkg.price) + '" class="w-24 border border-slate-200 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/>' +
+        '<input type="text" placeholder="Limit (e.g. 200 km/day)" value="' + escHtml(pkg.limit) + '" class="flex-1 min-w-[120px] border border-slate-200 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"/>' +
+        '<button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-red-500 p-1 ml-1"><span class="material-symbols-outlined text-[20px]">remove_circle</span></button>';
+    c.appendChild(div);
+}
+
+function getPkgData(id) {
+    var flat = document.getElementById(id + '_flat').value;
+    var extra = document.getElementById(id + '_extra').value;
+    var perkm = document.getElementById(id + '_perkm').value;
+    var perkmnote = document.getElementById(id + '_perkmnote').value;
+    
+    var pkgs = [];
+    var c = document.getElementById(id + '-pkgs');
+    if (c) {
+        c.querySelectorAll('.flex.gap-2').forEach(r => {
+            var inputs = r.querySelectorAll('input');
+            if (inputs[0].value.trim() || inputs[1].value || inputs[2].value.trim()) {
+                pkgs.push({
+                    name: inputs[0].value.trim(),
+                    price: parseFloat(inputs[1].value) || 0,
+                    limit: inputs[2].value.trim()
+                });
+            }
+        });
+    }
+    
+    var obj = {};
+    if (flat) obj.flat_rate = parseFloat(flat);
+    if (extra) obj.extra_km = parseFloat(extra);
+    if (perkm) obj.per_km = parseFloat(perkm);
+    if (perkmnote) obj.per_km_note = perkmnote;
+    if (pkgs.length > 0) obj.packages = pkgs;
+    
+    return Object.keys(obj).length === 0 ? '' : JSON.stringify(obj);
 }
 
 function openAddModal() {
@@ -331,6 +419,26 @@ async function openEditModal(id) {
         var val = item[key];
         if (f[2] === 'checkbox') {
             el.checked = val == 1;
+        } else if (f[2] === 'dynamic_list') {
+            var c = document.getElementById(f[0] + '-container');
+            if (c) c.innerHTML = '';
+            var arr = Array.isArray(val) ? val : (val ? JSON.parse(val || '[]') : []);
+            if (!Array.isArray(arr) && typeof val === 'string') arr = val.split(',').map(s=>s.trim()).filter(Boolean);
+            if (Array.isArray(arr)) arr.forEach(function(s){ addDynamicItem(f[0], s); });
+            if (!arr || arr.length === 0) addDynamicItem(f[0], ''); // Add one empty box by default
+        } else if (f[2] === 'pricing_packages') {
+            var obj = {};
+            try { obj = JSON.parse(val || '{}') || {}; } catch(e){}
+            document.getElementById(f[0] + '_flat').value = obj.flat_rate || '';
+            document.getElementById(f[0] + '_extra').value = obj.extra_km || '';
+            document.getElementById(f[0] + '_perkm').value = obj.per_km || '';
+            document.getElementById(f[0] + '_perkmnote').value = obj.per_km_note || '';
+            
+            var c = document.getElementById(f[0] + '-pkgs');
+            if (c) c.innerHTML = '';
+            if (obj.packages && Array.isArray(obj.packages)) {
+                obj.packages.forEach(p => addPkgItem(f[0], p));
+            }
         } else {
             if (Array.isArray(val)) val = val.join(', ');
             el.value = val || '';
@@ -366,7 +474,7 @@ function renderGalleryThumbs(list) {
     }
     container.innerHTML = list.map(function(url, i) {
         return '<div class="relative group w-32 h-24">' +
-            '<img src="' + escHtml(imgSrc(url)) + '" class="w-full h-full rounded-2xl object-cover border-2 border-slate-100 shadow-sm transition-all duration-300 group-hover:scale-[1.03] group-hover:border-primary/50 group-hover:shadow-md"/>' +
+            '<img width="800" height="600" src="' + escHtml(imgSrc(url)) + '" class="w-full h-full rounded-2xl object-cover border-2 border-slate-100 shadow-sm transition-all duration-300 group-hover:scale-[1.03] group-hover:border-primary/50 group-hover:shadow-md"/>' +
             '<button type="button" onclick="removeGalleryImage(' + i + ')" ' +
                 'class="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg hover:bg-red-600 hover:scale-110">' +
                 '<span class="material-symbols-outlined text-[16px]">close</span>' +
@@ -416,6 +524,10 @@ document.getElementById('listing-form').addEventListener('submit', async functio
         var val;
         if (f[2] === 'checkbox') {
             val = el.checked ? 1 : 0;
+        } else if (f[2] === 'dynamic_list') {
+            val = getDynamicList(f[0]);
+        } else if (f[2] === 'pricing_packages') {
+            val = getPkgData(f[0]);
         } else {
             val = el.value;
             if (key === 'amenities' || key === 'features' || key === 'menu_highlights') {
@@ -431,6 +543,10 @@ document.getElementById('listing-form').addEventListener('submit', async functio
         if (editingId) { url += '&id=' + editingId; method = 'PUT'; }
         var res = await api(url, { method: method, body: JSON.stringify(data) });
         if (res && res.error) throw new Error(res.error);
+        
+        // Auto-regenerate pages in background
+        fetch('../php/api/generate_html.php?secret=csnexplore_seed&format=json').catch(()=>{});
+        
         closeModal();
         loadListings();
     } catch(ex) {
@@ -445,12 +561,14 @@ async function toggleActive(id, val) {
     await api('../php/api/listings.php?category=' + currentCat + '&id=' + id, {
         method: 'PUT', body: JSON.stringify({ is_active: val })
     });
+    fetch('../php/api/generate_html.php?secret=csnexplore_seed&format=json').catch(()=>{});
     loadListings();
 }
 
 async function deleteListing(id) {
     if (!confirm('Delete this listing? It will be hidden from the site.')) return;
     await api('../php/api/listings.php?category=' + currentCat + '&id=' + id, { method: 'DELETE' });
+    fetch('../php/api/generate_html.php?secret=csnexplore_seed&format=json').catch(()=>{});
     loadListings();
 }
 

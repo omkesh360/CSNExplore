@@ -170,7 +170,7 @@ require 'header.php';
 
     <!-- Right: Image & Branding -->
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-primary">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="Travel Background"
+        <img width="800" height="600" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format" alt="Travel Background"
              class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80 animate-slow-zoom"/>
         <div class="absolute inset-0 bg-gradient-to-tl from-primary/70 to-transparent"></div>
         <div class="relative z-10 w-full p-12 flex flex-col justify-between items-end text-right">

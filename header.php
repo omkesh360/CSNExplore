@@ -58,12 +58,14 @@ $active_listing_type = $listing_type ?? '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <!-- Fonts: synchronous to prevent invisible text on page load -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <!-- Tailwind CDN: config MUST be set AFTER CDN loads; sync to avoid FOUC -->
+    <!-- Fonts: non-blocking via media=print swap trick for FCP improvement -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/></noscript>
+    <!-- Material Symbols: defer loading to avoid blocking render -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/></noscript>
+    <!-- Tailwind CDN: synchronous load prevents FOUC/black-line flash on refresh -->
     <script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
     <script>
         tailwind.config = {
@@ -74,13 +76,20 @@ $active_listing_type = $listing_type ?? '';
                     fontFamily: { "display": ["Inter", "sans-serif"], "serif": ["Playfair Display", "serif"] }
                 }
             }
-        }
+        };
     </script>
+    <style>
+        /* Critical baseline styles */
+        body { font-family: Inter, system-ui, sans-serif; margin: 0; background: #fff; color: #0f172a; }
+        * { box-sizing: border-box; }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24; font-family: "Material Symbols Outlined"; font-style: normal; display: inline-block; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; }
+    </style>
     <!-- Site CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=<?php echo time(); ?>"/>
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css?v=<?php echo time(); ?>"/>
-    <!-- Preloader CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/css/preloader.css?v=<?php echo time(); ?>"/>
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . BASE_PATH . '/mobile-responsive.css') ?: '1'; ?>"/>
+
+    <!-- animations.css deferred to not block render -->
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.css?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . BASE_PATH . '/animations.css') ?: '1'; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css"/></noscript>
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
@@ -112,11 +121,9 @@ $active_listing_type = $listing_type ?? '';
         body {
             background:#fff; color:#0f172a; font-family:Inter,sans-serif;
             overflow-x:hidden; max-width:100vw;
-            opacity:0;
-            animation: pageFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.05s forwards;
+            animation: pageFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
         }
         @keyframes pageFadeIn { from { opacity:0; } to { opacity:1; } }
-        body.page-ready { opacity:1 !important; animation:none !important; }
         body.page-fade-out { opacity:0 !important; transition:opacity 0.35s ease !important; animation:none !important; }
         .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; }
 
@@ -322,7 +329,7 @@ $active_listing_type = $listing_type ?? '';
 </head>
 <body class="bg-white font-display text-slate-900">
 
-<?php include __DIR__ . '/php/preloader.php'; ?>
+
 
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>
@@ -367,7 +374,7 @@ $active_listing_type = $listing_type ?? '';
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="<?php echo BASE_PATH; ?>/" class="flex items-center shrink-0">
-            <img src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <img width="800" height="600" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
         </a>
         <div class="hidden md:flex items-center gap-0.5">
             <?php foreach (($is_listing_page ? $listing_nav : $nav_links) as $link):
@@ -429,7 +436,7 @@ $active_listing_type = $listing_type ?? '';
 <div id="mob-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0705;overflow-y:auto;flex-direction:column;opacity:0">
     <!-- header row -->
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
-        <img src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <img width="800" height="600" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" style="height:28px;object-fit:contain"/>
         <button id="mob-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:none;border-radius:50%;cursor:pointer;color:#fff">
             <span class="material-symbols-outlined" style="font-size:20px">close</span>
         </button>

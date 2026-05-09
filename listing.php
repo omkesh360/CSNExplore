@@ -226,7 +226,7 @@ $category_nav = [
 
 <!-- Hero Banner with breadcrumb at top -->
 <div class="relative h-52 md:h-72 overflow-hidden">
-    <img src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
+    <img width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
          alt="<?php echo htmlspecialchars($c['label']); ?>"
          class="w-full h-full object-cover"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
@@ -284,7 +284,7 @@ $category_nav = [
         <!-- Sort inline on mobile -->
         <div class="flex items-center gap-1.5 flex-1 sm:hidden bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200">
            <span class="material-symbols-outlined text-slate-400 text-base">sort</span>
-           <select onchange="applyFilters(this.value)" class="bg-transparent text-xs font-bold text-slate-700 outline-none cursor-pointer py-1 w-full">
+           <select onchange="applyFilters(this.value)" class="sort-select bg-transparent text-xs font-bold text-slate-700 outline-none cursor-pointer py-1 w-full">
              <option value="default">Featured</option>
              <option value="price-low">Price ↑</option>
              <option value="price-high">Price ↓</option>
@@ -296,7 +296,7 @@ $category_nav = [
       <div class="hidden sm:flex items-center gap-4 w-full sm:w-auto">
         <div class="flex items-center gap-2 flex-1 sm:flex-none bg-slate-50 px-4 py-1.5 rounded-2xl border border-slate-200">
            <span class="material-symbols-outlined text-slate-400 text-lg">sort</span>
-           <select onchange="applyFilters(this.value)" class="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer py-1.5 min-w-[120px]">
+           <select onchange="applyFilters(this.value)" class="sort-select bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer py-1.5 min-w-[120px]">
              <option value="default">Sort by: Featured</option>
              <option value="price-low">Price: Low to High</option>
              <option value="price-high">Price: High to Low</option>
@@ -427,7 +427,7 @@ $category_nav = [
               $imgSrc = $item['image'] ?? '';
               if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; 
           ?>">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            <img width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  src="<?php 
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
                  ?>"
@@ -435,14 +435,14 @@ $category_nav = [
                  loading="lazy"
                  onerror="this.onerror=null;if(!this.src.includes('unsplash.com'))this.src='<?php
                     $fallbacks = [
-                        'bikes'       => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-                        'cars'        => 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80',
-                        'stays'       => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
-                        'restaurants' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80',
-                        'attractions' => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80',
-                        'buses'       => 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80',
+                        'bikes'       => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format',
+                        'cars'        => 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80&auto=format',
+                        'stays'       => 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format',
+                        'restaurants' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&auto=format',
+                        'attractions' => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format',
+                        'buses'       => 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80&auto=format',
                     ];
-                    echo $fallbacks[$type] ?? 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80';
+                    echo $fallbacks[$type] ?? 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format';
                  ?>'"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             
@@ -528,7 +528,13 @@ function onPriceMax(v) {
     applyFilters();
 }
 
-function applyFilters(sortBy = 'default') {
+var currentSort = 'default';
+
+function applyFilters(sortBy) {
+    if (sortBy !== undefined) {
+        currentSort = sortBy;
+        document.querySelectorAll('.sort-select').forEach(function(el){ el.value = currentSort; });
+    }
     var checkedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(function(el){ return el.value.toLowerCase(); });
     var minRating = parseFloat(document.querySelector('input[name="rating-filter"]:checked')?.value || '0');
     var grid = document.getElementById('listings-grid');
@@ -601,12 +607,12 @@ function resetFilters() {
     var maxR = document.getElementById('price-max-range');
     if (minR) { minR.value = minR.min; _priceMin = parseInt(minR.min); document.getElementById('price-min-label').textContent = minR.min; }
     if (maxR) { maxR.value = maxR.max; _priceMax = parseInt(maxR.max); document.getElementById('price-max-label').textContent = maxR.max; }
-    // Restore load-more hidden state
+    // Restore all cards visible
     var grid = document.getElementById('listings-grid');
     var cards = Array.from(grid.querySelectorAll('[data-type]'));
     cards.forEach(function(card, i) {
         card.style.display = '';
-        if (i >= _shown) card.classList.add('listing-hidden');
+        card.classList.remove('listing-hidden');
     });
     document.getElementById('active-filter-bar').classList.add('hidden');
     document.getElementById('active-filter-bar').classList.remove('flex');

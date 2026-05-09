@@ -369,7 +369,7 @@ require 'header.php';
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0705] z-10"></div>
         <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-opacity duration-500 ease-in-out"
-             style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfTDZo8LglfsdX1vCy-PfHltcZor3jl-l4xxrXMYSU-zLgoKXxY-ouUImyR0WZq69V0y63PE1wDL2_EfqYwWhgQOHPVDJVHhyGGB7H8kZNyboNAXVxWDvlFW_Z_QRXuTKMBuuk7a9HgI3Gde3PidzWIcOhtgs4QAHX2DHA2V6QUaFo6mYDZzEhvq1Y7FwjBSsjTNmfwco23Zfvdb8laeVoTMZHDGMoMrH3yPn4aQDHZ9AJE-WXiuWGVG-c0BegSoJwB1zEXVVWIUie')">
+             style="background-image:url('images/car-rental-hero-section%20(3).webp')">
         </div>
         <!-- Floating orbs -->
         <div class="orb w-96 h-96 bg-primary/20 top-1/4 -left-24 z-[5]" style="animation-delay:0s"></div>
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="flex-1 hidden lg:grid grid-cols-2 gap-4">
                 <!-- Car Rentals Card -->
                 <div data-reveal data-reveal="right" class="group relative overflow-hidden rounded-2xl h-40 sm:h-64 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img alt="Car Rentals" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80"/>
+                    <img alt="Car Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80&auto=format"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
                         <h4 class="text-white text-sm sm:text-lg font-bold mb-1">Car Rentals</h4>
@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <!-- Bike Rentals Card -->
                 <div data-reveal data-reveal="right" class="group relative overflow-hidden rounded-2xl h-40 sm:h-64 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img alt="Bike Rentals" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80"/>
+                    <img alt="Bike Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80&auto=format"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
                         <h4 class="text-white text-sm sm:text-lg font-bold mb-1">Bike Rentals</h4>
@@ -717,7 +717,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 <section class="py-24 <?php echo $_ta_bg; ?> relative overflow-hidden group">
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-black/60 z-10"></div>
-        <div class="w-full h-full opacity-40 bg-cover bg-center scale-110 group-hover:scale-100 transition-transform duration-1000" style="background-image:url('https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=1600&q=80')"></div>
+        <div class="w-full h-full opacity-40 bg-cover bg-center scale-110 group-hover:scale-100 transition-transform duration-1000" style="background-image:url('https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?auto=format&w=800&q=80')"></div>
     </div>
     <div class="max-w-[1140px] mx-auto px-5 relative z-10" data-reveal>
         <div class="bg-gradient-to-br from-[#1a1c29] to-[#0f111a] rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8 border border-white/10">
@@ -766,10 +766,10 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         }
                     }
                     $fallbacks = [
-                        'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80',
-                        'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=600&q=80',
-                        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80',
-                        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80',
+                        'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format',
+                        'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=600&q=80&auto=format',
+                        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format',
+                        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format',
                     ];
                     while (count($attr_imgs) < 4) {
                         $attr_imgs[] = $fallbacks[count($attr_imgs) % count($fallbacks)];
@@ -881,13 +881,13 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('attractions', $a['id'], $a['name']) . '.html';
                 $imgSrc = $a['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format';
                 $name=htmlspecialchars($a['name']);
                 $tag=htmlspecialchars($a['type']??'Attraction');
                 $price=$a['entry_fee']>0 ? '&#8377;'.number_format($a['entry_fee']) : 'Free';
                 $rating=number_format((float)($a['rating']??0),1);
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$tag.'</span>'
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1 relative z-20">'.$name.'</h5>'
@@ -902,12 +902,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('bikes', $b['id'], $b['name']) . '.html';
                 $imgSrc = $b['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format';
                 $name=htmlspecialchars($b['name']);
                 $type=htmlspecialchars($b['type']); $price=number_format($b['price_per_day']);
                 $rating=number_format((float)($b['rating']??0),1);
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h5>'
@@ -922,12 +922,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('restaurants', $r['id'], $r['name']) . '.html';
                 $imgSrc = $r['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&auto=format';
                 $name=htmlspecialchars($r['name']);
                 $cuisine=htmlspecialchars($r['cuisine']??$r['type']); $price=number_format($r['price_per_person']??0);
                 $rating=number_format((float)($r['rating']??0),1);
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$cuisine.'</span>'
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h5>'
@@ -948,12 +948,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('cars', $c['id'], $c['name']) . '.html';
                 $imgSrc = $c['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80&auto=format';
                 $name=htmlspecialchars($c['name']);
                 $type=htmlspecialchars($c['type']??'Sedan'); $price=number_format($c['price_per_day']??0);
                 $rating=number_format((float)($c['rating']??0),1);
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h5>'
@@ -968,12 +968,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('stays', $s['id'], $s['name']) . '.html';
                 $imgSrc = $s['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format';
                 $name=htmlspecialchars($s['name']);
                 $type=htmlspecialchars($s['type']??'Hotel'); $price=number_format($s['price_per_night']??0);
                 $rating=number_format((float)($s['rating']??0),1);
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$type.'</span>'
                     .'<h5 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h5>'
@@ -1011,12 +1011,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $slug = BASE_PATH . '/blogs/'.$blog['id'].'-'.substr(trim($t,'-'),0,60) . '.html';
                 $imgSrc = $blog['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
-                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80';
+                if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format';
                 $title=htmlspecialchars($blog['title']);
                 $cat=htmlspecialchars($blog['category']??'Travel');
                 return '<a href="'.$slug.'" class="group cursor-pointer flex-shrink-0 hover:-translate-y-1.5 transition-all duration-400 ease-out" style="width:VAR_W">'
                     .'<div class="rounded-2xl overflow-hidden aspect-[16/10] mb-3 shadow-md relative">'
-                    .'<img alt="'.$title.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<img width="800" height="600" alt="'.$title.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">'
                     .'<span class="bg-white text-black px-4 py-1.5 rounded-full font-bold text-xs">READ POST</span></div></div>'
                     .'<div class="flex items-center gap-3 mb-2">'
