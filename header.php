@@ -69,27 +69,8 @@ $active_listing_type = $listing_type ?? '';
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/></noscript>
     
-    <!-- Tailwind CDN: ASYNC LOAD to prevent render blocking -->
-    <script>
-        // Load Tailwind asynchronously to prevent render blocking
-        (function() {
-            var script = document.createElement('script');
-            script.src = 'https://cdn.tailwindcss.com?plugins=container-queries';
-            script.async = true;
-            script.onload = function() {
-                tailwind.config = {
-                    darkMode: "class",
-                    theme: {
-                        extend: {
-                            colors: { "primary": "#ec5b13", "whatsapp": "#25D366", "background-dark": "#0a0705" },
-                            fontFamily: { "display": ["Inter", "sans-serif"], "serif": ["Playfair Display", "serif"] }
-                        }
-                    }
-                };
-            };
-            document.head.appendChild(script);
-        })();
-    </script>
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css">
     <style>
         /* ═══ CRITICAL INLINE CSS - Above the Fold ═══ */
         /* This CSS is inlined to prevent render blocking */
@@ -209,19 +190,23 @@ $active_listing_type = $listing_type ?? '';
         .glass-dark { background:#000000; backdrop-filter:blur(20px); border-b:1px solid rgba(255,255,255,0.05); }
         .header-solid { background:#000000 !important; }
         body {
-            background:#fff; color:#0f172a; font-family:Inter,sans-serif;
+            background:#fff; color:#0f172a; font-family:Inter,sans-serif; font-display: swap;
             overflow-x:hidden; max-width:100vw;
             animation: pageFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
         }
         @keyframes pageFadeIn { from { opacity:0; } to { opacity:1; } }
         body.page-fade-out { opacity:0 !important; transition:opacity 0.35s ease !important; animation:none !important; }
-        .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; }
+        .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; font-display: swap; }
 
         /* ── Marquee ── */
-        @keyframes marquee { 0% { transform:translate3d(0,0,0); } 100% { transform:translate3d(-50%,0,0); } }
+        @keyframes marquee { 
+            0% { transform:translate3d(0,0,0); } 
+            100% { transform:translate3d(-50%,0,0); } 
+        }
         .animate-marquee {
-            display:inline-flex; width:max-content;
-            animation: marquee 28s linear infinite;
+            display:flex !important; 
+            flex-shrink: 0 !important;
+            animation: marquee 20s linear infinite !important;
             will-change: transform;
         }
         .animate-marquee:hover { animation-play-state:paused; }
@@ -263,6 +248,7 @@ $active_listing_type = $listing_type ?? '';
             transition:
                 width          0.5s cubic-bezier(0.32,0,0.15,1),
                 max-width      0.5s cubic-bezier(0.32,0,0.15,1),
+                top            0.5s cubic-bezier(0.32,0,0.15,1),
                 border-radius  0.5s cubic-bezier(0.32,0,0.15,1),
                 background     0.5s cubic-bezier(0.32,0,0.15,1),
                 box-shadow     0.5s cubic-bezier(0.32,0,0.15,1),
@@ -461,9 +447,9 @@ $active_listing_type = $listing_type ?? '';
 </script>
 
 <!-- Top Announcement Marquee -->
-<div id="marquee-bar" class="bg-primary text-white py-0.5 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13">
-    <div class="overflow-hidden flex-1 relative h-full">
-        <div class="animate-marquee whitespace-nowrap flex items-center h-full">
+<div id="marquee-bar" class="bg-primary text-white py-0.5 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13;display:block;">
+    <div class="relative flex" style="width:100%;overflow:hidden;">
+        <div class="animate-marquee flex items-center" style="display:flex;flex-shrink:0;">
             <?php 
             $marquee_items = [
                 "Discover The Wonders of Chhatrapati Sambhajinagar",
@@ -472,12 +458,12 @@ $active_listing_type = $listing_type ?? '';
                 "Verified Local Guides for Ajanta & Ellora Caves",
                 "24/7 Support for all your Travel Needs"
             ];
-            // Triple items to ensure seamless loop
-            $loop_items = array_merge($marquee_items, $marquee_items, $marquee_items);
+            // Double items for seamless loop (animation moves -50%)
+            $loop_items = array_merge($marquee_items, $marquee_items);
             foreach($loop_items as $text): ?>
-                <span class="flex items-center mx-8">
+                <span class="flex items-center mx-8" style="flex-shrink:0;">
                     <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
-                    <span class="text-[10px] font-bold text-white tracking-wider uppercase"><?php echo $text; ?></span>
+                    <span class="text-[10px] font-bold text-white tracking-wider uppercase" style="white-space:nowrap;"><?php echo $text; ?></span>
                 </span>
             <?php endforeach; ?>
         </div>
@@ -487,7 +473,7 @@ $active_listing_type = $listing_type ?? '';
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="<?php echo BASE_PATH; ?>/" class="flex items-center shrink-0">
-            <img loading="lazy" width="180" height="36" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <img fetchpriority="high" loading="eager" width="180" height="36" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
         </a>
         <div class="hidden xl:flex items-center gap-0">
             <?php foreach (($is_listing_page ? $listing_nav : $nav_links) as $link):

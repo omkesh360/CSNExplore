@@ -137,7 +137,7 @@ $extra_head = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpic
   }
 }
 </script>
-<link rel="preload" as="image" href="images/car-rental-hero-section%20(3).webp" fetchpriority="high">';
+<link rel="preload" as="image" href="images/car-rental-hero-section%20(3).webp" fetchpriority="high" imagesrcset="images/car-rental-hero-section%20(3).webp 1920w" imagesizes="100vw"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="print" onload="this.media=&quot;all&quot;"/><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css"/></noscript><script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>';
 $extra_styles = "
         .hide-scrollbar::-webkit-scrollbar { display:none; }
         .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
@@ -254,27 +254,32 @@ $extra_styles = "
             font-size: 16px; font-weight: 500; height: 100%; width: 100%; padding: 0 24px 0 64px;
           }
           .search-btn { 
-            width: 100%; min-height: 70px; padding: 0 24px; border-radius: 20px; 
-            margin-top: 4px; font-size: 18px; font-weight: 800; justify-content: center;
+            width: 100%; min-height: 64px; padding: 0 24px; border-radius: 20px; 
+            margin-top: 8px; font-size: 17px; font-weight: 800; justify-content: center;
+            background: #ec5b13 !important; color: #fff !important;
+            box-shadow: 0 10px 25px rgba(236,91,19,0.3) !important;
           }
+          .search-btn .material-symbols-outlined { color: #fff !important; }
           
           #search-tabs-scroll { 
-            display: grid !important; grid-template-columns: repeat(3, 1fr) !important;
-            gap: 8px !important; padding: 0 !important; margin-bottom: 24px !important; width: 100% !important;
+            display: flex !important; flex-wrap: wrap !important;
+            gap: 10px !important; padding: 0 !important; margin-bottom: 32px !important; width: 100% !important;
             background: transparent !important; border: none !important; border-radius: 0 !important; box-shadow: none !important;
+            justify-content: center !important;
           }
 
           .tab-btn { 
             display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important;
-            padding: 0 4px !important; font-size: 14px !important; min-height: 64px !important; width: 100% !important;
-            border-radius: 99px !important; background: rgba(0,0,0,0.3) !important; border: 1px solid rgba(255,255,255,0.1) !important;
+            padding: 12px 16px !important; font-size: 14px !important; min-height: 54px !important; flex: 1 1 calc(33.333% - 10px) !important;
+            min-width: 90px !important;
+            border-radius: 16px !important; background: rgba(0,0,0,0.4) !important; border: 1px solid rgba(255,255,255,0.12) !important;
           }
-          .tab-btn .material-symbols-outlined { display: none !important; }
-          .tab-btn span:not(.material-symbols-outlined) { font-weight: 700 !important; opacity: 0.8; }
+          .tab-btn .material-symbols-outlined { display: block !important; font-size: 18px !important; margin-right: 6px !important; }
+          .tab-btn span:not(.material-symbols-outlined) { font-weight: 700 !important; }
           .tab-btn.active {
             background: linear-gradient(135deg, #ec5b13, #ff7a2e) !important; border-color: transparent !important;
+            box-shadow: 0 8px 20px rgba(236,91,19,0.4) !important;
           }
-          .tab-btn.active span:not(.material-symbols-outlined) { opacity: 1; }
           
           /* Extra compact fix for tiny phones */
           @media(max-width:360px){
@@ -305,7 +310,10 @@ $extra_styles = "
         .flatpickr-day { color:#fff !important; }
         .flatpickr-day.flatpickr-disabled { color:rgba(255,255,255,0.2) !important; }
         .flatpickr-prev-month svg, .flatpickr-next-month svg { fill:#fff !important; }
-        #hero-bg { will-change: transform; }
+        #hero-bg-1, #hero-bg-2 { 
+            will-change: opacity; 
+            background-color: #0a0705;
+        }
         .particle { position:absolute; border-radius:50%; pointer-events:none; animation:particleDrift linear infinite; }
         @keyframes particleDrift { 0% { transform:translateY(0) translateX(0) scale(1); opacity:0; } 10% { opacity:1; } 90% { opacity:0.6; } 100% { transform:translateY(-120vh) translateX(30px) scale(0.5); opacity:0; } }
         .stat-num { display:inline-block; }
@@ -365,24 +373,40 @@ require 'header.php';
 
 <main>
 <!-- Hero -->
-<section class="homepage-hero relative min-h-[100svh] md:min-h-[85vh] flex flex-col items-center justify-start md:justify-center overflow-hidden pt-32 md:pt-24 pb-8 md:pb-12 w-full">
-    <div class="absolute inset-0 z-0">
+<section class="homepage-hero relative min-h-[100svh] md:min-h-[85vh] flex flex-col items-center justify-start md:justify-center overflow-hidden pt-32 md:pt-24 pb-8 md:pb-12 w-full bg-[#0a0705]">
+    <div class="absolute inset-0 z-0 bg-[#0a0705]">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0705] z-10"></div>
-        <div id="hero-bg" class="w-full h-full bg-cover bg-center transition-opacity duration-500 ease-in-out"
-             style="background-image:url('images/car-rental-hero-section%20(3).webp')">
-        </div>
+        <!-- Dual image setup for smooth crossfade -->
+        <img id="hero-bg-1" 
+             src="images/hotel-hero-section%20(4).webp" 
+             width="1920" height="1080"
+             class="w-full h-full object-cover bg-[#0a0705] absolute inset-0 transition-opacity duration-500"
+             style="opacity: 1;"
+             alt="Hero background">
+        <img id="hero-bg-2" 
+             src="images/hotel-hero-section%20(4).webp" 
+             width="1920" height="1080"
+             class="w-full h-full object-cover bg-[#0a0705] absolute inset-0 transition-opacity duration-500"
+             style="opacity: 0;"
+             alt="Hero background">
+             fetchpriority="high" 
+             loading="eager" 
+             decoding="async" 
+             alt="Hero Background"
+             class="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+        />
         <!-- Floating orbs -->
         <div class="orb w-96 h-96 bg-primary/20 top-1/4 -left-24 z-[5]" style="animation-delay:0s"></div>
         <div class="orb w-64 h-64 bg-orange-400/10 bottom-1/3 right-10 z-[5]" style="animation-delay:3s"></div>
         <!-- Particles container -->
         <div id="particles" class="absolute inset-0 z-[6] overflow-hidden"></div>    </div>
-    <div class="relative z-20 text-center px-4 w-full max-w-[1140px] mx-auto pt-4 md:pt-8 pb-4 md:pb-6">
+    <div class="relative z-20 text-center px-4 w-full max-w-[1140px] mx-auto pt-24 md:pt-32 pb-8 md:pb-12">
         <p id="hero-label" class="mobile-hide text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-3">Chhatrapati Sambhajinagar</p>
-        <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-3 md:mb-4 leading-tight font-black px-2">
+        <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-[1.1] font-black px-4">
             <span id="hero-pre">Explore </span><span class="text-primary" id="hero-highlight">Your City</span><span id="hero-post"> Your Way</span>
         </h1>
-        <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg mb-6 md:mb-8 lg:mb-10 max-w-2xl mx-auto px-4"><?php echo htmlspecialchars($hp_settings['hero_subtext']); ?></p>
+        <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-6 leading-relaxed"><?php echo htmlspecialchars($hp_settings['hero_subtext']); ?></p>
 
         <!-- Modern Tabs Section -->
         <div class="search-box max-w-4xl mx-auto w-full">
@@ -478,14 +502,31 @@ function switchTab(tab, fromAuto) {
     };
     var d = heroData[tab];
     
-    // Update background image smoothly
+    // Update background image with smooth crossfade (dual image technique)
     if (d.img) {
-        var heroBg = document.getElementById('hero-bg');
-        heroBg.style.opacity = '0.3';
-        setTimeout(function() {
-            heroBg.style.backgroundImage = "url('" + d.img + "')";
-            heroBg.style.opacity = '1';
-        }, 250);
+        var bg1 = document.getElementById('hero-bg-1');
+        var bg2 = document.getElementById('hero-bg-2');
+        
+        // Determine which image is currently visible
+        var visibleBg = (bg1.style.opacity === '1' || bg1.style.opacity === '') ? bg1 : bg2;
+        var hiddenBg = visibleBg === bg1 ? bg2 : bg1;
+        
+        // Preload new image in hidden layer
+        hiddenBg.src = d.img;
+        
+        // Wait for image to load, then crossfade
+        hiddenBg.onload = function() {
+            // Fade in the new image
+            hiddenBg.style.opacity = '1';
+            // Fade out the old image
+            visibleBg.style.opacity = '0';
+        };
+        
+        // Fallback if image already cached (onload won't fire)
+        if (hiddenBg.complete) {
+            hiddenBg.style.opacity = '1';
+            visibleBg.style.opacity = '0';
+        }
     }
 
     ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='0'; });
@@ -532,8 +573,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Initialize with the first background (cars)
-document.getElementById('hero-bg').style.backgroundImage = "url('images/car-rental-hero-section%20(3).webp')";
+// Initialize with the first background (stays - default tab)
+document.getElementById('hero-bg-1').src = "images/hotel-hero-section%20(4).webp";
+document.getElementById('hero-bg-2').src = "images/hotel-hero-section%20(4).webp";
 
 // Fix bfcache: restore hero text when navigating back
 window.addEventListener('pageshow', function(e) {

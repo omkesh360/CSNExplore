@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore"
+                <img loading="lazy" width="180" height="40" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore"
                     class="h-9 object-contain mb-4"
                     onerror="this.style.display='none'; document.getElementById('footer-logo-text').style.display='flex'" />
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">
@@ -461,6 +461,15 @@ if (file_exists($locationsFile)) {
         // Hard safety net after 150ms in case events don't fire
         setTimeout(_restoreBody, 150);
 
+        // ── Service Worker Registration (Progressive Web App) ──
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(reg) { console.log('SW registered'); })
+                    .catch(function(err) { console.log('SW registration failed'); });
+            });
+        }
+
         // ── Cookie consent ──
         function getCookie(name) { var v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'); return v ? v.pop() : ''; }
         window.setCookieConsent = function (val) {
@@ -479,8 +488,9 @@ if (file_exists($locationsFile)) {
     })();
 </script>
 
-<!-- Preloader Script -->
-<script src="<?php echo BASE_PATH; ?>/js/preloader.js?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . BASE_PATH . '/js/preloader.js') ?: '1'; ?>" defer></script>
+<!-- Animations.js - DEFERRED for better performance -->
+<script src="<?php echo BASE_PATH; ?>/animations.js" defer></script>
+
 
 </body>
 

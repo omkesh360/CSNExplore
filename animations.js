@@ -1,6 +1,7 @@
 /**
- * CSNExplore — Global Animation System v3.0
+ * CSNExplore — Global Animation System v3.1 OPTIMIZED
  * Scroll reveals · Stack cards · Page transitions · Counters · Parallax
+ * PERFORMANCE: Deferred initialization for better FCP/LCP
  */
 (function () {
   'use strict';
@@ -15,7 +16,7 @@
     // Just add page-ready class once loaded so CSS animation completes cleanly
     window.addEventListener('load', function() {
       document.body.classList.add('page-ready');
-    });
+    }, { passive: true });
 
     // Fade out on navigation (cross-page links only)
     document.addEventListener('click', function (e) {
@@ -28,7 +29,7 @@
       e.preventDefault();
       document.body.classList.add('page-fade-out');
       setTimeout(function () { window.location.href = href; }, 320);
-    });
+    }, { passive: true });
   }
 
   /* ─── 2. Scroll reveal — [data-reveal] ──────────────────────────────── */
@@ -206,7 +207,7 @@
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
+    }, { passive: true });
   }
 
   /* ─── 8. Image shimmer while loading ─────────────────────────────────── */
@@ -231,11 +232,6 @@
 
   /* ─── INIT ───────────────────────────────────────────────────────────── */
   function init() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-      return;
-    }
-
     initPageFade();
     initScrollReveal();
     initScrollBar();
@@ -254,7 +250,13 @@
     document.body.classList.add('animations-loaded');
   }
 
-  init();
+  // PERFORMANCE: Defer initialization until DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { passive: true });
+  } else {
+    // DOM already loaded, defer to next tick
+    setTimeout(init, 0);
+  }
 
   // Public API
   window.CSNAnimations = {

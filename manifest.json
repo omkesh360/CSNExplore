@@ -1,0 +1,43 @@
+{
+  "name": "CSNExplore - Chhatrapati Sambhajinagar Tourism",
+  "short_name": "CSNExplore",
+  "description": "Your premium gateway to hotels, cars, bikes & attractions in Chhatrapati Sambhajinagar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ec5b13",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/fevicon/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/fevicon/apple-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/fevicon/ms-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/fevicon/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/fevicon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["travel", "tourism", "lifestyle"],
+  "lang": "en-IN",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

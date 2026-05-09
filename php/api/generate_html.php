@@ -147,6 +147,7 @@ function generateOptimizedImage($src, $alt, $width = 800, $height = 600, $lazy =
     $html .= '<source srcset="' . htmlspecialchars($webpSrc) . '" type="image/webp">';
     $html .= '<img src="' . htmlspecialchars($src) . '" ';
     $html .= 'alt="' . htmlspecialchars($alt) . '" ';
+    $html .= 'loading="lazy" ';
     $html .= 'width="' . intval($width) . '" ';
     $html .= 'height="' . intval($height) . '"';
     $html .= $lazyAttr;
@@ -183,6 +184,13 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="format-detection" content="telephone=no"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">';
+
+    $head .= '
 <link rel="apple-touch-icon" sizes="57x57" href="' . $base . 'images/fevicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="' . $base . 'images/fevicon/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="' . $base . 'images/fevicon/apple-icon-72x72.png">
@@ -222,11 +230,11 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 
     $head .= '
 <!-- Non-blocking font loading -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media=\'all\'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/></noscript>
 <!-- Material Symbols slim variant, non-blocking -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" media="print" onload="this.media=\'all\'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols_Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/></noscript>
 <!-- Tailwind: synchronous to prevent FOUC/black-line flash on refresh -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"},fontFamily:{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}};</script>
@@ -359,7 +367,7 @@ button.text-white:hover * {
 #marquee-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 70; overflow: hidden; max-height: 40px; transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease; }
 #marquee-bar.hidden-bar { opacity: 0; max-height: 0; padding-top: 0 !important; padding-bottom: 0 !important; pointer-events: none; }
 /* ══ Site Header – ALWAYS STICKY (position:fixed is permanent) ══ */
-#site-header { position: fixed !important; left: 50%; transform: translateX(-50%); width: 100%; max-width: 100%; border-radius: 0; background: #000; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; z-index: 60 !important; transition: width 0.5s cubic-bezier(0.32,0,0.15,1), max-width 0.5s cubic-bezier(0.32,0,0.15,1), border-radius 0.5s cubic-bezier(0.32,0,0.15,1), background 0.5s cubic-bezier(0.32,0,0.15,1), box-shadow 0.5s cubic-bezier(0.32,0,0.15,1), backdrop-filter 0.5s ease; }
+#site-header { position: fixed !important; left: 50%; transform: translateX(-50%); width: 100%; max-width: 100%; border-radius: 0; background: #000; border: none; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; z-index: 60 !important; transition: width 0.5s cubic-bezier(0.32,0,0.15,1), max-width 0.5s cubic-bezier(0.32,0,0.15,1), top 0.5s cubic-bezier(0.32,0,0.15,1), border-radius 0.5s cubic-bezier(0.32,0,0.15,1), background 0.5s cubic-bezier(0.32,0,0.15,1), box-shadow 0.5s cubic-bezier(0.32,0,0.15,1), backdrop-filter 0.5s ease; }
 /* ── Pill mode: floating pill with iPhone liquid glass effect ── */
 #site-header.pill-mode { position: fixed !important; top: 14px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 32px) !important; max-width: 1120px !important; border-radius: 9999px !important; background: rgba(0,0,0,0.72) !important; backdrop-filter: blur(40px) saturate(180%) !important; -webkit-backdrop-filter: blur(40px) saturate(180%) !important; border: 1px solid rgba(255,255,255,0.18) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.37), 0 1px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.5) inset !important; z-index: 9000 !important; }
 #site-header nav { height: 64px; min-height: 64px; }
@@ -580,7 +588,7 @@ function sharedFooter($base) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img width="180" height="40" src="'.$base.'images/travelhub.png" alt="CSNExplore" class="h-9 object-contain mb-4"
+                <img width="180" height="40" src="'.$base.'images/travelhub.png" alt="CSNExplore" class="h-9 object-contain mb-4" loading="lazy"
                      onerror="this.style.display=\'none\'; document.getElementById(\'footer-logo-text\').style.display=\'flex\'"/>
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">
                     <span class="material-symbols-outlined text-primary text-2xl">explore</span>
@@ -1261,7 +1269,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img width="800" height="450" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <img width="800" height="450" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" loading="lazy" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '

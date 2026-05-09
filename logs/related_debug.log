@@ -129,3 +129,7 @@
 2026-05-09 22:35:23 - Request: type=stays, exclude=1
 2026-05-09 22:35:36 - Request: type=cars, exclude=1
 2026-05-09 23:07:56 - Request: type=restaurants, exclude=1
+2026-05-10 00:59:37 - Request: type=stays, exclude=2
+2026-05-10 01:02:13 - Request: type=stays, exclude=2
+2026-05-10 01:02:34 - Request: type=stays, exclude=1
+2026-05-10 01:05:42 - Request: type=bikes, exclude=1
