@@ -40,6 +40,14 @@ body.page-fade-out {
     transform 0.75s var(--ease-out-expo);
   will-change: opacity, transform;
 }
+/* FLASH FIX: if JS hasn't run yet (no .csn-anim-init on body), show elements immediately */
+body:not(.csn-anim-init) [data-reveal],
+body:not(.csn-anim-init) .card-reveal,
+body:not(.csn-anim-init) [data-animate] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
 [data-reveal='left']  { transform: translateX(-28px); }
 [data-reveal='right'] { transform: translateX(28px); }
 [data-reveal='scale'] { transform: scale(0.95); }

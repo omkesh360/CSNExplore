@@ -34,6 +34,9 @@
 
   /* ─── 2. Scroll reveal — [data-reveal] ──────────────────────────────── */
   function initScrollReveal() {
+    // Mark body so animations.css knows JS is active (prevents flash of invisible elements)
+    document.body.classList.add('csn-anim-init');
+
     if (!('IntersectionObserver' in window)) {
       document.querySelectorAll('[data-reveal]').forEach(function (el) {
         el.style.opacity = '1';

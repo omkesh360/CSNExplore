@@ -69,8 +69,13 @@ $active_listing_type = $listing_type ?? '';
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/></noscript>
     
+    <!-- Main CSS: Synchronous load to prevent Cumulative Layout Shift (CLS) -->
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/style.css" as="style">
     <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/style.css">
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css">
+    
+    <!-- Animations CSS: ASYNC LOAD to prevent render blocking -->
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css"></noscript>
     <style>
         /* ═══ CRITICAL INLINE CSS - Above the Fold ═══ */
         /* This CSS is inlined to prevent render blocking */
@@ -83,11 +88,14 @@ $active_listing_type = $listing_type ?? '';
             color: #0f172a;
             line-height: 1.5;
         }
-        * { 
+        *, ::before, ::after { 
             box-sizing: border-box; 
             margin: 0;
             padding: 0;
+            border: 0 solid #e5e7eb;
         }
+        a { color: inherit; text-decoration: inherit; }
+        button, input { font-family: inherit; font-size: 100%; margin: 0; padding: 0; background: transparent; }
         
         /* Material Icons fallback */
         .material-symbols-outlined { 
@@ -154,12 +162,18 @@ $active_listing_type = $listing_type ?? '';
         .loaded {
             opacity: 1;
         }
+        /* ── FLASH FIX: glass-card solid fallback before backdrop-filter CSS loads ── */
+        .glass-card,.glass,.glass-section,.glass-glow{background:#fff;border:1px solid #e2e8f0}
+        /* ── FLASH FIX: data-reveal elements must not show as empty/black boxes ── */
+        [data-reveal],[data-reveal-stagger]>*,.card-reveal,[data-animate]{opacity:0;transform:translateY(20px)}
+        [data-reveal].revealed,[data-reveal-stagger]>*.revealed,.card-reveal.revealed,.animate-visible{opacity:1!important;transform:none!important}
     </style>
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . BASE_PATH . '/mobile-responsive.css') ?: '1'; ?>"/>
+    <!-- Site CSS: ALL async — zero render-blocking -->
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/mobile-responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css"/></noscript>
 
     <!-- animations.css deferred to not block render -->
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.css?v=<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . BASE_PATH . '/animations.css') ?: '1'; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css"/></noscript>
     <style>
         /* ── Global Enhancements ── */
@@ -192,10 +206,8 @@ $active_listing_type = $listing_type ?? '';
         body {
             background:#fff; color:#0f172a; font-family:Inter,sans-serif; font-display: swap;
             overflow-x:hidden; max-width:100vw;
-            animation: pageFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
         }
-        @keyframes pageFadeIn { from { opacity:0; } to { opacity:1; } }
-        body.page-fade-out { opacity:0 !important; transition:opacity 0.35s ease !important; animation:none !important; }
+        body.page-fade-out { opacity:0 !important; transition:opacity 0.35s ease !important; }
         .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-family:'Material Symbols Outlined'; font-style:normal; display:inline-block; line-height:1; font-display: swap; }
 
         /* ── Marquee ── */
@@ -628,15 +640,9 @@ $active_listing_type = $listing_type ?? '';
             var MH = 0; // marquee height
             var isPill = false;
 
-            // Measure marquee height without transition interference
-            function measureMarquee(){
-                if (!mb) return 0;
-                var old = mb.style.transition;
-                mb.style.transition = 'none';
-                mb.classList.remove('hidden-bar');
-                var v = mb.getBoundingClientRect().height || mb.offsetHeight;
-                mb.style.transition = old;
-                return v;
+            // Marquee height is constant because it has whitespace-nowrap
+            if (mb) {
+                MH = mb.getBoundingClientRect().height || mb.offsetHeight;
             }
 
             // Normal state: marquee visible, header full-width below marquee
@@ -681,7 +687,6 @@ $active_listing_type = $listing_type ?? '';
             }
 
             // Init
-            MH = measureMarquee();
             update();
 
             window.addEventListener('scroll', function(){
@@ -692,12 +697,13 @@ $active_listing_type = $listing_type ?? '';
             }, { passive: true });
 
             window.addEventListener('resize', function(){
-                MH = measureMarquee();
                 update();
             }, { passive: true });
 
             window.addEventListener('load', function(){
-                MH = measureMarquee();
+                if (mb && MH === 0) {
+                    MH = mb.getBoundingClientRect().height || mb.offsetHeight;
+                }
                 update();
             });
         })();

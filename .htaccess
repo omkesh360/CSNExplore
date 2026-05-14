@@ -48,9 +48,9 @@ ServerSignature Off
     
     # PHP pages — always no-cache (cache-headers.php helper adds proper headers per-page)
     <FilesMatch "\.php$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
+        # Header set Cache-Control "no-cache, no-store, must-revalidate"
+        # Header set Pragma "no-cache"
+        # Header set Expires "0"
     </FilesMatch>
     
     # Remove server info for security
@@ -176,9 +176,9 @@ ServerSignature Off
     
     # PHP pages - no cache (dynamic) — cache-headers.php helper manages per-page headers
     <FilesMatch "\.(php)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
+        # Header set Cache-Control "no-cache, no-store, must-revalidate"
+        # Header set Pragma "no-cache"
+        # Header set Expires "0"
     </FilesMatch>
     # HTML static pages — 24h cache (controlled by admin Caching toggle)
     <FilesMatch "\.(html|htm)$">
