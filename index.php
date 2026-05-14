@@ -274,7 +274,7 @@ $extra_styles = "
             min-width: 90px !important;
             border-radius: 16px !important; background: rgba(0,0,0,0.4) !important; border: 1px solid rgba(255,255,255,0.12) !important;
           }
-          .tab-btn .material-symbols-outlined { display: block !important; font-size: 18px !important; margin-right: 6px !important; }
+          .tab-btn .material-symbols-outlined { display: none !important; } /* Hide icons on mobile */
           .tab-btn span:not(.material-symbols-outlined) { font-weight: 700 !important; }
           .tab-btn.active {
             background: linear-gradient(135deg, #ec5b13, #ff7a2e) !important; border-color: transparent !important;
@@ -925,8 +925,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $imgSrc = $a['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format';
-                $name=htmlspecialchars($a['name']);
-                $tag=htmlspecialchars($a['type']??'Attraction');
+                $name=htmlspecialchars($a['name'] ?? '');
+                $tag=htmlspecialchars($a['type'] ?? 'Attraction');
                 $price=$a['entry_fee']>0 ? '&#8377;'.number_format($a['entry_fee']) : 'Free';
                 $rating=number_format((float)($a['rating']??0),1);
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'

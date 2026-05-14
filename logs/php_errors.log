@@ -1473,3 +1473,355 @@ Stack trace:
 [10-May-2026 01:17:01 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
 [10-May-2026 01:17:01 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
 [10-May-2026 01:17:01 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:00 Europe/Berlin] Login attempt: omkeshadmin with pass: omkeshAa.1@
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:31 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[11-May-2026 16:45:42 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 16:45:42 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[11-May-2026 16:46:24 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 16:46:24 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[11-May-2026 16:48:56 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 16:48:56 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[11-May-2026 17:05:58 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 17:05:58 Europe/Berlin] Blogs error: Database configuration error. Please check environment variables.
+[11-May-2026 17:14:19 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 17:14:19 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[11-May-2026 17:14:42 Europe/Berlin] [Settings API] Settings updated successfully
+[11-May-2026 18:35:03 Europe/Berlin] Database credentials missing in environment variables
+[11-May-2026 18:35:03 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[13-May-2026 11:49:12 Europe/Berlin] Login attempt: omkeshadmin with pass: omkeshAa.1@
+[13-May-2026 11:49:13 Europe/Berlin] Database credentials missing in environment variables
+[13-May-2026 11:49:13 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[13-May-2026 11:49:18 Europe/Berlin] Database credentials missing in environment variables
+[13-May-2026 11:49:18 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[13-May-2026 11:50:36 Europe/Berlin] Database credentials missing in environment variables
+[13-May-2026 11:50:36 Europe/Berlin] Bookings error: Database configuration error. Please check environment variables.
+[13-May-2026 12:05:56 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\generate-sitemap-cli.php(10): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:06:28 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\generate-sitemap-cli.php(10): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:06:53 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\generate-sitemap-cli.php(10): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:07:47 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\generate-sitemap-cli.php(10): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:08:19 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\generate-sitemap-cli.php(12): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:14:46 Europe/Berlin] Bookings error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:14:46 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\api\dashboard.php(12): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:14:51 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(7): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:15:03 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:27:30 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:30:45 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\CSNExplore\check_blogs.php on line 7
+[13-May-2026 12:30:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\xampp\htdocs\CSNExplore\check_blogs.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\check_blogs.php on line 7
+[13-May-2026 12:31:42 Europe/Berlin] Listings API error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:31:42 Europe/Berlin] Bookings error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:31:43 Europe/Berlin] Bookings error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:31:44 Europe/Berlin] Sitemap regen error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:32:07 Europe/Berlin] Sitemap regen error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:32:13 Europe/Berlin] Sitemap regen error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:32:21 Europe/Berlin] Sitemap regen error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:58:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:17 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 12:59:18 Europe/Berlin] PHP Warning:  file_get_contents(C:\xampp\htdocs\CSNExplore/header-html.html): Failed to open stream: No such file or directory in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 568
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:01:40 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:42 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:14:48 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:15:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:13 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:16:19 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[13-May-2026 13:20:32 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 970
+[14-May-2026 13:25:46 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(48): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(104): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(86): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\php\audit-404-pages.php(10): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 48

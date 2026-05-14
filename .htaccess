@@ -40,9 +40,17 @@ ServerSignature Off
     Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     
     # Static listing-detail HTML pages can be cached (pre-generated, rarely change)
+    # Cache duration controlled by admin Caching settings (default 24h when enabled)
     <FilesMatch "\.html$">
         Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
         Header append Vary "Accept-Encoding"
+    </FilesMatch>
+    
+    # PHP pages — always no-cache (cache-headers.php helper adds proper headers per-page)
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
     </FilesMatch>
     
     # Remove server info for security
@@ -166,12 +174,13 @@ ServerSignature Off
         Header set Vary "Accept-Encoding"
     </FilesMatch>
     
-    # PHP pages - no cache (dynamic); HTML listing pages - 1 day cache
+    # PHP pages - no cache (dynamic) — cache-headers.php helper manages per-page headers
     <FilesMatch "\.(php)$">
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
         Header set Expires "0"
     </FilesMatch>
+    # HTML static pages — 24h cache (controlled by admin Caching toggle)
     <FilesMatch "\.(html|htm)$">
         Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
     </FilesMatch>
@@ -256,9 +265,8 @@ ServerSignature Off
     RewriteRule ^listing/?$           listing.php     [QSA,L]
     RewriteRule ^blog-detail/?$       blog-detail.php [QSA,L]
 
-    # Dynamic sitemap (note: updated path to match your structure)
-    RewriteRule ^sitemap\.xml$ php/api/generate_sitemap.php [L]
-    RewriteRule ^sitemap-([a-z-]+)\.xml$ php/api/generate_sitemap.php [L,QSA]
+    # sitemap.xml is a static file written by the admin Regenerate tool
+    # Apache serves it directly — no PHP rewrite needed
 </IfModule>
 
 # ── Custom Error Pages ────────────────────────────────────────────────────────

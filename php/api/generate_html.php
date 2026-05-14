@@ -1,12 +1,18 @@
 <?php
 // php/api/generate_html.php
 // Generates static HTML files for all blogs and all listing items
-// Visit: /php/api/generate_html.php?secret=csnexplore_seed
+// Called from CLI (background process) or admin panel (JWT auth)
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../jwt.php';
 
-$secret = $_GET['secret'] ?? $argv[1] ?? '';
-if (php_sapi_name() !== 'cli' && $secret !== 'csnexplore_seed') {
-    http_response_code(403); die('Forbidden');
+// Auth: CLI always allowed; HTTP requires valid admin JWT
+if (php_sapi_name() !== 'cli') {
+    try {
+        requireAdmin();
+    } catch (Exception $e) {
+        http_response_code(403);
+        die(json_encode(['error' => 'Forbidden: admin JWT required']));
+    }
 }
 
 $db   = getDB();
@@ -559,25 +565,279 @@ button.text-white:hover * {
 }
 
 function sharedHeader($base, $type = '') {
-    $content = file_get_contents(dirname(__DIR__, 2) . '/header-html.html');
+    $active_class = 'text-white bg-white/10';
+    $inactive_class = 'text-white/65 hover:bg-white/10 hover:text-white';
     
-    // Handle active link styling
-    if ($type) {
-        $active_class = 'text-white bg-white/10';
-        $inactive_class = 'text-white/65 hover:bg-white/10 hover:text-white';
-        
-        $types = ['stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
-        foreach ($types as $t) {
-            $pattern = '/href="{{BASE}}\/listing\?type=' . $t . '"\s+class="[^"]+"/';
-            $replacement = 'href="{{BASE}}/listing?type=' . $t . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . ($t === $type ? $active_class : $inactive_class) . '"';
-            $content = preg_replace($pattern, $replacement, $content);
-        }
+    // Generate listing navigation links
+    $listing_links = [
+        ['type' => 'stays', 'icon' => 'bed', 'label' => 'Stays'],
+        ['type' => 'cars', 'icon' => 'directions_car', 'label' => 'Cars'],
+        ['type' => 'bikes', 'icon' => 'motorcycle', 'label' => 'Bikes'],
+        ['type' => 'attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions'],
+        ['type' => 'restaurants', 'icon' => 'restaurant', 'label' => 'Dine'],
+        ['type' => 'buses', 'icon' => 'directions_bus', 'label' => 'Buses'],
+    ];
+    
+    $nav_html = '';
+    foreach ($listing_links as $link) {
+        $is_active = ($link['type'] === $type);
+        $class = $is_active ? $active_class : $inactive_class;
+        $nav_html .= '<a href="' . $base . 'listing?type=' . $link['type'] . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . $class . '" aria-label="Browse ' . strtolower($link['label']) . ' in Chhatrapati Sambhajinagar">' . $link['label'] . '</a>' . "\n";
     }
     
-    // Replace {{BASE}} with the relative path, then clean up any double slashes
-    $content = str_replace('{{BASE}}', rtrim($base, '/'), $content);
-    // Fix double slashes in paths (but not in protocol like https://)
-    $content = preg_replace('#(?<!:)//+#', '/', $content);
+    // Generate mobile menu category grid
+    $mobile_categories = '';
+    foreach ($listing_links as $link) {
+        $mobile_categories .= '<a href="' . $base . 'listing?type=' . $link['type'] . '" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-size:10px;font-weight:700">
+                <span class="material-symbols-outlined" style="font-size:18px;color:#ec5b13">' . $link['icon'] . '</span>
+                ' . $link['label'] . '
+            </a>' . "\n";
+    }
+    
+    $content = '<!-- Top Announcement Marquee -->
+<div id="marquee-bar" class="bg-primary text-white py-0.5 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13">
+    <div class="overflow-hidden flex-1 relative h-full">
+        <div class="animate-marquee whitespace-nowrap flex items-center h-full">
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Discover The Wonders of Chhatrapati Sambhajinagar</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Book Premium Stays, Car Rentals & Local Tours</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Special Offers Available For First Time Visitors!</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Verified Local Guides for Ajanta & Ellora Caves</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">24/7 Support for all your Travel Needs</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Discover The Wonders of Chhatrapati Sambhajinagar</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Book Premium Stays, Car Rentals & Local Tours</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Special Offers Available For First Time Visitors!</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Verified Local Guides for Ajanta & Ellora Caves</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">24/7 Support for all your Travel Needs</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Discover The Wonders of Chhatrapati Sambhajinagar</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Book Premium Stays, Car Rentals & Local Tours</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Special Offers Available For First Time Visitors!</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">Verified Local Guides for Ajanta & Ellora Caves</span>
+            </span>
+            <span class="flex items-center mx-8">
+                <span class="material-symbols-outlined text-white text-sm mr-2">stars</span>
+                <span class="text-[10px] font-bold text-white tracking-wider uppercase">24/7 Support for all your Travel Needs</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<header id="site-header" class="w-full">
+    <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
+        <a href="' . $base . '" class="flex items-center shrink-0">
+            <img width="180" height="40" src="' . $base . 'images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+        </a>
+        <div class="hidden md:flex items-center gap-0.5">
+            ' . $nav_html . '
+        </div>
+        <div class="flex items-center gap-1.5">
+            <div class="hidden lg:flex items-center gap-1.5">
+                <a href="tel:+918600968888"
+                   class="hdr-call-btn flex items-center justify-center gap-1.5 bg-slate-800 text-white h-9 px-4 rounded-full hover:bg-slate-700 hover:!text-white transition-all border border-slate-700 text-sm font-bold">
+                    <span class="material-symbols-outlined text-[17px] text-primary">call</span>
+                    <span class="hdr-call-text">+91 86009 68888</span>
+                </a>
+                <a href="https://wa.me/918600968888" target="_blank"
+                   class="hdr-wa-btn flex items-center justify-center gap-1.5 bg-[#25D366] text-white h-9 px-3 rounded-full hover:bg-[#1ebe5d] hover:!text-white transition-all text-sm font-bold">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span class="hdr-wa-text">WhatsApp</span>
+                </a>
+            </div>
+            <div class="h-5 w-px bg-white/10 mx-0.5 hidden lg:block"></div>
+            <a href="' . $base . 'login" id="hdr-login-btn"
+               class="text-white text-[13px] font-bold px-3 py-1.5 hover:bg-white/10 hover:!text-white rounded-full transition-all">Login</a>
+            <button id="mob-btn" class="md:hidden size-9 flex items-center justify-center rounded-full text-white active:bg-white/10 transition-colors ml-0.5">
+                <span class="material-symbols-outlined text-xl">menu</span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile Menu -->
+<style>
+@keyframes mobMenuIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+#mob-menu.mob-open { animation: mobMenuIn 0.22s cubic-bezier(0.32,0,0.15,1) forwards; }
+#mob-menu { z-index: 9999 !important; }
+</style>
+<div id="mob-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0705;overflow-y:auto;flex-direction:column;opacity:0">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <img loading="lazy" width="180" height="36" src="' . $base . 'images/travelhub.png" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <button id="mob-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:none;border-radius:50%;cursor:pointer;color:#fff">
+            <span class="material-symbols-outlined" style="font-size:20px">close</span>
+        </button>
+    </div>
+    <div style="padding:14px 12px 8px;display:flex;flex-direction:column;gap:2px">
+        <p style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.35);margin:0 0 6px 10px">Navigation</p>
+        <a href="' . $base . '" style="display:flex;align-items:center;padding:11px 14px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;background:rgba(255,255,255,0.04)">Home</a>
+        <a href="' . $base . 'about" style="display:flex;align-items:center;padding:11px 14px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;background:rgba(255,255,255,0.04)">About</a>
+        <a href="' . $base . 'contact" style="display:flex;align-items:center;padding:11px 14px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;background:rgba(255,255,255,0.04)">Contact</a>
+        <a href="' . $base . 'blogs" style="display:flex;align-items:center;padding:11px 14px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;background:rgba(255,255,255,0.04)">Blog</a>
+    </div>
+    <div style="padding:0 12px 12px">
+        <p style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.35);margin:0 0 8px 10px">Categories</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+            ' . $mobile_categories . '
+        </div>
+    </div>
+    <div style="flex:1;min-height:12px"></div>
+    <div style="padding:12px 12px 28px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:8px">
+        <div id="mob-auth-login" style="display:flex;gap:6px">
+            <a href="' . $base . 'login" style="flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:11px;background:#ec5b13;color:#fff;font-weight:700;border-radius:12px;font-size:13px;text-decoration:none">
+                <span class="material-symbols-outlined" style="font-size:15px">login</span> Sign In
+            </a>
+            <a href="' . $base . 'register" style="flex:1;display:flex;align-items:center;justify-content:center;padding:11px;background:rgba(255,255,255,0.08);color:#fff;font-weight:700;border-radius:12px;font-size:13px;border:1px solid rgba(255,255,255,0.15);text-decoration:none">Register</a>
+        </div>
+        <a href="tel:+918600968888" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;background:#1e293b;color:#fff;font-weight:700;border-radius:12px;border:1px solid #334155;font-size:13px;text-decoration:none">
+            <span class="material-symbols-outlined" style="font-size:15px;color:#ec5b13">call</span> +91 86009 68888
+        </a>
+        <a href="https://wa.me/918600968888" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;background:#25D366;color:#fff;font-weight:700;border-radius:12px;font-size:13px;text-decoration:none">
+            <svg style="width:14px;height:14px;fill:currentColor;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp Us
+        </a>
+    </div>
+</div>
+
+<script>
+    var _mob = document.getElementById(\'mob-menu\');
+    function openMob() {
+        _mob.style.display = \'flex\';
+        _mob.style.opacity = \'0\';
+        requestAnimationFrame(function() {
+            _mob.classList.add(\'mob-open\');
+            document.body.style.overflow = \'hidden\';
+        });
+    }
+    function closeMob() {
+        _mob.style.opacity = \'0\';
+        _mob.style.transition = \'opacity 0.18s ease\';
+        setTimeout(function() {
+            _mob.style.display = \'none\';
+            _mob.style.opacity = \'\';
+            _mob.style.transition = \'\';
+            _mob.classList.remove(\'mob-open\');
+            document.body.style.overflow = \'\';
+        }, 180);
+    }
+    document.getElementById(\'mob-btn\').addEventListener(\'click\', openMob);
+    document.getElementById(\'mob-close\').addEventListener(\'click\', closeMob);
+
+    // ══ Scroll → Pill Header (bulletproof sticky) ══
+    (function(){
+        var h  = document.getElementById(\'site-header\');
+        var mb = document.getElementById(\'marquee-bar\');
+        var ticking = false;
+        var MH = 0;
+        var isPill = false;
+
+        function measureMarquee(){
+            if (!mb) return 0;
+            var old = mb.style.transition;
+            mb.style.transition = \'none\';
+            mb.classList.remove(\'hidden-bar\');
+            var v = mb.getBoundingClientRect().height || mb.offsetHeight;
+            mb.style.transition = old;
+            return v;
+        }
+
+        function setNormal(){
+            isPill = false;
+            if (mb) mb.classList.remove(\'hidden-bar\');
+            h.classList.remove(\'pill-mode\');
+            h.style.setProperty(\'position\', \'fixed\', \'important\');
+            h.style.setProperty(\'top\', MH + \'px\', \'important\');
+            h.style.setProperty(\'left\', \'50%\', \'important\');
+            h.style.setProperty(\'transform\', \'translateX(-50%)\', \'important\');
+            h.style.setProperty(\'width\', \'100%\', \'important\');
+            h.style.setProperty(\'max-width\', \'100%\', \'important\');
+            h.style.setProperty(\'border-radius\', \'0\', \'important\');
+            h.style.setProperty(\'z-index\', \'60\', \'important\');
+        }
+
+        function setPill(){
+            isPill = true;
+            if (mb) mb.classList.add(\'hidden-bar\');
+            h.classList.add(\'pill-mode\');
+            h.style.setProperty(\'position\', \'fixed\', \'important\');
+            h.style.setProperty(\'top\', \'14px\', \'important\');
+            h.style.setProperty(\'left\', \'50%\', \'important\');
+            h.style.setProperty(\'transform\', \'translateX(-50%)\', \'important\');
+            h.style.setProperty(\'width\', \'calc(100% - 32px)\', \'important\');
+            h.style.setProperty(\'max-width\', \'1120px\', \'important\');
+            h.style.setProperty(\'border-radius\', \'9999px\', \'important\');
+            h.style.setProperty(\'z-index\', \'9000\', \'important\');
+        }
+
+        function update(){
+            if (window.scrollY > 40) {
+                setPill();
+            } else {
+                setNormal();
+            }
+            ticking = false;
+        }
+
+        MH = measureMarquee();
+        update();
+
+        window.addEventListener(\'scroll\', function(){
+            if (!ticking) {
+                requestAnimationFrame(update);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener(\'resize\', function(){
+            MH = measureMarquee();
+            update();
+        }, { passive: true });
+
+        window.addEventListener(\'load\', function(){
+            MH = measureMarquee();
+            update();
+        });
+    })();
+</script>';
+    
     return $content;
 }
 
@@ -1122,13 +1382,14 @@ foreach ($types as $type) {
         $canonical = 'https://csnexplore.com/listing-detail/' . $slug;
         $absImg = (strpos($mainImg, 'http') === 0) ? $mainImg : 'https://csnexplore.com' . ltrim($mainImg, '.');
         
+        // Schema type mapping - Use Service for rentals, not Product
         $schemaTypeMap = [
             'stays'       => 'LodgingBusiness',
-            'restaurants' => 'FoodEstablishment',
+            'restaurants' => 'Restaurant',
             'attractions' => 'TouristAttraction',
-            'cars'        => 'Product',
-            'bikes'       => 'Product',
-            'buses'       => 'BusReservation',
+            'cars'        => 'Service',  // Changed from Product to Service (rental service)
+            'bikes'       => 'Service',  // Changed from Product to Service (rental service)
+            'buses'       => 'Service',  // Changed from BusReservation to Service
         ];
         $schemaType = $schemaTypeMap[$type] ?? 'LocalBusiness';
         $rating_val = (float)($item['rating'] ?? 0);
@@ -1143,35 +1404,123 @@ foreach ($types as $type) {
             'url'         => $canonical,
             'telephone'   => '+91-8600968888',
         ];
-        if ($schemaType === 'Product') {
-            $schema['brand'] = ['@type' => 'Brand', 'name' => 'CSNExplore'];
-            $schema['sku']   = 'CSN-' . strtoupper($type) . '-' . $item['id'];
+        
+        // Add provider for Service types
+        if ($schemaType === 'Service') {
+            $schema['provider'] = [
+                '@type' => 'LocalBusiness',
+                'name' => 'CSNExplore',
+                'telephone' => '+91-8600968888',
+                'url' => 'https://csnexplore.com',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => 'Behind State Bank Of India, Plot No. 273 Samarth Nagar, Central Bus Stand',
+                    'addressLocality' => 'Chhatrapati Sambhajinagar',
+                    'addressRegion' => 'Maharashtra',
+                    'postalCode' => '431001',
+                    'addressCountry' => 'IN'
+                ]
+            ];
+            $schema['serviceType'] = ucfirst($type) . ' Rental';
+            $schema['areaServed'] = [
+                '@type' => 'City',
+                'name' => 'Chhatrapati Sambhajinagar',
+                'alternateName' => 'Aurangabad'
+            ];
         }
-        if ($location) {
-            $schema['address'] = ['@type' => 'PostalAddress', 'addressLocality' => $location, 'addressRegion' => 'Maharashtra', 'addressCountry' => 'IN'];
+        
+        // Add address for location-based businesses
+        if ($location && in_array($schemaType, ['LodgingBusiness', 'Restaurant', 'TouristAttraction', 'LocalBusiness'])) {
+            $schema['address'] = [
+                '@type' => 'PostalAddress',
+                'addressLocality' => $location,
+                'addressRegion' => 'Maharashtra',
+                'addressCountry' => 'IN'
+            ];
         }
+        
+        // Add aggregate rating if available
         if ($rating_val > 0 && $review_cnt > 0) {
-            $schema['aggregateRating'] = ['@type' => 'AggregateRating', 'ratingValue' => $rating_val, 'reviewCount' => $review_cnt, 'bestRating' => 5];
+            $schema['aggregateRating'] = [
+                '@type' => 'AggregateRating',
+                'ratingValue' => $rating_val,
+                'reviewCount' => $review_cnt,
+                'bestRating' => 5,
+                'worstRating' => 1
+            ];
         }
+        
+        // Add offers/pricing
         if ($price_val > 0) {
-            $schema['offers'] = ['@type' => 'Offer', 'priceCurrency' => 'INR', 'price' => $price_val, 'availability' => 'https://schema.org/InStock'];
+            $schema['offers'] = [
+                '@type' => 'Offer',
+                'priceCurrency' => 'INR',
+                'price' => $price_val,
+                'availability' => 'https://schema.org/InStock',
+                'url' => $canonical,
+                'priceValidUntil' => date('Y-12-31'), // Valid until end of current year
+                'seller' => [
+                    '@type' => 'Organization',
+                    'name' => 'CSNExplore'
+                ]
+            ];
         }
 
         // Auto-generate FAQ schema from features/amenities
         $faqSchema = '';
         $faqItems  = [];
+        
+        // Always add at least 3 FAQ items
         if (!empty($feats)) {
-            $faqItems[] = ['@type' => 'Question', 'name' => 'What amenities does ' . $item['name'] . ' offer?',
-                'acceptedAnswer' => ['@type' => 'Answer', 'text' => implode(', ', array_slice($feats, 0, 8))]];
+            $faqItems[] = [
+                '@type' => 'Question',
+                'name' => 'What amenities does ' . $item['name'] . ' offer?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => implode(', ', array_slice($feats, 0, 8)) . '. Contact CSNExplore at +91-8600968888 for complete details.'
+                ]
+            ];
         }
+        
         if ($price_val > 0) {
-            $faqItems[] = ['@type' => 'Question', 'name' => 'What is the price of ' . $item['name'] . '?',
-                'acceptedAnswer' => ['@type' => 'Answer', 'text' => '₹' . number_format($price_val) . ' ' . $meta['unit'] . '. Contact CSNExplore at +91-8600968888 for current rates.']];
+            $faqItems[] = [
+                '@type' => 'Question',
+                'name' => 'What is the price of ' . $item['name'] . '?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'The price is ₹' . number_format($price_val) . ' ' . $meta['unit'] . '. Contact CSNExplore at +91-8600968888 for current rates and special offers.'
+                ]
+            ];
         }
-        $faqItems[] = ['@type' => 'Question', 'name' => 'How do I book ' . $item['name'] . '?',
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => 'You can book ' . $item['name'] . ' directly on CSNExplore.com or call/WhatsApp +91-8600968888.']];
+        
+        $faqItems[] = [
+            '@type' => 'Question',
+            'name' => 'How do I book ' . $item['name'] . '?',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'You can book ' . $item['name'] . ' directly on CSNExplore.com or call/WhatsApp +91-8600968888 for instant booking and assistance.'
+            ]
+        ];
+        
+        // Add location-specific FAQ
+        if ($location) {
+            $faqItems[] = [
+                '@type' => 'Question',
+                'name' => 'Where is ' . $item['name'] . ' located?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => $item['name'] . ' is located in ' . $location . ', Maharashtra, India. Contact us for directions and nearby landmarks.'
+                ]
+            ];
+        }
+        
+        // Only create FAQ schema if we have at least one item
         if (!empty($faqItems)) {
-            $faqSchema = '<script type="application/ld+json">' . json_encode(['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $faqItems], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
+            $faqSchema = '<script type="application/ld+json">' . json_encode([
+                '@context' => 'https://schema.org',
+                '@type' => 'FAQPage',
+                'mainEntity' => $faqItems
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
         }
 
         // Breadcrumb schema

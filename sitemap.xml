@@ -1,1112 +1,610 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://csnexplore.com/</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/suggestor</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/about</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/contact</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/blogs</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/my-booking</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=stays</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=cars</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=bikes</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=attractions</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=restaurants</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing?type=buses</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/cars</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/bikes</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/stays</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-1-its-home-home-stay-inn.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-2-its-home-service-apartments.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-3-treebo-aroma-executive.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-4-hotel-blossom.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-1-maruti-suzuki-swift.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-2-tata-punch.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-3-honda-amaze.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-4-hyundai-grand-i10.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-1-hero-splendor.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-2-hero-hf-deluxe.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-3-honda-grazia.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-4-honda-dio.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/attractions</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-1-ajanta-caves.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-2-ellora-caves.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-3-bibi-ka-maqbara.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-4-daulatabad-fort.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/restaurants</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-1-naivedya-thali-restaurant.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-2-masala-dosa-house.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-3-the-grill-room.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-4-chaat-street-corner.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing/buses</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/buses-1-msrtc-shivneri-express.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/buses-2-dolphin-travels-night-bus.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/blogs/1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/privacy</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/terms</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/blogs?category=Travel+Guide</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/forgot-password</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/stays-6-hotel-o-indraprasth.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-5-maruti-suzuki-baleno.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-6-tata-tiago.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-7-toyota-glanza.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-8-maruti-suzuki-ertiga.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-9-kia-carens.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-10-mg-hector.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/cars-12-tata-winger.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-5-tvs-jupiter.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-6-honda-shine-100cc.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-7-yamaha-ray.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-8-honda-activa.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-9-suzuki-access-125.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-10-honda-activa-125cc.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-11-honda-activa-6g.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-12-honda-x-blade.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-13-honda-shine-125cc.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/bikes-14-royal-enfield-classic-350.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-5-panchakki-water-mill.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-6-grishneshwar-temple.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-8-siddharth-garden-ampamp-zoo.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-9-aurangabad-caves.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-10-khuldabad-valley-of-saints.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-11-bhadra-maruti-temple.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-12-himayat-bagh.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-14-soneri-mahal-golden-palace.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/attractions-15-jama-masjid.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-5-renaissance-dine.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-6-biryani-blues.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-7-pizza-paradise.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-8-chinese-wok.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-9-burger-junction.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-10-saffron-indian-kitchen.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-12-veg-delight.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-13-dessert-paradise.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-14-cafe-coffee-day.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/restaurants-15-seafood-shack.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/buses-4-purple-travels-volvo.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/listing-detail/buses-3-hans-travels-ac-sleeper.html</loc>
-  <lastmod>2026-05-09T21:36:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-1-its-home-home-stay-inn.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-1-its-home-home-stay-inn.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-2-its-home-service-apartments.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-2-its-home-service-apartments.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-3-treebo-aroma-executive.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-3-treebo-aroma-executive.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-4-hotel-blossom.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-4-hotel-blossom.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-1-maruti-suzuki-swift.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-1-maruti-suzuki-swift.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-2-tata-punch.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-2-tata-punch.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-3-honda-amaze.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-3-honda-amaze.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-4-hyundai-grand-i10.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-4-hyundai-grand-i10.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-1-hero-splendor.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-1-hero-splendor.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-2-hero-hf-deluxe.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-2-hero-hf-deluxe.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-3-honda-grazia.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-3-honda-grazia.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-4-honda-dio.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-4-honda-dio.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-1-ajanta-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-1-ajanta-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-2-ellora-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-2-ellora-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-3-bibi-ka-maqbara.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-3-bibi-ka-maqbara.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-4-daulatabad-fort.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-4-daulatabad-fort.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-1-naivedya-thali-restaurant.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-1-naivedya-thali-restaurant.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-2-masala-dosa-house.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-2-masala-dosa-house.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-3-the-grill-room.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-3-the-grill-room.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-4-chaat-street-corner.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-4-chaat-street-corner.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/buses-1-msrtc-shivneri-express.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/buses-1-msrtc-shivneri-express.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/buses-2-dolphin-travels-night-bus.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/buses-2-dolphin-travels-night-bus.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-5-hotel-the-gravity-inn.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-5-hotel-the-gravity-inn.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/stays-6-hotel-o-indraprasth.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/stays-6-hotel-o-indraprasth.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-5-maruti-suzuki-baleno.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-5-maruti-suzuki-baleno.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-6-tata-tiago.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-6-tata-tiago.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-7-toyota-glanza.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-7-toyota-glanza.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-8-maruti-suzuki-ertiga.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-8-maruti-suzuki-ertiga.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-9-kia-carens.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-9-kia-carens.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-10-mg-hector.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-10-mg-hector.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/cars-12-tata-winger.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/cars-12-tata-winger.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-5-tvs-jupiter.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-5-tvs-jupiter.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-6-honda-shine-100cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-6-honda-shine-100cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-7-yamaha-ray.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-7-yamaha-ray.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-8-honda-activa.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-8-honda-activa.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-9-suzuki-access-125.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-9-suzuki-access-125.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-10-honda-activa-125cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-10-honda-activa-125cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-11-honda-activa-6g.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-11-honda-activa-6g.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-12-honda-x-blade.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-12-honda-x-blade.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-13-honda-shine-125cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-13-honda-shine-125cc.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/bikes-14-royal-enfield-classic-350.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/bikes-14-royal-enfield-classic-350.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-5-panchakki-water-mill.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-5-panchakki-water-mill.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-6-grishneshwar-temple.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-6-grishneshwar-temple.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-8-siddharth-garden-ampamp-zoo.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-8-siddharth-garden-ampamp-zoo.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-9-aurangabad-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-9-aurangabad-caves.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-10-khuldabad-valley-of-saints.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-10-khuldabad-valley-of-saints.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-11-bhadra-maruti-temple.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-11-bhadra-maruti-temple.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-12-himayat-bagh.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-12-himayat-bagh.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-14-soneri-mahal-golden-palace.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-14-soneri-mahal-golden-palace.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/attractions-15-jama-masjid.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/attractions-15-jama-masjid.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-5-renaissance-dine.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-5-renaissance-dine.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-6-biryani-blues.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-6-biryani-blues.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-7-pizza-paradise.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-7-pizza-paradise.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-8-chinese-wok.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-8-chinese-wok.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-9-burger-junction.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-9-burger-junction.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-10-saffron-indian-kitchen.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-10-saffron-indian-kitchen.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-11-tandoor-nights.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-11-tandoor-nights.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-12-veg-delight.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-12-veg-delight.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-13-dessert-paradise.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-13-dessert-paradise.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-14-cafe-coffee-day.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-14-cafe-coffee-day.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/restaurants-15-seafood-shack.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/restaurants-15-seafood-shack.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/buses-4-purple-travels-volvo.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/buses-4-purple-travels-volvo.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/login?redirect=listing-detail/buses-3-hans-travels-ac-sleeper.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://csnexplore.com/register?redirect=listing-detail/buses-3-hans-travels-ac-sleeper.html</loc>
-  <lastmod>2026-05-09T21:50:22+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-
-
+<!-- CSNExplore Sitemap | Generated: 2026-05-14 13:17:11 | Total URLs: 101 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://csnexplore.com/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/stays</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/cars</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/bikes</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/attractions</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/restaurants</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/buses</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/about</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/contact</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/faq</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-1-ajanta-caves</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-10-khuldabad-valley-of-saints</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-11-bhadra-maruti-temple</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-12-himayat-bagh</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-14-soneri-mahal-golden-palace</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-15-jama-masjid</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-2-ellora-caves</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-3-bibi-ka-maqbara</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-4-daulatabad-fort</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-5-panchakki-water-mill</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-6-grishneshwar-temple</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-8-siddharth-garden-ampamp-zoo</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-9-aurangabad-caves</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-1-hero-splendor</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-10-honda-activa-125cc</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-10-honda-shine-125cc</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-11-bajaj-pulsar</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-11-honda-activa-6g</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-12-honda-x-blade</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-12-royal-enfield-classic-350</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-13-honda-shine-125cc</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-13-royal-enfield-himalayan</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-14-bajaj-avenger</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-14-royal-enfield-classic-350</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-15-yamaha-r15</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-2-hero-hf-deluxe</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-2-honda-dio</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-3-honda-grazia</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-3-yamaha-ray</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-4-honda-activa</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-4-honda-dio</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-5-honda-activa-6g</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-5-tvs-jupiter</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-6-honda-shine-100cc</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-6-tvs-jupiter</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-7-suzuki-access-125</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-7-yamaha-ray</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-8-honda-activa</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-8-honda-grazia</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-9-honda-x-blade</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-9-suzuki-access-125</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-1-msrtc-shivneri-express</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-2-dolphin-travels-night-bus</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-3-hans-travels-ac-sleeper</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-4-purple-travels-volvo</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-1-maruti-suzuki-ertiga</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-1-maruti-suzuki-swift</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-10-kia-carens</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-10-mg-hector</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-11-toyota-innova</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-12-tata-winger</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-2-maruti-suzuki-swift</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-2-tata-punch</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-3-honda-amaze</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-4-hyundai-grand-i10</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-4-maruti-suzuki-baleno</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-5-maruti-suzuki-baleno</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-5-tata-punch</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-6-hyundai-grand-i10</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-6-tata-tiago</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-7-mahindra-bolero</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-7-toyota-glanza</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-8-kia-sonet</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-8-maruti-suzuki-ertiga</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-9-kia-carens</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-9-tata-tiago</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-1-naivedya-thali-restaurant</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-10-saffron-indian-kitchen</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-12-veg-delight</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-13-dessert-paradise</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-14-cafe-coffee-day</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-15-seafood-shack</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-2-masala-dosa-house</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-3-the-grill-room</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-4-chaat-street-corner</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-5-renaissance-dine</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-6-biryani-blues</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-7-pizza-paradise</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-8-chinese-wok</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-9-burger-junction</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-1-its-home-home-stay-inn</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-2-its-home-service-apartments</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-3-treebo-aroma-executive</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-4-hotel-blossom</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-6-hotel-o-indraprasth</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
 </urlset>

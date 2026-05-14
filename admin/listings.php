@@ -142,20 +142,81 @@ require 'admin-header.php';
                     </button>
                     <input type="hidden" id="f-gallery"/>
                 </div>
-                <div class="col-span-2">
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Mini Description <span class="text-slate-400 font-normal">(SEO Content)</span></label>
-                    <textarea id="f-mini_description" rows="2" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none" placeholder="e.g. Hello it is mini description for this page"></textarea>
-                </div>
-                <div class="col-span-2">
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">SEO Keywords Stuffing</label>
-                    <div id="keyword-tags" class="flex flex-wrap gap-2 mb-2 min-h-[32px] p-2 border border-dashed border-slate-200 rounded-xl"></div>
-                    <div class="flex gap-2">
-                        <select id="keyword-select" class="flex-1 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
-                            <option value="">Select keyword to add...</option>
-                        </select>
-                        <button type="button" onclick="addNewKeywordPrompt()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-all">Add New</button>
+                <!-- SEO Section - WordPress Style -->
+                <div class="col-span-2 border-t border-slate-100 pt-4 mt-2">
+                    <h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-base">search</span> SEO Settings
+                    </h3>
+                    
+                    <div class="space-y-4 bg-slate-50/50 p-4 rounded-xl border border-slate-200">
+                        <!-- Focus Keyword -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Focus Keyword</label>
+                            <input id="f-focus_keyword" type="text" placeholder="e.g. luxury hotel sambhajinagar" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"/>
+                            <p class="text-[10px] text-slate-400 mt-1">Main keyword you want to rank for</p>
+                        </div>
+                        
+                        <!-- SEO Title -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 flex items-center justify-between">
+                                <span>SEO Title (Meta Title)</span>
+                                <span id="meta-title-count" class="text-[10px] text-slate-400 font-normal">0/60</span>
+                            </label>
+                            <input id="f-meta_title" type="text" maxlength="60" placeholder="Optimized title for search engines" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" oninput="updateCharCount('meta-title-count', this.value, 60)"/>
+                            <p class="text-[10px] text-slate-400 mt-1">Recommended: 50-60 characters</p>
+                        </div>
+                        
+                        <!-- SEO Description -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 flex items-center justify-between">
+                                <span>Meta Description</span>
+                                <span id="meta-desc-count" class="text-[10px] text-slate-400 font-normal">0/160</span>
+                            </label>
+                            <textarea id="f-meta_description" rows="3" maxlength="160" placeholder="Brief description for search results" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none" oninput="updateCharCount('meta-desc-count', this.value, 160)"></textarea>
+                            <p class="text-[10px] text-slate-400 mt-1">Recommended: 150-160 characters</p>
+                        </div>
+                        
+                        <!-- URL Slug -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">URL Slug</label>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-slate-400">/listing-detail/</span>
+                                <input id="f-slug" type="text" placeholder="auto-generated-from-title" class="flex-1 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary font-mono"/>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-1">Leave empty to auto-generate from title</p>
+                        </div>
+                        
+                        <!-- Meta Keywords -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Meta Keywords</label>
+                            <div id="keyword-tags" class="flex flex-wrap gap-2 mb-2 min-h-[32px] p-2 border border-dashed border-slate-200 rounded-lg bg-white"></div>
+                            <div class="flex gap-2">
+                                <select id="keyword-select" class="flex-1 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                                    <option value="">Select keyword to add...</option>
+                                </select>
+                                <button type="button" onclick="addNewKeywordPrompt()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-all">Add New</button>
+                            </div>
+                            <input type="hidden" id="f-meta_keywords"/>
+                        </div>
+                        
+                        <!-- Mini Description -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Mini Description <span class="text-slate-400 font-normal">(Page Content)</span></label>
+                            <textarea id="f-mini_description" rows="2" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none" placeholder="Short description shown on the page"></textarea>
+                        </div>
+                        
+                        <!-- SEO Score Preview -->
+                        <div class="bg-white border border-slate-200 rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-slate-600">SEO Score</span>
+                                <span id="seo-score-display" class="text-lg font-black text-slate-300">--</span>
+                            </div>
+                            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div id="seo-score-bar" class="h-full bg-slate-300 transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div id="seo-tips" class="mt-2 space-y-1 text-[10px] text-slate-500"></div>
+                        </div>
                     </div>
-                    <input type="hidden" id="f-keywords"/>
                 </div>
                 <div class="col-span-2">
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Full Description</label>
@@ -212,6 +273,7 @@ var currentCat = 'stays';
 var editingId   = null;
 var allKeywords = [];
 var selectedKeywords = [];
+var metaKeywords = [];
 
 var priceLabels = {
     stays: 'Price / Night (₹)',
@@ -242,6 +304,107 @@ function escHtml(s) {
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// Character count for SEO fields
+function updateCharCount(elemId, value, max) {
+    var count = (value || '').length;
+    var elem = document.getElementById(elemId);
+    if (elem) {
+        elem.textContent = count + '/' + max;
+        elem.classList.toggle('text-red-500', count > max);
+        elem.classList.toggle('text-green-500', count >= max * 0.8 && count <= max);
+    }
+    calculateSEOScore();
+}
+
+// Calculate SEO Score
+function calculateSEOScore() {
+    var score = 0;
+    var tips = [];
+    
+    var title = document.getElementById('f-meta_title')?.value || '';
+    var desc = document.getElementById('f-meta_description')?.value || '';
+    var focus = document.getElementById('f-focus_keyword')?.value || '';
+    var slug = document.getElementById('f-slug')?.value || '';
+    
+    // Title checks (30 points)
+    if (title.length >= 50 && title.length <= 60) {
+        score += 15;
+    } else if (title.length > 0) {
+        score += 5;
+        tips.push('Title should be 50-60 characters');
+    } else {
+        tips.push('Add a meta title');
+    }
+    
+    if (focus && title.toLowerCase().includes(focus.toLowerCase())) {
+        score += 15;
+    } else if (focus) {
+        tips.push('Include focus keyword in title');
+    }
+    
+    // Description checks (30 points)
+    if (desc.length >= 150 && desc.length <= 160) {
+        score += 15;
+    } else if (desc.length > 0) {
+        score += 5;
+        tips.push('Description should be 150-160 characters');
+    } else {
+        tips.push('Add a meta description');
+    }
+    
+    if (focus && desc.toLowerCase().includes(focus.toLowerCase())) {
+        score += 15;
+    } else if (focus) {
+        tips.push('Include focus keyword in description');
+    }
+    
+    // Focus keyword (20 points)
+    if (focus && focus.length >= 3) {
+        score += 20;
+    } else {
+        tips.push('Set a focus keyword');
+    }
+    
+    // Slug (10 points)
+    if (slug && slug.length > 0) {
+        score += 10;
+    } else {
+        tips.push('Set a URL slug');
+    }
+    
+    // Meta keywords (10 points)
+    if (metaKeywords.length >= 3) {
+        score += 10;
+    } else {
+        tips.push('Add at least 3 meta keywords');
+    }
+    
+    // Update UI
+    var scoreDisplay = document.getElementById('seo-score-display');
+    var scoreBar = document.getElementById('seo-score-bar');
+    var tipsContainer = document.getElementById('seo-tips');
+    
+    if (scoreDisplay) {
+        scoreDisplay.textContent = score;
+        scoreDisplay.className = 'text-lg font-black ' + 
+            (score >= 80 ? 'text-green-500' : score >= 50 ? 'text-amber-500' : 'text-red-500');
+    }
+    
+    if (scoreBar) {
+        scoreBar.style.width = score + '%';
+        scoreBar.className = 'h-full transition-all duration-300 ' + 
+            (score >= 80 ? 'bg-green-500' : score >= 50 ? 'bg-amber-500' : 'bg-red-500');
+    }
+    
+    if (tipsContainer) {
+        tipsContainer.innerHTML = tips.length > 0 
+            ? tips.map(t => '<div class="flex items-start gap-1"><span class="material-symbols-outlined text-[12px] text-amber-500">info</span><span>' + t + '</span></div>').join('')
+            : '<div class="text-green-600 flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">check_circle</span><span>SEO looks good!</span></div>';
+    }
+    
+    return score;
+}
+
 function switchCat(cat) {
     currentCat = cat;
     document.querySelectorAll('.cat-tab').forEach(function(b){
@@ -262,7 +425,7 @@ function updateKeywordSelect() {
     var sel = document.getElementById('keyword-select');
     sel.innerHTML = '<option value="">Select keyword to add...</option>';
     allKeywords.forEach(function(k) {
-        if (!selectedKeywords.includes(k.keyword)) {
+        if (!metaKeywords.includes(k.keyword)) {
             sel.innerHTML += '<option value="' + escHtml(k.keyword) + '">' + escHtml(k.keyword) + '</option>';
         }
     });
@@ -270,33 +433,34 @@ function updateKeywordSelect() {
 
 document.getElementById('keyword-select').addEventListener('change', function() {
     if (this.value) {
-        addKeywordTag(this.value);
+        addMetaKeyword(this.value);
         this.value = '';
     }
 });
 
-function addKeywordTag(kw) {
-    if (!selectedKeywords.includes(kw)) {
-        selectedKeywords.push(kw);
-        renderKeywordTags();
-        updateKeywordSelect();
+function addMetaKeyword(kw) {
+    if (!metaKeywords.includes(kw)) {
+        metaKeywords.push(kw);
+        renderMetaKeywords();
+        calculateSEOScore();
     }
 }
 
-function removeKeywordTag(kw) {
-    selectedKeywords = selectedKeywords.filter(function(k) { return k !== kw; });
-    renderKeywordTags();
+function removeMetaKeyword(kw) {
+    metaKeywords = metaKeywords.filter(function(k) { return k !== kw; });
+    renderMetaKeywords();
     updateKeywordSelect();
+    calculateSEOScore();
 }
 
-function renderKeywordTags() {
+function renderMetaKeywords() {
     var container = document.getElementById('keyword-tags');
-    container.innerHTML = selectedKeywords.map(function(kw) {
+    container.innerHTML = metaKeywords.map(function(kw) {
         return '<span class="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary text-[11px] font-bold rounded-lg border border-primary/20">' + 
                escHtml(kw) + 
-               '<button type="button" onclick="removeKeywordTag(\'' + kw.replace(/'/g, "\\'") + '\')" class="hover:text-red-500"><span class="material-symbols-outlined text-[14px]">close</span></button></span>';
+               '<button type="button" onclick="removeMetaKeyword(\'' + kw.replace(/'/g, "\\'") + '\')" class="hover:text-red-500"><span class="material-symbols-outlined text-[14px]">close</span></button></span>';
     }).join('');
-    document.getElementById('f-keywords').value = selectedKeywords.join(', ');
+    document.getElementById('f-meta_keywords').value = metaKeywords.join(', ');
 }
 
 async function addNewKeywordPrompt() {
@@ -308,10 +472,20 @@ async function addNewKeywordPrompt() {
             if (!allKeywords.find(k => k.keyword === res.keyword)) {
                 allKeywords.push({ id: res.id, keyword: res.keyword });
             }
-            addKeywordTag(res.keyword);
+            addMetaKeyword(res.keyword);
         }
     }
 }
+
+// Add event listeners for SEO fields
+document.addEventListener('DOMContentLoaded', function() {
+    ['f-meta_title', 'f-meta_description', 'f-focus_keyword', 'f-slug'].forEach(function(id) {
+        var elem = document.getElementById(id);
+        if (elem) {
+            elem.addEventListener('input', calculateSEOScore);
+        }
+    });
+});
 
 // Initial keywords load
 loadKeywords();

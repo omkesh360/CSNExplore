@@ -174,10 +174,12 @@ Disallow: /send-pending-emails
 # PREVENT DUPLICATE CONTENT - Block filter/sort parameters
 # ════════════════════════════════════════════════════════════════════════════════
 
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*page=
-Disallow: /*&
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?page=
+Disallow: /*?*&sort=
+Disallow: /*?*&filter=
+Disallow: /*?*&page=
 
 # ════════════════════════════════════════════════════════════════════════════════
 # ALLOW IMPORTANT CONTENT FOR ALL BOTS (Including AI)
@@ -187,7 +189,7 @@ Allow: /images/
 Allow: /blogs/
 Allow: /listing-detail/
 Allow: /listing/
-Allow: /sitemap*.xml
+Allow: /sitemap.xml
 Allow: /css/
 Allow: /js/
 Allow: /*.css$
@@ -229,14 +231,6 @@ Crawl-delay: 5
 # ════════════════════════════════════════════════════════════════════════════════
 
 Sitemap: https://csnexplore.com/sitemap.xml
-Sitemap: https://csnexplore.com/sitemap-static.xml
-Sitemap: https://csnexplore.com/sitemap-stays.xml
-Sitemap: https://csnexplore.com/sitemap-cars.xml
-Sitemap: https://csnexplore.com/sitemap-bikes.xml
-Sitemap: https://csnexplore.com/sitemap-attractions.xml
-Sitemap: https://csnexplore.com/sitemap-restaurants.xml
-Sitemap: https://csnexplore.com/sitemap-buses.xml
-Sitemap: https://csnexplore.com/sitemap-blogs.xml
 
 # ════════════════════════════════════════════════════════════════════════════════
 # NOTES FOR AI SEARCH ENGINES

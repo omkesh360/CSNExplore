@@ -9,8 +9,9 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 
 // Verify admin access
+$adminUser = null;
 try {
-    requireAdmin();
+    $adminUser = requireAdmin();
 } catch (Exception $e) {
     error_log('[Settings API] Auth error: ' . $e->getMessage());
     http_response_code(401);
@@ -52,20 +53,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $settings = [];
         }
 
-        if (isset($input['features']['caching']['enabled'])) {
+        if (isset($input['features']['caching'])) {
             if (!isset($settings['features'])) $settings['features'] = [];
             if (!isset($settings['features']['caching'])) $settings['features']['caching'] = [];
-            $settings['features']['caching']['enabled'] = (bool)$input['features']['caching']['enabled'];
-            
-            // Clear cache if disabled
-            if (!$settings['features']['caching']['enabled']) {
-                try {
-                    $db = getDB();
-                    $db->clearCache();
-                    error_log('[Settings API] Cache cleared successfully');
-                } catch (Exception $e) {
-                    error_log('[Settings API] Cache clear error: ' . $e->getMessage());
-                    // Continue anyway - cache clear failure shouldn't block settings update
+
+            $cachingInput = $input['features']['caching'];
+
+            // Toggle enabled/disabled
+            if (array_key_exists('enabled', $cachingInput)) {
+                $settings['features']['caching']['enabled'] = (bool)$cachingInput['enabled'];
+
+                // Clear DB query cache when disabling
+                if (!$settings['features']['caching']['enabled']) {
+                    try {
+                        $db = getDB();
+                        $db->clearCache();
+                        error_log('[Settings API] Cache cleared successfully');
+                    } catch (Exception $e) {
+                        error_log('[Settings API] Cache clear error: ' . $e->getMessage());
+                    }
+                }
+
+                // Write/remove a flag file so .htaccess and other PHP files can check quickly
+                $cacheFlag = __DIR__ . '/../../cache/.cache_enabled';
+                if ($settings['features']['caching']['enabled']) {
+                    @file_put_contents($cacheFlag, '1');
+                } else {
+                    @unlink($cacheFlag);
+                }
+            }
+
+            // Merge TTL settings without overwriting enabled flag
+            if (isset($cachingInput['ttl']) && is_array($cachingInput['ttl'])) {
+                if (!isset($settings['features']['caching']['ttl'])) {
+                    $settings['features']['caching']['ttl'] = [];
+                }
+                foreach ($cachingInput['ttl'] as $k => $v) {
+                    $settings['features']['caching']['ttl'][$k] = (int)$v;
                 }
             }
         }
@@ -79,15 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Log to activity_logs
         try {
-            $user = requireAdmin();
             $actionDesc = "Updated system settings";
             if (isset($input['features']['caching']['enabled'])) {
                 $actionDesc = "Caching " . ($settings['features']['caching']['enabled'] ? "enabled" : "disabled");
             }
             $db = getDB();
             $db->insert('activity_logs', [
-                'actor_id'    => $user['id'] ?? null,
-                'actor_name'  => $user['name'] ?? 'System',
+                'actor_id'    => $adminUser['id'] ?? null,
+                'actor_name'  => $adminUser['name'] ?? 'System',
                 'actor_role'  => 'admin',
                 'action_type' => 'system_init',
                 'description' => $actionDesc,

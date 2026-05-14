@@ -97,6 +97,15 @@ function renderBlogGrid(blogs) {
         var img = b.image
             ? '<img width="800" height="600" src="' + escHtml(b.image) + '" class="w-full h-40 object-cover" loading="lazy" onerror="this.style.display=\'none\'"/>'
             : '<div class="w-full h-40 bg-slate-100 flex items-center justify-center"><span class="material-symbols-outlined text-slate-300 text-4xl">article</span></div>';
+        
+        // SEO Score badge
+        var seoScore = parseInt(b.seo_score) || 0;
+        var seoColor = seoScore >= 80 ? 'bg-green-50 text-green-600 border-green-200' : 
+                       seoScore >= 50 ? 'bg-amber-50 text-amber-600 border-amber-200' : 
+                       'bg-slate-50 text-slate-400 border-slate-200';
+        var seoBadge = '<div class="flex items-center gap-1 px-2 py-1 rounded-lg border text-[10px] font-black ' + seoColor + '">' +
+                       '<span class="material-symbols-outlined text-[12px]">search</span>' + seoScore + '</div>';
+        
         return '<div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">' +
             img +
             '<div class="p-5">' +
@@ -104,9 +113,12 @@ function renderBlogGrid(blogs) {
                     '<h3 class="text-sm font-bold text-slate-900 line-clamp-2 leading-snug">' + escHtml(b.title) + '</h3>' +
                     '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shrink-0 ' + sc + '">' + escHtml(b.status) + '</span>' +
                 '</div>' +
-                '<p class="text-xs text-slate-400 mb-4 font-medium">' + escHtml(b.author) + ' · ' + escHtml(b.category) + '</p>' +
+                '<div class="flex items-center justify-between mb-3">' +
+                    '<p class="text-xs text-slate-400 font-medium">' + escHtml(b.author) + ' · ' + escHtml(b.category) + '</p>' +
+                    seoBadge +
+                '</div>' +
                 '<div class="flex gap-2">' +
-                    '<a href="blog-editor.php?id=' + b.id + '" class="flex-1 text-center text-xs font-bold text-slate-600 border border-slate-200 py-2 rounded-lg hover:bg-slate-50 transition-all">Edit Post</a>' +
+                    '<a href="blog-editor-new.php?id=' + b.id + '" class="flex-1 text-center text-xs font-bold text-slate-600 border border-slate-200 py-2 rounded-lg hover:bg-slate-50 transition-all">Edit Post</a>' +
                     (b.status === 'published'
                         ? '<a href="../blog-detail.php?id=' + b.id + '" target="_blank" class="px-3 text-xs font-semibold text-primary border border-primary/20 py-2 rounded-lg hover:bg-primary/5 transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm">open_in_new</span></a>'
                         : '') +
@@ -118,7 +130,7 @@ function renderBlogGrid(blogs) {
 }
 
 function openBlogModal() {
-    window.location.href = 'blog-editor.php';
+    window.location.href = 'blog-editor-new.php';
 }
 
 async function deleteBlog(id) {

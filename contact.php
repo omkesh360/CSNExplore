@@ -73,11 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once __DIR__ . '/php/config.php';
             $db = getDB();
             $db->insert('contact_messages', [
-                'first_name' => htmlspecialchars($first, ENT_QUOTES, 'UTF-8'),
-                'last_name'  => htmlspecialchars($last, ENT_QUOTES, 'UTF-8'),
-                'email'      => htmlspecialchars($email, ENT_QUOTES, 'UTF-8'),
-                'interest'   => htmlspecialchars($interest, ENT_QUOTES, 'UTF-8'),
-                'message'    => htmlspecialchars($message, ENT_QUOTES, 'UTF-8'),
+                'first_name' => trim($first),
+                'last_name'  => trim($last),
+                'email'      => trim($email),
+                'interest'   => trim($interest),
+                'message'    => trim($message),
             ]);
             $success = true;
         } catch (Exception $e) {

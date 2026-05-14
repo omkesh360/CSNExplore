@@ -294,6 +294,11 @@ $active_listing_type = $listing_type ?? '';
             .mb-16 { margin-bottom: 2rem !important; }
             .mb-12 { margin-bottom: 1.5rem !important; }
             .gap-12 { gap: 1.5rem !important; }
+            
+            /* Hide category icons on mobile */
+            #mob-menu .material-symbols-outlined {
+                display: none !important;
+            }
         }
         @media (max-width: 360px) {
             h1.font-serif, h2.font-serif { font-size: 1.35rem !important; }

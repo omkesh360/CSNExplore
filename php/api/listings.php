@@ -48,7 +48,7 @@ try {
             $params = [];
             if (!empty($_GET['search'])) {
                 $where[] = '(name LIKE ? OR location LIKE ?)';
-                $s = '%' . $_GET['search'] . '%';
+                $s = '%' . substr(sanitize($_GET['search']), 0, 200) . '%';
                 $params = array_merge($params, [$s, $s]);
             }
             $sql = "SELECT * FROM $category WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, id ASC";
@@ -121,20 +121,35 @@ function buildData($category, $pc, $db) {
     $input = getJsonInput();
 
     $data = [
-        'name'          => sanitize($input['name'] ?? ''),
-        'location'      => sanitize($input['location'] ?? ''),
-        'description'   => sanitize($input['description'] ?? ''),
-        'rating'        => min(5, max(0, (float)($input['rating'] ?? 0))),
-        'badge'         => sanitize($input['badge'] ?? ''),
-        'image'         => sanitize($input['image'] ?? ''),
+        'name'             => sanitize($input['name'] ?? ''),
+        'location'         => sanitize($input['location'] ?? ''),
+        'description'      => sanitize($input['description'] ?? ''),
+        'rating'           => min(5, max(0, (float)($input['rating'] ?? 0))),
+        'badge'            => sanitize($input['badge'] ?? ''),
+        'image'            => sanitize($input['image'] ?? ''),
         'mini_description' => sanitize($input['mini_description'] ?? ''),
-        'keywords'      => sanitize($input['keywords'] ?? ''),
-        'policies'      => isset($input['policies']) ? (is_string($input['policies']) ? $input['policies'] : json_encode($input['policies'])) : null,
-        'is_active'     => (int)($input['is_active'] ?? 1),
-        'display_order' => (int)($input['display_order'] ?? 0),
-        'map_embed'     => $input['map_embed'] ?? null,
-        'updated_at'    => date('Y-m-d H:i:s'),
+        'keywords'         => sanitize($input['keywords'] ?? ''),
+        'policies'         => isset($input['policies']) ? (is_string($input['policies']) ? $input['policies'] : json_encode($input['policies'])) : null,
+        'is_active'        => (int)($input['is_active'] ?? 1),
+        'display_order'    => (int)($input['display_order'] ?? 0),
+        'map_embed'        => $input['map_embed'] ?? null,
+        // SEO fields
+        'meta_title'       => sanitize($input['meta_title'] ?? ''),
+        'meta_description' => sanitize($input['meta_description'] ?? ''),
+        'meta_keywords'    => sanitize($input['meta_keywords'] ?? ''),
+        'focus_keyword'    => sanitize($input['focus_keyword'] ?? ''),
+        'seo_score'        => min(100, max(0, (int)($input['seo_score'] ?? 0))),
+        'updated_at'       => date('Y-m-d H:i:s'),
     ];
+
+    // Auto-generate slug from name if not provided
+    if (!empty($input['name'])) {
+        $slug = sanitize($input['slug'] ?? '');
+        if ($slug === '') {
+            $slug = generateSlug($category, $input['id'] ?? 0, $input['name']);
+        }
+        $data['slug'] = $slug;
+    }
 
     // Price
     $data[$pc] = (float)($input[$pc] ?? 0);

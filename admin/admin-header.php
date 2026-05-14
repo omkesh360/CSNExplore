@@ -260,20 +260,37 @@ body {
     <nav class="custom-scrollbar" style="flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:2px;">
         <?php
         $nav = [
-            ['href'=>'dashboard.php',    'icon'=>'grid_view',      'label'=>'Dashboard',    'key'=>'dashboard'],
-            ['href'=>'listings.php',     'icon'=>'database',        'label'=>'Listings',     'key'=>'listings'],
-            ['href'=>'bookings.php',     'icon'=>'calendar_today',  'label'=>'Bookings',     'key'=>'bookings',  'badge'=>true],
-            ['href'=>'trip-requests.php','icon'=>'flight_takeoff',  'label'=>'Trip Planner', 'key'=>'trip-requests'],
-            ['href'=>'blogs.php',        'icon'=>'article',         'label'=>'Blogs',        'key'=>'blogs'],
-            ['href'=>'gallery.php',      'icon'=>'photo_library',   'label'=>'Gallery',      'key'=>'gallery'],
-            ['href'=>'users.php',        'icon'=>'group',           'label'=>'Users',        'key'=>'users'],
-            ['href'=>'content.php',      'icon'=>'edit_note',       'label'=>'Content',      'key'=>'content'],
-            ['href'=>'activity-logs.php','icon'=>'history',         'label'=>'Activity Logs','key'=>'activity-logs'],
-            ['href'=>'caching.php',      'icon'=>'memory',          'label'=>'Caching',      'key'=>'caching'],
-            ['href'=>'regenerate.php',   'icon'=>'autorenew',       'label'=>'Regenerate Pages', 'key'=>'regenerate'],
+            // ── Core ──────────────────────────────────────────────────────
+            ['divider'=>'Core'],
+            ['href'=>'dashboard.php',      'icon'=>'grid_view',        'label'=>'Dashboard',        'key'=>'dashboard'],
+            ['href'=>'listings.php',       'icon'=>'database',          'label'=>'Listings',         'key'=>'listings'],
+            ['href'=>'bookings.php',       'icon'=>'calendar_today',    'label'=>'Bookings',         'key'=>'bookings',  'badge'=>true],
+            ['href'=>'trip-requests.php',  'icon'=>'flight_takeoff',    'label'=>'Trip Planner',     'key'=>'trip-requests'],
+            // ── Content ───────────────────────────────────────────────────
+            ['divider'=>'Content'],
+            ['href'=>'blogs.php',          'icon'=>'article',           'label'=>'Blogs',            'key'=>'blogs'],
+            ['href'=>'gallery.php',        'icon'=>'photo_library',     'label'=>'Gallery',          'key'=>'gallery'],
+            ['href'=>'content.php',        'icon'=>'edit_note',         'label'=>'Content',          'key'=>'content'],
+            // ── SEO & Pages ───────────────────────────────────────────────
+            ['divider'=>'SEO & Pages'],
+            ['href'=>'seo-manager.php',    'icon'=>'search',            'label'=>'SEO Manager',      'key'=>'seo'],
+            ['href'=>'map-embeds.php',     'icon'=>'map',               'label'=>'Map Embeds',       'key'=>'map-embeds'],
+            ['href'=>'regenerate.php',     'icon'=>'autorenew',         'label'=>'Regenerate Pages', 'key'=>'regenerate'],
+            // ── People ────────────────────────────────────────────────────
+            ['divider'=>'People'],
+            ['href'=>'users.php',          'icon'=>'group',             'label'=>'Users',            'key'=>'users'],
+            ['href'=>'subscribers.php',    'icon'=>'mark_email_read',   'label'=>'Subscribers',      'key'=>'subscribers'],
+            // ── System ────────────────────────────────────────────────────
+            ['divider'=>'System'],
+            ['href'=>'activity-logs.php',  'icon'=>'history',           'label'=>'Activity Logs',    'key'=>'activity-logs'],
+            ['href'=>'caching.php',        'icon'=>'memory',            'label'=>'Caching',          'key'=>'caching'],
         ];
         foreach ($nav as $n):
-            $active = ($admin_page === $n['key']) ? 'active' : '';
+            // Section divider — render label and skip to next item
+            if (!empty($n['divider'])): ?>
+        <div style="margin:10px 4px 6px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:.1em;text-transform:uppercase;padding-left:4px;"><?php echo $n['divider']; ?></div>
+        <?php continue; endif;
+            $active = ($admin_page === ($n['key'] ?? '')) ? 'active' : '';
         ?>
         <a href="<?php echo $n['href']; ?>"
            class="sidebar-link <?php echo $active; ?>"

@@ -3,6 +3,7 @@ class Database {
     private static $instance = null;
     private $db;
     private $useCache = false;
+    private $cacheTTL = 3600; // seconds, overridden by settings.json
     private $cacheDir = __DIR__ . '/../cache/db_query_cache/';
 
     private function __construct() {
@@ -38,7 +39,7 @@ class Database {
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_PERSISTENT         => true,  // persistent connections for performance
+            PDO::ATTR_PERSISTENT         => false, // disabled: persistent connections cause stale state on shared hosting
             PDO::ATTR_EMULATE_PREPARES   => false, // native prepared statements
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci,
                                              @@SESSION.time_zone = '+05:30',
@@ -58,6 +59,9 @@ class Database {
         if (file_exists($settingsFile)) {
             $settings = json_decode(file_get_contents($settingsFile), true);
             $this->useCache = $settings['features']['caching']['enabled'] ?? false;
+            // Read TTL from settings (minutes → seconds), default 60 min
+            $ttlMinutes = $settings['features']['caching']['ttl']['db'] ?? 60;
+            $this->cacheTTL = (int)$ttlMinutes * 60;
         }
         if ($this->useCache && !is_dir($this->cacheDir)) {
             @mkdir($this->cacheDir, 0755, true);
@@ -72,7 +76,7 @@ class Database {
         if (!$this->useCache) return null;
         $file = $this->cacheDir . $key . '.json';
         if (file_exists($file)) {
-            if (filemtime($file) > time() - 3600) {
+            if (filemtime($file) > time() - $this->cacheTTL) {
                 return json_decode(file_get_contents($file), true);
             }
         }

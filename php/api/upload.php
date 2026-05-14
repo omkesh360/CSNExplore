@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') sendError('Method not allowed', 405);
 $uploadDir = __DIR__ . '/../../images/uploads/';
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
 
-if (empty($_FILES['file'])) sendError('No file uploaded', 400);
+if (empty($_FILES['file']) && empty($_FILES['image'])) sendError('No file uploaded', 400);
 
-$file = $_FILES['file'];
+$file = !empty($_FILES['file']) ? $_FILES['file'] : $_FILES['image'];
 if ($file['error'] !== UPLOAD_ERR_OK) sendError('Upload error: ' . $file['error'], 400);
 
 // Validate type
@@ -36,8 +36,15 @@ $dest     = $uploadDir . $filename;
 
 if (!move_uploaded_file($file['tmp_name'], $dest)) sendError('Failed to save file', 500);
 
-$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
-     . '://' . $_SERVER['HTTP_HOST']
-     . '/images/uploads/' . $filename;
+// Build URL using configured base or detected host (never trust HTTP_HOST directly)
+$baseUrl = getenv('APP_URL') ?: '';
+if (!$baseUrl) {
+    $scheme  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+    // Validate HTTP_HOST: only allow safe hostname characters
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    if (!preg_match('/^[a-zA-Z0-9.\-:]+$/', $host)) $host = 'localhost';
+    $baseUrl = $scheme . '://' . $host;
+}
+$url = rtrim($baseUrl, '/') . '/images/uploads/' . $filename;
 
 sendJson(['url' => $url, 'filename' => $filename]);
