@@ -177,9 +177,16 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
     $head = '<!DOCTYPE html>
 <html class="light" lang="en" style="scroll-behavior:smooth">
 <head>
-<!-- Google Analytics GA4 -->
+<!-- Preload Critical Resources -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+</noscript>
+<!-- Google Analytics GA4 - Deferred -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());gtag(\'config\',\'G-58P4JE1SYS\',{send_page_view:false});</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-58P4JE1SYS"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());gtag(\'config\',\'G-58P4JE1SYS\');</script>
 <meta charset="utf-8"/>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -189,12 +196,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="format-detection" content="telephone=no"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.tailwindcss.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<link rel="dns-prefetch" href="https://images.unsplash.com">';
+<meta name="format-detection" content="telephone=no"/>';
 
     $head .= '
 <link rel="apple-touch-icon" sizes="57x57" href="' . $base . 'images/fevicon/apple-icon-57x57.png">
@@ -235,16 +237,27 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
 <meta name="twitter:image" content="' . htmlspecialchars($image) . '">';
 
     $head .= '
+<!-- Critical CSS Inline (Prevents FOUC) -->
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;padding:0;font-family:Inter,sans-serif;background:#fff;color:#0f172a;overflow-x:hidden;max-width:100vw}
+*{box-sizing:border-box}
+.material-symbols-outlined{font-family:"Material Symbols Outlined";font-style:normal;display:inline-block;line-height:1;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}
+img{max-width:100%;height:auto}
+h1{font-size:clamp(1.5rem,5vw,3.5rem)}
+h2{font-size:clamp(1.25rem,4vw,2.5rem)}
+input,select,textarea{font-size:16px!important}
+</style>
 <!-- Non-blocking font loading -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media=\'all\'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/></noscript>
-<!-- Material Symbols slim variant, non-blocking -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" media="print" onload="this.media=\'all\'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols_Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/></noscript>
-<!-- Tailwind: synchronous to prevent FOUC/black-line flash on refresh -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"},fontFamily:{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}};</script>
-<link rel="stylesheet" href="' . $base . 'mobile-responsive.css"/>';
+<!-- Tailwind: Load async with critical styles inline -->
+<script>
+(function(){var s=document.createElement("script");s.src="https://cdn.tailwindcss.com";s.async=true;s.onload=function(){tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#ec5b13","whatsapp":"#25D366","background-dark":"#0a0705"},fontFamily:{display:["Inter","sans-serif"],serif:["Playfair Display","serif"]}}}}};document.head.appendChild(s);})();
+</script>
+<!-- Mobile responsive CSS - async load -->
+<link rel="preload" href="' . $base . 'mobile-responsive.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript><link rel="stylesheet" href="' . $base . 'mobile-responsive.min.css"></noscript>';
 
     if ($schema) {
         $head .= "\n" . '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
