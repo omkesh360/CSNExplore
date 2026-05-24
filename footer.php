@@ -203,8 +203,9 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
 <?php endif; ?>
 
 <!-- ── Cookie Consent Banner [B4.1] ──────────────────────────────────────── -->
+<?php $show_cookie = !isset($_COOKIE['csn_cookie_consent']) ? 'block' : 'none'; ?>
 <div id="cookie-banner"
-    style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1e293b;color:#f8fafc;padding:16px 24px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+    style="display:<?php echo $show_cookie; ?>;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1e293b;color:#f8fafc;padding:16px 24px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
     <div
         style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;">
         <p style="margin:0;font-size:13px;color:#cbd5e1;line-height:1.6;flex:1;min-width:280px;">
@@ -476,9 +477,6 @@ if (file_exists($locationsFile)) {
             document.cookie = 'csn_cookie_consent=' + val + ';max-age=31536000;path=/;SameSite=Lax';
             document.getElementById('cookie-banner').style.display = 'none';
         };
-        if (!getCookie('csn_cookie_consent')) {
-            setTimeout(function () { document.getElementById('cookie-banner').style.display = 'block'; }, 1200);
-        }
 
         // ── Reinitialize reveal on pageshow (back/forward cache) ──store opacity on page show (back/forward cache) ──
         window.addEventListener('pageshow', function (e) {

@@ -39,11 +39,14 @@ class Database {
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_PERSISTENT         => false, // disabled: persistent connections cause stale state on shared hosting
+            // Persistent connections: safe on Hostinger/dedicated; disable on unstable shared hosts
+            PDO::ATTR_PERSISTENT         => $isProduction,
             PDO::ATTR_EMULATE_PREPARES   => false, // native prepared statements
+            PDO::ATTR_TIMEOUT            => 5,     // fail fast if DB is unreachable
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci,
                                              @@SESSION.time_zone = '+05:30',
-                                             @@SESSION.sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_DATE'",
+                                             @@SESSION.sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_DATE',
+                                             @@SESSION.group_concat_max_len = 32768",
         ];
         $this->db = new PDO($dsn, $user, $pass, $options);
 

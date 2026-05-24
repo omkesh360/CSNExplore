@@ -1,19 +1,15 @@
 <?php
+declare(strict_types=1);
 // CSNExplore – Central config
-if (!ob_get_level()) ob_start(); // Output buffering for performance
-// Enable gzip compression for PHP output if not already handled by Apache
-if (!ini_get('zlib.output_compression') && extension_loaded('zlib')) {
-    ini_set('zlib.output_compression', 1);
-    ini_set('zlib.output_compression_level', 6);
-}
+// ── Performance bootstrap MUST be first (OPcache, JIT, realpath cache, ob) ──
+require_once __DIR__ . '/performance.php';
 require_once __DIR__ . '/cache-headers.php';
 applyCacheHeaders('page');
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
+// Error logging path (log_errors set by performance.php, just point to the right file)
 $_logDir = __DIR__ . '/../logs';
 if (!is_dir($_logDir)) @mkdir($_logDir, 0755, true);
 ini_set('error_log', $_logDir . '/php_errors.log');
+
 
 // Load .env file if exists
 if (file_exists(__DIR__ . '/../.env')) {

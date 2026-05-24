@@ -1,114 +1,112 @@
 /**
- * CSNExplore Service Worker v3.0 - OPTIMIZED
- * Aggressive caching for maximum performance
+ * CSNExplore Service Worker v4.0 – OPTIMIZED
+ * Strategy:
+ *   - Static assets (CSS/JS/fonts/images): Cache-First, 1-year TTL
+ *   - HTML pages: Stale-While-Revalidate (serve from cache instantly, update in bg)
+ *   - API/Admin: Network-only, never cached
+ *   - Hero image: Precached at install time for instant LCP
  */
 
-const CACHE_VERSION = 'csnexplore-v3';
-const STATIC_CACHE = CACHE_VERSION + '-static';
-const DYNAMIC_CACHE = CACHE_VERSION + '-dynamic';
-const MAX_DYNAMIC_ITEMS = 50;
+const CACHE_VERSION  = 'csn-v4';
+const STATIC_CACHE   = CACHE_VERSION + '-static';
+const PAGES_CACHE    = CACHE_VERSION + '-pages';
+const MAX_PAGE_ITEMS = 20;
+const STATIC_TTL_MS  = 365 * 24 * 60 * 60 * 1000; // 1 year
 
-// Critical assets to cache immediately (use relative paths for subdirectory compatibility)
-const STATIC_ASSETS = [
-  './',
+// Critical assets to precache at install time (LCP + above-the-fold)
+const PRECACHE_ASSETS = [
   './style.min.css',
   './animations.min.css',
   './animations.min.js',
-  './manifest.json'
+  './manifest.json',
+  // Hero image: precached so LCP is instant on repeat visits
+  './images/hotel-hero-section-mobile.webp',
 ];
 
-// Install event - cache static assets aggressively
+// ── Install: precache static shell ─────────────────────────────────────────
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(cache => {
-        return cache.addAll(STATIC_ASSETS).catch(err => {
-          console.warn('SW: Failed to cache some assets', err);
-        });
-      })
-      .then(() => self.skipWaiting())
+    caches.open(STATIC_CACHE).then(cache =>
+      cache.addAll(PRECACHE_ASSETS).catch(err =>
+        console.warn('[SW] Precache partial failure:', err)
+      )
+    ).then(() => self.skipWaiting())
   );
 });
 
-// Activate event - clean old caches
+// ── Activate: nuke all old caches ──────────────────────────────────────────
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(key => key !== STATIC_CACHE && key !== DYNAMIC_CACHE)
-          .map(key => caches.delete(key))
-      ))
-      .then(() => self.clients.claim())
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(k => k !== STATIC_CACHE && k !== PAGES_CACHE)
+            .map(k => caches.delete(k))
+      )
+    ).then(() => self.clients.claim())
   );
 });
 
-// Limit dynamic cache size
-function limitCacheSize(cacheName, maxItems) {
-  caches.open(cacheName).then(cache => {
-    cache.keys().then(keys => {
-      if (keys.length > maxItems) {
-        cache.delete(keys[0]).then(() => limitCacheSize(cacheName, maxItems));
-      }
-    });
-  });
-}
-
-// Fetch event - Cache-first strategy for static, Network-first for dynamic
+// ── Fetch routing ──────────────────────────────────────────────────────────
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
-  
-  // Skip non-GET requests
+
+  // Skip non-GET and cross-origin requests
   if (request.method !== 'GET') return;
-  
-  // Skip API calls and admin pages (always fresh)
-  if (url.pathname.includes('/php/api/') || 
-      url.pathname.includes('/admin/') ||
-      url.pathname.includes('/vendor/')) {
+  if (url.origin !== self.location.origin) return;
+
+  // Never cache admin / API / vendor routes
+  if (/\/(admin|php\/api|vendor)\//i.test(url.pathname)) return;
+
+  // ── Strategy A: Cache-First for static assets (CSS/JS/fonts/images) ───
+  if (/\.(css|js|woff2?|ttf|otf|webp|avif|png|jpg|jpeg|gif|svg|ico)(\?.*)?$/.test(url.pathname)) {
+    event.respondWith(cacheFirst(request, STATIC_CACHE));
     return;
   }
 
-  // Cache-first strategy for static assets (including WebP)
-  if (request.url.match(/\.(css|js|png|jpg|jpeg|webp|svg|woff|woff2|ico)$/)) {
-    event.respondWith(
-      caches.match(request).then(response => {
-        return response || fetch(request).then(fetchResponse => {
-          if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
-            return fetchResponse;
-          }
-          
-          const responseClone = fetchResponse.clone();
-          caches.open(STATIC_CACHE).then(cache => {
-            cache.put(request, responseClone);
-          });
-          
-          return fetchResponse;
-        });
-      })
-    );
-    return;
-  }
-
-  // Network-first strategy for HTML pages (with cache fallback)
-  event.respondWith(
-    fetch(request)
-      .then(response => {
-        if (!response || response.status !== 200) {
-          return response;
-        }
-        
-        const responseClone = response.clone();
-        caches.open(DYNAMIC_CACHE).then(cache => {
-          cache.put(request, responseClone);
-          limitCacheSize(DYNAMIC_CACHE, MAX_DYNAMIC_ITEMS);
-        });
-        
-        return response;
-      })
-      .catch(() => {
-        return caches.match(request).then(response => {
-          return response || caches.match('./');
-        });
-      })
-  );
+  // ── Strategy B: Stale-While-Revalidate for HTML pages ─────────────────
+  event.respondWith(staleWhileRevalidate(request, PAGES_CACHE));
 });
+
+// ── Cache-First helper ─────────────────────────────────────────────────────
+async function cacheFirst(request, cacheName) {
+  const cache    = await caches.open(cacheName);
+  const cached   = await cache.match(request);
+  if (cached) return cached;
+
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      cache.put(request, response.clone()).catch(() => {});
+    }
+    return response;
+  } catch {
+    return new Response('', { status: 503, statusText: 'Offline' });
+  }
+}
+
+// ── Stale-While-Revalidate helper ─────────────────────────────────────────
+async function staleWhileRevalidate(request, cacheName) {
+  const cache  = await caches.open(cacheName);
+  const cached = await cache.match(request);
+
+  // Always revalidate in the background
+  const networkFetch = fetch(request).then(response => {
+    if (response && response.status === 200) {
+      cache.put(request, response.clone()).then(() => limitCache(cache, MAX_PAGE_ITEMS));
+    }
+    return response;
+  }).catch(() => null);
+
+  // Return cached immediately if available; otherwise wait for network
+  return cached || networkFetch || new Response('', { status: 503 });
+}
+
+// ── Trim old entries from cache ────────────────────────────────────────────
+async function limitCache(cache, max) {
+  const keys = await cache.keys();
+  if (keys.length > max) {
+    await cache.delete(keys[0]);
+    await limitCache(cache, max);
+  }
+}

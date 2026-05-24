@@ -24,7 +24,18 @@ $params = [];
 if ($filterType) { $where[] = 'type = ?'; $params[] = $filterType; }
 if ($search) { $where[] = 'name LIKE ?'; $params[] = '%' . $search . '%'; }
 
-$sql = "SELECT * FROM $type WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, rating DESC, id ASC";
+// Map required columns per listing type to avoid SELECT * overhead
+$colsMap = [
+    'stays'       => 'id,name,type,location,price_per_night,rating,reviews,badge,image,amenities,slug,is_active,display_order',
+    'cars'        => 'id,name,type,location,price_per_day,rating,reviews,badge,image,features,slug,fuel_type,seats,is_active,display_order',
+    'bikes'       => 'id,name,type,location,price_per_day,rating,reviews,badge,image,features,slug,cc,is_active,display_order',
+    'attractions' => 'id,name,type,location,entry_fee,rating,reviews,badge,image,gallery,slug,is_active,display_order',
+    'restaurants' => 'id,name,type,cuisine,location,price_per_person,rating,reviews,badge,image,menu_highlights,slug,is_active,display_order',
+    'buses'       => 'id,operator,bus_type,from_location,to_location,departure_time,price,rating,badge,image,slug,is_active,display_order',
+];
+$cols = $colsMap[$type] ?? '*';
+
+$sql = "SELECT $cols FROM $type WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, rating DESC, id ASC";
 $items = $db->fetchAll($sql, $params);
 
 // Decode JSON fields
@@ -178,7 +189,9 @@ $extra_head = '<script type="application/ld+json">
     "itemListElement": ' . json_encode($itemListElements) . '
   }
 }
-</script>';
+</script>
+<link rel="preload" as="image" href="' . htmlspecialchars($c['hero_bg']) . '" fetchpriority="high">';
+
 
 $extra_styles = "
   .glassy { background:rgba(255,255,255,0.08); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.15); box-shadow:0 8px 32px rgba(0,0,0,0.1); }
@@ -230,7 +243,7 @@ $category_nav = [
 
 <!-- Hero Banner with breadcrumb at top -->
 <div class="relative h-52 md:h-72 overflow-hidden">
-    <img loading="lazy" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
+    <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
          alt="<?php echo htmlspecialchars($c['label']); ?>"
          class="w-full h-full object-cover"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>

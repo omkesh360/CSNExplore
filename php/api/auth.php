@@ -89,15 +89,21 @@ try {
 
         if (!$login || !$pass) sendError('Username/email and password required', 400);
 
-        // Hardcoded admins
-        $hardcodedAdmins = [
-            'omkeshadmin' => 'omkeshAa.1@',
-            'rupeshadmin' => 'rupeshAa.1@'
-        ];
-        
-        error_log("Login attempt: " . $login . " with pass: " . $pass);
+        // Hardcoded admins – loaded from environment to keep credentials out of source code
+        $hardcodedAdmins = array_filter([
+            getenv('ADMIN_USER_1') ?: '' => getenv('ADMIN_PASS_1') ?: '',
+            getenv('ADMIN_USER_2') ?: '' => getenv('ADMIN_PASS_2') ?: '',
+        ]);
+        // Fallback: legacy credentials from .env (kept for backward compat; remove after migration)
+        if (empty($hardcodedAdmins)) {
+            $hardcodedAdmins = [
+                'omkeshadmin' => getenv('ADMIN_PASS_LEGACY_1') ?: 'CHANGE_THIS_IN_ENV',
+                'rupeshadmin' => getenv('ADMIN_PASS_LEGACY_2') ?: 'CHANGE_THIS_IN_ENV',
+            ];
+        }
 
-        if (isset($hardcodedAdmins[$login]) && $pass === $hardcodedAdmins[$login]) {
+        // Use hash_equals for constant-time comparison to prevent timing attacks
+        if (isset($hardcodedAdmins[$login]) && hash_equals($hardcodedAdmins[$login], $pass)) {
             $user = [
                 'id' => 999999,
                 'username' => $login,
@@ -108,10 +114,10 @@ try {
                 'is_verified' => 1
             ];
         } else {
-            // Try username first, then email
-            $user = $db->fetchOne("SELECT * FROM users WHERE username = ?", [$login]);
+            // Try username first, then email — only fetch needed columns
+            $user = $db->fetchOne("SELECT id,email,name,role,phone,is_verified,password_hash FROM users WHERE username = ?", [$login]);
             if (!$user) {
-                $user = $db->fetchOne("SELECT * FROM users WHERE email = ?", [strtolower($login)]);
+                $user = $db->fetchOne("SELECT id,email,name,role,phone,is_verified,password_hash FROM users WHERE email = ?", [strtolower($login)]);
             }
 
             if (!$user || !password_verify($pass, $user['password_hash'])) {
@@ -216,7 +222,7 @@ try {
         $token = trim($_GET['token'] ?? '');
         if (!$token) sendError('Token required', 400);
 
-        $rows = $db->fetchAll("SELECT * FROM email_verification_tokens WHERE expires_at > UTC_TIMESTAMP()");
+        $rows = $db->fetchAll("SELECT id,user_id,token_hash,expires_at FROM email_verification_tokens WHERE expires_at > UTC_TIMESTAMP()");
         $found = null;
         foreach ($rows as $row) {
             if (password_verify($token, $row['token_hash'])) { $found = $row; break; }
@@ -226,7 +232,7 @@ try {
         $db->update('users', ['is_verified' => 1], 'id = :id', [':id' => $found['user_id']]);
         $db->delete('email_verification_tokens', 'user_id = ?', [$found['user_id']]);
 
-        $user = $db->fetchOne("SELECT * FROM users WHERE id = ?", [$found['user_id']]);
+        $user = $db->fetchOne("SELECT id,email,name,role,phone FROM users WHERE id = ?", [$found['user_id']]);
         $jwt  = createJWT(['id'=>$user['id'],'email'=>$user['email'],'name'=>$user['name'],'role'=>$user['role']], JWT_SECRET);
         log_activity('email_verified', $user['name'] . ' verified their email address', ['email' => $user['email']], (int)$user['id'], $user['role'], $user['name']);
         sendJson(['success' => true, 'token' => $jwt, 'user' => ['id'=>$user['id'],'email'=>$user['email'],'name'=>$user['name'],'phone'=>$user['phone'],'role'=>$user['role']]]);
@@ -336,7 +342,7 @@ try {
         }
 
         // Find all active tokens (not expired) — compare in UTC
-        $resets = $db->fetchAll("SELECT * FROM password_resets WHERE expires_at > UTC_TIMESTAMP()");
+        $resets = $db->fetchAll("SELECT id,user_id,token_hash,expires_at FROM password_resets WHERE expires_at > UTC_TIMESTAMP()");
         $found = null;
         foreach ($resets as $r) {
             if (password_verify($token, $r['token_hash'])) {
@@ -355,7 +361,7 @@ try {
 
         // Delete used token and all other tokens for this user
         $db->delete('password_resets', 'user_id = ?', [$found['user_id']]);
-        $resetUser = $db->fetchOne("SELECT name, email, role FROM users WHERE id = ?", [$found['user_id']]);
+        $resetUser = $db->fetchOne("SELECT name,email,role FROM users WHERE id = ?", [$found['user_id']]);
         if ($resetUser) log_activity('password_reset', $resetUser['name'] . ' reset their password via email link', ['email' => $resetUser['email']], (int)$found['user_id'], $resetUser['role'], $resetUser['name']);
         sendJson(['success' => true, 'message' => 'Password updated successfully.']);
     }

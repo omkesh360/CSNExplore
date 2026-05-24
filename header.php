@@ -62,9 +62,8 @@ $active_listing_type = $listing_type ?? '';
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Fonts: only essential weights, font-display:swap prevents FOIT -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/></noscript>
+    <!-- Fonts: Load synchronously so LCP text (h1) renders immediately without FOUT/FOIT delay -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     
     <!-- Material Symbols: DEFERRED to avoid render blocking -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
@@ -176,10 +175,10 @@ $active_listing_type = $listing_type ?? '';
         /* ── Prevent blue/dark flash on tapping links on mobile ── */
         a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
     </style>
-    <!-- Site CSS: ALL async — zero render-blocking (minified) -->
-    <?php $mobileVer = '?v=' . filemtime(__DIR__ . '/mobile-responsive.min.css'); ?>
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobileVer; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobileVer; ?>"/></noscript>
+    <!-- Mobile Responsive CSS: Inlined for perfect CLS (Zero Layout Shift) -->
+    <style>
+        <?php readfile(__DIR__ . '/mobile-responsive.min.css'); ?>
+    </style>
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
