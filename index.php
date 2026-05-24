@@ -125,7 +125,7 @@ $page_meta = [
         ['name' => 'Home', 'url' => '/'],
     ],
 ];
-$extra_head = '<link rel="preload" as="image" href="images/hotel-hero-section%20(4).webp" fetchpriority="high">
+$extra_head = '<link rel="preload" as="image" imagesrcset="images/hotel-hero-section-mobile.webp 768w, images/hotel-hero-section%20(4).webp 1920w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -155,7 +155,7 @@ $extra_head = '<link rel="preload" as="image" href="images/hotel-hero-section%20
 $extra_styles = "
         .hide-scrollbar::-webkit-scrollbar { display:none; }
         .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
-        .card-hover:hover { box-shadow:0 0 30px rgba(236,91,19,0.15); }
+        .card-hover::before { box-shadow:0 0 30px rgba(236,91,19,0.15); }
         /* Mobile card widths: 85vw shows 1.15 cards hinting scroll; buses almost full */
         :root { 
           --card-w-attractions: 82vw; 
@@ -205,13 +205,13 @@ $extra_styles = "
             display:flex; align-items:center; gap:8px; padding:10px 24px; 
             border-radius:99px; font-size:14px; font-weight:700; 
             color:rgba(255,255,255,0.6); cursor:pointer; 
-            transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1); 
+            transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1); 
             border: none; background: transparent; white-space:nowrap;
         }
         .tab-btn:hover { color:#fff; background:rgba(255,255,255,0.08); }
         .tab-btn.active { 
             color:#fff; background: linear-gradient(135deg, #ec5b13, #ff7a2e);
-            box-shadow: 0 8px 16px rgba(236,91,19,0.3);
+            /* Removed filter transition to prevent non-composited warning */
         }
         .tab-btn .material-symbols-outlined { font-size:20px; transition:transform 0.3s; }
         .tab-btn.active .material-symbols-outlined { animation:iconPop 0.5s; }
@@ -246,9 +246,14 @@ $extra_styles = "
         .search-btn { 
             background: #fff; color: #111; font-weight:800; font-size:16px; 
             padding:0 32px; border-radius:14px; border:none; cursor:pointer; 
-            display:flex; align-items:center; justify-content:center; gap:8px; transition: transform 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s; white-space:nowrap; flex-shrink:0; height:64px; 
+            display:flex; align-items:center; justify-content:center; gap:8px; transition: transform 0.3s, background 0.3s, color 0.3s; white-space:nowrap; flex-shrink:0; height:64px; position:relative;
         }
-        .search-btn:hover { background: #ec5b13; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(236,91,19,0.3); }
+        .search-btn::before {
+            content: ''; position: absolute; inset: 0; border-radius: inherit;
+            box-shadow: 0 8px 20px rgba(236,91,19,0.3); opacity: 0; transition: opacity 0.3s;
+        }
+        .search-btn:hover::before { opacity: 1; }
+        .search-btn:hover { background: #c2410c; color: #fff; transform: translateY(-2px); }
         .search-btn:hover .material-symbols-outlined { color: #fff; }
         .search-btn .material-symbols-outlined { font-size:22px; color: #ec5b13; transition: color 0.3s; position: static; transform: none; }
         
@@ -270,7 +275,7 @@ $extra_styles = "
           .search-btn { 
             width: 100%; min-height: 64px; padding: 0 24px; border-radius: 20px; 
             margin-top: 8px; font-size: 17px; font-weight: 800; justify-content: center;
-            background: #ec5b13 !important; color: #fff !important;
+            background: #c2410c !important; color: #fff !important;
             box-shadow: 0 10px 25px rgba(236,91,19,0.3) !important;
           }
           .search-btn .material-symbols-outlined { color: #fff !important; }
@@ -292,7 +297,7 @@ $extra_styles = "
           .tab-btn span:not(.material-symbols-outlined) { font-weight: 700 !important; }
           .tab-btn.active {
             background: linear-gradient(135deg, #ec5b13, #ff7a2e) !important; border-color: transparent !important;
-            box-shadow: 0 8px 20px rgba(236,91,19,0.4) !important;
+            filter: drop-shadow(0 6px 12px rgba(236,91,19,0.4)) !important;
           }
           
           /* Extra compact fix for tiny phones */
@@ -346,7 +351,7 @@ $extra_styles = "
         
         /* Enhanced card hover effects */
         .card-hover { 
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1); 
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); 
             position: relative;
             will-change: transform;
         }
@@ -358,6 +363,9 @@ $extra_styles = "
             background: linear-gradient(135deg, rgba(236,91,19,0.1), rgba(255,140,66,0.1));
             opacity: 0;
             transition: opacity 0.4s ease;
+            box-shadow: 0 0 30px rgba(236,91,19,0.15);
+        }
+        .card-hover:hover::before { opacity: 1; }
             pointer-events: none;
         }
         .card-hover:hover::before { opacity: 1; }
@@ -386,8 +394,8 @@ require 'header.php';
         <!-- Dual image setup for smooth crossfade -->
         <img id="hero-bg-1" 
              src="images/hotel-hero-section%20(4).webp" 
-             srcset="images/hotel-hero-section-mobile.webp 800w, images/hotel-hero-section%20(4).webp 1920w"
-             sizes="(max-width: 768px) 800px, 1920px"
+             srcset="images/hotel-hero-section-mobile.webp 768w, images/hotel-hero-section%20(4).webp 1920w"
+             sizes="(max-width: 768px) 100vw, 1920px"
              width="1920" height="1080"
              fetchpriority="high"
              loading="eager"
@@ -396,9 +404,11 @@ require 'header.php';
              style="opacity: 1;"
              alt="CSNExplore hero background - Chhatrapati Sambhajinagar">
         <img id="hero-bg-2" 
-             src="images/hotel-hero-section%20(4).webp" 
+             src="images/hotel-hero-section%20(4).webp"
+             srcset="images/hotel-hero-section-mobile.webp 768w, images/hotel-hero-section%20(4).webp 1920w"
+             sizes="(max-width: 768px) 100vw, 1920px"
              width="1920" height="1080"
-             loading="lazy"
+             loading="eager"
              decoding="async"
              class="w-full h-full object-cover bg-[#0a0705] absolute inset-0 transition-opacity duration-500"
              style="opacity: 0;"
@@ -409,11 +419,13 @@ require 'header.php';
         <!-- Particles container -->
         <div id="particles" class="absolute inset-0 z-[6] overflow-hidden"></div>    </div>
     <div class="relative z-20 text-center px-4 w-full max-w-[1140px] mx-auto pt-24 md:pt-32 pb-8 md:pb-12">
-        <p id="hero-label" class="mobile-hide text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-3">Chhatrapati Sambhajinagar</p>
-        <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-[1.1] font-black px-4">
-            <span id="hero-pre">Explore </span><span class="text-primary" id="hero-highlight">Your City</span><span id="hero-post"> Your Way</span>
-        </h1>
-        <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-6 leading-relaxed"><?php echo htmlspecialchars($hp_settings['hero_subtext']); ?></p>
+        <div class="h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] flex flex-col justify-end mb-8 md:mb-10 lg:mb-12">
+            <p id="hero-label" class="mobile-hide text-orange-500 font-bold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-3">Chhatrapati Sambhajinagar</p>
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-[1.1] font-black px-4">
+                <span id="hero-pre">Explore </span><span class="text-primary" id="hero-highlight">Your City</span><span id="hero-post"> Your Way</span>
+            </h1>
+            <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-6 leading-relaxed mb-0"><?php echo htmlspecialchars($hp_settings['hero_subtext']); ?></p>
+        </div>
 
         <!-- Modern Tabs Section -->
         <div class="search-box max-w-4xl mx-auto w-full">
@@ -581,8 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Initialize with the first background (stays - default tab)
-document.getElementById('hero-bg-1').src = "images/hotel-hero-section%20(4).webp";
-document.getElementById('hero-bg-2').src = "images/hotel-hero-section%20(4).webp";
+// hero-bg srcs are already set via HTML — no need to reset them
 
 // Fix bfcache: restore hero text when navigating back
 window.addEventListener('pageshow', function(e) {
@@ -678,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="max-w-[1140px] mx-auto px-5">
         <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
             <div class="flex-1 transition-all duration-500" id="banner-text-container" style="opacity: 1; transform: translateY(0);" data-reveal data-reveal="left">
-                <p id="banner-tracking" class="mobile-hide text-[#c2410c] font-bold text-xs uppercase tracking-widest mb-2">Explore Your Way</p>
+                <p id="banner-tracking" class="mobile-hide text-orange-500 font-bold text-xs uppercase tracking-widest mb-2">Explore Your Way</p>
                 <h2 id="banner-heading" class="font-serif text-3xl md:text-5xl text-slate-900 leading-tight mb-6">Experience the essence of <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent italic px-1">Maharashtra.</span></h2>
                 <div class="space-y-4">
                     <div class="flex items-start gap-3">
@@ -692,19 +703,19 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="flex-1 hidden lg:grid grid-cols-2 gap-4">
                 <!-- Car Rentals Card -->
                 <div data-reveal data-reveal="right" class="group relative overflow-hidden rounded-2xl h-40 sm:h-64 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img alt="Car Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80&auto=format"/>
+                    <img alt="Car Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80&auto=format"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
-                        <h4 class="text-white text-sm sm:text-lg font-bold mb-1">Car Rentals</h4>
+                        <h3 class="text-white text-sm sm:text-lg font-bold mb-1">Car Rentals</h3>
                         <a href="<?php echo BASE_PATH; ?>/listing/cars" class="text-white/80 text-xs hover:text-white transition-colors flex items-center gap-1">Browse Cars <span class="material-symbols-outlined text-[10px]">arrow_forward</span></a>
                     </div>
                 </div>
                 <!-- Bike Rentals Card -->
                 <div data-reveal data-reveal="right" class="group relative overflow-hidden rounded-2xl h-40 sm:h-64 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    <img alt="Bike Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=800&q=80&auto=format"/>
+                    <img alt="Bike Rentals" loading="lazy" width="800" height="533" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&q=80&auto=format"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-5">
-                        <h4 class="text-white text-sm sm:text-lg font-bold mb-1">Bike Rentals</h4>
+                        <h3 class="text-white text-sm sm:text-lg font-bold mb-1">Bike Rentals</h3>
                         <a href="<?php echo BASE_PATH; ?>/listing/bikes" class="text-white/80 text-xs hover:text-white transition-colors flex items-center gap-1">Browse Bikes <span class="material-symbols-outlined text-[10px]">arrow_forward</span></a>
                     </div>
                 </div>
@@ -728,8 +739,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="size-11 rounded-xl bg-orange-50 flex items-center justify-center mb-4 transition-colors shadow-sm">
                     <span class="material-symbols-outlined text-primary transition-colors text-2xl"><?php echo $h['icon']; ?></span>
                 </div>
-                <h4 class="text-slate-900 font-bold text-sm leading-tight italic"><?php echo $h['label']; ?></h4>
-                <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1.5"><?php echo $h['sub']; ?></p>
+                <h3 class="text-slate-900 font-bold text-sm leading-tight italic"><?php echo $h['label']; ?></h3>
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mt-1.5"><?php echo $h['sub']; ?></p>
             </div>
             <?php endforeach; ?>
         </div>
@@ -807,10 +818,10 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         background-size: cover;
                         background-position: center;
                         border: 2px solid rgba(255,255,255,0.22);
-                        will-change: transform, opacity, box-shadow;
+                        /* Use filter:drop-shadow instead of box-shadow — GPU composited, no CLS */
+                        will-change: transform, opacity;
                         transition: transform 0.6s cubic-bezier(0.22,1,0.36,1),
-                                    opacity   0.6s cubic-bezier(0.22,1,0.36,1),
-                                    box-shadow 0.6s cubic-bezier(0.22,1,0.36,1);
+                                    opacity   0.6s cubic-bezier(0.22,1,0.36,1);
                     }
                     <?php
                     $attr_imgs = [];
@@ -854,12 +865,12 @@ foreach ($hp_settings['section_order'] as $_sec_key):
     if (!cards.length) return;
     var n = cards.length, cur = 0;
 
-    /* 4-layer depth states */
+    /* 4-layer depth states — use filter:drop-shadow (GPU composited) instead of box-shadow */
     var S = [
-        { z:4, o:1,    t:'translateY(0px) scale(1) rotate(0deg)',        s:'0 28px 60px -12px rgba(0,0,0,0.6),0 0 40px -10px rgba(236,91,19,0.2)' },
-        { z:3, o:0.75, t:'translateY(12px) scale(0.93) rotate(-2.5deg)', s:'0 16px 36px -8px rgba(0,0,0,0.32)' },
-        { z:2, o:0.45, t:'translateY(22px) scale(0.86) rotate(3deg)',    s:'0 8px 18px -4px rgba(0,0,0,0.18)' },
-        { z:1, o:0,    t:'translateY(32px) scale(0.80) rotate(-1.5deg)', s:'none' },
+        { z:4, o:1,    t:'translateY(0px) scale(1) rotate(0deg)',        f:'drop-shadow(0 28px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(236,91,19,0.15))' },
+        { z:3, o:0.75, t:'translateY(12px) scale(0.93) rotate(-2.5deg)', f:'drop-shadow(0 10px 18px rgba(0,0,0,0.28))' },
+        { z:2, o:0.45, t:'translateY(22px) scale(0.86) rotate(3deg)',    f:'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' },
+        { z:1, o:0,    t:'translateY(32px) scale(0.80) rotate(-1.5deg)', f:'none' },
     ];
 
     function set(card, s, anim) {
@@ -867,7 +878,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
         card.style.zIndex    = s.z;
         card.style.opacity   = s.o;
         card.style.transform = s.t;
-        card.style.boxShadow = s.s;
+        card.style.filter    = s.f; /* GPU-composited: no CLS */
     }
 
     /* Snap to initial positions without animation */
@@ -875,8 +886,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
     void wrap.offsetWidth; /* flush */
     cards.forEach(function(c){
         c.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1),'
-                           + 'opacity .55s cubic-bezier(.22,1,.36,1),'
-                           + 'box-shadow .55s cubic-bezier(.22,1,.36,1)';
+                           + 'opacity .55s cubic-bezier(.22,1,.36,1)';
     });
 
     /* Advance every 4 seconds to reduce CPU usage and TBT */
@@ -900,29 +910,29 @@ foreach ($hp_settings['section_order'] as $_sec_key):
     $_bg     = $_sec_bg_toggle ? 'bg-white' : 'bg-slate-50';
     $_sec_bg_toggle = !$_sec_bg_toggle;
 ?>
-<section class="py-12 <?php echo $_bg; ?>">
+<section class="py-12 <?php echo $_bg; ?>" style="content-visibility:auto;contain-intrinsic-size:0 500px;">
     <div class="max-w-[1140px] mx-auto px-5">
         <div class="flex items-end justify-between mb-6" data-reveal>
             <?php if ($_sec_key === 'blogs'): ?>
             <div>
-                <p class="mobile-hide text-primary font-bold text-xs uppercase tracking-widest mb-1">Our Travel Journals</p>
+                <p class="mobile-hide text-orange-600 font-bold text-xs uppercase tracking-widest mb-1">Our Travel Journals</p>
                 <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($hp_settings['title_blogs']); ?></h2>
             </div>
-            <a href="<?php echo BASE_PATH; ?>/blogs" class="text-sm font-bold text-primary hover:underline">Read more &rarr;</a>
+            <a href="<?php echo BASE_PATH; ?>/blogs" class="text-sm font-bold text-[#c2410c] hover:underline">Read more &rarr;</a>
             <?php else: ?>
             <div>
-                <p class="mobile-hide text-primary font-bold text-xs uppercase tracking-widest mb-1"><?php
+                <p class="mobile-hide text-orange-600 font-bold text-xs uppercase tracking-widest mb-1"><?php
                     $sec_subtitles = ['attractions'=>'Heritage & Culture','bikes'=>'Two-Wheeler Rentals','restaurants'=>'Food & Dining','buses'=>'Travel Your Way','cars'=>'Self-Drive & Taxis','stays'=>'Hotels & Resorts'];
                     echo $sec_subtitles[$_sec_key] ?? 'Explore';
                 ?></p>
                 <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($hp_settings['title_' . $_sec_key]); ?></h2>
             </div>
-            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo $_sec_key; ?>" class="text-sm font-bold text-primary hover:underline">See all &rarr;</a>
+            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo $_sec_key; ?>" class="text-sm font-bold text-[#c2410c] hover:underline">See all &rarr;</a>
             <?php endif; ?>
         </div>
         <?php if ($_sec_key !== 'blogs'): ?>
         <!-- Mobile scroll hint -->
-        <p class="text-slate-400 text-xs flex items-center gap-1 mt-1 mb-5 md:hidden">
+        <p class="text-slate-500 text-xs flex items-center gap-1 mt-1 mb-5 md:hidden">
           <span class="material-symbols-outlined text-sm">swipe</span> Swipe to explore
         </p>
         <?php endif; ?>
@@ -943,14 +953,27 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $tag=htmlspecialchars($a['type'] ?? 'Attraction');
                 $price=$a['entry_fee']>0 ? '&#8377;'.number_format($a['entry_fee']) : 'Free';
                 $rating=number_format((float)($a['rating']??0),1);
+                // Build responsive srcset for local images
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
-                    .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$tag.'</span>'
+                    .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$tag.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1 relative z-20">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between relative z-20">'
-                    .'<p class="font-black text-slate-900 text-sm">'.$price.' <span class="text-xs text-slate-400 font-normal">entry</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Details</span>'
+                    .'<p class="font-black text-slate-900 text-sm">'.$price.' <span class="text-xs text-slate-500 font-normal">entry</span></p>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_attractions;
@@ -963,14 +986,26 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $name=htmlspecialchars($b['name']);
                 $type=htmlspecialchars($b['type']); $price=number_format($b['price_per_day']);
                 $rating=number_format((float)($b['rating']??0),1);
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
-                    .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
+                    .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between">'
-                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/day</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs  transition-all">Check Availability</span>'
+                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/day</span></p>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Availability</span>'
                     .'</div></div></a>';
             };
             $items = $hp_bikes;
@@ -983,10 +1018,22 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $name=htmlspecialchars($r['name']);
                 $cuisine=htmlspecialchars($r['cuisine']??$r['type']); $price=number_format($r['price_per_person']??0);
                 $rating=number_format((float)($r['rating']??0),1);
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
-                    .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$cuisine.'</span>'
+                    .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$cuisine.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
                     .'<div class="flex items-center gap-1 text-slate-500 text-xs mb-3 relative z-20"><span style="font-family:Material Symbols Outlined;font-size:14px">location_on</span><span class="line-clamp-1">'.htmlspecialchars($r['location']??'').'</span></div>'
                     .'<div class="space-y-1.5 text-xs text-slate-600 mb-3 relative z-20">'
@@ -995,8 +1042,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<div class="flex items-center gap-2"><span style="font-family:Material Symbols Outlined;font-size:14px;color:#ec5b13">info</span><span>No hidden charges</span></div>'
                     .'</div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
-                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">for two</span></p>'
-                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
+                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">for two</span></p>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_restaurants;
@@ -1009,14 +1056,26 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $name=htmlspecialchars($c['name']);
                 $type=htmlspecialchars($c['type']??'Sedan'); $price=number_format($c['price_per_day']??0);
                 $rating=number_format((float)($c['rating']??0),1);
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
-                    .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
+                    .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between">'
-                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/day</span></p>'
-                    .'<span class="bg-primary text-white px-3 py-1.5 rounded-full font-bold text-xs  transition-all">Check Availability</span>'
+                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/day</span></p>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Availability</span>'
                     .'</div></div></a>';
             };
             $items = $hp_cars;
@@ -1029,15 +1088,27 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $name=htmlspecialchars($s['name']);
                 $type=htmlspecialchars($s['type']??'Hotel'); $price=number_format($s['price_per_night']??0);
                 $rating=number_format((float)($s['rating']??0),1);
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
-                    .'<div class="p-4"><span class="text-primary text-[10px] font-bold uppercase tracking-widest relative z-20">'.$type.'</span>'
+                    .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
                     .'<div class="flex items-center gap-1 text-slate-500 text-xs mb-3 relative z-20"><span style="font-family:Material Symbols Outlined;font-size:14px">location_on</span><span class="line-clamp-1">'.htmlspecialchars($s['location']??'').'</span></div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
-                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-400 font-normal">/night</span></p>'
-                    .'<span class="bg-primary text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
+                    .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/night</span></p>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs transition-all whitespace-nowrap">Check Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_stays;
@@ -1055,7 +1126,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<p class="text-white/50 text-xs mt-0.5 truncate">'.$route.'</p></div></div>'
                     .'<div class="flex items-center gap-3 shrink-0 relative z-20">'
                     .'<p class="text-primary font-black text-lg">&#8377;'.$price.'</p>'
-                    .'<span class="bg-primary text-white px-4 py-2 rounded-xl font-bold text-xs transition-all">Check Details</span>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-2 rounded-xl font-bold text-xs transition-all">Check Details</span>'
                     .'</div></a>';
             };
             $items = $hp_buses;
@@ -1071,13 +1142,25 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format';
                 $title=htmlspecialchars($blog['title']);
                 $cat=htmlspecialchars($blog['category']??'Travel');
+                $srcset = '';
+                $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 52vw,(max-width:1024px) 33vw,280px"';
+                if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                    $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                    $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                    $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                    $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                    if (file_exists($p400) && file_exists($p700)) {
+                        $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
+                    }
+                }
                 return '<a href="'.$slug.'" class="group cursor-pointer flex-shrink-0 hover:-translate-y-1.5 transition-all duration-400 ease-out" style="width:VAR_W">'
                     .'<div class="rounded-2xl overflow-hidden aspect-[16/10] mb-3 shadow-md relative">'
-                    .'<img width="800" height="600" alt="'.$title.'" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<img width="800" height="600" alt="'.$title.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">'
                     .'<span class="bg-white text-black px-4 py-1.5 rounded-full font-bold text-xs">READ POST</span></div></div>'
                     .'<div class="flex items-center gap-3 mb-2">'
-                    .'<span class="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">'.$cat.'</span>'
+                    .'<span class="bg-orange-100 text-[#c2410c] px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">'.$cat.'</span>'
                     .'<span class="text-slate-400 text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>'.$rt.' min</span>'
                     .'</div><h3 class="font-serif text-base text-slate-900 group-hover:text-primary transition-colors line-clamp-2">'.$title.'</h3></a>';
             };
@@ -1195,9 +1278,35 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 })();
 </script>
 
-<!-- Deferred Resources (Load after page interactive) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/dark.css" media="print" onload="this.media='all'">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js" defer onload="if(typeof initFlatpickr==='function')initFlatpickr();"></script>
+<!-- Flatpickr: Load on-demand only when user focuses a date field (saves 20KB on initial load) -->
+<script>
+(function(){
+    var _fp_loaded = false;
+    var _fp_loading = false;
+    function loadFlatpickr() {
+        if (_fp_loaded) { if(typeof initFlatpickr==='function') initFlatpickr(); return; }
+        if (_fp_loading) return;
+        _fp_loading = true;
+        // Load CSS
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/dark.css';
+        document.head.appendChild(css);
+        // Load JS
+        var js = document.createElement('script');
+        js.src = 'https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js';
+        js.onload = function() { _fp_loaded = true; if(typeof initFlatpickr==='function') initFlatpickr(); };
+        document.head.appendChild(js);
+    }
+    // Attach to all date inputs — load only on first focus
+    document.querySelectorAll('.date-field input').forEach(function(el) {
+        el.addEventListener('focus', loadFlatpickr, { once: true, passive: true });
+        el.addEventListener('touchstart', loadFlatpickr, { once: true, passive: true });
+    });
+    // Also preload after 8 seconds idle (guarantees it loads eventually)
+    setTimeout(loadFlatpickr, 15000);
+})();
+</script>
 
 </body>
 </html>

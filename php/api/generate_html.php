@@ -129,10 +129,10 @@ function generateDescriptiveAnchor($itemName, $type) {
  * @param bool $lazy Whether to add lazy loading (default: true)
  * @param string $class Additional CSS classes (default: '')
  * @param string $style Additional inline styles (default: '')
- * @param string $errorFallback Fallback image on error (default: '../images/travelhub.png')
+ * @param string $errorFallback Fallback image on error (default: '../images/travelhub.webp')
  * @return string HTML for picture element with WebP source and fallback
  */
-function generateOptimizedImage($src, $alt, $width = 800, $height = 600, $lazy = true, $class = '', $style = '', $errorFallback = '../images/travelhub.png') {
+function generateOptimizedImage($src, $alt, $width = 800, $height = 600, $lazy = true, $class = '', $style = '', $errorFallback = '../images/travelhub.webp') {
     $src = trim($src);
     $alt = trim($alt);
     
@@ -1088,7 +1088,7 @@ foreach ($blogs as $blog) {
         <a href="'.$rSlug.'" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow" aria-label="'.htmlspecialchars($rAnchor).'">
           <span class="sr-only">'.htmlspecialchars($rAnchor).'</span>
           <div class="aspect-video overflow-hidden">
-            '.generateOptimizedImage($r['image'] ?? '../images/travelhub.png', $rAlt, 400, 225, true, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500').'
+            '.generateOptimizedImage($r['image'] ?? '../images/travelhub.webp', $rAlt, 400, 225, true, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500').'
           </div>
           <div class="p-4">
             <span class="text-xs font-bold text-[#ec5b13] uppercase mb-2 block">'.htmlspecialchars($r['category']).'</span>
@@ -1106,7 +1106,7 @@ foreach ($blogs as $blog) {
         // Resolve main image path
         $mainImg = trim($blog['image'] ?? '');
         if (empty($mainImg)) {
-            $mainImg = '../images/travelhub.png';
+            $mainImg = '../images/travelhub.webp';
         } elseif (strpos($mainImg, 'http') !== 0 && strpos($mainImg, '../') !== 0 && strpos($mainImg, '/') !== 0) {
             $mainImg = '../' . $mainImg;
         }
@@ -1255,7 +1255,7 @@ foreach ($types as $type) {
         // Resolve main image path FIRST
         $mainImg = trim($item['image'] ?? '');
         if (empty($mainImg)) {
-            $mainImg = '../images/travelhub.png';
+            $mainImg = '../images/travelhub.webp';
         } elseif (strpos($mainImg, 'http') !== 0 && strpos($mainImg, '../') !== 0 && strpos($mainImg, '/') !== 0) {
             $mainImg = '../' . $mainImg;
         }
@@ -1285,7 +1285,7 @@ foreach ($types as $type) {
         // Build gallery HTML
         foreach ($resolvedGalleryImages as $idx => $resolvedImg) {
             $galleryHtml .= '<div class="gallery-thumb" onclick="openLightbox('.$idx.')" title="Click to zoom">'.
-                '<img width="180" height="40" src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img width="180" height="40" src="'.htmlspecialchars($resolvedImg).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" onerror="this.src=\'../images/travelhub.webp\'"/>'.
                 '</div>';
         }
         // Build JS array of gallery images for lightbox
@@ -1494,7 +1494,7 @@ foreach ($types as $type) {
             $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
             
             $thumbHtml .= '<button onclick="slideTo('.$idx.')" id="thumb-'.$idx.'" class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent transition-all hover:border-[#ec5b13] focus:outline-none" title="Photo '.($idx+1).'">'.
-                '<img width="64" height="64" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>'.
+                '<img width="64" height="64" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $idx).'" class="w-full h-full" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.webp\'"/>'.
                 '</button>';
         }
 
@@ -1558,7 +1558,7 @@ foreach ($types as $type) {
 
         <!-- ── Main Image Display ── -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 relative group">
-           <img width="800" height="450" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" loading="lazy" onerror="this.src=\'../images/travelhub.png\'" style="aspect-ratio:16/9; object-fit:cover;"/>
+           <img width="800" height="450" id="slide-main" src="'.htmlspecialchars($resolvedGalleryImages[0]).'" alt="'.generateDescriptiveAlt($type, $item['name'], 0).'" class="w-full h-auto object-cover transition-transform duration-700" loading="lazy" onerror="this.src=\'../images/travelhub.webp\'" style="aspect-ratio:16/9; object-fit:cover;"/>
            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
            
            '.( count($resolvedGalleryImages) > 1 ? '
@@ -1668,7 +1668,7 @@ foreach ($types as $type) {
                   $isPng = (stripos($img, '.png') !== false);
                   $bgObjStyle = $isPng ? 'style="object-fit:cover; background-color:#ecf5ff;"' : 'style="object-fit:cover;"';
                   return '<div class="gallery-thumb" onclick="openLightbox('.$i.')" title="Click to zoom" role="button" tabindex="0" aria-label="View '.htmlspecialchars($item['name']).' photo '.($i+1).' full screen">
-                    <img width="180" height="40" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $i).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.png\'"/>
+                    <img width="180" height="40" src="'.htmlspecialchars($img).'" loading="lazy" alt="'.generateDescriptiveAlt($type, $item['name'], $i).'" '.$bgObjStyle.' onerror="this.src=\'../images/travelhub.webp\'"/>
                     <span class="gallery-zoom-hint"><span class="material-symbols-outlined" style="font-size:16px">zoom_in</span></span>
                   </div>';
               }, $resolvedGalleryImages, array_keys($resolvedGalleryImages))).
@@ -2047,7 +2047,7 @@ foreach ($types as $type) {
                 }
                 $simImg = trim($simItem['image'] ?? '');
                 if (empty($simImg)) {
-                    $simImgSrc = '../images/travelhub.png';
+                    $simImgSrc = '../images/travelhub.webp';
                 } elseif (strpos($simImg, 'http') !== 0 && strpos($simImg, '../') !== 0 && strpos($simImg, '/') !== 0) {
                     $simImgSrc = '../' . htmlspecialchars($simImg);
                 } else {
@@ -2062,7 +2062,7 @@ foreach ($types as $type) {
                     <span class="sr-only">View '.esc($sim_name).' details</span>
                   </a>
                   <div class="relative h-48 overflow-hidden '.$simBgClass.'">
-                    <img width="180" height="40" class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.png\'"/>
+                    <img width="180" height="40" class="w-full h-full '.$simObjClass.' transition-transform duration-700 group-hover:scale-110" src="'.$simImgSrc.'" loading="lazy" alt="'.$sim_name.'" onerror="this.onerror=null;this.src=\'../images/travelhub.webp\'"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <div class="p-5 flex flex-col flex-1 relative z-20 pointer-events-none">
@@ -2149,10 +2149,10 @@ $html .= '
       var html = "";
       data.listings.forEach(function(listing){
          var slug = "../listing-detail/'.$type.'-" + listing.id + "-" + listing.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").substring(0,60) + ".html";
-        var displayImg = (listing.image_url && listing.image_url.length > 0) ? (listing.image_url.startsWith("http") ? listing.image_url : "../" + listing.image_url) : "../images/travelhub.png";
+        var displayImg = (listing.image_url && listing.image_url.length > 0) ? (listing.image_url.startsWith("http") ? listing.image_url : "../" + listing.image_url) : "../images/travelhub.webp";
         html += "<a href=\"" + slug + "\" class=\"group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow shadow-sm\" aria-label=\"View " + listing.name + " details\">" +
           "<span class=\"sr-only\">View " + listing.name + " details</span>" +
-          "<div class=\"aspect-video overflow-hidden relative\"><img width=\"800\" height=\"450\" src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.png\'\"/>" +
+          "<div class=\"aspect-video overflow-hidden relative\"><img width=\"800\" height=\"450\" src=\"" + displayImg + "\" alt=\"" + listing.name + "\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700\" loading=\"lazy\" onerror=\"this.src=\'../images/travelhub.webp\'\"/>" +
           "<div class=\"absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity\"></div></div>" +
           "<div class=\"p-4\"><h4 class=\"text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-[#ec5b13] transition-colors\">" + listing.name + "</h4>" +
           "<div class=\"flex items-center gap-1 mt-2\"><span class=\"material-symbols-outlined text-amber-500 text-sm\">star</span><span class=\"text-xs font-bold text-slate-800\">" + (listing.rating || 0).toFixed(1) + "</span></div>" +

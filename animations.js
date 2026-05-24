@@ -86,10 +86,10 @@
 
     // 4-layer visual states: front → mid1 → mid2 → hidden-back
     var states = [
-      { z: 4, opacity: 1,    tx: 0,  ty: 0,  scale: 1,    rot: 0,    shadow: '0 28px 60px -12px rgba(0,0,0,0.55), 0 0 40px -10px rgba(236,91,19,0.18)' },
-      { z: 3, opacity: 0.75, tx: 0,  ty: 12, scale: 0.93, rot: -2.5, shadow: '0 16px 36px -8px rgba(0,0,0,0.32)' },
-      { z: 2, opacity: 0.45, tx: 0,  ty: 22, scale: 0.86, rot: 3,    shadow: '0 8px 18px -4px rgba(0,0,0,0.18)' },
-      { z: 1, opacity: 0,    tx: 0,  ty: 32, scale: 0.80, rot: -1.5, shadow: 'none' },
+      { z: 4, opacity: 1,    tx: 0,  ty: 0,  scale: 1,    rot: 0,    filter: 'drop-shadow(0 28px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(236,91,19,0.15))' },
+      { z: 3, opacity: 0.75, tx: 0,  ty: 12, scale: 0.93, rot: -2.5, filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.28))' },
+      { z: 2, opacity: 0.45, tx: 0,  ty: 22, scale: 0.86, rot: 3,    filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' },
+      { z: 1, opacity: 0,    tx: 0,  ty: 32, scale: 0.80, rot: -1.5, filter: 'none' },
     ];
 
     function buildTransform(s) {
@@ -103,7 +103,7 @@
       card.style.zIndex     = s.z;
       card.style.opacity    = s.opacity;
       card.style.transform  = buildTransform(s);
-      card.style.boxShadow  = s.shadow;
+      card.style.filter     = s.filter;
     }
 
     // Init without transition so cards snap to position silently
@@ -118,8 +118,7 @@
     cards.forEach(function (card) {
       card.style.transition =
         'transform 0.6s cubic-bezier(0.22,1,0.36,1),' +
-        'opacity 0.6s cubic-bezier(0.22,1,0.36,1),' +
-        'box-shadow 0.6s cubic-bezier(0.22,1,0.36,1)';
+        'opacity 0.6s cubic-bezier(0.22,1,0.36,1)';
     });
 
     // Advance every `interval` ms

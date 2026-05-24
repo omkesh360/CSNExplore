@@ -430,13 +430,26 @@ $category_nav = [
           <div class="relative h-52 overflow-hidden <?php 
               $imgSrc = $item['image'] ?? '';
               if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; 
+              
+              $srcset = '';
+              $sizesAttr = 'sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"';
+              if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                  $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                  $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                  $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                  $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                  $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                  if (file_exists($p400) && file_exists($p700)) {
+                      $imgFinal = BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                      $srcset = 'srcset="'.$v400.' 400w, '.$v700.' 700w, '.$imgFinal.' 800w"';
+                  }
+              }
           ?>">
-            <img loading="lazy" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            <img loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  src="<?php 
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
-                 ?>"
+                 ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
                  alt="<?php echo htmlspecialchars($item['name'] ?? $item['operator'] ?? ''); ?>"
-                 loading="lazy"
                  onerror="this.onerror=null;if(!this.src.includes('unsplash.com'))this.src='<?php
                     $fallbacks = [
                         'bikes'       => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format',
@@ -466,14 +479,14 @@ $category_nav = [
           <div class="p-5 flex flex-col flex-1">
             <div class="mb-1">
               <?php if ($sub2): ?>
-              <p class="text-xs text-primary font-bold uppercase tracking-wide mb-1"><?php echo $sub2; ?></p>
+              <p class="text-xs text-[#c2410c] font-bold uppercase tracking-wide mb-1"><?php echo $sub2; ?></p>
               <?php endif; ?>
               <h3 class="text-base font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 <?php echo htmlspecialchars($item['name'] ?? $item['operator'] ?? ''); ?>
               </h3>
             </div>
             <div class="flex items-center gap-1 text-slate-400 text-xs mt-1.5 mb-4">
-              <span class="material-symbols-outlined text-sm text-primary/70">location_on</span>
+              <span class="material-symbols-outlined text-sm text-[#c2410c]/70">location_on</span>
               <span class="line-clamp-1"><?php echo $subtitle; ?></span>
             </div>
             <?php if ($type === 'restaurants'): ?>

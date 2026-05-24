@@ -248,7 +248,7 @@ require 'header.php';
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Heritage" class="peer sr-only interest-toggle" data-target="sub-heritage">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/daulatabad.png" alt="Historic Places" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="images/uploads/daulatabad.webp" alt="Historic Places" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -262,7 +262,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Temple" class="peer sr-only interest-toggle" data-target="sub-temple">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/grishneshwar.png" alt="Mandir & Temples" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="images/uploads/grishneshwar.webp" alt="Mandir & Temples" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -276,7 +276,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Nature" class="peer sr-only interest-toggle" data-target="sub-nature">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/ellora.png" alt="Nature & Caves" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="images/uploads/ellora.webp" alt="Nature & Caves" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -290,7 +290,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Food" class="peer sr-only interest-toggle" data-target="sub-food">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/indian-thali.jpg" alt="Local Cuisine" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="images/uploads/indian-thali.webp" alt="Local Cuisine" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -650,23 +650,23 @@ require 'header.php';
                 </style>
 
                 <div class="img-stack-card">
-                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ellora.png" alt="Ellora Caves" class="w-full h-full object-cover">
+                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ellora.webp" alt="Ellora Caves" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Ellora Caves Retreat</div>
                 </div>
                 <div class="img-stack-card">
                     <div class="absolute inset-0 bg-primary/20 z-10 mix-blend-overlay"></div>
-                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ajanta.png" alt="Ajanta Caves" class="w-full h-full object-cover">
+                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ajanta.webp" alt="Ajanta Caves" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Ancient Ajanta</div>
                 </div>
                 <div class="img-stack-card">
-                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/masala-dosa.jpg" alt="Local Cuisine" class="w-full h-full object-cover">
+                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/masala-dosa.webp" alt="Local Cuisine" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Exquisite Local Dining</div>
                 </div>
                 <div class="img-stack-card">
-                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.png" alt="Daulatabad Fort" class="w-full h-full object-cover">
+                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.webp" alt="Daulatabad Fort" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Daulatabad Fort</div>
                 </div>

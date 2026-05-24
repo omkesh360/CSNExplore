@@ -30,7 +30,7 @@
             </div>
             <!-- Quick Links -->
             <div data-reveal data-delay="2">
-                <h5 class="font-bold text-sm mb-4">Quick Links</h5>
+                <h4 class="font-bold text-sm mb-4">Quick Links</h4>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-white/50 text-sm">
                     <a href="<?php echo BASE_PATH; ?>/listing?type=stays"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Hotel
@@ -71,7 +71,7 @@
             </div>
             <!-- Contact Info -->
             <div data-reveal data-delay="3">
-                <h5 class="font-bold text-sm mb-4">Contact Info</h5>
+                <h4 class="font-bold text-sm mb-4">Contact Info</h4>
 <ul class="flex flex-col gap-4 text-white/50 text-sm">
                     <li class="flex items-start gap-4">
                         <span class="size-9 rounded-full border border-white/15 flex items-center justify-center shrink-0 mt-0.5 bg-white/5">
@@ -104,7 +104,7 @@
             </div>
             <!-- Newsletter -->
             <div data-reveal data-reveal="right" data-delay="4">
-                <h5 class="font-bold text-sm mb-4">Stay Updated</h5>
+                <h4 class="font-bold text-sm mb-4">Stay Updated</h4>
                 <p class="text-white/50 text-sm mb-4">Get travel tips and exclusive deals in your inbox.</p>
                 <form method="POST" action="subscribe" class="flex flex-col gap-4">
                     <input type="email" name="email" placeholder="Your email address" required

@@ -198,10 +198,25 @@ $total_grid_blogs = count($all_blogs_for_filter);
             <a href="<?php echo blogSlug($blog); ?>" class="absolute inset-0 z-10" aria-label="<?php echo htmlspecialchars($blog['title']); ?>"></a>
 
             <div class="relative rounded-2xl overflow-hidden mb-5 aspect-video shadow-lg">
-                <img loading="lazy" width="800" height="600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                     src="<?php echo htmlspecialchars($blog['image'] ?? ''); ?>"
+                <?php
+                    $imgSrc = $blog['image'] ?? '';
+                    $srcset = '';
+                    $sizesAttr = 'sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"';
+                    if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
+                        $base = pathinfo($imgSrc, PATHINFO_FILENAME);
+                        $v400 = BASE_PATH.'/images/uploads/variants/'.$base.'-400w.webp';
+                        $v700 = BASE_PATH.'/images/uploads/variants/'.$base.'-700w.webp';
+                        $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
+                        $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
+                        if (file_exists($p400) && file_exists($p700)) {
+                            $imgFinal = BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                            $srcset = 'srcset="'.$v400.' 400w, '.$v700.' 700w, '.$imgFinal.' 800w"';
+                        }
+                    }
+                ?>
+                <img loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                     src="<?php echo htmlspecialchars($imgSrc); ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
                      alt="<?php echo htmlspecialchars($blog['title']); ?>"
-                     loading="lazy"
                      onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format'"/>
                 <div class="absolute top-4 left-4">
                     <span class="bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-primary uppercase relative z-20">
