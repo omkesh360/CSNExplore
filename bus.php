@@ -1,11 +1,11 @@
 <?php
-$page_title   = "Bus Routes from Chhatrapati Sambhajinagar | CSNExplore";
+$page_title   = "Bus Routes from Chhatrapati Sambhajinagar (Aurangabad) | CSNExplore";
 $current_page = "bus.php";
 $page_meta = [
-    'description' => 'Book intercity bus travel from Chhatrapati Sambhajinagar (Aurangabad). AC sleepers, Volvo coaches & MSRTC buses to Mumbai, Pune, Nashik and more.',
+    'description' => 'Book intercity bus travel from Chhatrapati Sambhajinagar (Aurangabad). AC sleepers, Volvo coaches & MSRTC buses to Mumbai, Pune, Nashik and more. Please contact us to book.',
     'canonical'   => 'https://csnexplore.com/bus',
     'type'        => 'website',
-    'image'       => 'https://csnexplore.com/images/travelhub.png'
+    'image'       => 'https://csnexplore.com/images/Logo-light-optimized.webp'
 ];
 $extra_styles = "
     .glassy { background:rgba(255,255,255,0.07); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); }
@@ -53,15 +53,15 @@ $category_nav = [
                 <span class="material-symbols-outlined text-primary" style="font-size:72px;">directions_bus</span>
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-serif font-black text-primary mb-4">Bus Booking — On Request</h1>
+            <h1 class="text-3xl md:text-4xl font-serif font-black text-primary mb-4">Bus Booking — Coming Soon</h1>
             <p class="text-slate-500 text-lg mb-4 max-w-lg">
-                This service is available <strong class="text-slate-700">on request only</strong>. Contact us directly to book intercity bus travel across Maharashtra and beyond.
+                This service is <strong class="text-slate-700">coming soon</strong>. Please contact us by Call or WhatsApp for booking a bus.
             </p>
 
             <div class="bg-amber-50 border border-amber-200 rounded-2xl px-6 py-4 mb-8 max-w-lg text-left w-full">
                 <p class="text-amber-800 text-sm font-medium flex items-start gap-2">
                     <span class="material-symbols-outlined text-[18px] mt-0.5 shrink-0">info</span>
-                    <span>Bus bookings are processed manually. Call or WhatsApp us with your travel details and we'll arrange the best available option for you.</span>
+                    <span>We are currently building our online bus reservation system. In the meantime, you can book buses manually by calling or messaging us on WhatsApp.</span>
                 </p>
             </div>
 

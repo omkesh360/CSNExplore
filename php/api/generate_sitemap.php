@@ -57,7 +57,7 @@ if ($which === 'sitemap-static') {
         ['loc' => 'listing/bikes',         'priority' => '0.9', 'changefreq' => 'weekly'],
         ['loc' => 'listing/restaurants',   'priority' => '0.8', 'changefreq' => 'weekly'],
         ['loc' => 'listing/attractions',   'priority' => '0.9', 'changefreq' => 'weekly'],
-        ['loc' => 'listing/buses',         'priority' => '0.8', 'changefreq' => 'weekly'],
+        ['loc' => 'bus',                   'priority' => '0.8', 'changefreq' => 'weekly'],
         ['loc' => 'privacy',               'priority' => '0.3', 'changefreq' => 'yearly'],
         ['loc' => 'terms',                 'priority' => '0.3', 'changefreq' => 'yearly'],
         ['loc' => 'suggestor',             'priority' => '0.7', 'changefreq' => 'monthly'],

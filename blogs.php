@@ -1,10 +1,10 @@
 <?php
-$page_title   = "Travel Blogs & Stories | CSNExplore";
+$page_title   = "Travel Blogs & Stories | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "blogs.php";
 require_once 'php/config.php';
 
 $page_meta = [
-    'description' => 'Read our latest travel blogs, local tips, and stories from Chhatrapati Sambhajinagar. Discover Ellora, Ajanta, and hidden gems.',
+    'description' => 'Read travel blogs, local tips, and stories from Chhatrapati Sambhajinagar (Aurangabad). Explore Ajanta Caves, Ellora Caves, Bibi Ka Maqbara and hidden gems.',
     'canonical'   => 'https://csnexplore.com/blogs',
     'type'        => 'website',
     'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format',

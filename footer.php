@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img loading="lazy" width="180" height="40" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore"
+                <img loading="lazy" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore"
                     class="h-9 object-contain mb-4"
                     onerror="this.style.display='none'; document.getElementById('footer-logo-text').style.display='flex'" />
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">
@@ -46,7 +46,7 @@
                         Sites</a>
                     <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Restaurants</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=buses"
+                    <a href="<?php echo BASE_PATH; ?>/bus"
                         class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bus
                         Tickets</a>
                     <a href="<?php echo BASE_PATH; ?>/blogs"
@@ -489,7 +489,7 @@ if (file_exists($locationsFile)) {
 </script>
 
 <!-- Animations.js - DEFERRED for better performance -->
-<script src="<?php echo BASE_PATH; ?>/animations.js" defer></script>
+<script src="<?php echo BASE_PATH; ?>/animations.min.js?v=<?php echo filemtime(__DIR__ . '/animations.min.js'); ?>" defer></script>
 
 
 </body>

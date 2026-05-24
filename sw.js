@@ -1,23 +1,20 @@
 /**
- * CSNExplore Service Worker v2.0 - OPTIMIZED
+ * CSNExplore Service Worker v3.0 - OPTIMIZED
  * Aggressive caching for maximum performance
  */
 
-const CACHE_VERSION = 'csnexplore-v2';
+const CACHE_VERSION = 'csnexplore-v3';
 const STATIC_CACHE = CACHE_VERSION + '-static';
 const DYNAMIC_CACHE = CACHE_VERSION + '-dynamic';
 const MAX_DYNAMIC_ITEMS = 50;
 
-// Critical assets to cache immediately
+// Critical assets to cache immediately (use relative paths for subdirectory compatibility)
 const STATIC_ASSETS = [
-  '/',
-  '/style.css',
-  '/animations.min.css',
-  '/animations.js',
-  '/images/travelhub.png',
-  '/images/fevicon/favicon-32x32.png',
-  '/images/fevicon/favicon-16x16.png',
-  '/manifest.json'
+  './',
+  './style.min.css',
+  './animations.min.css',
+  './animations.min.js',
+  './manifest.json'
 ];
 
 // Install event - cache static assets aggressively
@@ -71,7 +68,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache-first strategy for static assets
+  // Cache-first strategy for static assets (including WebP)
   if (request.url.match(/\.(css|js|png|jpg|jpeg|webp|svg|woff|woff2|ico)$/)) {
     event.respondWith(
       caches.match(request).then(response => {
@@ -110,7 +107,7 @@ self.addEventListener('fetch', event => {
       })
       .catch(() => {
         return caches.match(request).then(response => {
-          return response || caches.match('/');
+          return response || caches.match('./');
         });
       })
   );

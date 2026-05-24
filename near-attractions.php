@@ -102,6 +102,14 @@ $schema = [
 
 $extra_head = '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
+$page_meta = [
+    'description' => $data['description'],
+    'canonical'   => 'https://csnexplore.com/near-attractions?attraction=' . $location,
+    'type'        => 'website',
+    'image'       => $data['hero_image'],
+    'breadcrumbs' => $breadcrumbs,
+];
+
 require 'header.php';
 ?>
 

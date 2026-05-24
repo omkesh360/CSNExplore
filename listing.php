@@ -3,6 +3,10 @@
 require_once 'php/config.php';
 
 $type = $_GET['type'] ?? 'stays';
+if ($type === 'buses') {
+    header('Location: ' . BASE_PATH . '/bus');
+    exit;
+}
 $allowed = ['stays','cars','bikes','attractions','restaurants','buses'];
 if (!in_array($type, $allowed)) $type = 'stays';
 

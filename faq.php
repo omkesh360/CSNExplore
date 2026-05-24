@@ -1,11 +1,11 @@
 <?php
 // faq.php – Comprehensive FAQ Page with Schema Markup
-$page_title = "FAQ - Frequently Asked Questions | CSNExplore";
+$page_title = "FAQ – Frequently Asked Questions | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "faq";
 require_once 'php/config.php';
 
 $page_meta = [
-    'description' => 'Common questions answered about CSNExplore hotels, car rentals, bike rentals, attractions, and travel planning for Chhatrapati Sambhajinagar & Aurangabad.',
+    'description' => 'Common questions answered about CSNExplore hotels, car rentals, bike rentals, attractions, and travel planning for Chhatrapati Sambhajinagar (Aurangabad), Maharashtra.',
     'keywords' => 'CSNExplore FAQ, hotel booking, car rental, bike rental, Aurangabad tourism, Ajanta Caves, travel planning',
     'canonical' => 'https://csnexplore.com/faq',
     'type' => 'website',

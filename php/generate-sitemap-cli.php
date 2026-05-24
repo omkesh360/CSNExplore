@@ -42,7 +42,7 @@ $static = [
     ['listing/bikes'       , '0.95', 'daily'],
     ['listing/attractions' , '0.95', 'daily'],
     ['listing/restaurants' , '0.90', 'daily'],
-    ['listing/buses'       , '0.90', 'weekly'],
+    ['bus'                 , '0.90', 'weekly'],
     
     // Blog listing - high priority for content marketing
     ['blogs'               , '0.85', 'daily'],

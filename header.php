@@ -16,7 +16,7 @@ $listing_nav = [
     ['href' => BASE_PATH . '/listing?type=bikes', 'icon' => 'motorcycle', 'label' => 'Bikes', 'type' => 'bikes'],
     ['href' => BASE_PATH . '/listing?type=attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions', 'type' => 'attractions'],
     ['href' => BASE_PATH . '/listing?type=restaurants', 'icon' => 'restaurant', 'label' => 'Dine', 'type' => 'restaurants'],
-    ['href' => BASE_PATH . '/listing?type=buses', 'icon' => 'directions_bus', 'label' => 'Buses', 'type' => 'buses'],
+    ['href' => BASE_PATH . '/bus', 'icon' => 'directions_bus', 'label' => 'Buses', 'type' => 'buses'],
 ];
 
 $is_listing_page = ($current_page === 'listing' || $current_page === 'listing-detail' || isset($listing_type));
@@ -60,22 +60,25 @@ $active_listing_type = $listing_type ?? '';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Fonts: OPTIMIZED with font-display:swap to prevent FOIT -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/></noscript>
+    <!-- Fonts: reduced to 3 weights (300 removed), font-display:swap prevents FOIT -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/></noscript>
     
     <!-- Material Symbols: DEFERRED to avoid render blocking -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/></noscript>
     
     <!-- Main CSS: Synchronous load to prevent Cumulative Layout Shift (CLS) -->
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/style.css" as="style">
-    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/style.css">
+    <?php $cssVer = '?v=' . filemtime(__DIR__ . '/style.min.css'); ?>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/style.min.css<?php echo $cssVer; ?>" as="style">
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/style.min.css<?php echo $cssVer; ?>">
     
-    <!-- Animations CSS: ASYNC LOAD to prevent render blocking -->
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css"></noscript>
+    <!-- Animations CSS: ASYNC LOAD to prevent render blocking (minified only) -->
+    <?php $animVer = '?v=' . filemtime(__DIR__ . '/animations.min.css'); ?>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.min.css<?php echo $animVer; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css<?php echo $animVer; ?>"></noscript>
     <style>
         /* ═══ CRITICAL INLINE CSS - Above the Fold ═══ */
         /* This CSS is inlined to prevent render blocking */
@@ -167,14 +170,16 @@ $active_listing_type = $listing_type ?? '';
         /* ── FLASH FIX: data-reveal elements must not show as empty/black boxes ── */
         [data-reveal],[data-reveal-stagger]>*,.card-reveal,[data-animate]{opacity:0;transform:translateY(20px)}
         [data-reveal].revealed,[data-reveal-stagger]>*.revealed,.card-reveal.revealed,.animate-visible{opacity:1!important;transform:none!important}
+        /* ── OUTLINE FIX: remove default browser outline flash on reload & click ── */
+        *:focus { outline: none; }
+        *:focus-visible { outline: 2px solid #ec5b13; outline-offset: 2px; border-radius: 3px; }
+        /* ── Prevent blue/dark flash on tapping links on mobile ── */
+        a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
     </style>
-    <!-- Site CSS: ALL async — zero render-blocking -->
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/mobile-responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.css"/></noscript>
-
-    <!-- animations.css deferred to not block render -->
-    <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.css"/></noscript>
+    <!-- Site CSS: ALL async — zero render-blocking (minified) -->
+    <?php $mobileVer = '?v=' . filemtime(__DIR__ . '/mobile-responsive.min.css'); ?>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobileVer; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobileVer; ?>"/></noscript>
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
@@ -490,7 +495,7 @@ $active_listing_type = $listing_type ?? '';
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="<?php echo BASE_PATH; ?>/" class="flex items-center shrink-0">
-            <img fetchpriority="high" loading="eager" width="180" height="36" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
         </a>
         <div class="hidden xl:flex items-center gap-0">
             <?php foreach (($is_listing_page ? $listing_nav : $nav_links) as $link):
@@ -552,7 +557,7 @@ $active_listing_type = $listing_type ?? '';
 <div id="mob-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0705;overflow-y:auto;flex-direction:column;opacity:0">
     <!-- header row -->
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
-        <img loading="lazy" width="180" height="36" src="<?php echo BASE_PATH; ?>/images/travelhub.png" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <img loading="lazy" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" style="height:28px;object-fit:contain"/>
         <button id="mob-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:none;border-radius:50%;cursor:pointer;color:#fff">
             <span class="material-symbols-outlined" style="font-size:20px">close</span>
         </button>

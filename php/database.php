@@ -129,6 +129,8 @@ class Database {
           `badge` VARCHAR(100), `image` VARCHAR(255), `gallery` TEXT, `amenities` TEXT,
           `room_type` VARCHAR(100), `max_guests` INT DEFAULT 2,
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -143,6 +145,8 @@ class Database {
           `fuel_type` VARCHAR(50), `transmission` VARCHAR(50), `seats` INT DEFAULT 5,
           `driver_available` TINYINT(1) DEFAULT 0, `price_with_driver` DECIMAL(10,2) DEFAULT 0,
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -156,6 +160,8 @@ class Database {
           `badge` VARCHAR(100), `image` VARCHAR(255), `gallery` TEXT, `features` TEXT,
           `fuel_type` VARCHAR(50), `cc` VARCHAR(50),
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -168,6 +174,8 @@ class Database {
           `rating` DECIMAL(3,1) DEFAULT 0, `reviews` INT DEFAULT 0,
           `badge` VARCHAR(100), `image` VARCHAR(255), `gallery` TEXT, `menu_highlights` TEXT,
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -181,6 +189,8 @@ class Database {
           `badge` VARCHAR(100), `image` VARCHAR(255), `gallery` TEXT,
           `opening_hours` TEXT, `best_time` TEXT,
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -194,6 +204,8 @@ class Database {
           `rating` DECIMAL(3,1) DEFAULT 0, `reviews` INT DEFAULT 0,
           `badge` VARCHAR(100), `image` VARCHAR(255), `amenities` TEXT, `seats_available` INT DEFAULT 40,
           `map_embed` LONGTEXT NULL,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_description` TEXT DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `slug` VARCHAR(255) DEFAULT NULL, `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
           `is_active` TINYINT(1) DEFAULT 1, `display_order` INT DEFAULT 0,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -367,6 +379,22 @@ class Database {
                 $this->db->exec("ALTER TABLE `$table` ADD COLUMN `map_embed` LONGTEXT NULL");
             } catch (Exception $e) {
                 // Column already exists
+            }
+            
+            // Add SEO columns
+            foreach ([
+                'meta_title'       => 'VARCHAR(255) DEFAULT NULL',
+                'meta_description' => 'TEXT DEFAULT NULL',
+                'meta_keywords'    => 'TEXT DEFAULT NULL',
+                'slug'             => 'VARCHAR(255) DEFAULT NULL',
+                'focus_keyword'    => 'VARCHAR(255) DEFAULT NULL',
+                'seo_score'        => 'INT(11) DEFAULT 0'
+            ] as $col => $def) {
+                try {
+                    $this->db->exec("ALTER TABLE `$table` ADD COLUMN `$col` $def");
+                } catch (Exception $e) {
+                    // Column already exists
+                }
             }
         }
         

@@ -1,6 +1,11 @@
 <?php
 // CSNExplore – Central config
 if (!ob_get_level()) ob_start(); // Output buffering for performance
+// Enable gzip compression for PHP output if not already handled by Apache
+if (!ini_get('zlib.output_compression') && extension_loaded('zlib')) {
+    ini_set('zlib.output_compression', 1);
+    ini_set('zlib.output_compression_level', 6);
+}
 require_once __DIR__ . '/cache-headers.php';
 applyCacheHeaders('page');
 error_reporting(E_ALL);

@@ -1,7 +1,7 @@
 <?php
 // index.php – CSNExplore Home Page
 require_once 'php/redirects.php'; // 301 handler — must be before any output
-$page_title = "CSNExplore – Hotels, Bikes, Cars & Attractions in Chhatrapati Sambhajinagar";
+$page_title = "CSNExplore – Hotels, Cars, Bikes & Attractions in Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "home";
 require_once 'php/config.php';
 $db = getDB();
@@ -117,10 +117,13 @@ $hp_stays = hp_fetch_picks($db, 'stays', $hp_settings['picks_stays'] ?? [], 'is_
 ?>
 <?php
 $page_meta = [
-    'description' => 'Your premium gateway to the wonders of Chhatrapati Sambhajinagar, Maharashtra. Book hotels, cars, bikes, and explore attractions easily.',
+    'description' => 'CSNExplore – your premium travel portal for Chhatrapati Sambhajinagar (Aurangabad). Book hotels, car & bike rentals, explore Ajanta & Ellora Caves attractions, restaurants and more.',
     'canonical'   => 'https://csnexplore.com/',
     'type'        => 'website',
-    'image'       => 'https://csnexplore.com/images/travelhub.png'
+    'image'       => 'https://csnexplore.com/images/Logo-light-optimized.webp',
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => '/'],
+    ],
 ];
 $extra_head = '<link rel="preload" as="image" href="images/hotel-hero-section%20(4).webp" fetchpriority="high">
 <script type="application/ld+json">
@@ -129,7 +132,7 @@ $extra_head = '<link rel="preload" as="image" href="images/hotel-hero-section%20
   "@type": "Organization",
   "name": "CSNExplore",
   "url": "https://csnexplore.com",
-  "logo": "https://csnexplore.com/images/travelhub.png",
+  "logo": "https://csnexplore.com/images/Logo-light-optimized.webp",
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+91-8600968888",
@@ -595,7 +598,7 @@ window.addEventListener('pageshow', function(e) {
     }
 });
 
-var searchUrls = { stays:'<?php echo BASE_PATH; ?>/listing/stays', cars:'<?php echo BASE_PATH; ?>/listing/cars', bikes:'<?php echo BASE_PATH; ?>/listing/bikes', attractions:'<?php echo BASE_PATH; ?>/listing/attractions', dine:'<?php echo BASE_PATH; ?>/listing/restaurants', buses:'<?php echo BASE_PATH; ?>/listing/buses' };
+var searchUrls = { stays:'<?php echo BASE_PATH; ?>/listing/stays', cars:'<?php echo BASE_PATH; ?>/listing/cars', bikes:'<?php echo BASE_PATH; ?>/listing/bikes', attractions:'<?php echo BASE_PATH; ?>/listing/attractions', dine:'<?php echo BASE_PATH; ?>/listing/restaurants', buses:'<?php echo BASE_PATH; ?>/bus' };
 function doSearch(tab) {
     window.location.href = searchUrls[tab];
 }
@@ -1193,11 +1196,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 </script>
 
 <!-- Deferred Resources (Load after page interactive) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="print" onload="this.media='all'">
-<script type="module">
-    import flatpickr from 'https://cdn.jsdelivr.net/npm/flatpickr/+esm';
-    window.flatpickr = flatpickr;
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/dark.css" media="print" onload="this.media='all'">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js" defer onload="if(typeof initFlatpickr==='function')initFlatpickr();"></script>
 
 </body>
 </html>

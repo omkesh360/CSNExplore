@@ -1,13 +1,13 @@
 <?php
 require_once 'php/config.php';
-$page_title  = "About Us | CSNExplore – Chhatrapati Sambhajinagar";
+$page_title  = "About Us | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "about.php";
 
 $page_meta = [
-    'description' => 'Discover the story behind CSNExplore. Bridging the gap between ancient heritage and modern exploration in Chhatrapati Sambhajinagar (Aurangabad).',
+    'description' => 'Discover the story behind CSNExplore. Bridging the gap between ancient heritage and modern exploration in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra.',
     'canonical'   => 'https://csnexplore.com/about',
     'type'        => 'website',
-    'image'       => 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format',
+    'image'       => 'https://csnexplore.com/images/Logo-light-optimized.webp',
     'breadcrumbs' => [
         ['name' => 'Home', 'url' => '/'],
         ['name' => 'About Us', 'url' => '/about'],

@@ -57,7 +57,7 @@ function seo_meta(array $ctx): array {
 
     // ── Title ─────────────────────────────────────────────────────────────────
     $title = match($type) {
-        'home'        => 'CSNExplore – Hotels, Car & Bike Rentals, Ajanta Caves Tours | Chhatrapati Sambhajinagar',
+        'home'        => 'CSNExplore – Hotels, Car & Bike Rentals, Ajanta Caves Tours | Chhatrapati Sambhajinagar (Aurangabad)',
         'stays'       => 'Hotels & Homestays in Chhatrapati Sambhajinagar | Book Now – CSNExplore',
         'cars'        => 'Car Rentals Chhatrapati Sambhajinagar | Self Drive & Chauffeur – CSNExplore',
         'bikes'       => 'Bike Rentals Aurangabad | Scooters & Motorcycles – CSNExplore',
@@ -74,7 +74,7 @@ function seo_meta(array $ctx): array {
 
     // ── Description ───────────────────────────────────────────────────────────
     $description = match($type) {
-        'home'        => 'Discover Chhatrapati Sambhajinagar with CSNExplore. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and bus routes. 500+ listings, verified reviews.',
+        'home'        => 'Discover Chhatrapati Sambhajinagar (Aurangabad) with CSNExplore. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and bus routes. 500+ listings, verified reviews.',
         'stays'       => 'Browse 500+ hotels, homestays & resorts in Chhatrapati Sambhajinagar. Best prices, free cancellation. Book your stay near Ajanta & Ellora Caves today.',
         'cars'        => 'Rent a car in Chhatrapati Sambhajinagar from ₹800/day. Self-drive or with driver. Maruti Swift, Ertiga, Innova & more. Perfect for Ajanta Caves day trips.',
         'bikes'       => 'Rent bikes & scooters in Aurangabad from ₹300/day. Hero Splendor, Honda Activa, Royal Enfield & more. Explore Ellora Caves on two wheels.',
@@ -102,7 +102,7 @@ function seo_meta(array $ctx): array {
         'bikes'       => SITE_URL . '/listing/bikes',
         'attractions' => SITE_URL . '/listing/attractions',
         'restaurants' => SITE_URL . '/listing/restaurants',
-        'buses'       => SITE_URL . '/listing/buses',
+        'buses'       => SITE_URL . '/bus',
         'blogs'       => SITE_URL . '/blogs',
         'contact'     => SITE_URL . '/contact',
         'about'       => SITE_URL . '/about',

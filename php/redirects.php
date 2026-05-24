@@ -20,7 +20,7 @@ function csn_handle_redirects(): void {
         'bikes.php'       => '/listing/bikes',
         'attractions.php' => '/listing/attractions',
         'restaurants.php' => '/listing/restaurants',
-        'buses.php'       => '/listing/buses',
+        'buses.php'       => '/bus',
         'blog.php'        => '/blogs',
         'hotel.php'       => '/listing/stays',
         'vehicle.php'     => '/listing/cars',
@@ -76,7 +76,7 @@ function csn_handle_redirects(): void {
         'ajanta-caves-tour'       => '/listing/attractions',
         'ellora-caves-tour'       => '/listing/attractions',
         'aurangabad-restaurants'  => '/listing/restaurants',
-        'aurangabad-bus'          => '/listing/buses',
+        'aurangabad-bus'          => '/bus',
         'travel-guide'            => '/blogs',
     ];
     if (isset($slugRedirects[$path])) {

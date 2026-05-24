@@ -1,10 +1,10 @@
 <?php
 require_once 'php/config.php';
-$page_title   = "Personalized Trip Planner | CSNExplore";
+$page_title   = "Personalized Trip Planner | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "suggestor.php";
 
 $page_meta = [
-    'description' => 'Plan your perfect trip to Chhatrapati Sambhajinagar with our AI-powered Personalized Trip Planner. Consult local experts for free itineraries.',
+    'description' => 'Plan your perfect trip to Chhatrapati Sambhajinagar (Aurangabad) with our AI-powered Personalized Trip Planner. Get free custom itineraries from local experts.',
     'canonical'   => BASE_PATH . '/suggestor',
     'type'        => 'website',
     'image'       => 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format'

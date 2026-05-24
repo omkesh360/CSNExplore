@@ -282,8 +282,8 @@ a{color:inherit;text-decoration:none}
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"></noscript>
 <!-- Main CSS: async, non-blocking -->
-<link rel="preload" href="' . $base . 'style.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
-<noscript><link rel="stylesheet" href="' . $base . 'style.css"></noscript>
+<link rel="preload" href="' . $base . 'style.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript><link rel="stylesheet" href="' . $base . 'style.min.css"></noscript>
 <!-- Mobile CSS: async, non-blocking -->
 <link rel="preload" href="' . $base . 'mobile-responsive.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
 <noscript><link rel="stylesheet" href="' . $base . 'mobile-responsive.min.css"></noscript>
@@ -518,13 +518,15 @@ function sharedHeader($base, $type = '') {
     foreach ($listing_links as $link) {
         $is_active = ($link['type'] === $type);
         $class = $is_active ? $active_class : $inactive_class;
-        $nav_html .= '<a href="' . $base . 'listing?type=' . $link['type'] . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . $class . '" aria-label="Browse ' . strtolower($link['label']) . ' in Chhatrapati Sambhajinagar">' . $link['label'] . '</a>' . "\n";
+        $link_href = ($link['type'] === 'buses') ? $base . 'bus' : $base . 'listing?type=' . $link['type'];
+        $nav_html .= '<a href="' . $link_href . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . $class . '" aria-label="Browse ' . strtolower($link['label']) . ' in Chhatrapati Sambhajinagar">' . $link['label'] . '</a>' . "\n";
     }
     
     // Generate mobile menu category grid
     $mobile_categories = '';
     foreach ($listing_links as $link) {
-        $mobile_categories .= '<a href="' . $base . 'listing?type=' . $link['type'] . '" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-size:10px;font-weight:700">
+        $link_href = ($link['type'] === 'buses') ? $base . 'bus' : $base . 'listing?type=' . $link['type'];
+        $mobile_categories .= '<a href="' . $link_href . '" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-size:10px;font-weight:700">
                 <span class="material-symbols-outlined" style="font-size:18px;color:#ec5b13">' . $link['icon'] . '</span>
                 ' . $link['label'] . '
             </a>' . "\n";
@@ -601,7 +603,7 @@ function sharedHeader($base, $type = '') {
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="' . $base . '" class="flex items-center shrink-0">
-            <img width="180" height="40" src="' . $base . 'images/travelhub.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <img width="180" height="40" src="' . $base . 'images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
         </a>
         <div class="hidden md:flex items-center gap-0.5">
             ' . $nav_html . '
@@ -637,7 +639,7 @@ function sharedHeader($base, $type = '') {
 </style>
 <div id="mob-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0705;overflow-y:auto;flex-direction:column;opacity:0">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
-        <img loading="lazy" width="180" height="36" src="' . $base . 'images/travelhub.png" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <img loading="lazy" width="180" height="36" src="' . $base . 'images/Logo-light-optimized.webp" alt="CSNExplore" style="height:28px;object-fit:contain"/>
         <button id="mob-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:none;border-radius:50%;cursor:pointer;color:#fff">
             <span class="material-symbols-outlined" style="font-size:20px">close</span>
         </button>
@@ -784,7 +786,7 @@ function sharedFooter($base) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <!-- Brand -->
             <div data-reveal data-reveal="left">
-                <img width="180" height="40" src="'.$base.'images/travelhub.png" alt="CSNExplore" class="h-9 object-contain mb-4" loading="lazy"
+                <img width="180" height="40" src="'.$base.'images/Logo-light-optimized.webp" alt="CSNExplore" class="h-9 object-contain mb-4" loading="lazy"
                      onerror="this.style.display=\'none\'; document.getElementById(\'footer-logo-text\').style.display=\'flex\'"/>
                 <span id="footer-logo-text" style="display:none" class="items-center gap-1.5 mb-4">
                     <span class="material-symbols-outlined text-primary text-2xl">explore</span>
@@ -815,7 +817,7 @@ function sharedFooter($base) {
                     <a href="'.$base.'listing/bikes"       class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bike Rentals</a>
                     <a href="'.$base.'listing/attractions" class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Heritage Sites</a>
                     <a href="'.$base.'listing/restaurants" class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Restaurants</a>
-                    <a href="'.$base.'listing/buses"       class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bus Tickets</a>
+                    <a href="'.$base.'bus"       class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bus Tickets</a>
                     <a href="'.$base.'blogs"                    class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Travel Guide</a>
                     <a href="'.$base.'about"                    class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">About Us</a>
                     <a href="'.$base.'contact"                  class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Contact Us</a>
@@ -1128,10 +1130,11 @@ foreach ($blogs as $blog) {
         ]]
     ];
 
-    $seoKeywords = $blog['keywords'] ?? '';
-    $seoMiniDesc = !empty($blog['mini_description']) ? $blog['mini_description'] : $desc;
+    $blogTitle = !empty($blog['meta_title']) ? $blog['meta_title'] : optimizeTitle($blog['title']);
+    $seoKeywords = !empty($blog['meta_keywords']) ? $blog['meta_keywords'] : ($blog['keywords'] ?? '');
+    $seoMiniDesc = !empty($blog['meta_description']) ? $blog['meta_description'] : (!empty($blog['mini_description']) ? $blog['mini_description'] : $desc);
 
-    $html = htmlHead(optimizeTitle($blog['title']), 1, $canonical, $seoMiniDesc, $absImg, $schema, 1, $seoKeywords);
+    $html = htmlHead($blogTitle, 1, $canonical, $seoMiniDesc, $absImg, $schema, 1, $seoKeywords);
     
     // Add hidden SEO content for stuffing
     $seoStuffing = '
@@ -1465,15 +1468,16 @@ foreach ($types as $type) {
             '@type'    => 'BreadcrumbList',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home',                    'item' => 'https://csnexplore.com/'],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => $meta['label'],             'item' => 'https://csnexplore.com/listing/' . $type],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => $meta['label'],             'item' => $type === 'buses' ? 'https://csnexplore.com/bus' : 'https://csnexplore.com/listing/' . $type],
                 ['@type' => 'ListItem', 'position' => 3, 'name' => $item['name'],              'item' => $canonical],
             ],
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
-        $seoKeywords = $item['keywords'] ?? '';
-        $seoMiniDesc = !empty($item['mini_description']) ? $item['mini_description'] : $desc;
+        $listingTitle = !empty($item['meta_title']) ? $item['meta_title'] : optimizeTitle($item['name']);
+        $seoKeywords = !empty($item['meta_keywords']) ? $item['meta_keywords'] : ($item['keywords'] ?? '');
+        $seoMiniDesc = !empty($item['meta_description']) ? $item['meta_description'] : (!empty($item['mini_description']) ? $item['mini_description'] : $desc);
 
-        $html = htmlHead(optimizeTitle($item['name']), 1, $canonical, $seoMiniDesc, $absImg, $schema, $type, $seoKeywords);
+        $html = htmlHead($listingTitle, 1, $canonical, $seoMiniDesc, $absImg, $schema, $type, $seoKeywords);
         $html = str_replace('</head>', $faqSchema . "\n" . $breadcrumbSchema . "\n</head>", $html);
 
         // Add hidden SEO content for stuffing
@@ -1508,7 +1512,7 @@ foreach ($types as $type) {
       <div class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-white/70 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
-        <a href="../listing/'.$type.'" class="hover:text-white transition-colors">'.htmlspecialchars($meta['label']).'</a>
+        <a href="../'.($type === 'buses' ? 'bus' : 'listing/'.$type).'" class="hover:text-white transition-colors">'.htmlspecialchars($meta['label']).'</a>
         <span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>
         <span class="text-white font-semibold truncate max-w-xs">'.htmlspecialchars($item['name']).'</span>
       </div>
@@ -1673,7 +1677,7 @@ foreach ($types as $type) {
           </div>
         </div>' : '' ).'
 
-        <a href="../listing/'.$type.'" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold text-sm hover:underline">
+        <a href="../'.($type === 'buses' ? 'bus' : 'listing/'.$type).'" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold text-sm hover:underline">
           <span class="material-symbols-outlined text-base">arrow_back</span>'.generateDescriptiveAnchor($meta['label'], 'listing').'
         </a>
       </div>
@@ -1837,6 +1841,25 @@ foreach ($types as $type) {
 
             <div class="border-t border-slate-100"></div>
           
+          '.($type === 'buses' ? '
+          <!-- Coming Soon / Call or WhatsApp Booking -->
+          <div id="check-availability-section" class="space-y-3">
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 text-left">
+              <p class="text-amber-800 text-xs font-semibold flex items-start gap-1.5">
+                <span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5">info</span>
+                <span>Online booking for buses is coming soon. Please contact us via Call or WhatsApp to book this bus route.</span>
+              </p>
+            </div>
+            <a href="tel:+918600968888" class="w-full bg-[#ec5b13] text-white hover:!text-white font-black py-3.5 rounded-2xl hover:bg-[#d94f0f] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-xl">call</span>
+              Call to Book Bus
+            </a>
+            <a href="https://wa.me/918600968888?text=Hi%2C%20I%20want%20to%20book%20the%20bus%20route%3A%20'.rawurlencode($item['name'] ?? $item['operator'] ?? '').'" target="_blank" class="w-full bg-[#25D366] text-white hover:!text-white font-black py-3.5 rounded-2xl hover:bg-[#20b858] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp to Book Bus
+            </a>
+          </div>
+          ' : '
           <!-- Check Availability Button (Always Visible) -->
           <div id="check-availability-section">
             <button type="button" id="btn-check-availability" class="w-full bg-[#ec5b13] text-white hover:!text-white font-black py-4 rounded-2xl hover:bg-[#d94f0f] transition-all shadow-lg hover:shadow-xl text-base flex items-center justify-center gap-2">
@@ -1948,6 +1971,7 @@ foreach ($types as $type) {
             </div>
             <button type="submit" class="w-full bg-[#ec5b13] text-white font-black py-4 rounded-2xl hover:bg-orange-600 transition-all shadow-lg text-base">Book Now</button>
           </form>
+          ').'
           </div>
 
           <!-- Driving Licence & Terms (Cars & Bikes only) -->

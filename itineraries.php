@@ -189,6 +189,14 @@ $trip_schema = [
 
 $extra_head = '<script type="application/ld+json">' . json_encode($trip_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
+$page_meta = [
+    'description' => $itinerary['description'],
+    'canonical'   => 'https://csnexplore.com/itineraries?type=' . $trip_type,
+    'type'        => 'website',
+    'image'       => 'https://csnexplore.com/images/Logo-light-optimized.webp',
+    'breadcrumbs' => $breadcrumbs,
+];
+
 require 'header.php';
 ?>
 

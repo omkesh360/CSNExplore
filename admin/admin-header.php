@@ -248,7 +248,7 @@ body {
 
     <!-- Logo row -->
     <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,0.1);flex-shrink:0;">
-        <img width="180" height="40" src="../images/travelhub.png" alt="CSNExplore" style="height:32px;object-fit:contain;filter:brightness(0) invert(1);flex-shrink:0;"/>
+        <img width="180" height="40" src="../images/Logo-light-optimized.webp" alt="CSNExplore" style="height:32px;object-fit:contain;flex-shrink:0;"/>
         <!-- Close button — mobile only -->
         <button onclick="closeSidebar()" id="sidebar-close-btn"
                 style="margin-left:auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:rgba(255,255,255,0.7);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;">

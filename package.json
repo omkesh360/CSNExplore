@@ -4,7 +4,11 @@
   "description": "",
   "main": "animations.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./input.css -o ./style.css",
+    "build:css:min": "tailwindcss -i ./input.css -o ./style.min.css --minify",
+    "build": "npm run build:css && npm run build:css:min",
+    "watch": "tailwindcss -i ./input.css -o ./style.css --watch"
   },
   "repository": {
     "type": "git",

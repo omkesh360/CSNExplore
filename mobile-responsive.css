@@ -16,6 +16,16 @@
 /* ── Base Resets ── */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* ── OUTLINE FIX: removes default browser outline (blue/black flash on reload) ── */
+/* Keyboard users still get an orange ring via :focus-visible for accessibility */
+*:focus { outline: none; }
+*:focus-visible { outline: 2px solid #ec5b13; outline-offset: 2px; border-radius: 3px; }
+
+/* ── Prevent blue tap highlight on iOS/Android ── */
+a, button, input, select, textarea, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;

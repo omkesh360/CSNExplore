@@ -49,7 +49,7 @@ try {
         ['listing/bikes'       , '0.9', 'weekly'],
         ['listing/restaurants' , '0.8', 'weekly'],
         ['listing/attractions' , '0.9', 'weekly'],
-        ['listing/buses'       , '0.8', 'weekly'],
+        ['bus'                 , '0.8', 'weekly'],
     ];
     foreach ($staticPages as [$loc, $pri, $freq]) {
         $urls[] = ['loc' => $base . '/' . ltrim($loc, '/'), 'lastmod' => $today, 'changefreq' => $freq, 'priority' => $pri];

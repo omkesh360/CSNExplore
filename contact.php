@@ -1,10 +1,10 @@
 <?php
 require_once 'php/config.php';
-$page_title   = "Contact Us | CSNExplore – Chhatrapati Sambhajinagar";
+$page_title   = "Contact Us | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "contact.php";
 
 $page_meta = [
-    'description' => 'Get in touch with CSNExplore. We are here to help you plan your perfect Chhatrapati Sambhajinagar exploration with 24/7 support.',
+    'description' => 'Get in touch with CSNExplore. We help you plan your perfect Chhatrapati Sambhajinagar (Aurangabad) exploration with 24/7 travel support.',
     'canonical'   => 'https://csnexplore.com/contact',
     'type'        => 'website',
     'image'       => 'images/uploads/ellora.png',
