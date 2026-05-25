@@ -55,6 +55,8 @@ define('JWT_SECRET', env('JWT_SECRET', 'csnexplore_secure_jwt_2025_!@#$%'));
 define('ADMIN_EMAIL', env('ADMIN_EMAIL', 'travelhubadmin@gmail.com'));
 define('CONTACT_PHONE', env('CONTACT_PHONE', '+91-8600968888'));
 define('SUPPORT_EMAIL', env('SUPPORT_EMAIL', 'supportcsnexplore@gmail.com'));
+define('SITE_URL', env('SITE_URL', 'https://csnexplore.com'));
+
 
 // MailerLite Email Configuration
 define('MAILERLITE_API_KEY', env('MAILERLITE_API_KEY', ''));
@@ -113,22 +115,29 @@ function esc($val) {
     return htmlspecialchars((string)$val, ENT_QUOTES, 'UTF-8');
 }
 
-// Dynamic Base Path Detection
-$_dir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
-$_base = trim($_dir, '/\\');
-$_base = str_replace(['php/api', 'php'], '', $_base);
-$_base = trim($_base, '/\\');
+// Dynamic Base Path Detection (Robust)
+$projectRoot = str_replace('\\', '/', dirname(__DIR__));
+$scriptFilename = str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME'] ?? '');
+$scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
 
-// Normalize case: use actual filesystem folder name to prevent case mismatch
-// e.g. /csNexplore2.0 → /CSNexplore2.0
-if ($_base && $_base !== '.') {
-    $_realBase = basename(dirname(__DIR__));
-    // Only override if it's a case-insensitive match (same letters, different case)
-    if (strtolower($_realBase) === strtolower($_base)) {
-        $_base = $_realBase;
+$basePath = '';
+if ($scriptFilename && $scriptName && strpos($scriptFilename, $projectRoot) === 0) {
+    $relPath = substr($scriptFilename, strlen($projectRoot));
+    if (substr($scriptName, -strlen($relPath)) === $relPath) {
+        $basePath = substr($scriptName, 0, -strlen($relPath));
     }
 }
-define('BASE_PATH', $_base && $_base !== '.' ? '/' . $_base : '');
+
+// Fallback if CLI or edge case
+if ($basePath === '') {
+    $docRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT'] ?? '');
+    if (!empty($docRoot) && strpos($projectRoot, $docRoot) === 0) {
+        $basePath = substr($projectRoot, strlen($docRoot));
+    }
+}
+
+$basePath = rtrim($basePath, '/');
+define('BASE_PATH', $basePath);
 
 // Security Headers
 header("X-Frame-Options: SAMEORIGIN");

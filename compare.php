@@ -9,7 +9,7 @@ $comparisons = [
         'title' => 'Hotels vs Homestays in Chhatrapati Sambhajinagar | CSNExplore',
         'description' => 'Compare hotels and homestays in Aurangabad. Learn pros, cons, pricing, and which is best for your budget and travel style.',
         'h1' => 'Hotels vs Homestays in Chhatrapati Sambhajinagar',
-        'intro' => 'Choosing between a hotel and homestay in Chhatrapati Sambhajinagar? Both offer unique advantages. Here's a detailed comparison to help you decide.',
+        'intro' => 'Choosing between a hotel and homestay in Chhatrapati Sambhajinagar? Both offer unique advantages. Here\'s a detailed comparison to help you decide.',
         'comparison' => [
             ['aspect' => 'Cost', 'hotels' => 'Hotels typically cost ₹2,000-₹5,000+ per night', 'homestays' => 'Homestays cost ₹1,500-₹3,000 per night (20-30% cheaper)', 'winner' => 'Homestays'],
             ['aspect' => 'Comfort', 'hotels' => 'High comfort with modern amenities, WiFi, AC, hot water', 'homestays' => 'Cozy and comfortable, but amenities vary by property', 'winner' => 'Hotels'],
@@ -19,15 +19,15 @@ $comparisons = [
         ],
         'faqs' => [
             ['q' => 'Are homestays safe in Aurangabad?', 'a' => 'Yes, homestays in Aurangabad are generally safe. Check reviews and choose verified properties on CSNExplore. Host ratings help ensure quality and safety.'],
-            ['q' => 'Do homestays have WiFi?', 'a' => 'Most modern homestays provide WiFi, but it's best to confirm before booking. Hotels typically guarantee high-speed internet.'],
-            ['q' => 'Can I cook at homestays?', 'a' => 'Many homestays have shared kitchens or allow guest cooking. Hotels don't allow cooking in rooms but provide restaurants and room service.'],
+            ['q' => 'Do homestays have WiFi?', 'a' => 'Most modern homestays provide WiFi, but it\'s best to confirm before booking. Hotels typically guarantee high-speed internet.'],
+            ['q' => 'Can I cook at homestays?', 'a' => 'Many homestays have shared kitchens or allow guest cooking. Hotels don\'t allow cooking in rooms but provide restaurants and room service.'],
         ]
     ],
     'budget-vs-luxury-hotels' => [
         'title' => 'Budget vs Luxury Hotels in Aurangabad | CSNExplore',
         'description' => 'Compare budget and luxury hotels in Aurangabad. Find the best hotel for your travel style, budget, and preferences.',
         'h1' => 'Budget vs Luxury Hotels in Chhatrapati Sambhajinagar',
-        'intro' => 'Whether you're looking for a comfortable budget hotel or a premium luxury experience, Aurangabad offers options for every budget. Here's how to choose.',
+        'intro' => 'Whether you\'re looking for a comfortable budget hotel or a premium luxury experience, Aurangabad offers options for every budget. Here\'s how to choose.',
         'comparison' => [
             ['aspect' => 'Price Range', 'budget' => '₹800-₹2,000 per night', 'luxury' => '₹5,000-₹15,000+ per night', 'winner' => 'Budget (for savings)'],
             ['aspect' => 'Room Quality', 'budget' => 'Clean and basic, functional furniture', 'luxury' => 'Spacious, elegant, premium furnishings', 'winner' => 'Luxury'],
@@ -39,7 +39,7 @@ $comparisons = [
         'faqs' => [
             ['q' => 'Are budget hotels comfortable?', 'a' => 'Yes! CSNExplore-listed budget hotels are well-maintained and comfortable. They focus on essentials like clean rooms, WiFi, and AC.'],
             ['q' => 'Do luxury hotels offer discounts?', 'a' => 'Yes, luxury hotels often offer seasonal discounts, group rates, and special packages. Check CSNExplore for current deals.'],
-            ['q' => 'What's the best budget hotel in Aurangabad?', 'a' => 'Several budget hotels have excellent reviews on CSNExplore. Filter by ratings and read guest reviews to find the best match for your needs.'],
+            ['q' => 'What\'s the best budget hotel in Aurangabad?', 'a' => 'Several budget hotels have excellent reviews on CSNExplore. Filter by ratings and read guest reviews to find the best match for your needs.'],
         ]
     ],
     'car-vs-bike-rental' => [
@@ -57,7 +57,7 @@ $comparisons = [
         ],
         'faqs' => [
             ['q' => 'Is bike rental safe in Aurangabad?', 'a' => 'Yes, CSNExplore partners only with reliable bike rental services. All bikes are well-maintained, helmets provided, and 24/7 support available.'],
-            ['q' => 'Can I drive a bike to Ajanta Caves?', 'a' => 'Yes, but it's a 100km journey. A car is more comfortable for this long-distance trip. However, many adventure seekers rent bikes and enjoy the ride!'],
+            ['q' => 'Can I drive a bike to Ajanta Caves?', 'a' => 'Yes, but it\'s a 100km journey. A car is more comfortable for this long-distance trip. However, many adventure seekers rent bikes and enjoy the ride!'],
             ['q' => 'Do car rentals include insurance?', 'a' => 'Yes, comprehensive insurance is included in all CSNExplore car rentals. Damage waiver covers accidental damage.'],
         ]
     ],
@@ -65,7 +65,7 @@ $comparisons = [
         'title' => 'Ellora Caves vs Ajanta Caves | Which to Visit? CSNExplore',
         'description' => 'Compare Ajanta and Ellora Caves near Aurangabad. Learn differences, distances, what to see, and which is better for your trip.',
         'h1' => 'Ajanta Caves vs Ellora Caves - A Complete Comparison',
-        'intro' => 'Both Ajanta and Ellora Caves are UNESCO World Heritage Sites near Aurangabad. Here's a detailed comparison to help you decide which to visit or if you should visit both.',
+        'intro' => 'Both Ajanta and Ellora Caves are UNESCO World Heritage Sites near Aurangabad. Here\'s a detailed comparison to help you decide which to visit or if you should visit both.',
         'comparison' => [
             ['aspect' => 'Distance', 'ajanta' => '100km from Aurangabad (2-3 hours)', 'ellora' => '30km from Aurangabad (45 mins)', 'winner' => 'Ellora (closer)'],
             ['aspect' => 'Age & History', 'ajanta' => 'Built 200 BC - 600 AD (Ancient Buddhist caves)', 'ellora' => 'Built 600-1000 AD (Buddhist, Hindu, Jain caves)', 'winner' => 'Ajanta (older)'],
@@ -75,7 +75,7 @@ $comparisons = [
             ['aspect' => 'Best For', 'ajanta' => 'Art and history enthusiasts', 'ellora' => 'Architecture lovers, time-limited visitors', 'winner' => 'Depends on interest'],
         ],
         'faqs' => [
-            ['q' => 'Can I visit both Ajanta and Ellora in one day?', 'a' => 'Technically yes, but it's rushed. Better to spend one day per site. Many visitors do both in 2 days or dedicate 1 day to Ellora (closer) and another to Ajanta.'],
+            ['q' => 'Can I visit both Ajanta and Ellora in one day?', 'a' => 'Technically yes, but it\'s rushed. Better to spend one day per site. Many visitors do both in 2 days or dedicate 1 day to Ellora (closer) and another to Ajanta.'],
             ['q' => 'Which is better - Ajanta or Ellora?', 'a' => 'Both are exceptional. Ajanta is better for paintings and ancient history. Ellora is better for variety (Hindu, Buddhist, Jain) and sculpture.'],
             ['q' => 'Do I need a guide?', 'a' => 'Highly recommended! Guides provide historical context, point out details, and explain architecture. CSNExplore offers verified, English-speaking guides.'],
         ]

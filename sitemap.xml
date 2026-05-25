@@ -1,737 +1,738 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CSNExplore Sitemap | Generated: 2026-05-24 07:36:27 | Total URLs: 78 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<!-- CSNExplore Sitemap | Generated: 2026-05-25 20:15:32 | Total URLs: 78 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://csnexplore.com/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>http://localhost/</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing/stays</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <loc>http://localhost/about</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing/cars</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <loc>http://localhost/contact</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing/bikes</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>http://localhost/blogs</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing/attractions</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <loc>http://localhost/faq</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing/restaurants</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
+    <loc>http://localhost/listing/stays</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://csnexplore.com/bus</loc>
+    <loc>http://localhost/listing/cars</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>http://localhost/listing/bikes</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>http://localhost/listing/restaurants</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/listing/attractions</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>http://localhost/bus</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost/listing-detail/attractions-1-ajanta-caves</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://csnexplore.com/blogs</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://csnexplore.com/about</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://csnexplore.com/contact</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://csnexplore.com/faq</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-1-ajanta-caves</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/ajanta.png</image:loc>
+      <image:loc>http://localhost/images/uploads/ajanta.webp</image:loc>
       <image:title>Ajanta Caves</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-10-khuldabad-valley-of-saints</loc>
+    <loc>http://localhost/listing-detail/attractions-10-khuldabad-valley-of-saints</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/valley_of_saints.png</image:loc>
+      <image:loc>http://localhost/images/uploads/valley_of_saints.webp</image:loc>
       <image:title>Khuldabad (Valley of Saints)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-11-bhadra-maruti-temple</loc>
+    <loc>http://localhost/listing-detail/attractions-11-bhadra-maruti-temple</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/travel-gate.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
       <image:title>Bhadra Maruti Temple</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-12-himayat-bagh</loc>
+    <loc>http://localhost/listing-detail/attractions-12-himayat-bagh</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/cidco_garden.png</image:loc>
+      <image:loc>http://localhost/images/uploads/cidco_garden.webp</image:loc>
       <image:title>Himayat Bagh</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum</loc>
+    <loc>http://localhost/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/maharashtra_museum.png</image:loc>
+      <image:loc>http://localhost/images/uploads/maharashtra_museum.webp</image:loc>
       <image:title>Chhatrapati Sambhaji Maharaj Museum</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-14-soneri-mahal-golden-palace</loc>
+    <loc>http://localhost/listing-detail/attractions-14-soneri-mahal-golden-palace</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/travel-gate.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
       <image:title>Soneri Mahal (Golden Palace)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-15-jama-masjid</loc>
+    <loc>http://localhost/listing-detail/attractions-15-jama-masjid</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/travel-gate.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
       <image:title>Jama Masjid</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-2-ellora-caves</loc>
+    <loc>http://localhost/listing-detail/attractions-2-ellora-caves</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/ellora_caves.png</image:loc>
+      <image:loc>http://localhost/images/uploads/ellora_caves.webp</image:loc>
       <image:title>Ellora Caves</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-3-bibi-ka-maqbara</loc>
+    <loc>http://localhost/listing-detail/attractions-3-bibi-ka-maqbara</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/bibi.png</image:loc>
+      <image:loc>http://localhost/images/uploads/bibi.webp</image:loc>
       <image:title>Bibi Ka Maqbara</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-4-daulatabad-fort</loc>
+    <loc>http://localhost/listing-detail/attractions-4-daulatabad-fort</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/daulatabad.png</image:loc>
+      <image:loc>http://localhost/images/uploads/daulatabad.webp</image:loc>
       <image:title>Daulatabad Fort</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-5-panchakki-water-mill</loc>
+    <loc>http://localhost/listing-detail/attractions-5-panchakki-water-mill</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/panchakki.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/panchakki.webp</image:loc>
       <image:title>Panchakki (Water Mill)</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-6-grishneshwar-temple</loc>
+    <loc>http://localhost/listing-detail/attractions-6-grishneshwar-temple</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/grishneshwar-temple.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/grishneshwar-temple.webp</image:loc>
       <image:title>Grishneshwar Temple</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary</loc>
+    <loc>http://localhost/listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/siddharth_lake.png</image:loc>
+      <image:loc>http://localhost/images/uploads/siddharth_lake.webp</image:loc>
       <image:title>Salim Ali Lake &amp;amp;amp; Bird Sanctuary</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-8-siddharth-garden-ampamp-zoo</loc>
+    <loc>http://localhost/listing-detail/attractions-8-siddharth-garden-ampamp-zoo</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/cidco_garden.png</image:loc>
+      <image:loc>http://localhost/images/uploads/cidco_garden.webp</image:loc>
       <image:title>Siddharth Garden &amp;amp;amp; Zoo</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/attractions-9-aurangabad-caves</loc>
+    <loc>http://localhost/listing-detail/attractions-9-aurangabad-caves</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/buddha_vihar.png</image:loc>
+      <image:loc>http://localhost/images/uploads/buddha_vihar.webp</image:loc>
       <image:title>Aurangabad Caves</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-1-hero-splendor</loc>
+    <loc>http://localhost/listing-detail/bikes-1-hero-splendor</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Hero Splendor</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-10-honda-activa-125cc</loc>
+    <loc>http://localhost/listing-detail/bikes-10-honda-activa-125cc</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Activa 125cc</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-11-honda-activa-6g</loc>
+    <loc>http://localhost/listing-detail/bikes-11-honda-activa-6g</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Activa 6G</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-12-honda-x-blade</loc>
+    <loc>http://localhost/listing-detail/bikes-12-honda-x-blade</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda X-Blade</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-13-honda-shine-125cc</loc>
+    <loc>http://localhost/listing-detail/bikes-13-honda-shine-125cc</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Shine 125cc</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-14-royal-enfield-classic-350</loc>
+    <loc>http://localhost/listing-detail/bikes-14-royal-enfield-classic-350</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/royal-enfield-classic-350-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/royal-enfield-classic-350-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Royal Enfield Classic 350</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-2-hero-hf-deluxe</loc>
+    <loc>http://localhost/listing-detail/bikes-2-hero-hf-deluxe</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Hero HF Deluxe</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-3-honda-grazia</loc>
+    <loc>http://localhost/listing-detail/bikes-3-honda-grazia</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Grazia</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-4-honda-dio</loc>
+    <loc>http://localhost/listing-detail/bikes-4-honda-dio</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-dio-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-dio-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Dio</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-5-tvs-jupiter</loc>
+    <loc>http://localhost/listing-detail/bikes-5-tvs-jupiter</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/tvs-jupiter-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/tvs-jupiter-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>TVS Jupiter</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-6-honda-shine-100cc</loc>
+    <loc>http://localhost/listing-detail/bikes-6-honda-shine-100cc</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Shine 100cc</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-7-yamaha-ray</loc>
+    <loc>http://localhost/listing-detail/bikes-7-yamaha-ray</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/yamaha-ray-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/yamaha-ray-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Yamaha Ray</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-8-honda-activa</loc>
+    <loc>http://localhost/listing-detail/bikes-8-honda-activa</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Activa</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/bikes-9-suzuki-access-125</loc>
+    <loc>http://localhost/listing-detail/bikes-9-suzuki-access-125</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/suzuki-access-125-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/suzuki-access-125-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Suzuki Access 125</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/buses-1-msrtc-shivneri-express</loc>
+    <loc>http://localhost/listing-detail/buses-1-msrtc-shivneri-express</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/msrtc-shivneri.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/msrtc-shivneri.webp</image:loc>
       <image:title>MSRTC Shivneri Express</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/buses-2-dolphin-travels-night-bus</loc>
+    <loc>http://localhost/listing-detail/buses-2-dolphin-travels-night-bus</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/dolphin-travels-bus.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/dolphin-travels-bus.webp</image:loc>
       <image:title>Dolphin Travels Night Bus</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/buses-3-hans-travels-ac-sleeper</loc>
+    <loc>http://localhost/listing-detail/buses-3-hans-travels-ac-sleeper</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hans-travels-bus.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/hans-travels-bus.webp</image:loc>
       <image:title>Hans Travels AC Sleeper</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/buses-4-purple-travels-volvo</loc>
+    <loc>http://localhost/listing-detail/buses-4-purple-travels-volvo</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.6</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/purple-travels-bus.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/purple-travels-bus.webp</image:loc>
       <image:title>Purple Travels Volvo</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-1-maruti-suzuki-swift</loc>
+    <loc>http://localhost/listing-detail/cars-1-maruti-suzuki-swift</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-swift-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/maruti-suzuki-swift-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Maruti Suzuki Swift</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-10-mg-hector</loc>
+    <loc>http://localhost/listing-detail/cars-10-mg-hector</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/kia-sonet-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/kia-sonet-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>MG Hector</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-11-toyota-innova</loc>
+    <loc>http://localhost/listing-detail/cars-11-toyota-innova</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/toyota-innova-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/toyota-innova-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Toyota Innova</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-12-tata-winger</loc>
+    <loc>http://localhost/listing-detail/cars-12-tata-winger</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/tata-winger-van-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/tata-winger-van-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Tata Winger</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-2-tata-punch</loc>
+    <loc>http://localhost/listing-detail/cars-2-tata-punch</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/tata-punch-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/tata-punch-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Tata Punch</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-3-honda-amaze</loc>
+    <loc>http://localhost/listing-detail/cars-3-honda-amaze</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Honda Amaze</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-4-hyundai-grand-i10</loc>
+    <loc>http://localhost/listing-detail/cars-4-hyundai-grand-i10</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hyundai-grand-i10-nios-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/hyundai-grand-i10-nios-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Hyundai Grand i10</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-5-maruti-suzuki-baleno</loc>
+    <loc>http://localhost/listing-detail/cars-5-maruti-suzuki-baleno</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Maruti Suzuki Baleno</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-6-tata-tiago</loc>
+    <loc>http://localhost/listing-detail/cars-6-tata-tiago</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/tata-tiago-hatchback-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/tata-tiago-hatchback-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Tata Tiago</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-7-toyota-glanza</loc>
+    <loc>http://localhost/listing-detail/cars-7-toyota-glanza</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Toyota Glanza</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-8-maruti-suzuki-ertiga</loc>
+    <loc>http://localhost/listing-detail/cars-8-maruti-suzuki-ertiga</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-ertiga-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/maruti-suzuki-ertiga-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Maruti Suzuki Ertiga</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/cars-9-kia-carens</loc>
+    <loc>http://localhost/listing-detail/cars-9-kia-carens</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/kia-carens-mpv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/kia-carens-mpv-rental-chhatrapati-sambhajinagar.webp</image:loc>
       <image:title>Kia Carens</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-1-naivedya-thali-restaurant</loc>
+    <loc>http://localhost/listing-detail/restaurants-1-naivedya-thali-restaurant</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/indian-thali.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/indian-thali.webp</image:loc>
       <image:title>Naivedya Thali Restaurant</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-10-saffron-indian-kitchen</loc>
+    <loc>http://localhost/listing-detail/restaurants-10-saffron-indian-kitchen</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/indian-thali.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/indian-thali.webp</image:loc>
       <image:title>Saffron Indian Kitchen</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights</loc>
+    <loc>http://localhost/listing-detail/restaurants-11-tandoor-nights</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-north-indian.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-north-indian.webp</image:loc>
       <image:title>Tandoor Nights</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-12-veg-delight</loc>
+    <loc>http://localhost/listing-detail/restaurants-12-veg-delight</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-south-indian.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-south-indian.webp</image:loc>
       <image:title>Veg Delight</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-13-dessert-paradise</loc>
+    <loc>http://localhost/listing-detail/restaurants-13-dessert-paradise</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/masala-dosa.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/masala-dosa.webp</image:loc>
       <image:title>Dessert Paradise</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-14-cafe-coffee-day</loc>
+    <loc>http://localhost/listing-detail/restaurants-14-cafe-coffee-day</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/burger.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
       <image:title>Cafe Coffee Day</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-15-seafood-shack</loc>
+    <loc>http://localhost/listing-detail/restaurants-15-seafood-shack</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-thali.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-thali.webp</image:loc>
       <image:title>Seafood Shack</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-2-masala-dosa-house</loc>
+    <loc>http://localhost/listing-detail/restaurants-2-masala-dosa-house</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/masala-dosa.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/masala-dosa.webp</image:loc>
       <image:title>Masala Dosa House</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-3-the-grill-room</loc>
+    <loc>http://localhost/listing-detail/restaurants-3-the-grill-room</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-north-indian.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-north-indian.webp</image:loc>
       <image:title>The Grill Room</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-4-chaat-street-corner</loc>
+    <loc>http://localhost/listing-detail/restaurants-4-chaat-street-corner</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-south-indian.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-south-indian.webp</image:loc>
       <image:title>Chaat Street Corner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-5-renaissance-dine</loc>
+    <loc>http://localhost/listing-detail/restaurants-5-renaissance-dine</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/restaurant-thali.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/restaurant-thali.webp</image:loc>
       <image:title>Renaissance Dine</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-6-biryani-blues</loc>
+    <loc>http://localhost/listing-detail/restaurants-6-biryani-blues</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/north-indian-thali.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/north-indian-thali.webp</image:loc>
       <image:title>Biryani Blues</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-7-pizza-paradise</loc>
+    <loc>http://localhost/listing-detail/restaurants-7-pizza-paradise</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/burger.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
       <image:title>Pizza Paradise</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-8-chinese-wok</loc>
+    <loc>http://localhost/listing-detail/restaurants-8-chinese-wok</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/pani-puri.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/pani-puri.webp</image:loc>
       <image:title>Chinese Wok</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/restaurants-9-burger-junction</loc>
+    <loc>http://localhost/listing-detail/restaurants-9-burger-junction</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/burger.jpg</image:loc>
+      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
       <image:title>Burger Junction</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-1-its-home-home-stay-inn</loc>
+    <loc>http://localhost/listing-detail/stays-1-its-home-home-stay-inn</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/its-home-home-stay-inn-stays-main.jpeg</image:loc>
+      <image:loc>http://localhost/images/uploads/its-home-home-stay-inn-stays-main.webp</image:loc>
       <image:title>ITS HOME – Home Stay Inn</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-2-its-home-service-apartments</loc>
+    <loc>http://localhost/listing-detail/stays-2-its-home-service-apartments</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/its-home-service-apartments-stays-main.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/its-home-service-apartments-stays-main.webp</image:loc>
       <image:title>Its Home – Service Apartments</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-3-treebo-aroma-executive</loc>
+    <loc>http://localhost/listing-detail/stays-3-treebo-aroma-executive</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/treebo-aroma-executive-stays-main.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/treebo-aroma-executive-stays-main.webp</image:loc>
       <image:title>Treebo Aroma Executive</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-4-hotel-blossom</loc>
+    <loc>http://localhost/listing-detail/stays-4-hotel-blossom</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hotel-blossom-stays-main.jpeg</image:loc>
+      <image:loc>http://localhost/images/uploads/hotel-blossom-stays-main.webp</image:loc>
       <image:title>Hotel Blossom</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn</loc>
+    <loc>http://localhost/listing-detail/stays-5-hotel-the-gravity-inn</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hotel-the-gravity-inn-stays-main.webp</image:loc>
+      <image:loc>http://localhost/images/uploads/hotel-the-gravity-inn-stays-main.webp</image:loc>
       <image:title>Hotel The Gravity Inn</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/listing-detail/stays-6-hotel-o-indraprasth</loc>
+    <loc>http://localhost/listing-detail/stays-6-hotel-o-indraprasth</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://csnexplore.com/images/uploads/hotel-o-indraprasth-stays-main.jpeg</image:loc>
+      <image:loc>http://localhost/images/uploads/hotel-o-indraprasth-stays-main.webp</image:loc>
       <image:title>Hotel O Indraprasth</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://csnexplore.com/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
+    <loc>http://localhost/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
     <lastmod>2026-05-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format</image:loc>
       <image:title>Complete Travel Guide to Chhatrapati Sambhajinagar in 2026</image:title>

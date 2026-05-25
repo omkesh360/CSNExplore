@@ -998,8 +998,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $imgSrc = $b['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format';
-                $name=htmlspecialchars($b['name']);
-                $type=htmlspecialchars($b['type']); $price=number_format($b['price_per_day']);
+                $name=htmlspecialchars($b['name'] ?? '');
+                $type=htmlspecialchars($b['type'] ?? ''); $price=number_format($b['price_per_day'] ?? 0);
                 $rating=number_format((float)($b['rating']??0),1);
                 $srcset = '';
                 $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
@@ -1030,8 +1030,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $imgSrc = $r['image'] ?? '';
                 $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&auto=format';
-                $name=htmlspecialchars($r['name']);
-                $cuisine=htmlspecialchars($r['cuisine']??$r['type']); $price=number_format($r['price_per_person']??0);
+                $name=htmlspecialchars($r['name'] ?? '');
+                $cuisine=htmlspecialchars($r['cuisine'] ?? $r['type'] ?? ''); $price=number_format($r['price_per_person'] ?? 0);
                 $rating=number_format((float)($r['rating']??0),1);
                 $srcset = '';
                 $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 48vw,(max-width:1024px) 33vw,280px"';
