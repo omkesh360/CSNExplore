@@ -116,6 +116,38 @@
                 </form>
             </div>
         </div>
+        
+        <!-- SEO Keyword Block -->
+        <div class="border-t border-white/10 pt-8 pb-4 mb-4">
+            <h4 class="font-bold text-sm mb-3 text-white/80">Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h4>
+            <p class="text-white/40 text-xs leading-loose">
+                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Hotels CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Budget Stays CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Jain Hotels Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Safe Stays for Women CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Car Rentals Near Me Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Cab Booking Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Self Drive Cars CSNExplore.com</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Innova Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Bike Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Electric Scooter Rental CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Scsnexplore Bike Rental</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Activa Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Ajanta Caves Tour CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Ellora Caves Guide CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Bibi Ka Maqbara Tickets CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Daulatabad Fort Trip CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Veg Restaurant Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Best Misal Pav Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Maharashtrian Thali CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Solo Travelling CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Women Travel Safety CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Budget Under 2 Days CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/" class="hover:text-primary transition-colors">Aurangabad Travel Guide CSNExplore.in</a> | 
+                <a href="<?php echo BASE_PATH; ?>/" class="hover:text-primary transition-colors">CSNExplore Tourism Portal</a>
+            </p>
+        </div>
+
         <div
             class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-white/30 text-xs">
             <p>© <?php echo date('Y'); ?> CSNExplore. All rights reserved.</p>

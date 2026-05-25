@@ -27,36 +27,51 @@ if (file_exists(__DIR__ . '/../.env')) {
         )) {
             $value = substr($value, 1, -1);
         }
-        putenv($key . '=' . $value);
+        if (function_exists('putenv')) {
+            putenv($key . '=' . $value);
+        }
+        $_ENV[$key] = $value;
+        $_SERVER[$key] = $value;
+    }
+}
+
+// Robust env helper
+if (!function_exists('env')) {
+    function env($key, $default = null) {
+        if (isset($_ENV[$key])) return $_ENV[$key];
+        if (isset($_SERVER[$key])) return $_SERVER[$key];
+        $val = function_exists('getenv') ? getenv($key) : false;
+        if ($val !== false) return $val;
+        return $default;
     }
 }
 
 // Define APP_ENV if not set
 if (!defined('APP_ENV')) {
-    define('APP_ENV', getenv('APP_ENV') ?: 'production');
+    define('APP_ENV', env('APP_ENV', 'production'));
 }
 
-define('JWT_SECRET', getenv('JWT_SECRET') ?: 'csnexplore_secure_jwt_2025_!@#$%');
-define('ADMIN_EMAIL', getenv('ADMIN_EMAIL') ?: 'travelhubadmin@gmail.com');
-define('CONTACT_PHONE', getenv('CONTACT_PHONE') ?: '+91-8600968888');
-define('SUPPORT_EMAIL', getenv('SUPPORT_EMAIL') ?: 'supportcsnexplore@gmail.com');
+define('JWT_SECRET', env('JWT_SECRET', 'csnexplore_secure_jwt_2025_!@#$%'));
+define('ADMIN_EMAIL', env('ADMIN_EMAIL', 'travelhubadmin@gmail.com'));
+define('CONTACT_PHONE', env('CONTACT_PHONE', '+91-8600968888'));
+define('SUPPORT_EMAIL', env('SUPPORT_EMAIL', 'supportcsnexplore@gmail.com'));
 
 // MailerLite Email Configuration
-define('MAILERLITE_API_KEY', getenv('MAILERLITE_API_KEY') ?: '');
-define('MAILERLITE_FROM_EMAIL', getenv('MAILERLITE_FROM_EMAIL') ?: 'noreply@csnexplore.com');
-define('MAILERLITE_FROM_NAME', getenv('MAILERLITE_FROM_NAME') ?: 'CSN Explore');
-define('ADMIN_NOTIFICATION_EMAIL', getenv('ADMIN_NOTIFICATION_EMAIL') ?: 'supportcsnexplore@gmail.com');
+define('MAILERLITE_API_KEY', env('MAILERLITE_API_KEY', ''));
+define('MAILERLITE_FROM_EMAIL', env('MAILERLITE_FROM_EMAIL', 'noreply@csnexplore.com'));
+define('MAILERLITE_FROM_NAME', env('MAILERLITE_FROM_NAME', 'CSN Explore'));
+define('ADMIN_NOTIFICATION_EMAIL', env('ADMIN_NOTIFICATION_EMAIL', 'supportcsnexplore@gmail.com'));
 
 // Cloudflare Turnstile
-define('TURNSTILE_SITE_KEY',   getenv('TURNSTILE_SITE_KEY')   ?: '');
-define('TURNSTILE_SECRET_KEY', getenv('TURNSTILE_SECRET_KEY') ?: '');
+define('TURNSTILE_SITE_KEY',   env('TURNSTILE_SITE_KEY', ''));
+define('TURNSTILE_SECRET_KEY', env('TURNSTILE_SECRET_KEY', ''));
 
 // SMTP Configuration for PHPMailer
-define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
-define('SMTP_PORT', getenv('SMTP_PORT') ?: 587);
-define('SMTP_USERNAME', getenv('SMTP_USERNAME') ?: '');
-define('SMTP_PASSWORD', getenv('SMTP_PASSWORD') ?: '');
-define('SMTP_ENCRYPTION', getenv('SMTP_ENCRYPTION') ?: 'tls');
+define('SMTP_HOST', env('SMTP_HOST', 'smtp.gmail.com'));
+define('SMTP_PORT', env('SMTP_PORT', 587));
+define('SMTP_USERNAME', env('SMTP_USERNAME', ''));
+define('SMTP_PASSWORD', env('SMTP_PASSWORD', ''));
+define('SMTP_ENCRYPTION', env('SMTP_ENCRYPTION', 'tls'));
 
 require_once __DIR__ . '/database.php';
 

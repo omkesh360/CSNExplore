@@ -398,6 +398,11 @@ $active_listing_type = $listing_type ?? '';
     // LocalBusiness schema — always present for local SEO
     echo SEOOptimizer::renderSchema(SEOOptimizer::generateLocalBusinessSchema());
     
+    // ItemList schema — exclusively for homepage SEO
+    if ($seo_type === 'home') {
+        echo SEOOptimizer::renderSchema(SEOOptimizer::generateItemListSchema());
+    }
+    
     // Breadcrumb schema if breadcrumbs exist
     if (!empty($page_meta['breadcrumbs'])) {
         echo SEOOptimizer::renderSchema(SEOOptimizer::generateBreadcrumbSchema($page_meta['breadcrumbs']));

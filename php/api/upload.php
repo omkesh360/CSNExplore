@@ -37,7 +37,7 @@ $dest     = $uploadDir . $filename;
 if (!move_uploaded_file($file['tmp_name'], $dest)) sendError('Failed to save file', 500);
 
 // Build URL using configured base or detected host (never trust HTTP_HOST directly)
-$baseUrl = getenv('APP_URL') ?: '';
+$baseUrl = env('APP_URL', '');
 if (!$baseUrl) {
     $scheme  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     // Validate HTTP_HOST: only allow safe hostname characters

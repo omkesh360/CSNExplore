@@ -13,7 +13,7 @@ $root  = __DIR__ . '/..';
 // Detect environment and set base URL
 $isLocal = (
     (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false))
-    || getenv('APP_ENV') === 'local'
+    || (function_exists('env') ? env('APP_ENV') : getenv('APP_ENV')) === 'local'
     || php_sapi_name() === 'cli' // CLI defaults to production URL
 );
 $base  = $isLocal && php_sapi_name() !== 'cli' ? 'http://localhost/CSNExplore' : 'https://csnexplore.com';

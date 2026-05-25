@@ -1,6 +1,7 @@
 <?php
 // admin/admin-header.php – shared admin layout
 // Set $admin_page before including (e.g. 'dashboard', 'listings', 'bookings', 'blogs', 'users', 'content')
+require_once __DIR__ . '/../php/config.php';
 $admin_page  = $admin_page  ?? '';
 $admin_title = $admin_title ?? 'Admin | CSNExplore';
 ?>
@@ -30,7 +31,7 @@ $admin_title = $admin_title ?? 'Admin | CSNExplore';
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link rel="stylesheet" href="admin-mobile.css"/>
+<link rel="stylesheet" href="<?php echo BASE_PATH; ?>/admin/admin-mobile.css"/>
 <script>
 tailwind.config = {
     theme: { extend: {

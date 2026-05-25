@@ -29,7 +29,14 @@ class SEOOptimizer {
             'Aurangabad',
             'Aurangabad Maharashtra',
             'Sambhajinagar tourism',
-            'Aurangabad travel'
+            'Aurangabad travel',
+            'csnexplore',
+            'csnexplore.com',
+            'csnexplore.in',
+            'scsnexplore',
+            'csnexplore tourism portal',
+            'csnexplore aurangabad',
+            'csnexplore sambhajinagar'
         ];
         
         $typeKeywords = match($type) {
@@ -48,7 +55,97 @@ class SEOOptimizer {
                 'Aurangabad tour packages',
                 'Bibi Ka Maqbara',
                 'Daulatabad Fort',
-                'Aurangabad caves'
+                'Aurangabad caves',
+                'bike rental aurangabad csnexplore',
+                'bike rental sambhajinagar csnexplore',
+                'csnexplore bike rental',
+                'scsnexplore bike rental aurangabad',
+                'bike rental under 5000 csnexplore',
+                'scooter rental aurangabad csnexplore',
+                'two wheeler rental csnexplore',
+                'car rentals near me aurangabad csnexplore',
+                'cab booking aurangabad csnexplore',
+                'car rentals under 3000 csnexplore',
+                'sedan aurangabad csnexplore',
+                'suv csnexplore',
+                'car rental sambhajinagar csnexplore',
+                'taxi service aurangabad csnexplore',
+                'hotels csnexplore',
+                'hostel aurangabad csnexplore',
+                'hostels near satara csnexplore',
+                'jain hotels aurangabad csnexplore',
+                'hotels under xyz csnexplore',
+                'hotels near aurangabad csnexplore',
+                'budget stays csnexplore',
+                'dine near aurangabad csnexplore',
+                'veg restaurant aurangabad csnexplore',
+                'biryani shop aurangabad csnexplore',
+                'budget under 2 days csnexplore',
+                'under 3 days csnexplore',
+                'solo travelling csnexplore',
+                'women travel safety csnexplore',
+                'ajanta caves tour csnexplore',
+                'ellora caves guide csnexplore',
+                'bibi ka maqbara tickets csnexplore',
+                'daulatabad fort trip csnexplore',
+                'mhaismal hill station csnexplore',
+                'jayakwadi dam sightseeing csnexplore',
+                'aurangabad local tour csnexplore.in',
+                'activa rental aurangabad csnexplore',
+                'bullet rental sambhajinagar csnexplore',
+                'ev scooter rental csnexplore',
+                'electric bike rental aurangabad csnexplore',
+                'innova rental aurangabad csnexplore',
+                'self drive cars csnexplore.com',
+                'cheap bike rentals scsnexplore',
+                'homestays aurangabad csnexplore',
+                'ajanta view homestay csnexplore',
+                'couple friendly hotels csnexplore',
+                'family resorts near aurangabad csnexplore',
+                'luxury hotels sambhajinagar csnexplore',
+                'cheap lodges aurangabad scsnexplore',
+                'safe stays for women csnexplore',
+                'aurangabad weekend trip csnexplore',
+                'maharashtra tourism csnexplore.com',
+                'family tour packages csnexplore',
+                'solo backpacker sambhajinagar csnexplore',
+                'aurangabad travel guide csnexplore.in',
+                'tourist cab packages csnexplore',
+                'heritage walk aurangabad csnexplore',
+                'best misal pav aurangabad csnexplore',
+                'maharashtrian thali csnexplore',
+                'street food gul mandi csnexplore',
+                'family restaurants sambhajinagar csnexplore',
+                'cafes in aurangabad csnexplore',
+                'dhaba near aurangabad csnexplore',
+                'late night food aurangabad csnexplore',
+                'ajanta ellora budget tour csnexplore',
+                'cheap travel options csnexplore',
+                'budget friendly stays csnexplore.in',
+                'low cost trip planner csnexplore',
+                'affordable sightseeing csnexplore',
+                'budget hotels csnexplore.com',
+                'backpacker stays scsnexplore',
+                'homestays near sambhajinagar csnexplore',
+                'bikes names csnexplore',
+                'bikes rentals under 5000 csnexplore',
+                'scooty rent per day csnexplore',
+                'electric scooter rental csnexplore',
+                'bullet rental aurangabad csnexplore',
+                'scsnexplore bike rent',
+                'car rental sambhajinagar csnexplore.com',
+                'outstation cab booking csnexplore',
+                'self drive car csnexplore.in',
+                'taxi service near me csnexplore',
+                'jain hotels dining csnexplore',
+                'continental food csnexplore',
+                'best restaurants csnexplore.com',
+                'street food guide csnexplore',
+                'hostels for solo travelers csnexplore',
+                'lady travelling women safely single traveller csnexplore',
+                'safe stays for women travelers csnexplore',
+                'female solo travel guide csnexplore',
+                'safe cab booking csnexplore'
             ],
             'stays' => [
                 'hotels Chhatrapati Sambhajinagar',
@@ -63,7 +160,27 @@ class SEOOptimizer {
                 'resorts in Aurangabad',
                 'guest house Aurangabad',
                 'OYO hotels Aurangabad',
-                'Treebo hotels Aurangabad'
+                'Treebo hotels Aurangabad',
+                'hotels csnexplore',
+                'hostel aurangabad csnexplore',
+                'hostels near satara csnexplore',
+                'jain hotels aurangabad csnexplore',
+                'hotels under xyz csnexplore',
+                'hotels near aurangabad csnexplore',
+                'budget stays csnexplore',
+                'homestays aurangabad csnexplore',
+                'ajanta view homestay csnexplore',
+                'couple friendly hotels csnexplore',
+                'family resorts near aurangabad csnexplore',
+                'luxury hotels sambhajinagar csnexplore',
+                'cheap lodges aurangabad scsnexplore',
+                'safe stays for women csnexplore',
+                'budget friendly stays csnexplore.in',
+                'budget hotels csnexplore.com',
+                'backpacker stays scsnexplore',
+                'homestays near sambhajinagar csnexplore',
+                'hostels for solo travelers csnexplore',
+                'safe stays for women travelers csnexplore'
             ],
             'cars' => [
                 'car rental Aurangabad',
@@ -76,7 +193,22 @@ class SEOOptimizer {
                 'Innova hire Aurangabad',
                 'Swift rental Aurangabad',
                 'Ertiga booking Aurangabad',
-                'chauffeur driven car Aurangabad'
+                'chauffeur driven car Aurangabad',
+                'car rentals near me aurangabad csnexplore',
+                'cab booking aurangabad csnexplore',
+                'car rentals under 3000 csnexplore',
+                'sedan aurangabad csnexplore',
+                'suv csnexplore',
+                'car rental sambhajinagar csnexplore',
+                'taxi service aurangabad csnexplore',
+                'innova rental aurangabad csnexplore',
+                'self drive cars csnexplore.com',
+                'tourist cab packages csnexplore',
+                'car rental sambhajinagar csnexplore.com',
+                'outstation cab booking csnexplore',
+                'self drive car csnexplore.in',
+                'taxi service near me csnexplore',
+                'safe cab booking csnexplore'
             ],
             'bikes' => [
                 'bike rental Aurangabad',
@@ -86,7 +218,25 @@ class SEOOptimizer {
                 'Royal Enfield hire Aurangabad',
                 'two wheeler rental Aurangabad',
                 'bike on rent Aurangabad',
-                'scooty rental Aurangabad'
+                'scooty rental Aurangabad',
+                'bike rental aurangabad csnexplore',
+                'bike rental sambhajinagar csnexplore',
+                'csnexplore bike rental',
+                'scsnexplore bike rental aurangabad',
+                'bike rental under 5000 csnexplore',
+                'scooter rental aurangabad csnexplore',
+                'two wheeler rental csnexplore',
+                'activa rental aurangabad csnexplore',
+                'bullet rental sambhajinagar csnexplore',
+                'ev scooter rental csnexplore',
+                'electric bike rental aurangabad csnexplore',
+                'cheap bike rentals scsnexplore',
+                'bikes names csnexplore',
+                'bikes rentals under 5000 csnexplore',
+                'scooty rent per day csnexplore',
+                'electric scooter rental csnexplore',
+                'bullet rental aurangabad csnexplore',
+                'scsnexplore bike rent'
             ],
             'attractions' => [
                 'Ajanta Caves tour',
@@ -100,7 +250,17 @@ class SEOOptimizer {
                 'Aurangabad sightseeing',
                 'places to visit in Aurangabad',
                 'Aurangabad tourism',
-                'heritage sites Aurangabad'
+                'heritage sites Aurangabad',
+                'ajanta caves tour csnexplore',
+                'ellora caves guide csnexplore',
+                'bibi ka maqbara tickets csnexplore',
+                'daulatabad fort trip csnexplore',
+                'mhaismal hill station csnexplore',
+                'jayakwadi dam sightseeing csnexplore',
+                'aurangabad local tour csnexplore.in',
+                'heritage walk aurangabad csnexplore',
+                'ajanta ellora budget tour csnexplore',
+                'affordable sightseeing csnexplore'
             ],
             'restaurants' => [
                 'restaurants Chhatrapati Sambhajinagar',
@@ -112,7 +272,21 @@ class SEOOptimizer {
                 'best restaurants Aurangabad',
                 'food delivery Aurangabad',
                 'cafes in Aurangabad',
-                'street food Aurangabad'
+                'street food Aurangabad',
+                'dine near aurangabad csnexplore',
+                'veg restaurant aurangabad csnexplore',
+                'biryani shop aurangabad csnexplore',
+                'best misal pav aurangabad csnexplore',
+                'maharashtrian thali csnexplore',
+                'street food gul mandi csnexplore',
+                'family restaurants sambhajinagar csnexplore',
+                'cafes in aurangabad csnexplore',
+                'dhaba near aurangabad csnexplore',
+                'late night food aurangabad csnexplore',
+                'jain hotels dining csnexplore',
+                'continental food csnexplore',
+                'best restaurants csnexplore.com',
+                'street food guide csnexplore'
             ],
             'buses' => [
                 'bus from Aurangabad',
@@ -132,7 +306,20 @@ class SEOOptimizer {
                 'Aurangabad itinerary',
                 'best time to visit Aurangabad',
                 'Aurangabad travel guide',
-                'things to know about Aurangabad'
+                'things to know about Aurangabad',
+                'budget under 2 days csnexplore',
+                'under 3 days csnexplore',
+                'solo travelling csnexplore',
+                'women travel safety csnexplore',
+                'aurangabad weekend trip csnexplore',
+                'maharashtra tourism csnexplore.com',
+                'family tour packages csnexplore',
+                'solo backpacker sambhajinagar csnexplore',
+                'aurangabad travel guide csnexplore.in',
+                'cheap travel options csnexplore',
+                'low cost trip planner csnexplore',
+                'lady travelling women safely single traveller csnexplore',
+                'female solo travel guide csnexplore'
             ],
             default => $baseKeywords
         };
@@ -287,6 +474,50 @@ class SEOOptimizer {
                 'reviewCount' => '1247',
                 'bestRating' => '5',
                 'worstRating' => '1'
+            ]
+        ];
+    }
+    
+    /**
+     * Generate ItemList Schema for Top Attractions (Homepage)
+     */
+    public static function generateItemListSchema() {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'ItemList',
+            'name' => 'Top Historical Wonders to Visit in Chhatrapati Sambhajinagar',
+            'description' => 'Verified ticket details and tour guide listings for local heritage sights.',
+            'itemListElement' => [
+                [
+                    '@type' => 'ListItem',
+                    'position' => 1,
+                    'item' => [
+                        '@type' => 'TouristAttraction',
+                        'name' => 'Ajanta Caves',
+                        'description' => 'Ancient rock-cut Buddhist caves featuring magnificent fresco paintings.',
+                        'url' => SITE_URL . '/attractions/ajanta-caves'
+                    ]
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'item' => [
+                        '@type' => 'TouristAttraction',
+                        'name' => 'Ellora Caves',
+                        'description' => 'Monolithic rock-cut temples featuring the world-famous Kailash Temple.',
+                        'url' => SITE_URL . '/attractions/ellora-caves'
+                    ]
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 3,
+                    'item' => [
+                        '@type' => 'TouristAttraction',
+                        'name' => 'Bibi Ka Maqbara',
+                        'description' => 'The scenic 17th-century burial monument mimicking the Taj Mahal architecture.',
+                        'url' => SITE_URL . '/attractions/bibi-ka-maqbara'
+                    ]
+                ]
             ]
         ];
     }

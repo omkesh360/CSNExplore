@@ -425,9 +425,9 @@ require 'header.php';
         <div class="h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] flex flex-col justify-end mb-8 md:mb-10 lg:mb-12">
             <p id="hero-label" class="mobile-hide text-orange-500 font-bold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-3">Chhatrapati Sambhajinagar</p>
             <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-[1.1] font-black px-4">
-                <span id="hero-pre">Explore </span><span class="text-primary" id="hero-highlight">Your City</span><span id="hero-post"> Your Way</span>
+                Explore Chhatrapati Sambhajinagar Your Way: Rentals, Stays & Tours
             </h1>
-            <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-6 leading-relaxed mb-0"><?php echo htmlspecialchars($hp_settings['hero_subtext']); ?></p>
+            <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-6 leading-relaxed mb-0">Book premium stays, self-drive cars, bike rentals, top restaurants, local attractions, and outstation buses—all in one place.</p>
         </div>
 
         <!-- Modern Tabs Section -->
@@ -920,7 +920,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             <?php if ($_sec_key === 'blogs'): ?>
             <div>
                 <p class="mobile-hide text-orange-600 font-bold text-xs uppercase tracking-widest mb-1">Our Travel Journals</p>
-                <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($hp_settings['title_blogs']); ?></h2>
+                <h2 class="font-serif text-2xl md:text-3xl text-slate-900">Travel Journals & Itineraries</h2>
             </div>
             <a href="<?php echo BASE_PATH; ?>/blogs" class="text-sm font-bold text-[#c2410c] hover:underline">Read more &rarr;</a>
             <?php else: ?>
@@ -929,9 +929,20 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     $sec_subtitles = ['attractions'=>'Heritage & Culture','bikes'=>'Two-Wheeler Rentals','restaurants'=>'Food & Dining','buses'=>'Travel Your Way','cars'=>'Self-Drive & Taxis','stays'=>'Hotels & Resorts'];
                     echo $sec_subtitles[$_sec_key] ?? 'Explore';
                 ?></p>
-                <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($hp_settings['title_' . $_sec_key]); ?></h2>
+                <?php 
+                $seo_titles = [
+                    'stays' => 'Premium Stays & Hotels in Chhatrapati Sambhajinagar',
+                    'cars' => 'Self-Drive Car Rentals & Taxis (Aurangabad)',
+                    'bikes' => 'Quick Bike & Scooter Rentals in Sambhajinagar',
+                    'attractions' => 'Ajanta & Ellora Caves Tour & Heritage Sites',
+                    'restaurants' => 'Taste the City: Pure Veg, Jain & Maharashtrian Restaurants',
+                    'buses' => 'Outstation Buses & Travel Options'
+                ];
+                $display_title = $seo_titles[$_sec_key] ?? $hp_settings['title_' . $_sec_key];
+                ?>
+                <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($display_title); ?></h2>
             </div>
-            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo $_sec_key; ?>" class="text-sm font-bold text-[#c2410c] hover:underline">See all &rarr;</a>
+            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo htmlspecialchars($display_title); ?>" class="text-sm font-bold text-[#c2410c] hover:underline">See all <?php echo htmlspecialchars($display_title); ?> &rarr;</a>
             <?php endif; ?>
         </div>
         <?php if ($_sec_key !== 'blogs'): ?>
@@ -971,13 +982,13 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     }
                 }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('attractions', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$tag.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1 relative z-20">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between relative z-20">'
                     .'<p class="font-black text-slate-900 text-sm">'.$price.' <span class="text-xs text-slate-500 font-normal">entry</span></p>'
-                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Details</span>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all" aria-label="Check details for '.$name.' in Chhatrapati Sambhajinagar">View '.$name.' Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_attractions;
@@ -1003,13 +1014,13 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     }
                 }
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('bikes', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/day</span></p>'
-                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Availability</span>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all" aria-label="Check availability for '.$name.' bike rental">Rent '.$name.'</span>'
                     .'</div></div></a>';
             };
             $items = $hp_bikes;
@@ -1035,7 +1046,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     }
                 }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('restaurants', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$cuisine.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
@@ -1047,7 +1058,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'</div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">for two</span></p>'
-                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap">Check Details</span>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs  transition-all whitespace-nowrap" aria-label="Check details for '.$name.'">View '.$name.' Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_restaurants;
@@ -1073,13 +1084,13 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     }
                 }
                 return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('cars', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
                     .'<div class="flex items-center justify-between">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/day</span></p>'
-                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all">Check Availability</span>'
+                    .'<span class="bg-[#c2410c] text-white px-3 py-1.5 rounded-full font-bold text-xs transition-all" aria-label="Check availability for '.$name.' self drive car rental">Rent '.$name.'</span>'
                     .'</div></div></a>';
             };
             $items = $hp_cars;
@@ -1105,14 +1116,14 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     }
                 }
                 return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.$name.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('stays', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
                     .'<div class="flex items-center gap-1 text-slate-500 text-xs mb-3 relative z-20"><span style="font-family:Material Symbols Outlined;font-size:14px">location_on</span><span class="line-clamp-1">'.htmlspecialchars($s['location']??'').'</span></div>'
                     .'<div class="flex items-center justify-between gap-3 relative z-20 border-t border-slate-100 pt-3">'
                     .'<p class="font-black text-slate-900 text-sm">&#8377;'.$price.' <span class="text-xs text-slate-500 font-normal">/night</span></p>'
-                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs transition-all whitespace-nowrap">Check Details</span>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-1.5 rounded-full font-bold text-xs transition-all whitespace-nowrap" aria-label="Check details for '.$name.' in Chhatrapati Sambhajinagar">View '.$name.' Details</span>'
                     .'</div></div></a>';
             };
             $items = $hp_stays;
@@ -1130,7 +1141,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     .'<p class="text-white/50 text-xs mt-0.5 truncate">'.$route.'</p></div></div>'
                     .'<div class="flex items-center gap-3 shrink-0 relative z-20">'
                     .'<p class="text-primary font-black text-lg">&#8377;'.$price.'</p>'
-                    .'<span class="bg-[#c2410c] text-white px-4 py-2 rounded-xl font-bold text-xs transition-all">Check Details</span>'
+                    .'<span class="bg-[#c2410c] text-white px-4 py-2 rounded-xl font-bold text-xs transition-all" aria-label="Check availability for '.$op.' bus to '.htmlspecialchars($bus['to_location']).'">Book '.$op.'</span>'
                     .'</div></a>';
             };
             $items = $hp_buses;
@@ -1160,7 +1171,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 }
                 return '<a href="'.$slug.'" class="group cursor-pointer flex-shrink-0 hover:-translate-y-1.5 transition-all duration-400 ease-out" style="width:VAR_W">'
                     .'<div class="rounded-2xl overflow-hidden aspect-[16/10] mb-3 shadow-md relative">'
-                    .'<img width="800" height="600" alt="'.$title.'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                    .'<img width="800" height="600" alt="'.SEOOptimizer::generateAltText('blogs', $title).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">'
                     .'<span class="bg-white text-black px-4 py-1.5 rounded-full font-bold text-xs">READ POST</span></div></div>'
                     .'<div class="flex items-center gap-3 mb-2">'
@@ -1189,6 +1200,16 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 </section>
 <?php endforeach; ?>
 </main>
+
+<!-- SEO Semantic Text Block Injection -->
+<section class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100">
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">Plan Your Journey with CSNExplore</h2>
+    <div class="prose prose-slate max-w-none text-slate-600 text-sm leading-relaxed space-y-4">
+        <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget under 2 days tour or exploring the city over a long weekend, we bring everything into one unified dashboard.</p>
+        <p>Discover top-rated hotels near Aurangabad, budget backpacker hostels near Satara, and specialized family accommodations, including verified Jain hotels in Aurangabad featuring pure vegetarian dining options. For single adventurers, our portal prioritizes safety by partnering with verified stays and transit options to ensure a secure environment for any lady travelling solo or women single travellers exploring our heritage sites.</p>
+        <p>Need total flexibility? Skip public transit with our verified local vendors. Secure a car rental under 3000 for a comfortable family drive to Bibi Ka Maqbara, or choose a premium sedan or SUV for your outstation trips. For solo explorers, we feature cheap bike rentals under 5000 per month alongside quick daily scooter rentals in Sambhajinagar to let you uncover hidden gems at your own pace.</p>
+    </div>
+</section>
 
 <?php require 'footer.php'; ?>
 

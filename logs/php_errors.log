@@ -972,3 +972,38 @@ Stack trace:
 [24-May-2026 18:28:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 1011
 [24-May-2026 18:28:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 1011
 [24-May-2026 18:28:30 Europe/Berlin] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\CSNExplore\index.php on line 1011
+[25-May-2026 17:58:41 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:55
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(55): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(111): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(104): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(7): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 55
+[25-May-2026 19:20:06 Europe/Berlin] Auth error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[25-May-2026 19:21:25 Europe/Berlin] Auth error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[25-May-2026 19:22:50 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:55
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(55): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(111): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(104): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(7): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 55
+[25-May-2026 19:22:54 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:55
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(55): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(111): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(104): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(7): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 55
+[25-May-2026 19:22:58 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:55
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(55): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(111): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(104): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(7): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 55
+[25-May-2026 19:26:04 Europe/Berlin] Keywords API error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexploredb.seo_keywords' doesn't exist

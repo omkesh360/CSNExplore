@@ -91,14 +91,14 @@ try {
 
         // Hardcoded admins – loaded from environment to keep credentials out of source code
         $hardcodedAdmins = array_filter([
-            getenv('ADMIN_USER_1') ?: '' => getenv('ADMIN_PASS_1') ?: '',
-            getenv('ADMIN_USER_2') ?: '' => getenv('ADMIN_PASS_2') ?: '',
+            env('ADMIN_USER_1', '') => env('ADMIN_PASS_1', ''),
+            env('ADMIN_USER_2', '') => env('ADMIN_PASS_2', ''),
         ]);
         // Fallback: legacy credentials from .env (kept for backward compat; remove after migration)
         if (empty($hardcodedAdmins)) {
             $hardcodedAdmins = [
-                'omkeshadmin' => getenv('ADMIN_PASS_LEGACY_1') ?: 'CHANGE_THIS_IN_ENV',
-                'rupeshadmin' => getenv('ADMIN_PASS_LEGACY_2') ?: 'CHANGE_THIS_IN_ENV',
+                'omkeshadmin' => env('ADMIN_PASS_LEGACY_1', 'CHANGE_THIS_IN_ENV'),
+                'rupeshadmin' => env('ADMIN_PASS_LEGACY_2', 'CHANGE_THIS_IN_ENV'),
             ];
         }
 

@@ -8,23 +8,30 @@ class Database {
 
     private function __construct() {
         // Auto-detect environment: check if running on Hostinger or localhost
+        $appEnv = function_exists('env') ? env('APP_ENV') : (function_exists('getenv') ? getenv('APP_ENV') : false);
         $isProduction = (
             isset($_SERVER['HTTP_HOST']) && 
             (strpos($_SERVER['HTTP_HOST'], 'hostingersite.com') !== false || 
-             strpos($_SERVER['HTTP_HOST'], 'csnexplore.com') !== false)
-        ) || getenv('APP_ENV') === 'production';
+             strpos($_SERVER['HTTP_HOST'], 'csnexplore.com') !== false ||
+             strpos($_SERVER['HTTP_HOST'], 'hostinger') !== false)
+        ) || $appEnv === 'production';
+
+        // Helper to safely get env vars
+        $getEnvVar = function($key) {
+            return function_exists('env') ? env($key) : (function_exists('getenv') ? getenv($key) : false);
+        };
 
         // Use production or local credentials based on environment
         if ($isProduction) {
-            $host   = getenv('DB_HOST_PROD');
-            $dbName = getenv('DB_NAME_PROD');
-            $user   = getenv('DB_USER_PROD');
-            $pass   = getenv('DB_PASS_PROD');
+            $host   = $getEnvVar('DB_HOST_PROD');
+            $dbName = $getEnvVar('DB_NAME_PROD');
+            $user   = $getEnvVar('DB_USER_PROD');
+            $pass   = $getEnvVar('DB_PASS_PROD');
         } else {
-            $host   = getenv('DB_HOST_LOCAL');
-            $dbName = getenv('DB_NAME_LOCAL');
-            $user   = getenv('DB_USER_LOCAL');
-            $pass   = getenv('DB_PASS_LOCAL');
+            $host   = $getEnvVar('DB_HOST_LOCAL');
+            $dbName = $getEnvVar('DB_NAME_LOCAL');
+            $user   = $getEnvVar('DB_USER_LOCAL');
+            $pass   = $getEnvVar('DB_PASS_LOCAL');
         }
         
         // Validate required credentials
@@ -33,20 +40,20 @@ class Database {
             throw new Exception('Database configuration error. Please check environment variables.');
         }
         
-        $port = getenv('DB_PORT') ?: '3306';
+        // Force 127.0.0.1 when host is 'localhost' — avoids Windows named-pipe/socket issues with PDO
+        if ($host === 'localhost') $host = '127.0.0.1';
+        
+        $port = $getEnvVar('DB_PORT') ?: '3306';
 
         $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=utf8mb4";
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            // Persistent connections: safe on Hostinger/dedicated; disable on unstable shared hosts
-            PDO::ATTR_PERSISTENT         => $isProduction,
+            // Persistent connections: disabled for Hostinger compatibility
+            PDO::ATTR_PERSISTENT         => false,
             PDO::ATTR_EMULATE_PREPARES   => false, // native prepared statements
             PDO::ATTR_TIMEOUT            => 5,     // fail fast if DB is unreachable
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci,
-                                             @@SESSION.time_zone = '+05:30',
-                                             @@SESSION.sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_DATE',
-                                             @@SESSION.group_concat_max_len = 32768",
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci",
         ];
         $this->db = new PDO($dsn, $user, $pass, $options);
 
