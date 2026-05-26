@@ -49,7 +49,7 @@
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format">
 <!-- ═══ CRITICAL INLINE CSS — renders page immediately, no blocking ═══ -->
 <style>
-*,::after,::before{box-sizing:border-box;margin:0;padding:0}
+*,::after,::before{box-sizing:border-box;margin:0;padding:0;border:0 solid #e5e7eb}
 html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,sans-serif;background:#fff;color:#0f172a;overflow-x:hidden;max-width:100vw;line-height:1.5}
 img{max-width:100%;height:auto;display:block}
@@ -580,11 +580,11 @@ a.text-white:hover,a.text-white:hover *,button.text-white:hover,button.text-whit
 
 <main class="bg-white min-h-screen">
   <!-- Hero: shared image with breadcrumb at top, blog title at bottom -->
-  <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden">
-    <picture><source srcset="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format" type="image/webp"><img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format" alt="Blog showing Complete Travel Guide to Chhatrapati Sambhajinagar in 2026" loading="lazy" width="1200" height="500" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='../images/travelhub.webp'"></picture>
+  <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden pt-28">
+    <picture><source srcset="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format" type="image/webp"><img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format" alt="Blog showing Complete Travel Guide to Chhatrapati Sambhajinagar in 2026" loading="lazy" width="1200" height="500" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null;this.src='../images/travelhub.webp'"></picture>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     <!-- Breadcrumb at very top -->
-    <div class="absolute top-0 left-0 right-0 pt-5">
+    <div class="absolute top-0 left-0 right-0 pt-28">
       <div class="max-w-4xl mx-auto px-4 flex items-center gap-2 text-sm text-white/60 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-base">chevron_right</span>

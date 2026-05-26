@@ -79,7 +79,7 @@ require 'header.php';
 <main style="background: #f8f6f6;">
 
 <!-- Shared hero with breadcrumb at top -->
-<section class="relative h-[420px] flex items-center justify-center overflow-hidden">
+<section class="relative h-[420px] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 z-0">
         <img loading="lazy" width="800" height="600" class="w-full h-full object-cover"
              src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
@@ -87,7 +87,7 @@ require 'header.php';
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
     </div>
     <!-- Breadcrumb at very top of hero -->
-    <div class="absolute top-0 left-0 right-0 z-20 pt-5">
+    <div class="absolute top-0 left-0 right-0 z-20 pt-28">
         <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
             <a href="<?php echo BASE_PATH; ?>/" class="hover:text-white transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-base">home</span>Home

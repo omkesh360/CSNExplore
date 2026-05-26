@@ -14,16 +14,16 @@
                 <p class="text-white/50 text-sm leading-relaxed mb-5">Your premium gateway to the wonders of Chhatrapati
                     Sambhajinagar, Maharashtra.</p>
                 <div class="flex gap-3 mt-6">
-                    <button id="footer-share-btn" aria-label="Share" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <button id="footer-share-btn" aria-label="Share" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(236,91,19,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M352 320c-22.61 0-43.33 8.35-59.39 22.18l-123.7-72.16c1.15-5.91 1.76-11.96 1.76-18.17 0-6.17-.61-12.18-1.76-18.06l123.7-72.16c16.03 13.78 36.68 22.06 59.23 22.06 49.33 0 89.33-40 89.33-89.35S401.33 5 352 5 262.67 45 262.67 94.35c0 6.17 .61 12.18 1.76 18.06l-123.7 72.16c-16.03-13.78-36.68-22.06-59.23-22.06-49.33 0-89.33 40-89.33 89.35s40 89.35 89.33 89.35c22.61 0 43.33-8.35 59.39-22.18l123.7 72.16c-1.15 5.91-1.76 11.96-1.76 18.17 0 49.35 40 89.35 89.33 89.35s89.33-40 89.33-89.35-40-89.35-89.33-89.35z"/></svg>
                     </button>
-                    <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" target="_blank" rel="noopener noreferrer" aria-label="Email Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <a href="mailto:<?php echo SUPPORT_EMAIL; ?>" target="_blank" rel="noopener noreferrer" aria-label="Email Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(236,91,19,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
                     </a>
-                    <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(37,211,102,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(236,91,19,0.5)] transition-all duration-300">
+                    <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(220,39,67,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M224.1 141.6c-45.6 0-82.6 37-82.6 82.6s37 82.6 82.6 82.6 82.6-37 82.6-82.6-37.1-82.6-82.6-82.6zm0 136.4c-29.7 0-53.8-24.1-53.8-53.8s24.1-53.8 53.8-53.8 53.8 24.1 53.8 53.8-24.1 53.8-53.8 53.8zm76.5-115.5c-9.5 0-17.2-7.7-17.2-17.2s7.7-17.2 17.2-17.2 17.2 7.7 17.2 17.2-7.8 17.2-17.2 17.2zM448 224v113c0 60.1-48.9 109-109 109H109C48.9 446 0 397.1 0 337V109C0 48.9 48.9 0 109 0h230C399.1 0 448 48.9 448 109v115h0zm-41.6 0v-115c0-37.2-30.2-67.4-67.4-67.4H109c-37.2 0-67.4 30.2-67.4 67.4v228c0 37.2 30.2 67.4 67.4 67.4h230c37.2 0 67.4-30.2 67.4-67.4v-113h0z"/></svg>
                     </a>
                 </div>
@@ -79,7 +79,7 @@
                         </span>
                         <div class="flex flex-col">
                             <span class="text-white font-bold text-xs uppercase tracking-widest mb-1">Our Office</span>
-                            <a href="https://maps.app.goo.gl/k5L4CHe6gJ1tyDBY8" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors leading-relaxed">Jay Tower, Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005</a>
+                            <a href="https://maps.app.goo.gl/1yfmPM7jrKAxtn6s5" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors leading-relaxed">Jay Tower, Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005</a>
                         </div>
                     </li>
                     <li class="flex items-center gap-4">
@@ -108,11 +108,11 @@
                 <p class="text-white/50 text-sm mb-4">Get travel tips and exclusive deals in your inbox.</p>
                 <form method="POST" action="subscribe" class="flex flex-col gap-4">
                     <input type="email" name="email" placeholder="Your email address" required
-                        class="bg-white/5 border border-white/10 text-white placeholder:text-white/30 px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors" />
-                    <button type="submit" style="background-color: #ec5b13;"
-                        class="text-white font-bold py-2.5 rounded-xl text-sm hover:scale-[1.02] transition-all duration-200"
-                        onmouseover="this.style.backgroundColor='#d44e0e'"
-                        onmouseout="this.style.backgroundColor='#ec5b13'">Subscribe</button>
+                        class="bg-white/5 border border-white/10 text-white placeholder:text-white/30 px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all shadow-inner" />
+                    <button type="submit"
+                        class="bg-primary text-white font-bold py-3 rounded-xl text-sm hover:-translate-y-1 hover:bg-orange-600 transition-all duration-300 shadow-[0_4px_15px_rgba(236,91,19,0.3)] hover:shadow-[0_8px_25px_rgba(236,91,19,0.5)]">
+                        Subscribe
+                    </button>
                 </form>
             </div>
         </div>
@@ -467,20 +467,53 @@ if (file_exists($locationsFile)) {
 
         // ── Smooth page transitions (fade out on link click) ──
         document.addEventListener('click', function (e) {
+            if (e.defaultPrevented) return;
             var a = e.target.closest('a');
             if (!a) return;
             var href = a.getAttribute('href');
-            if (!href || href === '#' || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript') || a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey) return;
+            if (!href || href === '#' || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript') || a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey) return;
             try {
                 var url = new URL(href, window.location.href);
                 if (url.origin !== window.location.origin) return;
+                // Don't intercept same page anchors/links
+                if (url.pathname === window.location.pathname && url.search === window.location.search) return;
             } catch (err) { return; }
             e.preventDefault();
-            document.body.style.transition = 'opacity 0.15s ease-out';
-            document.body.style.opacity = '0';
+            
+            // Create progress bar
+            var pb = document.getElementById('page-loading-bar');
+            if (!pb) {
+                pb = document.createElement('div');
+                pb.id = 'page-loading-bar';
+                pb.style.cssText = 'position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right, #ec5b13, #f97316, #fb923c);z-index:999999;transition:width 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);width:0%;box-shadow:0 0 8px rgba(236,91,19,0.5);';
+                document.body.appendChild(pb);
+            }
+            
+            // Start progress bar animation
+            setTimeout(function() {
+                pb.style.width = '50%';
+            }, 10);
+            
+            setTimeout(function() {
+                pb.style.width = '85%';
+            }, 150);
+
+            // Start body fade out
+            setTimeout(function() {
+                document.body.style.transition = 'opacity 0.2s ease-out';
+                document.body.style.opacity = '0';
+            }, 100);
+
             // Safety: restore if navigation stalls
-            var _st = setTimeout(function () { document.body.style.opacity = '1'; }, 800);
-            setTimeout(function () { clearTimeout(_st); window.location.href = href; }, 150);
+            var _st = setTimeout(function () { 
+                document.body.style.opacity = '1'; 
+                if (pb) pb.style.width = '0%';
+            }, 1200);
+
+            setTimeout(function () { 
+                clearTimeout(_st); 
+                window.location.href = href; 
+            }, 300);
         });
 
         // ── Always restore opacity on any page show/load (fixes invisible text) ──
@@ -488,6 +521,8 @@ if (file_exists($locationsFile)) {
             document.body.style.transition = '';
             document.body.style.opacity = '1';
             document.body.style.visibility = 'visible';
+            var pb = document.getElementById('page-loading-bar');
+            if (pb) pb.remove();
         }
         window.addEventListener('pageshow', _restoreBody);
         window.addEventListener('load', _restoreBody);

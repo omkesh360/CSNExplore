@@ -1,6 +1,8 @@
 <?php
+require_once 'php/config.php';
 $page_title   = "Bus Routes from Chhatrapati Sambhajinagar (Aurangabad) | CSNExplore";
-$current_page = "bus.php";
+$current_page = "listing.php";
+$listing_type = "buses";
 $page_meta = [
     'description' => 'Book intercity bus travel from Chhatrapati Sambhajinagar (Aurangabad). AC sleepers, Volvo coaches & MSRTC buses to Mumbai, Pune, Nashik and more. Please contact us to book.',
     'canonical'   => 'https://csnexplore.com/bus',
@@ -11,42 +13,51 @@ $extra_styles = "
     .glassy { background:rgba(255,255,255,0.07); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); }
     .hide-scrollbar::-webkit-scrollbar{display:none} .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
 ";
-require_once 'php/config.php';
 $db = getDB();
 $routes = $db->fetchAll("SELECT * FROM buses WHERE is_active=1 ORDER BY display_order ASC LIMIT 6");
 require 'header.php';
 
-$category_nav = [
-    ['href' => BASE_PATH . '/listing/stays',       'icon' => 'bed',                'label' => 'Stays'],
-    ['href' => BASE_PATH . '/listing/cars',        'icon' => 'directions_car',     'label' => 'Car Rentals'],
-    ['href' => BASE_PATH . '/listing/bikes',       'icon' => 'motorcycle',         'label' => 'Bike Rentals'],
-    ['href' => BASE_PATH . '/listing/attractions', 'icon' => 'confirmation_number','label' => 'Attractions'],
-    ['href' => BASE_PATH . '/listing/restaurants', 'icon' => 'restaurant',         'label' => 'Restaurant'],
-    ['href' => BASE_PATH . '/bus',                 'icon' => 'directions_bus',     'label' => 'Buses'],
+$c = [
+    'hero_bg'  => BASE_PATH . '/images/bus-hero-section%20(2).webp',
+    'label'    => 'Buses',
+    'icon'     => 'directions_bus',
+    'hero_h1'  => 'Travel by Bus',
+    'hero_sub' => 'Intercity buses on request — call or WhatsApp to book.'
 ];
 ?>
-<nav class="bg-white border-b border-slate-100 relative top-16 z-40">
-    <div class="max-w-[1140px] mx-auto px-5 overflow-x-auto hide-scrollbar">
-        <div class="flex items-center gap-1 h-12">
-            <?php foreach ($category_nav as $cat):
-                $active = ($cat['href'] === 'bus.php');
-            ?>
-            <a href="<?php echo $cat['href']; ?>"
-               class="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all
-                      <?php echo $active
-                          ? 'bg-primary text-white shadow shadow-primary/30'
-                          : 'text-slate-500 hover:text-primary hover:bg-primary/10'; ?>">
-                <span class="material-symbols-outlined text-[15px]"><?php echo $cat['icon']; ?></span>
-                <?php echo $cat['label']; ?>
+
+<!-- Hero Banner with breadcrumb at top -->
+<div class="relative h-52 md:h-72 overflow-hidden pt-28">
+    <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
+         alt="<?php echo htmlspecialchars($c['label']); ?>"
+         class="absolute inset-0 w-full h-full object-cover"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
+    <!-- Breadcrumb at very top -->
+    <div class="absolute top-0 left-0 right-0 pt-28">
+        <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
+            <a href="<?php echo BASE_PATH; ?>/" class="hover:text-white transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">home</span>Home
             </a>
-            <?php endforeach; ?>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="text-white font-semibold"><?php echo htmlspecialchars($c['label']); ?></span>
         </div>
     </div>
-</nav>
+    <!-- Title at bottom -->
+    <div class="absolute bottom-0 left-0 right-0 pb-6">
+        <div class="max-w-[1140px] mx-auto px-5">
+            <h1 class="text-white text-2xl md:text-4xl font-serif font-black flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-3xl"><?php echo htmlspecialchars($c['icon']); ?></span>
+                <?php echo htmlspecialchars($c['hero_h1']); ?>
+            </h1>
+            <p class="text-white/60 text-sm mt-1"><?php echo htmlspecialchars($c['hero_sub']); ?></p>
+        </div>
+    </div>
+</div>
 
-<main class="bg-white min-h-screen flex items-center justify-center py-16">
-    <div class="max-w-2xl w-full mx-auto px-4">
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 flex flex-col items-center text-center">
+<main class="min-h-screen" style="background:#f8f6f6">
+<div class="max-w-[1140px] mx-auto px-3 sm:px-5 py-4 sm:py-8" style="width:100%;box-sizing:border-box;overflow-x:hidden">
+    <div class="max-w-2xl w-full mx-auto">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 flex flex-col items-center text-center mt-4">
 
             <!-- Bus Icon Animation -->
             <div class="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-6">
@@ -60,8 +71,8 @@ $category_nav = [
 
             <div class="bg-amber-50 border border-amber-200 rounded-2xl px-6 py-4 mb-8 max-w-lg text-left w-full">
                 <p class="text-amber-800 text-sm font-medium flex items-start gap-2">
-                    <span class="material-symbols-outlined text-[18px] mt-0.5 shrink-0">info</span>
-                    <span>We are currently building our online bus reservation system. In the meantime, you can book buses manually by calling or messaging us on WhatsApp.</span>
+                     <span class="material-symbols-outlined text-[18px] mt-0.5 shrink-0">info</span>
+                     <span>We are currently building our online bus reservation system. In the meantime, you can book buses manually by calling or messaging us on WhatsApp.</span>
                 </p>
             </div>
 
@@ -112,6 +123,7 @@ $category_nav = [
             </div>
         </div>
     </div>
+</div>
 </main>
 
 <?php require 'footer.php'; ?>

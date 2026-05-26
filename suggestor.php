@@ -122,7 +122,7 @@ require 'header.php';
 
 <main class="bg-gray-50 min-h-screen">
     <!-- Premium Hero Section -->
-    <section class="relative h-[450px] flex items-center justify-center overflow-hidden">
+    <section class="relative h-[450px] flex items-center justify-center overflow-hidden pt-28">
         <div class="absolute inset-0 z-0">
             <img width="800" height="600" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop" 
                  alt="Travel Planning" fetchpriority="high" class="w-full h-full object-cover">
@@ -219,22 +219,26 @@ require 'header.php';
             <?php else: ?>
             
             <form id="trip-planner-form" method="POST" action="" class="space-y-12">
-                <!-- Progress Bar -->
-                <div class="relative pt-1">
-                    <div class="flex mb-2 items-center justify-between">
-                        <div>
-                            <span id="step-count-badge" class="text-xs font-black inline-block py-2 px-4 uppercase rounded-full text-white bg-slate-900 shadow-lg shadow-black/10 transition-all duration-500">
-                                STEP 1 / 3
-                            </span>
+                <!-- Premium Step Indicator -->
+                <div class="mb-12 max-w-xl mx-auto">
+                    <div class="flex items-center justify-between relative px-2 sm:px-4">
+                        <!-- Horizontal connector line -->
+                        <div class="absolute top-5 left-8 right-8 h-1 bg-slate-100 -translate-y-1/2 z-0"></div>
+                        <div id="step-connector-fill" class="absolute top-5 left-8 h-1 bg-gradient-to-r from-primary to-orange-400 -translate-y-1/2 z-0 transition-all duration-500 ease-out" style="width: 0%"></div>
+                        
+                        <!-- Step Circles -->
+                        <?php
+                        $step_names = ['Interests', 'Preferences', 'Details', 'Review'];
+                        foreach ($step_names as $idx => $name):
+                            $num = $idx + 1;
+                        ?>
+                        <div class="step-circle-wrapper flex flex-col items-center gap-2 relative z-10">
+                            <div class="step-circle size-10 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center font-bold text-xs text-slate-400 transition-all duration-500" data-step="<?php echo $num; ?>">
+                                <?php echo $num; ?>
+                            </div>
+                            <span class="step-circle-label text-[10px] font-black uppercase tracking-wider text-slate-400 transition-all duration-500" data-step="<?php echo $num; ?>"><?php echo $name; ?></span>
                         </div>
-                        <div class="text-right">
-                            <span id="progress-percentage" class="text-xs font-bold inline-block text-primary">
-                                33%
-                            </span>
-                        </div>
-                    </div>
-                    <div class="overflow-hidden h-2.5 mb-4 text-xs flex rounded-full bg-slate-100">
-                        <div id="progress-bar-fill" style="width:33%" class="shadow-[0_0_15px_rgba(236,91,19,0.4)] flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-primary to-orange-400 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"></div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
@@ -248,7 +252,7 @@ require 'header.php';
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Heritage" class="peer sr-only interest-toggle" data-target="sub-heritage">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/daulatabad.webp" alt="Historic Places" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.webp" alt="Historic Places" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -262,7 +266,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Temple" class="peer sr-only interest-toggle" data-target="sub-temple">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/grishneshwar.webp" alt="Mandir & Temples" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/grishneshwar-temple.webp" alt="Mandir & Temples" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -276,7 +280,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Nature" class="peer sr-only interest-toggle" data-target="sub-nature">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/ellora.webp" alt="Nature & Caves" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ellora_caves.webp" alt="Nature & Caves" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -290,7 +294,7 @@ require 'header.php';
 
                         <label class="relative cursor-pointer group rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block h-48 md:h-56 transform hover:-translate-y-1">
                             <input type="checkbox" name="interests[]" value="Food" class="peer sr-only interest-toggle" data-target="sub-food">
-                            <img loading="lazy" width="800" height="600" src="images/uploads/indian-thali.webp" alt="Local Cuisine" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/indian-thali.webp" alt="Local Cuisine" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent peer-checked:via-primary/50 transition-colors duration-300"></div>
                             <div class="absolute inset-0 border-[3px] border-transparent peer-checked:border-primary rounded-[2rem] transition-colors shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"></div>
                             <div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity z-10 bg-white/20 backdrop-blur-md rounded-full shadow-lg">
@@ -553,17 +557,17 @@ require 'header.php';
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
                         <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Full Name</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Full Name *</label>
                             <input name="full_name" type="text" required placeholder="John Doe"
                                    class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Email Address</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Email Address *</label>
                             <input name="email" type="email" required placeholder="john@example.com"
                                    class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>
                         </div>
                         <div class="space-y-2 md:col-span-2">
-                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">WhatsApp / Phone</label>
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">WhatsApp / Phone *</label>
                             <input name="phone" type="tel" required placeholder="+91 00000 00000"
                                    class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium"/>
                         </div>
@@ -571,6 +575,59 @@ require 'header.php';
                             <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Any special requests?</label>
                             <textarea name="extra_notes" rows="4" placeholder="e.g. Traveling with kids, elderly parents, or have specific dietary needs?"
                                       class="w-full rounded-2xl px-6 py-4 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-sm font-medium resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Review Details -->
+                <div id="step-4" class="step-container hidden transition-all duration-500">
+                    <div class="mb-10 text-center">
+                        <h3 class="text-3xl font-serif font-black text-gray-900 mb-2">Review Your Request</h3>
+                        <p class="text-gray-500">Please verify your details before submitting.</p>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto bg-slate-50/50 rounded-3xl p-6 sm:p-8 border border-slate-100 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Selected Interests -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+                                <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5"><span class="material-symbols-outlined text-base">interests</span>Your Interests</h4>
+                                <ul id="summary-interests" class="text-sm text-slate-600 font-semibold space-y-1">
+                                    <!-- Populated via JS -->
+                                </ul>
+                            </div>
+                            
+                            <!-- Travel & Stay -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+                                <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5"><span class="material-symbols-outlined text-base">luggage</span>Stay & Travel</h4>
+                                <div class="text-sm text-slate-600 font-semibold space-y-2">
+                                    <p class="flex justify-between"><span>Stay Style:</span> <span id="summary-stay" class="text-slate-800 font-black"></span></p>
+                                    <p class="flex justify-between"><span>Travel Mode:</span> <span id="summary-travel" class="text-slate-800 font-black"></span></p>
+                                    <p class="flex justify-between"><span>Travelers:</span> <span id="summary-people" class="text-slate-800 font-black"></span></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Details -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm md:col-span-2">
+                                <h4 class="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5"><span class="material-symbols-outlined text-base">contact_phone</span>Contact Details</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-600 font-semibold">
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-0.5">Name</p>
+                                        <p id="summary-name" class="text-slate-800 font-black"></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-0.5">Email</p>
+                                        <p id="summary-email" class="text-slate-800 font-black truncate"></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-0.5">WhatsApp / Phone</p>
+                                        <p id="summary-phone" class="text-slate-800 font-black"></p>
+                                    </div>
+                                </div>
+                                <div id="summary-notes-container" class="mt-4 pt-4 border-t border-slate-100 hidden">
+                                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-0.5">Special Requests</p>
+                                    <p id="summary-notes" class="text-xs text-slate-500 italic leading-relaxed"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -650,7 +707,7 @@ require 'header.php';
                 </style>
 
                 <div class="img-stack-card">
-                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ellora.webp" alt="Ellora Caves" class="w-full h-full object-cover">
+                    <img loading="lazy" width="800" height="600" src="<?php echo BASE_PATH; ?>/images/uploads/ellora_caves.webp" alt="Ellora Caves" class="w-full h-full object-cover">
                     <div class="img-stack-overlay"></div>
                     <div class="img-stack-title">Ellora Caves Retreat</div>
                 </div>
@@ -724,15 +781,115 @@ require 'header.php';
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     let currentStep = 1;
-    const totalSteps = 3;
+    const totalSteps = 4;
     
     const steps = document.querySelectorAll('.step-container');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const submitBtn = document.getElementById('submit-btn');
-    const progressBar = document.getElementById('progress-bar-fill');
-    const stepBadge = document.getElementById('step-count-badge');
-    const progressText = document.getElementById('progress-percentage');
+
+    function validateStep3() {
+        const nameInp = document.querySelector('input[name="full_name"]');
+        const emailInp = document.querySelector('input[name="email"]');
+        const phoneInp = document.querySelector('input[name="phone"]');
+        
+        let valid = true;
+        
+        // Remove existing error borders & messages
+        [nameInp, emailInp, phoneInp].forEach(inp => {
+            inp.classList.remove('border-red-500', 'ring-2', 'ring-red-500/20');
+            const parent = inp.parentElement;
+            const existingErr = parent.querySelector('.err-msg');
+            if (existingErr) existingErr.remove();
+        });
+        
+        if (!nameInp.value.trim()) {
+            showInputError(nameInp, 'Name is required.');
+            valid = false;
+        }
+        
+        if (!emailInp.value.trim()) {
+            showInputError(emailInp, 'Email is required.');
+            valid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInp.value.trim())) {
+            showInputError(emailInp, 'Please enter a valid email.');
+            valid = false;
+        }
+        
+        if (!phoneInp.value.trim()) {
+            showInputError(phoneInp, 'Phone number is required.');
+            valid = false;
+        }
+        
+        return valid;
+    }
+    
+    function showInputError(inp, msg) {
+        inp.classList.add('border-red-500', 'ring-2', 'ring-red-500/20');
+        const err = document.createElement('p');
+        err.className = 'err-msg text-red-500 text-[10px] font-black uppercase mt-1';
+        err.textContent = msg;
+        inp.parentElement.appendChild(err);
+    }
+
+    function populateSummary() {
+        // 1. Interests
+        const summaryInterests = document.getElementById('summary-interests');
+        summaryInterests.innerHTML = '';
+        const selectedInterests = [];
+        document.querySelectorAll('.interest-toggle:checked').forEach(toggle => {
+            const val = toggle.value;
+            const subKey = 'sub_' + val.toLowerCase() + '[]';
+            const subs = Array.from(document.querySelectorAll(`input[name="${subKey}"]:checked`)).map(s => s.value);
+            selectedInterests.push(val + (subs.length > 0 ? ` (${subs.join(', ')})` : ''));
+        });
+        
+        if (selectedInterests.length === 0) {
+            summaryInterests.innerHTML = '<li class="text-slate-400 italic">No specific interests selected</li>';
+        } else {
+            selectedInterests.forEach(interest => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-1.5 py-0.5 text-xs';
+                li.innerHTML = '<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>' + interest;
+                summaryInterests.appendChild(li);
+            });
+        }
+        
+        // 2. Stay & Travel
+        const stayVal = document.querySelector('input[name="stay_type"]:checked')?.value || 'Not selected';
+        document.getElementById('summary-stay').textContent = stayVal;
+        
+        const travelVal = document.querySelector('input[name="travel_mode"]:checked')?.value || 'Not selected';
+        let travelDetails = travelVal;
+        if (travelVal === 'Car') {
+            const carService = document.querySelector('input[name="car_service_type"]:checked')?.value || '';
+            const carType = document.querySelector('input[name="car_sub_type"]:checked')?.value || '';
+            const carServiceLabel = carService === 'WithDriver' ? 'With Driver' : 'Self Drive';
+            travelDetails += ` (${carServiceLabel} · ${carType})`;
+        } else if (travelVal === 'Bike') {
+            const bikeType = document.querySelector('input[name="bike_sub_type"]:checked')?.value || '';
+            travelDetails += ` (${bikeType})`;
+        }
+        document.getElementById('summary-travel').textContent = travelDetails;
+        
+        const peopleVal = document.getElementById('num-people-input').value;
+        document.getElementById('summary-people').textContent = peopleVal + ' person(s)';
+        
+        // 3. Contact Info
+        document.getElementById('summary-name').textContent = document.querySelector('input[name="full_name"]').value.trim();
+        document.getElementById('summary-email').textContent = document.querySelector('input[name="email"]').value.trim();
+        document.getElementById('summary-phone').textContent = document.querySelector('input[name="phone"]').value.trim();
+        
+        // 4. Notes
+        const notes = document.querySelector('textarea[name="extra_notes"]').value.trim();
+        const notesContainer = document.getElementById('summary-notes-container');
+        if (notes) {
+            document.getElementById('summary-notes').textContent = notes;
+            notesContainer.classList.remove('hidden');
+        } else {
+            notesContainer.classList.add('hidden');
+        }
+    }
 
     function updateView() {
         steps.forEach((step, idx) => {
@@ -744,11 +901,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update Progress
-        const percent = (currentStep / totalSteps) * 100;
-        progressBar.style.width = percent + '%';
-        progressText.innerText = Math.round(percent) + '%';
-        stepBadge.innerText = `Step ${currentStep} of ${totalSteps}`;
+        // Update Step Indicator Circles & Labels
+        const circles = document.querySelectorAll('.step-circle');
+        const labels = document.querySelectorAll('.step-circle-label');
+        circles.forEach(function(c) {
+            const stepNum = parseInt(c.dataset.step);
+            if (stepNum < currentStep) {
+                c.classList.remove('border-slate-200', 'text-slate-400', 'border-primary', 'text-primary', 'shadow-[0_0_15px_rgba(236,91,19,0.25)]', 'scale-110');
+                c.classList.add('bg-primary', 'border-primary', 'text-white');
+                c.innerHTML = '<span class="material-symbols-outlined text-xs font-black">check</span>';
+            } else if (stepNum === currentStep) {
+                c.classList.remove('bg-primary', 'text-white', 'border-slate-200', 'text-slate-400');
+                c.classList.add('border-primary', 'text-primary', 'bg-white', 'shadow-[0_0_15px_rgba(236,91,19,0.25)]', 'scale-110');
+                c.innerHTML = stepNum;
+            } else {
+                c.classList.remove('bg-primary', 'text-white', 'border-primary', 'text-primary', 'shadow-[0_0_15px_rgba(236,91,19,0.25)]', 'scale-110');
+                c.classList.add('bg-white', 'border-slate-200', 'text-slate-400');
+                c.innerHTML = stepNum;
+            }
+        });
+        
+        labels.forEach(function(l) {
+            const stepNum = parseInt(l.dataset.step);
+            if (stepNum <= currentStep) {
+                l.classList.remove('text-slate-400');
+                l.classList.add('text-slate-900', 'font-black');
+            } else {
+                l.classList.remove('text-slate-900', 'font-black');
+                l.classList.add('text-slate-400');
+            }
+        });
+        
+        // Connector width
+        const fillWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        document.getElementById('step-connector-fill').style.width = fillWidth + '%';
 
         // Update Buttons
         if (currentStep === 1) {
@@ -764,12 +950,13 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.classList.remove('hidden');
             submitBtn.classList.add('hidden');
         }
-        
-        // Removed jarring auto-scroll
-        // window.scrollTo({ top: 300, behavior: 'smooth' });
     }
 
     nextBtn.addEventListener('click', () => {
+        if (currentStep === 3) {
+            if (!validateStep3()) return;
+            populateSummary();
+        }
         if (currentStep < totalSteps) {
             currentStep++;
             updateView();

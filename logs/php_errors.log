@@ -1019,3 +1019,15 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\CSNExplore\near-attractions.php on line 76
+[25-May-2026 21:15:25 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:15:25 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:15:26 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:15:26 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:18 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[25-May-2026 21:16:18 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451

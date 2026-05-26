@@ -48,13 +48,13 @@ require 'header.php';
 <main class="bg-white min-h-screen">
 
     <!-- Hero: shared bg image with breadcrumb at top, blog title at bottom -->
-    <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden">
+    <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden pt-28">
         <img loading="lazy" width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
              alt="Blog Hero"
-             class="w-full h-full object-cover"/>
+             class="absolute inset-0 w-full h-full object-cover"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
         <!-- Breadcrumb at very top of hero -->
-        <div class="absolute top-0 left-0 right-0 z-10 pt-5">
+        <div class="absolute top-0 left-0 right-0 z-10 pt-28">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-sm text-white/60 flex-wrap">
                 <a href="<?php echo BASE_PATH; ?>/" class="hover:text-white transition-colors flex items-center gap-1">
                     <span class="material-symbols-outlined text-base">home</span>Home

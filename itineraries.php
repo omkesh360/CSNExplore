@@ -204,7 +204,12 @@ require 'header.php';
 
 <!-- Hero Section -->
 <section class="relative h-[350px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-primary to-orange-500"></div>
+    <div class="absolute inset-0 z-0">
+        <img loading="lazy" width="800" height="600" class="w-full h-full object-cover"
+             src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
+             alt="Trip Planner"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
+    </div>
     <div class="relative z-10 text-center text-white px-5">
         <h1 class="text-4xl md:text-5xl font-bold mb-3"><?php echo $itinerary['name']; ?></h1>
         <p class="text-xl text-white/90">⏱️ <?php echo $itinerary['duration']; ?> | 💰 <?php echo $itinerary['price']; ?> | ⭐ <?php echo $itinerary['difficulty']; ?></p>

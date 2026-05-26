@@ -229,7 +229,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
     $head .= '
 <!-- ═══ CRITICAL INLINE CSS — renders page immediately, no blocking ═══ -->
 <style>
-*,::after,::before{box-sizing:border-box;margin:0;padding:0}
+*,::after,::before{box-sizing:border-box;margin:0;padding:0;border:0 solid #e5e7eb}
 html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,sans-serif;background:#fff;color:#0f172a;overflow-x:hidden;max-width:100vw;line-height:1.5}
 img{max-width:100%;height:auto;display:block}
@@ -1146,11 +1146,11 @@ foreach ($blogs as $blog) {
     $html .= '
 <main class="bg-white min-h-screen">
   <!-- Hero: shared image with breadcrumb at top, blog title at bottom -->
-  <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden">
-    '.generateOptimizedImage($mainImg, generateDescriptiveAlt('Blog', $blog['title'], 0), 1200, 500, false, 'w-full h-full object-cover').'
+  <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden pt-28">
+    '.generateOptimizedImage($mainImg, generateDescriptiveAlt('Blog', $blog['title'], 0), 1200, 500, false, 'absolute inset-0 w-full h-full object-cover').'
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     <!-- Breadcrumb at very top -->
-    <div class="absolute top-0 left-0 right-0 pt-5">
+    <div class="absolute top-0 left-0 right-0 pt-28">
       <div class="max-w-4xl mx-auto px-4 flex items-center gap-2 text-sm text-white/60 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-base">chevron_right</span>
@@ -1502,13 +1502,13 @@ foreach ($types as $type) {
 <main class="bg-[#f4f5f7] min-h-screen pb-16">
 
   <!-- ── Full-width hero banner (Reduced height & Blurred) ── -->
-  <div id="hero-img-wrap" class="relative w-full overflow-hidden" style="height:240px;background-color:'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? '#ecf5ff' : '#0f172a' ).';">
+  <div id="hero-img-wrap" class="relative w-full overflow-hidden pt-28" style="height:320px;background-color:'.( (stripos($resolvedGalleryImages[0], '.png') !== false) ? '#ecf5ff' : '#0f172a' ).';">
     <!-- Blurred background layer -->
     <div data-blur="1" style="position:absolute;inset:0;background-image:url(\''.htmlspecialchars($resolvedGalleryImages[0]).'\');background-size:cover;background-position:center;filter:blur(24px) brightness(0.45);transform:scale(1.1);overflow:hidden;border-radius:0;"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" style="z-index:3;overflow:hidden;"></div>
 
     <!-- Breadcrumb top-left -->
-    <div class="absolute top-0 left-0 right-0 pt-5 px-6" style="z-index:10;">
+    <div class="absolute top-0 left-0 right-0 pt-28 px-6" style="z-index:10;">
       <div class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-white/70 flex-wrap">
         <a href="../" class="hover:text-white transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-base">home</span>Home</a>
         <span class="material-symbols-outlined text-sm opacity-50">chevron_right</span>

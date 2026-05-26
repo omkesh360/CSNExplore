@@ -96,6 +96,15 @@ function getJsonInput() {
 }
 // Centralized Slug Generation
 function generateSlug($type, $id, $name) {
+    // Decode HTML entities recursively to handle double-escaped input (e.g. &amp;amp;)
+    $nameDecoded = html_entity_decode($name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    while ($nameDecoded !== $name) {
+        $name = $nameDecoded;
+        $nameDecoded = html_entity_decode($name, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+    // Replace '&' with 'and' for clean, readable URLs
+    $name = str_replace('&', 'and', $nameDecoded);
+    
     $t = strtolower(trim($name));
     $t = preg_replace('/[^a-z0-9\s-]/', '', $t);
     $t = preg_replace('/[\s-]+/', '-', $t);

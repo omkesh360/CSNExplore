@@ -91,14 +91,14 @@ require 'header.php';
 
 <main>
 <!-- Hero -->
-<section class="relative h-[420px] flex items-center justify-center overflow-hidden">
+<section class="relative h-[420px] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 z-0">
         <img loading="lazy" width="800" height="600" alt="Ellora Caves Heritage Site" class="w-full h-full object-cover"
-             src="images/uploads/ellora.png"/>
+             src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     </div>
     <!-- Breadcrumb at very top of hero -->
-    <div class="absolute top-0 left-0 right-0 z-20 pt-5">
+    <div class="absolute top-0 left-0 right-0 z-20 pt-28">
         <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
             <a href="<?php echo BASE_PATH; ?>/index" class="hover:text-white transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-base">home</span>Home
@@ -260,8 +260,7 @@ require 'header.php';
     <!-- Map -->
     <div data-reveal="scale" class="rounded-3xl overflow-hidden shadow-2xl h-[400px] relative">
         <iframe
-            src="
-https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.3433!3d19.8762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb98f0a8a8a8a8%3A0x0!2sSamarth+Nagar%2C+Chhatrapati+Sambhajinagar!5e0!3m2!1sen!2sin!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.3131686!3d19.8686039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb99005326e43b%3A0xc80ab44b74ee04d5!2sJay+Tower!5e0!3m2!1sen!2sin!4v1"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade" title="CSNExplore Office Location">
         </iframe>

@@ -279,86 +279,155 @@ require 'header.php';
 <main style="background: #f8f6f6;">
 
 <!-- Hero Section -->
-<section class="relative h-[340px] flex items-center justify-center overflow-hidden">
+<section class="relative h-[380px] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 z-0">
         <img loading="lazy" width="800" height="600" class="w-full h-full object-cover"
              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80&auto=format"
              alt="Comparison Guide"/>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     </div>
     
-    <div class="relative z-10 text-center text-white">
-        <h1 class="text-4xl md:text-5xl font-bold mb-3"><?php echo $data['h1']; ?></h1>
-        <p class="text-lg text-white/90 max-w-2xl mx-auto px-5"><?php echo $data['intro']; ?></p>
+    <!-- Breadcrumb at very top of hero -->
+    <div class="absolute top-0 left-0 right-0 z-20 pt-28">
+        <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
+            <a href="<?php echo BASE_PATH; ?>/index" class="hover:text-white transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">home</span>Home
+            </a>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="text-white font-semibold">Comparisons</span>
+            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="text-white font-semibold"><?php echo htmlspecialchars(str_replace(['-vs-', '-'], [' vs ', ' '], $type)); ?></span>
+        </div>
+    </div>
+    
+    <div class="relative z-10 text-center text-white px-5 max-w-[1140px] mx-auto w-full">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-widest mb-6">Comparison Guide</span>
+            <h1 class="text-4xl md:text-5xl font-serif font-black mb-4 leading-tight"><?php echo $data['h1']; ?></h1>
+            <p class="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"><?php echo $data['intro']; ?></p>
+        </div>
     </div>
 </section>
 
 <!-- Content Section -->
-<section class="max-w-5xl mx-auto px-5 py-16">
+<section class="max-w-5xl mx-auto px-5 py-12 sm:py-16">
     
-    <!-- Comparison Table -->
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-        <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead class="bg-gradient-to-r from-primary to-orange-500 text-white">
-                    <tr>
-                        <th class="px-6 py-4 text-left font-semibold">Aspect</th>
-                        <th class="px-6 py-4 text-left font-semibold"><?php echo strtoupper(array_keys((array)$data['comparison'][0])[1]); ?></th>
-                        <th class="px-6 py-4 text-left font-semibold"><?php echo strtoupper(array_keys((array)$data['comparison'][0])[2]); ?></th>
-                        <th class="px-6 py-4 text-center font-semibold">Winner</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data['comparison'] as $row): ?>
-                    <tr class="border-b hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-gray-800"><?php echo $row['aspect']; ?></td>
-                        <td class="px-6 py-4 text-gray-700"><?php echo $row[array_keys($row)[1]]; ?></td>
-                        <td class="px-6 py-4 text-gray-700"><?php echo $row[array_keys($row)[2]]; ?></td>
-                        <td class="px-6 py-4 text-center">
-                            <span class="inline-block bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-semibold">
-                                <?php echo $row['winner']; ?>
-                            </span>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+    <!-- Dynamic Pill Selector -->
+    <div class="mb-10 overflow-x-auto hide-scrollbar flex gap-3 pb-3 snap-x snap-mandatory max-w-full">
+        <?php foreach ($comparisons as $key => $comp): 
+            $isActive = ($key === $type);
+            $label = str_replace(['-vs-', '-'], [' vs ', ' '], $key);
+            $label = ucwords($label);
+        ?>
+        <a href="<?php echo BASE_PATH; ?>/compare?type=<?php echo urlencode($key); ?>" 
+           class="snap-start flex-shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 whitespace-nowrap <?php echo $isActive ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'; ?>">
+           <?php echo htmlspecialchars($label); ?>
+        </a>
+        <?php endforeach; ?>
+    </div>
+    
+    <!-- Desktop Comparison Table (Hidden on Mobile) -->
+    <div class="hidden md:block bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-slate-100 overflow-hidden mb-12">
+        <table class="w-full border-collapse">
+            <thead>
+                <tr class="bg-gradient-to-r from-primary to-orange-500 text-white">
+                    <th class="px-8 py-5 text-left font-extrabold text-xs uppercase tracking-wider">Aspect</th>
+                    <th class="px-8 py-5 text-left font-extrabold text-xs uppercase tracking-wider"><?php echo htmlspecialchars(ucfirst(array_keys((array)$data['comparison'][0])[1])); ?></th>
+                    <th class="px-8 py-5 text-left font-extrabold text-xs uppercase tracking-wider"><?php echo htmlspecialchars(ucfirst(array_keys((array)$data['comparison'][0])[2])); ?></th>
+                    <th class="px-8 py-5 text-center font-extrabold text-xs uppercase tracking-wider w-44">Winner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['comparison'] as $row): 
+                    $keys = array_keys((array)$row);
+                ?>
+                <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition-colors">
+                    <td class="px-8 py-5 font-bold text-slate-800 text-sm md:text-base"><?php echo htmlspecialchars($row['aspect']); ?></td>
+                    <td class="px-8 py-5 text-slate-600 text-sm leading-relaxed"><?php echo htmlspecialchars($row[$keys[1]]); ?></td>
+                    <td class="px-8 py-5 text-slate-600 text-sm leading-relaxed"><?php echo htmlspecialchars($row[$keys[2]]); ?></td>
+                    <td class="px-8 py-5 text-center">
+                        <span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">
+                            <span class="material-symbols-outlined text-xs">emoji_events</span>
+                            <?php echo htmlspecialchars($row['winner']); ?>
+                        </span>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile Comparison Cards (Hidden on Desktop) -->
+    <div class="md:hidden space-y-6 mb-12">
+        <?php foreach ($data['comparison'] as $row): 
+            $keys = array_keys((array)$row);
+            $opt1_label = ucfirst($keys[1]);
+            $opt2_label = ucfirst($keys[2]);
+        ?>
+        <div class="bg-white rounded-3xl p-6 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-100 space-y-4">
+            <h3 class="text-base font-black text-slate-800 border-b border-slate-100 pb-3 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-primary rounded-full"></span>
+                <?php echo htmlspecialchars($row['aspect']); ?>
+            </h3>
+            
+            <div class="space-y-3">
+                <div class="bg-slate-50 rounded-2xl p-4">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1"><?php echo htmlspecialchars($opt1_label); ?></span>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium"><?php echo htmlspecialchars($row[$keys[1]]); ?></p>
+                </div>
+                
+                <div class="bg-slate-50 rounded-2xl p-4">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1"><?php echo htmlspecialchars($opt2_label); ?></span>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium"><?php echo htmlspecialchars($row[$keys[2]]); ?></p>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between bg-primary/5 rounded-2xl p-4 mt-2">
+                <span class="text-xs font-black text-slate-500 uppercase tracking-widest">Winner</span>
+                <span class="inline-flex items-center gap-1 bg-primary text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-sm">
+                    <span class="material-symbols-outlined text-xs">emoji_events</span>
+                    <?php echo htmlspecialchars($row['winner']); ?>
+                </span>
+            </div>
         </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- FAQ Section -->
-    <div class="bg-gradient-to-r from-primary/10 to-orange-50 rounded-lg p-8 mb-12">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Common Questions</h2>
+    <div class="bg-gradient-to-r from-primary/10 to-orange-50 rounded-3xl p-6 sm:p-10 mb-12">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6">Common Questions</h2>
         <div class="space-y-4">
             <?php foreach ($data['faqs'] as $faq): ?>
-            <details class="group bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
-                <summary class="font-semibold text-gray-800 cursor-pointer flex items-center justify-between hover:text-primary transition-colors">
+            <details class="group bg-white rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100 transition-all duration-300">
+                <summary class="font-bold text-slate-800 cursor-pointer flex items-center justify-between hover:text-primary transition-colors select-none">
                     <span><?php echo $faq['q']; ?></span>
-                    <span class="material-symbols-outlined text-2xl group-open:rotate-180 transition-transform">expand_more</span>
+                    <span class="material-symbols-outlined text-xl text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
                 </summary>
-                <p class="text-gray-600 mt-4 text-sm leading-relaxed"><?php echo $faq['a']; ?></p>
+                <p class="text-slate-600 mt-4 text-sm leading-relaxed border-t border-slate-50 pt-4"><?php echo $faq['a']; ?></p>
             </details>
             <?php endforeach; ?>
         </div>
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-gradient-to-r from-primary to-orange-500 rounded-lg p-8 text-white text-center">
-        <h3 class="text-2xl font-bold mb-3">Ready to Book?</h3>
-        <p class="mb-6">Browse our offerings and book the perfect experience for your trip.</p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <a href="<?php echo BASE_PATH; ?>/listing/stays" class="btn-white inline-flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined">bed</span>
-                Browse Hotels
-            </a>
-            <a href="<?php echo BASE_PATH; ?>/listing/cars" class="btn-white inline-flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined">directions_car</span>
-                Browse Cars
-            </a>
-            <a href="<?php echo BASE_PATH; ?>/listing/attractions" class="btn-white inline-flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined">confirmation_number</span>
-                Browse Attractions
-            </a>
+    <div class="bg-gradient-to-r from-primary to-orange-500 rounded-[2rem] p-10 md:p-12 text-white text-center shadow-xl shadow-primary/10 relative overflow-hidden">
+        <div class="relative z-10">
+            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3">Ready to Plan Your Trip?</h3>
+            <p class="text-white/90 mb-8 max-w-xl mx-auto text-sm md:text-base leading-relaxed">Browse our verified offerings or use our interactive planner to customize your entire itinerary at no extra cost.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="<?php echo BASE_PATH; ?>/listing/stays" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-primary hover:bg-slate-50 font-black rounded-2xl text-sm transition-all shadow-md active:scale-95 hover:-translate-y-0.5">
+                    <span class="material-symbols-outlined">bed</span>
+                    Browse Hotels
+                </a>
+                <a href="<?php echo BASE_PATH; ?>/listing/cars" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-primary hover:bg-slate-50 font-black rounded-2xl text-sm transition-all shadow-md active:scale-95 hover:-translate-y-0.5">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    Browse Cars
+                </a>
+                <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900 text-white hover:bg-slate-800 font-black rounded-2xl text-sm transition-all shadow-md active:scale-95 hover:-translate-y-0.5">
+                    <span class="material-symbols-outlined">edit_calendar</span>
+                    Use Trip Planner
+                </a>
+            </div>
         </div>
     </div>
 

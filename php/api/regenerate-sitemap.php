@@ -28,11 +28,22 @@ try {
     $root  = dirname(__DIR__, 2);
     $today = date('Y-m-d');
 
-    // Detect base URL
+    // Helper to decode HTML entities recursively to prevent double-escaping in the sitemap XML
+    function cleanSitemapText($text) {
+        if (empty($text)) return '';
+        $decoded = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        while ($decoded !== $text) {
+            $text = $decoded;
+            $decoded = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        }
+        return $decoded;
+    }
+
+    // Detect base URL and incorporate local subdirectory if present
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host   = $_SERVER['HTTP_HOST'] ?? 'csnexplore.com';
     if (!preg_match('/^[a-zA-Z0-9.\-:]+$/', $host)) $host = 'csnexplore.com';
-    $base   = $scheme . '://' . $host;
+    $base   = $scheme . '://' . $host . (defined('BASE_PATH') ? BASE_PATH : '');
 
     $urls      = [];
     $breakdown = [];
@@ -40,16 +51,24 @@ try {
     // ── 1. Static pages ───────────────────────────────────────────────────────
     $staticPages = [
         [''                    , '1.0', 'daily'],
-        ['about'               , '0.7', 'monthly'],
-        ['contact'             , '0.6', 'monthly'],
-        ['blogs'               , '0.8', 'daily'],
-        ['faq'                 , '0.5', 'monthly'],
-        ['listing/stays'       , '0.9', 'weekly'],
-        ['listing/cars'        , '0.9', 'weekly'],
-        ['listing/bikes'       , '0.9', 'weekly'],
-        ['listing/restaurants' , '0.8', 'weekly'],
-        ['listing/attractions' , '0.9', 'weekly'],
+        ['listing/stays'       , '0.9', 'daily'],
+        ['listing/cars'        , '0.9', 'daily'],
+        ['listing/bikes'       , '0.9', 'daily'],
+        ['listing/restaurants' , '0.9', 'daily'],
+        ['listing/attractions' , '0.9', 'daily'],
         ['bus'                 , '0.8', 'weekly'],
+        ['blogs'               , '0.8', 'daily'],
+        ['itineraries'         , '0.8', 'weekly'],
+        ['near-attractions'    , '0.8', 'weekly'],
+        ['compare'             , '0.7', 'weekly'],
+        ['about'               , '0.7', 'monthly'],
+        ['contact'             , '0.7', 'monthly'],
+        ['faq'                 , '0.6', 'monthly'],
+        ['privacy'             , '0.5', 'monthly'],
+        ['terms'               , '0.5', 'monthly'],
+        ['login'               , '0.3', 'monthly'],
+        ['register'            , '0.3', 'monthly'],
+        ['forgot-password'     , '0.3', 'monthly'],
     ];
     foreach ($staticPages as [$loc, $pri, $freq]) {
         $urls[] = ['loc' => $base . '/' . ltrim($loc, '/'), 'lastmod' => $today, 'changefreq' => $freq, 'priority' => $pri];
@@ -65,19 +84,42 @@ try {
         'bikes'       => ['nameCol' => 'name',      'priority' => '0.7'],
         'attractions' => ['nameCol' => 'name',      'priority' => '0.9'],
         'restaurants' => ['nameCol' => 'name',      'priority' => '0.7'],
-        'buses'       => ['nameCol' => 'operator',  'priority' => '0.6'],
     ];
     foreach ($listingTypes as $type => $cfg) {
-        $rows = $db->fetchAll("SELECT id, {$cfg['nameCol']} AS name, image, updated_at FROM {$type}");
+        try {
+            $rows = $db->fetchAll("SELECT id, {$cfg['nameCol']} AS name, image, updated_at, location, description FROM {$type}");
+            foreach ($rows as $r) {
+                $slug = generateSlug($type, $r['id'], $r['name']);
+                $listingMeta[$slug] = [
+                    'priority'    => $cfg['priority'],
+                    'updated_at'  => $r['updated_at'],
+                    'image'       => $r['image'] ?? '',
+                    'name'        => $r['name'],
+                    'location'    => $r['location'] ?? '',
+                    'description' => $r['description'] ?? '',
+                ];
+            }
+        } catch (Exception $e) {
+            error_log("Sitemap generation warning: failed to fetch listing type '{$type}': " . $e->getMessage());
+        }
+    }
+
+    // Special handling for buses (uses operator/from_location/to_location/bus_type)
+    try {
+        $rows = $db->fetchAll("SELECT id, operator AS name, image, updated_at, bus_type AS description, from_location, to_location FROM buses");
         foreach ($rows as $r) {
-            $slug = generateSlug($type, $r['id'], $r['name']);
+            $slug = generateSlug('buses', $r['id'], $r['name']);
             $listingMeta[$slug] = [
-                'priority'   => $cfg['priority'],
-                'updated_at' => $r['updated_at'],
-                'image'      => $r['image'] ?? '',
-                'name'       => $r['name'],
+                'priority'    => '0.6',
+                'updated_at'  => $r['updated_at'],
+                'image'       => $r['image'] ?? '',
+                'name'        => $r['name'],
+                'location'    => ($r['from_location'] ?? '') . ' to ' . ($r['to_location'] ?? ''),
+                'description' => $r['description'] ?? '',
             ];
         }
+    } catch (Exception $e) {
+        error_log("Sitemap generation warning: failed to fetch buses: " . $e->getMessage());
     }
 
     // Scan all HTML files in listing-detail/
@@ -110,6 +152,12 @@ try {
                 : $base . '/' . ltrim($meta['image'], '/');
             $entry['image']       = $imgUrl;
             $entry['image_title'] = $meta['name'] ?? $slug;
+            if (!empty($meta['location'])) {
+                $entry['image_geo'] = $meta['location'];
+            }
+            if (!empty($meta['description'])) {
+                $entry['image_caption'] = $meta['description'];
+            }
         }
         $urls[] = $entry;
         $listingCount++;
@@ -127,14 +175,19 @@ try {
     // ── 3. Blog pages — scan disk ─────────────────────────────────────────────
     // Build DB lookup for enrichment
     $blogMeta = [];
-    $dbBlogs  = $db->fetchAll("SELECT id, title, image, updated_at FROM blogs");
-    foreach ($dbBlogs as $b) {
-        $slug = generateSlug('blogs', $b['id'], $b['title']);
-        $blogMeta[$slug] = [
-            'updated_at' => $b['updated_at'],
-            'image'      => $b['image'] ?? '',
-            'title'      => $b['title'],
-        ];
+    try {
+        $dbBlogs  = $db->fetchAll("SELECT id, title, image, updated_at, meta_description AS description FROM blogs");
+        foreach ($dbBlogs as $b) {
+            $slug = generateSlug('blogs', $b['id'], $b['title']);
+            $blogMeta[$slug] = [
+                'updated_at'  => $b['updated_at'],
+                'image'       => $b['image'] ?? '',
+                'title'       => $b['title'],
+                'description' => $b['description'] ?? '',
+            ];
+        }
+    } catch (Exception $e) {
+        error_log("Sitemap generation warning: failed to fetch blogs: " . $e->getMessage());
     }
 
     // Scan all HTML files in blogs/
@@ -157,6 +210,9 @@ try {
                 : $base . '/' . ltrim($meta['image'], '/');
             $entry['image']       = $imgUrl;
             $entry['image_title'] = $meta['title'] ?? $slug;
+            if (!empty($meta['description'])) {
+                $entry['image_caption'] = $meta['description'];
+            }
         }
         $urls[] = $entry;
         $blogCount++;
@@ -172,15 +228,23 @@ try {
 
     foreach ($urls as $u) {
         $xml .= "  <url>\n";
-        $xml .= "    <loc>"        . htmlspecialchars($u['loc'],        ENT_XML1) . "</loc>\n";
-        $xml .= "    <lastmod>"    . htmlspecialchars($u['lastmod'],    ENT_XML1) . "</lastmod>\n";
-        $xml .= "    <changefreq>" . htmlspecialchars($u['changefreq'], ENT_XML1) . "</changefreq>\n";
-        $xml .= "    <priority>"   . htmlspecialchars($u['priority'],   ENT_XML1) . "</priority>\n";
+        $xml .= "    <loc>"        . htmlspecialchars(cleanSitemapText($u['loc']),        ENT_XML1) . "</loc>\n";
+        $xml .= "    <lastmod>"    . htmlspecialchars(cleanSitemapText($u['lastmod']),    ENT_XML1) . "</lastmod>\n";
+        $xml .= "    <changefreq>" . htmlspecialchars(cleanSitemapText($u['changefreq']), ENT_XML1) . "</changefreq>\n";
+        $xml .= "    <priority>"   . htmlspecialchars(cleanSitemapText($u['priority']),   ENT_XML1) . "</priority>\n";
         if (!empty($u['image'])) {
             $xml .= "    <image:image>\n";
-            $xml .= "      <image:loc>" . htmlspecialchars($u['image'], ENT_XML1) . "</image:loc>\n";
+            $xml .= "      <image:loc>" . htmlspecialchars(cleanSitemapText($u['image']), ENT_XML1) . "</image:loc>\n";
             if (!empty($u['image_title'])) {
-                $xml .= "      <image:title>" . htmlspecialchars($u['image_title'], ENT_XML1) . "</image:title>\n";
+                $xml .= "      <image:title>" . htmlspecialchars(cleanSitemapText($u['image_title']), ENT_XML1) . "</image:title>\n";
+            }
+            if (!empty($u['image_caption'])) {
+                $cap = strip_tags(cleanSitemapText($u['image_caption']));
+                if (strlen($cap) > 150) $cap = substr($cap, 0, 147) . '...';
+                $xml .= "      <image:caption>" . htmlspecialchars($cap, ENT_XML1) . "</image:caption>\n";
+            }
+            if (!empty($u['image_geo'])) {
+                $xml .= "      <image:geo_location>" . htmlspecialchars(cleanSitemapText($u['image_geo']), ENT_XML1) . "</image:geo_location>\n";
             }
             $xml .= "    </image:image>\n";
         }

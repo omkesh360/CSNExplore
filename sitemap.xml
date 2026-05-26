@@ -1,741 +1,921 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CSNExplore Sitemap | Generated: 2026-05-25 20:15:32 | Total URLs: 78 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<!-- CSNExplore Sitemap | Generated: 2026-05-26 09:27:36 | Total URLs: 86 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>http://localhost/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <loc>https://csnexplore.com/</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost/about</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://csnexplore.com/listing/stays</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://localhost/contact</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://csnexplore.com/listing/cars</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://localhost/blogs</loc>
-    <lastmod>2026-05-25</lastmod>
+    <loc>https://csnexplore.com/listing/bikes</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/restaurants</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing/attractions</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/bus</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/faq</loc>
-    <lastmod>2026-05-25</lastmod>
+    <loc>https://csnexplore.com/itineraries</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/near-attractions</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/compare</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/about</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/contact</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/faq</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/privacy</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost/listing/stays</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>http://localhost/listing/cars</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>http://localhost/listing/bikes</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>http://localhost/listing/restaurants</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://localhost/listing/attractions</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>http://localhost/bus</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-1-ajanta-caves</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/ajanta.webp</image:loc>
-      <image:title>Ajanta Caves</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-10-khuldabad-valley-of-saints</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/valley_of_saints.webp</image:loc>
-      <image:title>Khuldabad (Valley of Saints)</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-11-bhadra-maruti-temple</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
-      <image:title>Bhadra Maruti Temple</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-12-himayat-bagh</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/cidco_garden.webp</image:loc>
-      <image:title>Himayat Bagh</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/maharashtra_museum.webp</image:loc>
-      <image:title>Chhatrapati Sambhaji Maharaj Museum</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-14-soneri-mahal-golden-palace</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
-      <image:title>Soneri Mahal (Golden Palace)</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-15-jama-masjid</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/travel-gate.webp</image:loc>
-      <image:title>Jama Masjid</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-2-ellora-caves</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/ellora_caves.webp</image:loc>
-      <image:title>Ellora Caves</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-3-bibi-ka-maqbara</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/bibi.webp</image:loc>
-      <image:title>Bibi Ka Maqbara</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-4-daulatabad-fort</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/daulatabad.webp</image:loc>
-      <image:title>Daulatabad Fort</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-5-panchakki-water-mill</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/panchakki.webp</image:loc>
-      <image:title>Panchakki (Water Mill)</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-6-grishneshwar-temple</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/grishneshwar-temple.webp</image:loc>
-      <image:title>Grishneshwar Temple</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-7-salim-ali-lake-ampamp-bird-sanctuary</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/siddharth_lake.webp</image:loc>
-      <image:title>Salim Ali Lake &amp;amp;amp; Bird Sanctuary</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-8-siddharth-garden-ampamp-zoo</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/cidco_garden.webp</image:loc>
-      <image:title>Siddharth Garden &amp;amp;amp; Zoo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/attractions-9-aurangabad-caves</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/buddha_vihar.webp</image:loc>
-      <image:title>Aurangabad Caves</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-1-hero-splendor</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Hero Splendor</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-10-honda-activa-125cc</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Activa 125cc</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-11-honda-activa-6g</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Activa 6G</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-12-honda-x-blade</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda X-Blade</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-13-honda-shine-125cc</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Shine 125cc</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-14-royal-enfield-classic-350</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/royal-enfield-classic-350-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Royal Enfield Classic 350</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-2-hero-hf-deluxe</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Hero HF Deluxe</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-3-honda-grazia</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Grazia</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-4-honda-dio</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-dio-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Dio</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-5-tvs-jupiter</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/tvs-jupiter-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>TVS Jupiter</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-6-honda-shine-100cc</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Shine 100cc</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-7-yamaha-ray</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/yamaha-ray-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Yamaha Ray</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-8-honda-activa</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Activa</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/bikes-9-suzuki-access-125</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/suzuki-access-125-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Suzuki Access 125</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/buses-1-msrtc-shivneri-express</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/msrtc-shivneri.webp</image:loc>
-      <image:title>MSRTC Shivneri Express</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/buses-2-dolphin-travels-night-bus</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/dolphin-travels-bus.webp</image:loc>
-      <image:title>Dolphin Travels Night Bus</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/buses-3-hans-travels-ac-sleeper</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hans-travels-bus.webp</image:loc>
-      <image:title>Hans Travels AC Sleeper</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/buses-4-purple-travels-volvo</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/purple-travels-bus.webp</image:loc>
-      <image:title>Purple Travels Volvo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-1-maruti-suzuki-swift</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/maruti-suzuki-swift-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Maruti Suzuki Swift</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-10-mg-hector</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/kia-sonet-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>MG Hector</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-11-toyota-innova</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/toyota-innova-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Toyota Innova</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-12-tata-winger</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/tata-winger-van-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Tata Winger</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-2-tata-punch</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/tata-punch-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Tata Punch</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-3-honda-amaze</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Honda Amaze</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-4-hyundai-grand-i10</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hyundai-grand-i10-nios-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Hyundai Grand i10</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-5-maruti-suzuki-baleno</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Maruti Suzuki Baleno</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-6-tata-tiago</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/tata-tiago-hatchback-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Tata Tiago</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-7-toyota-glanza</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Toyota Glanza</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-8-maruti-suzuki-ertiga</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/maruti-suzuki-ertiga-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Maruti Suzuki Ertiga</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/cars-9-kia-carens</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/kia-carens-mpv-rental-chhatrapati-sambhajinagar.webp</image:loc>
-      <image:title>Kia Carens</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-1-naivedya-thali-restaurant</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/indian-thali.webp</image:loc>
-      <image:title>Naivedya Thali Restaurant</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-10-saffron-indian-kitchen</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/indian-thali.webp</image:loc>
-      <image:title>Saffron Indian Kitchen</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-11-tandoor-nights</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-north-indian.webp</image:loc>
-      <image:title>Tandoor Nights</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-12-veg-delight</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-south-indian.webp</image:loc>
-      <image:title>Veg Delight</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-13-dessert-paradise</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/masala-dosa.webp</image:loc>
-      <image:title>Dessert Paradise</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-14-cafe-coffee-day</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
-      <image:title>Cafe Coffee Day</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-15-seafood-shack</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-thali.webp</image:loc>
-      <image:title>Seafood Shack</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-2-masala-dosa-house</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/masala-dosa.webp</image:loc>
-      <image:title>Masala Dosa House</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-3-the-grill-room</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-north-indian.webp</image:loc>
-      <image:title>The Grill Room</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-4-chaat-street-corner</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-south-indian.webp</image:loc>
-      <image:title>Chaat Street Corner</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-5-renaissance-dine</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/restaurant-thali.webp</image:loc>
-      <image:title>Renaissance Dine</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-6-biryani-blues</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/north-indian-thali.webp</image:loc>
-      <image:title>Biryani Blues</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-7-pizza-paradise</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
-      <image:title>Pizza Paradise</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-8-chinese-wok</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/pani-puri.webp</image:loc>
-      <image:title>Chinese Wok</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/restaurants-9-burger-junction</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/burger.webp</image:loc>
-      <image:title>Burger Junction</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-1-its-home-home-stay-inn</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/its-home-home-stay-inn-stays-main.webp</image:loc>
-      <image:title>ITS HOME – Home Stay Inn</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-2-its-home-service-apartments</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/its-home-service-apartments-stays-main.webp</image:loc>
-      <image:title>Its Home – Service Apartments</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-3-treebo-aroma-executive</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/treebo-aroma-executive-stays-main.webp</image:loc>
-      <image:title>Treebo Aroma Executive</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-4-hotel-blossom</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hotel-blossom-stays-main.webp</image:loc>
-      <image:title>Hotel Blossom</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-5-hotel-the-gravity-inn</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hotel-the-gravity-inn-stays-main.webp</image:loc>
-      <image:title>Hotel The Gravity Inn</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/listing-detail/stays-6-hotel-o-indraprasth</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>http://localhost/images/uploads/hotel-o-indraprasth-stays-main.webp</image:loc>
-      <image:title>Hotel O Indraprasth</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>http://localhost/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://csnexplore.com/terms</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/login</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/register</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/forgot-password</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-1-ajanta-caves</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/ajanta.webp</image:loc>
+      <image:title>Ajanta Caves</image:title>
+      <image:caption>Ancient Buddhist rock-cut cave monuments dating back to the 2nd century BCE. Famous for spectacular murals and sculptures. A UNESCO World Heritage ...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-10-khuldabad-valley-of-saints</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/valley_of_saints.webp</image:loc>
+      <image:title>Khuldabad (Valley of Saints)</image:title>
+      <image:caption>Historic town with tombs of Mughal emperor Aurangzeb and Sufi saints. Peaceful spiritual atmosphere.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-11-bhadra-maruti-temple</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/travel-gate.webp</image:loc>
+      <image:title>Bhadra Maruti Temple</image:title>
+      <image:caption>Unique temple with reclining Hanuman idol. One of the few temples where Hanuman is in sleeping posture.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-12-himayat-bagh</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/cidco_garden.webp</image:loc>
+      <image:title>Himayat Bagh</image:title>
+      <image:caption>Historic Mughal garden with beautiful landscaping. Perfect for morning walks and picnics.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-13-chhatrapati-sambhaji-maharaj-museum</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/maharashtra_museum.webp</image:loc>
+      <image:title>Chhatrapati Sambhaji Maharaj Museum</image:title>
+      <image:caption>Museum showcasing history and culture of Marathwada region. Artifacts, sculptures, and paintings.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-14-soneri-mahal-golden-palace</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/travel-gate.webp</image:loc>
+      <image:title>Soneri Mahal (Golden Palace)</image:title>
+      <image:caption>17th-century palace with beautiful paintings and architecture. Now houses a museum.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-15-jama-masjid</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/travel-gate.webp</image:loc>
+      <image:title>Jama Masjid</image:title>
+      <image:caption>Historic mosque built in 1612. Beautiful Indo-Islamic architecture with intricate carvings and a large courtyard.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-2-ellora-caves</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/ellora_caves.webp</image:loc>
+      <image:title>Ellora Caves</image:title>
+      <image:caption>A UNESCO World Heritage Site featuring 34 rock-cut caves representing Hindu, Buddhist, and Jain monuments from 600├ö├ç├┤1000 CE.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-3-bibi-ka-maqbara</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/bibi.webp</image:loc>
+      <image:title>Bibi Ka Maqbara</image:title>
+      <image:caption>Known as the Taj of the Deccan, this beautiful 17th-century Mughal mausoleum was built by Prince Azam Shah in memory of his mother.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-4-daulatabad-fort</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/daulatabad.webp</image:loc>
+      <image:title>Daulatabad Fort</image:title>
+      <image:caption>One of the strongest forts in India's history, built on a conical hill with a 180-degree moat and labyrinthine passages.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-5-panchakki-water-mill</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/panchakki.webp</image:loc>
+      <image:title>Panchakki (Water Mill)</image:title>
+      <image:caption>A scenic 17th-century water mill powered by an underground stream. Part of the Sufi shrine complex, surrounded by beautiful gardens and a serene lake.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-6-grishneshwar-temple</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/grishneshwar-temple.webp</image:loc>
+      <image:title>Grishneshwar Temple</image:title>
+      <image:caption>One of the 12 revered Jyotirlinga shrines of Lord Shiva in India. An important pilgrimage destination with ancient architecture.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-7-salim-ali-lake-and-bird-sanctuary</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/siddharth_lake.webp</image:loc>
+      <image:title>Salim Ali Lake &amp; Bird Sanctuary</image:title>
+      <image:caption>Peaceful lake and bird sanctuary named after famous ornithologist. Perfect for bird watching and nature walks.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-8-siddharth-garden-and-zoo</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/cidco_garden.webp</image:loc>
+      <image:title>Siddharth Garden &amp; Zoo</image:title>
+      <image:caption>Large garden with zoo, toy train, and boating facilities. Great for family outings.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/attractions-9-aurangabad-caves</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/buddha_vihar.webp</image:loc>
+      <image:title>Aurangabad Caves</image:title>
+      <image:caption>12 rock-cut Buddhist shrines dating from 3rd to 7th century. Less crowded alternative to Ajanta-Ellora.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-1-hero-splendor</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Hero Splendor</image:title>
+      <image:caption>The Hero Splendor remains a staple in the commuter segment due to its highly reliable 97.2cc engine and exceptional structural durability. It featu...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-10-honda-activa-125cc</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Activa 125cc</image:title>
+      <image:caption>The Activa 125 elevates the proven Activa platform by introducing a larger displacement engine and premium hardware. Generating 10.5 Nm of torque, ...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-11-honda-activa-6g</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Activa 6G</image:title>
+      <image:caption>The 6th generation Activa introduces pivotal mechanical upgrades like telescopic front suspension and an enlarged 12-inch front wheel, which transf...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-12-honda-x-blade</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda X-Blade</image:title>
+      <image:caption>The Honda X-Blade is constructed for riders seeking sharp, robotic styling combined with responsive mid-range power. It utilizes a wide 130-section...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-13-honda-shine-125cc</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Shine 125cc</image:title>
+      <image:caption>As the global leader in the 125cc segment, the Honda Shine achieves a flawless equilibrium between usable power and economic efficiency. The 5-spee...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-14-royal-enfield-classic-350</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/royal-enfield-classic-350-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Royal Enfield Classic 350</image:title>
+      <image:caption>The Royal Enfield Classic 350 is the definitive choice for premium, long-distance cruising. Built upon the sophisticated J-series engine platform, ...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-2-hero-hf-deluxe</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hero-splendor-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Hero HF Deluxe</image:title>
+      <image:caption>Sharing its core mechanical platform with the Splendor, the HF Deluxe is engineered to be slightly lighter to improve off-the-line acceleration and...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-3-honda-grazia</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-grazia-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Grazia</image:title>
+      <image:caption>The Honda Grazia caters to riders seeking premium aesthetics paired with the convenience of an automatic scooter. Powered by a responsive 125cc eng...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-4-honda-dio</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-dio-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Dio</image:title>
+      <image:caption>Characterized by its aggressive, moto-scooter styling, the Honda Dio is specifically tuned for urban agility. It features an advanced Silent Start ...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-5-tvs-jupiter</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/tvs-jupiter-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>TVS Jupiter</image:title>
+      <image:caption>The TVS Jupiter is meticulously designed around rider comfort and everyday practicality. It boasts an industry-leading seat length of 756mm, ensuri...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-6-honda-shine-100cc</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-shine-125-bike-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Shine 100cc</image:title>
+      <image:caption>The Honda Shine 100 serves as the entry-level benchmark for engine refinement. Weighing under 100 kilograms, it is incredibly manageable. eSP techn...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-7-yamaha-ray</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/yamaha-ray-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Yamaha Ray</image:title>
+      <image:caption>Marketed under the RayZR line, this scooter merges aggressive street-fighter design with a high-performance 125cc Blue Core engine. The Smart Motor...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-8-honda-activa</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-activa-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Activa</image:title>
+      <image:caption>The Honda Activa is universally recognized as the benchmark for reliability. It utilizes a full-metal body construction that guarantees long-term d...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/bikes-9-suzuki-access-125</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/suzuki-access-125-scooter-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Suzuki Access 125</image:title>
+      <image:caption>The Suzuki Access 125 balances a classic, understated European design language with a remarkably potent engine. SEP technology ensures a strong mid...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-1-msrtc-shivneri-express</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/msrtc-shivneri.webp</image:loc>
+      <image:title>MSRTC Shivneri Express</image:title>
+      <image:caption>AC Semi-Luxury</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar to Pune</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-2-dolphin-travels-night-bus</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/dolphin-travels-bus.webp</image:loc>
+      <image:title>Dolphin Travels Night Bus</image:title>
+      <image:caption>AC Sleeper</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar to Mumbai</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-3-hans-travels-ac-sleeper</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hans-travels-bus.webp</image:loc>
+      <image:title>Hans Travels AC Sleeper</image:title>
+      <image:caption>AC Sleeper</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar to Mumbai</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/buses-4-purple-travels-volvo</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/purple-travels-bus.webp</image:loc>
+      <image:title>Purple Travels Volvo</image:title>
+      <image:caption>Volvo AC</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar to Pune</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-1-maruti-suzuki-swift</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-swift-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Maruti Suzuki Swift</image:title>
+      <image:caption>The Maruti Suzuki Swift is built on the advanced Heartect platform, providing a rigid yet lightweight structure that significantly enhances both fu...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-10-mg-hector</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/kia-sonet-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>MG Hector</image:title>
+      <image:caption>The MG Hector is a formidable presence on the road, offering dimensions and interior volume that rival vehicles in segments far above its class. Po...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-11-toyota-innova</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/toyota-innova-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Toyota Innova</image:title>
+      <image:caption>The Toyota Innova is constructed on a heavy-duty ladder-frame chassis, granting it legendary durability and load-carrying capacity. This architectu...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-12-tata-winger</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/tata-winger-van-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Tata Winger</image:title>
+      <image:caption>Unlike traditional commercial vans, the Tata Winger utilizes a monocoque construction and front-wheel-drive layout. This design drastically lowers ...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-2-tata-punch</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/tata-punch-suv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Tata Punch</image:title>
+      <image:caption>The Tata Punch is engineered on the ALFA-ARC platform, delivering a robust micro-SUV experience. It features an imposing stance, high seating posit...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-3-honda-amaze</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/honda-amaze-sedan-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Honda Amaze</image:title>
+      <image:caption>The Honda Amaze represents the pinnacle of compact sedan engineering, focusing heavily on cabin space and ride refinement. The renowned 1.2-liter i...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-4-hyundai-grand-i10</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hyundai-grand-i10-nios-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Hyundai Grand i10</image:title>
+      <image:caption>The Hyundai Grand i10 is designed with a strong emphasis on premium urban drivability. Its 1.2-liter Kappa engine is mated to a highly refined gear...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-5-maruti-suzuki-baleno</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Maruti Suzuki Baleno</image:title>
+      <image:caption>Positioned as a premium executive hatchback, the Maruti Suzuki Baleno features a wide track and long wheelbase, translating into vast interior spac...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-6-tata-tiago</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/tata-tiago-hatchback-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Tata Tiago</image:title>
+      <image:caption>The Tata Tiago is built under Tata's Impact Design philosophy, offering a heavy, secure build quality that is immediately noticeable. It holds a 4-...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-7-toyota-glanza</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-baleno-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Toyota Glanza</image:title>
+      <image:caption>The Toyota Glanza delivers a sophisticated, upscale driving experience backed by world-class reliability standards. The cabin is equipped with UV-p...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-8-maruti-suzuki-ertiga</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/maruti-suzuki-ertiga-car-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Maruti Suzuki Ertiga</image:title>
+      <image:caption>The Maruti Suzuki Ertiga is the quintessential multi-utility vehicle, masterfully balancing physical footprint with maximum passenger capacity. Uti...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/cars-9-kia-carens</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/kia-carens-mpv-rental-chhatrapati-sambhajinagar.webp</image:loc>
+      <image:title>Kia Carens</image:title>
+      <image:caption>Marketed as a recreational vehicle, the Kia Carens utilizes an extended wheelbase to prioritize interior volume and passenger luxury. The cabin fea...</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-1-naivedya-thali-restaurant</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/indian-thali.webp</image:loc>
+      <image:title>Naivedya Thali Restaurant</image:title>
+      <image:caption>The most authentic Maharashtrian Thali in the city. Unlimited servings of traditional dishes ├ö├ç├┤ a cultural experience on a plate.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-10-saffron-indian-kitchen</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/indian-thali.webp</image:loc>
+      <image:title>Saffron Indian Kitchen</image:title>
+      <image:caption>Upscale restaurant with contemporary Indian cuisine. Live music on weekends.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-11-tandoor-nights</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-north-indian.webp</image:loc>
+      <image:title>Tandoor Nights</image:title>
+      <image:caption>Specializes in tandoori dishes. Kebabs, tikkas, and naan fresh from the clay oven.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-12-veg-delight</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-south-indian.webp</image:loc>
+      <image:title>Veg Delight</image:title>
+      <image:caption>100% vegetarian restaurant with Jain food options. Healthy and hygienic.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-13-dessert-paradise</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/masala-dosa.webp</image:loc>
+      <image:title>Dessert Paradise</image:title>
+      <image:caption>Heaven for sweet lovers. Ice creams, cakes, pastries, and traditional Indian sweets.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-14-cafe-coffee-day</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/burger.webp</image:loc>
+      <image:title>Cafe Coffee Day</image:title>
+      <image:caption>Popular coffee chain with variety of hot and cold beverages. Light snacks and desserts available.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-15-seafood-shack</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-thali.webp</image:loc>
+      <image:title>Seafood Shack</image:title>
+      <image:caption>Fresh seafood preparations with coastal flavors. Fish, prawns, and crab specialties.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-2-masala-dosa-house</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/masala-dosa.webp</image:loc>
+      <image:title>Masala Dosa House</image:title>
+      <image:caption>Famous for crispy masala dosas, idli, vada, and filter coffee. Authentic South Indian flavors.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-3-the-grill-room</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-north-indian.webp</image:loc>
+      <image:title>The Grill Room</image:title>
+      <image:caption>Indulge in rich Mughlai preparations, kebabs, biryanis, and North Indian curries in a royal ambiance.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-4-chaat-street-corner</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-south-indian.webp</image:loc>
+      <image:title>Chaat Street Corner</image:title>
+      <image:caption>Vibrant street food stall serving the best Pani Puri, Bhel, Dahi Puri, and Sev Puri in town.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-5-renaissance-dine</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/restaurant-thali.webp</image:loc>
+      <image:title>Renaissance Dine</image:title>
+      <image:caption>Fine dining with a wide variety of global and local cuisines. Premium experience with garden view seating.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-6-biryani-blues</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/north-indian-thali.webp</image:loc>
+      <image:title>Biryani Blues</image:title>
+      <image:caption>Authentic Hyderabadi biryani with aromatic spices. Also serves kebabs and curries.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-7-pizza-paradise</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/burger.webp</image:loc>
+      <image:title>Pizza Paradise</image:title>
+      <image:caption>Wood-fired pizzas with fresh toppings. Also serves pasta and Italian appetizers.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-8-chinese-wok</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/pani-puri.webp</image:loc>
+      <image:title>Chinese Wok</image:title>
+      <image:caption>Authentic Chinese cuisine with Indo-Chinese favorites. Noodles, fried rice, and Manchurian specialties.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/restaurants-9-burger-junction</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/burger.webp</image:loc>
+      <image:title>Burger Junction</image:title>
+      <image:caption>Gourmet burgers with variety of patties and toppings. Also serves fries and shakes.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-1-its-home-home-stay-inn</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/its-home-home-stay-inn-stays-main.webp</image:loc>
+      <image:title>ITS HOME – Home Stay Inn</image:title>
+      <image:caption>A cozy and comfortable homestay in the heart of Chhatrapati Sambhajinagar. Perfect for families and solo travelers looking for a home-like experience.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-2-its-home-service-apartments</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/its-home-service-apartments-stays-main.webp</image:loc>
+      <image:title>Its Home – Service Apartments</image:title>
+      <image:caption>Fully furnished service apartments with kitchen facilities. Ideal for long stays and business travelers in Chhatrapati Sambhajinagar.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-3-treebo-aroma-executive</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/treebo-aroma-executive-stays-main.webp</image:loc>
+      <image:title>Treebo Aroma Executive</image:title>
+      <image:caption>A premium business hotel offering executive rooms with modern amenities. Treebo certified quality with complimentary breakfast.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-4-hotel-blossom</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hotel-blossom-stays-main.webp</image:loc>
+      <image:title>Hotel Blossom</image:title>
+      <image:caption>Clean and affordable hotel in Chhatrapati Sambhajinagar. Great value for money with all essential amenities for a comfortable stay.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-5-hotel-the-gravity-inn</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hotel-the-gravity-inn-stays-main.webp</image:loc>
+      <image:title>Hotel The Gravity Inn</image:title>
+      <image:caption>A top-rated premium hotel in Chhatrapati Sambhajinagar. Featuring free Wi-Fi, complimentary breakfast, and world-class amenities for a luxurious stay.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/listing-detail/stays-6-hotel-o-indraprasth</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://csnexplore.com/images/uploads/hotel-o-indraprasth-stays-main.webp</image:loc>
+      <image:title>Hotel O Indraprasth</image:title>
+      <image:caption>Budget-friendly hotel in Chhatrapati Sambhajinagar with free parking and Wi-Fi. Perfect for travelers looking for affordable accommodation.</image:caption>
+      <image:geo_location>Chhatrapati Sambhajinagar</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format</image:loc>
       <image:title>Complete Travel Guide to Chhatrapati Sambhajinagar in 2026</image:title>
+      <image:caption>Complete travel guide to Chhatrapati Sambhajinagar covering top attractions, best time to visit, local cuisine, and travel tips for 2026.</image:caption>
     </image:image>
   </url>
 </urlset>

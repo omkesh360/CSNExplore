@@ -62,17 +62,20 @@ $active_listing_type = $listing_type ?? '';
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Fonts: Load synchronously so LCP text (h1) renders immediately without FOUT/FOIT delay -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Fonts: Preload and load async to prevent render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" /></noscript>
     
-    <!-- Material Symbols: DEFERRED to avoid render blocking -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/></noscript>
+    <!-- Material Symbols: Preload and load async to prevent render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" /></noscript>
     
-    <!-- Main CSS: Inlined for perfect 100/100 PageSpeed Score (Zero Render Blocking) -->
-    <style>
-        <?php readfile(__DIR__ . '/style.min.css'); ?>
-    </style>
+    <!-- Main CSS: Loaded externally for browser caching and speed -->
+    <?php $styleVer = '?v=' . filemtime(__DIR__ . '/style.min.css'); ?>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/style.min.css<?php echo $styleVer; ?>" as="style" />
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/style.min.css<?php echo $styleVer; ?>" />
     
     <!-- Animations CSS: ASYNC LOAD to prevent render blocking (minified only) -->
     <?php $animVer = '?v=' . filemtime(__DIR__ . '/animations.min.css'); ?>
@@ -135,7 +138,9 @@ $active_listing_type = $listing_type ?? '';
             z-index: 70;
             background: #ec5b13;
             color: #fff;
-            padding: 0.125rem 0;
+            height: 28px;
+            display: flex;
+            align-items: center;
             overflow: hidden;
         }
         
@@ -175,10 +180,10 @@ $active_listing_type = $listing_type ?? '';
         /* ── Prevent blue/dark flash on tapping links on mobile ── */
         a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
     </style>
-    <!-- Mobile Responsive CSS: Inlined for perfect CLS (Zero Layout Shift) -->
-    <style>
-        <?php readfile(__DIR__ . '/mobile-responsive.min.css'); ?>
-    </style>
+    <!-- Mobile Responsive CSS: Loaded externally -->
+    <?php $mobVer = '?v=' . filemtime(__DIR__ . '/mobile-responsive.min.css'); ?>
+    <link rel="preload" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobVer; ?>" as="style" />
+    <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/mobile-responsive.min.css<?php echo $mobVer; ?>" />
     <style>
         /* ── Global Enhancements ── */
         html { scroll-behavior: smooth; }
@@ -236,14 +241,16 @@ $active_listing_type = $listing_type ?? '';
             right: 0;
             z-index: 70;
             overflow: hidden;
-            max-height: 40px;
-            transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.35s ease, height 0.35s ease;
         }
         #marquee-bar.hidden-bar {
             opacity: 0;
-            max-height: 0;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            padding: 0 !important;
             pointer-events: none;
         }
         /* ══ Site Header – ALWAYS STICKY (position:fixed is permanent) ══ */
@@ -270,7 +277,7 @@ $active_listing_type = $listing_type ?? '';
                 box-shadow     0.5s cubic-bezier(0.32,0,0.15,1),
                 backdrop-filter 0.5s ease;
         }
-        /* ── Pill mode: floating pill with iPhone liquid glass effect ── */
+        /* ── Pill mode: floating pill with premium glass effect ── */
         #site-header.pill-mode {
             position: fixed !important;
             top: 14px !important;
@@ -279,14 +286,14 @@ $active_listing_type = $listing_type ?? '';
             width: calc(100% - 32px) !important;
             max-width: 1120px !important;
             border-radius: 9999px !important;
-            background: rgba(0, 0, 0, 0.72) !important;
-            backdrop-filter: blur(40px) saturate(180%) !important;
-            -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-            border: 1px solid rgba(255,255,255,0.18) !important;
+            background: rgba(10, 7, 5, 0.65) !important;
+            backdrop-filter: blur(24px) saturate(200%) !important;
+            -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+            border: 1px solid rgba(255,255,255,0.12) !important;
             box-shadow: 
-                0 8px 32px rgba(0,0,0,0.37),
-                0 1px 0 rgba(255,255,255,0.1) inset,
-                0 -1px 0 rgba(0,0,0,0.5) inset !important;
+                0 12px 40px -10px rgba(0,0,0,0.4),
+                0 4px 20px -5px rgba(236,91,19,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1) !important;
             z-index: 9000 !important;
         }
         #site-header nav { height: 64px; min-height: 64px; }
@@ -473,7 +480,7 @@ $active_listing_type = $listing_type ?? '';
 </script>
 
 <!-- Top Announcement Marquee -->
-<div id="marquee-bar" class="bg-primary text-white py-0.5 overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13;display:block;">
+<div id="marquee-bar" class="bg-primary text-white overflow-hidden whitespace-nowrap border-b border-primary/20" style="background-color:#ec5b13;display:flex;align-items:center;height:28px;">
     <div class="relative flex" style="width:100%;overflow:hidden;">
         <div class="animate-marquee flex items-center" style="display:flex;flex-shrink:0;">
             <?php 

@@ -150,7 +150,7 @@ $slider_max = (int)(ceil($price_max / 100) * 100) ?: 10000;
 
 function listingSlug($type, $item) {
     $name = $item['name'] ?? $item['operator'] ?? 'item';
-    return BASE_PATH . '/listing-detail/' . generateSlug($type, $item['id'], $name) . '.html';
+    return BASE_PATH . '/listing-detail/' . generateSlug($type, $item['id'], $name);
 }
 
 $page_meta = [
@@ -198,6 +198,7 @@ $extra_styles = "
   .glassy:hover { background:rgba(255,255,255,0.12); box-shadow:0 12px 40px rgba(0,0,0,0.15); }
   .hide-scrollbar::-webkit-scrollbar{display:none} .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
   body { background-color:#f8f6f6; }
+
   .glass-filter { background:rgba(255,255,255,0.06); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.12); }
   .glass-card { background:rgba(255,255,255,0.07); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.1); }
   .glass-button { background:rgba(236,91,19,0.85); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.2); }
@@ -242,13 +243,14 @@ $category_nav = [
 <!-- Category Sub-Nav is in header.php for listing pages -->
 
 <!-- Hero Banner with breadcrumb at top -->
-<div class="relative h-52 md:h-72 overflow-hidden">
+<div class="relative h-52 md:h-72 overflow-hidden pt-28">
     <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
-         alt="<?php echo htmlspecialchars($c['label']); ?>"
-         class="w-full h-full object-cover"/>
+         alt="Explore <?php echo htmlspecialchars($c['label']); ?> in Chhatrapati Sambhajinagar Aurangabad Maharashtra - CSNExplore"
+         class="absolute inset-0 w-full h-full object-cover"/>
+    <span class="sr-only">Find and book the top-rated <?php echo htmlspecialchars(strtolower($c['label'])); ?> in Chhatrapati Sambhajinagar, Aurangabad, Maharashtra. Compare rates, ratings, verified user reviews, locations, and options for budget stays, luxury hotels, rental cars, and bikes.</span>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
     <!-- Breadcrumb at very top -->
-    <div class="absolute top-0 left-0 right-0 pt-5">
+    <div class="absolute top-0 left-0 right-0 pt-28">
         <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
             <a href="<?php echo BASE_PATH; ?>/" class="hover:text-white transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-base">home</span>Home
@@ -439,6 +441,11 @@ $category_nav = [
           
           <!-- Entire Card Link -->
           <a href="<?php echo listingSlug($type, $item); ?>" class="absolute inset-0 z-10" aria-label="View Details"></a>
+          <span class="sr-only">
+            <?php echo htmlspecialchars($item['name'] ?? $item['operator'] ?? ''); ?> is a <?php echo htmlspecialchars(strtolower($item['type'] ?? $type)); ?> located in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. This travel service is rated <?php echo number_format((float)($item['rating'] ?? 0), 1); ?> stars by customers. Compare rates, details, features, and make a booking request online.
+          </span>
+
+
 
           <div class="relative h-52 overflow-hidden <?php 
               $imgSrc = $item['image'] ?? '';
@@ -462,7 +469,7 @@ $category_nav = [
                  src="<?php 
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
                  ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
-                 alt="<?php echo htmlspecialchars($item['name'] ?? $item['operator'] ?? ''); ?>"
+                 alt="<?php echo htmlspecialchars(($item['name'] ?? $item['operator'] ?? '') . ' - ' . ($item['type'] ?? $type) . ' in Chhatrapati Sambhajinagar Aurangabad Maharashtra'); ?>"
                  onerror="this.onerror=null;if(!this.src.includes('unsplash.com'))this.src='<?php
                     $fallbacks = [
                         'bikes'       => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format',
@@ -518,7 +525,7 @@ $category_nav = [
                 <?php endif; ?>
               </div>
               <a href="<?php echo listingSlug($type, $item); ?>"
-                 class="px-4 py-2 bg-primary text-white hover:bg-orange-600 rounded-xl text-sm font-bold transition-all shadow-sm shadow-primary/20">
+                 class="px-4 py-2 bg-primary text-white hover:bg-orange-600 rounded-xl text-sm font-bold transition-all duration-300 shadow-[0_4px_15px_rgba(236,91,19,0.3)] hover:shadow-[0_8px_25px_rgba(236,91,19,0.5)] hover:-translate-y-0.5">
                 <?php echo htmlspecialchars($c['cta']); ?>
               </a>
             </div>
@@ -713,7 +720,7 @@ function resetFilters() {
         <span class="material-symbols-outlined text-base">check_circle</span> Booking request sent! We'll contact you shortly.
       </div>
       <div id="booking-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm"></div>
-      <button type="submit" class="w-full bg-primary text-white font-black py-4 rounded-2xl hover:bg-orange-600 transition-all shadow-lg shadow-primary/20">
+      <button type="submit" class="w-full bg-primary text-white font-black py-4 rounded-2xl hover:bg-orange-600 transition-all duration-300 shadow-[0_4px_15px_rgba(236,91,19,0.3)] hover:shadow-[0_8px_25px_rgba(236,91,19,0.5)] hover:-translate-y-1">
         Confirm Booking Request
       </button>
     </form>
