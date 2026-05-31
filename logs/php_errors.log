@@ -1031,3 +1031,11 @@ Stack trace:
 [25-May-2026 21:16:17 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
 [25-May-2026 21:16:18 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
 [25-May-2026 21:16:18 Europe/Berlin] PHP Warning:  Undefined variable $imgSrc in C:\xampp\htdocs\CSNExplore\listing.php on line 451
+[31-May-2026 17:26:00 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\blogs.php on line 9
+[31-May-2026 17:26:00 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\blogs.php on line 11
+[31-May-2026 20:19:26 Europe/Berlin] PHP Warning:  Undefined variable $validRefTypes in C:\xampp\htdocs\CSNExplore\php\api\comments.php on line 74
+[31-May-2026 20:19:26 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\xampp\htdocs\CSNExplore\php\api\comments.php:74
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\api\comments.php(74): in_array('blog', NULL)
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\api\comments.php on line 74

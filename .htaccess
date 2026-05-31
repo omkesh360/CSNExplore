@@ -66,6 +66,12 @@ FileETag MTime Size
     # SEO-friendly headers
     Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     
+    # Sitemap autodiscovery header (tells crawlers where sitemap is without needing robots.txt)
+    Header set Link "<https://csnexplore.com/sitemap.xml>; rel=sitemap"
+    
+    # hreflang for Indian English geographic targeting
+    Header always set Link "<https://csnexplore.com/>; rel=alternate; hreflang=en-IN"
+    
     # Performance: resource hints
     Header always set Link "<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin"
     

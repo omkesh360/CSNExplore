@@ -29,11 +29,6 @@ $extra_head = '<script type="application/ld+json">
 </script>';
 $db = getDB();
 
-// Load More: initial 9, then 9 more per click
-$per_page = 9;
-$page     = max(1, (int)($_GET['page'] ?? 1));
-$offset   = ($page - 1) * $per_page;
-
 // Filters
 $cat_filter    = trim($_GET['category'] ?? '');
 $search_filter = trim($_GET['search'] ?? '');
@@ -46,15 +41,14 @@ if ($search_filter) { $where[] = '(title LIKE ? OR content LIKE ?)'; $params[] =
 $where_sql = implode(' AND ', $where);
 
 $total_blogs = $db->fetchOne("SELECT COUNT(*) as cnt FROM blogs WHERE $where_sql", $params)['cnt'];
-$total_pages = max(1, (int)ceil($total_blogs / $per_page));
 
-$blogs = $db->fetchAll("SELECT * FROM blogs WHERE $where_sql ORDER BY created_at DESC LIMIT $per_page OFFSET $offset", $params);
+$blogs = $db->fetchAll("SELECT * FROM blogs WHERE $where_sql ORDER BY created_at DESC", $params);
 foreach ($blogs as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
 unset($b);
 
 // Featured = first blog on page 1 with no filters
 $featured = null;
-if ($page === 1 && !$cat_filter && !$search_filter && !empty($blogs)) {
+if (!$cat_filter && !$search_filter && !empty($blogs)) {
     $featured = array_shift($blogs);
 }
 
@@ -193,7 +187,7 @@ $total_grid_blogs = count($all_blogs_for_filter);
     <?php else: ?>
     <div data-reveal-stagger id="blogs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <?php foreach ($all_blogs_for_filter as $bi => $blog): ?>
-        <article data-reveal class="flex flex-col group h-full relative bg-white p-5 rounded-2xl shadow-sm border border-slate-100<?php echo $bi >= 9 ? ' blog-hidden' : ''; ?>">
+        <article data-reveal class="flex flex-col group h-full relative bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
             <!-- Entire Card Link -->
             <a href="<?php echo blogSlug($blog); ?>" class="absolute inset-0 z-10" aria-label="<?php echo htmlspecialchars($blog['title']); ?>"></a>
 
@@ -253,31 +247,6 @@ $total_grid_blogs = count($all_blogs_for_filter);
         <?php endforeach; ?>
     </div>
 
-    <!-- Load More -->
-    <?php if ($total_grid_blogs > 9): ?>
-    <div class="mt-12 flex flex-col items-center gap-2" id="blog-load-more-wrap">
-        <button id="blog-load-more-btn" onclick="loadMoreBlogs()"
-                class="px-8 py-3 bg-primary text-white font-bold rounded-2xl hover:bg-orange-600 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
-            <span class="material-symbols-outlined">expand_more</span>
-            Load More Stories
-        </button>
-        <p id="blog-load-more-count" class="text-sm text-slate-400">Showing 9 of <?php echo $total_grid_blogs; ?></p>
-    </div>
-    <script>
-    var _bShown = 9, _bBatch = 9;
-    function loadMoreBlogs() {
-        var hidden = document.querySelectorAll('#blogs-grid .blog-hidden');
-        var toShow = Array.from(hidden).slice(0, _bBatch);
-        toShow.forEach(function(el){ el.classList.remove('blog-hidden'); });
-        _bShown += toShow.length;
-        var total = <?php echo $total_grid_blogs; ?>;
-        document.getElementById('blog-load-more-count').textContent = 'Showing ' + _bShown + ' of ' + total;
-        if (_bShown >= total) {
-            document.getElementById('blog-load-more-wrap').style.display = 'none';
-        }
-    }
-    </script>
-    <?php endif; ?>
     <?php endif; ?>
 
     <!-- Newsletter -->

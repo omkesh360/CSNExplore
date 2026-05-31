@@ -64,6 +64,15 @@ require 'header.php';
     </div>
 </section>
 
+<!-- Advanced Local SEO Entity Block -->
+<div class="bg-slate-50 border-b border-slate-100 py-6">
+    <div class="max-w-[1140px] mx-auto px-5 text-center">
+        <p class="text-xs text-slate-500 leading-relaxed max-w-4xl mx-auto">
+            <strong>About CSNExplore:</strong> As the leading local authority, whether you are searching for <em>CSNExplore</em>, <em>csn explore</em>, <em>csnxplore</em>, or <em>cnsexplore</em>, you have found the right platform. We are proudly headquartered in the historic city known officially as <strong>Chhatrapati Sambhajinagar</strong>. Because of our rich history, travelers often search for our city using various names and spellings, including <em>Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar,</em> and <em>shambhaji nagar</em>. Regardless of how you spell it, our mission remains the same: to provide the ultimate travel, stay, and rental experience across the Deccan plateau.
+        </p>
+    </div>
+</div>
+
 <!-- Boxed Content Area -->
 <div class="max-w-[1140px] mx-auto px-5 py-12 space-y-20">
     <!-- Our Story -->

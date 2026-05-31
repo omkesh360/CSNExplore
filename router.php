@@ -78,6 +78,12 @@ $routes = [
     'blog-detail' => 'blog-detail.php',
     'subscribe'   => 'subscribe.php',
     'install'     => 'install.php',
+    'faq'         => 'faq.php',
+    'itineraries' => 'itineraries.php',
+    'near-attractions' => 'near-attractions.php',
+    'compare'     => 'compare.php',
+    'suggestor'   => 'suggestor.php',
+    'travel-guide' => 'travel-guide.php',
 ];
 
 // Strip trailing slash for matching

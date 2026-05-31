@@ -447,10 +447,8 @@ $category_nav = [
 
 
 
-          <div class="relative h-52 overflow-hidden <?php 
+          <?php
               $imgSrc = $item['image'] ?? '';
-              if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; 
-              
               $srcset = '';
               $sizesAttr = 'sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"';
               if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
@@ -464,7 +462,8 @@ $category_nav = [
                       $srcset = 'srcset="'.$v400.' 400w, '.$v700.' 700w, '.$imgFinal.' 800w"';
                   }
               }
-          ?>">
+          ?>
+          <div class="relative h-52 overflow-hidden <?php if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; ?>">
             <img loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                  src="<?php 
                     echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 

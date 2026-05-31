@@ -5,11 +5,11 @@ $current_page = "faq";
 require_once 'php/config.php';
 
 $page_meta = [
-    'description' => 'Common questions answered about CSNExplore hotels, car rentals, bike rentals, attractions, and travel planning for Chhatrapati Sambhajinagar (Aurangabad), Maharashtra.',
-    'keywords' => 'CSNExplore FAQ, hotel booking, car rental, bike rental, Aurangabad tourism, Ajanta Caves, travel planning',
+    'description' => 'Frequently asked questions about travelling in Aurangabad (Chhatrapati Sambhajinagar / Sambhajianagar). Find answers about hotels, car rentals, bike rentals, Ajanta Caves, Ellora Caves, and everything else for your perfect Aurangabad trip.',
+    'keywords' => 'travel Aurangabad FAQ, Sambhajianagar travel guide, travel auranagabd, how to travel Aurangabad, auranagabd tourism questions, csnexplore FAQ, hotel booking Aurangabad, car rental Chhatrapati Sambhajinagar, bike rental Sambhajianagar, Ajanta Caves tour, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
     'canonical' => 'https://csnexplore.com/faq',
     'type' => 'website',
-    'image' => 'https://csnexplore.com/images/faq-hero.webp',
+    'image' => 'https://csnexplore.com/images/Logo-light-optimized.webp',
 ];
 
 // FAQ Categories
@@ -18,6 +18,18 @@ $faqs = [
         [
             'question' => 'What is CSNExplore?',
             'answer' => 'CSNExplore is a comprehensive tourism portal for Chhatrapati Sambhajinagar (formerly Aurangabad), Maharashtra. We provide hotel bookings, car rentals, bike rentals, attraction tours, restaurant reservations, and bus ticket booking—all in one platform.'
+        ],
+        [
+            'question' => 'How do I travel in Aurangabad (Sambhajianagar)?',
+            'answer' => 'The best way to travel in Aurangabad (also spelled auranagabd, auaranagabd, or Sambhajianagar) is to rent a car or bike through CSNExplore. We offer verified vehicles from ₹300/day for bikes and ₹800/day for cars. For group travel, book a Maruti Ertiga or Toyota Innova for outstation trips to Ajanta and Ellora Caves. Our bus section also covers MSRTC and private intercity routes.'
+        ],
+        [
+            'question' => 'What is the best time to travel in Sambhajianagar (Aurangabad)?',
+            'answer' => 'The best time to travel in Sambhajianagar (Chhatrapati Sambhajinagar / Aurangabad) is from October to March. The weather is cool and pleasant, ideal for visiting Ajanta Caves, Ellora Caves, Bibi Ka Maqbara, and Daulatabad Fort. Avoid May and June due to extreme heat.'
+        ],
+        [
+            'question' => 'How do I reach Aurangabad (Chhatrapati Sambhajinagar / Sambhajinagar)?',
+            'answer' => 'Aurangabad (Chhatrapati Sambhajinagar) is accessible by air (Chhatrapati Sambhajinagar Airport with flights from Mumbai, Delhi, Hyderabad), by train (Devgiri Express, Tapovan Express) and by road (buses from Mumbai, Pune, Nashik via CSNExplore bus booking). The city is about 375 km from Mumbai.'
         ],
         [
             'question' => 'Is CSNExplore safe and secure?',

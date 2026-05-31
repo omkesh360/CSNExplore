@@ -243,8 +243,25 @@ class Database {
           `status` ENUM('published','draft') DEFAULT 'published',
           `category` VARCHAR(100) DEFAULT 'General',
           `read_time` VARCHAR(50), `tags` VARCHAR(255), `meta_description` TEXT,
+          `meta_title` VARCHAR(255) DEFAULT NULL, `meta_keywords` TEXT DEFAULT NULL,
+          `focus_keyword` VARCHAR(255) DEFAULT NULL, `seo_score` INT DEFAULT 0,
+          `slug` VARCHAR(255) DEFAULT NULL, `excerpt` TEXT DEFAULT NULL,
+          `linked_listings` JSON DEFAULT NULL,
           `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
           `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+        CREATE TABLE IF NOT EXISTS `comments` (
+          `id` INT AUTO_INCREMENT PRIMARY KEY,
+          `user_id` INT NOT NULL,
+          `ref_type` ENUM('blog','listing') NOT NULL,
+          `ref_id` INT NOT NULL,
+          `content` TEXT NOT NULL,
+          `status` ENUM('approved','pending','rejected') DEFAULT 'approved',
+          `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+          `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          INDEX `idx_ref` (`ref_type`, `ref_id`),
+          INDEX `idx_user` (`user_id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
         CREATE TABLE IF NOT EXISTS `trip_requests` (
@@ -408,7 +425,54 @@ class Database {
             }
         }
         
+
+        // Add linked_listings column to blogs if not exists (for existing installs)
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `linked_listings` JSON DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `meta_title` VARCHAR(255) DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `meta_keywords` TEXT DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `focus_keyword` VARCHAR(255) DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `seo_score` INT DEFAULT 0");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `slug` VARCHAR(255) DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `excerpt` TEXT DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+
+        // Create comments table if not exists (for existing installs)
+        try {
+            $this->db->exec("
+            CREATE TABLE IF NOT EXISTS `comments` (
+              `id` INT AUTO_INCREMENT PRIMARY KEY,
+              `user_id` INT NOT NULL,
+              `ref_type` VARCHAR(50) NOT NULL,
+              `ref_id` INT NOT NULL,
+              `content` TEXT NOT NULL,
+              `status` ENUM('approved','pending','rejected') DEFAULT 'approved',
+              `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+              `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+              INDEX `idx_ref` (`ref_type`, `ref_id`),
+              INDEX `idx_user` (`user_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+            ");
+        } catch (Exception $e) { /* already exists */ }
+        
+        try {
+            $this->db->exec("ALTER TABLE `comments` MODIFY `ref_type` VARCHAR(50) NOT NULL");
+        } catch (Exception $e) { /* fallback */ }
+
         // Seed admin user if not exists
+
         $admin = $this->fetchOne("SELECT id FROM users WHERE email = ?", ['admin@csnexplore.com']);
         if (!$admin) {
             $hash = password_hash('admin123', PASSWORD_DEFAULT);

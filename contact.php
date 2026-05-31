@@ -258,7 +258,7 @@ require 'header.php';
     </div>
 
     <!-- Map -->
-    <div data-reveal="scale" class="rounded-3xl overflow-hidden shadow-2xl h-[400px] relative">
+    <div data-reveal="scale" class="rounded-3xl overflow-hidden shadow-2xl h-[400px] relative mb-12">
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.3131686!3d19.8686039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb99005326e43b%3A0xc80ab44b74ee04d5!2sJay+Tower!5e0!3m2!1sen!2sin!4v1"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
@@ -268,6 +268,16 @@ require 'header.php';
             <p class="font-bold text-slate-900 text-sm">CSNExplore Office</p>
             <p class="text-xs text-slate-500">Samadhan Colony, Padampura</p>
         </div>
+    </div>
+
+    <!-- Advanced Local SEO Entity Block -->
+    <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8 text-center shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900 mb-2">Verified Local Business Entity</h2>
+        <p class="text-xs text-slate-500 leading-relaxed max-w-4xl mx-auto">
+            <strong>Entity Name:</strong> CSNExplore (commonly searched as csn explore, csnxplore, cnsexplore)<br>
+            <strong>Official Address:</strong> Jay Tower, V896+MP9, Samadhan Colony, Padampura, Chhatrapati Sambhajinagar, Maharashtra 431005, India.<br>
+            <strong>Service Areas:</strong> We provide tourism, hotel bookings, and vehicle rentals for Chhatrapati Sambhajinagar, often recognized by travelers under alternative names and spellings such as Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, and shambhaji nagar. We are the authoritative local portal for the entire region.
+        </p>
     </div>
 </div>
 </main>

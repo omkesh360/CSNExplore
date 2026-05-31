@@ -85,7 +85,8 @@ async function loadBlogs() {
 }
 
 function renderBlogGrid(blogs) {
-    var q = (document.getElementById('blog-search')?.value || '').toLowerCase();
+    var searchInput = document.getElementById('blog-search');
+    var q = (searchInput ? searchInput.value : '').toLowerCase();
     var filtered = q ? blogs.filter(function(b){ return (b.title||'').toLowerCase().includes(q) || (b.category||'').toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q); }) : blogs;
     var grid = document.getElementById('blogs-grid');
     if (!filtered.length) {

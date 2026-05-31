@@ -106,9 +106,20 @@ require 'header.php';
         </div>
 
         <!-- Article Content -->
-        <article data-reveal class="prose text-slate-800 max-w-none text-base leading-relaxed">
+        <article class="prose text-slate-800 max-w-none text-base leading-relaxed">
             <?php echo $blog['content']; // HTML content from DB — intentionally not escaped ?>
         </article>
+
+        <!-- Admin Edit Button (Client-side authenticated) -->
+        <a href="<?php echo BASE_PATH; ?>/admin/blog-editor-new.php?id=<?php echo $blog['id']; ?>" id="admin-edit-btn" style="display:none;" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-full shadow-2xl z-50 flex items-center gap-2 hover:bg-primary transition-colors font-bold text-sm">
+            <span class="material-symbols-outlined text-lg">edit</span>
+            Edit this Post
+        </a>
+        <script>
+            if (localStorage.getItem('csn_admin_token')) {
+                document.getElementById('admin-edit-btn').style.display = 'inline-flex';
+            }
+        </script>
 
         <!-- Tags -->
         <?php if (!empty($blog['tags'])): ?>
@@ -151,6 +162,123 @@ require 'header.php';
                 <span class="material-symbols-outlined text-base">arrow_back</span>
                 Back to all blogs
             </a>
+        </div>
+    </div>
+
+    <?php
+    // ── Linked Listings ──────────────────────────────────────────────────────
+    $linked = json_decode($blog['linked_listings'] ?? 'null', true);
+    if (!empty($linked) && is_array($linked)):
+        // Fetch full listing data for each linked item
+        $linkedData = [];
+        $typeLabels = ['stays'=>'Hotel','cars'=>'Car','bikes'=>'Bike','attractions'=>'Attraction','restaurants'=>'Restaurant','buses'=>'Bus'];
+        $typeIcons  = ['stays'=>'bed','cars'=>'directions_car','bikes'=>'motorcycle','attractions'=>'confirmation_number','restaurants'=>'restaurant','buses'=>'directions_bus'];
+        foreach ($linked as $ll) {
+            $lType = $ll['type'] ?? ''; $lId = (int)($ll['id'] ?? 0);
+            if (!$lType || !$lId) continue;
+            try {
+                $validTypes = ['stays','cars','bikes','attractions','restaurants','buses'];
+                if (!in_array($lType, $validTypes)) continue;
+                $lItem = $db->fetchOne("SELECT id, name" . ($lType==='buses'?', operator AS name2':'') . ", image, rating, description FROM `$lType` WHERE id=? AND is_active=1", [$lId]);
+                if ($lItem) {
+                    $lItem['_type'] = $lType;
+                    $lItem['_url']  = BASE_PATH . '/listing-detail/' . generateSlug($lType, $lId, $lItem['name'] ?? $ll['name'] ?? '');
+                    $lItem['_label'] = $typeLabels[$lType] ?? $lType;
+                    $lItem['_icon']  = $typeIcons[$lType] ?? 'storefront';
+                    $linkedData[] = $lItem;
+                }
+            } catch(Exception $e) {}
+        }
+    ?>
+    <?php if (!empty($linkedData)): ?>
+    <div class="border-t border-slate-100 bg-gradient-to-b from-slate-50 to-white py-14">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl font-serif font-black mb-2 flex items-center gap-3">
+                <span class="w-8 h-1 bg-primary rounded-full inline-block"></span>
+                Featured Listings in This Article
+            </h3>
+            <p class="text-slate-500 text-sm mb-8">Hand-picked options recommended in this blog post</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <?php foreach ($linkedData as $li): ?>
+                <a href="<?php echo $li['_url']; ?>" class="group flex gap-4 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <div class="w-24 h-full shrink-0 overflow-hidden bg-slate-100">
+                        <?php $imgSrc = $li['image'] ?? ''; ?>
+                        <img loading="lazy" width="96" height="96"
+                             src="<?php echo htmlspecialchars($imgSrc ?: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=200&q=70&auto=format'); ?>"
+                             onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=200&q=70&auto=format'"
+                             alt="<?php echo htmlspecialchars($li['name']??''); ?>"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+                    </div>
+                    <div class="p-4 flex flex-col justify-center flex-1 min-w-0">
+                        <div class="flex items-center gap-1.5 mb-1">
+                            <span class="material-symbols-outlined text-primary text-sm"><?php echo $li['_icon']; ?></span>
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider"><?php echo $li['_label']; ?></span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm leading-tight group-hover:text-primary transition-colors mb-1 truncate"><?php echo htmlspecialchars($li['name']??''); ?></h4>
+                        <?php if (!empty($li['rating'])): ?>
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            <span class="material-symbols-outlined text-sm">star</span>
+                            <span class="font-bold"><?php echo number_format((float)$li['rating'],1); ?></span>
+                        </div>
+                        <?php endif; ?>
+                        <span class="mt-2 inline-flex items-center gap-1 text-primary text-xs font-semibold group-hover:underline">View Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                    </div>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <!-- ── Comment Section ─────────────────────────────────────────────────── -->
+    <div class="border-t border-slate-100 py-14" id="comments-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl font-serif font-black mb-2 flex items-center gap-3">
+                <span class="w-8 h-1 bg-primary rounded-full inline-block"></span>
+                Comments <span id="comment-count-badge" class="text-base font-normal text-slate-400 ml-2"></span>
+            </h3>
+            <p class="text-slate-500 text-sm mb-8">Share your thoughts, tips or questions about this article.</p>
+
+            <!-- Write comment (shown only when logged in via JS) -->
+            <div id="comment-form-wrap" class="mb-10 hidden">
+                <div class="flex gap-3 items-start">
+                    <div id="comment-avatar" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm shrink-0">?</div>
+                    <div class="flex-1">
+                        <textarea id="comment-input" rows="3"
+                            placeholder="Write a comment..."
+                            maxlength="1000"
+                            class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                            oninput="document.getElementById('comment-char').textContent=this.value.length+'/1000'"></textarea>
+                        <div class="flex items-center justify-between mt-2">
+                            <span id="comment-char" class="text-xs text-slate-400">0/1000</span>
+                            <button id="comment-submit-btn" onclick="submitComment('blog', <?php echo $id; ?>)"
+                                class="px-5 py-2 bg-primary text-white rounded-full text-sm font-bold hover:bg-orange-600 transition-all flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">send</span> Post Comment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Not logged in prompt -->
+            <div id="comment-login-prompt" class="mb-10 hidden">
+                <div class="flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                    <span class="material-symbols-outlined text-3xl text-slate-300">chat_bubble</span>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-700 mb-1">Join the conversation</p>
+                        <p class="text-sm text-slate-500">You need to be logged in to post a comment.</p>
+                    </div>
+                    <a href="<?php echo BASE_PATH; ?>/login" class="px-4 py-2 bg-primary text-white rounded-full text-sm font-bold hover:bg-orange-600 transition-all shrink-0">Log In</a>
+                </div>
+            </div>
+
+            <!-- Comments list -->
+            <div id="comments-list" class="space-y-5">
+                <div class="flex items-center gap-3 text-slate-400 text-sm py-6 justify-center" id="comments-loading">
+                    <span class="material-symbols-outlined animate-spin">progress_activity</span> Loading comments...
+                </div>
+            </div>
         </div>
     </div>
 
@@ -205,5 +333,143 @@ require 'header.php';
     <?php endif; ?>
 
 </main>
+
+<script>
+// ── Comment Engine ────────────────────────────────────────────────────────────
+(function() {
+    const BASE = '<?php echo BASE_PATH; ?>';
+    let _currentUser = null;
+    let _token = null;
+
+    function init() {
+        _token = localStorage.getItem('csn_token');
+        _currentUser = JSON.parse(localStorage.getItem('csn_user') || 'null');
+
+        // Show correct UI state
+        const formWrap    = document.getElementById('comment-form-wrap');
+        const loginPrompt = document.getElementById('comment-login-prompt');
+
+        if (_currentUser && _token) {
+            if (formWrap) formWrap.classList.remove('hidden');
+            const av = document.getElementById('comment-avatar');
+            if (av) av.textContent = (_currentUser.name || 'U')[0].toUpperCase();
+        } else {
+            if (loginPrompt) loginPrompt.classList.remove('hidden');
+        }
+    }
+
+    window.loadComments = async function(refType, refId) {
+        const list = document.getElementById('comments-list');
+        const badge = document.getElementById('comment-count-badge');
+        try {
+            const res  = await fetch(`${BASE}/php/api/comments.php?ref_type=${refType}&ref_id=${refId}`);
+            const data = await res.json();
+            const comments = data.comments || [];
+
+            if (badge) badge.textContent = comments.length > 0 ? `(${comments.length})` : '';
+            list.innerHTML = '';
+
+            if (comments.length === 0) {
+                list.innerHTML = '<div class="text-center py-12 text-slate-400"><span class="material-symbols-outlined text-5xl block mb-3 opacity-30">chat_bubble_outline</span><p class="text-sm">No comments yet. Be the first to comment!</p></div>';
+                return;
+            }
+            comments.forEach(c => list.appendChild(renderComment(c, refType, refId)));
+        } catch(e) {
+            list.innerHTML = '<div class="text-slate-400 text-sm text-center py-6">Could not load comments.</div>';
+        }
+    };
+
+    function renderComment(c, refType, refId) {
+        const isOwn   = _currentUser && _currentUser.id == c.user_id;
+        const isAdmin = _currentUser && _currentUser.role === 'admin';
+        const date    = new Date(c.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+        const initial = (c.user_name || 'U')[0].toUpperCase();
+
+        const div = document.createElement('div');
+        div.id = `comment-${c.id}`;
+        div.className = 'flex gap-3 group';
+        div.innerHTML = `
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center text-white font-black text-sm shrink-0">${initial}</div>
+            <div class="flex-1 bg-slate-50 rounded-2xl px-4 py-3">
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-900 text-sm">${c.user_name}</span>
+                        <span class="text-xs text-slate-400">${date}</span>
+                    </div>
+                    ${(isOwn || isAdmin) ? `<button onclick="deleteComment(${c.id},'${refType}',${refId})" class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-red-500 text-xs flex items-center gap-0.5"><span class="material-symbols-outlined text-sm">delete</span></button>` : ''}
+                </div>
+                <p class="text-slate-700 text-sm leading-relaxed">${c.content}</p>
+            </div>`;
+        return div;
+    }
+
+    window.submitComment = async function(refType, refId) {
+        const input  = document.getElementById('comment-input');
+        const btn    = document.getElementById('comment-submit-btn');
+        const content = (input?.value || '').trim();
+        if (!content) { input?.focus(); return; }
+        if (!_token)  { window.location.href = BASE + '/login'; return; }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Posting...';
+
+        try {
+            const res  = await fetch(`${BASE}/php/api/comments.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + _token },
+                body: JSON.stringify({ ref_type: refType, ref_id: refId, content })
+            });
+            const data = await res.json();
+            if (!res.ok || data.error) throw new Error(data.error || 'Failed');
+            
+            input.value = '';
+            document.getElementById('comment-char').textContent = '0/1000';
+
+            // Prepend the new comment
+            const list = document.getElementById('comments-list');
+            const emptyMsg = list.querySelector('[class*="chat_bubble_outline"]');
+            if (emptyMsg) list.innerHTML = '';
+            list.prepend(renderComment(data.comment, refType, refId));
+
+            // Update badge
+            const badge = document.getElementById('comment-count-badge');
+            if (badge) {
+                const cur = parseInt(badge.textContent.replace(/\D/g,'')) || 0;
+                badge.textContent = `(${cur + 1})`;
+            }
+        } catch(e) {
+            alert('Error: ' + e.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<span class="material-symbols-outlined text-base">send</span> Post Comment';
+        }
+    };
+
+    window.deleteComment = async function(id, refType, refId) {
+        if (!confirm('Delete this comment?')) return;
+        try {
+            const res = await fetch(`${BASE}/php/api/comments.php?id=${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + _token }
+            });
+            const data = await res.json();
+            if (data.success) {
+                const el = document.getElementById(`comment-${id}`);
+                if (el) { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }
+                const badge = document.getElementById('comment-count-badge');
+                if (badge) {
+                    const cur = parseInt(badge.textContent.replace(/\D/g,'')) || 1;
+                    badge.textContent = cur > 1 ? `(${cur - 1})` : '';
+                }
+            }
+        } catch(e) { alert('Could not delete comment'); }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        init();
+        window.loadComments('blog', <?php echo $id; ?>);
+    });
+})();
+</script>
 
 <?php require 'footer.php'; ?>

@@ -32,6 +32,7 @@ try {
             $blog = $db->fetchOne($sql, [$id]);
             if (!$blog) sendError('Not found', 404);
             $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
+            $blog['linked_listings'] = json_decode($blog['linked_listings'] ?? 'null', true);
             sendJson($blog);
         } else {
             if ($isAdmin) {
@@ -47,7 +48,10 @@ try {
                 $params = [];
             }
             $blogs = $db->fetchAll($sql, $params);
-            foreach ($blogs as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
+            foreach ($blogs as &$b) {
+                $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
+                $b['linked_listings'] = json_decode($b['linked_listings'] ?? 'null', true);
+            }
             sendJson($blogs);
         }
     }
@@ -80,6 +84,7 @@ try {
             'focus_keyword'    => sanitize($data['focus_keyword'] ?? ''),
             'slug'             => generateSlug('blogs', $newId ?? 0, $data['title']),
             'seo_score'        => min(100, max(0, (int)($data['seo_score'] ?? 0))),
+            'linked_listings'  => isset($data['linked_listings']) ? json_encode($data['linked_listings']) : null,
         ]);
 
         // Update slug with real ID
@@ -121,6 +126,7 @@ try {
             'focus_keyword'    => sanitize($data['focus_keyword'] ?? $existing['focus_keyword'] ?? ''),
             'slug'             => $newSlug,
             'seo_score'        => min(100, max(0, (int)($data['seo_score'] ?? $existing['seo_score'] ?? 0))),
+            'linked_listings'  => isset($data['linked_listings']) ? json_encode($data['linked_listings']) : ($existing['linked_listings'] ?? null),
             'updated_at'       => date('Y-m-d H:i:s'),
         ], 'id = :id', [':id' => $id]);
 
@@ -160,8 +166,8 @@ function regenerateBlogHtml(int $blogId): void {
     if (!file_exists($genScript)) return;
     // Run in background so the API response isn't blocked
     if (PHP_OS_FAMILY === 'Windows') {
-        pclose(popen("start /B php \"$genScript\" blog $blogId", 'r'));
+        pclose(popen("start /B C:\\xampp\\php\\php.exe \"$genScript\" blog $blogId", 'r'));
     } else {
-        exec("php \"$genScript\" blog $blogId > /dev/null 2>&1 &");
+        exec("C:\\xampp\\php\\php.exe \"$genScript\" blog $blogId > /dev/null 2>&1 &");
     }
 }

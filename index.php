@@ -1,5 +1,12 @@
 <?php
-// index.php – CSNExplore Home Page
+// HOME PAGE - index.php
+$cache_file = __DIR__ . '/cache/homepage.html';
+if (file_exists($cache_file) && time() - filemtime($cache_file) < 3600 && !isset($_GET['nocache'])) {
+    require_once 'php/cache-headers.php';
+    applyCacheHeaders('page');
+    readfile($cache_file);
+    exit;
+}
 require_once 'php/redirects.php'; // 301 handler — must be before any output
 $page_title = "CSNExplore – Hotels, Cars, Bikes & Attractions in Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "home";
@@ -137,7 +144,7 @@ $page_meta = [
         ['name' => 'Home', 'url' => '/'],
     ],
 ];
-$extra_head = '<link rel="preload" as="image" imagesrcset="images/hotel-hero-section-mobile.webp 768w, images/hotel-hero-section%20(4).webp 1920w" imagesizes="100vw" fetchpriority="high">
+$extra_head = '<link rel="preload" as="image" imagesrcset="' . BASE_PATH . '/images/hotel-hero-section-mobile.webp 768w, ' . BASE_PATH . '/images/hotel-hero-section%20(4).webp 1920w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1198,13 +1205,75 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 
 <!-- SEO Semantic Text Block Injection -->
 <section class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100">
-    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">Plan Your Journey with CSNExplore</h2>
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">The Ultimate Aurangabad Tourism & Rental Portal</h2>
     <div class="prose prose-slate max-w-none text-slate-600 text-sm leading-relaxed space-y-4">
-        <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget under 2 days tour or exploring the city over a long weekend, we bring everything into one unified dashboard.</p>
-        <p>Discover top-rated hotels near Aurangabad, budget backpacker hostels near Satara, and specialized family accommodations, including verified Jain hotels in Aurangabad featuring pure vegetarian dining options. For single adventurers, our portal prioritizes safety by partnering with verified stays and transit options to ensure a secure environment for any lady travelling solo or women single travellers exploring our heritage sites.</p>
-        <p>Need total flexibility? Skip public transit with our verified local vendors. Secure a car rental under 3000 for a comfortable family drive to Bibi Ka Maqbara, or choose a premium sedan or SUV for your outstation trips. For solo explorers, we feature cheap bike rentals under 5000 per month alongside quick daily scooter rentals in Sambhajinagar to let you uncover hidden gems at your own pace.</p>
+        <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget tour or exploring the city over a long weekend, our platform brings everything into one unified dashboard. From finding the <a href="<?php echo BASE_PATH; ?>/listing/cars" class="text-primary font-bold hover:underline">best budget car rentals in Aurangabad</a> to booking luxury sedans, we ensure your journey to Ajanta and Ellora Caves is seamless.</p>
+        <p>Accommodation is crucial for a great trip. Our database helps you discover top-rated hotels, homestays, and the <a href="<?php echo BASE_PATH; ?>/listing/stays" class="text-primary font-bold hover:underline">top 10 dormitories near Chhatrapati Sambhajinagar</a>. We feature verified Jain hotels in Aurangabad providing authentic pure vegetarian dining, and prioritize safety with secure transit and stay options specifically curated for solo female travelers.</p>
+        <p>Need total flexibility to explore at your own pace? Skip public transit with our verified local vendors. If you want to <a href="<?php echo BASE_PATH; ?>/listing/bikes" class="text-primary font-bold hover:underline">rent a bike in Aurangabad</a>, we offer everything from cheap daily scooter rentals to premium motorcycles. Pair your ride with our detailed guides on local <a href="<?php echo BASE_PATH; ?>/listing/attractions" class="text-primary font-bold hover:underline">tourist attractions in Sambhajinagar</a> and you're ready to uncover hidden gems across the Deccan plateau.</p>
     </div>
 </section>
+
+<!-- Extreme SEO FAQ Section for Exact Match Queries -->
+<section class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 bg-slate-50 rounded-3xl mb-12">
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Travel Questions</h2>
+    <div class="space-y-6">
+        <!-- FAQ 1 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h3 class="font-bold text-lg text-slate-900 mb-2">How to travel in Aurangabad (Auranagabd)?</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                If you are looking to travel in Aurangabad (often spelled auranagabd or auaranagabd), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel aurnagabd dashboard.
+            </p>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h3 class="font-bold text-lg text-slate-900 mb-2">What is the best way to travel in Samabhajianagar?</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                To travel in Samabhajianagar (Chhatrapati Sambhajinagar), we highly recommend starting with our curated itineraries. Whether you search for "travel in samabhajianagar" or "Chtarapati sambhajinagar tourism," CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays. 
+            </p>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h3 class="font-bold text-lg text-slate-900 mb-2">Where can I find the ultimate travel aurnagabd guide?</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                CSNExplore is the ultimate destination for any "travel aurnagabd" queries. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQPage JSON-LD Schema for Featured Snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to travel in Aurangabad (Auranagabd)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you are looking to travel in Aurangabad (often spelled auranagabd or auaranagabd), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel aurnagabd dashboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best way to travel in Samabhajianagar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To travel in Samabhajianagar (Chhatrapati Sambhajinagar), we highly recommend starting with our curated itineraries. Whether you search for 'travel in samabhajianagar' or 'Chtarapati sambhajinagar tourism', CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find the ultimate travel aurnagabd guide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CSNExplore is the ultimate destination for any 'travel aurnagabd' queries. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable."
+      }
+    }
+  ]
+}
+</script>
 
 <?php require 'footer.php'; ?>
 

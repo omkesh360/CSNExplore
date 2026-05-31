@@ -12,8 +12,8 @@ $blog_id = $_GET['id'] ?? '';
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"/>
-    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
     <script>
         tailwind.config = {
             theme: { extend: { colors: { primary: '#ec5b13' }, fontFamily: { sans: ['Inter','sans-serif'] } } }
@@ -29,7 +29,7 @@ $blog_id = $_GET['id'] ?? '';
         .ql-editor.ql-blank::before { left: 24px; max-width: 800px; margin: 0 auto; font-style: normal; color: #94a3b8; font-size: 1.25rem; }
         
         /* WordPress Style Sidebar */
-        .wp-sidebar { width: 360px; border-left: 1px solid #e2e8f0; background: #fff; height: 100vh; overflow-y: auto; position: sticky; top: 0; }
+        .wp-sidebar { width: 360px; border-left: 1px solid #e2e8f0; background: #fff; height: 100%; overflow-y: auto; }
         .wp-header { height: 60px; border-bottom: 1px solid #e2e8f0; background: #fff; display: flex; items-center: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 20; }
         
         input:focus, select:focus, textarea:focus { outline: none; border-color: #ec5b13; ring: 0; }
@@ -42,7 +42,7 @@ $blog_id = $_GET['id'] ?? '';
 </head>
 <body class="overflow-x-hidden">
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col h-screen overflow-hidden">
     <!-- Top Nav -->
     <header class="wp-header shrink-0">
         <div class="flex items-center gap-4">
@@ -64,9 +64,9 @@ $blog_id = $_GET['id'] ?? '';
         </div>
     </header>
 
-    <div class="flex flex-1 overflow-hidden">
+    <div class="flex flex-1 overflow-hidden min-h-0">
         <!-- Editor Area -->
-        <main class="flex-1 overflow-y-auto bg-white custom-scrollbar">
+        <main class="flex-1 overflow-y-auto bg-white custom-scrollbar min-h-0">
             <div class="max-w-[800px] mx-auto px-6 py-12">
                 <input type="text" id="post-title" placeholder="Add title" 
                        class="w-full text-4xl md:text-5xl font-black text-slate-900 border-none px-0 mb-8 placeholder-slate-200 focus:placeholder-slate-100 bg-transparent"
@@ -77,7 +77,7 @@ $blog_id = $_GET['id'] ?? '';
         </main>
 
         <!-- Sidebar -->
-        <aside class="wp-sidebar custom-scrollbar p-6 space-y-6">
+        <aside class="wp-sidebar custom-scrollbar p-6 space-y-6 min-h-0 shrink-0 pb-20">
             <!-- Status & Visibility -->
             <section>
                 <div class="flex items-center gap-2 mb-4 text-slate-900">
@@ -221,6 +221,39 @@ $blog_id = $_GET['id'] ?? '';
                 </div>
             </section>
 
+            <!-- Linked Listings -->
+            <section class="pt-6 border-t border-slate-100">
+                <div class="flex items-center gap-2 mb-4 text-slate-900">
+                    <span class="material-symbols-outlined text-xl text-primary">storefront</span>
+                    <h3 class="font-bold text-sm">Linked Listings</h3>
+                </div>
+                <p class="text-[10px] text-slate-400 mb-3">Attach relevant listings (hotels, cars, bikes, etc.) to showcase inside this blog post.</p>
+                
+                <div class="space-y-3">
+                    <div class="flex gap-2">
+                        <select id="listing-type-pick" class="flex-1 border border-slate-200 rounded-lg px-2 py-2 text-xs" onchange="fetchCategoryListings()">
+                            <option value="stays">🏨 Hotel/Stay</option>
+                            <option value="cars">🚗 Car Rental</option>
+                            <option value="bikes">🏍️ Bike Rental</option>
+                            <option value="attractions">🎟️ Attraction</option>
+                            <option value="restaurants">🍽️ Restaurant</option>
+                            <option value="buses">🚌 Bus Route</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="listing-id-input" class="flex-1 border border-slate-200 rounded-lg px-2 py-2 text-xs">
+                            <option value="">Loading...</option>
+                        </select>
+                        <button onclick="addLinkedListing()" 
+                                class="px-3 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:bg-orange-600 transition-all flex items-center gap-1 shrink-0">
+                            <span class="material-symbols-outlined text-sm">add</span>Add
+                        </button>
+                    </div>
+                    <div id="linked-listings-preview" class="space-y-2 max-h-56 overflow-y-auto"></div>
+                    <p class="text-[9px] text-slate-400">Select a listing to showcase inside this blog post.</p>
+                </div>
+            </section>
+
             <div id="error-box" class="hidden p-4 bg-red-50 border border-red-100 text-red-600 text-xs rounded-xl"></div>
         </aside>
     </div>
@@ -239,7 +272,7 @@ $blog_id = $_GET['id'] ?? '';
         if (token) options.headers['Authorization'] = 'Bearer ' + token;
         
         const res = await fetch(url, options);
-        if (res.status === 401) { window.location.href = '../login.php'; return null; }
+        if (res.status === 401) { window.location.href = '../adminexplorer.php'; return null; }
         return res.json();
     }
 
@@ -264,13 +297,17 @@ $blog_id = $_GET['id'] ?? '';
         if (blogId) {
             loadPostData();
         }
+        
+        fetchCategoryListings();
     });
 
     async function loadPostData() {
-        const data = await api('../php/api/blogs.php?id=' + blogId);
-        if (!data) return;
-        
-        document.getElementById('post-title').value = data.title || '';
+        try {
+            const data = await api('../php/api/blogs.php?id=' + blogId);
+            if (!data) { showErr('API returned empty response'); return; }
+            if (data.error) { showErr('Failed to load blog: ' + data.error); return; }
+            
+            document.getElementById('post-title').value = data.title || '';
         document.getElementById('post-author').value = data.author || 'Admin';
         document.getElementById('post-category').value = data.category || 'General';
         document.getElementById('post-read-time').value = data.read_time || '';
@@ -287,9 +324,17 @@ $blog_id = $_GET['id'] ?? '';
         if (data.image) previewImage(data.image);
         if (data.content) quill.clipboard.dangerouslyPasteHTML(data.content);
         
+        // Load linked listings
+        if (data.linked_listings && Array.isArray(data.linked_listings)) {
+            data.linked_listings.forEach(ll => addLinkedListingItem(ll.type, ll.id, ll.name || ''));
+        }
+        
         updateCharCount('meta-title-count', data.meta_title || '', 60);
         updateCharCount('meta-desc-count', data.meta_description || '', 160);
         calculateSEOScore();
+        } catch (e) {
+            showErr('Exception loading post: ' + e.message);
+        }
     }
 
     function previewImage(url) {
@@ -319,13 +364,25 @@ $blog_id = $_GET['id'] ?? '';
         var score = 0;
         var tips = [];
         
-        var title = document.getElementById('post-title')?.value || '';
-        var metaTitle = document.getElementById('post-meta-title')?.value || '';
-        var metaDesc = document.getElementById('post-meta-desc')?.value || '';
-        var focus = document.getElementById('post-focus-keyword')?.value || '';
-        var slug = document.getElementById('post-slug')?.value || '';
-        var keywords = document.getElementById('post-meta-keywords')?.value || '';
-        var content = quill ? quill.getText() : '';
+        var titleInput = document.getElementById('post-title');
+        var title = titleInput ? titleInput.value : '';
+        
+        var metaTitleInput = document.getElementById('post-meta-title');
+        var metaTitle = metaTitleInput ? metaTitleInput.value : '';
+        
+        var metaDescInput = document.getElementById('post-meta-desc');
+        var metaDesc = metaDescInput ? metaDescInput.value : '';
+        
+        var focusInput = document.getElementById('post-focus-keyword');
+        var focus = focusInput ? focusInput.value : '';
+        
+        var slugInput = document.getElementById('post-slug');
+        var slug = slugInput ? slugInput.value : '';
+        
+        var keywordsInput = document.getElementById('post-meta-keywords');
+        var keywords = keywordsInput ? keywordsInput.value : '';
+        
+        var content = typeof quill !== 'undefined' && quill ? quill.getText() : '';
         
         // Title checks (25 points)
         if (metaTitle.length >= 50 && metaTitle.length <= 60) {
@@ -361,7 +418,8 @@ $blog_id = $_GET['id'] ?? '';
         
         // Focus keyword in content (20 points)
         if (focus && content.toLowerCase().includes(focus.toLowerCase())) {
-            var density = (content.toLowerCase().match(new RegExp(focus.toLowerCase(), 'g')) || []).length;
+            var escapedFocus = focus.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            var density = (content.toLowerCase().match(new RegExp(escapedFocus, 'g')) || []).length;
             if (density >= 3 && density <= 10) {
                 score += 20;
             } else if (density > 0) {
@@ -446,6 +504,7 @@ $blog_id = $_GET['id'] ?? '';
         
         const tags = document.getElementById('post-tags').value.split(',').map(s => s.trim()).filter(Boolean);
         const seoScore = calculateSEOScore();
+        const linkedListings = getLinkedListings();
         
         const data = {
             title,
@@ -463,6 +522,7 @@ $blog_id = $_GET['id'] ?? '';
             // Auto-generate slug from title if empty
             slug: document.getElementById('post-slug').value || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').substring(0, 80),
             seo_score: seoScore,
+            linked_listings: linkedListings,
             content
         };
 
@@ -525,6 +585,89 @@ $blog_id = $_GET['id'] ?? '';
             input.value = '';
         }
     }
+
+    // ─── Linked Listings ─────────────────────────────────────────────────────
+    const _linkedListings = [];
+
+    async function fetchCategoryListings() {
+        const type = document.getElementById('listing-type-pick').value;
+        const select = document.getElementById('listing-id-input');
+        select.innerHTML = '<option value="">Loading...</option>';
+        
+        try {
+            const res = await api(`../php/api/listings.php?category=${type}`);
+            if (!res || res.error) throw new Error(res ? res.error : 'Failed to fetch');
+            
+            select.innerHTML = '<option value="">Select a listing...</option>';
+            res.forEach(item => {
+                const name = item.name || item.operator || `${type} #${item.id}`;
+                let price = '';
+                const priceKeys = ['price_per_night', 'price_per_day', 'price_per_person', 'entry_fee', 'price'];
+                for (let k of priceKeys) {
+                    if (item[k] !== undefined && item[k] !== null && parseFloat(item[k]) > 0) {
+                        price = ` - ₹${item[k]}`;
+                        break;
+                    }
+                }
+                
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = name + price;
+                option.dataset.name = name;
+                select.appendChild(option);
+            });
+        } catch(e) {
+            select.innerHTML = '<option value="">Error loading listings</option>';
+            showErr(e.message);
+        }
+    }
+
+    function addLinkedListing() {
+        const type = document.getElementById('listing-type-pick').value;
+        const select = document.getElementById('listing-id-input');
+        const id = parseInt(select.value);
+        
+        if (!id || isNaN(id)) { showErr('Please select a listing'); return; }
+        if (_linkedListings.find(l => l.type === type && l.id === id)) { showErr('Already added'); return; }
+
+        const option = select.options[select.selectedIndex];
+        const name = option ? option.dataset.name : `${type} #${id}`;
+        
+        addLinkedListingItem(type, id, name);
+        select.value = '';
+    }
+
+    function addLinkedListingItem(type, id, name) {
+        if (_linkedListings.find(l => l.type === type && l.id === id)) return;
+        _linkedListings.push({ type, id: parseInt(id), name });
+
+        const icons = { stays:'🏨', cars:'🚗', bikes:'🏍️', attractions:'🎟️', restaurants:'🍽️', buses:'🚌' };
+        const div = document.createElement('div');
+        div.id = `ll-${type}-${id}`;
+        div.className = 'flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs';
+        div.innerHTML = `
+            <span class="text-base">${icons[type] || '📌'}</span>
+            <div class="flex-1 min-w-0">
+                <div class="font-semibold truncate">${name}</div>
+                <div class="text-slate-400">${type} · ID ${id}</div>
+            </div>
+            <button onclick="removeLinkedListing('${type}',${id})" class="text-red-400 hover:text-red-600 transition-colors ml-1">
+                <span class="material-symbols-outlined text-base">close</span>
+            </button>`;
+        document.getElementById('linked-listings-preview').appendChild(div);
+    }
+
+    function removeLinkedListing(type, id) {
+        const idx = _linkedListings.findIndex(l => l.type === type && l.id === id);
+        if (idx > -1) _linkedListings.splice(idx, 1);
+        const el = document.getElementById(`ll-${type}-${id}`);
+        if (el) el.remove();
+    }
+
+    function getLinkedListings() {
+        return _linkedListings.map(l => ({ type: l.type, id: l.id, name: l.name }));
+    }
+
 </script>
 
 </body>

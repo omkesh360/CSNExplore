@@ -31,12 +31,23 @@ class SEOOptimizer {
             'Sambhajinagar tourism',
             'Aurangabad travel',
             'csnexplore',
+            'csn explore',
+            'csnxplore',
+            'cnsexplore',
             'csnexplore.com',
             'csnexplore.in',
             'scsnexplore',
             'csnexplore tourism portal',
             'csnexplore aurangabad',
-            'csnexplore sambhajinagar'
+            'csnexplore sambhajinagar',
+            'auranagabd',
+            'auaranagabd',
+            'aurangabd',
+            'aurangbad',
+            'aurnagabad',
+            'Chtarapati sambhajinagar',
+            'chatrapati sambhajinagar',
+            'shambhaji nagar'
         ];
         
         $typeKeywords = match($type) {

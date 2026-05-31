@@ -13,16 +13,16 @@ if (!defined('SITE_ADDRESS')) define('SITE_ADDRESS', 'Jay Tower, Padampura, Chha
 
 // ── Primary keyword sets per page type ───────────────────────────────────────
 $_SEO_KW = [
-    'home'        => 'Chhatrapati Sambhajinagar tourism, Aurangabad travel guide, Ajanta Caves tour, Ellora Caves visit, hotels Sambhajinagar, car rental Aurangabad, bike rental Aurangabad, CSNExplore',
-    'stays'       => 'hotels Chhatrapati Sambhajinagar, homestay Aurangabad, budget hotels Sambhajinagar, luxury hotels Aurangabad, book hotel Chhatrapati Sambhajinagar',
-    'cars'        => 'car rental Aurangabad, self drive car Chhatrapati Sambhajinagar, Maruti Ertiga hire, Ajanta Caves car rental, cab Aurangabad',
-    'bikes'       => 'bike rental Aurangabad, scooter hire Chhatrapati Sambhajinagar, Hero Splendor rent, motorcycle rental Aurangabad',
-    'attractions' => 'Ajanta Caves tour, Ellora Caves visit, Bibi Ka Maqbara Aurangabad, Daulatabad Fort, tourist places Chhatrapati Sambhajinagar',
-    'restaurants' => 'restaurants Chhatrapati Sambhajinagar, best food Aurangabad, biryani Sambhajinagar, dine out Aurangabad',
-    'buses'       => 'bus from Aurangabad, MSRTC Shivneri, bus booking Chhatrapati Sambhajinagar, intercity bus Aurangabad',
-    'blogs'       => 'Aurangabad travel blog, Ajanta Caves guide 2026, Ellora Caves tips, Chhatrapati Sambhajinagar travel tips',
-    'contact'     => 'contact CSNExplore, Aurangabad tourism helpline, book tour Chhatrapati Sambhajinagar',
-    'about'       => 'about CSNExplore, Aurangabad tourism portal, Chhatrapati Sambhajinagar travel company',
+    'home'        => 'Chhatrapati Sambhajinagar tourism, Aurangabad travel guide, Ajanta Caves tour, Ellora Caves visit, hotels Sambhajinagar, car rental Aurangabad, bike rental Aurangabad, CSNExplore, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'stays'       => 'hotels Chhatrapati Sambhajinagar, homestay Aurangabad, budget hotels Sambhajinagar, luxury hotels Aurangabad, book hotel Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'cars'        => 'car rental Aurangabad, self drive car Chhatrapati Sambhajinagar, Maruti Ertiga hire, Ajanta Caves car rental, cab Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'bikes'       => 'bike rental Aurangabad, scooter hire Chhatrapati Sambhajinagar, Hero Splendor rent, motorcycle rental Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'attractions' => 'Ajanta Caves tour, Ellora Caves visit, Bibi Ka Maqbara Aurangabad, Daulatabad Fort, tourist places Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'restaurants' => 'restaurants Chhatrapati Sambhajinagar, best food Aurangabad, biryani Sambhajinagar, dine out Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'buses'       => 'bus from Aurangabad, MSRTC Shivneri, bus booking Chhatrapati Sambhajinagar, intercity bus Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'blogs'       => 'Aurangabad travel blog, Ajanta Caves guide 2026, Ellora Caves tips, Chhatrapati Sambhajinagar travel tips, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'contact'     => 'contact CSNExplore, Aurangabad tourism helpline, book tour Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'about'       => 'about CSNExplore, Aurangabad tourism portal, Chhatrapati Sambhajinagar travel company, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
 ];
 
 /**
