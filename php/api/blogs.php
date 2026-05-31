@@ -44,8 +44,13 @@ try {
                 $sql .= " ORDER BY created_at DESC";
             } else {
                 // Public: only published
-                $sql    = "SELECT * FROM blogs WHERE status = 'published' ORDER BY created_at DESC";
+                $where = ["status = 'published'"];
                 $params = [];
+                if (!empty($_GET['search'])) {
+                    $where[] = "MATCH(title, category, keywords) AGAINST(? IN BOOLEAN MODE)";
+                    $params[] = sanitize($_GET['search']) . '*';
+                }
+                $sql    = "SELECT * FROM blogs WHERE " . implode(' AND ', $where) . " ORDER BY created_at DESC";
             }
             $blogs = $db->fetchAll($sql, $params);
             foreach ($blogs as &$b) {
@@ -70,7 +75,7 @@ try {
 
         $newId = $db->insert('blogs', [
             'title'            => sanitize($data['title']),
-            'content'          => $data['content'],
+            'content'          => sanitizeHtml($data['content']),
             'author'           => sanitize($data['author'] ?? 'Admin'),
             'image'            => sanitize($data['image'] ?? ''),
             'status'           => in_array($data['status'] ?? '', ['published','draft']) ? $data['status'] : 'published',
@@ -112,7 +117,7 @@ try {
 
         $db->update('blogs', [
             'title'            => $newTitle,
-            'content'          => $data['content'] ?? $existing['content'],
+            'content'          => sanitizeHtml($data['content'] ?? $existing['content']),
             'author'           => sanitize($data['author'] ?? $existing['author']),
             'image'            => sanitize($data['image'] ?? $existing['image']),
             'status'           => in_array($data['status'] ?? '', ['published','draft']) ? $data['status'] : $existing['status'],

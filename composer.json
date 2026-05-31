@@ -1,0 +1,16 @@
+{
+    "name": "csnexplore/csnexplore",
+    "description": "Enterprise-grade monolithic travel booking application",
+    "type": "project",
+    "require": {
+        "php": ">=8.0.0",
+        "ezyang/htmlpurifier": "^4.17",
+        "sentry/sentry": "^3.22"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.0.0"
+        }
+    }
+}

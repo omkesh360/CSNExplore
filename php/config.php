@@ -10,6 +10,9 @@ $_logDir = __DIR__ . '/../logs';
 if (!is_dir($_logDir)) @mkdir($_logDir, 0755, true);
 ini_set('error_log', $_logDir . '/php_errors.log');
 
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
 
 // Load .env file if exists
 if (file_exists(__DIR__ . '/../.env')) {
@@ -49,6 +52,17 @@ if (!function_exists('env')) {
 // Define APP_ENV if not set
 if (!defined('APP_ENV')) {
     define('APP_ENV', env('APP_ENV', 'production'));
+}
+
+// Initialize Sentry for Centralized Telemetry
+$sentryDsn = env('SENTRY_DSN');
+if ($sentryDsn && class_exists('\Sentry\State\Hub')) {
+    \Sentry\init([
+        'dsn' => $sentryDsn,
+        'environment' => APP_ENV,
+        // Capture 100% of transactions for performance monitoring
+        'traces_sample_rate' => 1.0,
+    ]);
 }
 
 define('JWT_SECRET', env('JWT_SECRET', 'csnexplore_secure_jwt_2025_!@#$%'));
@@ -155,5 +169,13 @@ define('BASE_PATH', $basePath);
 header("X-Frame-Options: SAMEORIGIN");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
+
+function sanitizeHtml($html) {
+    if (!class_exists('HTMLPurifier_Config')) return $html;
+    $config = HTMLPurifier_Config::createDefault();
+    $config->set('HTML.Allowed', 'p,b,i,u,em,strong,a[href|title|target],ul,ol,li,br,h1,h2,h3,h4,h5,h6,img[src|alt|width|height],span[style],div[style]');
+    $purifier = new HTMLPurifier($config);
+    return $purifier->purify($html);
+}
 header("Referrer-Policy: strict-origin-when-cross-origin");
-header("Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdn.quilljs.com https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdn.quilljs.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https: https://www.google-analytics.com;");
+header("Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https: https://www.google-analytics.com;");

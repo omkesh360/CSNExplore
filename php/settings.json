@@ -1,10 +1,15 @@
 {
     "features": {
         "lazy_loading": {
-            "enabled": false
+            "enabled": true
         },
         "caching": {
-            "enabled": true
+            "enabled": true,
+            "ttl": {
+                "page": 60,
+                "html": 24,
+                "db": 60
+            }
         }
     }
 }

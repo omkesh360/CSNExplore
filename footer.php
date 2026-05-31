@@ -642,6 +642,7 @@ if (file_exists($locationsFile)) {
 
 <!-- Animations.js - DEFERRED for better performance -->
 <script src="<?php echo BASE_PATH; ?>/animations.min.js?v=<?php echo filemtime(__DIR__ . '/animations.min.js'); ?>" defer></script>
+<script src="<?php echo BASE_PATH; ?>/js/prefetch.js" defer></script>
 
 
 </body>

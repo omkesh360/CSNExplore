@@ -47,9 +47,13 @@ try {
             $where  = ['1=1'];
             $params = [];
             if (!empty($_GET['search'])) {
-                $where[] = '(name LIKE ? OR location LIKE ?)';
-                $s = '%' . substr(sanitize($_GET['search']), 0, 200) . '%';
-                $params = array_merge($params, [$s, $s]);
+                $s = sanitize($_GET['search']);
+                if ($category === 'buses') {
+                    $where[] = 'MATCH(operator, from_location, to_location) AGAINST(? IN BOOLEAN MODE)';
+                } else {
+                    $where[] = 'MATCH(name, location, meta_keywords) AGAINST(? IN BOOLEAN MODE)';
+                }
+                $params[] = $s . '*';
             }
             $sql = "SELECT * FROM $category WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, id ASC";
             $items = $db->fetchAll($sql, $params);

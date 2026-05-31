@@ -78,12 +78,29 @@ class Database {
         }
     }
 
+    private $apcuAvailable = null;
+
+    private function isApcuAvailable() {
+        if ($this->apcuAvailable === null) {
+            $this->apcuAvailable = extension_loaded('apcu') && ini_get('apc.enabled');
+        }
+        return $this->apcuAvailable;
+    }
+
     private function getCacheKey($sql, $params) {
-        return md5($sql . serialize($params));
+        preg_match('/(?:FROM|INTO|UPDATE)\s+([a-zA-Z0-9_]+)/i', $sql, $matches);
+        $prefix = $matches ? strtolower($matches[1]) . '_' : 'query_';
+        return 'csn_' . $prefix . md5($sql . serialize($params));
     }
 
     private function readCache($key) {
         if (!$this->useCache) return null;
+        if ($this->isApcuAvailable()) {
+            $success = false;
+            $data = apcu_fetch($key, $success);
+            if ($success) return $data;
+            return null;
+        }
         $file = $this->cacheDir . $key . '.json';
         if (file_exists($file)) {
             if (filemtime($file) > time() - $this->cacheTTL) {
@@ -95,13 +112,30 @@ class Database {
 
     private function writeCache($key, $data) {
         if (!$this->useCache) return;
+        if ($this->isApcuAvailable()) {
+            apcu_store($key, $data, $this->cacheTTL);
+            return;
+        }
         $file = $this->cacheDir . $key . '.json';
         @file_put_contents($file, json_encode($data));
     }
 
-    public function clearCache() {
+    public function clearCache($table = null) {
+        if ($this->isApcuAvailable()) {
+            if (class_exists('APCUIterator')) {
+                $regex = $table ? '/^csn_' . strtolower($table) . '_/' : '/^csn_/';
+                apcu_delete(new \APCUIterator($regex));
+            } else {
+                apcu_clear_cache();
+            }
+        }
         if (is_dir($this->cacheDir)) {
-            $files = glob($this->cacheDir . '*.*');
+            if ($table) {
+                $files = glob($this->cacheDir . '*_' . strtolower($table) . '_*.*');
+                $files = array_merge($files ?: [], glob($this->cacheDir . strtolower($table) . '_*.*') ?: []);
+            } else {
+                $files = glob($this->cacheDir . '*.*');
+            }
             if ($files) {
                 foreach ($files as $file) {
                     @unlink($file);
@@ -527,7 +561,7 @@ class Database {
         $params = [];
         foreach ($data as $k => $v) $params[":$k"] = $v;
         $this->query($sql, $params);
-        $this->clearCache();
+        $this->clearCache($table);
         return $this->db->lastInsertId();
     }
 
@@ -538,13 +572,13 @@ class Database {
         $params = [];
         foreach ($data as $k => $v) $params[":set_$k"] = $v;
         $stmt = $this->query($sql, array_merge($params, $whereParams));
-        $this->clearCache();
+        $this->clearCache($table);
         return $stmt->rowCount();
     }
 
     public function delete($table, $where, $params = []) {
         $stmt = $this->query("DELETE FROM $table WHERE $where", $params);
-        $this->clearCache();
+        $this->clearCache($table);
         return $stmt->rowCount();
     }
 

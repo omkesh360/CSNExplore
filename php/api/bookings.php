@@ -51,6 +51,18 @@ try {
 
     // POST – public (create booking)
     elseif ($method === 'POST') {
+        $idempotencyKey = null;
+        if (isset($_SERVER['HTTP_IDEMPOTENCY_KEY'])) {
+            $idempotencyKey = sanitize($_SERVER['HTTP_IDEMPOTENCY_KEY']);
+        }
+        if ($idempotencyKey) {
+            $existing = $db->fetchOne("SELECT id FROM bookings WHERE idempotency_key = ?", [$idempotencyKey]);
+            if ($existing) {
+                error_log("Idempotent hit for key {$idempotencyKey}, returning existing booking #{$existing['id']}");
+                sendJson(['success' => true, 'id' => $existing['id'], 'message' => 'Booking created successfully (cached)']);
+            }
+        }
+
         $data = getJsonInput();
         $name  = sanitize($data['full_name'] ?? '');
         $phone = sanitize($data['phone'] ?? '');
@@ -79,13 +91,17 @@ try {
             'with_driver'      => sanitize((string)($data['with_driver'] ?? '')),
             'notes'            => sanitize($data['notes'] ?? ''),
             'status'           => 'pending',
+            'idempotency_key'  => $idempotencyKey,
         ]);
 
         try {
-            $emailResult = EmailService::sendBookingEmails($newId);
-            error_log("Booking #{$newId} email status: " . json_encode($emailResult));
+            $db->insert('jobs', [
+                'type' => 'booking_email',
+                'payload' => json_encode(['booking_id' => $newId])
+            ]);
+            error_log("Booking #{$newId} email queued successfully.");
         } catch (Exception $e) {
-            error_log("Booking #{$newId} email service error: " . $e->getMessage());
+            error_log("Booking #{$newId} email queue error: " . $e->getMessage());
         }
 
         // Log the booking
@@ -139,10 +155,13 @@ try {
             );
             if ($update['status'] === 'completed' || $update['status'] === 'cancelled') {
                 try {
-                    EmailService::sendStatusUpdateEmail($id, $update['status']);
-                    error_log("Booking #{$id} status update email sent: {$update['status']}");
+                    $db->insert('jobs', [
+                        'type' => 'status_update_email',
+                        'payload' => json_encode(['booking_id' => $id, 'status' => $update['status']])
+                    ]);
+                    error_log("Booking #{$id} status update email queued: {$update['status']}");
                 } catch (Exception $e) {
-                    error_log("Booking #{$id} status update email error: " . $e->getMessage());
+                    error_log("Booking #{$id} status update email queue error: " . $e->getMessage());
                 }
             }
         }

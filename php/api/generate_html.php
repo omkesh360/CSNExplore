@@ -280,16 +280,22 @@ a{color:inherit;text-decoration:none}
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"></noscript>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"></noscript>';
+
+    $styleVer = file_exists($root . '/style.min.css') ? '?v=' . filemtime($root . '/style.min.css') : '';
+    $mobVer = file_exists($root . '/mobile-responsive.min.css') ? '?v=' . filemtime($root . '/mobile-responsive.min.css') : '';
+    $animVer = file_exists($root . '/animations.min.css') ? '?v=' . filemtime($root . '/animations.min.css') : '';
+    
+    $head .= '
 <!-- Main CSS: async, non-blocking -->
-<link rel="preload" href="' . $base . 'style.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
-<noscript><link rel="stylesheet" href="' . $base . 'style.min.css"></noscript>
+<link rel="preload" href="' . $base . 'style.min.css' . $styleVer . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript><link rel="stylesheet" href="' . $base . 'style.min.css' . $styleVer . '"></noscript>
 <!-- Mobile CSS: async, non-blocking -->
-<link rel="preload" href="' . $base . 'mobile-responsive.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
-<noscript><link rel="stylesheet" href="' . $base . 'mobile-responsive.min.css"></noscript>
+<link rel="preload" href="' . $base . 'mobile-responsive.min.css' . $mobVer . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript><link rel="stylesheet" href="' . $base . 'mobile-responsive.min.css' . $mobVer . '"></noscript>
 <!-- Animations CSS: async, non-blocking -->
-<link rel="preload" href="' . $base . 'animations.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
-<noscript><link rel="stylesheet" href="' . $base . 'animations.min.css"></noscript>';
+<link rel="preload" href="' . $base . 'animations.min.css' . $animVer . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">
+<noscript><link rel="stylesheet" href="' . $base . 'animations.min.css' . $animVer . '"></noscript>';
 
     if ($schema) {
         $head .= "\n" . '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
@@ -1046,6 +1052,7 @@ function sharedFooter($base) {
 })();
 </script>
 <script src="' . $base . '/js/preloader.js"></script>
+<script src="' . $base . '/js/prefetch.js" defer></script>
 <script>
 // Mark page as ready (fade in body)
 document.body.classList.add(\'page-ready\');
@@ -2534,7 +2541,8 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
     var dateEl = document.getElementById("b-date");
     if(dateEl) payload.booking_date = dateEl.value;').'
     try {
-        var headers = {"Content-Type": "application/json"};
+        var idempotencyKey = Date.now().toString(36) + Math.random().toString(36).substring(2);
+        var headers = {"Content-Type": "application/json", "Idempotency-Key": idempotencyKey};
         if(token) headers["Authorization"] = "Bearer " + token;
         var res = await fetch("../php/api/bookings.php", { method:"POST", headers:headers, body:JSON.stringify(payload) });
         var data = await res.json();

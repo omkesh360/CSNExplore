@@ -1399,7 +1399,8 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
     var dateEl = document.getElementById("b-date");
     if(dateEl) payload.booking_date = dateEl.value;
     try {
-        var headers = {"Content-Type": "application/json"};
+        var idempotencyKey = Date.now().toString(36) + Math.random().toString(36).substring(2);
+        var headers = {"Content-Type": "application/json", "Idempotency-Key": idempotencyKey};
         if(token) headers["Authorization"] = "Bearer " + token;
         var res = await fetch("../php/api/bookings.php", { method:"POST", headers:headers, body:JSON.stringify(payload) });
         var data = await res.json();
@@ -1831,6 +1832,7 @@ if(_bookingForm)_bookingForm.addEventListener("submit", async function(e) {
 })();
 </script>
 <script src="..//js/preloader.js"></script>
+<script src="..//js/prefetch.js" defer></script>
 <script>
 // Mark page as ready (fade in body)
 document.body.classList.add('page-ready');

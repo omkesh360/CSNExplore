@@ -435,6 +435,7 @@ $category_nav = [
             $hidden_class = '';
         ?>
         <div data-reveal class="listing-card-anim group bg-white rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 relative border border-slate-100"
+             data-id="<?php echo $item['id']; ?>"
              data-type="<?php echo htmlspecialchars($item_type); ?>"
              data-price="<?php echo (int)$price_val; ?>"
              data-rating="<?php echo number_format((float)($item['rating'] ?? 0), 1); ?>">
@@ -573,67 +574,86 @@ function applyFilters(sortBy) {
     }
     var checkedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(function(el){ return el.value.toLowerCase(); });
     var minRating = parseFloat(document.querySelector('input[name="rating-filter"]:checked')?.value || '0');
+    
     var grid = document.getElementById('listings-grid');
     var cards = Array.from(grid.querySelectorAll('.listing-card-anim'));
     
     // Add fade-out to all cards first for smooth transition
     cards.forEach(card => card.classList.add('fade-out'));
 
-    setTimeout(() => {
-        var shown = 0;
-        cards.forEach(function(card) {
-            var cType   = (card.dataset.type || '').toLowerCase();
-            var cPrice  = parseInt(card.dataset.price || '0');
-            var cRating = parseFloat(card.dataset.rating || '0');
-
-            var typeOk   = checkedTypes.length === 0 || checkedTypes.includes(cType);
-            var priceOk  = cPrice === 0 || (cPrice >= _priceMin && cPrice <= _priceMax);
-            var ratingOk = cRating >= minRating;
-
-            var pass = typeOk && priceOk && ratingOk;
-            card.classList.remove('listing-hidden');
-            card.style.display = pass ? '' : 'none';
-            if (pass) {
-                shown++;
-                card.classList.remove('fade-out');
-                card.classList.add('fade-in');
-            }
-        });
-
-        // Sorting (with re-appending)
-        if (sortBy !== 'default') {
-            cards.sort(function(a, b) {
-                if (sortBy === 'price-low') return parseInt(a.dataset.price) - parseInt(b.dataset.price);
-                if (sortBy === 'price-high') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
-                if (sortBy === 'rating') return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
-                return 0;
-            });
-            // Re-order DOM elements
-            cards.forEach(function(c) { grid.appendChild(c); });
-        }
-
-        // Update result count
-        var countEl = document.querySelector('.text-slate-500');
-        if (countEl) countEl.textContent = shown + ' result' + (shown !== 1 ? 's' : '') + ' found';
-
-        // Update active filter bar
-        var activeCount = checkedTypes.length + (minRating > 0 ? 1 : 0) +
-            (_priceMin > <?php echo $slider_min; ?> || _priceMax < <?php echo $slider_max; ?> ? 1 : 0);
+    // Lazy load data for worker
+    if (!window._allCardsData) {
+        window._allCardsData = cards.map((c, i) => ({
+            id: c.getAttribute('data-id'),
+            type: (c.dataset.type || '').toLowerCase(),
+            price: parseInt(c.dataset.price || '0'),
+            rating: parseFloat(c.dataset.rating || '0'),
+            order: i
+        }));
         
-        var badge = document.getElementById('active-filter-badge');
-        if (badge) {
-            badge.textContent = activeCount;
-            badge.classList.toggle('hidden', activeCount === 0);
-            badge.classList.toggle('flex', activeCount > 0);
-        }
+        window._cardMap = {};
+        cards.forEach(c => {
+            window._cardMap[c.getAttribute('data-id')] = c;
+        });
+        
+        window.filterWorker = new Worker('<?php echo BASE_PATH; ?>/js/filter-worker.js');
+        window.filterWorker.onmessage = function(e) {
+            var visibleIds = e.data.visibleIds;
+            
+            requestAnimationFrame(() => {
+                // Hide all
+                Object.values(window._cardMap).forEach(c => {
+                    c.style.display = 'none';
+                    c.classList.add('listing-hidden');
+                    c.classList.remove('fade-in');
+                });
+                
+                // Show in order
+                visibleIds.forEach(id => {
+                    var c = window._cardMap[id];
+                    if (c) {
+                        grid.appendChild(c);
+                        c.style.display = '';
+                        c.classList.remove('listing-hidden');
+                        c.classList.remove('fade-out');
+                        c.classList.add('fade-in');
+                    }
+                });
+                
+                // Update result count
+                var countEl = document.querySelector('.text-slate-500');
+                if (countEl) countEl.textContent = visibleIds.length + ' result' + (visibleIds.length !== 1 ? 's' : '') + ' found';
 
-        var bar = document.getElementById('active-filter-bar');
-        document.getElementById('active-filter-count').textContent = activeCount;
-        if (activeCount > 0) { bar.classList.remove('hidden'); bar.classList.add('flex'); }
-        else { bar.classList.add('hidden'); bar.classList.remove('flex'); }
+                // Update active filter bar
+                var activeCount = checkedTypes.length + (minRating > 0 ? 1 : 0) +
+                    (_priceMin > <?php echo $slider_min; ?> || _priceMax < <?php echo $slider_max; ?> ? 1 : 0);
+                
+                var badge = document.getElementById('active-filter-badge');
+                if (badge) {
+                    badge.textContent = activeCount;
+                    badge.classList.toggle('hidden', activeCount === 0);
+                    badge.classList.toggle('flex', activeCount > 0);
+                }
 
-        // filters applied
-    }, 300);
+                var bar = document.getElementById('active-filter-bar');
+                if (bar) {
+                    document.getElementById('active-filter-count').textContent = activeCount;
+                    if (activeCount > 0) { bar.classList.remove('hidden'); bar.classList.add('flex'); }
+                    else { bar.classList.add('hidden'); bar.classList.remove('flex'); }
+                }
+            });
+        };
+    }
+
+    // Send to worker
+    window.filterWorker.postMessage({
+        listings: window._allCardsData,
+        checkedTypes: checkedTypes,
+        minRating: minRating,
+        priceMin: _priceMin,
+        priceMax: _priceMax,
+        sortBy: currentSort
+    });
 }
 
 function resetFilters() {
@@ -799,9 +819,10 @@ document.getElementById('booking-form').addEventListener('submit', async functio
         notes: document.getElementById('b-notes').value,
     };
     try {
+        var idempotencyKey = Date.now().toString(36) + Math.random().toString(36).substring(2);
         var res = await fetch('<?php echo BASE_PATH; ?>/php/api/bookings.php', {
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            headers: {'Content-Type':'application/json', 'Idempotency-Key': idempotencyKey},
             body: JSON.stringify(payload)
         });
         var data = await res.json();
