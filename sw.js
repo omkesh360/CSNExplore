@@ -7,7 +7,7 @@
  *   - Hero image: Precached at install time for instant LCP
  */
 
-const CACHE_VERSION  = 'csn-v5';
+const CACHE_VERSION  = 'csn-v6';
 const STATIC_CACHE   = CACHE_VERSION + '-static';
 const PAGES_CACHE    = CACHE_VERSION + '-pages';
 const MAX_PAGE_ITEMS = 20;

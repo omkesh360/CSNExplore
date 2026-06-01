@@ -24,7 +24,7 @@ $page_meta = [
     'item'        => $blog,
     'description' => htmlspecialchars($blog['meta_description'] ?? substr(strip_tags($blog['content']), 0, 160)),
     'canonical'   => 'https://csnexplore.com/blogs/' . $blog['id'] . '-' . strtolower(trim(preg_replace('/[^a-z0-9]+/i', '-', $blog['title']), '-')),
-    'image'       => (strpos($blog['image'] ?? '', 'http') === 0) ? $blog['image'] : 'https://csnexplore.com/' . ltrim($blog['image'] ?? '', '/'),
+    'image'       => get_working_image_url($blog['image'] ?? ''),
     'type'        => 'article',
     'breadcrumbs' => [
         ['name' => 'Home',  'url' => '/'],
@@ -49,7 +49,13 @@ require 'header.php';
 
     <!-- Hero: shared bg image with breadcrumb at top, blog title at bottom -->
     <div class="w-full h-[420px] md:h-[500px] relative overflow-hidden pt-28">
-        <img loading="lazy" width="800" height="600" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
+        <?php 
+            $detailHeroImg = get_working_image_url($blog['image'] ?? '');
+            if (!$detailHeroImg) {
+                $detailHeroImg = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format';
+            }
+        ?>
+        <img loading="lazy" width="800" height="600" src="<?php echo htmlspecialchars($detailHeroImg); ?>"
              alt="Blog Hero"
              class="absolute inset-0 w-full h-full object-cover"/>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
@@ -198,30 +204,30 @@ require 'header.php';
                 Featured Listings in This Article
             </h3>
             <p class="text-slate-500 text-sm mb-8">Hand-picked options recommended in this blog post</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <?php foreach ($linkedData as $li): ?>
-                <a href="<?php echo $li['_url']; ?>" class="group flex gap-4 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
-                    <div class="w-24 h-full shrink-0 overflow-hidden bg-slate-100">
+                <a href="<?php echo $li['_url']; ?>" class="group flex gap-5 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all p-4">
+                    <div class="w-36 sm:w-44 h-32 rounded-xl overflow-hidden bg-slate-100 shrink-0">
                         <?php $imgSrc = $li['image'] ?? ''; ?>
-                        <img loading="lazy" width="96" height="96"
-                             src="<?php echo htmlspecialchars($imgSrc ?: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=200&q=70&auto=format'); ?>"
-                             onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=200&q=70&auto=format'"
+                        <img loading="lazy" width="180" height="130"
+                             src="<?php echo htmlspecialchars(get_working_image_url($imgSrc) ?: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=300&q=70&auto=format'); ?>"
+                             onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=300&q=70&auto=format'"
                              alt="<?php echo htmlspecialchars($li['name']??''); ?>"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                     </div>
-                    <div class="p-4 flex flex-col justify-center flex-1 min-w-0">
-                        <div class="flex items-center gap-1.5 mb-1">
-                            <span class="material-symbols-outlined text-primary text-sm"><?php echo $li['_icon']; ?></span>
-                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider"><?php echo $li['_label']; ?></span>
+                    <div class="py-2 flex flex-col justify-center flex-1 min-w-0">
+                        <div class="flex items-center gap-1.5 mb-2">
+                            <span class="material-symbols-outlined text-primary text-base"><?php echo $li['_icon']; ?></span>
+                            <span class="text-xs font-bold text-primary uppercase tracking-wider"><?php echo $li['_label']; ?></span>
                         </div>
-                        <h4 class="font-bold text-slate-900 text-sm leading-tight group-hover:text-primary transition-colors mb-1 truncate"><?php echo htmlspecialchars($li['name']??''); ?></h4>
+                        <h4 class="font-bold text-slate-900 text-lg leading-tight group-hover:text-primary transition-colors mb-2 truncate"><?php echo htmlspecialchars($li['name']??''); ?></h4>
                         <?php if (!empty($li['rating'])): ?>
-                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
                             <span class="material-symbols-outlined text-sm">star</span>
                             <span class="font-bold"><?php echo number_format((float)$li['rating'],1); ?></span>
                         </div>
                         <?php endif; ?>
-                        <span class="mt-2 inline-flex items-center gap-1 text-primary text-xs font-semibold group-hover:underline">View Details <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                        <span class="mt-auto inline-flex items-center gap-1 text-primary text-sm font-semibold group-hover:underline">View Details <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
                     </div>
                 </a>
                 <?php endforeach; ?>

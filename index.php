@@ -345,9 +345,14 @@ $extra_styles = "
         .flatpickr-day { color:#fff !important; }
         .flatpickr-day.flatpickr-disabled { color:rgba(255,255,255,0.2) !important; }
         .flatpickr-prev-month svg, .flatpickr-next-month svg { fill:#fff !important; }
+        @keyframes heroZoom {
+            0% { transform: scale3d(1, 1, 1); }
+            100% { transform: scale3d(1.15, 1.15, 1); }
+        }
         #hero-bg-1, #hero-bg-2 { 
-            will-change: opacity; 
+            will-change: opacity, transform; 
             background-color: #0a0705;
+            animation: heroZoom 4s ease-in-out infinite alternate !important;
         }
         .particle { position:absolute; border-radius:50%; pointer-events:none; animation:particleDrift linear infinite; }
         @keyframes particleDrift { 0% { transform:translateY(0) translateX(0) scale(1); opacity:0; } 10% { opacity:1; } 90% { opacity:0.6; } 100% { transform:translateY(-120vh) translateX(30px) scale(0.5); opacity:0; } }
@@ -983,8 +988,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('attractions', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                return '<a href="'.$slug.'" class="group relative rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<div class="h-44 overflow-hidden relative rounded-t-2xl"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('attractions', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$tag.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1 relative z-20">'.$name.'</h3>'
@@ -998,7 +1003,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $render_fn = function($b) {
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('bikes', $b['id'], $b['name']);
                 $imgSrc = $b['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format';
                 $name=htmlspecialchars($b['name'] ?? '');
                 $type=htmlspecialchars($b['type'] ?? ''); $price=number_format($b['price_per_day'] ?? 0);
@@ -1015,8 +1020,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('bikes', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                return '<a href="'.$slug.'" class="group rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<div class="h-44 overflow-hidden relative rounded-t-2xl"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('bikes', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
@@ -1030,7 +1035,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $render_fn = function($r) {
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('restaurants', $r['id'], $r['name']);
                 $imgSrc = $r['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&auto=format';
                 $name=htmlspecialchars($r['name'] ?? '');
                 $cuisine=htmlspecialchars($r['cuisine'] ?? $r['type'] ?? ''); $price=number_format($r['price_per_person'] ?? 0);
@@ -1047,8 +1052,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('restaurants', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                return '<a href="'.$slug.'" class="group relative rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<div class="h-44 overflow-hidden relative rounded-t-2xl"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('restaurants', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$cuisine.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
@@ -1068,7 +1073,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $render_fn = function($c) {
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('cars', $c['id'], $c['name']);
                 $imgSrc = $c['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80&auto=format';
                 $name=htmlspecialchars($c['name']);
                 $type=htmlspecialchars($c['type']??'Sedan'); $price=number_format($c['price_per_day']??0);
@@ -1085,8 +1090,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('cars', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                return '<a href="'.$slug.'" class="group rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<div class="h-44 overflow-hidden relative rounded-t-2xl"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('cars', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-3 line-clamp-1">'.$name.'</h3>'
@@ -1100,7 +1105,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $render_fn = function($s) {
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('stays', $s['id'], $s['name']);
                 $imgSrc = $s['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format';
                 $name=htmlspecialchars($s['name']);
                 $type=htmlspecialchars($s['type']??'Hotel'); $price=number_format($s['price_per_night']??0);
@@ -1117,8 +1122,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group relative overflow-hidden rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
-                    .'<div class="h-44 overflow-hidden relative"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('stays', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
+                return '<a href="'.$slug.'" class="group relative rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<div class="h-44 overflow-hidden relative rounded-t-2xl"><img width="800" height="600" alt="'.SEOOptimizer::generateAltText('stays', $name).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
                     .'<div class="absolute top-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2 py-0.5 rounded-full z-20"><span style="font-family:Material Symbols Outlined;font-size:12px;color:#fbbf24">star</span>'.$rating.'</div></div>'
                     .'<div class="p-4"><span class="text-[#c2410c] text-[10px] font-bold uppercase tracking-widest relative z-20">'.$type.'</span>'
                     .'<h3 class="font-serif text-base text-slate-900 mt-1 mb-2 line-clamp-1 relative z-20">'.$name.'</h3>'
@@ -1155,10 +1160,13 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $t=preg_replace('/[\s-]+/','-',$t);
                 $slug = BASE_PATH . '/blogs/'.$blog['id'].'-'.substr(trim($t,'-'),0,60);
                 $imgSrc = $blog['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80&auto=format';
                 $title=htmlspecialchars($blog['title']);
                 $cat=htmlspecialchars($blog['category']??'Travel');
+                $desc=htmlspecialchars($blog['meta_description'] ?? strip_tags(substr($blog['content']??'', 0, 150)) . '...');
+                $date=date('M d, Y', strtotime($blog['created_at']));
+                $author=htmlspecialchars($blog['author'] ?? 'Admin');
                 $srcset = '';
                 $sizesAttr = 'sizes="(max-width:480px) 82vw,(max-width:768px) 52vw,(max-width:1024px) 33vw,280px"';
                 if (strpos($imgSrc, 'http') !== 0 && $imgSrc) {
@@ -1171,15 +1179,24 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         $srcset = 'srcset="'.$v400.' 400w,'.$v700.' 700w,'.$img.' 800w"';
                     }
                 }
-                return '<a href="'.$slug.'" class="group cursor-pointer flex-shrink-0 hover:-translate-y-1.5 transition-all duration-400 ease-out" style="width:VAR_W">'
-                    .'<div class="rounded-2xl overflow-hidden aspect-[16/10] mb-3 shadow-md relative">'
-                    .'<img width="800" height="600" alt="'.SEOOptimizer::generateAltText('blogs', $title).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" src="'.$img.'"/>'
-                    .'<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">'
-                    .'<span class="bg-white text-black px-4 py-1.5 rounded-full font-bold text-xs">READ POST</span></div></div>'
-                    .'<div class="flex items-center gap-3 mb-2">'
-                    .'<span class="bg-orange-100 text-[#c2410c] px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase">'.$cat.'</span>'
-                    .'<span class="text-slate-400 text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>'.$rt.' min</span>'
-                    .'</div><h3 class="font-serif text-base text-slate-900 group-hover:text-primary transition-colors line-clamp-2">'.$title.'</h3></a>';
+                return '<div class="flex flex-col group h-full relative bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 ease-out flex-shrink-0" style="width:VAR_W">'
+                    .'<a href="'.$slug.'" class="absolute inset-0 z-10" aria-label="'.$title.'"></a>'
+                    .'<div class="relative rounded-2xl overflow-hidden mb-5 aspect-video shadow-lg" style="transform: translateZ(0); -webkit-transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black); -webkit-backface-visibility: hidden; backface-visibility: hidden; isolation: isolate;">'
+                    .'<img width="800" height="600" alt="'.SEOOptimizer::generateAltText('blogs', $title).'" loading="lazy" decoding="async" '.$srcset.' '.$sizesAttr.' class="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" src="'.$img.'"/>'
+                    .'<div class="absolute top-4 left-4">'
+                    .'<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-xs font-bold text-primary uppercase relative z-20">'.$cat.'</span>'
+                    .'</div></div>'
+                    .'<div class="flex flex-col flex-grow">'
+                    .'<div class="flex items-center gap-4 mb-3 text-slate-500 text-xs font-semibold">'
+                    .'<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>'.$rt.' min read</span>'
+                    .'<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span>'.$date.'</span>'
+                    .'</div>'
+                    .'<h4 class="text-xl font-serif font-bold leading-snug mb-3 group-hover:text-primary transition-colors text-slate-900 line-clamp-2">'.$title.'</h4>'
+                    .'<p class="text-slate-600 text-sm line-clamp-2 mb-6">'.$desc.'</p>'
+                    .'<div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-slate-900 relative z-20">'
+                    .'<span class="text-primary font-bold text-sm flex items-center gap-1 group/btn">Read More<span class="material-symbols-outlined text-base transition-transform group-hover/btn:translate-x-1">chevron_right</span></span>'
+                    .'<span class="text-xs text-slate-400">'.$author.'</span>'
+                    .'</div></div></div>';
             };
             $items = $hp_blogs;
         endif;
@@ -1203,41 +1220,108 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 <?php endforeach; ?>
 </main>
 
-<!-- SEO Semantic Text Block Injection -->
-<section class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100">
-    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">The Ultimate Aurangabad Tourism & Rental Portal</h2>
-    <div class="prose prose-slate max-w-none text-slate-600 text-sm leading-relaxed space-y-4">
-        <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget tour or exploring the city over a long weekend, our platform brings everything into one unified dashboard. From finding the <a href="<?php echo BASE_PATH; ?>/listing/cars" class="text-primary font-bold hover:underline">best budget car rentals in Aurangabad</a> to booking luxury sedans, we ensure your journey to Ajanta and Ellora Caves is seamless.</p>
-        <p>Accommodation is crucial for a great trip. Our database helps you discover top-rated hotels, homestays, and the <a href="<?php echo BASE_PATH; ?>/listing/stays" class="text-primary font-bold hover:underline">top 10 dormitories near Chhatrapati Sambhajinagar</a>. We feature verified Jain hotels in Aurangabad providing authentic pure vegetarian dining, and prioritize safety with secure transit and stay options specifically curated for solo female travelers.</p>
-        <p>Need total flexibility to explore at your own pace? Skip public transit with our verified local vendors. If you want to <a href="<?php echo BASE_PATH; ?>/listing/bikes" class="text-primary font-bold hover:underline">rent a bike in Aurangabad</a>, we offer everything from cheap daily scooter rentals to premium motorcycles. Pair your ride with our detailed guides on local <a href="<?php echo BASE_PATH; ?>/listing/attractions" class="text-primary font-bold hover:underline">tourist attractions in Sambhajinagar</a> and you're ready to uncover hidden gems across the Deccan plateau.</p>
-    </div>
-</section>
+<!-- SEO Semantic Text Block Injection (Visually Hidden but readable by Search Engines) -->
+<div class="sr-only">
+    <h2>The Ultimate Aurangabad Tourism & Rental Portal</h2>
+    <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget tour or exploring the city over a long weekend, our platform brings everything into one unified dashboard. From finding the best budget car rentals in Aurangabad to booking luxury sedans, we ensure your journey to Ajanta and Ellora Caves is seamless.</p>
+    <p>Accommodation is crucial for a great trip. Our database helps you discover top-rated hotels, homestays, and the top 10 dormitories near Chhatrapati Sambhajinagar. We feature verified Jain hotels in Aurangabad providing authentic pure vegetarian dining, and prioritize safety with secure transit and stay options specifically curated for solo female travelers.</p>
+    <p>Need total flexibility to explore at your own pace? Skip public transit with our verified local vendors. If you want to rent a bike in Aurangabad, we offer everything from cheap daily scooter rentals to premium motorcycles. Pair your ride with our detailed guides on local tourist attractions in Sambhajinagar and you're ready to uncover hidden gems across the Deccan plateau.</p>
+    <h2>Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h2>
+    <p>Hotels CSNExplore | Budget Stays CSNExplore | Jain Hotels Aurangabad CSNExplore | Safe Stays for Women CSNExplore | Car Rentals Near Me Aurangabad CSNExplore | Cab Booking Aurangabad CSNExplore | Self Drive Cars CSNExplore.com | Innova Rental Aurangabad CSNExplore | Bike Rental Aurangabad CSNExplore | Electric Scooter Rental CSNExplore | Scsnexplore Bike Rental | Activa Rental Aurangabad CSNExplore | Ajanta Caves Tour CSNExplore | Ellora Caves Guide CSNExplore | Bibi Ka Maqbara Tickets CSNExplore | Daulatabad Fort Trip CSNExplore | Veg Restaurant Aurangabad CSNExplore | Best Misal Pav Aurangabad CSNExplore | Maharashtrian Thali CSNExplore | Solo Travelling CSNExplore | Women Travel Safety CSNExplore | Budget Under 2 Days CSNExplore | Aurangabad Travel Guide CSNExplore.in | CSNExplore Tourism Portal and The Ultimate Aurangabad Tourism & Rental Portal</p>
+</div>
 
 <!-- Extreme SEO FAQ Section for Exact Match Queries -->
-<section class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 bg-slate-50 rounded-3xl mb-12">
-    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Travel Questions</h2>
-    <div class="space-y-6">
+<section class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-100 bg-slate-50 rounded-2xl mb-8">
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-6 text-center">Frequently Asked Travel Questions</h2>
+    <style>
+        details > summary { list-style: none; outline: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+    <div class="space-y-3">
         <!-- FAQ 1 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg text-slate-900 mb-2">How to travel in Aurangabad (Auranagabd)?</h3>
-            <p class="text-slate-600 text-sm leading-relaxed">
-                If you are looking to travel in Aurangabad (often spelled auranagabd or auaranagabd), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel aurnagabd dashboard.
-            </p>
-        </div>
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>How to travel in Aurangabad (Chhatrapati Sambhajinagar)?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    If you are looking to travel in Aurangabad (Chhatrapati Sambhajinagar), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel dashboard.
+                </p>
+            </div>
+        </details>
         <!-- FAQ 2 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg text-slate-900 mb-2">What is the best way to travel in Samabhajianagar?</h3>
-            <p class="text-slate-600 text-sm leading-relaxed">
-                To travel in Samabhajianagar (Chhatrapati Sambhajinagar), we highly recommend starting with our curated itineraries. Whether you search for "travel in samabhajianagar" or "Chtarapati sambhajinagar tourism," CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays. 
-            </p>
-        </div>
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>What is the best way to travel in Chhatrapati Sambhajinagar?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    To travel in Chhatrapati Sambhajinagar (Aurangabad), we highly recommend starting with our curated itineraries. CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays. 
+                </p>
+            </div>
+        </details>
         <!-- FAQ 3 -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg text-slate-900 mb-2">Where can I find the ultimate travel aurnagabd guide?</h3>
-            <p class="text-slate-600 text-sm leading-relaxed">
-                CSNExplore is the ultimate destination for any "travel aurnagabd" queries. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable.
-            </p>
-        </div>
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>Where can I find the ultimate travel Aurangabad guide?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    CSNExplore is the ultimate destination for any travel queries in Aurangabad and Chhatrapati Sambhajinagar. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 4 -->
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>Is it safe for solo female travelers in Aurangabad?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Yes, CSNExplore prioritizes women travel safety. We list verified homestays, safe dormitories, and reliable cab bookings to ensure a stress-free and secure journey for solo female travelers across Chhatrapati Sambhajinagar.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 5 -->
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>Can I rent an Activa or electric scooter in Aurangabad?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Absolutely! Through CSNExplore, you can easily book an Activa rental or an electric scooter for daily commuting. It's an affordable and highly convenient way to navigate local attractions and taste the best Maharashtrian Thali in town.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 6 -->
+        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
+            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
+                <span>How do I plan an Ajanta and Ellora Caves tour under a budget?</span>
+                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
+                    <span class="material-symbols-outlined text-xl">expand_more</span>
+                </span>
+            </summary>
+            <div class="pt-3 mt-2 border-t border-slate-50">
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    We provide the best options for a budget trip under 2 days. From renting a self-drive car or booking an Innova rental to following our detailed Ellora Caves guide, CSNExplore helps you manage time and money efficiently while covering top spots like Bibi Ka Maqbara and Daulatabad Fort.
+                </p>
+            </div>
+        </details>
     </div>
 </section>
 
@@ -1249,26 +1333,50 @@ foreach ($hp_settings['section_order'] as $_sec_key):
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How to travel in Aurangabad (Auranagabd)?",
+      "name": "How to travel in Aurangabad (Chhatrapati Sambhajinagar)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If you are looking to travel in Aurangabad (often spelled auranagabd or auaranagabd), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel aurnagabd dashboard."
+        "text": "If you are looking to travel in Aurangabad (Chhatrapati Sambhajinagar), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel dashboard."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the best way to travel in Samabhajianagar?",
+      "name": "What is the best way to travel in Chhatrapati Sambhajinagar?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "To travel in Samabhajianagar (Chhatrapati Sambhajinagar), we highly recommend starting with our curated itineraries. Whether you search for 'travel in samabhajianagar' or 'Chtarapati sambhajinagar tourism', CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays."
+        "text": "To travel in Chhatrapati Sambhajinagar (Aurangabad), we highly recommend starting with our curated itineraries. CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays."
       }
     },
     {
       "@type": "Question",
-      "name": "Where can I find the ultimate travel aurnagabd guide?",
+      "name": "Where can I find the ultimate travel Aurangabad guide?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "CSNExplore is the ultimate destination for any 'travel aurnagabd' queries. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable."
+        "text": "CSNExplore is the ultimate destination for any travel queries in Aurangabad and Chhatrapati Sambhajinagar. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe for solo female travelers in Aurangabad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, CSNExplore prioritizes women travel safety. We list verified homestays, safe dormitories, and reliable cab bookings to ensure a stress-free and secure journey for solo female travelers across Chhatrapati Sambhajinagar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I rent an Activa or electric scooter in Aurangabad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely! Through CSNExplore, you can easily book an Activa rental or an electric scooter for daily commuting. It's an affordable and highly convenient way to navigate local attractions and taste the best Maharashtrian Thali in town."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I plan an Ajanta and Ellora Caves tour under a budget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We provide the best options for a budget trip under 2 days. From renting a self-drive car or booking an Innova rental to following our detailed Ellora Caves guide, CSNExplore helps you manage time and money efficiently while covering top spots like Bibi Ka Maqbara and Daulatabad Fort."
       }
     }
   ]

@@ -2,8 +2,8 @@
 /**
  * php/api/comments.php
  * GET  ?ref_type=blog&ref_id=1          → list comments
- * POST {ref_type,ref_id,content}         → add comment (requires user JWT)
- * DELETE ?id=5                           → delete own comment or admin deletes any
+ * POST {ref_type,ref_id,content}        → add comment (guest: also pass guest_name)
+ * DELETE ?id=5                          → delete own comment or admin deletes any
  */
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
@@ -29,32 +29,36 @@ function getAuthUser(): ?array {
     } catch (Exception $e) { return null; }
 }
 
+$validRefTypes = ['blog', 'listing', 'stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
+
 try {
 
     if ($method === 'GET') {
         $refType = $_GET['ref_type'] ?? '';
         $refId   = (int)($_GET['ref_id'] ?? 0);
 
-        $validRefTypes = ['blog', 'listing', 'stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
         if (!in_array($refType, $validRefTypes) || $refId < 1) sendError('Invalid parameters', 400);
 
+        // Fetch comments — user_id may be NULL for guests
         $comments = $db->fetchAll(
-            "SELECT c.id, c.content, c.created_at, c.user_id,
+            "SELECT c.id, c.content, c.created_at, c.user_id, c.guest_name,
                     u.name AS user_name
              FROM comments c
-             JOIN users u ON u.id = c.user_id
+             LEFT JOIN users u ON u.id = c.user_id
              WHERE c.ref_type = ? AND c.ref_id = ? AND c.status = 'approved'
              ORDER BY c.created_at ASC",
             [$refType, $refId]
         );
 
-        // Mask user_id for privacy — only send public name + avatar initial
         $out = array_map(function($c) {
+            // Prefer registered user name; fall back to guest_name
+            $displayName = $c['user_name'] ?? $c['guest_name'] ?? 'Guest';
             return [
                 'id'         => (int)$c['id'],
                 'content'    => htmlspecialchars($c['content'], ENT_QUOTES, 'UTF-8'),
-                'user_name'  => htmlspecialchars($c['user_name'], ENT_QUOTES, 'UTF-8'),
-                'user_id'    => (int)$c['user_id'],
+                'user_name'  => htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8'),
+                'user_id'    => $c['user_id'] ? (int)$c['user_id'] : null,
+                'is_guest'   => $c['user_id'] === null,
                 'created_at' => $c['created_at'],
             ];
         }, $comments);
@@ -63,9 +67,7 @@ try {
     }
 
     elseif ($method === 'POST') {
-        $user = getAuthUser();
-        if (!$user) sendError('Login required to comment', 401);
-
+        $user    = getAuthUser();           // null = guest
         $data    = getJsonInput();
         $refType = $data['ref_type'] ?? '';
         $refId   = (int)($data['ref_id'] ?? 0);
@@ -73,38 +75,73 @@ try {
 
         if (!in_array($refType, $validRefTypes)) sendError('Invalid ref_type', 400);
         if ($refId < 1) sendError('Invalid ref_id', 400);
-        if (strlen($content) < 2) sendError('Comment too short', 400);
+        if (strlen($content) < 2)    sendError('Comment too short', 400);
         if (strlen($content) > 1000) sendError('Comment too long (max 1000 chars)', 400);
 
-        // Rate limit: max 5 comments per user per hour per ref
-        $recentCount = $db->fetchOne(
-            "SELECT COUNT(*) AS cnt FROM comments 
-             WHERE user_id = ? AND ref_type = ? AND ref_id = ? AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)",
-            [(int)$user['id'], $refType, $refId]
-        );
-        if (($recentCount['cnt'] ?? 0) >= 5) sendError('Too many comments. Try again later.', 429);
+        if ($user) {
+            // ── Logged-in user ────────────────────────────────────────────────
+            // Rate limit: max 5 comments per user per hour per ref
+            $recentCount = $db->fetchOne(
+                "SELECT COUNT(*) AS cnt FROM comments 
+                 WHERE user_id = ? AND ref_type = ? AND ref_id = ? AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)",
+                [(int)$user['id'], $refType, $refId]
+            );
+            if (($recentCount['cnt'] ?? 0) >= 5) sendError('Too many comments. Try again later.', 429);
 
-        $newId = $db->insert('comments', [
-            'user_id'  => (int)$user['id'],
-            'ref_type' => $refType,
-            'ref_id'   => $refId,
-            'content'  => $content,
-            'status'   => 'approved',
-        ]);
+            $newId = $db->insert('comments', [
+                'user_id'    => (int)$user['id'],
+                'guest_name' => null,
+                'ref_type'   => $refType,
+                'ref_id'     => $refId,
+                'content'    => $content,
+                'status'     => 'approved',
+            ]);
 
-        $comment = $db->fetchOne(
-            "SELECT c.id, c.content, c.created_at, c.user_id, u.name AS user_name
-             FROM comments c JOIN users u ON u.id = c.user_id
-             WHERE c.id = ?", [$newId]
-        );
+            $comment = $db->fetchOne(
+                "SELECT c.id, c.content, c.created_at, c.user_id, c.guest_name, u.name AS user_name
+                 FROM comments c JOIN users u ON u.id = c.user_id
+                 WHERE c.id = ?", [$newId]
+            );
+            $displayName = $comment['user_name'];
+
+        } else {
+            // ── Guest ─────────────────────────────────────────────────────────
+            $guestName = trim(strip_tags($data['guest_name'] ?? ''));
+            if (strlen($guestName) < 2)  sendError('Please enter your name (min 2 chars)', 400);
+            if (strlen($guestName) > 60) sendError('Name too long (max 60 chars)', 400);
+
+            // Rate limit by IP: max 3 per hour
+            $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+            $recentCount = $db->fetchOne(
+                "SELECT COUNT(*) AS cnt FROM comments 
+                 WHERE user_id IS NULL AND ref_type = ? AND ref_id = ? AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)",
+                [$refType, $refId]
+            );
+            if (($recentCount['cnt'] ?? 0) >= 10) sendError('Too many comments right now. Try again later.', 429);
+
+            $newId = $db->insert('comments', [
+                'user_id'    => null,
+                'guest_name' => $guestName,
+                'ref_type'   => $refType,
+                'ref_id'     => $refId,
+                'content'    => $content,
+                'status'     => 'approved',
+            ]);
+
+            $comment = $db->fetchOne(
+                "SELECT id, content, created_at, user_id, guest_name FROM comments WHERE id = ?", [$newId]
+            );
+            $displayName = $comment['guest_name'];
+        }
 
         sendJson([
             'success' => true,
             'comment' => [
                 'id'         => (int)$comment['id'],
                 'content'    => htmlspecialchars($comment['content'], ENT_QUOTES, 'UTF-8'),
-                'user_name'  => htmlspecialchars($comment['user_name'], ENT_QUOTES, 'UTF-8'),
-                'user_id'    => (int)$comment['user_id'],
+                'user_name'  => htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8'),
+                'user_id'    => $comment['user_id'] ? (int)$comment['user_id'] : null,
+                'is_guest'   => $comment['user_id'] === null,
                 'created_at' => $comment['created_at'],
             ]
         ], 201);
@@ -112,7 +149,7 @@ try {
 
     elseif ($method === 'DELETE') {
         $user = getAuthUser();
-        if (!$user) sendError('Login required', 401);
+        if (!$user) sendError('Login required to delete comments', 401);
 
         $commentId = (int)($_GET['id'] ?? 0);
         if ($commentId < 1) sendError('Invalid comment id', 400);
@@ -120,7 +157,6 @@ try {
         $comment = $db->fetchOne("SELECT * FROM comments WHERE id = ?", [$commentId]);
         if (!$comment) sendError('Comment not found', 404);
 
-        // User can only delete their own; admin can delete any
         $isAdmin = ($user['role'] ?? '') === 'admin';
         if (!$isAdmin && (int)$comment['user_id'] !== (int)$user['id']) {
             sendError('Not allowed', 403);
@@ -136,5 +172,5 @@ try {
 
 } catch (Exception $e) {
     error_log('Comments API error: ' . $e->getMessage());
-    sendError('Server error', 500);
+    sendError('Server error: ' . $e->getMessage(), 500);
 }

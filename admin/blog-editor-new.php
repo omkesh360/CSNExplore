@@ -120,6 +120,11 @@ $blog_id = $_GET['id'] ?? '';
                         Upload Image
                     </label>
                     <input type="file" id="post-image-file" accept="image/*" class="hidden" onchange="uploadBlogImage(this)">
+                    <button type="button" onclick="openGalleryModal()"
+                            class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-50 transition-all">
+                        <span class="material-symbols-outlined text-sm">photo_library</span>
+                        From Gallery
+                    </button>
                 </div>
                 <input type="url" id="post-image" placeholder="Or paste image URL" oninput="previewImage(this.value)" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm">
                 <div id="upload-progress" class="hidden mt-2 text-xs text-slate-500 flex items-center gap-1.5">
@@ -340,8 +345,12 @@ $blog_id = $_GET['id'] ?? '';
     function previewImage(url) {
         const img = document.getElementById('image-preview');
         const pl = document.getElementById('image-placeholder');
-        if (url && (url.startsWith('http') || url.startsWith('/'))) {
-            img.src = url;
+        if (url) {
+            let resolvedUrl = url;
+            if (!url.startsWith('http') && !url.startsWith('/')) {
+                resolvedUrl = '../' + url;
+            }
+            img.src = resolvedUrl;
             img.classList.remove('hidden');
             pl.classList.add('hidden');
         } else {
@@ -668,7 +677,101 @@ $blog_id = $_GET['id'] ?? '';
         return _linkedListings.map(l => ({ type: l.type, id: l.id, name: l.name }));
     }
 
+    // ─── Gallery Modal Functions ─────────────────────────────────────────────
+    function openGalleryModal() {
+        document.getElementById('gallery-modal').classList.remove('hidden');
+        loadGalleryImages();
+    }
+
+    function closeGalleryModal() {
+        document.getElementById('gallery-modal').classList.add('hidden');
+    }
+
+    async function loadGalleryImages() {
+        const grid = document.getElementById('gallery-grid');
+        const loading = document.getElementById('gallery-loading');
+        const empty = document.getElementById('gallery-empty');
+        
+        grid.innerHTML = '';
+        loading.classList.remove('hidden');
+        empty.classList.add('hidden');
+        
+        try {
+            const data = await api('../php/api/gallery.php');
+            loading.classList.add('hidden');
+            
+            if (!data || data.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+            
+            data.forEach(img => {
+                const item = document.createElement('div');
+                item.className = 'group relative aspect-square bg-white border border-slate-200 rounded-xl overflow-hidden cursor-pointer hover:border-primary hover:shadow-md transition-all flex flex-col';
+                item.onclick = () => selectGalleryImage(img.url);
+                
+                item.innerHTML = `
+                    <div class="flex-1 bg-slate-100 overflow-hidden relative">
+                        <img src="${img.url}" alt="${img.filename}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white text-xs font-bold bg-primary/95 px-2.5 py-1 rounded-full shadow-sm">Select</span>
+                        </div>
+                    </div>
+                    <div class="p-1.5 border-t border-slate-100 text-[10px] text-slate-500 font-medium truncate bg-white">
+                        ${img.filename}
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+        } catch (e) {
+            loading.classList.add('hidden');
+            showErr('Error loading gallery: ' + e.message);
+        }
+    }
+
+    function selectGalleryImage(url) {
+        document.getElementById('post-image').value = url;
+        previewImage(url);
+        closeGalleryModal();
+    }
+
 </script>
+
+<!-- Gallery Modal -->
+<div id="gallery-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-4xl rounded-2xl shadow-xl flex flex-col max-h-[85vh] overflow-hidden">
+        <!-- Header -->
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-2xl">photo_library</span>
+                <h3 class="font-bold text-slate-800 text-lg">Image Gallery</h3>
+            </div>
+            <button onclick="closeGalleryModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <!-- Gallery Grid Content -->
+        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar bg-slate-50">
+            <div id="gallery-loading" class="flex flex-col items-center justify-center py-20 text-slate-400">
+                <span class="material-symbols-outlined text-4xl animate-spin mb-2">progress_activity</span>
+                <span class="text-sm font-medium">Loading gallery images...</span>
+            </div>
+            <div id="gallery-empty" class="hidden flex flex-col items-center justify-center py-20 text-slate-400">
+                <span class="material-symbols-outlined text-4xl mb-2">image_not_supported</span>
+                <span class="text-sm font-medium">No images found in gallery</span>
+            </div>
+            <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- JavaScript populated -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-white">
+            <button onclick="closeGalleryModal()" class="px-4 py-2 border border-slate-200 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">Cancel</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -179,3 +179,18 @@ function sanitizeHtml($html) {
 }
 header("Referrer-Policy: strict-origin-when-cross-origin");
 header("Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https: https://www.google-analytics.com;");
+
+function get_working_image_url($imgSrc) {
+    if (!$imgSrc) return '';
+    $imgSrc = (string)$imgSrc;
+    if (strpos($imgSrc, 'http://') === 0 || strpos($imgSrc, 'https://') === 0) {
+        return $imgSrc;
+    }
+    $basePath = rtrim(BASE_PATH, '/');
+    if ($basePath !== '') {
+        if (strpos($imgSrc, $basePath) === 0) {
+            return $imgSrc;
+        }
+    }
+    return $basePath . '/' . ltrim($imgSrc, '/');
+}

@@ -99,6 +99,9 @@ try {
         $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$newId]);
         $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
         try { regenerateBlogHtml($newId); } catch(Exception $e) { error_log('HTML regen failed: '.$e->getMessage()); }
+        // Clear homepage cache
+        $homepageCache = dirname(__DIR__, 2) . '/cache/homepage.html';
+        if (file_exists($homepageCache)) @unlink($homepageCache);
         sendJson($blog, 201);
     }
 
@@ -138,6 +141,9 @@ try {
         $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$id]);
         $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
         try { regenerateBlogHtml($id); } catch(Exception $e) { error_log('HTML regen failed: '.$e->getMessage()); }
+        // Clear homepage cache
+        $homepageCache = dirname(__DIR__, 2) . '/cache/homepage.html';
+        if (file_exists($homepageCache)) @unlink($homepageCache);
         sendJson($blog);
     }
 

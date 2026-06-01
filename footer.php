@@ -118,7 +118,7 @@
         </div>
         
         <!-- SEO Keyword Block -->
-        <div class="border-t border-white/10 pt-8 pb-4 mb-4">
+        <div class="sr-only">
             <h4 class="font-bold text-sm mb-3 text-white/80">Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h4>
             <p class="text-white/40 text-xs leading-loose">
                 <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Hotels CSNExplore</a> | 
@@ -183,6 +183,7 @@
             <h2>More Explore Options & Common Misspellings</h2>
             <p>csn explore, csnexplore, hotel aurnagabd, stays aunaagabd, destiation aiurnagabd, restraiunt aurabgabd, car rental aurangabad, bike rental aurangabad, tempo rental auataraafabd, bed, stays, cars, bikes, attractions, dine, buses in atranhgabad.</p>
             <p>Anything about Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, auragabad, aurnagabad, aurangabda, awrangabad, orangabad, orangbad. Chhatrapati Sambhajinagar, Chtarapati sambhajinagar, chatrapati sambhajinagar, chatrpati sambhajinagar, chhatrpati sambhajinagar, sambhajinagar, shambhaji nagar, sambhaji nagar, shivaji nagar, sambhajinagr. csnexplore, csn explore, csnxplore, csnexlpor, cnsexplore, cs explore, csn explorer, cs nexplore, csnxplor.</p>
+            <p>Ultimate Search Queries: hotels in auraanagabad, styas in auranagabd, homestya in aurnagabd, rooms in auranagabd, bike rentakls in auranagabd, motocclr rental in auarabad, tmepo rental in auarbaand, sedan in auaraanagabd, suv in auranagabd, muv in aauaranagabd, dinein auarnagabd, restraunt in auranagabd, food i auaranagabd, bus booking, travles ooking, crsuies booki ng in auarabafad air flights anything.</p>
         </div>
 
         <!-- Comprehensive LocalBusiness Schema Injection -->
@@ -227,7 +228,7 @@
             "https://www.facebook.com/csnexplore",
             "https://www.instagram.com/csnexplore"
           ],
-          "keywords": "auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore, rent a bike in Aurangabad, best budget car rentals in Aurangabad, top 10 dormitories near Chhatrapati Sambhajinagar"
+          "keywords": "auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore, rent a bike in Aurangabad, best budget car rentals in Aurangabad, top 10 dormitories near Chhatrapati Sambhajinagar, hotels in auraanagabad, styas in auranagabd, homestya in aurnagabd, rooms in auranagabd, bike rentakls in auranagabd, motocclr rental in auarabad, tmepo rental in auarbaand, sedan in auaraanagabd, suv in auranagabd, muv in aauaranagabd, dinein auarnagabd, restraunt in auranagabd, food i auaranagabd, bus booking, travles ooking, crsuies booki ng in auarabafad air"
         }
         </script>
 

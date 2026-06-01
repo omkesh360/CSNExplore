@@ -20,12 +20,12 @@ $faqs = [
             'answer' => 'CSNExplore is a comprehensive tourism portal for Chhatrapati Sambhajinagar (formerly Aurangabad), Maharashtra. We provide hotel bookings, car rentals, bike rentals, attraction tours, restaurant reservations, and bus ticket booking—all in one platform.'
         ],
         [
-            'question' => 'How do I travel in Aurangabad (Sambhajianagar)?',
-            'answer' => 'The best way to travel in Aurangabad (also spelled auranagabd, auaranagabd, or Sambhajianagar) is to rent a car or bike through CSNExplore. We offer verified vehicles from ₹300/day for bikes and ₹800/day for cars. For group travel, book a Maruti Ertiga or Toyota Innova for outstation trips to Ajanta and Ellora Caves. Our bus section also covers MSRTC and private intercity routes.'
+            'question' => 'How do I travel in Aurangabad (Chhatrapati Sambhajinagar)?',
+            'answer' => 'The best way to travel in Aurangabad (Chhatrapati Sambhajinagar) is to rent a car or bike through CSNExplore. We offer verified vehicles from ₹300/day for bikes and ₹800/day for cars. For group travel, book a Maruti Ertiga or Toyota Innova for outstation trips to Ajanta and Ellora Caves. Our bus section also covers MSRTC and private intercity routes.'
         ],
         [
-            'question' => 'What is the best time to travel in Sambhajianagar (Aurangabad)?',
-            'answer' => 'The best time to travel in Sambhajianagar (Chhatrapati Sambhajinagar / Aurangabad) is from October to March. The weather is cool and pleasant, ideal for visiting Ajanta Caves, Ellora Caves, Bibi Ka Maqbara, and Daulatabad Fort. Avoid May and June due to extreme heat.'
+            'question' => 'What is the best time to travel in Chhatrapati Sambhajinagar (Aurangabad)?',
+            'answer' => 'The best time to travel in Chhatrapati Sambhajinagar (Aurangabad) is from October to March. The weather is cool and pleasant, ideal for visiting Ajanta Caves, Ellora Caves, Bibi Ka Maqbara, and Daulatabad Fort. Avoid May and June due to extreme heat.'
         ],
         [
             'question' => 'How do I reach Aurangabad (Chhatrapati Sambhajinagar / Sambhajinagar)?',

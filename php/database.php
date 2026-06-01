@@ -504,6 +504,12 @@ class Database {
         try {
             $this->db->exec("ALTER TABLE `comments` MODIFY `ref_type` VARCHAR(50) NOT NULL");
         } catch (Exception $e) { /* fallback */ }
+        try {
+            $this->db->exec("ALTER TABLE `comments` MODIFY `user_id` INT NULL DEFAULT NULL");
+        } catch (Exception $e) { /* already nullable */ }
+        try {
+            $this->db->exec("ALTER TABLE `comments` ADD COLUMN `guest_name` VARCHAR(100) NULL AFTER `user_id`");
+        } catch (Exception $e) { /* already exists */ }
 
         // Seed admin user if not exists
 
