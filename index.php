@@ -144,7 +144,7 @@ $page_meta = [
         ['name' => 'Home', 'url' => '/'],
     ],
 ];
-$extra_head = '<link rel="preload" as="image" imagesrcset="' . BASE_PATH . '/images/hotel-hero-section-mobile.webp 768w, ' . BASE_PATH . '/images/hotel-hero-section%20(4).webp 1920w" imagesizes="100vw" fetchpriority="high">
+$extra_head = '<link rel="preload" as="image" imagesrcset="' . BASE_PATH . '/images/hotel-hero-section-mobile.webp 768w, ' . BASE_PATH . '/images/hotel-hero-section-4.webp 1920w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -412,8 +412,8 @@ require 'header.php';
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0705] z-10"></div>
         <!-- Dual image setup for smooth crossfade -->
         <img id="hero-bg-1" 
-             src="<?php echo BASE_PATH; ?>/images/hotel-hero-section%20(4).webp" 
-             srcset="<?php echo BASE_PATH; ?>/images/hotel-hero-section-mobile.webp 768w, <?php echo BASE_PATH; ?>/images/hotel-hero-section%20(4).webp 1920w"
+             src="<?php echo BASE_PATH; ?>/images/hotel-hero-section-4.webp" 
+             srcset="<?php echo BASE_PATH; ?>/images/hotel-hero-section-mobile.webp 768w, <?php echo BASE_PATH; ?>/images/hotel-hero-section-4.webp 1920w"
              sizes="(max-width: 768px) 100vw, 1920px"
              width="1920" height="1080"
              fetchpriority="high"
@@ -522,7 +522,7 @@ function switchTab(tab, fromAuto) {
     document.querySelectorAll('.search-panel').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById('panel-'+tab).classList.add('active');
     var heroData = {
-        stays:       { img: '<?php echo BASE_PATH; ?>/images/hotel-hero-section%20(4).webp', label:'Find Your Stay',       pre:'Discover ',   highlight:'Perfect Hotels',    post:' Near You',    desc:'The best hotels, guesthouses and homestays in Chhatrapati Sambhajinagar.' },
+        stays:       { img: '<?php echo BASE_PATH; ?>/images/hotel-hero-section-4.webp', label:'Find Your Stay',       pre:'Discover ',   highlight:'Perfect Hotels',    post:' Near You',    desc:'The best hotels, guesthouses and homestays in Chhatrapati Sambhajinagar.' },
         cars:        { img: '<?php echo BASE_PATH; ?>/images/car-rental-hero-section%20(3).webp', label:'Rent a Car',            pre:'Drive in ',   highlight:'Premium Style',     post:' Today',       desc:'Luxury sedans, SUVs and hatchbacks with professional chauffeurs at your service.' },
         bikes:       { img: '<?php echo BASE_PATH; ?>/images/bike%20rentals-hero-section%20(6).webp', label:'Rent a Bike',           pre:'Ride ',       highlight:'The Open Road',     post:' Your Way',    desc:'Scooters, cruisers and sports bikes — ride the city your way, anytime.' },
         attractions: { img: '<?php echo BASE_PATH; ?>/images/attractions-hero-section%20(7).webp', label:'Discover Attractions',  pre:'Explore ',    highlight:'Ancient Marvels',   post:' Around You',  desc:'Ellora, Ajanta, Bibi Ka Maqbara and more — heritage wonders await you.' },
@@ -808,9 +808,9 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 <div class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white/90 text-xs font-bold uppercase tracking-widest mb-4">
                     <span class="material-symbols-outlined text-[14px] text-primary">auto_awesome</span> Plan your trip now
                 </div>
-                <h3 class="font-serif text-3xl md:text-5xl text-white font-black leading-tight mb-4">
+                <h2 class="font-serif text-3xl md:text-5xl text-white font-black leading-tight mb-4">
                     Not sure where to go? <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent italic px-1 pr-2">Let us plan it.</span>
-                </h3>
+                </h2>
                 <p class="text-white/70 text-sm md:text-base max-w-lg mx-auto md:mx-0 mb-6 group-hover:text-white/90 transition-colors">
                     Talk to our local trip experts. We'll craft a customized, fully personalized itinerary for your entire trip—including cars, hotels, and ancient site guides—at no extra cost.
                 </p>

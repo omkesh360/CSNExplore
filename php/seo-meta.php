@@ -90,9 +90,8 @@ function seo_meta(array $ctx): array {
     };
 
     // ── Keywords ──────────────────────────────────────────────────────────────
-    $kw_base = $_SEO_KW[$type] ?? $_SEO_KW['home'];
-    if ($name) $kw_base = htmlspecialchars($name) . ', ' . $kw_base;
-    $keywords = $kw_base;
+    require_once __DIR__ . '/seo-optimizer.php';
+    $keywords = SEOOptimizer::generateKeywords($type, $name);
 
     // ── Canonical ─────────────────────────────────────────────────────────────
     $canonical = match($type) {

@@ -7,7 +7,7 @@
  *   - Hero image: Precached at install time for instant LCP
  */
 
-const CACHE_VERSION  = 'csn-v6';
+const CACHE_VERSION  = 'csn-v7';
 const STATIC_CACHE   = CACHE_VERSION + '-static';
 const PAGES_CACHE    = CACHE_VERSION + '-pages';
 const MAX_PAGE_ITEMS = 20;
@@ -19,8 +19,11 @@ const PRECACHE_ASSETS = [
   './animations.min.css',
   './animations.min.js',
   './manifest.json',
-  // Hero image: precached so LCP is instant on repeat visits
+  // Hero images: precached so LCP is instant on repeat visits (both mobile & desktop)
   './images/hotel-hero-section-mobile.webp',
+  './images/hotel-hero-section-4.webp',
+  // Logo: precached for instant header render
+  './images/Logo-light-optimized.webp',
 ];
 
 // ── Install: precache static shell ─────────────────────────────────────────

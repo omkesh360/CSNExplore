@@ -26,6 +26,9 @@
                     <a href="https://www.instagram.com/csnexplore_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(220,39,67,0.5)] transition-all duration-300">
                         <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 448 512"><path d="M224.1 141.6c-45.6 0-82.6 37-82.6 82.6s37 82.6 82.6 82.6 82.6-37 82.6-82.6-37.1-82.6-82.6-82.6zm0 136.4c-29.7 0-53.8-24.1-53.8-53.8s24.1-53.8 53.8-53.8 53.8 24.1 53.8 53.8-24.1 53.8-53.8 53.8zm76.5-115.5c-9.5 0-17.2-7.7-17.2-17.2s7.7-17.2 17.2-17.2 17.2 7.7 17.2 17.2-7.8 17.2-17.2 17.2zM448 224v113c0 60.1-48.9 109-109 109H109C48.9 446 0 397.1 0 337V109C0 48.9 48.9 0 109 0h230C399.1 0 448 48.9 448 109v115h0zm-41.6 0v-115c0-37.2-30.2-67.4-67.4-67.4H109c-37.2 0-67.4 30.2-67.4 67.4v228c0 37.2 30.2 67.4 67.4 67.4h230c37.2 0 67.4-30.2 67.4-67.4v-113h0z"/></svg>
                     </a>
+                    <a href="https://about.me/csnexplore" target="_blank" rel="noopener noreferrer" aria-label="About.me – CSNExplore" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-primary hover:border-primary hover:text-white hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(236,91,19,0.5)] transition-all duration-300">
+                        <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    </a>
                 </div>
             </div>
             <!-- Quick Links -->
@@ -596,12 +599,12 @@ if (file_exists($locationsFile)) {
             var _st = setTimeout(function () { 
                 document.body.style.opacity = '1'; 
                 if (pb) pb.style.width = '0%';
-            }, 1200);
+            }, 800);
 
             setTimeout(function () { 
                 clearTimeout(_st); 
                 window.location.href = href; 
-            }, 300);
+            }, 150); // Reduced from 300ms → 150ms for faster navigation
         });
 
         // ── Always restore opacity on any page show/load (fixes invisible text) ──
