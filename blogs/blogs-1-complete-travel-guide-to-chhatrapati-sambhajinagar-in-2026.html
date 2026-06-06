@@ -724,7 +724,7 @@ a.text-white:hover,a.text-white:hover *,button.text-white:hover,button.text-whit
         <span class="material-symbols-outlined text-base">link</span>Copy Link
       </button>
     </div>
-    <div class="mt-10"><a href="../blogs" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Back to all blogs</a></div>
+    <div class="mt-10"><a href="../blogs" onclick="if(document.referrer.indexOf(window.location.hostname) !== -1) { window.history.back(); return false; }" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Go Back</a></div>
   </div>
   
 </main>

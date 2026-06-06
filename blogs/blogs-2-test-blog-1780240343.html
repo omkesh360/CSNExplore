@@ -619,7 +619,7 @@ a.text-white:hover,a.text-white:hover *,button.text-white:hover,button.text-whit
         <span class="material-symbols-outlined text-base">link</span>Copy Link
       </button>
     </div>
-    <div class="mt-10"><a href="../blogs" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Back to all blogs</a></div>
+    <div class="mt-10"><a href="../blogs" onclick="if(document.referrer.indexOf(window.location.hostname) !== -1) { window.history.back(); return false; }" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Go Back</a></div>
   </div>
   
   <div class="border-t border-slate-100 bg-slate-50 py-14">
@@ -634,17 +634,6 @@ a.text-white:hover,a.text-white:hover *,button.text-white:hover,button.text-whit
           <div class="p-4">
             <span class="text-xs font-bold text-[#ec5b13] uppercase mb-2 block">General</span>
             <h4 class="text-sm font-bold line-clamp-2 group-hover:text-[#ec5b13] transition-colors">Test Blog 2 1780240392</h4>
-            <p class="text-xs text-slate-400 mt-2">May 31, 2026</p>
-          </div>
-        </a>
-        <a href="blogs-20-omkesh-anna" class="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow" aria-label="View omkesh anna blog details">
-          <span class="sr-only">View omkesh anna blog details</span>
-          <div class="aspect-video overflow-hidden">
-            <picture><source srcset="/CSNExplore/images/uploads/panchakki.webp" type="image/webp"><img src="/CSNExplore/images/uploads/panchakki.webp" alt="Related blog displaying omkesh anna in Chhatrapati Sambhajinagar" loading="lazy" width="400" height="225" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;this.src='../images/travelhub.webp'"></picture>
-          </div>
-          <div class="p-4">
-            <span class="text-xs font-bold text-[#ec5b13] uppercase mb-2 block">General</span>
-            <h4 class="text-sm font-bold line-clamp-2 group-hover:text-[#ec5b13] transition-colors">Omkesh anna</h4>
             <p class="text-xs text-slate-400 mt-2">May 31, 2026</p>
           </div>
         </a></div>

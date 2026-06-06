@@ -2,6 +2,20 @@
 // admin/admin-header.php – shared admin layout
 // Set $admin_page before including (e.g. 'dashboard', 'listings', 'bookings', 'blogs', 'users', 'content')
 require_once __DIR__ . '/../php/config.php';
+require_once __DIR__ . '/../php/jwt.php';
+
+$admin_token_cookie = $_COOKIE['admin_token'] ?? null;
+if (!$admin_token_cookie) {
+    header('Location: ../adminexplorer.php');
+    exit;
+}
+
+$payload = verifyJWT($admin_token_cookie, JWT_SECRET);
+if (!$payload || !isset($payload['role']) || $payload['role'] !== 'admin') {
+    header('Location: ../adminexplorer.php');
+    exit;
+}
+
 $admin_page  = $admin_page  ?? '';
 $admin_title = $admin_title ?? 'Admin | CSNExplore';
 ?>

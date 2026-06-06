@@ -1827,3 +1827,743 @@ Stack trace:
   thrown in C:\xampp\htdocs\CSNExplore\php\api\comments.php on line 74
 [01-Jun-2026 10:43:16 Europe/Berlin] Comments API error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'guest_name' in 'field list'
 [01-Jun-2026 10:44:34 Europe/Berlin] Comments API error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'guest_name' in 'field list'
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:01 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[02-Jun-2026 09:54:02 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:41 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:42 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:42 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:42 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:43 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:44 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:44 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:45 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:45 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:45 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:45 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:45 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:47 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:47 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:47 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:47 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:47 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:48 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:48 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:48 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:48 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:49 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:32:49 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:14 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:15 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:15 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:15 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:15 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:46:15 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\index.php(13): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:47:11 Europe/Berlin] PHP Fatal error:  Uncaught Exception: CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot. in C:\xampp\htdocs\CSNExplore\php\config.php:70
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\api\generate_html.php(5): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\config.php on line 70
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:24 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
+[05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287

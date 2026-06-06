@@ -58,6 +58,7 @@ function adminLogout() {
     localStorage.removeItem('csn_admin_user');
     localStorage.removeItem('csn_token');
     localStorage.removeItem('csn_user');
+    document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href = '../adminexplorer.php';
 }
 

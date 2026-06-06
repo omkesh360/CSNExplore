@@ -40,6 +40,16 @@ try {
         
         file_put_contents($file, json_encode($data));
         
+        // Cleanup old rate limit files (1% probability)
+        if (rand(1, 100) === 1) {
+            $files = glob($dir . '/*.json');
+            if ($files) {
+                foreach ($files as $f) {
+                    if ($now - filemtime($f) > 86400) @unlink($f);
+                }
+            }
+        }
+
         if ($data['count'] > $limit) {
             return false; // Rate limit exceeded
         }
@@ -96,9 +106,14 @@ try {
         ]);
         // Fallback: legacy credentials from .env (kept for backward compat; remove after migration)
         if (empty($hardcodedAdmins)) {
+            $leg1 = env('ADMIN_PASS_LEGACY_1', 'CHANGE_THIS_IN_ENV');
+            $leg2 = env('ADMIN_PASS_LEGACY_2', 'CHANGE_THIS_IN_ENV');
+            if ($leg1 === 'CHANGE_THIS_IN_ENV' || $leg2 === 'CHANGE_THIS_IN_ENV') {
+                sendError('Server configuration error: default legacy admin passwords must be changed.', 500);
+            }
             $hardcodedAdmins = [
-                'omkeshadmin' => env('ADMIN_PASS_LEGACY_1', 'CHANGE_THIS_IN_ENV'),
-                'rupeshadmin' => env('ADMIN_PASS_LEGACY_2', 'CHANGE_THIS_IN_ENV'),
+                'omkeshadmin' => $leg1,
+                'rupeshadmin' => $leg2,
             ];
         }
 
@@ -137,6 +152,11 @@ try {
             'role'  => $user['role'],
         ], JWT_SECRET);
 
+        if ($user['role'] === 'admin') {
+            setcookie('admin_token', $token, time() + 86400, '/', '', isset($_SERVER['HTTPS']), true);
+        }
+
+        log_activity('user_login', $user['name'] . ' logged in', ['email' => $user['email'], 'role' => $user['role']], (int)$user['id'], $user['role'], $user['name']);
         sendJson([
             'token' => $token,
             'user'  => [
@@ -147,7 +167,6 @@ try {
                 'role'  => $user['role'],
             ]
         ]);
-        log_activity('user_login', $user['name'] . ' logged in', ['email' => $user['email'], 'role' => $user['role']], (int)$user['id'], $user['role'], $user['name']);
     }
 
     // POST /api/auth.php?action=register
@@ -201,14 +220,21 @@ try {
         $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email?token=' . $token;
 
         // Send email — failure is logged but does NOT block registration
+        $emailSent = false;
         try {
             EmailService::sendVerificationEmail($email, $name, $verifyLink);
+            $emailSent = true;
         } catch (Exception $mailEx) {
             error_log('Verification email failed for ' . $email . ': ' . $mailEx->getMessage());
         }
 
-        sendJson(['pending' => true, 'message' => 'Account created! Please check your email and click the verification link to activate your account.', 'email' => $email], 201);
         log_activity('user_register', $name . ' created a new account', ['email' => $email], (int)$id, 'user', $name);
+
+        if ($emailSent) {
+            sendJson(['pending' => true, 'message' => 'Account created! Please check your email and click the verification link to activate your account.', 'email' => $email], 201);
+        } else {
+            sendJson(['pending' => true, 'message' => 'Account created! However, we could not send the verification email right now. Please try using "Resend Verification" later.', 'email' => $email], 201);
+        }
     }
 
     // GET /api/auth.php?action=verify
@@ -318,16 +344,21 @@ try {
         $scheme    = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
         $resetLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/reset-password?token=' . $token;
 
+        $emailSent = false;
         try {
-            $sent = EmailService::sendPasswordResetEmail($email, $user['name'], $resetLink);
-            if (!$sent) {
+            $emailSent = EmailService::sendPasswordResetEmail($email, $user['name'], $resetLink);
+            if (!$emailSent) {
                 error_log("Password reset email failed to send to $email — check logs/smtp_debug.log");
             }
         } catch (\Exception $mailEx) {
             error_log("Password reset email exception for $email: " . $mailEx->getMessage());
         }
 
-        sendJson(['success' => true, 'message' => 'If that email is registered, you\'ll receive a reset link shortly.']);
+        if ($emailSent) {
+            sendJson(['success' => true, 'message' => 'If that email is registered, you\'ll receive a reset link shortly.']);
+        } else {
+            sendJson(['success' => true, 'message' => 'We encountered an issue sending the email. Please try again later.']);
+        }
     }
 
     // POST /api/auth.php?action=reset_password

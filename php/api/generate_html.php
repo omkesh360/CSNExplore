@@ -282,6 +282,7 @@ a{color:inherit;text-decoration:none}
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"></noscript>';
 
+    $root = dirname(__DIR__, 2);
     $styleVer = file_exists($root . '/style.min.css') ? '?v=' . filemtime($root . '/style.min.css') : '';
     $mobVer = file_exists($root . '/mobile-responsive.min.css') ? '?v=' . filemtime($root . '/mobile-responsive.min.css') : '';
     $animVer = file_exists($root . '/animations.min.css') ? '?v=' . filemtime($root . '/animations.min.css') : '';
@@ -1192,7 +1193,7 @@ foreach ($blogs as $blog) {
         <span class="material-symbols-outlined text-base">link</span>Copy Link
       </button>
     </div>
-    <div class="mt-10"><a href="../blogs" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Back to all blogs</a></div>
+    <div class="mt-10"><a href="../blogs" onclick="if(document.referrer.indexOf(window.location.hostname) !== -1) { window.history.back(); return false; }" class="inline-flex items-center gap-2 text-[#ec5b13] font-bold hover:underline text-sm"><span class="material-symbols-outlined text-base">arrow_back</span>Go Back</a></div>
   </div>
   '.($relatedHtml ? '
   <div class="border-t border-slate-100 bg-slate-50 py-14">

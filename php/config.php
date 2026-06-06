@@ -65,7 +65,15 @@ if ($sentryDsn && class_exists('\Sentry\State\Hub')) {
     ]);
 }
 
-define('JWT_SECRET', env('JWT_SECRET', 'csnexplore_secure_jwt_2025_!@#$%'));
+$jwtSecret = env('JWT_SECRET');
+if (empty($jwtSecret) || $jwtSecret === 'csnexplore_secure_jwt_2025_!@#$%') {
+    if (APP_ENV === 'production') {
+        throw new Exception("CRITICAL ERROR: JWT_SECRET is not configured or uses the insecure default value. System cannot boot.");
+    } else {
+        $jwtSecret = 'dev_fallback_secret_csnexplore_2026_!@#';
+    }
+}
+define('JWT_SECRET', $jwtSecret);
 define('ADMIN_EMAIL', env('ADMIN_EMAIL', 'travelhubadmin@gmail.com'));
 define('CONTACT_PHONE', env('CONTACT_PHONE', '+91-8600968888'));
 define('SUPPORT_EMAIL', env('SUPPORT_EMAIL', 'supportcsnexplore@gmail.com'));
@@ -159,8 +167,13 @@ if ($basePath === '') {
     }
 }
 
-if ($basePath === '' || php_sapi_name() === 'cli') {
-    $basePath = '/CSNExplore';
+if (php_sapi_name() === 'cli') {
+    // Detect local environment (XAMPP/htdocs) vs production (Hostinger)
+    if (strpos(__DIR__, 'htdocs') !== false || strpos(__DIR__, 'xampp') !== false || php_uname('s') === 'Windows NT') {
+        $basePath = '/CSNExplore';
+    } else {
+        $basePath = '';
+    }
 }
 $basePath = rtrim($basePath, '/');
 define('BASE_PATH', $basePath);
@@ -186,6 +199,10 @@ function get_working_image_url($imgSrc) {
     if (strpos($imgSrc, 'http://') === 0 || strpos($imgSrc, 'https://') === 0) {
         return $imgSrc;
     }
+    
+    // Remove hardcoded local directory from DB if it exists, so BASE_PATH handles it correctly
+    $imgSrc = preg_replace('#^/?CSNExplore/#', '/', $imgSrc);
+    
     $basePath = rtrim(BASE_PATH, '/');
     if ($basePath !== '') {
         if (strpos($imgSrc, $basePath) === 0) {

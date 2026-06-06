@@ -1075,7 +1075,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $imgSrc = $c['image'] ?? '';
                 $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80&auto=format';
-                $name=htmlspecialchars($c['name']);
+                $name=htmlspecialchars($c['name']??'');
                 $type=htmlspecialchars($c['type']??'Sedan'); $price=number_format($c['price_per_day']??0);
                 $rating=number_format((float)($c['rating']??0),1);
                 $srcset = '';
@@ -1107,7 +1107,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 $imgSrc = $s['image'] ?? '';
                 $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format';
-                $name=htmlspecialchars($s['name']);
+                $name=htmlspecialchars($s['name']??'');
                 $type=htmlspecialchars($s['type']??'Hotel'); $price=number_format($s['price_per_night']??0);
                 $rating=number_format((float)($s['rating']??0),1);
                 $srcset = '';
@@ -1136,8 +1136,8 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $items = $hp_stays;
         elseif ($_sec_key === 'buses'):
             $render_fn = function($bus) {
-                $op=htmlspecialchars($bus['operator']); $bt=htmlspecialchars($bus['bus_type']);
-                $route=htmlspecialchars($bus['from_location']).' → '.htmlspecialchars($bus['to_location']);
+                $op=htmlspecialchars($bus['operator']??''); $bt=htmlspecialchars($bus['bus_type']??'');
+                $route=htmlspecialchars($bus['from_location']??'').' → '.htmlspecialchars($bus['to_location']??'');
                 $price=number_format($bus['price']);
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('buses', $bus['id'], $bus['operator']);
                 return '<a href="'.$slug.'" class="glass-dark p-5 rounded-2xl flex items-center justify-between gap-4 card-hover flex-shrink-0 group relative overflow-hidden" style="width:VAR_W">'
