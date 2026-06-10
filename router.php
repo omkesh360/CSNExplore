@@ -2,8 +2,17 @@
 // router.php - Handles clean URLs for PHP built-in web server
 // Usage: php -S localhost:8000 router.php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+if (file_exists(__DIR__ . '/php/config.php')) {
+    require_once __DIR__ . '/php/config.php';
+}
+
+if (defined('APP_ENV') && APP_ENV === 'local') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+} else {
+    error_reporting(0);
+    ini_set('display_errors', '0');
+}
 
 $uri  = $_SERVER['REQUEST_URI'];
 $path = parse_url($uri, PHP_URL_PATH);

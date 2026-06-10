@@ -114,6 +114,35 @@ body{font-family:'Inter',sans-serif;min-height:100vh;overflow:hidden}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{animation:spin .7s linear infinite}
 </style>
+<!-- CSRF Protection Fetch Interceptor -->
+<script>
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        options = options || {};
+        const method = (options.method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'DELETE'].includes(method)) {
+            const isRelative = !url.match(/^(?:https?:)?\/\//i);
+            const isSameOrigin = url.startsWith(window.location.origin);
+            if (isRelative || isSameOrigin) {
+                options.headers = options.headers || {};
+                const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                if (csrfToken) {
+                    if (options.headers instanceof Headers) {
+                        options.headers.set('X-CSRF-Token', csrfToken);
+                    } else if (Array.isArray(options.headers)) {
+                        options.headers.push(['X-CSRF-Token', csrfToken]);
+                    } else {
+                        options.headers['X-CSRF-Token'] = csrfToken;
+                    }
+                }
+            }
+        }
+        return originalFetch(url, options);
+    };
+})();
+</script>
 </head>
 <body>
 

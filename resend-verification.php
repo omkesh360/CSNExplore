@@ -27,12 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $db->query("UPDATE users SET verification_token = ?, token_expires_at = ? WHERE id = ?", 
                     [$token, $expires, $user['id']]);
                 
-                // Send verification email
-                require_once 'php/services/EmailService.php';
+                // Queue verification email
                 $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
                 $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email.php?token=' . $token;
                 
-                EmailService::sendVerificationEmail($email, $user['name'], $verifyLink);
+                $db->insert('jobs', [
+                    'type' => 'auth_email_verification',
+                    'payload' => json_encode(['email' => $email, 'name' => $user['name'], 'verify_link' => $verifyLink])
+                ]);
                 
                 $success = true;
             }

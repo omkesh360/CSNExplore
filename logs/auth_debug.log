@@ -1,0 +1,97 @@
+{
+    "time": "2026-06-08 05:13:28",
+    "method": "POST",
+    "uri": "\/CSNExplore\/php\/api\/auth.php?action=login",
+    "cookies": {
+        "csrf_token": "0ed3700538fe33e1cacc12c895e094a20fecebf9ac973bb92052cc254495af35",
+        "_ga": "GA1.1.1950426354.1780886581",
+        "csn_cookie_consent": "accepted",
+        "_ga_58P4JE1SYS": "GS2.1.s1780886581$o1$g1$t1780888389$j39$l0$h0",
+        "_ga_NJ0XCC3EMT": "GS2.1.s1780886581$o1$g1$t1780888389$j39$l0$h0"
+    },
+    "headers": {
+        "Host": "localhost",
+        "Connection": "keep-alive",
+        "Content-Length": "51",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "User-Agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/149.0.0.0 Safari\/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"",
+        "Content-Type": "application\/json",
+        "sec-ch-ua-mobile": "?0",
+        "Accept": "*\/*",
+        "Origin": "http:\/\/localhost",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "http:\/\/localhost\/CSNExplore\/adminexplorer.php",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cookie": "csrf_token=0ed3700538fe33e1cacc12c895e094a20fecebf9ac973bb92052cc254495af35; _ga=GA1.1.1950426354.1780886581; csn_cookie_consent=accepted; _ga_58P4JE1SYS=GS2.1.s1780886581$o1$g1$t1780888389$j39$l0$h0; _ga_NJ0XCC3EMT=GS2.1.s1780886581$o1$g1$t1780888389$j39$l0$h0"
+    }
+}
+{
+    "time": "2026-06-08 06:02:17",
+    "method": "POST",
+    "uri": "\/CSNExplore\/php\/api\/auth.php?action=login",
+    "cookies": {
+        "csrf_token": "5d9ec507503af7779bda7a6f15dea783885055c9d439fd05beedef1737717778"
+    },
+    "headers": {
+        "Host": "localhost",
+        "Connection": "keep-alive",
+        "Content-Length": "51",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "X-CSRF-Token": "5d9ec507503af7779bda7a6f15dea783885055c9d439fd05beedef1737717778",
+        "User-Agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/149.0.0.0 Safari\/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"",
+        "Content-Type": "application\/json",
+        "sec-ch-ua-mobile": "?0",
+        "Accept": "*\/*",
+        "Origin": "http:\/\/localhost",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "http:\/\/localhost\/CSNExplore\/adminexplorer",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Cookie": "csrf_token=5d9ec507503af7779bda7a6f15dea783885055c9d439fd05beedef1737717778"
+    }
+}
+{
+    "time": "2026-06-08 09:51:08",
+    "method": "",
+    "uri": "",
+    "cookies": {
+        "csrf_token": "bfd01f1c648ea82cac25b6d61c80aa5c94fed38e6728234b02a33980e6b0b810"
+    },
+    "headers": []
+}
+{
+    "time": "2026-06-08 23:35:56",
+    "method": "POST",
+    "uri": "\/CSNExplore\/php\/api\/auth.php?action=login",
+    "cookies": {
+        "admin_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk5OTk5LCJlbWFpbCI6Im9ta2VzaGFkbWluQGNzbmV4cGxvcmUuY29tIiwibmFtZSI6Ik9ta2VzaGFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgwODkxMzM3LCJleHAiOjE3ODA5MjAxMzd9.QzNOJ99qF-BNskJ_zcglsv90sqo6xmMR2UGKstVMTZs",
+        "csrf_token": "008bd753d4e5ac2a29961cc3477c22dbdca97f2190e62f5d4142eb8fd6995cc9"
+    },
+    "headers": {
+        "Host": "localhost",
+        "Connection": "keep-alive",
+        "Content-Length": "51",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "X-CSRF-Token": "008bd753d4e5ac2a29961cc3477c22dbdca97f2190e62f5d4142eb8fd6995cc9",
+        "User-Agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/149.0.0.0 Safari\/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"",
+        "Content-Type": "application\/json",
+        "sec-ch-ua-mobile": "?0",
+        "Accept": "*\/*",
+        "Origin": "http:\/\/localhost",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "http:\/\/localhost\/CSNExplore\/adminexplorer",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Cookie": "admin_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk5OTk5LCJlbWFpbCI6Im9ta2VzaGFkbWluQGNzbmV4cGxvcmUuY29tIiwibmFtZSI6Ik9ta2VzaGFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgwODkxMzM3LCJleHAiOjE3ODA5MjAxMzd9.QzNOJ99qF-BNskJ_zcglsv90sqo6xmMR2UGKstVMTZs; csrf_token=008bd753d4e5ac2a29961cc3477c22dbdca97f2190e62f5d4142eb8fd6995cc9"
+    }
+}

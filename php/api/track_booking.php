@@ -2,10 +2,17 @@
 require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 
 $phone = trim($_GET['phone'] ?? '');
 if (!$phone) { sendError('Phone number required', 400); }
+
+// Rate limiting to prevent booking data enumeration
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+if (!rateLimit('track_booking_' . $ip, 5, 3600)) {
+    sendError('Too many tracking attempts. You can only check 5 times per hour.', 429);
+}
 
 // Normalise: strip spaces/dashes for comparison
 $phone_clean = preg_replace('/[\s\-\(\)]+/', '', $phone);

@@ -1,19 +1,33 @@
 <?php
 // Advanced HTML Minification
-function sanitize_output($buffer) {
-    $buffer = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $buffer);
-    $buffer = preg_replace('/>\s+</', '><', $buffer);
-    
-    $reqUri = $_SERVER['REQUEST_URI'] ?? '';
-    if (($reqUri === '/' || $reqUri === '/index.php' || strpos($reqUri, '/?') === 0) && !isset($_GET['nocache'])) {
-        $cache_dir = __DIR__ . '/cache';
-        if (!is_dir($cache_dir)) @mkdir($cache_dir, 0755, true);
-        @file_put_contents($cache_dir . '/homepage.html', $buffer);
+if (!function_exists('sanitize_output')) {
+    function sanitize_output($buffer) {
+        // Strip HTML comments (except IE conditionals)
+        $buffer = preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $buffer);
+        // Minify HTML
+        $buffer = preg_replace('/>\s+</', '><', $buffer);
+        
+        // Automated Lazy Loading: Add loading="lazy" to all images unless they have loading="eager" or fetchpriority="high"
+        $buffer = preg_replace_callback('/<img\s+([^>]+)>/i', function($matches) {
+            $attrs = $matches[1];
+            if (stripos($attrs, 'loading=') === false && stripos($attrs, 'fetchpriority="high"') === false) {
+                return '<img loading="lazy" ' . $attrs . '>';
+            }
+            return $matches[0];
+        }, $buffer);
+
+        $reqUri = $_SERVER['REQUEST_URI'] ?? '';
+        if (($reqUri === '/' || $reqUri === '/index.php' || strpos($reqUri, '/?') === 0) && !isset($_GET['nocache'])) {
+            $cache_dir = __DIR__ . '/cache';
+            if (!is_dir($cache_dir)) @mkdir($cache_dir, 0755, true);
+            @file_put_contents($cache_dir . '/homepage.html', $buffer);
+        }
+        
+        return $buffer;
     }
-    
-    return $buffer;
 }
 ob_start("sanitize_output");
+
 require_once 'php/config.php';
 $current_page = $current_page ?? '';
 $page_title = $page_title ?? 'CSNExplore – Chhatrapati Sambhajinagar';
@@ -37,6 +51,17 @@ $listing_nav = [
 $is_listing_page = ($current_page === 'listing' || $current_page === 'listing-detail' || isset($listing_type));
 $active_listing_type = $listing_type ?? '';
 ?>
+<?php
+// Maintenance Mode Check
+if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
+    if (!isset($_GET['admin_bypass'])) {
+        header('HTTP/1.1 503 Service Temporarily Unavailable');
+        header('Status: 503 Service Temporarily Unavailable');
+        header('Retry-After: 3600');
+        die('<!DOCTYPE html><html><head><title>Under Maintenance</title><style>body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f8fafc;color:#333;text-align:center;} h1{color:#ec5b13;}</style></head><body><div><h1>We\'ll be right back!</h1><p>Our website is currently undergoing scheduled maintenance.<br>Thank you for your patience.</p></div></body></html>');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,23 +71,38 @@ $active_listing_type = $listing_type ?? '';
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-76x76.png">
+    <!-- ── Favicon: all sizes generated from fevicon.png ── -->
+    <!-- iOS Apple Touch Icons (all standard sizes) -->
+    <link rel="apple-touch-icon" sizes="57x57"   href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60"   href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72"   href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76"   href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="114x114" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-114x114.png">
     <link rel="apple-touch-icon" sizes="120x120" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="144x144" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo BASE_PATH; ?>/images/fevicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-16x16.png">
+    <link rel="apple-touch-icon"                 href="<?php echo BASE_PATH; ?>/images/fevicon/apple-touch-icon.png">
+    <!-- Standard browser favicons (PNG + ICO fallback) -->
+    <link rel="icon" type="image/png" sizes="16x16"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-512x512.png">
     <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon.ico" type="image/x-icon">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-144x144.png">
+    <!-- Web App Manifest (PWA) -->
+    <link rel="manifest" href="<?php echo BASE_PATH; ?>/manifest.json">
+    <!-- Windows Tile meta tags -->
+    <meta name="msapplication-TileColor"          content="#ec5b13">
+    <meta name="msapplication-TileImage"          content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-144x144.png">
+    <meta name="msapplication-square70x70logo"    content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-70x70.png">
+    <meta name="msapplication-square150x150logo"  content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-150x150.png">
+    <meta name="msapplication-square310x310logo"  content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-310x310.png">
+    <meta name="msapplication-config"             content="none">
+    <!-- Theme colors for browser chrome -->
     <meta name="theme-color" content="#ec5b13">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="CSNExplore">
     <meta name="publisher" content="CSNExplore">
@@ -80,12 +120,12 @@ $active_listing_type = $listing_type ?? '';
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
     <!-- Fonts: Preload and load async with display=optional to prevent render blocking AND prevent CLS FOUT -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=optional" />
+    <link rel="preload" as="style" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=optional" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=optional" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=optional" /></noscript>
     
     <!-- Material Symbols: Preload and load async to prevent render blocking -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="preload" as="style" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" /></noscript>
     
@@ -95,6 +135,8 @@ $active_listing_type = $listing_type ?? '';
         if (file_exists(__DIR__ . '/style.min.css')) echo file_get_contents(__DIR__ . '/style.min.css'); 
         if (file_exists(__DIR__ . '/mobile-responsive.min.css')) echo file_get_contents(__DIR__ . '/mobile-responsive.min.css');
         ?>
+        
+
     </style>
     
     <!-- Animations CSS: ASYNC LOAD to prevent render blocking (minified only) -->
@@ -111,6 +153,12 @@ $active_listing_type = $listing_type ?? '';
     ?>
     <link rel="preload" href="<?php echo BASE_PATH; ?>/animations.min.css<?php echo $animVer; ?>" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="<?php echo BASE_PATH; ?>/animations.min.css<?php echo $animVer; ?>"></noscript>
+    
+    <!-- Custom CSS Extension -->
+    <style>
+        <?php if (file_exists(__DIR__ . '/custom.css')) echo file_get_contents(__DIR__ . '/custom.css'); ?>
+    </style>
+    
     <style>
         /* ═══ CRITICAL INLINE CSS - Above the Fold ═══ */
         /* This CSS is inlined to prevent render blocking */
@@ -421,8 +469,10 @@ $active_listing_type = $listing_type ?? '';
     echo '<meta name="geo.position" content="19.8762;75.3433">' . "\n";
     echo '<meta name="ICBM" content="19.8762, 75.3433">' . "\n";
 
-    // Always include WebSite + SearchAction schema on every page
-    echo SEOOptimizer::renderSchema(SEOOptimizer::generateWebSiteSchema());
+    // Include WebSite + SearchAction schema ONLY on the homepage (per Google guidelines)
+    if ($seo_type === 'home') {
+        echo SEOOptimizer::renderSchema(SEOOptimizer::generateWebSiteSchema());
+    }
     
     // Always include Organization schema
     echo SEOOptimizer::renderSchema(SEOOptimizer::generateOrganizationSchema());
@@ -433,6 +483,7 @@ $active_listing_type = $listing_type ?? '';
     // ItemList schema — exclusively for homepage SEO
     if ($seo_type === 'home') {
         echo SEOOptimizer::renderSchema(SEOOptimizer::generateItemListSchema());
+        echo SEOOptimizer::renderSchema(SEOOptimizer::generateHowToSchema());
     }
     
     // Breadcrumb schema if breadcrumbs exist
@@ -478,13 +529,40 @@ $active_listing_type = $listing_type ?? '';
         });
         // Removed 5-second fallback: only load on explicit user interaction for 0 TBT
         // setTimeout(loadGA, 5000);
+    <!-- CSRF Protection Fetch Interceptor -->
+    <script>
+    (function() {
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            options = options || {};
+            const method = (options.method || 'GET').toUpperCase();
+            if (['POST', 'PUT', 'DELETE'].includes(method)) {
+                const isRelative = !url.match(/^(?:https?:)?\/\//i);
+                const isSameOrigin = url.startsWith(window.location.origin);
+                if (isRelative || isSameOrigin) {
+                    options.headers = options.headers || {};
+                    const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                    const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                    if (csrfToken) {
+                        if (options.headers instanceof Headers) {
+                            options.headers.set('X-CSRF-Token', csrfToken);
+                        } else if (Array.isArray(options.headers)) {
+                            options.headers.push(['X-CSRF-Token', csrfToken]);
+                        } else {
+                            options.headers['X-CSRF-Token'] = csrfToken;
+                        }
+                    }
+                }
+            }
+            return originalFetch(url, options);
+        };
     })();
     </script>
-
-    
-
+    <?php if (!empty($extra_head)) echo $extra_head; ?>
 </head>
 <body class="bg-white font-display text-slate-900">
+
+
 
 <!-- ── Extreme SEO Misspellings Block (Highest Weight) ─────────────────── -->
 <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" aria-hidden="true">
@@ -534,17 +612,21 @@ $active_listing_type = $listing_type ?? '';
 <header id="site-header" class="w-full">
     <nav class="max-w-[1140px] mx-auto px-4 sm:px-5 flex items-center justify-between" style="height:64px;min-height:64px">
         <a href="<?php echo BASE_PATH; ?>/" class="flex items-center shrink-0">
-            <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <?php if (defined('WHITE_LABEL_MODE') && WHITE_LABEL_MODE === true): ?>
+                <span class="text-white font-bold text-xl tracking-wide">TravelPortal</span>
+            <?php else: ?>
+                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+            <?php endif; ?>
         </a>
-        <div class="hidden xl:flex items-center gap-0">
+        <div class="hidden xl:flex items-center gap-0" itemscope itemtype="https://schema.org/SiteNavigationElement">
             <?php foreach (($is_listing_page ? $listing_nav : $nav_links) as $link):
                 $is_active = ($is_listing_page
                     ? ($link['type'] === $active_listing_type)
                     : (trim($link['href'],'/') === trim($current_page,'/') || ($current_page==='home' && ($link['href'] === BASE_PATH.'/' || strpos($link['href'],'/index')!==false))));
             ?>
-            <a href="<?php echo $link['href']; ?>" title="<?php echo htmlspecialchars($link['label']); ?> in Chhatrapati Sambhajinagar"
+            <a itemprop="url" href="<?php echo $link['href']; ?>" title="<?php echo htmlspecialchars($link['label']); ?> in Chhatrapati Sambhajinagar"
                class="text-[13px] font-bold px-3.5 py-2 rounded-full transition-colors duration-200 <?php echo $is_active ? 'text-white bg-white/10' : 'text-white/70 hover:bg-white/10 hover:text-white'; ?> whitespace-nowrap">
-                <?php echo $link['label']; ?>
+                <span itemprop="name"><?php echo $link['label']; ?></span>
             </a>
             <?php endforeach; ?>
         </div>
@@ -596,7 +678,11 @@ $active_listing_type = $listing_type ?? '';
 <div id="mob-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0705;overflow-y:auto;flex-direction:column;opacity:0">
     <!-- header row -->
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
-        <img loading="lazy" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <?php if (defined('WHITE_LABEL_MODE') && WHITE_LABEL_MODE === true): ?>
+            <span style="color:#fff;font-weight:bold;font-size:18px;">TravelPortal</span>
+        <?php else: ?>
+            <img loading="lazy" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" style="height:28px;object-fit:contain"/>
+        <?php endif; ?>
         <button id="mob-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:none;border-radius:50%;cursor:pointer;color:#fff">
             <span class="material-symbols-outlined" style="font-size:20px">close</span>
         </button>

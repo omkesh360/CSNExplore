@@ -4,8 +4,9 @@ require_once __DIR__ . '/../jwt.php';
 require_once __DIR__ . '/../activity_logger.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Vary: Origin');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 
@@ -13,48 +14,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 $path   = trim($_GET['action'] ?? '', '/');
 
 try {
+    validateCsrf();
     $db = getDB();
 
-    /**
-     * Simple file-based rate limiter
-     */
-    function rateLimit($key, $limit = 5, $period = 60) {
-        $dir = __DIR__ . '/../../logs/rate_limit';
-        if (!is_dir($dir)) mkdir($dir, 0755, true);
-        
-        $file = $dir . '/' . md5($key) . '.json';
-        $now = time();
-        $data = ['count' => 0, 'first_attempt' => $now];
-        
-        if (file_exists($file)) {
-            $data = json_decode(file_get_contents($file), true);
-            if ($now - $data['first_attempt'] > $period) {
-                // Period expired, reset
-                $data = ['count' => 1, 'first_attempt' => $now];
-            } else {
-                $data['count']++;
-            }
-        } else {
-            $data['count'] = 1;
-        }
-        
-        file_put_contents($file, json_encode($data));
-        
-        // Cleanup old rate limit files (1% probability)
-        if (rand(1, 100) === 1) {
-            $files = glob($dir . '/*.json');
-            if ($files) {
-                foreach ($files as $f) {
-                    if ($now - filemtime($f) > 86400) @unlink($f);
-                }
-            }
-        }
-
-        if ($data['count'] > $limit) {
-            return false; // Rate limit exceeded
-        }
-        return true;
-    }
+    // rateLimit() helper is now globally defined in php/config.php
 
     /**
      * Helper to verify Cloudflare Turnstile token
@@ -153,7 +116,9 @@ try {
         ], JWT_SECRET);
 
         if ($user['role'] === 'admin') {
-            setcookie('admin_token', $token, time() + 86400, '/', '', isset($_SERVER['HTTPS']), true);
+            if (php_sapi_name() !== 'cli' && !headers_sent()) {
+                setcookie('admin_token', $token, time() + 86400, '/', '', isset($_SERVER['HTTPS']), true);
+            }
         }
 
         log_activity('user_login', $user['name'] . ' logged in', ['email' => $user['email'], 'role' => $user['role']], (int)$user['id'], $user['role'], $user['name']);
@@ -212,20 +177,23 @@ try {
 
         // Create verification token (24h expiry)
         $token     = bin2hex(random_bytes(32));
-        $tokenHash = password_hash($token, PASSWORD_DEFAULT);
+        $tokenHash = hash('sha256', $token);
         $expires   = gmdate('Y-m-d H:i:s', time() + 86400);
         $db->insert('email_verification_tokens', ['user_id' => $id, 'token_hash' => $tokenHash, 'expires_at' => $expires]);
 
         $scheme     = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
         $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email?token=' . $token;
 
-        // Send email — failure is logged but does NOT block registration
+        // Queue verification email for background processing
         $emailSent = false;
         try {
-            EmailService::sendVerificationEmail($email, $name, $verifyLink);
+            $db->insert('jobs', [
+                'type' => 'auth_email_verification',
+                'payload' => json_encode(['email' => $email, 'name' => $name, 'verify_link' => $verifyLink])
+            ]);
             $emailSent = true;
-        } catch (Exception $mailEx) {
-            error_log('Verification email failed for ' . $email . ': ' . $mailEx->getMessage());
+        } catch (Exception $e) {
+            error_log("Verification email queue error for $email: " . $e->getMessage());
         }
 
         log_activity('user_register', $name . ' created a new account', ['email' => $email], (int)$id, 'user', $name);
@@ -248,11 +216,8 @@ try {
         $token = trim($_GET['token'] ?? '');
         if (!$token) sendError('Token required', 400);
 
-        $rows = $db->fetchAll("SELECT id,user_id,token_hash,expires_at FROM email_verification_tokens WHERE expires_at > UTC_TIMESTAMP()");
-        $found = null;
-        foreach ($rows as $row) {
-            if (password_verify($token, $row['token_hash'])) { $found = $row; break; }
-        }
+        $tokenHash = hash('sha256', $token);
+        $found = $db->fetchOne("SELECT id,user_id,token_hash,expires_at FROM email_verification_tokens WHERE token_hash = ? AND expires_at > UTC_TIMESTAMP()", [$tokenHash]);
         if (!$found) sendError('Invalid or expired verification link', 400);
 
         $db->update('users', ['is_verified' => 1], 'id = :id', [':id' => $found['user_id']]);
@@ -279,16 +244,19 @@ try {
         // Delete old tokens and create new one
         $db->delete('email_verification_tokens', 'user_id = ?', [$user['id']]);
         $token     = bin2hex(random_bytes(32));
-        $tokenHash = password_hash($token, PASSWORD_DEFAULT);
+        $tokenHash = hash('sha256', $token);
         $expires   = gmdate('Y-m-d H:i:s', time() + 86400);
         $db->insert('email_verification_tokens', ['user_id' => $user['id'], 'token_hash' => $tokenHash, 'expires_at' => $expires]);
 
         $scheme     = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
         $verifyLink = $scheme . '://' . $_SERVER['HTTP_HOST'] . BASE_PATH . '/verify-email?token=' . $token;
         try {
-            EmailService::sendVerificationEmail($email, $user['name'], $verifyLink);
-        } catch (\Exception $mailEx) {
-            error_log("Resend verification email failed for $email: " . $mailEx->getMessage());
+            $db->insert('jobs', [
+                'type' => 'auth_email_verification',
+                'payload' => json_encode(['email' => $email, 'name' => $user['name'], 'verify_link' => $verifyLink])
+            ]);
+        } catch (\Exception $e) {
+            error_log("Resend verification email queue error for $email: " . $e->getMessage());
         }
 
         sendJson(['success' => true]);
@@ -346,12 +314,13 @@ try {
 
         $emailSent = false;
         try {
-            $emailSent = EmailService::sendPasswordResetEmail($email, $user['name'], $resetLink);
-            if (!$emailSent) {
-                error_log("Password reset email failed to send to $email — check logs/smtp_debug.log");
-            }
-        } catch (\Exception $mailEx) {
-            error_log("Password reset email exception for $email: " . $mailEx->getMessage());
+            $db->insert('jobs', [
+                'type' => 'auth_email_password_reset',
+                'payload' => json_encode(['email' => $email, 'name' => $user['name'], 'reset_link' => $resetLink])
+            ]);
+            $emailSent = true;
+        } catch (\Exception $e) {
+            error_log("Password reset email queue error for $email: " . $e->getMessage());
         }
 
         if ($emailSent) {

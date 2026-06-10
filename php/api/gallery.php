@@ -1,9 +1,16 @@
 <?php
 // Gallery Management API
-require_once '../config.php';
-require_once '../jwt.php';
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Vary: Origin');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
+
+validateCsrf();
 
 // Verify admin authentication
 $admin = requireAdmin();
@@ -53,9 +60,12 @@ if ($method === 'POST') {
     
     $file = $_FILES['image'];
     
-    // Validate file
+    // Validate file using finfo (not user-controlled $_FILES['type'])
     $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-    if (!in_array($file['type'], $allowedTypes)) {
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeType = finfo_file($finfo, $file['tmp_name']);
+    finfo_close($finfo);
+    if (!in_array($mimeType, $allowedTypes)) {
         sendError('Invalid file type. Only JPG, PNG, GIF, and WebP allowed.', 400);
     }
     

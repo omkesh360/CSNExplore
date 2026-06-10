@@ -7,7 +7,7 @@
  *   - Hero image: Precached at install time for instant LCP
  */
 
-const CACHE_VERSION  = 'csn-v7';
+const CACHE_VERSION  = 'csn-v8';
 const STATIC_CACHE   = CACHE_VERSION + '-static';
 const PAGES_CACHE    = CACHE_VERSION + '-pages';
 const MAX_PAGE_ITEMS = 20;
@@ -24,6 +24,13 @@ const PRECACHE_ASSETS = [
   './images/hotel-hero-section-4.webp',
   // Logo: precached for instant header render
   './images/Logo-light-optimized.webp',
+  // New Favicons
+  './images/fevicon/favicon-16x16.png',
+  './images/fevicon/favicon-32x32.png',
+  './images/fevicon/favicon-48x48.png',
+  './images/fevicon/favicon-96x96.png',
+  './images/fevicon/apple-touch-icon.png',
+  './images/fevicon/favicon.ico',
 ];
 
 // ── Install: precache static shell ─────────────────────────────────────────

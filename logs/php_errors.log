@@ -2567,3 +2567,33 @@ Stack trace:
 [05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 285
 [05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 286
 [05-Jun-2026 15:48:25 Europe/Berlin] PHP Warning:  Undefined variable $root in C:\xampp\htdocs\CSNExplore\php\api\generate_html.php on line 287
+[08-Jun-2026 06:11:48 Europe/Berlin] PHP Fatal error:  Cannot redeclare sanitize_output() (previously declared in C:\xampp\htdocs\CSNExplore\header.php:3) in C:\xampp\htdocs\CSNExplore\header.php on line 14
+[08-Jun-2026 09:48:38 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 10
+[08-Jun-2026 09:48:38 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 12
+[08-Jun-2026 09:48:38 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getallheaders() in C:\xampp\htdocs\CSNExplore\php\api\auth.php:21
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 21
+[08-Jun-2026 09:49:06 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 10
+[08-Jun-2026 09:49:06 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 12
+[08-Jun-2026 09:49:06 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getallheaders() in C:\xampp\htdocs\CSNExplore\php\api\auth.php:21
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 21
+[08-Jun-2026 09:49:49 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 10
+[08-Jun-2026 09:49:49 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 12
+[08-Jun-2026 09:49:49 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getallheaders() in C:\xampp\htdocs\CSNExplore\php\api\auth.php:21
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 21
+[08-Jun-2026 09:51:08 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 10
+[08-Jun-2026 09:51:08 Asia/Kolkata] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\CSNExplore\php\api\auth.php on line 12
+[08-Jun-2026 23:36:45 Asia/Kolkata] PHP Warning:  Undefined variable $sql in C:\xampp\htdocs\CSNExplore\listing.php on line 38
+[08-Jun-2026 23:36:45 Asia/Kolkata] PHP Warning:  Undefined variable $sql in C:\xampp\htdocs\CSNExplore\listing.php on line 42
+[08-Jun-2026 23:36:45 Asia/Kolkata] PHP Fatal error:  Uncaught ValueError: PDO::prepare(): Argument #1 ($query) cannot be empty in C:\xampp\htdocs\CSNExplore\php\database.php:559
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(559): PDO->prepare('')
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(573): Database->query(NULL, Array)
+#2 C:\xampp\htdocs\CSNExplore\listing.php(42): Database->fetchAll(NULL, Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 559

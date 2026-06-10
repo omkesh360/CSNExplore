@@ -3,7 +3,8 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -112,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'actor_id'    => $adminUser['id'] ?? null,
                 'actor_name'  => $adminUser['name'] ?? 'System',
                 'actor_role'  => 'admin',
-                'action_type' => 'system_init',
+                'action_type' => 'settings_update',
                 'description' => $actionDesc,
                 'ip_address'  => $_SERVER['REMOTE_ADDR'] ?? ''
             ]);

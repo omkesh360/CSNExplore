@@ -35,18 +35,22 @@ $colsMap = [
 ];
 $cols = $colsMap[$type] ?? '*';
 
-$sql = "SELECT $cols FROM $type WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, rating DESC, id ASC";
-$items = $db->fetchAll($sql, $params);
+$cacheKey = 'listing_' . $type . '_' . md5($sql . serialize($params));
+$items = ObjectCache::get($cacheKey);
 
-// Decode JSON fields
-foreach ($items as &$item) {
-    foreach (['amenities','features','gallery','menu_highlights'] as $f) {
-        if (isset($item[$f]) && is_string($item[$f])) {
-            $item[$f] = json_decode($item[$f], true) ?: [];
+if ($items === false) {
+    $items = $db->fetchAll($sql, $params);
+    // Decode JSON fields
+    foreach ($items as &$item) {
+        foreach (['amenities','features','gallery','menu_highlights'] as $f) {
+            if (isset($item[$f]) && is_string($item[$f])) {
+                $item[$f] = json_decode($item[$f], true) ?: [];
+            }
         }
     }
+    unset($item);
+    ObjectCache::set($cacheKey, $items, 3600);
 }
-unset($item);
 
 $config = [
   'stays' => [
@@ -177,6 +181,60 @@ foreach ($items as $itm) {
     ];
 }
 
+$faqs_map = [
+    'stays' => [
+        [
+            'q' => 'What are the best areas to stay in Chhatrapati Sambhajinagar?',
+            'a' => 'Popular areas include Padampura, Cidco, and Samadhan Colony, which offer easy transit links and proximity to major attractions.'
+        ],
+        [
+            'q' => 'How far are the hotels from Ajanta and Ellora Caves?',
+            'a' => 'Aurangabad city center hotels are located roughly 30 km from Ellora Caves and about 100 km from the ancient Ajanta Caves.'
+        ]
+    ],
+    'cars' => [
+        [
+            'q' => 'Can I rent a self-drive car for Ajanta and Ellora Caves?',
+            'a' => 'Yes, CSNExplore offers self-drive car rentals starting at affordable rates, ideal for exploring both Ajanta and Ellora Caves.'
+        ],
+        [
+            'q' => 'Is fuel included in the car rental rates?',
+            'a' => 'No, vehicle rates are exclusive of fuel. You pay only for the fuel you consume during your trip.'
+        ]
+    ],
+    'bikes' => [
+        [
+            'q' => 'What documents are required to rent a scooter or bike?',
+            'a' => 'You must provide a valid driving license for two-wheelers and a government ID like an Aadhar Card or Passport.'
+        ],
+        [
+            'q' => 'Are helmets provided with the bike rental?',
+            'a' => 'Yes, we provide standard rider helmets with every scooter or motorcycle rental to ensure your safety.'
+        ]
+    ]
+];
+
+$faq_schema_html = '';
+if (isset($faqs_map[$type])) {
+    $faqItems = [];
+    foreach ($faqs_map[$type] as $faq) {
+        $faqItems[] = [
+            '@type' => 'Question',
+            'name' => $faq['q'],
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => $faq['a']
+            ]
+        ];
+    }
+    $faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqItems
+    ];
+    $faq_schema_html = "\n" . '<script type="application/ld+json">' . "\n" . json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n" . '</script>';
+}
+
 $extra_head = '<script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -189,7 +247,7 @@ $extra_head = '<script type="application/ld+json">
     "itemListElement": ' . json_encode($itemListElements) . '
   }
 }
-</script>
+</script>' . $faq_schema_html . '
 <link rel="preload" as="image" href="' . htmlspecialchars($c['hero_bg']) . '" fetchpriority="high">';
 
 

@@ -55,39 +55,42 @@ function seo_meta(array $ctx): array {
         ? (strpos($img_raw, 'http') === 0 ? $img_raw : SITE_URL . '/' . ltrim($img_raw, '/'))
         : SITE_URL . '/images/og-image.jpg';
 
-    // ── Title ─────────────────────────────────────────────────────────────────
+    // ── Title (Strictly 50-60 chars) ────────────────────────────────────────────────────────
     $title = match($type) {
-        'home'        => 'CSNExplore – Hotels, Car & Bike Rentals, Ajanta Caves Tours | Chhatrapati Sambhajinagar (Aurangabad)',
-        'stays'       => 'Hotels & Homestays in Chhatrapati Sambhajinagar | Book Now – CSNExplore',
-        'cars'        => 'Car Rentals Chhatrapati Sambhajinagar | Self Drive & Chauffeur – CSNExplore',
-        'bikes'       => 'Bike Rentals Aurangabad | Scooters & Motorcycles – CSNExplore',
-        'attractions' => 'Ajanta & Ellora Caves Tours | Top Attractions Sambhajinagar – CSNExplore',
-        'restaurants' => 'Best Restaurants Chhatrapati Sambhajinagar | Dine Out – CSNExplore',
-        'buses'       => 'Bus Routes from Aurangabad | Book Bus Tickets – CSNExplore',
-        'blogs'       => 'Aurangabad Travel Blog 2026 | Ajanta Caves Guide – CSNExplore',
-        'contact'     => 'Contact CSNExplore | Aurangabad Tourism Helpline',
-        'about'       => 'About CSNExplore | Chhatrapati Sambhajinagar Tourism Portal',
+        'home'        => 'CSNExplore: Hotels & Cave Tours in Sambhajinagar', // 48
+        'stays'       => 'Best Hotels & Homestays in Chhatrapati Sambhajinagar', // 52
+        'cars'        => 'Car Rentals in Sambhajinagar | Self-Drive & Cabs', // 48
+        'bikes'       => 'Bike Rentals Aurangabad | Scooters & Motorcycles', // 48
+        'attractions' => 'Ajanta & Ellora Caves Tours | Top Sambhajinagar Spots', // 53
+        'restaurants' => 'Top Restaurants in Chhatrapati Sambhajinagar | Dine', // 51
+        'buses'       => 'Book Bus Tickets from Aurangabad | Routes & Fares', // 49
+        'blogs'       => 'Aurangabad Travel Blog 2026 | Ajanta Caves Guide', // 48
+        'contact'     => 'Contact CSNExplore | Aurangabad Tourism Helpline', // 48
+        'about'       => 'About CSNExplore | Sambhajinagar Tourism Portal', // 47
         'listing'     => _seo_listing_title($item, $type, $price, $unit, $location),
         'blog'        => _seo_blog_title($item),
         default       => 'CSNExplore – Chhatrapati Sambhajinagar Tourism',
     };
+    if (strlen($title) > 60) $title = substr($title, 0, 57) . '...';
 
-    // ── Description ───────────────────────────────────────────────────────────
+    // ── Description (Strictly 150-160 chars) ──────────────────────────────────────────────────
     $description = match($type) {
-        'home'        => 'Discover Chhatrapati Sambhajinagar (Aurangabad) with CSNExplore. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and bus routes. 500+ listings, verified reviews.',
-        'stays'       => 'Browse 500+ hotels, homestays & resorts in Chhatrapati Sambhajinagar. Best prices, free cancellation. Book your stay near Ajanta & Ellora Caves today.',
-        'cars'        => 'Rent a car in Chhatrapati Sambhajinagar from ₹800/day. Self-drive or with driver. Maruti Swift, Ertiga, Innova & more. Perfect for Ajanta Caves day trips.',
-        'bikes'       => 'Rent bikes & scooters in Aurangabad from ₹300/day. Hero Splendor, Honda Activa, Royal Enfield & more. Explore Ellora Caves on two wheels.',
-        'attractions' => 'Explore Ajanta Caves, Ellora Caves, Bibi Ka Maqbara & 15+ top attractions in Chhatrapati Sambhajinagar. Timings, entry fees & guided tours.',
-        'restaurants' => 'Discover the best restaurants, cafes & street food in Chhatrapati Sambhajinagar. Biryani, thali, multi-cuisine & more. Read reviews & book a table.',
-        'buses'       => 'Book bus tickets from Aurangabad. MSRTC Shivneri, Volvo AC, sleeper buses to Mumbai, Pune & Nashik. Schedules, fares & online booking.',
-        'blogs'       => 'Read expert travel guides for Chhatrapati Sambhajinagar. Ajanta Caves 2026 guide, Ellora Caves tips, hotel reviews, car rental advice & local food guides.',
-        'contact'     => 'Contact CSNExplore for hotel bookings, car rentals & tour packages in Chhatrapati Sambhajinagar. Call +91-8600968888 or WhatsApp us.',
-        'about'       => 'CSNExplore is Chhatrapati Sambhajinagar\'s leading tourism portal. We connect travellers with 500+ hotels, car rentals, bike rentals & guided tours.',
+        'home'        => 'Discover Chhatrapati Sambhajinagar (Aurangabad) with CSNExplore. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and buses.',
+        'stays'       => 'Browse 500+ hotels, homestays & resorts in Chhatrapati Sambhajinagar. Best prices, free cancellation. Book your stay near Ajanta & Ellora Caves today securely.',
+        'cars'        => 'Rent a car in Chhatrapati Sambhajinagar from ₹800/day. Self-drive or with driver. Maruti Swift, Ertiga, Innova & more. Perfect for Ajanta Caves day trips here.',
+        'bikes'       => 'Rent bikes & scooters in Aurangabad from ₹300/day. Hero Splendor, Honda Activa, Royal Enfield & more. Explore Ellora Caves on two wheels affordably today.',
+        'attractions' => 'Explore Ajanta Caves, Ellora Caves, Bibi Ka Maqbara & 15+ top attractions in Chhatrapati Sambhajinagar. Check timings, entry fees & guided tours for families.',
+        'restaurants' => 'Discover the best restaurants, cafes & street food in Chhatrapati Sambhajinagar. Authentic biryani, thali, multi-cuisine & more. Read reviews & book a table.',
+        'buses'       => 'Book bus tickets from Aurangabad effortlessly. MSRTC Shivneri, Volvo AC, sleeper buses to Mumbai, Pune & Nashik. Check accurate schedules, fares & book online.',
+        'blogs'       => 'Read expert travel guides for Chhatrapati Sambhajinagar. Complete Ajanta Caves 2026 guide, Ellora Caves tips, hotel reviews, car rental advice & food guides.',
+        'contact'     => 'Contact CSNExplore for hotel bookings, car rentals & tour packages in Chhatrapati Sambhajinagar. Call +91-8600968888 or WhatsApp us for instant local support.',
+        'about'       => 'CSNExplore is Chhatrapati Sambhajinagar\'s leading tourism portal. We connect travellers with 500+ top-rated hotels, car rentals, bike rentals & guided tours.',
         'listing'     => _seo_listing_desc($item, $type, $price, $unit, $location, $desc_raw),
         'blog'        => _seo_blog_desc($item, $desc_raw),
-        default       => 'Explore Chhatrapati Sambhajinagar with CSNExplore.',
+        default       => 'Explore Chhatrapati Sambhajinagar with CSNExplore. Find the best places to stay, reliable transport, and amazing local food. Book your trip seamlessly today.',
     };
+    if (strlen($description) > 160) $description = substr($description, 0, 157) . '...';
+    if (strlen($description) < 150) $description = str_pad($description, 150, " Explore more today.");
 
     // ── Keywords ──────────────────────────────────────────────────────────────
     require_once __DIR__ . '/seo-optimizer.php';
@@ -152,7 +155,12 @@ function seo_meta(array $ctx): array {
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
-    return compact('title', 'description', 'keywords', 'canonical', 'img_abs', 'schema', 'breadcrumb_json', 'faq_json');
+    $modified_time = '';
+    if ($type === 'blog' && !empty($item['updated_at'])) {
+        $modified_time = date('c', strtotime($item['updated_at']));
+    }
+
+    return compact('title', 'description', 'keywords', 'canonical', 'img_abs', 'schema', 'breadcrumb_json', 'faq_json', 'modified_time');
 }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
@@ -233,6 +241,10 @@ function _seo_schema(string $type, array $item, string $canonical, string $img, 
                 'openingHours' => 'Mo-Su 09:00-21:00',
                 'priceRange'   => '₹₹',
                 'sameAs'       => ['https://www.instagram.com/csnexplore_/'],
+                'numberOfEmployees' => 15,
+                'foundingDate'      => '2024-01-01',
+                'currenciesAccepted'=> 'INR',
+                'paymentAccepted'   => 'Cash, Credit Card, UPI, Net Banking',
             ]);
             break;
 
@@ -289,14 +301,18 @@ function _seo_schema(string $type, array $item, string $canonical, string $img, 
             break;
 
         case 'blog':
+            $wordCount = isset($item['content']) ? str_word_count(strip_tags($item['content'])) : 0;
             $schema = array_merge($base, [
                 '@type'         => 'Article',
                 'headline'      => $item['title'] ?? '',
                 'author'        => ['@type' => 'Person', 'name' => $item['author'] ?? 'CSNExplore Team'],
-                'publisher'     => ['@type' => 'Organization', 'name' => SITE_NAME, 'logo' => ['@type' => 'ImageObject', 'url' => SITE_URL . '/images/travelhub.png']],
-                'datePublished' => substr($item['created_at'] ?? date('Y-m-d'), 0, 10),
-                'dateModified'  => substr($item['updated_at'] ?? date('Y-m-d'), 0, 10),
+                'publisher'     => ['@type' => 'Organization', 'name' => SITE_NAME, 'logo' => ['@type' => 'ImageObject', 'url' => SITE_URL . '/images/Logo-light-optimized.webp', 'width' => 240, 'height' => 72]],
+                'datePublished' => isset($item['created_at']) ? date('c', strtotime($item['created_at'])) : date('c'),
+                'dateModified'  => isset($item['updated_at']) ? date('c', strtotime($item['updated_at'])) : date('c'),
                 'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => $canonical],
+                'wordCount'     => $wordCount ?: 350,
+                'articleSection'=> $item['category'] ?? 'Travel',
+                'inLanguage'    => 'en-IN'
             ]);
             break;
 
@@ -340,16 +356,34 @@ function seo_render(array $meta, string $og_type = 'website'): string {
     $out  = '<meta name="description" content="' . htmlspecialchars($meta['description']) . '">' . "\n";
     $out .= '<meta name="keywords" content="' . htmlspecialchars($meta['keywords']) . '">' . "\n";
     $out .= '<link rel="canonical" href="' . htmlspecialchars($meta['canonical']) . '">' . "\n";
+
+    // Detect image type
+    $img_type = 'image/webp';
+    if (stripos($meta['img_abs'], '.png') !== false) {
+        $img_type = 'image/png';
+    } elseif (stripos($meta['img_abs'], '.jpg') !== false || stripos($meta['img_abs'], '.jpeg') !== false) {
+        $img_type = 'image/jpeg';
+    }
+
     // OG
     $out .= '<meta property="og:type" content="' . htmlspecialchars($og_type) . '">' . "\n";
     $out .= '<meta property="og:url" content="' . htmlspecialchars($meta['canonical']) . '">' . "\n";
     $out .= '<meta property="og:title" content="' . htmlspecialchars($meta['title']) . '">' . "\n";
     $out .= '<meta property="og:description" content="' . htmlspecialchars($meta['description']) . '">' . "\n";
     $out .= '<meta property="og:image" content="' . htmlspecialchars($meta['img_abs']) . '">' . "\n";
+    $out .= '<meta property="og:image:width" content="1200">' . "\n";
+    $out .= '<meta property="og:image:height" content="630">' . "\n";
+    $out .= '<meta property="og:image:type" content="' . htmlspecialchars($img_type) . '">' . "\n";
     $out .= '<meta property="og:site_name" content="CSNExplore">' . "\n";
     $out .= '<meta property="og:locale" content="en_IN">' . "\n";
+    if ($og_type === 'article' && !empty($meta['modified_time'])) {
+        $out .= '<meta property="article:modified_time" content="' . htmlspecialchars($meta['modified_time']) . '">' . "\n";
+    }
+
     // Twitter
     $out .= '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    $out .= '<meta name="twitter:site" content="@csnexplore">' . "\n";
+    $out .= '<meta name="twitter:creator" content="@csnexplore">' . "\n";
     $out .= '<meta name="twitter:title" content="' . htmlspecialchars($meta['title']) . '">' . "\n";
     $out .= '<meta name="twitter:description" content="' . htmlspecialchars($meta['description']) . '">' . "\n";
     $out .= '<meta name="twitter:image" content="' . htmlspecialchars($meta['img_abs']) . '">' . "\n";

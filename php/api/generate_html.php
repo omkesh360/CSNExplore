@@ -501,6 +501,34 @@ a.text-white:hover,a.text-white:hover *,button.text-white:hover,button.text-whit
         var dl=document.getElementById(\'hdr-logout-btn\'); if(dl)dl.addEventListener(\'click\',logout);
         var ml=document.getElementById(\'mob-logout-btn\'); if(ml)ml.addEventListener(\'click\',logout);
     })();
+
+    // CSRF Protection Fetch Interceptor
+    (function() {
+        var originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            options = options || {};
+            var method = (options.method || \'GET\').toUpperCase();
+            if ([\'POST\', \'PUT\', \'DELETE\'].includes(method)) {
+                var isRelative = !url.match(/^(?:https?:)?\/\//i);
+                var isSameOrigin = url.startsWith(window.location.origin);
+                if (isRelative || isSameOrigin) {
+                    options.headers = options.headers || {};
+                    var matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                    var csrfToken = matches ? decodeURIComponent(matches[1]) : \'\';
+                    if (csrfToken) {
+                        if (options.headers instanceof Headers) {
+                            options.headers.set(\'X-CSRF-Token\', csrfToken);
+                        } else if (Array.isArray(options.headers)) {
+                            options.headers.push([\'X-CSRF-Token\', csrfToken]);
+                        } else {
+                            options.headers[\'X-CSRF-Token\'] = csrfToken;
+                        }
+                    }
+                }
+            }
+            return originalFetch(url, options);
+        };
+    })();
 </script>
 ';
 

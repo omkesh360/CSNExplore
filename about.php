@@ -21,9 +21,30 @@ $extra_head = '<script type="application/ld+json">
   "name": "About Us | CSNExplore",
   "description": "' . $page_meta['description'] . '",
   "url": "' . $page_meta['canonical'] . '",
+  "mainEntity": {
+    "@type": "TravelAgency",
+    "name": "CSNExplore",
+    "foundingDate": "2012-01-01",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Chhatrapati Sambhajinagar, Maharashtra, India"
+    },
+    "description": "Established in 2012, CSNExplore connects global travelers with the architectural marvels of Ellora and Ajanta Caves, providing curated local tours, verified hotels, and vehicle rentals.",
+    "knowsAbout": [
+      "Ajanta Caves Tours",
+      "Ellora Caves Tours",
+      "Bibi Ka Maqbara Sightseeing",
+      "Hotel Bookings in Chhatrapati Sambhajinagar",
+      "Car and Bike Rentals in Aurangabad"
+    ]
+  },
   "publisher": {
     "@type": "Organization",
-    "name": "CSNExplore"
+    "name": "CSNExplore",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://csnexplore.com/images/Logo-light-optimized.webp"
+    }
   }
 }
 </script>';

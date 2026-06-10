@@ -8,6 +8,10 @@ require_once 'php/config.php';
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title><?php echo htmlspecialchars($page_title); ?></title>
+<link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-180x180.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -27,10 +31,52 @@ body{font-family:'Inter',sans-serif;}
     gtag('js', new Date());
     gtag('config', 'G-58P4JE1SYS');
 </script>
+<!-- CSRF Protection Fetch Interceptor -->
+<script>
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        options = options || {};
+        const method = (options.method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'DELETE'].includes(method)) {
+            const isRelative = !url.match(/^(?:https?:)?\/\//i);
+            const isSameOrigin = url.startsWith(window.location.origin);
+            if (isRelative || isSameOrigin) {
+                options.headers = options.headers || {};
+                const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                console.log('[CSRF Debug] Matches:', matches);
+                console.log('[CSRF Debug] Found token in cookie:', csrfToken);
+                if (csrfToken) {
+                    if (options.headers instanceof Headers) {
+                        options.headers.set('X-CSRF-Token', csrfToken);
+                    } else if (Array.isArray(options.headers)) {
+                        options.headers.push(['X-CSRF-Token', csrfToken]);
+                    } else {
+                        options.headers['X-CSRF-Token'] = csrfToken;
+                    }
+                    console.log('[CSRF Debug] Attached header:', options.headers);
+                } else {
+                    console.warn('[CSRF Debug] No csrf_token cookie found in document.cookie:', document.cookie);
+                }
+            }
+        }
+        return originalFetch(url, options);
+    };
+})();
+</script>
 </head>
 <body class="bg-white min-h-screen">
 <script>
 (function(){
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('session_expired')) {
+        localStorage.removeItem('csn_admin_token');
+        localStorage.removeItem('csn_admin_user');
+        localStorage.removeItem('csn_token');
+        localStorage.removeItem('csn_user');
+        return;
+    }
     var token=localStorage.getItem('csn_admin_token');
     var user=JSON.parse(localStorage.getItem('csn_admin_user')||'null');
     if(token&&user&&user.role==='admin'){

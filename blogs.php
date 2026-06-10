@@ -14,19 +14,6 @@ $page_meta = [
     ],
 ];
 
-$extra_head = '<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "CSNExplore Travel Blogs",
-  "description": "' . $page_meta['description'] . '",
-  "url": "https://csnexplore.com/blogs",
-  "publisher": {
-    "@type": "Organization",
-    "name": "CSNExplore"
-  }
-}
-</script>';
 $db = getDB();
 
 // Filters
@@ -40,20 +27,40 @@ if ($cat_filter) { $where[] = 'category = ?'; $params[] = $cat_filter; }
 if ($search_filter) { $where[] = '(title LIKE ? OR content LIKE ?)'; $params[] = '%'.$search_filter.'%'; $params[] = '%'.$search_filter.'%'; }
 $where_sql = implode(' AND ', $where);
 
-$total_blogs = $db->fetchOne("SELECT COUNT(*) as cnt FROM blogs WHERE $where_sql", $params)['cnt'];
+$page = max(1, (int)($_GET['page'] ?? 1));
+$limit = 12;
+$offset = ($page - 1) * $limit;
 
-$blogs = $db->fetchAll("SELECT * FROM blogs WHERE $where_sql ORDER BY created_at DESC", $params);
-foreach ($blogs as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
+$total_cache_key = 'blogs_count_' . md5($where_sql . serialize($params));
+$total_blogs = ObjectCache::get($total_cache_key);
+if ($total_blogs === false) {
+    $total_blogs = $db->fetchOne("SELECT COUNT(*) as cnt FROM blogs WHERE $where_sql", $params)['cnt'];
+    ObjectCache::set($total_cache_key, $total_blogs, 3600);
+}
+
+$cache_key = 'blogs_page_' . $page . '_' . md5($where_sql . serialize($params));
+$all_blogs_for_filter = ObjectCache::get($cache_key);
+if ($all_blogs_for_filter === false) {
+    $all_blogs_for_filter = $db->fetchAll("SELECT id, title, image, category, read_time, created_at, author, excerpt, meta_description, tags FROM blogs WHERE $where_sql ORDER BY created_at DESC LIMIT $limit OFFSET $offset", $params);
+    ObjectCache::set($cache_key, $all_blogs_for_filter, 3600);
+}
+
+foreach ($all_blogs_for_filter as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
 unset($b);
 
 // Featured = first blog on page 1 with no filters
 $featured = null;
-if (!$cat_filter && !$search_filter && !empty($blogs)) {
-    $featured = array_shift($blogs);
+if (!$cat_filter && !$search_filter && $page === 1 && !empty($all_blogs_for_filter)) {
+    $featured = array_shift($all_blogs_for_filter);
 }
 
 // Categories for filter
-$categories = $db->fetchAll("SELECT DISTINCT category FROM blogs WHERE status='published' ORDER BY category ASC");
+$cat_cache_key = 'blogs_categories';
+$categories = ObjectCache::get($cat_cache_key);
+if ($categories === false) {
+    $categories = $db->fetchAll("SELECT DISTINCT category FROM blogs WHERE status='published' ORDER BY category ASC");
+    ObjectCache::set($cat_cache_key, $categories, 86400);
+}
 
 function blogSlug($blog) {
     $t = strtolower(trim($blog['title']));
@@ -61,6 +68,50 @@ function blogSlug($blog) {
     $t = preg_replace('/[\s-]+/', '-', $t);
     return BASE_PATH . '/blogs/' . $blog['id'] . '-' . substr(trim($t, '-'), 0, 60) . '.html';
 }
+
+// Dynamic Pagination Meta Links and CollectionPage Schema
+$totalPages = (int)ceil($total_blogs / $limit);
+$prev_link = '';
+$next_link = '';
+$cat_query = $cat_filter ? '&category=' . urlencode($cat_filter) : '';
+$search_query = $search_filter ? '&search=' . urlencode($search_filter) : '';
+
+if ($page > 1) {
+    $prev_url = 'https://csnexplore.com/blogs?page=' . ($page - 1) . $cat_query . $search_query;
+    $prev_link = '<link rel="prev" href="' . htmlspecialchars($prev_url) . '">' . "\n";
+}
+if ($page < $totalPages) {
+    $next_url = 'https://csnexplore.com/blogs?page=' . ($page + 1) . $cat_query . $search_query;
+    $next_link = '<link rel="next" href="' . htmlspecialchars($next_url) . '">' . "\n";
+}
+
+$extra_head = $prev_link . $next_link . '<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "CSNExplore Travel Blogs & Stories",
+  "description": "' . $page_meta['description'] . '",
+  "url": "https://csnexplore.com/blogs?page=' . $page . $cat_query . $search_query . '",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CSNExplore",
+    "url": "https://csnexplore.com"
+  },
+  "about": {
+    "@type": "Place",
+    "name": "Chhatrapati Sambhajinagar",
+    "alternateName": "Aurangabad"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CSNExplore",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://csnexplore.com/images/Logo-light-optimized.webp"
+    }
+  }
+}
+</script>';
 
 $extra_styles = "
     .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
@@ -133,15 +184,7 @@ require 'header.php';
 <?php endif; ?>
 
 <?php
-// Re-fetch ALL blogs for this filter (for client-side load more)
-$all_blogs_for_filter = $db->fetchAll("SELECT * FROM blogs WHERE $where_sql ORDER BY created_at DESC", $params);
-foreach ($all_blogs_for_filter as &$b) $b['tags'] = json_decode($b['tags'] ?? '[]', true) ?: [];
-unset($b);
-// Remove featured from the list
-if ($featured) {
-    $all_blogs_for_filter = array_filter($all_blogs_for_filter, fn($b) => $b['id'] !== $featured['id']);
-    $all_blogs_for_filter = array_values($all_blogs_for_filter);
-}
+// `$all_blogs_for_filter` already fetched and cached above.
 $total_grid_blogs = count($all_blogs_for_filter);
 ?>
 <div class="max-w-[1140px] mx-auto px-5 py-12">
@@ -233,7 +276,7 @@ $total_grid_blogs = count($all_blogs_for_filter);
                     <?php echo htmlspecialchars($blog['title']); ?>
                 </h4>
                 <p class="text-slate-600 text-sm line-clamp-2 mb-6">
-                    <?php echo htmlspecialchars($blog['meta_description'] ?? strip_tags(substr($blog['content'], 0, 150)) . '...'); ?>
+                    <?php echo htmlspecialchars($blog['meta_description'] ?: ($blog['excerpt'] ?: '')); ?>
                 </p>
                 <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
                     <a class="text-primary font-bold text-sm flex items-center gap-1 group/btn" href="<?php echo blogSlug($blog); ?>">
@@ -247,6 +290,18 @@ $total_grid_blogs = count($all_blogs_for_filter);
         <?php endforeach; ?>
     </div>
 
+    <?php endif; ?>
+
+    <?php if ($total_blogs > $limit): $totalPages = ceil($total_blogs / $limit); ?>
+    <div class="flex justify-center mt-12 gap-2">
+        <?php if ($page > 1): ?>
+        <a href="?page=<?php echo $page-1; ?><?php echo $cat_filter?'&category='.urlencode($cat_filter):''; ?><?php echo $search_filter?'&search='.urlencode($search_filter):''; ?>" class="px-4 py-2 bg-white border border-slate-200 rounded-xl font-bold text-slate-700 hover:border-primary hover:text-primary transition-all shadow-sm">Prev</a>
+        <?php endif; ?>
+        <span class="px-4 py-2 text-slate-500 font-semibold bg-slate-50 rounded-xl border border-slate-100 shadow-sm">Page <?php echo $page; ?> of <?php echo $totalPages; ?></span>
+        <?php if ($page < $totalPages): ?>
+        <a href="?page=<?php echo $page+1; ?><?php echo $cat_filter?'&category='.urlencode($cat_filter):''; ?><?php echo $search_filter?'&search='.urlencode($search_filter):''; ?>" class="px-4 py-2 bg-white border border-slate-200 rounded-xl font-bold text-slate-700 hover:border-primary hover:text-primary transition-all shadow-sm">Next</a>
+        <?php endif; ?>
+    </div>
     <?php endif; ?>
 
     <!-- Newsletter -->

@@ -151,44 +151,6 @@
             </p>
         </div>
 
-        <!-- Hidden Advanced SEO Content Block for Specific Keywords (Visually Hidden) -->
-        <div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" aria-hidden="true">
-            <h1>csnexplore - CSN Explore</h1>
-            <h2>Tour Packages & Itineraries</h2>
-            <p>Explore Aurangabad on a Budget: Top Travel Tips</p>
-            <p>Ultimate Aurangabad Itinerary: Best Places to Visit Under 2 Days</p>
-            <p>The Perfect Aurangabad Trip Under 3 Days for Weekend Travelers</p>
-            <p>Solo Traveling in Aurangabad: The Ultimate Backpacker's Guide</p>
-            <p>Safe Solo Female Travel Guide to Aurangabad: Tips for Single Women Travelers</p>
-            <h2>Accommodations (Hotels, Hostels & Dorms)</h2>
-            <p>Best Hotels Near Aurangabad for Every Budget and Traveler</p>
-            <p>Top Hostels in Aurangabad for Backpackers and Solo Travelers</p>
-            <p>Affordable Hostels Near Satara Parisar, Aurangabad</p>
-            <p>Top Spa Hotels in Aurangabad for a Relaxing Getaway</p>
-            <p>Budget Hotels Under ₹2000 in Aurangabad (Chhatrapati Sambhajinagar)</p>
-            <p>Affordable Dormitories in Aurangabad for Budget Backpackers</p>
-            <p>Cheap Hotels on Cot Basis in Aurangabad for Solo or Group Stays</p>
-            <h2>Transport & Vehicle Rentals</h2>
-            <p>Reliable Cab Booking in Aurangabad for Ajanta & Ellora Tours</p>
-            <p>Affordable Bike Rentals in Aurangabad: Top Bike Models Available</p>
-            <p>Best Bike Rentals Under ₹5000 in Aurangabad for Long Trips</p>
-            <p>Top Rated Car Rentals Near Me in Aurangabad</p>
-            <p>Budget Car Rentals Under ₹3000 in Aurangabad</p>
-            <p>Premium Sedan Car Rentals in Aurangabad for Comfortable Travel</p>
-            <p>Spacious SUV Rentals in Aurangabad for Family Outstation Trips</p>
-            <h2>Food, Dining & Restaurants</h2>
-            <p>Best Places to Dine Near Aurangabad: Top Restaurants and Eateries</p>
-            <p>Authentic Maharashtrian Thali and Local Cuisine in Aurangabad</p>
-            <p>Best Continental Restaurants and Cafes in Aurangabad</p>
-            <p>Top Pure Veg Restaurants in Aurangabad for Family Dining</p>
-            <p>Best Jain Hotels in Aurangabad Serving Authentic Jain Food</p>
-            <p>Famous Biryani Shops in Aurangabad You Absolutely Must Try</p>
-            <h2>More Explore Options & Common Misspellings</h2>
-            <p>csn explore, csnexplore, hotel aurnagabd, stays aunaagabd, destiation aiurnagabd, restraiunt aurabgabd, car rental aurangabad, bike rental aurangabad, tempo rental auataraafabd, bed, stays, cars, bikes, attractions, dine, buses in atranhgabad.</p>
-            <p>Anything about Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, auragabad, aurnagabad, aurangabda, awrangabad, orangabad, orangbad. Chhatrapati Sambhajinagar, Chtarapati sambhajinagar, chatrapati sambhajinagar, chatrpati sambhajinagar, chhatrpati sambhajinagar, sambhajinagar, shambhaji nagar, sambhaji nagar, shivaji nagar, sambhajinagr. csnexplore, csn explore, csnxplore, csnexlpor, cnsexplore, cs explore, csn explorer, cs nexplore, csnxplor.</p>
-            <p>Ultimate Search Queries: hotels in auraanagabad, styas in auranagabd, homestya in aurnagabd, rooms in auranagabd, bike rentakls in auranagabd, motocclr rental in auarabad, tmepo rental in auarbaand, sedan in auaraanagabd, suv in auranagabd, muv in aauaranagabd, dinein auarnagabd, restraunt in auranagabd, food i auaranagabd, bus booking, travles ooking, crsuies booki ng in auarabafad air flights anything.</p>
-        </div>
-
         <!-- Comprehensive LocalBusiness Schema Injection -->
         <script type="application/ld+json">
         {
@@ -197,13 +159,19 @@
           "name": "CSNExplore",
           "alternateName": ["csn explore", "csnxplore", "cnsexplore", "cs explore", "Aurangabad Tourism", "Chhatrapati Sambhajinagar Travel"],
           "url": "https://csnexplore.com",
-          "logo": "https://csnexplore.com/images/Logo-light-optimized.webp",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://csnexplore.com/images/Logo-light-optimized.webp",
+            "width": 240,
+            "height": 72
+          },
+          "image": "https://csnexplore.com/images/Logo-light-optimized.webp",
           "description": "CSNExplore is the ultimate tourism portal for Chhatrapati Sambhajinagar (Aurangabad). We offer budget car rentals, bike rentals, verified hotels, dormitories, and complete tour packages for Ajanta and Ellora Caves.",
           "telephone": "+91-8600968888",
           "email": "supportcsnexplore@gmail.com",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Jay Tower, V896+MP9, Samadhan Colony, Padampura",
+            "streetAddress": "Jay Tower, Samadhan Colony, Padampura",
             "addressLocality": "Chhatrapati Sambhajinagar",
             "addressRegion": "Maharashtra",
             "postalCode": "431005",
@@ -211,8 +179,8 @@
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 19.8686039,
-            "longitude": 75.3131686
+            "latitude": 19.8762,
+            "longitude": 75.3433
           },
           "areaServed": [
             {
@@ -221,17 +189,25 @@
               "alternateName": "Aurangabad"
             },
             {
-              "@type": "City",
+              "@type": "AdministrativeArea",
               "name": "Maharashtra"
             }
           ],
           "priceRange": "₹₹",
-          "openingHours": "Mo-Su 09:00-19:00",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "09:00",
+            "closes": "21:00"
+          },
+          "currenciesAccepted": "INR",
+          "paymentAccepted": "Cash, Credit Card, UPI, Net Banking",
           "sameAs": [
             "https://www.facebook.com/csnexplore",
-            "https://www.instagram.com/csnexplore"
+            "https://www.instagram.com/csnexplore_/",
+            "https://twitter.com/csnexplore"
           ],
-          "keywords": "auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore, rent a bike in Aurangabad, best budget car rentals in Aurangabad, top 10 dormitories near Chhatrapati Sambhajinagar, hotels in auraanagabad, styas in auranagabd, homestya in aurnagabd, rooms in auranagabd, bike rentakls in auranagabd, motocclr rental in auarabad, tmepo rental in auarbaand, sedan in auaraanagabd, suv in auranagabd, muv in aauaranagabd, dinein auarnagabd, restraunt in auranagabd, food i auaranagabd, bus booking, travles ooking, crsuies booki ng in auarabafad air"
+          "keywords": "rent a bike in Aurangabad, best hotels in Aurangabad, car rental Chhatrapati Sambhajinagar, Aurangabad caves tour"
         }
         </script>
 
@@ -257,8 +233,7 @@
         style="font-size:22px;line-height:1;pointer-events:none;">arrow_upward</span>
 </button>
 <style>
-    @media (max-width: 1024px) { #go-top-btn { left: 20px !important; right: auto !important; } }
-    @media (min-width: 1025px) { #go-top-btn { right: 20px !important; left: auto !important; } }
+    #go-top-btn { right: 20px !important; left: auto !important; }
 </style>
 
 <?php

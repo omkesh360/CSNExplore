@@ -5,7 +5,7 @@ ServerSignature Off
 FileETag MTime Size
 
 # ── Block migration/utility scripts from web access ──────────────────────────
-<FilesMatch "^(run_index_migration|check_images|check_images_info|cleanup_images|convert_images|convert_uploads|diagnose_images|fix_jpg_as_png|gen_512icon|gen_mobile_hero|generate_webp_variants|minify_css|optimize_images|seed_blogs_1|seed_blogs_2)\.php$">
+<FilesMatch "^(run_index_migration|check_images|check_images_info|cleanup_images|convert_images|convert_uploads|diagnose_images|fix_jpg_as_png|gen_512icon|gen_mobile_hero|generate_webp_variants|minify_css|optimize_images|seed_blogs_1|seed_blogs_2|regenerate_favicons|router|install)\.php$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -60,20 +60,20 @@ FileETag MTime Size
     Header always set X-XSS-Protection          "1; mode=block"
     Header always set Referrer-Policy           "strict-origin-when-cross-origin"
     Header always set Permissions-Policy        "geolocation=(), microphone=(), camera=()"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
-    Header always set Content-Security-Policy   "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https://challenges.cloudflare.com https://www.google.com;"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Content-Security-Policy   "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https://challenges.cloudflare.com https://www.google.com;"
     
     # SEO-friendly headers
     Header set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     
     # Sitemap autodiscovery header (tells crawlers where sitemap is without needing robots.txt)
-    Header set Link "<https://csnexplore.com/sitemap.xml>; rel=sitemap"
+    Header append Link "<https://csnexplore.com/sitemap.xml>; rel=sitemap"
     
     # hreflang for Indian English geographic targeting
-    Header always set Link "<https://csnexplore.com/>; rel=alternate; hreflang=en-IN"
+    Header append Link "<https://csnexplore.com/>; rel=alternate; hreflang=en-IN"
     
     # Performance: resource hints
-    Header always set Link "<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin"
+    Header append Link "<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin"
     
     # Static listing-detail HTML pages can be cached (pre-generated, rarely change)
     # Cache duration controlled by admin Caching settings (default 24h when enabled)
@@ -267,6 +267,7 @@ AddType image/webp .webp
 
     # ── 2. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
     # Extract blog ID from URL and route to dynamic blog-detail.php
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^blogs/(?:blogs-)?([0-9]+)-[a-z0-9-]+(?:\.html)?$ blog-detail.php?id=$1 [L,QSA]
 
     # Explicitly handle /blogs to blogs.php if it's being hijacked by directory redirect
@@ -313,8 +314,8 @@ AddType image/webp .webp
     RewriteRule ^listing/?$           listing.php     [QSA,L]
     RewriteRule ^blog-detail/?$       blog-detail.php [QSA,L]
 
-    # sitemap.xml is a static file written by the admin Regenerate tool
-    # Apache serves it directly — no PHP rewrite needed
+    # Serve dynamic sitemap
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 </IfModule>
 
 # ── Custom Error Pages ────────────────────────────────────────────────────────

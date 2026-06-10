@@ -3,7 +3,8 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -66,13 +67,6 @@ try {
         $data = getJsonInput();
         if (empty($data['title']) || empty($data['content'])) sendError('Title and content required', 400);
 
-        // Auto-generate slug if not provided
-        $slug = sanitize($data['slug'] ?? '');
-        if ($slug === '') {
-            $slug = generateSlug('blogs', 0, $data['title']);
-            // Will be updated after insert with real ID
-        }
-
         $newId = $db->insert('blogs', [
             'title'            => sanitize($data['title']),
             'content'          => sanitizeHtml($data['content']),
@@ -87,14 +81,17 @@ try {
             'meta_title'       => sanitize($data['meta_title'] ?? ''),
             'meta_keywords'    => sanitize($data['meta_keywords'] ?? ''),
             'focus_keyword'    => sanitize($data['focus_keyword'] ?? ''),
-            'slug'             => generateSlug('blogs', $newId ?? 0, $data['title']),
+            'slug'             => '', // Initial empty placeholder
             'seo_score'        => min(100, max(0, (int)($data['seo_score'] ?? 0))),
             'linked_listings'  => isset($data['linked_listings']) ? json_encode($data['linked_listings']) : null,
         ]);
 
-        // Update slug with real ID
-        $finalSlug = generateSlug('blogs', $newId, $data['title']);
-        $db->update('blogs', ['slug' => $finalSlug], 'id = :id', [':id' => $newId]);
+        // Calculate final slug using real ID and update once
+        $slug = sanitize($data['slug'] ?? '');
+        if ($slug === '') {
+            $slug = generateSlug('blogs', $newId, $data['title']);
+        }
+        $db->update('blogs', ['slug' => $slug], 'id = :id', [':id' => $newId]);
 
         $blog = $db->fetchOne("SELECT * FROM blogs WHERE id = ?", [$newId]);
         $blog['tags'] = json_decode($blog['tags'] ?? '[]', true) ?: [];
@@ -177,8 +174,12 @@ function regenerateBlogHtml(int $blogId): void {
     if (!file_exists($genScript)) return;
     // Run in background so the API response isn't blocked
     if (PHP_OS_FAMILY === 'Windows') {
-        pclose(popen("start /B C:\\xampp\\php\\php.exe \"$genScript\" blog $blogId", 'r'));
+        // Local dev: use XAMPP php path
+        $phpBin = PHP_BINARY; // use the currently running PHP binary
+        pclose(popen("start /B \"\" \"$phpBin\" \"$genScript\" blog $blogId", 'r'));
     } else {
-        exec("C:\\xampp\\php\\php.exe \"$genScript\" blog $blogId > /dev/null 2>&1 &");
+        // Production Linux: use php from PATH
+        $phpBin = PHP_BINARY ?: 'php';
+        exec(escapeshellarg($phpBin) . ' ' . escapeshellarg($genScript) . ' blog ' . (int)$blogId . ' > /dev/null 2>&1 &');
     }
 }

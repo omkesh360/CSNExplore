@@ -191,14 +191,18 @@ function renderGallery() {
             '<img width="180" height="40" class="gallery-img" src="' + img.url + '" loading="lazy" alt="' + name + '"' +
             '     onerror="this.src=\'../images/travelhub.png\'" />' +
             '<div class="img-actions">' +
-                '<div class="flex gap-1.5">' +
+                '<div class="flex gap-1 flex-wrap">' +
                     '<button onclick="event.stopPropagation();copyUrl(\'' + img.url + '\')" ' +
-                            'class="flex-1 bg-white/20 backdrop-blur text-white text-[11px] font-bold py-1.5 rounded-lg hover:bg-white/30 transition-all flex items-center justify-center gap-1">' +
-                        '<span class="material-symbols-outlined text-sm">content_copy</span>Copy' +
+                            'class="flex-1 bg-white/20 backdrop-blur text-white text-[10px] font-bold py-1.5 px-1 rounded-lg hover:bg-white/30 transition-all flex items-center justify-center gap-1">' +
+                        '<span class="material-symbols-outlined text-[13px]">link</span>URL' +
+                    '</button>' +
+                    '<button onclick="event.stopPropagation();copyHtml(\'' + img.url + '\', \'' + shortName + '\')" ' +
+                            'class="flex-1 bg-blue-500/80 backdrop-blur text-white text-[10px] font-bold py-1.5 px-1 rounded-lg hover:bg-blue-600 transition-all flex items-center justify-center gap-1">' +
+                        '<span class="material-symbols-outlined text-[13px]">code</span>HTML' +
                     '</button>' +
                     '<button onclick="event.stopPropagation();deleteImage(\'' + img.filename + '\')" ' +
-                            'class="flex-1 bg-red-500/80 backdrop-blur text-white text-[11px] font-bold py-1.5 rounded-lg hover:bg-red-600 transition-all flex items-center justify-center gap-1">' +
-                        '<span class="material-symbols-outlined text-sm">delete</span>Del' +
+                            'class="flex-1 bg-red-500/80 backdrop-blur text-white text-[10px] font-bold py-1.5 px-1 rounded-lg hover:bg-red-600 transition-all flex items-center justify-center gap-1">' +
+                        '<span class="material-symbols-outlined text-[13px]">delete</span>Del' +
                     '</button>' +
                 '</div>' +
             '</div>' +
@@ -272,6 +276,12 @@ async function deleteLbImage() {
 /* ── Copy URL from grid ── */
 function copyUrl(url) {
     navigator.clipboard.writeText(url).then(function(){ showAdminToast('URL copied!'); });
+}
+
+/* ── Copy HTML from grid ── */
+function copyHtml(url, name) {
+    var html = '<img src="' + url + '" alt="' + name.replace(/"/g, '&quot;') + '" loading="lazy" class="w-full h-auto rounded-lg shadow-md my-4">';
+    navigator.clipboard.writeText(html).then(function(){ showAdminToast('HTML Copied to clipboard!'); });
 }
 
 /* ── Delete from grid ── */

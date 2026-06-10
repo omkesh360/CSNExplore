@@ -9,7 +9,8 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -17,21 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 $method = $_SERVER['REQUEST_METHOD'];
 $db     = getDB();
 
-// ── Auth helper ──────────────────────────────────────────────────────────────
 function getAuthUser(): ?array {
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION']
-               ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
-               ?? (function_exists('apache_request_headers') ? (apache_request_headers()['Authorization'] ?? '') : '');
-    if (!preg_match('/Bearer\s+(.+)/i', $authHeader, $m)) return null;
-    try {
-        $payload = verifyJWT($m[1], JWT_SECRET);
-        return $payload ?? null;
-    } catch (Exception $e) { return null; }
+    $token = getAuthToken();
+    if (!$token) return null;
+    $payload = verifyJWT($token, JWT_SECRET);
+    return $payload ?: null;
 }
 
 $validRefTypes = ['blog', 'listing', 'stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
 
 try {
+    validateCsrf();
 
     if ($method === 'GET') {
         $refType = $_GET['ref_type'] ?? '';

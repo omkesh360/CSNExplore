@@ -85,6 +85,7 @@ if ($db) {
                     'description' => $r['description'] ?? '',
                 ];
             }
+            unset($rows);
         } catch (Exception $e) {}
     }
     // Special handling for buses (uses operator/from_location/to_location/bus_type)
@@ -101,6 +102,7 @@ if ($db) {
                 'description' => $r['description'] ?? '',
             ];
         }
+        unset($rows);
     } catch (Exception $e) {}
 
     try {
@@ -115,6 +117,7 @@ if ($db) {
                 'description' => $b['description'] ?? '',
             ];
         }
+        unset($dbBlogs);
     } catch (Exception $e) {}
 }
 

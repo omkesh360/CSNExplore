@@ -76,6 +76,7 @@ class Database {
         if ($this->useCache && !is_dir($this->cacheDir)) {
             @mkdir($this->cacheDir, 0755, true);
         }
+        
     }
 
     private $apcuAvailable = null;
@@ -393,6 +394,13 @@ class Database {
           INDEX `idx_vendor_rooms` (`vendor_id`),
           INDEX `idx_room_type` (`room_type_id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+        CREATE TABLE IF NOT EXISTS `rate_limits` (
+          `ip_key` VARCHAR(100) PRIMARY KEY,
+          `attempts` INT NOT NULL,
+          `first_attempt` INT NOT NULL,
+          `expires_at` INT NOT NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         ");
 
         // Activity logs table (always safe — IF NOT EXISTS)
@@ -459,6 +467,12 @@ class Database {
             }
         }
         
+        // Add performance indexes
+        try { $this->db->exec("ALTER TABLE `blogs` ADD INDEX `idx_status_category` (`status`, `category`)"); } catch (Exception $e) {}
+        foreach ($tables as $table) {
+            try { $this->db->exec("ALTER TABLE `$table` ADD INDEX `idx_active_order` (`is_active`, `display_order`)"); } catch (Exception $e) {}
+            try { $this->db->exec("ALTER TABLE `$table` ADD INDEX `idx_type` (`type`)"); } catch (Exception $e) {}
+        }
 
         // Add linked_listings column to blogs if not exists (for existing installs)
         try {
@@ -481,6 +495,9 @@ class Database {
         } catch (Exception $e) { /* column already exists */ }
         try {
             $this->db->exec("ALTER TABLE `blogs` ADD COLUMN `excerpt` TEXT DEFAULT NULL");
+        } catch (Exception $e) { /* column already exists */ }
+        try {
+            $this->db->exec("ALTER TABLE `jobs` ADD COLUMN `attempts` INT NOT NULL DEFAULT 0 AFTER `payload`");
         } catch (Exception $e) { /* column already exists */ }
 
         // Create comments table if not exists (for existing installs)

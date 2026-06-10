@@ -402,11 +402,29 @@ class SEOOptimizer {
             'name' => 'CSNExplore',
             'alternateName' => 'CSN Explore',
             'url' => SITE_URL,
-            'logo' => SITE_URL . '/images/travelhub.png',
-            'image' => SITE_URL . '/images/travelhub.png',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => SITE_URL . '/images/Logo-light-optimized.webp',
+                'width' => 240,
+                'height' => 72
+            ],
+            'image' => SITE_URL . '/images/Logo-light-optimized.webp',
             'description' => 'Leading tourism portal for Chhatrapati Sambhajinagar (Aurangabad). Book hotels, car rentals, bike rentals, and explore Ajanta & Ellora Caves.',
             'telephone' => '+91-8600968888',
             'email' => 'supportcsnexplore@gmail.com',
+            'founder' => [
+                '@type' => 'Person',
+                'name' => 'Omkesh'
+            ],
+            'foundingDate' => '2024-01-01',
+            'numberOfEmployees' => 15,
+            'contactPoint' => [
+                '@type' => 'ContactPoint',
+                'telephone' => '+91-8600968888',
+                'contactType' => 'customer service',
+                'areaServed' => 'IN',
+                'availableLanguage' => ['English', 'Hindi', 'Marathi']
+            ],
             'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => 'Jay Tower, Padampura',
@@ -460,10 +478,38 @@ class SEOOptimizer {
             '@context' => 'https://schema.org',
             '@type' => 'LocalBusiness',
             'name' => 'CSNExplore',
-            'image' => SITE_URL . '/images/travelhub.png',
+            'image' => SITE_URL . '/images/Logo-light-optimized.webp',
             'telephone' => '+91-8600968888',
             'email' => 'supportcsnexplore@gmail.com',
             'url' => SITE_URL,
+            'hasMap' => 'https://maps.google.com/?q=Jay+Tower+Padampura+Chhatrapati+Sambhajinagar',
+            'hasOfferCatalog' => [
+                '@type' => 'OfferCatalog',
+                'name' => 'CSNExplore Services',
+                'itemListElement' => [
+                    [
+                        '@type' => 'Offer',
+                        'itemOffered' => [
+                            '@type' => 'Service',
+                            'name' => 'Hotel Booking'
+                        ]
+                    ],
+                    [
+                        '@type' => 'Offer',
+                        'itemOffered' => [
+                            '@type' => 'Service',
+                            'name' => 'Car Rental'
+                        ]
+                    ],
+                    [
+                        '@type' => 'Offer',
+                        'itemOffered' => [
+                            '@type' => 'Service',
+                            'name' => 'Bike Rental'
+                        ]
+                    ]
+                ]
+            ],
             'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => 'Jay Tower, Padampura',
@@ -541,14 +587,22 @@ class SEOOptimizer {
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
             'name' => 'CSNExplore',
-            'alternateName' => 'CSN Explore - Chhatrapati Sambhajinagar Tourism',
-            'url' => SITE_URL,
+            'alternateName' => ['CSN Explore', 'csnexplore'],
+            'url' => SITE_URL . '/',
             'potentialAction' => [
                 [
                     '@type' => 'SearchAction',
                     'target' => [
                         '@type' => 'EntryPoint',
-                        'urlTemplate' => SITE_URL . '/listing/stays?search={search_term_string}'
+                        'urlTemplate' => SITE_URL . '/listing?search={search_term_string}'
+                    ],
+                    'query-input' => 'required name=search_term_string'
+                ],
+                [
+                    '@type' => 'SearchAction',
+                    'target' => [
+                        '@type' => 'EntryPoint',
+                        'urlTemplate' => SITE_URL . '/blogs?search={search_term_string}'
                     ],
                     'query-input' => 'required name=search_term_string'
                 ]
@@ -558,9 +612,9 @@ class SEOOptimizer {
                 'name' => 'CSNExplore',
                 'logo' => [
                     '@type' => 'ImageObject',
-                    'url' => SITE_URL . '/images/travelhub.png',
-                    'width' => 800,
-                    'height' => 600
+                    'url' => SITE_URL . '/images/Logo-light-optimized.webp',
+                    'width' => 240,
+                    'height' => 72
                 ]
             ]
         ];
@@ -629,6 +683,56 @@ class SEOOptimizer {
             '@context' => 'https://schema.org',
             '@type' => 'BreadcrumbList',
             'itemListElement' => $items
+        ];
+    }
+    
+    /**
+     * Generate HowTo Schema for the homepage
+     */
+    public static function generateHowToSchema() {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'HowTo',
+            'name' => 'How to Book a Stay or Rent a Vehicle in Chhatrapati Sambhajinagar',
+            'description' => 'A step-by-step guide to booking verified stays, hotels, self-drive cars, or bike rentals in Chhatrapati Sambhajinagar (Aurangabad) via CSNExplore.',
+            'estimatedCost' => [
+                '@type' => 'HowToSupply',
+                'estimatedCost' => '0',
+                'currency' => 'INR'
+            ],
+            'totalTime' => 'PT5M',
+            'step' => [
+                [
+                    '@type' => 'HowToStep',
+                    'name' => 'Select Service Type',
+                    'text' => 'Visit CSNExplore and choose between Stays, Cars, or Bikes depending on your travel needs in Chhatrapati Sambhajinagar.',
+                    'url' => SITE_URL . '/'
+                ],
+                [
+                    '@type' => 'HowToStep',
+                    'name' => 'Browse Verified Listings',
+                    'text' => 'Browse through our extensive list of hotels, homestays, self-drive cars, and scooters available in Aurangabad. Filter by price, ratings, and specific locations.',
+                    'url' => SITE_URL . '/listing'
+                ],
+                [
+                    '@type' => 'HowToStep',
+                    'name' => 'Check Details & Reviews',
+                    'text' => 'Click on any hotel or vehicle listing to view high-resolution photos, detailed specifications, pricing structure, and authentic reviews from previous travelers.',
+                    'url' => SITE_URL . '/listing'
+                ],
+                [
+                    '@type' => 'HowToStep',
+                    'name' => 'Submit Booking Request',
+                    'text' => 'Click on the book button, enter your dates and contact information, and submit your booking request securely.',
+                    'url' => SITE_URL . '/listing'
+                ],
+                [
+                    '@type' => 'HowToStep',
+                    'name' => 'Verify and Confirm',
+                    'text' => 'Our team will quickly verify availability. Check your booking status in the My Bookings portal or via email/SMS to finalize your booking.',
+                    'url' => SITE_URL . '/my-booking'
+                ]
+            ]
         ];
     }
     

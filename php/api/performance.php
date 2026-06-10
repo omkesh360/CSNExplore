@@ -67,7 +67,17 @@ if ($method === 'GET') {
             'php_version' => [
                 'label' => 'PHP Version',
                 'value' => PHP_VERSION,
-                'status' => version_compare(PHP_VERSION, '7.4.0', '>=') ? 'good' : 'warning'
+                'status' => version_compare(PHP_VERSION, '8.0.0', '>=') ? 'good' : 'warning'
+            ],
+            'opcache' => [
+                'label' => 'OPcache',
+                'value' => function_exists('opcache_get_status') && opcache_get_status(false) ? 'Active' : 'Inactive',
+                'status' => function_exists('opcache_get_status') && opcache_get_status(false) ? 'good' : 'warning'
+            ],
+            'redis_cache' => [
+                'label' => 'Redis Object Cache',
+                'value' => extension_loaded('redis') ? 'Available' : 'Missing',
+                'status' => extension_loaded('redis') ? 'good' : 'warning'
             ],
             'memory_usage' => [
                 'label' => 'Memory Usage',
@@ -149,6 +159,18 @@ if ($method === 'POST') {
         if (isset($input['config']['query_ttl'])) $settings['config']['query_cache']['ttl'] = (int)$input['config']['query_ttl'];
         file_put_contents($settingsFile, json_encode($settings, JSON_PRETTY_PRINT));
         sendJson(['success' => true, 'message' => 'Configuration saved']);
+    }
+    
+    if ($action === 'db_optimize') {
+        try {
+            $tables = $db->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
+            foreach ($tables as $table) {
+                $db->query("OPTIMIZE TABLE `$table`");
+            }
+            sendJson(['success' => true, 'message' => 'Database optimized successfully']);
+        } catch (Exception $e) {
+            sendError('Failed to optimize database: ' . $e->getMessage(), 500);
+        }
     }
 }
 

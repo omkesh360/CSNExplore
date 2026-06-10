@@ -4,15 +4,20 @@
 require_once __DIR__ . '/../php/config.php';
 require_once __DIR__ . '/../php/jwt.php';
 
+// Custom admin Content-Security-Policy that includes unsafe-eval for Tailwind CDN
+if (!headers_sent()) {
+    header("Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https://challenges.cloudflare.com https://www.google.com;");
+}
+
 $admin_token_cookie = $_COOKIE['admin_token'] ?? null;
 if (!$admin_token_cookie) {
-    header('Location: ../adminexplorer.php');
+    header('Location: ../adminexplorer.php?session_expired=1');
     exit;
 }
 
 $payload = verifyJWT($admin_token_cookie, JWT_SECRET);
 if (!$payload || !isset($payload['role']) || $payload['role'] !== 'admin') {
-    header('Location: ../adminexplorer.php');
+    header('Location: ../adminexplorer.php?session_expired=1');
     exit;
 }
 
@@ -38,13 +43,12 @@ $admin_title = $admin_title ?? 'Admin | CSNExplore';
 <link rel="icon" type="image/png" sizes="96x96"   href="../images/fevicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16"   href="../images/fevicon/favicon-16x16.png">
 <link rel="shortcut icon" href="../images/fevicon/favicon.ico" type="image/x-icon">
-<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileColor" content="#ec5b13">
 <meta name="msapplication-TileImage" content="../images/fevicon/ms-icon-144x144.png">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#ec5b13">
 <title><?php echo htmlspecialchars($admin_title); ?></title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/admin/admin-mobile.css"/>
 <script>
 tailwind.config = {
@@ -236,6 +240,35 @@ body {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-58P4JE1SYS');
+</script>
+<!-- CSRF Protection Fetch Interceptor -->
+<script>
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        options = options || {};
+        const method = (options.method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'DELETE'].includes(method)) {
+            const isRelative = !url.match(/^(?:https?:)?\/\//i);
+            const isSameOrigin = url.startsWith(window.location.origin);
+            if (isRelative || isSameOrigin) {
+                options.headers = options.headers || {};
+                const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                if (csrfToken) {
+                    if (options.headers instanceof Headers) {
+                        options.headers.set('X-CSRF-Token', csrfToken);
+                    } else if (Array.isArray(options.headers)) {
+                        options.headers.push(['X-CSRF-Token', csrfToken]);
+                    } else {
+                        options.headers['X-CSRF-Token'] = csrfToken;
+                    }
+                }
+            }
+        }
+        return originalFetch(url, options);
+    };
+})();
 </script>
 </head>
 <body>

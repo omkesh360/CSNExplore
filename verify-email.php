@@ -16,24 +16,14 @@ if ($token) {
     try {
         $db = getDB();
 
-        // Fetch all non-expired tokens and find matching one
-        $rows  = $db->fetchAll("SELECT * FROM email_verification_tokens WHERE expires_at > UTC_TIMESTAMP()");
-        $found = null;
-        foreach ($rows as $row) {
-            if (password_verify($token, $row['token_hash'])) {
-                $found = $row;
-                break;
-            }
-        }
+        $tokenHash = hash('sha256', $token);
+        // Fetch matching non-expired token
+        $found = $db->fetchOne("SELECT * FROM email_verification_tokens WHERE token_hash = ? AND expires_at > UTC_TIMESTAMP()", [$tokenHash]);
 
         if (!$found) {
             // Check if token exists but expired
-            $allRows = $db->fetchAll("SELECT * FROM email_verification_tokens");
-            $anyMatch = false;
-            foreach ($allRows as $row) {
-                if (password_verify($token, $row['token_hash'])) { $anyMatch = true; break; }
-            }
-            $status = $anyMatch ? 'expired' : 'invalid';
+            $expiredToken = $db->fetchOne("SELECT * FROM email_verification_tokens WHERE token_hash = ?", [$tokenHash]);
+            $status = $expiredToken ? 'expired' : 'invalid';
         } else {
             $user = $db->fetchOne("SELECT * FROM users WHERE id = ?", [$found['user_id']]);
 

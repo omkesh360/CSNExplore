@@ -187,7 +187,48 @@ $trip_schema = [
     ]
 ];
 
-$extra_head = '<script type="application/ld+json">' . json_encode($trip_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
+// Dynamic Event Schema for the next weekend guided tour
+$next_sat = date('Y-m-d', strtotime('next Saturday'));
+$next_sun = date('Y-m-d', strtotime('next Sunday'));
+$event_schema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Event',
+    'name' => 'Guided Ajanta & Ellora Caves Weekend Tour',
+    'description' => 'Weekly guided heritage tour of Ajanta & Ellora Caves starting from Chhatrapati Sambhajinagar.',
+    'startDate' => $next_sat . 'T07:00:00+05:30',
+    'endDate' => $next_sun . 'T19:00:00+05:30',
+    'eventStatus' => 'https://schema.org/EventScheduled',
+    'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+    'location' => [
+        '@type' => 'Place',
+        'name' => 'CSNExplore Office',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => 'Jay Tower, Samadhan Colony, Padampura',
+            'addressLocality' => 'Chhatrapati Sambhajinagar',
+            'addressRegion' => 'Maharashtra',
+            'postalCode' => '431005',
+            'addressCountry' => 'IN'
+        ]
+    ],
+    'image' => 'https://csnexplore.com/images/Logo-light-optimized.webp',
+    'offers' => [
+        '@type' => 'Offer',
+        'url' => 'https://csnexplore.com/itineraries',
+        'price' => '5000',
+        'priceCurrency' => 'INR',
+        'availability' => 'https://schema.org/InStock',
+        'validFrom' => date('Y-m-d') . 'T00:00:00+05:30'
+    ],
+    'organizer' => [
+        '@type' => 'Organization',
+        'name' => 'CSNExplore',
+        'url' => 'https://csnexplore.com'
+    ]
+];
+
+$extra_head = '<script type="application/ld+json">' . json_encode($trip_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n" .
+             '<script type="application/ld+json">' . json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>';
 
 $page_meta = [
     'description' => $itinerary['description'],

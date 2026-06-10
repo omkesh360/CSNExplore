@@ -1,9 +1,10 @@
 <?php
 // get_related.php - Fetch related listings
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 
 try {
     $db = getDB();
@@ -11,9 +12,6 @@ try {
     $type = $_GET['type'] ?? '';
     $exclude = intval($_GET['exclude'] ?? 0);
     $limit = intval($_GET['limit'] ?? 6);
-    
-    // Log the request
-    file_put_contents(__DIR__ . '/../../logs/related_debug.log', date('Y-m-d H:i:s') . " - Request: type=$type, exclude=$exclude\n", FILE_APPEND);
     
     // Validate type
     $valid_types = ['stays', 'cars', 'bikes', 'attractions', 'restaurants', 'buses'];
@@ -53,7 +51,7 @@ try {
             FROM {$type} 
             WHERE is_active = 1 AND id != ?";
             
-    $listings = $db->fetchAll($sql, [$exclude]);
+    $listings = $db->fetchAll($sql . " LIMIT 60", [$exclude]);
     
     // Score listings for relevance
     foreach ($listings as &$listing) {
@@ -100,10 +98,9 @@ try {
     
 } catch (Exception $e) {
     http_response_code(500);
-    $err = $e->getMessage();
-    file_put_contents(__DIR__ . '/../../logs/related_debug.log', date('Y-m-d H:i:s') . " - ERROR: $err\n", FILE_APPEND);
+    error_log('get_related error: ' . $e->getMessage());
     echo json_encode([
         'success' => false,
-        'error' => $err
+        'error' => 'Server error'
     ]);
 }

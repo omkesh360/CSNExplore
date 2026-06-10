@@ -26,9 +26,25 @@ $extra_head = '<script type="application/ld+json">
     "name": "CSNExplore",
     "telephone": "' . CONTACT_PHONE . '",
     "email": "' . SUPPORT_EMAIL . '",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "' . CONTACT_PHONE . '",
+        "contactType": "customer service",
+        "email": "' . SUPPORT_EMAIL . '",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Marathi"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        }
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Jay Tower, V896+MP9, Samadhan Colony, Padampura",
+      "streetAddress": "Jay Tower, Samadhan Colony, Padampura",
       "addressLocality": "Chhatrapati Sambhajinagar",
       "addressRegion": "Maharashtra",
       "postalCode": "431005",

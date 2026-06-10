@@ -67,6 +67,35 @@ header { background: white; border-bottom: 1px solid #ddd; padding: 15px 20px; d
 .toast.error { background: #dc3545; }
 .toast.info { background: #17a2b8; }
 </style>
+<!-- CSRF Protection Fetch Interceptor -->
+<script>
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        options = options || {};
+        const method = (options.method || 'GET').toUpperCase();
+        if (['POST', 'PUT', 'DELETE'].includes(method)) {
+            const isRelative = !url.match(/^(?:https?:)?\/\//i);
+            const isSameOrigin = url.startsWith(window.location.origin);
+            if (isRelative || isSameOrigin) {
+                options.headers = options.headers || {};
+                const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                if (csrfToken) {
+                    if (options.headers instanceof Headers) {
+                        options.headers.set('X-CSRF-Token', csrfToken);
+                    } else if (Array.isArray(options.headers)) {
+                        options.headers.push(['X-CSRF-Token', csrfToken]);
+                    } else {
+                        options.headers['X-CSRF-Token'] = csrfToken;
+                    }
+                }
+            }
+        }
+        return originalFetch(url, options);
+    };
+})();
+</script>
 </head>
 <body>
 

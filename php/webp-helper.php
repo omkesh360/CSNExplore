@@ -14,7 +14,13 @@ function webp_src(string $src): string {
     // Strip query string for file check
     $cleanSrc = strtok($src, '?');
     $webpPath = preg_replace('/\.(png|jpe?g)$/i', '.webp', $cleanSrc);
-    $absWebp  = $_SERVER['DOCUMENT_ROOT'] . $webpPath;
+    
+    $root = dirname(__DIR__);
+    $localPath = $webpPath;
+    if (defined('BASE_PATH') && BASE_PATH && strpos($localPath, BASE_PATH) === 0) {
+        $localPath = substr($localPath, strlen(BASE_PATH));
+    }
+    $absWebp = $root . '/' . ltrim($localPath, '/');
 
     if (file_exists($absWebp)) {
         return $webpPath;
@@ -33,7 +39,13 @@ function webp_src(string $src): string {
 function webp_img(string $src, string $alt = '', string $imgAttrs = '', string $sizeAttrs = ''): void {
     $cleanSrc = strtok($src, '?');
     $webpPath = preg_replace('/\.(png|jpe?g)$/i', '.webp', $cleanSrc);
-    $absWebp  = $_SERVER['DOCUMENT_ROOT'] . $webpPath;
+    
+    $root = dirname(__DIR__);
+    $localPath = $webpPath;
+    if (defined('BASE_PATH') && BASE_PATH && strpos($localPath, BASE_PATH) === 0) {
+        $localPath = substr($localPath, strlen(BASE_PATH));
+    }
+    $absWebp = $root . '/' . ltrim($localPath, '/');
 
     $altEsc = htmlspecialchars($alt, ENT_QUOTES, 'UTF-8');
 

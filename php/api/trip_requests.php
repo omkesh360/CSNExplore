@@ -12,6 +12,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $id     = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 try {
+    validateCsrf();
     $admin = requireAdmin();
     $db    = getDB();
 
@@ -48,7 +49,11 @@ try {
     }
     elseif ($method === 'PUT' && $id) {
         $data = getJsonInput();
+        $allowedStatuses = ['pending', 'reviewed', 'confirmed', 'cancelled'];
         if (isset($data['status'])) {
+            if (!in_array($data['status'], $allowedStatuses)) {
+                sendError('Invalid status value', 400);
+            }
             $db->update('trip_requests', ['status' => $data['status']], 'id = :id', [':id' => $id]);
             sendJson(['success' => true]);
         }

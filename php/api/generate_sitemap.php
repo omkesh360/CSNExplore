@@ -83,6 +83,7 @@ if ($which === 'sitemap-blogs') {
             $lastmod = substr($blog['updated_at'] ?? $today, 0, 10);
             $urls[]  = ['loc' => 'blogs/' . $slug, 'priority' => '0.6', 'changefreq' => 'monthly', 'lastmod' => $lastmod];
         }
+        unset($blogs);
     } catch (Exception $e) { error_log('Sitemap blog error: ' . $e->getMessage()); }
     _output_urlset($base, $urls, $today);
     exit;
@@ -116,6 +117,7 @@ if (isset($listingMap[$which])) {
             $lastmod = substr($row['updated_at'] ?? $today, 0, 10);
             $urls[]  = ['loc' => 'listing-detail/' . $slug, 'priority' => $lt['priority'], 'changefreq' => 'weekly', 'lastmod' => $lastmod];
         }
+        unset($rows);
     } catch (Exception $e) { error_log("Sitemap $which error: " . $e->getMessage()); }
     _output_urlset($base, $urls, $today);
     exit;

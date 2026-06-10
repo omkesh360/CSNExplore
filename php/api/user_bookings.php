@@ -39,15 +39,31 @@ $bookings = $db->fetchAll(
     [$user_id]
 );
 
-// Fetch listing images
+// Fetch listing images in bulk to fix N+1 query issue
+$tableIds = [];
+foreach ($bookings as $b) {
+    $table = $b['service_type'];
+    $lid   = (int)$b['listing_id'];
+    if ($table && $lid && in_array($table, ['stays','cars','bikes','restaurants','attractions','buses'])) {
+        $tableIds[$table][] = $lid;
+    }
+}
+
+$images = [];
+foreach ($tableIds as $table => $ids) {
+    $uniqueIds = array_unique($ids);
+    if (empty($uniqueIds)) continue;
+    $placeholders = implode(',', array_fill(0, count($uniqueIds), '?'));
+    $rows = $db->fetchAll("SELECT id, image FROM $table WHERE id IN ($placeholders)", array_values($uniqueIds));
+    foreach ($rows as $row) {
+        $images[$table][$row['id']] = $row['image'];
+    }
+}
+
 foreach ($bookings as &$b) {
     $table = $b['service_type'];
     $lid   = (int)$b['listing_id'];
-    $b['listing_image'] = null;
-    if ($table && $lid && in_array($table, ['stays','cars','bikes','restaurants','attractions','buses'])) {
-        $item = $db->fetchOne("SELECT image FROM $table WHERE id = ?", [$lid]);
-        if ($item) $b['listing_image'] = $item['image'];
-    }
+    $b['listing_image'] = $images[$table][$lid] ?? null;
 }
 unset($b);
 

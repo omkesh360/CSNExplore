@@ -7,7 +7,8 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -48,7 +49,8 @@ try {
     }
 
     elseif ($method === 'POST') {
-        // Internal — accepts token OR no auth (for system events)
+        // Secure: Require admin JWT to prevent unauthenticated injection
+        requireAdmin();
         $input = getJsonInput();
         $actor_id   = (int)($input['actor_id']   ?? 0);
         $actor_name = sanitize($input['actor_name'] ?? 'System');

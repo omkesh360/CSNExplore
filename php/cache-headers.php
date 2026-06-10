@@ -10,6 +10,9 @@
  */
 
 function applyCacheHeaders(string $type = 'page'): void {
+    if (php_sapi_name() === 'cli' || headers_sent()) {
+        return;
+    }
     // Never cache admin pages
     if (strpos($_SERVER['REQUEST_URI'] ?? '', '/admin/') !== false) {
         header('Cache-Control: no-cache, no-store, must-revalidate');

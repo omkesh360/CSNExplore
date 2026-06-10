@@ -3,7 +3,8 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../jwt.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -30,11 +31,62 @@ if (!in_array($mime, $allowed)) sendError('Only JPG, PNG, WebP, GIF allowed', 40
 // Validate size (5MB)
 if ($file['size'] > 5 * 1024 * 1024) sendError('File too large (max 5MB)', 400);
 
-$ext      = ['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp','image/gif'=>'gif'][$mime];
-$filename = uniqid('img_', true) . '.' . $ext;
-$dest     = $uploadDir . $filename;
+// Get original filename and extension
+$originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+// Clean the slug
+$slug = strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $originalName));
+$slug = trim(preg_replace('/-+/', '-', $slug), '-');
+if (empty($slug)) $slug = uniqid('img');
 
-if (!move_uploaded_file($file['tmp_name'], $dest)) sendError('Failed to save file', 500);
+$filename = $slug . '-' . substr(uniqid(), -4) . '.webp';
+$dest = $uploadDir . $filename;
+
+// Load image to resize and convert
+$imgResource = null;
+if ($mime === 'image/jpeg') {
+    $imgResource = @imagecreatefromjpeg($file['tmp_name']);
+} elseif ($mime === 'image/png') {
+    $imgResource = @imagecreatefrompng($file['tmp_name']);
+} elseif ($mime === 'image/webp') {
+    $imgResource = @imagecreatefromwebp($file['tmp_name']);
+} elseif ($mime === 'image/gif') {
+    $imgResource = @imagecreatefromgif($file['tmp_name']);
+}
+
+if ($imgResource) {
+    // Resize if too large
+    $width = imagesx($imgResource);
+    $height = imagesy($imgResource);
+    $maxWidth = 1920;
+    
+    if ($width > $maxWidth) {
+        $newWidth = $maxWidth;
+        $newHeight = floor($height * ($maxWidth / $width));
+        
+        $resized = imagecreatetruecolor($newWidth, $newHeight);
+        // Maintain transparency
+        imagealphablending($resized, false);
+        imagesavealpha($resized, true);
+        $transparent = imagecolorallocatealpha($resized, 255, 255, 255, 127);
+        imagefilledrectangle($resized, 0, 0, $newWidth, $newHeight, $transparent);
+        
+        imagecopyresampled($resized, $imgResource, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($imgResource);
+        $imgResource = $resized;
+    }
+    
+    // Save as WebP
+    if (!imagewebp($imgResource, $dest, 85)) {
+        // Fallback if imagewebp fails
+        move_uploaded_file($file['tmp_name'], $dest);
+    }
+    imagedestroy($imgResource);
+} else {
+    // Fallback if GD is missing or image is broken
+    $filename = $slug . '-' . substr(uniqid(), -4) . '.' . ['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp','image/gif'=>'gif'][$mime];
+    $dest = $uploadDir . $filename;
+    if (!move_uploaded_file($file['tmp_name'], $dest)) sendError('Failed to save file', 500);
+}
 
 // Build URL using configured base or detected host (never trust HTTP_HOST directly)
 $baseUrl = env('APP_URL', '');

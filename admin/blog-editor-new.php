@@ -1,4 +1,19 @@
 <?php
+require_once __DIR__ . '/../php/config.php';
+require_once __DIR__ . '/../php/jwt.php';
+
+$admin_token_cookie = $_COOKIE['admin_token'] ?? null;
+if (!$admin_token_cookie) {
+    header('Location: ../adminexplorer.php?session_expired=1');
+    exit;
+}
+
+$payload = verifyJWT($admin_token_cookie, JWT_SECRET);
+if (!$payload || !isset($payload['role']) || $payload['role'] !== 'admin') {
+    header('Location: ../adminexplorer.php?session_expired=1');
+    exit;
+}
+
 $admin_page  = 'blogs';
 $admin_title = 'Edit Blog | CSNExplore Admin';
 $blog_id = $_GET['id'] ?? '';
@@ -39,6 +54,35 @@ $blog_id = $_GET['id'] ?? '';
         
         .seo-panel { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
     </style>
+    <!-- CSRF Protection Fetch Interceptor -->
+    <script>
+    (function() {
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            options = options || {};
+            const method = (options.method || 'GET').toUpperCase();
+            if (['POST', 'PUT', 'DELETE'].includes(method)) {
+                const isRelative = !url.match(/^(?:https?:)?\/\//i);
+                const isSameOrigin = url.startsWith(window.location.origin);
+                if (isRelative || isSameOrigin) {
+                    options.headers = options.headers || {};
+                    const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                    const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                    if (csrfToken) {
+                        if (options.headers instanceof Headers) {
+                            options.headers.set('X-CSRF-Token', csrfToken);
+                        } else if (Array.isArray(options.headers)) {
+                            options.headers.push(['X-CSRF-Token', csrfToken]);
+                        } else {
+                            options.headers['X-CSRF-Token'] = csrfToken;
+                        }
+                    }
+                }
+            }
+            return originalFetch(url, options);
+        };
+    })();
+    </script>
 </head>
 <body class="overflow-x-hidden">
 
@@ -114,13 +158,13 @@ $blog_id = $_GET['id'] ?? '';
                     </div>
                 </div>
                 <div class="flex gap-2 mb-2">
-                    <label for="post-image-file"
+                    <label for="post-image-file" onclick="window.imageTarget = 'featured';"
                            class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-primary text-white text-xs font-bold rounded-lg cursor-pointer hover:bg-orange-600 transition-all">
                         <span class="material-symbols-outlined text-sm">upload</span>
                         Upload Image
                     </label>
                     <input type="file" id="post-image-file" accept="image/*" class="hidden" onchange="uploadBlogImage(this)">
-                    <button type="button" onclick="openGalleryModal()"
+                    <button type="button" onclick="window.imageTarget = 'featured'; openGalleryModal();"
                             class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-slate-200 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-50 transition-all">
                         <span class="material-symbols-outlined text-sm">photo_library</span>
                         From Gallery
@@ -286,14 +330,22 @@ $blog_id = $_GET['id'] ?? '';
             theme: 'snow',
             placeholder: 'Start writing your story...',
             modules: {
-                toolbar: [
-                    [{ header: [1, 2, 3, false] }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ list: 'ordered' }, { list: 'bullet' }],
-                    ['link', 'blockquote', 'code-block'],
-                    [{ align: [] }],
-                    ['clean']
-                ]
+                toolbar: {
+                    container: [
+                        [{ header: [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        ['link', 'image', 'blockquote', 'code-block'],
+                        [{ align: [] }],
+                        ['clean']
+                    ],
+                    handlers: {
+                        image: function() {
+                            window.imageTarget = 'editor';
+                            openGalleryModal();
+                        }
+                    }
+                }
             }
         });
 
@@ -304,7 +356,52 @@ $blog_id = $_GET['id'] ?? '';
         }
         
         fetchCategoryListings();
+
+        // ── Intercept Image Pasting ──────────────────────────────────────────
+        document.getElementById('editor-container').addEventListener('paste', function(e) {
+            if (e.clipboardData && e.clipboardData.items) {
+                var items = e.clipboardData.items;
+                var hasImage = false;
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf('image') !== -1) {
+                        var file = items[i].getAsFile();
+                        if (file) {
+                            e.preventDefault();
+                            hasImage = true;
+                            uploadPastedImage(file);
+                        }
+                    }
+                }
+                // If it was just an image, we prevented default. Text pastes bypass this.
+            }
+        });
     });
+
+    async function uploadPastedImage(file) {
+        const errBox = document.getElementById('error-box');
+        const formData = new FormData();
+        // The API expects 'image' or 'file', our upload.php handles both.
+        // We will pass 'file' as the name. But let's check upload.php. It accepts both.
+        formData.append('image', file, 'pasted-image.png');
+        
+        try {
+            const token = localStorage.getItem('csn_admin_token');
+            // Show a tiny toast or indicator (optional)
+            const res = await fetch('../php/api/upload.php', {
+                method: 'POST',
+                headers: token ? {'Authorization': 'Bearer ' + token} : {},
+                body: formData
+            });
+            const data = await res.json();
+            if (data.url) {
+                insertImageToEditor(data.url);
+            } else {
+                showErr(data.error || 'Upload failed');
+            }
+        } catch(e) {
+            showErr('Paste Upload error: ' + e.message);
+        }
+    }
 
     async function loadPostData() {
         try {
@@ -730,9 +827,48 @@ $blog_id = $_GET['id'] ?? '';
     }
 
     function selectGalleryImage(url) {
-        document.getElementById('post-image').value = url;
-        previewImage(url);
+        if (window.imageTarget === 'editor') {
+            insertImageToEditor(url);
+        } else {
+            document.getElementById('post-image').value = url;
+            previewImage(url);
+        }
         closeGalleryModal();
+    }
+
+    function insertImageToEditor(url) {
+        const range = quill.getSelection(true);
+        quill.insertEmbed(range.index, 'image', url, Quill.sources.USER);
+        quill.setSelection(range.index + 1, Quill.sources.SILENT);
+    }
+
+    async function uploadToGallery(input) {
+        if (!input.files || !input.files[0]) return;
+        const progress = document.getElementById('upload-progress');
+        if (progress) progress.classList.remove('hidden');
+        
+        const formData = new FormData();
+        formData.append('image', input.files[0]);
+        try {
+            const token = localStorage.getItem('csn_admin_token');
+            const res = await fetch('../php/api/upload.php', {
+                method: 'POST',
+                headers: token ? {'Authorization': 'Bearer ' + token} : {},
+                body: formData
+            });
+            const data = await res.json();
+            if (data.url) {
+                await loadGalleryImages();
+                selectGalleryImage(data.url);
+            } else {
+                showErr(data.error || 'Upload failed');
+            }
+        } catch(e) {
+            showErr('Upload error: ' + e.message);
+        } finally {
+            if (progress) progress.classList.add('hidden');
+            input.value = '';
+        }
     }
 
 </script>
@@ -746,9 +882,16 @@ $blog_id = $_GET['id'] ?? '';
                 <span class="material-symbols-outlined text-primary text-2xl">photo_library</span>
                 <h3 class="font-bold text-slate-800 text-lg">Image Gallery</h3>
             </div>
-            <button onclick="closeGalleryModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-50 transition-colors">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+            <div class="flex items-center gap-3">
+                <label for="gallery-upload-file" class="px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg cursor-pointer hover:bg-orange-600 transition-all flex items-center gap-1.5 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">upload</span>
+                    Upload New
+                </label>
+                <input type="file" id="gallery-upload-file" accept="image/*" class="hidden" onchange="uploadToGallery(this)">
+                <button onclick="closeGalleryModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
         </div>
         
         <!-- Gallery Grid Content -->

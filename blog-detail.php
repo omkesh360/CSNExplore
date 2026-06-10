@@ -40,6 +40,7 @@ $extra_styles = "
     .prose ul { list-style:disc; padding-left:1.5rem; margin-bottom:1.1rem; }
     .prose ul li { margin-bottom:0.4rem; line-height:1.7; }
     .prose strong { font-weight:700; }
+    .prose img { max-width:100%; height:auto; border-radius:12px; margin:2rem auto; display:block; box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
     .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 ";
 require 'header.php';

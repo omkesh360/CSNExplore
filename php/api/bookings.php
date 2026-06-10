@@ -5,7 +5,8 @@ require_once __DIR__ . '/../services/EmailService.php';
 require_once __DIR__ . '/../activity_logger.php';
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . (defined('CORS_ORIGIN') ? CORS_ORIGIN : 'https://csnexplore.com'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -14,6 +15,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $id     = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 try {
+    validateCsrf();
     $db = getDB();
 
     // GET – admin only
@@ -35,15 +37,31 @@ try {
         $sql = "SELECT * FROM bookings WHERE " . implode(' AND ', $where) . " ORDER BY created_at DESC";
         $bookings = $db->fetchAll($sql, $params);
         
-        // Fetch listing images
+        // Fetch listing images in bulk to fix N+1 query issue
+        $tableIds = [];
+        foreach ($bookings as $b) {
+            $table = $b['service_type'];
+            $lid   = (int)$b['listing_id'];
+            if ($table && $lid && in_array($table, ['stays','cars','bikes','restaurants','attractions','buses'])) {
+                $tableIds[$table][] = $lid;
+            }
+        }
+
+        $images = [];
+        foreach ($tableIds as $table => $ids) {
+            $uniqueIds = array_unique($ids);
+            if (empty($uniqueIds)) continue;
+            $placeholders = implode(',', array_fill(0, count($uniqueIds), '?'));
+            $rows = $db->fetchAll("SELECT id, image FROM $table WHERE id IN ($placeholders)", array_values($uniqueIds));
+            foreach ($rows as $row) {
+                $images[$table][$row['id']] = $row['image'];
+            }
+        }
+
         foreach ($bookings as &$b) {
             $table = $b['service_type'];
             $lid   = (int)$b['listing_id'];
-            $b['listing_image'] = null;
-            if ($table && $lid && in_array($table, ['stays','cars','bikes','restaurants','attractions','buses'])) {
-                $item = $db->fetchOne("SELECT image FROM $table WHERE id = ?", [$lid]);
-                if ($item) $b['listing_image'] = $item['image'];
-            }
+            $b['listing_image'] = $images[$table][$lid] ?? null;
         }
         unset($b);
         sendJson($bookings);

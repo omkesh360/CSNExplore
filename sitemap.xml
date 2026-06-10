@@ -1,129 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CSNExplore Sitemap | Generated: 2026-05-31 16:55:25 | Total URLs: 88 -->
+<!-- CSNExplore Sitemap | Generated: 2026-06-09 00:40:08 | Total URLs: 106 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://csnexplore.com/</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/listing/stays</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/listing/cars</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/listing/bikes</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/listing/restaurants</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/listing/attractions</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/travel-guide</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/bus</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/blogs</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/itineraries</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/near-attractions</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/suggestor</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/compare</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/about</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/contact</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/faq</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/privacy</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/terms</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/login</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/register</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://csnexplore.com/forgot-password</loc>
-    <lastmod>2026-05-31</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -921,13 +921,121 @@
   </url>
   <url>
     <loc>https://csnexplore.com/blogs/blogs-1-complete-travel-guide-to-chhatrapati-sambhajinagar-in-2026</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&amp;q=80&amp;auto=format</image:loc>
       <image:title>Complete Travel Guide to Chhatrapati Sambhajinagar in 2026</image:title>
-      <image:caption>Complete travel guide to Chhatrapati Sambhajinagar covering top attractions, best time to visit, local cuisine, and travel tips for 2026.</image:caption>
+      <image:caption>Complete 2026 travel guide to Chhatrapati Sambhajinagar (Aurangabad). Ajanta Caves, Ellora Caves, hotels, car rentals, local food, best time to vis...</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-10-top-5-budget-hostels-for-backpackers-in-chhatrapati-sambhaji</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-11-how-to-travel-from-aurangabad-to-ajanta-caves-on-a-budget</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-12-a-foodies-guide-to-authentic-maharashtrian-thali-in-aurangab</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-13-bibi-ka-maqbara-exploring-the-taj-of-the-deccan</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-14-daulatabad-fort-trek-tips-timings-and-what-to-expect</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-15-the-best-luxury-resorts-and-spa-hotels-in-aurangabad</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-16-cab-vs-self-drive-car-in-aurangabad-which-is-better-for-tour</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-17-exploring-aurangabad-on-an-electric-scooter-a-complete-guide</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-18-the-complete-guide-to-pure-veg-and-jain-restaurants-in-auran</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-19-5-offbeat-monsoon-destinations-near-chhatrapati-sambhajinaga</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-2-test-blog-1780240343</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-3-test-blog-2-1780240392</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-4-the-ultimate-3-day-chhatrapati-sambhajinagar-aurangabad-itin</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-5-10-hidden-gems-near-aurangabad-you-wont-find-in-guidebooks</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-6-exploring-the-ajanta-and-ellora-caves-a-complete-weekend-gui</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-7-the-best-street-food-in-chhatrapati-sambhajinagar-a-locals-g</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-8-renting-a-bike-in-aurangabad-everything-you-need-to-know</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://csnexplore.com/blogs/blogs-9-solo-female-travel-in-aurangabad-safety-tips-and-best-stays</loc>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>
