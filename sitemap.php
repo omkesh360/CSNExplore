@@ -24,6 +24,7 @@ $staticRoutes = [
     ['route' => '/', 'priority' => '1.0', 'freq' => 'daily'],
     ['route' => '/suggestor', 'priority' => '0.8', 'freq' => 'weekly'],
     ['route' => '/about', 'priority' => '0.7', 'freq' => 'monthly'],
+    ['route' => '/brand', 'priority' => '0.8', 'freq' => 'monthly'],
     ['route' => '/contact', 'priority' => '0.7', 'freq' => 'monthly'],
     ['route' => '/blogs', 'priority' => '0.8', 'freq' => 'daily'],
     ['route' => '/listing?type=stays', 'priority' => '0.8', 'freq' => 'daily'],

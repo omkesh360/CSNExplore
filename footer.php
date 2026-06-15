@@ -215,6 +215,7 @@
             class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-white/30 text-xs">
             <p>© <?php echo date('Y'); ?> CSNExplore. All rights reserved.</p>
             <div class="flex gap-5">
+                <a href="<?php echo BASE_PATH; ?>/brand" class="hover:text-primary transition-colors">Brand Info</a>
                 <a href="<?php echo BASE_PATH; ?>/privacy" class="hover:text-primary transition-colors">Privacy
                     Policy</a>
                 <a href="<?php echo BASE_PATH; ?>/terms" class="hover:text-primary transition-colors">Terms of

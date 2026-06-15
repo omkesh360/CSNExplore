@@ -165,7 +165,7 @@ require 'header.php';
 
         <!-- Back button -->
         <div class="mt-10">
-            <a href="<?php echo BASE_PATH; ?>/blogs" onclick="if(document.referrer.indexOf(window.location.hostname) !== -1) { window.history.back(); return false; }" class="inline-flex items-center gap-2 text-primary font-bold hover:underline text-sm">
+            <a href="<?php echo BASE_PATH; ?>/blogs" onclick="if(document.referrer.indexOf(window.location.hostname) !== -1) { window.history.back(); event.preventDefault(); event.stopPropagation(); return false; }" class="inline-flex items-center gap-2 text-primary font-bold hover:underline text-sm">
                 <span class="material-symbols-outlined text-base">arrow_back</span>
                 Go Back
             </a>

@@ -93,18 +93,18 @@ class ObjectCache {
             $val = self::$redis->get($key);
             return $val !== false ? json_decode($val, true) : false;
         }
-        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.cache';
+        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.php';
         if (file_exists($path) && (filemtime($path) + 3600 > time())) {
-            $raw = file_get_contents($path);
-            return $raw !== false ? json_decode($raw, true) : false;
+            return include $path;
         }
         return false;
     }
     
     public static function set($key, $value, $ttl = 3600) {
         if (self::$enabled) return self::$redis->setex($key, $ttl, json_encode($value));
-        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.cache';
-        return file_put_contents($path, json_encode($value));
+        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.php';
+        $content = "<?php\nreturn " . var_export($value, true) . ";\n";
+        return file_put_contents($path, $content);
     }
 }
 ObjectCache::init();

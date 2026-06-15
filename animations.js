@@ -17,19 +17,6 @@
     window.addEventListener('load', function() {
       document.body.classList.add('page-ready');
     }, { passive: true });
-
-    // Fade out on navigation (cross-page links only)
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[href]');
-      if (!a) return;
-      var href = a.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('javascript') ||
-          href.startsWith('mailto') || href.startsWith('tel') ||
-          a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey) return;
-      e.preventDefault();
-      document.body.classList.add('page-fade-out');
-      setTimeout(function () { window.location.href = href; }, 320);
-    }, { passive: true });
   }
 
   /* ─── 2. Scroll reveal — [data-reveal] ──────────────────────────────── */

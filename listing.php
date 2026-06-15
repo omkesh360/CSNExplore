@@ -35,6 +35,8 @@ $colsMap = [
 ];
 $cols = $colsMap[$type] ?? '*';
 
+$sql = "SELECT {$cols} FROM {$type} WHERE " . implode(' AND ', $where) . " ORDER BY display_order ASC, id DESC";
+
 $cacheKey = 'listing_' . $type . '_' . md5($sql . serialize($params));
 $items = ObjectCache::get($cacheKey);
 

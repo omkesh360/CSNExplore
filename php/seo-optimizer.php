@@ -394,13 +394,28 @@ class SEOOptimizer {
     
     /**
      * Generate comprehensive Organization schema
+     * Enhanced for Google Knowledge Panel entity recognition
      */
     public static function generateOrganizationSchema() {
         return [
             '@context' => 'https://schema.org',
-            '@type' => 'TravelAgency',
+            '@type' => ['TravelAgency', 'Organization'],
+            '@id' => SITE_URL . '/#organization',
             'name' => 'CSNExplore',
-            'alternateName' => 'CSN Explore',
+            'legalName' => 'CSNExplore Tourism Portal',
+            'alternateName' => [
+                'CSN Explore',
+                'csnexplore',
+                'csnxplore',
+                'CSN Explore Aurangabad',
+                'CSNExplore.com',
+                'CSNExplore.in'
+            ],
+            'brand' => [
+                '@type' => 'Brand',
+                'name' => 'CSNExplore',
+                'description' => 'Premium travel portal for Chhatrapati Sambhajinagar (Aurangabad), India'
+            ],
             'url' => SITE_URL,
             'logo' => [
                 '@type' => 'ImageObject',
@@ -409,7 +424,8 @@ class SEOOptimizer {
                 'height' => 72
             ],
             'image' => SITE_URL . '/images/Logo-light-optimized.webp',
-            'description' => 'Leading tourism portal for Chhatrapati Sambhajinagar (Aurangabad). Book hotels, car rentals, bike rentals, and explore Ajanta & Ellora Caves.',
+            'description' => 'CSNExplore is the leading tourism portal for Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. Book verified hotels, self-drive car rentals, bike rentals, and explore Ajanta & Ellora Caves — all in one place.',
+            'slogan' => 'Explore Chhatrapati Sambhajinagar Your Way',
             'telephone' => '+91-8600968888',
             'email' => 'supportcsnexplore@gmail.com',
             'founder' => [
@@ -417,17 +433,44 @@ class SEOOptimizer {
                 'name' => 'Omkesh'
             ],
             'foundingDate' => '2024-01-01',
-            'numberOfEmployees' => 15,
+            'foundingLocation' => [
+                '@type' => 'Place',
+                'name' => 'Chhatrapati Sambhajinagar, Maharashtra, India'
+            ],
+            'numberOfEmployees' => [
+                '@type' => 'QuantitativeValue',
+                'value' => 15
+            ],
+            'knowsLanguage' => [
+                ['@type' => 'Language', 'name' => 'English'],
+                ['@type' => 'Language', 'name' => 'Hindi'],
+                ['@type' => 'Language', 'name' => 'Marathi']
+            ],
             'contactPoint' => [
-                '@type' => 'ContactPoint',
-                'telephone' => '+91-8600968888',
-                'contactType' => 'customer service',
-                'areaServed' => 'IN',
-                'availableLanguage' => ['English', 'Hindi', 'Marathi']
+                [
+                    '@type' => 'ContactPoint',
+                    'telephone' => '+91-8600968888',
+                    'contactType' => 'customer service',
+                    'contactOption' => 'TollFree',
+                    'areaServed' => 'IN',
+                    'availableLanguage' => ['English', 'Hindi', 'Marathi'],
+                    'hoursAvailable' => [
+                        '@type' => 'OpeningHoursSpecification',
+                        'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                        'opens' => '09:00',
+                        'closes' => '21:00'
+                    ]
+                ],
+                [
+                    '@type' => 'ContactPoint',
+                    'contactType' => 'customer support',
+                    'email' => 'supportcsnexplore@gmail.com',
+                    'areaServed' => 'IN'
+                ]
             ],
             'address' => [
                 '@type' => 'PostalAddress',
-                'streetAddress' => 'Jay Tower, Padampura',
+                'streetAddress' => 'Jay Tower, Samadhan Colony, Padampura',
                 'addressLocality' => 'Chhatrapati Sambhajinagar',
                 'addressRegion' => 'Maharashtra',
                 'postalCode' => '431005',
@@ -448,24 +491,50 @@ class SEOOptimizer {
             'sameAs' => [
                 'https://www.instagram.com/csnexplore_/',
                 'https://www.facebook.com/csnexplore',
-                'https://twitter.com/csnexplore'
+                'https://twitter.com/csnexplore',
+                'https://x.com/csnexplore',
+                'https://about.me/csnexplore',
+                'https://csnexplore.com',
+                'https://csnexplore.in'
             ],
             'areaServed' => [
                 [
                     '@type' => 'City',
                     'name' => 'Chhatrapati Sambhajinagar',
                     'alternateName' => 'Aurangabad'
+                ],
+                [
+                    '@type' => 'AdministrativeArea',
+                    'name' => 'Maharashtra',
+                    'containedInPlace' => [
+                        '@type' => 'Country',
+                        'name' => 'India'
+                    ]
                 ]
             ],
             'knowsAbout' => [
-                'Ajanta Caves',
-                'Ellora Caves',
-                'Bibi Ka Maqbara',
+                'Ajanta Caves UNESCO World Heritage Site',
+                'Ellora Caves UNESCO World Heritage Site',
+                'Bibi Ka Maqbara Aurangabad',
                 'Daulatabad Fort',
-                'Hotel Booking',
-                'Car Rental',
-                'Bike Rental',
-                'Tourism Services'
+                'Hotel Booking Chhatrapati Sambhajinagar',
+                'Car Rental Aurangabad',
+                'Bike Rental Aurangabad',
+                'Tourism Services Maharashtra',
+                'Travel Portal India',
+                'Aurangabad Tourism'
+            ],
+            'hasOfferCatalog' => [
+                '@type' => 'OfferCatalog',
+                'name' => 'CSNExplore Travel Services',
+                'itemListElement' => [
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Hotel & Homestay Booking in Chhatrapati Sambhajinagar']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Car Rental Aurangabad']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Bike Rental Aurangabad']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Ajanta & Ellora Caves Tour Packages']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Restaurant Discovery Chhatrapati Sambhajinagar']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Bus Ticket Booking from Aurangabad']]
+                ]
             ]
         ];
     }
@@ -581,14 +650,29 @@ class SEOOptimizer {
     
     /**
      * Generate WebSite schema with SearchAction
+     * Enhanced with @id linking for entity disambiguation
      */
     public static function generateWebSiteSchema() {
         return [
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
+            '@id' => SITE_URL . '/#website',
             'name' => 'CSNExplore',
-            'alternateName' => ['CSN Explore', 'csnexplore'],
+            'alternateName' => [
+                'CSN Explore',
+                'csnexplore',
+                'CSNExplore Tourism Portal',
+                'CSNExplore Aurangabad',
+                'CSNExplore Chhatrapati Sambhajinagar'
+            ],
+            'description' => 'Official website of CSNExplore — Chhatrapati Sambhajinagar (Aurangabad) premier travel and tourism portal.',
             'url' => SITE_URL . '/',
+            'inLanguage' => ['en-IN', 'hi-IN', 'mr-IN'],
+            'copyrightHolder' => [
+                '@type' => 'Organization',
+                '@id' => SITE_URL . '/#organization',
+                'name' => 'CSNExplore'
+            ],
             'potentialAction' => [
                 [
                     '@type' => 'SearchAction',
@@ -609,6 +693,7 @@ class SEOOptimizer {
             ],
             'publisher' => [
                 '@type' => 'Organization',
+                '@id' => SITE_URL . '/#organization',
                 'name' => 'CSNExplore',
                 'logo' => [
                     '@type' => 'ImageObject',

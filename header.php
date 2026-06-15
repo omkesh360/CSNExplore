@@ -564,10 +564,6 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
 
 
 
-<!-- ── Extreme SEO Misspellings Block (Highest Weight) ─────────────────── -->
-<h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;" aria-hidden="true">
-    csnexplore, csn explore, auranagabd, auaranagabd, aurangabd, Chtarapati sambhajinagar, sambhajinagar, aurangbad, chatrapati sambhajinagar, csnxplore, cnsexplore
-</h1>
 
 <!-- ── Scroll Progress Bar ───────────────────────────────── -->
 <div id="csn-scroll-bar"></div>

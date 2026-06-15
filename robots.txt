@@ -6,7 +6,6 @@ Disallow: /cache/
 Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
-Disallow: /*.php$
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php
@@ -22,7 +21,6 @@ Disallow: /cache/
 Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
-Disallow: /*.php$
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php
@@ -36,7 +34,6 @@ Disallow: /cache/
 Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
-Disallow: /*.php$
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php
@@ -51,7 +48,6 @@ Disallow: /cache/
 Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
-Disallow: /*.php$
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php

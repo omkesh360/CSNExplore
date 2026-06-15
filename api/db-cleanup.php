@@ -11,7 +11,7 @@ try {
     $db->beginTransaction();
 
     // 1. Clear expired rate limits
-    $db->exec("DELETE FROM rate_limits WHERE window_start < " . (time() - 3600));
+    $db->exec("DELETE FROM rate_limits WHERE expires_at < " . time());
 
     // 2. Clear old JSON cache files
     $cache_dir = dirname(__DIR__) . '/cache/db_query_cache';

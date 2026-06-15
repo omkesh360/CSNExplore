@@ -57,13 +57,7 @@ class Database {
         ];
         $this->db = new PDO($dsn, $user, $pass, $options);
 
-        // Only run schema init once per deployment (check a flag file)
-        $flagFile = __DIR__ . '/../cache/.schema_init';
-        if (!file_exists($flagFile)) {
-            $this->initSchema();
-            if (!is_dir(dirname($flagFile))) @mkdir(dirname($flagFile), 0755, true);
-            @file_put_contents($flagFile, date('Y-m-d H:i:s'));
-        }
+
         
         $settingsFile = __DIR__ . '/settings.json';
         if (file_exists($settingsFile)) {
@@ -91,7 +85,7 @@ class Database {
     private function getCacheKey($sql, $params) {
         preg_match('/(?:FROM|INTO|UPDATE)\s+([a-zA-Z0-9_]+)/i', $sql, $matches);
         $prefix = $matches ? strtolower($matches[1]) . '_' : 'query_';
-        return 'csn_' . $prefix . md5($sql . serialize($params));
+        return 'csn_' . $prefix . md5($sql . json_encode($params));
     }
 
     private function readCache($key) {
@@ -102,10 +96,10 @@ class Database {
             if ($success) return $data;
             return null;
         }
-        $file = $this->cacheDir . $key . '.json';
+        $file = $this->cacheDir . $key . '.php';
         if (file_exists($file)) {
             if (filemtime($file) > time() - $this->cacheTTL) {
-                return json_decode(file_get_contents($file), true);
+                return include $file;
             }
         }
         return null;
@@ -117,8 +111,9 @@ class Database {
             apcu_store($key, $data, $this->cacheTTL);
             return;
         }
-        $file = $this->cacheDir . $key . '.json';
-        @file_put_contents($file, json_encode($data));
+        $file = $this->cacheDir . $key . '.php';
+        $content = "<?php\nreturn " . var_export($data, true) . ";\n";
+        @file_put_contents($file, $content);
     }
 
     public function clearCache($table = null) {

@@ -18,28 +18,58 @@ $extra_head = '<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "AboutPage",
+  "@id": "https://csnexplore.com/about",
   "name": "About Us | CSNExplore",
   "description": "' . $page_meta['description'] . '",
   "url": "' . $page_meta['canonical'] . '",
   "mainEntity": {
-    "@type": "TravelAgency",
+    "@type": ["TravelAgency", "Organization"],
+    "@id": "https://csnexplore.com/#organization",
     "name": "CSNExplore",
-    "foundingDate": "2012-01-01",
+    "legalName": "CSNExplore Tourism Portal",
+    "alternateName": ["CSN Explore", "csnexplore", "csnxplore", "CSNExplore.com", "CSNExplore.in"],
+    "brand": { "@type": "Brand", "name": "CSNExplore" },
+    "foundingDate": "2024-01-01",
     "foundingLocation": {
       "@type": "Place",
       "name": "Chhatrapati Sambhajinagar, Maharashtra, India"
     },
-    "description": "Established in 2012, CSNExplore connects global travelers with the architectural marvels of Ellora and Ajanta Caves, providing curated local tours, verified hotels, and vehicle rentals.",
+    "url": "https://csnexplore.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://csnexplore.com/images/Logo-light-optimized.webp"
+    },
+    "description": "CSNExplore (Chhatrapati Sambhajinagar Explore) is the leading tourism portal for Chhatrapati Sambhajinagar (Aurangabad), Maharashtra. Book hotels, car rentals, bike rentals, and explore Ajanta & Ellora Caves.",
+    "sameAs": [
+      "https://www.instagram.com/csnexplore_/",
+      "https://www.facebook.com/csnexplore",
+      "https://twitter.com/csnexplore",
+      "https://x.com/csnexplore",
+      "https://about.me/csnexplore",
+      "https://csnexplore.com",
+      "https://csnexplore.in"
+    ],
     "knowsAbout": [
       "Ajanta Caves Tours",
       "Ellora Caves Tours",
       "Bibi Ka Maqbara Sightseeing",
       "Hotel Bookings in Chhatrapati Sambhajinagar",
       "Car and Bike Rentals in Aurangabad"
-    ]
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jay Tower, Samadhan Colony, Padampura",
+      "addressLocality": "Chhatrapati Sambhajinagar",
+      "addressRegion": "Maharashtra",
+      "postalCode": "431005",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91-8600968888",
+    "email": "supportcsnexplore@gmail.com"
   },
   "publisher": {
     "@type": "Organization",
+    "@id": "https://csnexplore.com/#organization",
     "name": "CSNExplore",
     "logo": {
       "@type": "ImageObject",
@@ -48,6 +78,7 @@ $extra_head = '<script type="application/ld+json">
   }
 }
 </script>';
+
 
 $extra_styles = "
     .glass-panel { background:rgba(255,255,255,0.07); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); }

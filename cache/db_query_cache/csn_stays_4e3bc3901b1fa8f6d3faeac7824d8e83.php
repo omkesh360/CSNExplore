@@ -1,0 +1,63 @@
+<?php
+return array (
+  0 => 
+  array (
+    'id' => 1,
+    'name' => 'ITS HOME – Home Stay Inn',
+    'type' => 'Homestay',
+    'location' => 'Chhatrapati Sambhajinagar',
+    'price_per_night' => '999.00',
+    'rating' => '4.3',
+    'reviews' => 0,
+    'badge' => '',
+    'image' => 'images/uploads/its-home-home-stay-inn-stays-main.webp',
+    'slug' => 'stays-1-its-home-home-stay-inn',
+    'is_active' => 1,
+    'display_order' => 0,
+  ),
+  1 => 
+  array (
+    'id' => 2,
+    'name' => 'Its Home – Service Apartments',
+    'type' => 'Service Apartment',
+    'location' => 'Chhatrapati Sambhajinagar',
+    'price_per_night' => '1499.00',
+    'rating' => '4.4',
+    'reviews' => 0,
+    'badge' => NULL,
+    'image' => 'images/uploads/its-home-service-apartments-stays-main.webp',
+    'slug' => 'stays-2-its-home-service-apartments',
+    'is_active' => 1,
+    'display_order' => 1,
+  ),
+  2 => 
+  array (
+    'id' => 3,
+    'name' => 'Treebo Aroma Executive',
+    'type' => 'Business Hotel',
+    'location' => 'Chhatrapati Sambhajinagar',
+    'price_per_night' => '1800.00',
+    'rating' => '4.2',
+    'reviews' => 0,
+    'badge' => NULL,
+    'image' => 'images/uploads/treebo-aroma-executive-stays-main.webp',
+    'slug' => 'stays-3-treebo-aroma-executive',
+    'is_active' => 1,
+    'display_order' => 2,
+  ),
+  3 => 
+  array (
+    'id' => 4,
+    'name' => 'Hotel Blossom',
+    'type' => 'Budget Hotel',
+    'location' => 'Chhatrapati Sambhajinagar',
+    'price_per_night' => '1200.00',
+    'rating' => '4.1',
+    'reviews' => 0,
+    'badge' => 'Budget',
+    'image' => 'images/uploads/hotel-blossom-stays-main.webp',
+    'slug' => 'stays-4-hotel-blossom',
+    'is_active' => 1,
+    'display_order' => 3,
+  ),
+);

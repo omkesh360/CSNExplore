@@ -2597,3 +2597,15 @@ Stack trace:
 #2 C:\xampp\htdocs\CSNExplore\listing.php(42): Database->fetchAll(NULL, Array)
 #3 {main}
   thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 559
+[10-Jun-2026 15:28:37 Asia/Kolkata] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\CSNExplore\php\database.php:58
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(58): PDO->__construct('mysql:host=127....', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(149): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(214): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\sitemap.php(15): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 58
+[12-Jun-2026 19:17:20 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Undefined constant "DB_HOST" in C:\xampp\htdocs\CSNExplore\api\fix_spellings.php:5
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\api\fix_spellings.php on line 5

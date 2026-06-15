@@ -51,13 +51,7 @@ try {
     $db = getDB();
     $conn = $db->getConnection();
 
-    // Ensure newsletter_subscribers table exists
-    $conn->exec("CREATE TABLE IF NOT EXISTS newsletter_subscribers (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        subscribed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        is_active TINYINT(1) DEFAULT 1
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+    // newsletter_subscribers table is created in database.php schema init
 
     // Upsert subscriber
     $existing = $db->fetchOne("SELECT id, is_active FROM newsletter_subscribers WHERE email = ?", [$email]);

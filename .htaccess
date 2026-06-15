@@ -268,7 +268,7 @@ AddType image/webp .webp
     # ── 2. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
     # Extract blog ID from URL and route to dynamic blog-detail.php
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^blogs/(?:blogs-)?([0-9]+)-[a-z0-9-]+(?:\.html)?$ blog-detail.php?id=$1 [L,QSA]
+    RewriteRule ^blogs/(?:blogs-)?([0-9]+)-.*$ blog-detail.php?id=$1 [NC,L,QSA]
 
     # Explicitly handle /blogs to blogs.php if it's being hijacked by directory redirect
     RewriteRule ^blogs/?$ blogs.php [L,QSA]
