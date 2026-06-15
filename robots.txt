@@ -1,56 +1,31 @@
-User-agent: Googlebot
-Allow: /
-Disallow: /admin/
-Disallow: /php/
-Disallow: /cache/
-Disallow: /logs/
-Disallow: /database/
-Disallow: /vendor/
-Disallow: /regenerate_favicons.php
-Disallow: /install.php
-Disallow: /router.php
-Disallow: /verify-email.php
-Disallow: /resend-verification.php
-Disallow: /reset-password.php
-
-User-agent: Bingbot
-Allow: /
-Disallow: /admin/
-Disallow: /php/
-Disallow: /cache/
-Disallow: /logs/
-Disallow: /database/
-Disallow: /vendor/
-Disallow: /regenerate_favicons.php
-Disallow: /install.php
-Disallow: /router.php
-Crawl-delay: 1
-
-User-agent: YandexBot
-Allow: /
-Disallow: /admin/
-Disallow: /php/
-Disallow: /cache/
-Disallow: /logs/
-Disallow: /database/
-Disallow: /vendor/
-Disallow: /regenerate_favicons.php
-Disallow: /install.php
-Disallow: /router.php
-Crawl-delay: 1.5
-
 User-agent: *
 Allow: /
 Allow: /sitemap.xml
+Allow: /images/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+# Disallow admin areas and private scripts
 Disallow: /admin/
 Disallow: /php/
 Disallow: /cache/
 Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
+Disallow: /adminexplorer.php
+Disallow: /login.php
+Disallow: /register.php
+Disallow: /reset-password.php
+Disallow: /verify-email.php
+Disallow: /resend-verification.php
+
+# Disallow utility scripts
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php
+
+# Optional: Add crawl delay if the server is easily overwhelmed (not strictly needed for Googlebot but good for others)
 Crawl-delay: 1
 
 Sitemap: https://csnexplore.com/sitemap.xml
