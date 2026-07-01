@@ -13,16 +13,16 @@ if (!defined('SITE_ADDRESS')) define('SITE_ADDRESS', 'Jay Tower, Padampura, Chha
 
 // ── Primary keyword sets per page type ───────────────────────────────────────
 $_SEO_KW = [
-    'home'        => 'Chhatrapati Sambhajinagar tourism, Aurangabad travel guide, Ajanta Caves tour, Ellora Caves visit, hotels Sambhajinagar, car rental Aurangabad, bike rental Aurangabad, CSNExplore, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'stays'       => 'hotels Chhatrapati Sambhajinagar, homestay Aurangabad, budget hotels Sambhajinagar, luxury hotels Aurangabad, book hotel Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'cars'        => 'car rental Aurangabad, self drive car Chhatrapati Sambhajinagar, Maruti Ertiga hire, Ajanta Caves car rental, cab Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'bikes'       => 'bike rental Aurangabad, scooter hire Chhatrapati Sambhajinagar, Hero Splendor rent, motorcycle rental Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'attractions' => 'Ajanta Caves tour, Ellora Caves visit, Bibi Ka Maqbara Aurangabad, Daulatabad Fort, tourist places Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'restaurants' => 'restaurants Chhatrapati Sambhajinagar, best food Aurangabad, biryani Sambhajinagar, dine out Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'buses'       => 'bus from Aurangabad, MSRTC Shivneri, bus booking Chhatrapati Sambhajinagar, intercity bus Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'blogs'       => 'Aurangabad travel blog, Ajanta Caves guide 2026, Ellora Caves tips, Chhatrapati Sambhajinagar travel tips, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'contact'     => 'contact CSNExplore, Aurangabad tourism helpline, book tour Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
-    'about'       => 'about CSNExplore, Aurangabad tourism portal, Chhatrapati Sambhajinagar travel company, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csn explore, csnxplore, cnsexplore',
+    'home'        => 'Chhatrapati Sambhajinagar tourism, Aurangabad travel guide, Ajanta Caves tour, Ellora Caves visit, hotels Sambhajinagar, car rental Aurangabad, bike rental Aurangabad, CSNExplore, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore, cineexplore, scnexplore, csnxpelore, csnexlpore, csnepxlore, csnelxpore, cnexplore, csexplore, csnexplor, csnexplre, csxplore, csmexplore, csbexplore, cxnexplore, fsnexplore, csnexplote, csnexplire, csnexplpre, csnexplour, cesenexplore, csnxplor, csnexplar, cssnexplore, csneexplore, csnexploree, csnexplorre, ccsnexplore, csn explore, csn-explore, csn_explore',
+    'stays'       => 'auranagabad hotel booking, aurangabad hotel booking, aurangabad hotel booking price, aurangabad hotel booking online, aurangabad hotel booking budget, mtdc aurangabad hotel booking, aurangabad bihar hotel booking, the salt hotel aurangabad booking, hotel booking in aurangabad maharashtra, lemon tree hotel aurangabad booking, aurangabad bihar hotel room booking price, hotel booking at aurangabad, aurangabad hotel booking trivago, aurangabad hotel booking bihar, aurangabad hotel book, aurangabad hotel aurangabad, aurangabad hotel best, aurangabad hotel cost, hotel aurangabad contact number, hotel aurangabad price, aurangabad hotel charges, dubai aurangabad hotel, dubai hotel aurangabad maharashtra, hotel aurangabad family, aurangabad book hotel, ginger hotel aurangabad booking, hotel aurangabad gymkhana, hotel aurangabad maharashtra, hotel booking in aurangabad, hotel booking in aurangabad near railway station, hotel booking in aurangabad bihar, online hotel booking in aurangabad maharashtra, hotel room booking in aurangabad, hotel aurangabad kranti chowk, aurangabad hotel lodge, aurangabad hotel low price, aurangabad hotel list, aurangabad maharashtra hotel booking, aurangabad mtdc hotel booking, maharashtra aurangabad hotel, mgm aurangabad hotel, aurangabad hotel number, taj hotel aurangabad online booking, oyo hotel booking aurangabad, aurangabad hotel prices, aurangabad hotel room booking, aurangabad bihar hotel room booking, hotel aurangabad road, aurangabad hotel rate, aurangabad hotel room price, aurangabad hotel raj, taj hotel aurangabad booking, aurangabad hotel to stay, aurangabad hotels tripadvisor, vits hotel aurangabad booking, aurangabad vip hotel, aurangabad hotels with bar, aurangabad hotels agoda, hotel aurangabad photos, zostel aurangabad booking, aurangabad hotel contact number, 2 star hotels in aurangabad maharashtra, aurangabad 2 star hotel, aurangabad hotel 3 star, 3 star hotels in aurangabad with tariff, aurangabad hotels 4 star, aurangabad 4 star hotels list, 4 * hotels in aurangabad, 5 star hotels in aurangabad with price, aurangabad hotel 5 star, 5 star hotels in aurangabad maharashtra, 7 apple hotel aurangabad booking, aurangabad 7 star hotel, 7 hotel aurangabad, aurangabad hotel 7 apple, hotel 7 12 aurangabad photos, aurangabad hotel rates, hotels Chhatrapati Sambhajinagar, homestay Aurangabad, budget hotels Sambhajinagar, luxury hotels Aurangabad, book hotel Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'cars'        => 'auranagabad car rentals, aurangabad car rentals, aurangabad car rental, aurangabad car rental service, aurangabad car rental with driver, aurangabad car rental without driver, aurangabad car rental reviews, aurangabad car rental self drive, aurangabad car rental photos, aurangabad car rental price, mumbai to aurangabad car rental, pune to aurangabad car rental, car rental at aurangabad, aurangabad airport car rental, aurangabad car rental rates, aurangabad rent a car, aurangabad bihar car rental, aurangabad to nanded by car rental, speedo bike & car rental aurangabad, aurangabad rental cars, clear car rental aurangabad, cheapest car rental aurangabad, cheapest car rental aurangabad maharashtra, rental cars in aurangabad, do car rental companies bring the car to you, car rental aurangabad price, car rental aurangabad airport, aurangabad to dhule car rental, car rental from aurangabad to nashik, hyderabad to aurangabad car rental, aurangabad car hire, car rental in aurangabad, car rental in aurangabad with driver, car rental in aurangabad maharashtra, car rental in aurangabad bihar, car rental in aurangabad without driver, best car rental in aurangabad, luxury car rental in aurangabad, cheapest car rental in aurangabad, best car rental in aurangabad with driver, cheapest car rental in aurangabad with driver, aurangabad luxury car rental, aurangabad to manmad car rental, ms car rental aurangabad, best car rental in aurangabad monthly, ms car rental chhatrapati sambhajinagar aurangabad reviews, aurangabad to nashik car rental, aurangabad to nagpur car rental, nasik to aurangabad car rental, aurangabad to nashik car rental price, aurangabad car on rent, aurangabad to shirdi car rental price, pune to aurangabad car rental price, aurangabad car rental tripadvisor, aurangabad to shirdi car rental, self car rental aurangabad, priti taxi car rental service aurangabad bihar reviews, subodh car rental aurangabad, priti taxi car rental service aurangabad bihar, priti taxi car rental service aurangabad bihar photos, best car rental service in aurangabad, car rental aurangabad to pune, car rental aurangabad to mumbai, taxi aurangabad car rental, aurangabad thane car rental, wedding car rental aurangabad, best car rental in aurangabad without driver, 10 seater car rental aurangabad, car rental Aurangabad, self drive car Chhatrapati Sambhajinagar, Maruti Ertiga hire, Ajanta Caves car rental, cab Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'bikes'       => 'aurangabad scooter rental, auranagabad bike rentals, aurangabad bike rentals, aurangabad bike rental, aurangabad bike rental price, aurangabad bike hire, bike rentals at aurangabad, aurangabad bike rent, bike rentals in aurangabad, bike rent in aurangabad, bike rental in aurangabad, aurangabad bike on rent, ua bike rentals, aurora bike rentals, urbana bike rental, aurangabad rent bike, aurangabad bihar bike rent, aurangabad bike ride, ziarat e bike, 4 wheeler bike rental, 4 bike rental, 6 bike rack rental, 6 person bike rental near me, 6 seater bike rental, scooter hire Chhatrapati Sambhajinagar, Hero Splendor rent, motorcycle rental Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'attractions' => 'Ajanta Caves tour, Ellora Caves visit, Bibi Ka Maqbara Aurangabad, Daulatabad Fort, tourist places Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'restaurants' => 'restaurants Chhatrapati Sambhajinagar, best food Aurangabad, biryani Sambhajinagar, dine out Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'buses'       => 'bus from Aurangabad, MSRTC Shivneri, bus booking Chhatrapati Sambhajinagar, intercity bus Aurangabad, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'blogs'       => 'Aurangabad travel blog, Ajanta Caves guide 2026, Ellora Caves tips, Chhatrapati Sambhajinagar travel tips, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'contact'     => 'contact CSNExplore, Aurangabad tourism helpline, book tour Chhatrapati Sambhajinagar, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
+    'about'       => 'about CSNExplore, Aurangabad tourism portal, Chhatrapati Sambhajinagar travel company, auranagabd, auaranagabd, aurangabd, aurangbad, aurnagabad, Chtarapati sambhajinagar, chatrapati sambhajinagar, shambhaji nagar, csnexplore, csnxplore, cnsexplore',
 ];
 
 /**
@@ -48,7 +48,7 @@ function seo_meta(array $ctx): array {
     $faqs  = $ctx['faqs'] ?? [];
 
     $name     = $item['name'] ?? $item['operator'] ?? '';
-    $location = $item['location'] ?? 'Chhatrapati Sambhajinagar';
+    $location = $item['location'] ?? 'Chhatrapati Sambhajinagar (Aurangabad)';
     $desc_raw = strip_tags($item['description'] ?? $item['content'] ?? '');
     $img_raw  = $item['image'] ?? '';
     $img_abs  = $img_raw
@@ -57,10 +57,10 @@ function seo_meta(array $ctx): array {
 
     // ── Title (Strictly 50-60 chars) ────────────────────────────────────────────────────────
     $title = match($type) {
-        'home'        => 'CSNExplore: Hotels & Cave Tours in Sambhajinagar', // 48
-        'stays'       => 'Best Hotels & Homestays in Chhatrapati Sambhajinagar', // 52
-        'cars'        => 'Car Rentals in Sambhajinagar | Self-Drive & Cabs', // 48
-        'bikes'       => 'Bike Rentals Aurangabad | Scooters & Motorcycles', // 48
+        'home'        => 'CSNExplore: Hotels & Cave Tours in Sambhajinagar (Aurangabad)', // 60
+        'stays'       => 'Best Hotels & Homestays in Chhatrapati Sambhajinagar (Aurangabad)', // 65
+        'cars'        => 'Car Rentals in Sambhajinagar (Aurangabad) | Self-Drive & Cabs', // 62
+        'bikes'       => 'Aurangabad Scooter Rental & Bike Rentals', // 40
         'attractions' => 'Ajanta & Ellora Caves Tours | Top Sambhajinagar Spots', // 53
         'restaurants' => 'Top Restaurants in Chhatrapati Sambhajinagar | Dine', // 51
         'buses'       => 'Book Bus Tickets from Aurangabad | Routes & Fares', // 49
@@ -69,25 +69,25 @@ function seo_meta(array $ctx): array {
         'about'       => 'About CSNExplore | Sambhajinagar Tourism Portal', // 47
         'listing'     => _seo_listing_title($item, $type, $price, $unit, $location),
         'blog'        => _seo_blog_title($item),
-        default       => 'CSNExplore – Chhatrapati Sambhajinagar Tourism',
+        default       => 'CSNExplore – Chhatrapati Sambhajinagar (Aurangabad) Tourism',
     };
     if (strlen($title) > 60) $title = substr($title, 0, 57) . '...';
 
     // ── Description (Strictly 150-160 chars) ──────────────────────────────────────────────────
     $description = match($type) {
         'home'        => 'Discover Chhatrapati Sambhajinagar (Aurangabad) with CSNExplore. Book hotels, rent cars & bikes, explore Ajanta & Ellora Caves, find restaurants and buses.',
-        'stays'       => 'Browse 500+ hotels, homestays & resorts in Chhatrapati Sambhajinagar. Best prices, free cancellation. Book your stay near Ajanta & Ellora Caves today securely.',
-        'cars'        => 'Rent a car in Chhatrapati Sambhajinagar from ₹800/day. Self-drive or with driver. Maruti Swift, Ertiga, Innova & more. Perfect for Ajanta Caves day trips here.',
-        'bikes'       => 'Rent bikes & scooters in Aurangabad from ₹300/day. Hero Splendor, Honda Activa, Royal Enfield & more. Explore Ellora Caves on two wheels affordably today.',
-        'attractions' => 'Explore Ajanta Caves, Ellora Caves, Bibi Ka Maqbara & 15+ top attractions in Chhatrapati Sambhajinagar. Check timings, entry fees & guided tours for families.',
-        'restaurants' => 'Discover the best restaurants, cafes & street food in Chhatrapati Sambhajinagar. Authentic biryani, thali, multi-cuisine & more. Read reviews & book a table.',
+        'stays'       => 'Browse 500+ hotels, homestays & resorts in Chhatrapati Sambhajinagar (Aurangabad). Best prices, free cancellation. Book your stay near Ajanta & Ellora Caves.',
+        'cars'        => 'Rent a car in Chhatrapati Sambhajinagar (Aurangabad) from ₹800/day. Self-drive or with driver. Maruti Swift, Ertiga, Innova & more. Book now.',
+        'bikes'       => 'Looking for Aurangabad scooter rental? Rent bikes & scooters in Aurangabad from ₹300/day. Best bike rentals in Aurangabad. Book today!',
+        'attractions' => 'Explore Ajanta Caves, Ellora Caves, Bibi Ka Maqbara & 15+ top attractions in Chhatrapati Sambhajinagar (Aurangabad). Check timings, entry fees & guided tours.',
+        'restaurants' => 'Discover the best restaurants, cafes & street food in Chhatrapati Sambhajinagar (Aurangabad). Authentic biryani, thali, multi-cuisine & more. Read reviews.',
         'buses'       => 'Book bus tickets from Aurangabad effortlessly. MSRTC Shivneri, Volvo AC, sleeper buses to Mumbai, Pune & Nashik. Check accurate schedules, fares & book online.',
-        'blogs'       => 'Read expert travel guides for Chhatrapati Sambhajinagar. Complete Ajanta Caves 2026 guide, Ellora Caves tips, hotel reviews, car rental advice & food guides.',
-        'contact'     => 'Contact CSNExplore for hotel bookings, car rentals & tour packages in Chhatrapati Sambhajinagar. Call +91-8600968888 or WhatsApp us for instant local support.',
-        'about'       => 'CSNExplore is Chhatrapati Sambhajinagar\'s leading tourism portal. We connect travellers with 500+ top-rated hotels, car rentals, bike rentals & guided tours.',
+        'blogs'       => 'Read expert travel guides for Chhatrapati Sambhajinagar (Aurangabad). Complete Ajanta Caves 2026 guide, Ellora Caves tips, hotel reviews & food guides.',
+        'contact'     => 'Contact CSNExplore for hotel bookings, car rentals & tour packages in Chhatrapati Sambhajinagar (Aurangabad). Call +91-8600968888 or WhatsApp us.',
+        'about'       => 'CSNExplore is Chhatrapati Sambhajinagar (Aurangabad) leading tourism portal. We connect travellers with 500+ top-rated hotels, car rentals & bike rentals.',
         'listing'     => _seo_listing_desc($item, $type, $price, $unit, $location, $desc_raw),
         'blog'        => _seo_blog_desc($item, $desc_raw),
-        default       => 'Explore Chhatrapati Sambhajinagar with CSNExplore. Find the best places to stay, reliable transport, and amazing local food. Book your trip seamlessly today.',
+        default       => 'Explore Chhatrapati Sambhajinagar (Aurangabad) with CSNExplore. Find the best places to stay, reliable transport, and amazing local food. Book today.',
     };
     if (strlen($description) > 160) $description = substr($description, 0, 157) . '...';
     if (strlen($description) < 150) $description = str_pad($description, 150, " Explore more today.");
@@ -118,6 +118,20 @@ function seo_meta(array $ctx): array {
 
     // ── Breadcrumb schema ─────────────────────────────────────────────────────
     $breadcrumb_json = '';
+    // Ensure BreadcrumbList is fully dynamic based on $ctx
+    if (empty($bcs) && $type !== 'home') {
+        $bcs = [['name' => 'Home', 'url' => '/']];
+        if ($type === 'listing' && !empty($item)) {
+            $bcs[] = ['name' => 'Listings', 'url' => '/listing'];
+            $bcs[] = ['name' => $name, 'url' => $canonical];
+        } else if ($type === 'blog' && !empty($item)) {
+            $bcs[] = ['name' => 'Blogs', 'url' => '/blogs'];
+            $bcs[] = ['name' => $item['title'] ?? 'Blog', 'url' => $canonical];
+        } else {
+            $bcs[] = ['name' => ucfirst($type), 'url' => $canonical];
+        }
+    }
+    
     if (!empty($bcs)) {
         $bcItems = [];
         foreach ($bcs as $i => $bc) {
@@ -226,7 +240,7 @@ function _seo_schema(string $type, array $item, string $canonical, string $img, 
     switch ($type) {
         case 'home':
             $schema = array_merge($base, [
-                '@type'       => 'TravelAgency',
+                '@type'       => ['TravelAgency', 'Organization'],
                 'name'        => SITE_NAME,
                 'telephone'   => SITE_PHONE,
                 'address'     => [

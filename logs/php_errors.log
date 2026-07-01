@@ -2609,3 +2609,24 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\CSNExplore\api\fix_spellings.php on line 5
+[16-Jun-2026 21:51:12 Asia/Kolkata] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'csnexploredb' in C:\xampp\htdocs\CSNExplore\php\database.php:58
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(58): PDO->__construct('mysql:host=127....', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(144): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(214): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(14): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 58
+[16-Jun-2026 21:51:14 Asia/Kolkata] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'csnexploredb' in C:\xampp\htdocs\CSNExplore\php\database.php:58
+Stack trace:
+#0 C:\xampp\htdocs\CSNExplore\php\database.php(58): PDO->__construct('mysql:host=127....', 'root', Object(SensitiveParameterValue), Array)
+#1 C:\xampp\htdocs\CSNExplore\php\database.php(144): Database->__construct()
+#2 C:\xampp\htdocs\CSNExplore\php\config.php(214): Database::getInstance()
+#3 C:\xampp\htdocs\CSNExplore\index.php(14): getDB()
+#4 {main}
+  thrown in C:\xampp\htdocs\CSNExplore\php\database.php on line 58
+[28-Jun-2026 17:46:42 Asia/Kolkata] Database rate limiting error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexploredb.rate_limits' doesn't exist. Falling back to file-based.
+[01-Jul-2026 22:45:28 Asia/Kolkata] W3speedster: Failed to initialize W3speedster instance: Undefined array key "HTTP_HOST"
+[01-Jul-2026 22:45:28 Asia/Kolkata] W3speedster: Error in HTML optimization: Undefined array key "HTTP_HOST"
+[01-Jul-2026 22:59:32 Asia/Kolkata] W3speedster: Failed to initialize W3speedster instance: Undefined array key "HTTP_HOST"
+[01-Jul-2026 22:59:32 Asia/Kolkata] W3speedster: Error in HTML optimization: Undefined array key "HTTP_HOST"

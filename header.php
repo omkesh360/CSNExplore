@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/W3speedster/header_opt.php';
+}
+
 // Advanced HTML Minification
 if (!function_exists('sanitize_output')) {
     function sanitize_output($buffer) {
@@ -33,6 +38,7 @@ $current_page = $current_page ?? '';
 $page_title = $page_title ?? 'CSNExplore – Chhatrapati Sambhajinagar';
 $nav_links = [
     ['href' => BASE_PATH . '/index', 'label' => 'Home'],
+    ['href' => BASE_PATH . '/explore', 'label' => 'Explore'],
     ['href' => BASE_PATH . '/suggestor', 'label' => 'Trip Planner'],
     ['href' => BASE_PATH . '/about', 'label' => 'About'],
     ['href' => BASE_PATH . '/contact', 'label' => 'Contact'],
@@ -40,11 +46,11 @@ $nav_links = [
 ];
 
 $listing_nav = [
-    ['href' => BASE_PATH . '/listing?type=stays', 'icon' => 'bed', 'label' => 'Stays', 'type' => 'stays'],
-    ['href' => BASE_PATH . '/listing?type=cars', 'icon' => 'directions_car', 'label' => 'Cars', 'type' => 'cars'],
-    ['href' => BASE_PATH . '/listing?type=bikes', 'icon' => 'motorcycle', 'label' => 'Bikes', 'type' => 'bikes'],
-    ['href' => BASE_PATH . '/listing?type=attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions', 'type' => 'attractions'],
-    ['href' => BASE_PATH . '/listing?type=restaurants', 'icon' => 'restaurant', 'label' => 'Dine', 'type' => 'restaurants'],
+    ['href' => BASE_PATH . '/hotels', 'icon' => 'bed', 'label' => 'Stays', 'type' => 'stays'],
+    ['href' => BASE_PATH . '/car-rentals', 'icon' => 'directions_car', 'label' => 'Cars', 'type' => 'cars'],
+    ['href' => BASE_PATH . '/bike-rentals', 'icon' => 'motorcycle', 'label' => 'Bikes', 'type' => 'bikes'],
+    ['href' => BASE_PATH . '/attractions', 'icon' => 'confirmation_number', 'label' => 'Attractions', 'type' => 'attractions'],
+    ['href' => BASE_PATH . '/restaurants', 'icon' => 'restaurant', 'label' => 'Dine', 'type' => 'restaurants'],
     ['href' => BASE_PATH . '/bus', 'icon' => 'directions_bus', 'label' => 'Buses', 'type' => 'buses'],
 ];
 
@@ -84,15 +90,17 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_PATH; ?>/images/fevicon/apple-icon-180x180.png">
     <link rel="apple-touch-icon"                 href="<?php echo BASE_PATH; ?>/images/fevicon/apple-touch-icon.png">
     <!-- Standard browser favicons (PNG + ICO fallback) -->
-    <link rel="icon" type="image/png" sizes="16x16"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="96x96"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-512x512.png">
-    <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-16x16.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="48x48"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-48x48.png?v=2">
+    <link rel="icon" type="image/png" sizes="96x96"  href="<?php echo BASE_PATH; ?>/images/fevicon/favicon-96x96.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-192x192.png?v=2">
+    <link rel="icon" type="image/png" sizes="512x512" href="<?php echo BASE_PATH; ?>/images/fevicon/android-chrome-512x512.png?v=2">
+    <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/images/fevicon/favicon.ico?v=2" type="image/x-icon">
     <!-- Web App Manifest (PWA) -->
     <link rel="manifest" href="<?php echo BASE_PATH; ?>/manifest.json">
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="CSNExplore Latest Updates" href="<?php echo BASE_PATH; ?>/rss.php">
     <!-- Windows Tile meta tags -->
     <meta name="msapplication-TileColor"          content="#ec5b13">
     <meta name="msapplication-TileImage"          content="<?php echo BASE_PATH; ?>/images/fevicon/ms-icon-144x144.png">
@@ -109,8 +117,55 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
     <!-- Extended OG Tags -->
     <meta property="og:locale:alternate" content="hi_IN" />
     <meta property="article:publisher" content="https://www.facebook.com/csnexplore" />
-    <!-- keywords meta tag is dynamically generated by seo_render() below -->
-    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <?php
+    // ── Dynamic SEO Meta Tags — powered by php/seo-meta.php & php/seo-optimizer.php ─────────────────
+    require_once __DIR__ . '/php/seo-meta.php';
+    require_once __DIR__ . '/php/seo-optimizer.php';
+
+    $page_meta = $page_meta ?? [];
+
+    // Build seo_meta context from whatever the page has set
+    $seo_type = $page_meta['seo_type'] ?? match($current_page ?? '') {
+        'home'         => 'home',
+        'listing.php'  => $listing_type ?? 'stays',
+        'blogs.php'    => 'blogs',
+        'blog-detail'  => 'blog',
+        'about.php'    => 'about',
+        'contact.php'  => 'contact',
+        default        => 'home',
+    };
+
+    $seo_ctx = [
+        'type'        => $seo_type,
+        'item'        => $page_meta['item'] ?? [],
+        'breadcrumbs' => $page_meta['breadcrumbs'] ?? [],
+        'faqs'        => $page_meta['faqs'] ?? [],
+        'price'       => $page_meta['price'] ?? '',
+        'price_unit'  => $page_meta['price_unit'] ?? '',
+        'canonical'   => $page_meta['canonical'] ?? '',
+    ];
+
+    $seo = seo_meta($seo_ctx);
+
+    // Allow pages to override title/description directly
+    if (!empty($page_meta['description'])) $seo['description'] = $page_meta['description'];
+    if (!empty($page_meta['canonical']))   $seo['canonical']   = $page_meta['canonical'];
+    if (!empty($page_meta['image']))       $seo['img_abs']     = $page_meta['image'];
+
+    $meta_description = $seo['description'];
+    $meta_canonical   = $seo['canonical'];
+    $meta_image       = $seo['img_abs'];
+    $meta_type        = $page_meta['type'] ?? 'website';
+
+    echo seo_render($seo, $meta_type);
+
+    // Geographic targeting
+    echo '<meta name="geo.region" content="IN-MH">' . "\n";
+    echo '<meta name="geo.placename" content="Chhatrapati Sambhajinagar">' . "\n";
+    echo '<meta name="geo.position" content="19.8762;75.3433">' . "\n";
+    echo '<meta name="ICBM" content="19.8762, 75.3433">' . "\n";
+    ?>
+    <title><?php echo htmlspecialchars($seo['title'] ?? $page_title); ?></title>
     <!-- Google Analytics loaded via env-based GA4 block at end of <head> to avoid duplication -->
     <!-- ═══ PERFORMANCE OPTIMIZED - Core Web Vitals ═══ -->
     <!-- Preconnect for critical external resources -->
@@ -118,6 +173,21 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Temporary Tailwind JIT Fallback to instantly fix missing layout classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ec5b13',
+            }
+          }
+        }
+      }
+    </script>
+
     
     <!-- Fonts: Preload and load async with display=optional to prevent render blocking AND prevent CLS FOUT -->
     <link rel="preload" as="style" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=optional" />
@@ -172,7 +242,7 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
             line-height: 1.5;
         }
         /* Performance: Delay rendering of off-screen sections */
-        section:not(.homepage-hero) { content-visibility: auto; contain-intrinsic-size: 800px; }
+        section:not(.homepage-hero) { content-visibility: auto; contain-intrinsic-size: 0 600px; }
         *, ::before, ::after { 
             box-sizing: border-box; 
             margin: 0;
@@ -251,9 +321,19 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         }
         /* ── FLASH FIX: glass-card solid fallback before backdrop-filter CSS loads ── */
         .glass-card,.glass,.glass-section,.glass-glow{background:#fff;border:1px solid #e2e8f0}
-        /* ── FLASH FIX: data-reveal elements must not show as empty/black boxes ── */
-        [data-reveal],[data-reveal-stagger]>*,.card-reveal,[data-animate]{opacity:0;transform:translateY(20px)}
-        [data-reveal].revealed,[data-reveal-stagger]>*.revealed,.card-reveal.revealed,.animate-visible{opacity:1!important;transform:none!important}
+        /* ── GLOBAL BUTTERY SMOOTH ANIMATIONS & GLASSMORPHISM ── */
+        [data-reveal],[data-reveal-stagger]>*,.card-reveal,[data-animate]{
+            opacity:0;
+            transform:translateY(30px) scale(0.98);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, filter 0.5s ease;
+            will-change: opacity, transform;
+            filter: blur(4px);
+        }
+        [data-reveal].revealed,[data-reveal-stagger]>*.revealed,.card-reveal.revealed,.animate-visible{
+            opacity:1!important;
+            transform:translateY(0) scale(1)!important;
+            filter: blur(0px)!important;
+        }
         /* ── OUTLINE FIX: remove default browser outline flash on reload & click ── */
         *:focus { outline: none; }
         *:focus-visible { outline: 2px solid #ec5b13; outline-offset: 2px; border-radius: 3px; }
@@ -420,54 +500,6 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         <?php if (!empty($extra_styles)) echo $extra_styles; ?>
     </style>
     <?php
-    // ── Dynamic SEO Meta Tags — powered by php/seo-meta.php & php/seo-optimizer.php ─────────────────
-    require_once __DIR__ . '/php/seo-meta.php';
-    require_once __DIR__ . '/php/seo-optimizer.php';
-
-    $page_meta = $page_meta ?? [];
-
-    // Build seo_meta context from whatever the page has set
-    $seo_type = $page_meta['seo_type'] ?? match($current_page ?? '') {
-        'home'         => 'home',
-        'listing.php'  => $listing_type ?? 'stays',
-        'blogs.php'    => 'blogs',
-        'blog-detail'  => 'blog',
-        'about.php'    => 'about',
-        'contact.php'  => 'contact',
-        default        => 'home',
-    };
-
-    $seo_ctx = [
-        'type'        => $seo_type,
-        'item'        => $page_meta['item'] ?? [],
-        'breadcrumbs' => $page_meta['breadcrumbs'] ?? [],
-        'faqs'        => $page_meta['faqs'] ?? [],
-        'price'       => $page_meta['price'] ?? '',
-        'price_unit'  => $page_meta['price_unit'] ?? '',
-        'canonical'   => $page_meta['canonical'] ?? '',
-    ];
-
-    $seo = seo_meta($seo_ctx);
-
-    // Allow pages to override title/description directly
-    if (!empty($page_meta['description'])) $seo['description'] = $page_meta['description'];
-    if (!empty($page_meta['canonical']))   $seo['canonical']   = $page_meta['canonical'];
-    if (!empty($page_meta['image']))       $seo['img_abs']     = $page_meta['image'];
-
-    $meta_description = $seo['description'];
-    $meta_canonical   = $seo['canonical'];
-    $meta_image       = $seo['img_abs'];
-    $meta_type        = $page_meta['type'] ?? 'website';
-
-    echo seo_render($seo, $meta_type);
-
-    // Enhanced SEO with dual city name optimization is now handled natively in seo_meta()
-    
-    // Geographic targeting
-    echo '<meta name="geo.region" content="IN-MH">' . "\n";
-    echo '<meta name="geo.placename" content="Chhatrapati Sambhajinagar">' . "\n";
-    echo '<meta name="geo.position" content="19.8762;75.3433">' . "\n";
-    echo '<meta name="ICBM" content="19.8762, 75.3433">' . "\n";
 
     // Include WebSite + SearchAction schema ONLY on the homepage (per Google guidelines)
     if ($seo_type === 'home') {
@@ -486,15 +518,7 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         echo SEOOptimizer::renderSchema(SEOOptimizer::generateHowToSchema());
     }
     
-    // Breadcrumb schema if breadcrumbs exist
-    if (!empty($page_meta['breadcrumbs'])) {
-        echo SEOOptimizer::renderSchema(SEOOptimizer::generateBreadcrumbSchema($page_meta['breadcrumbs']));
-    }
-    
-    // FAQ schema if FAQs exist
-    if (!empty($page_meta['faqs'])) {
-        echo SEOOptimizer::renderSchema(SEOOptimizer::generateFAQSchema($page_meta['faqs']));
-    }
+
     
     ?>
     <!-- Google Analytics GA4 (DEFERRED - Load after user interaction) -->

@@ -6,7 +6,29 @@ Allow: /assets/
 Allow: /css/
 Allow: /js/
 
-# Disallow admin areas and private scripts
+# ── Public listing pages (Google-indexable) ───────────────────────────────────
+Allow: /hotels
+Allow: /car-rentals
+Allow: /bike-rentals
+Allow: /attractions
+Allow: /restaurants
+Allow: /bus-rentals
+Allow: /blogs
+Allow: /blogs/
+Allow: /blog-detail
+Allow: /listing-detail/
+
+# ── Public pages ──────────────────────────────────────────────────────────────
+Allow: /about
+Allow: /contact
+Allow: /faq
+Allow: /itineraries
+Allow: /travel-guide
+Allow: /explore
+Allow: /near-attractions
+Allow: /bus
+
+# ── Disallow admin and private areas ─────────────────────────────────────────
 Disallow: /admin/
 Disallow: /php/
 Disallow: /cache/
@@ -14,18 +36,22 @@ Disallow: /logs/
 Disallow: /database/
 Disallow: /vendor/
 Disallow: /adminexplorer.php
-Disallow: /login.php
-Disallow: /register.php
-Disallow: /reset-password.php
-Disallow: /verify-email.php
-Disallow: /resend-verification.php
+Disallow: /login
+Disallow: /register
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /resend-verification
+Disallow: /listing$
+Disallow: /listing?
+Disallow: /listing/*
 
-# Disallow utility scripts
+# ── Utility scripts ───────────────────────────────────────────────────────────
 Disallow: /regenerate_favicons.php
 Disallow: /install.php
 Disallow: /router.php
+Disallow: /test*.php
+Disallow: /debug.php
 
-# Optional: Add crawl delay if the server is easily overwhelmed (not strictly needed for Googlebot but good for others)
 Crawl-delay: 1
 
 Sitemap: https://csnexplore.com/sitemap.xml

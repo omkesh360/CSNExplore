@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/../W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/../W3speedster/header_opt.php';
+}
+
 // admin/admin-header.php – shared admin layout
 // Set $admin_page before including (e.g. 'dashboard', 'listings', 'bookings', 'blogs', 'users', 'content')
 require_once __DIR__ . '/../php/config.php';
@@ -318,7 +323,7 @@ body {
             ['divider'=>'Content'],
             ['href'=>'blogs.php',          'icon'=>'article',           'label'=>'Blogs',            'key'=>'blogs'],
             ['href'=>'gallery.php',        'icon'=>'photo_library',     'label'=>'Gallery',          'key'=>'gallery'],
-            ['href'=>'content.php',        'icon'=>'edit_note',         'label'=>'Content',          'key'=>'content'],
+            ['href'=>'content.php',        'icon'=>'edit_note',         'label'=>'Homepage Manager', 'key'=>'content'],
             // ── SEO & Pages ───────────────────────────────────────────────
             ['divider'=>'SEO & Pages'],
             ['href'=>'seo-manager.php',    'icon'=>'search',            'label'=>'SEO Manager',      'key'=>'seo'],

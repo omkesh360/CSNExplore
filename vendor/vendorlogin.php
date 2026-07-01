@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/../W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/../W3speedster/header_opt.php';
+}
+
 require_once __DIR__ . '/../php/config.php';
 
 if (!defined('VENDOR_API_BASE')) {
@@ -308,3 +313,9 @@ document.getElementById('login-form').addEventListener('submit', async function(
 </script>
 </body>
 </html>
+<?php
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/../W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/../W3speedster/footer_opt.php';
+}
+?>

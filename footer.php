@@ -35,41 +35,43 @@
             <div data-reveal data-delay="2">
                 <h4 class="font-bold text-sm mb-4">Quick Links</h4>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-white/50 text-sm">
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=stays"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Hotel
+                    <a href="<?php echo BASE_PATH; ?>/hotels"
+                        class="hover:text-primary transition-colors inline-block duration-200">Hotel
                         Bookings</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=cars"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Car
+                    <a href="<?php echo BASE_PATH; ?>/car-rentals"
+                        class="hover:text-primary transition-colors inline-block duration-200">Car
                         Rentals</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=bikes"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bike
+                    <a href="<?php echo BASE_PATH; ?>/bike-rentals"
+                        class="hover:text-primary transition-colors inline-block duration-200">Bike
                         Rentals</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=attractions"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Heritage
+                    <a href="<?php echo BASE_PATH; ?>/attractions"
+                        class="hover:text-primary transition-colors inline-block duration-200">Heritage
                         Sites</a>
-                    <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Restaurants</a>
+                    <a href="<?php echo BASE_PATH; ?>/restaurants"
+                        class="hover:text-primary transition-colors inline-block duration-200">Restaurants</a>
                     <a href="<?php echo BASE_PATH; ?>/bus"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Bus
+                        class="hover:text-primary transition-colors inline-block duration-200">Bus
                         Tickets</a>
                     <a href="<?php echo BASE_PATH; ?>/blogs"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Travel
+                        class="hover:text-primary transition-colors inline-block duration-200">Travel
                         Guide</a>
                     <a href="<?php echo BASE_PATH; ?>/about"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">About
+                        class="hover:text-primary transition-colors inline-block duration-200">About
                         Us</a>
                     <a href="<?php echo BASE_PATH; ?>/contact"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Contact
+                        class="hover:text-primary transition-colors inline-block duration-200">Contact
                         Us</a>
                     <a href="<?php echo BASE_PATH; ?>/privacy"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Privacy
+                        class="hover:text-primary transition-colors inline-block duration-200">Privacy
                         Policy</a>
                     <a href="<?php echo BASE_PATH; ?>/terms"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Terms
+                        class="hover:text-primary transition-colors inline-block duration-200">Terms
                         of Service</a>
                     <a href="<?php echo BASE_PATH; ?>/my-booking"
-                        class="hover:text-primary transition-colors hover:translate-x-1 inline-block transition-transform duration-200">Track
+                        class="hover:text-primary transition-colors inline-block duration-200">Track
                         Booking</a>
+                    <a href="<?php echo BASE_PATH; ?>/gallery"
+                        class="hover:text-primary transition-colors inline-block duration-200">Gallery</a>
                 </div>
             </div>
             <!-- Contact Info -->
@@ -124,25 +126,25 @@
         <div class="sr-only">
             <h4 class="font-bold text-sm mb-3 text-white/80">Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h4>
             <p class="text-white/40 text-xs leading-loose">
-                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Hotels CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Budget Stays CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Jain Hotels Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=stays" class="hover:text-primary transition-colors">Safe Stays for Women CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Car Rentals Near Me Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Cab Booking Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Self Drive Cars CSNExplore.com</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=cars" class="hover:text-primary transition-colors">Innova Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Bike Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Electric Scooter Rental CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Scsnexplore Bike Rental</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=bikes" class="hover:text-primary transition-colors">Activa Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Ajanta Caves Tour CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Ellora Caves Guide CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Bibi Ka Maqbara Tickets CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=attractions" class="hover:text-primary transition-colors">Daulatabad Fort Trip CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Veg Restaurant Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Best Misal Pav Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/listing?type=restaurants" class="hover:text-primary transition-colors">Maharashtrian Thali CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Hotels CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Budget Stays CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Jain Hotels Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Safe Stays for Women CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Car Rentals Near Me Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Cab Booking Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Self Drive Cars CSNExplore.com</a> | 
+                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Innova Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Electric Scooter Rental CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Scsnexplore Bike Rental</a> | 
+                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Activa Rental Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ajanta Caves Tour CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ellora Caves Guide CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Bibi Ka Maqbara Tickets CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Daulatabad Fort Trip CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Veg Restaurant Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Best Misal Pav Aurangabad CSNExplore</a> | 
+                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Maharashtrian Thali CSNExplore</a> | 
                 <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Solo Travelling CSNExplore</a> | 
                 <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Women Travel Safety CSNExplore</a> | 
                 <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Budget Under 2 Days CSNExplore</a> | 
@@ -226,8 +228,30 @@
     </div>
 </footer>
 
+<!-- ── Mobile Bottom Navigation Bar ──────────────────────────────────────── -->
+<nav class="md:hidden fixed bottom-4 left-4 right-4 z-[100] mb-[env(safe-area-inset-bottom)] bg-[#0a0705]/65 backdrop-blur-[24px] saturate-200 border border-white/10 rounded-[2rem] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden">
+    <div class="flex justify-around items-center h-[60px] px-2">
+        <a href="<?php echo BASE_PATH; ?>/" class="flex flex-col items-center justify-center w-full h-full text-white/60 hover:text-primary <?php echo ($current_page === 'home' || !isset($current_page)) ? 'text-primary' : ''; ?> transition-colors">
+            <span class="material-symbols-outlined text-[22px] mb-1" style="<?php echo ($current_page === 'home' || !isset($current_page)) ? 'font-variation-settings:\'FILL\' 1;' : ''; ?>">home</span>
+            <span class="text-[10px] font-bold">Home</span>
+        </a>
+        <a href="<?php echo BASE_PATH; ?>/my-booking" class="flex flex-col items-center justify-center w-full h-full text-white/60 hover:text-primary <?php echo ($current_page === 'my-booking.php') ? 'text-primary' : ''; ?> transition-colors">
+            <span class="material-symbols-outlined text-[22px] mb-1" style="<?php echo ($current_page === 'my-booking.php') ? 'font-variation-settings:\'FILL\' 1;' : ''; ?>">receipt_long</span>
+            <span class="text-[10px] font-bold">Bookings</span>
+        </a>
+        <a href="<?php echo BASE_PATH; ?>/explore" class="flex flex-col items-center justify-center w-full h-full text-white/60 hover:text-primary <?php echo ($current_page === 'explore.php') ? 'text-primary' : ''; ?> transition-colors">
+            <span class="material-symbols-outlined text-[22px] mb-1" style="<?php echo ($current_page === 'explore.php') ? 'font-variation-settings:\'FILL\' 1;' : ''; ?>">travel_explore</span>
+            <span class="text-[10px] font-bold">Explore</span>
+        </a>
+        <a href="<?php echo BASE_PATH; ?>/blogs" class="flex flex-col items-center justify-center w-full h-full text-white/60 hover:text-primary <?php echo ($current_page === 'blogs.php') ? 'text-primary' : ''; ?> transition-colors">
+            <span class="material-symbols-outlined text-[22px] mb-1" style="<?php echo ($current_page === 'blogs.php') ? 'font-variation-settings:\'FILL\' 1;' : ''; ?>">article</span>
+            <span class="text-[10px] font-bold">Blogs</span>
+        </a>
+    </div>
+</nav>
+
 <!-- Go to Top Button - Always there on homepage/mobile too -->
-<button id="go-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex"
+<button id="go-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="hidden md:flex"
     style="position:fixed;bottom:calc(24px + env(safe-area-inset-bottom, 0px));z-index:9999;width:46px;height:46px;border-radius:50%;background:#ec5b13;color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(236,91,19,0.5);align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease,visibility .25s ease,transform .25s ease;"
     aria-label="Go to top">
     <span class="material-symbols-outlined"
@@ -245,7 +269,7 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
     <!-- ── Floating Action Buttons - Mobile + Tablet (hidden on desktop) ──────── -->
     <!-- Call Button - Mobile & Tablet (Blue) -->
     <a href="tel:<?php echo CONTACT_PHONE; ?>" id="call-float" class="flex lg:hidden" aria-label="Call Now"
-        style="position:fixed;bottom:calc(88px + env(safe-area-inset-bottom, 0px));right:20px;z-index:9998;width:52px;height:52px;border-radius:50%;background:#2563eb;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,99,235,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
+        style="position:fixed;bottom:calc(148px + env(safe-area-inset-bottom, 0px));right:20px;z-index:99;width:52px;height:52px;border-radius:50%;background:#2563eb;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,99,235,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
         ontouchstart="this.style.transform='scale(1.08)'" ontouchend="this.style.transform='scale(1)'">
         <span class="material-symbols-outlined"
             style="font-size:26px;font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">call</span>
@@ -254,7 +278,7 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
     <!-- WhatsApp Button - Mobile & Tablet -->
     <a href="https://wa.me/<?php echo str_replace(['+', '-', ' '], '', CONTACT_PHONE); ?>?text=Hi%20CSNExplore!%20I%20need%20help%20with%20my%20booking." target="_blank"
         rel="noopener noreferrer" id="whatsapp-float" class="flex lg:hidden" aria-label="Chat on WhatsApp"
-        style="position:fixed;bottom:calc(24px + env(safe-area-inset-bottom, 0px));right:20px;z-index:9998;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
+        style="position:fixed;bottom:calc(84px + env(safe-area-inset-bottom, 0px));right:20px;z-index:99;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.5);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;"
         ontouchstart="this.style.transform='scale(1.08)'" ontouchend="this.style.transform='scale(1)'">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
             <path
@@ -618,6 +642,45 @@ if (file_exists($locationsFile)) {
             document.querySelectorAll('[data-reveal], [data-reveal-children]').forEach(function(el){ el.classList.add('revealed'); });
         });
     })();
+
+    // ── Global Parallax Effect for Hero Sections ──
+    (function() {
+        // Select common hero containers and images across different templates
+        var parallaxElements = document.querySelectorAll('.homepage-hero > .absolute.inset-0.z-0, .hero-bg, section.hero > div.absolute.inset-0, .w-full.h-\\[420px\\] > img.absolute.inset-0, .relative.h-52.md\\:h-72 > img.absolute.inset-0, section.relative.h-\\[380px\\] > div.absolute.inset-0');
+        
+        // Fallback for generic hero images if specific ones are not found
+        if (parallaxElements.length === 0) {
+            parallaxElements = document.querySelectorAll('.relative.overflow-hidden > img.absolute.inset-0.object-cover, .hero > img.absolute.inset-0');
+        }
+
+        if (parallaxElements.length > 0) {
+            parallaxElements.forEach(function(el) {
+                el.style.willChange = 'transform';
+                // Pre-scale so translation doesn't reveal blank edges
+                el.style.transform = 'scale(1.15)';
+            });
+
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        var scrollY = window.scrollY;
+                        parallaxElements.forEach(function(el) {
+                            var parent = el.parentElement;
+                            var rect = parent.getBoundingClientRect();
+                            // Only apply parallax when the element is in the viewport
+                            if (rect.bottom > 0) {
+                                var yPos = scrollY * 0.35; // 35% parallax speed
+                                el.style.transform = 'translate3d(0, ' + yPos + 'px, 0) scale(1.15)';
+                            }
+                        });
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        }
+    })();
 </script>
 
 <!-- Animations.js - DEFERRED for better performance -->
@@ -628,3 +691,14 @@ if (file_exists($locationsFile)) {
 </body>
 
 </html>
+<?php
+// Flush the sanitize_output buffer so W3speedster can capture it
+if (ob_get_level() > 1) {
+    ob_end_flush();
+}
+
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/W3speedster/footer_opt.php';
+}
+?>

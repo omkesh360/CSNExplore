@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/W3speedster/header_opt.php';
+}
+
 require_once 'php/config.php';
 
 $page_title = "Resend Verification Email | CSNExplore";
@@ -107,3 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
+<?php
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/W3speedster/footer_opt.php';
+}
+?>

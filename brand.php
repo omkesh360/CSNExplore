@@ -318,11 +318,11 @@ require 'header.php';
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-reveal>
             <?php
             $services = [
-                ['icon' => 'bed',                  'title' => 'Hotels & Stays',       'desc' => 'Verified stays in Chhatrapati Sambhajinagar',    'url' => '/listing?type=stays'],
-                ['icon' => 'directions_car',        'title' => 'Car Rentals',           'desc' => 'Self-drive & chauffeur cars in Aurangabad',      'url' => '/listing?type=cars'],
-                ['icon' => 'motorcycle',            'title' => 'Bike Rentals',          'desc' => 'Scooters & bikes in Sambhajinagar',              'url' => '/listing?type=bikes'],
-                ['icon' => 'confirmation_number',   'title' => 'Attractions',           'desc' => 'Ajanta, Ellora & Sambhajinagar attractions',     'url' => '/listing?type=attractions'],
-                ['icon' => 'restaurant',            'title' => 'Dine & Eat',            'desc' => 'Top restaurants in Chhatrapati Sambhajinagar',   'url' => '/listing?type=restaurants'],
+                ['icon' => 'bed',                  'title' => 'Hotels & Stays',       'desc' => 'Verified stays in Chhatrapati Sambhajinagar',    'url' => '/hotels'],
+                ['icon' => 'directions_car',        'title' => 'Car Rentals',           'desc' => 'Self-drive & chauffeur cars in Aurangabad',      'url' => '/car-rentals'],
+                ['icon' => 'motorcycle',            'title' => 'Bike Rentals',          'desc' => 'Scooters & bikes in Sambhajinagar',              'url' => '/bike-rentals'],
+                ['icon' => 'confirmation_number',   'title' => 'Attractions',           'desc' => 'Ajanta, Ellora & Sambhajinagar attractions',     'url' => '/attractions'],
+                ['icon' => 'restaurant',            'title' => 'Dine & Eat',            'desc' => 'Top restaurants in Chhatrapati Sambhajinagar',   'url' => '/restaurants'],
                 ['icon' => 'directions_bus',        'title' => 'Bus Tickets',           'desc' => 'Book buses from/to Aurangabad',                  'url' => '/bus'],
                 ['icon' => 'auto_fix_high',         'title' => 'AI Trip Planner',       'desc' => 'Smart itineraries for Sambhajinagar',            'url' => '/suggestor'],
                 ['icon' => 'article',               'title' => 'Travel Guides',         'desc' => 'Blogs & guides for Aurangabad travel',           'url' => '/blogs'],

@@ -1,0 +1,8 @@
+# W3speedster Plugin - Git Ignore File
+# This file prevents temporary and generated files from being tracked in version control
+
+# Temporary files and directories
+temp/
+tmp/
+*.tmp
+*.temp

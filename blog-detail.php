@@ -312,13 +312,13 @@ require 'header.php';
                                 $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
                                 $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
                                 if (file_exists($p400) && file_exists($p700)) {
-                                    $imgFinal = BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                                    $imgFinal = htmlspecialchars(get_working_image_url($imgSrc));
                                     $srcset = 'srcset="'.$v400.' 400w, '.$v700.' 700w, '.$imgFinal.' 800w"';
                                 }
                             }
                         ?>
                         <img loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                             src="<?php echo htmlspecialchars($imgSrc); ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
+                             src="<?php echo htmlspecialchars(get_working_image_url($imgSrc)); ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
                              alt="<?php echo htmlspecialchars($r['title']); ?>"
                              onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format'"/>
                     </div>

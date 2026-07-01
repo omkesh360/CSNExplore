@@ -21,19 +21,25 @@ $today = date('Y-m-d');
 
 // 1. Static Routes
 $staticRoutes = [
-    ['route' => '/', 'priority' => '1.0', 'freq' => 'daily'],
-    ['route' => '/suggestor', 'priority' => '0.8', 'freq' => 'weekly'],
-    ['route' => '/about', 'priority' => '0.7', 'freq' => 'monthly'],
-    ['route' => '/brand', 'priority' => '0.8', 'freq' => 'monthly'],
-    ['route' => '/contact', 'priority' => '0.7', 'freq' => 'monthly'],
-    ['route' => '/blogs', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/listing?type=stays', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/listing?type=cars', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/listing?type=bikes', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/listing?type=attractions', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/listing?type=restaurants', 'priority' => '0.8', 'freq' => 'daily'],
-    ['route' => '/bus', 'priority' => '0.8', 'freq' => 'weekly']
+    ['route' => '/',              'priority' => '1.0', 'freq' => 'daily'],
+    ['route' => '/suggestor',     'priority' => '0.8', 'freq' => 'weekly'],
+    ['route' => '/about',         'priority' => '0.7', 'freq' => 'monthly'],
+    ['route' => '/brand',         'priority' => '0.8', 'freq' => 'monthly'],
+    ['route' => '/contact',       'priority' => '0.7', 'freq' => 'monthly'],
+    ['route' => '/faq',           'priority' => '0.7', 'freq' => 'monthly'],
+    ['route' => '/itineraries',   'priority' => '0.7', 'freq' => 'weekly'],
+    ['route' => '/travel-guide',  'priority' => '0.7', 'freq' => 'weekly'],
+    ['route' => '/explore',       'priority' => '0.7', 'freq' => 'weekly'],
+    ['route' => '/blogs',         'priority' => '0.8', 'freq' => 'daily'],
+    // ── Clean URL listing pages (individual, fully indexable) ───────────────
+    ['route' => '/hotels',        'priority' => '0.9', 'freq' => 'daily'],
+    ['route' => '/car-rentals',   'priority' => '0.9', 'freq' => 'daily'],
+    ['route' => '/bike-rentals',  'priority' => '0.9', 'freq' => 'daily'],
+    ['route' => '/attractions',   'priority' => '0.9', 'freq' => 'daily'],
+    ['route' => '/restaurants',   'priority' => '0.9', 'freq' => 'daily'],
+    ['route' => '/bus-rentals',   'priority' => '0.8', 'freq' => 'weekly'],
 ];
+
 
 foreach ($staticRoutes as $r) {
     $urls[] = [

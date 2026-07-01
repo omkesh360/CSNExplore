@@ -7,14 +7,10 @@ class Database {
     private $cacheDir = __DIR__ . '/../cache/db_query_cache/';
 
     private function __construct() {
-        // Auto-detect environment: check if running on Hostinger or localhost
+        // Auto-detect environment robustly
         $appEnv = function_exists('env') ? env('APP_ENV') : (function_exists('getenv') ? getenv('APP_ENV') : false);
-        $isProduction = (
-            isset($_SERVER['HTTP_HOST']) && 
-            (strpos($_SERVER['HTTP_HOST'], 'hostingersite.com') !== false || 
-             strpos($_SERVER['HTTP_HOST'], 'csnexplore.com') !== false ||
-             strpos($_SERVER['HTTP_HOST'], 'hostinger') !== false)
-        ) || $appEnv === 'production';
+        $isLocalEnv = (strpos(__DIR__, 'htdocs') !== false || strpos(__DIR__, 'xampp') !== false || php_uname('s') === 'Windows NT');
+        $isProduction = $appEnv === 'production' || !$isLocalEnv;
 
         // Helper to safely get env vars
         $getEnvVar = function($key) {
@@ -573,29 +569,37 @@ class Database {
     }
 
     public function insert($table, $data) {
+        $table = preg_replace('/[^a-zA-Z0-9_]/', '', $table);
         $cols = array_keys($data);
-        $ph   = array_map(fn($c) => ":$c", $cols);
-        $sql  = "INSERT INTO $table (" . implode(',', $cols) . ") VALUES (" . implode(',', $ph) . ")";
-        $params = [];
-        foreach ($data as $k => $v) $params[":$k"] = $v;
-        $this->query($sql, $params);
+        $cleanCols = array_map(fn($c) => "`" . preg_replace('/[^a-zA-Z0-9_]/', '', $c) . "`", $cols);
+        $ph = array_fill(0, count($cols), '?');
+        $sql  = "INSERT INTO `$table` (" . implode(', ', $cleanCols) . ") VALUES (" . implode(', ', $ph) . ")";
+        $this->query($sql, array_values($data));
         $this->clearCache($table);
         return $this->db->lastInsertId();
     }
 
     public function update($table, $data, $where, $whereParams = []) {
-        // Use :set_ prefix to avoid collision with WHERE named params (e.g. :id vs :id)
-        $sets   = array_map(fn($c) => "$c = :set_$c", array_keys($data));
-        $sql    = "UPDATE $table SET " . implode(', ', $sets) . " WHERE $where";
+        $table = preg_replace('/[^a-zA-Z0-9_]/', '', $table);
+        $sets = [];
         $params = [];
-        foreach ($data as $k => $v) $params[":set_$k"] = $v;
+        static $pCounter = 0;
+        foreach ($data as $k => $v) {
+            $cleanCol = preg_replace('/[^a-zA-Z0-9_]/', '', $k);
+            $pCounter++;
+            $pName = ":set_" . $cleanCol . "_" . $pCounter;
+            $sets[] = "`$cleanCol` = $pName";
+            $params[$pName] = $v;
+        }
+        $sql = "UPDATE `$table` SET " . implode(', ', $sets) . " WHERE $where";
         $stmt = $this->query($sql, array_merge($params, $whereParams));
         $this->clearCache($table);
         return $stmt->rowCount();
     }
 
     public function delete($table, $where, $params = []) {
-        $stmt = $this->query("DELETE FROM $table WHERE $where", $params);
+        $table = preg_replace('/[^a-zA-Z0-9_]/', '', $table);
+        $stmt = $this->query("DELETE FROM `$table` WHERE $where", $params);
         $this->clearCache($table);
         return $stmt->rowCount();
     }

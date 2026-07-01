@@ -7,8 +7,8 @@ if (file_exists($cache_file) && time() - filemtime($cache_file) < 3600 && !isset
     readfile($cache_file);
     exit;
 }
-require_once 'php/redirects.php'; // 301 handler — must be before any output
-$page_title = "CSNExplore – Hotels, Cars, Bikes & Attractions in Chhatrapati Sambhajinagar (Aurangabad)";
+require_once 'php/redirects.php'; // 301 handler â€” must be before any output
+$page_title = "CSNExplore â€“ Hotels, Cars, Bikes & Attractions in Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "home";
 require_once 'php/config.php';
 $db = getDB();
@@ -37,7 +37,7 @@ $hp_defaults = [
     'show_blogs'        => true,
     'show_cars'         => true,
     'show_stays'        => true,
-    'hero_subtext'      => 'Stays, cars, bikes, restaurants, attractions and buses — all in one place.',
+    'hero_subtext'      => 'Stays, cars, bikes, restaurants, attractions and buses â€” all in one place.',
     'city_intro'        => '',
     'stat1_label'       => '500+ Hotels',
     'stat2_label'       => '50+ Attractions',
@@ -65,6 +65,64 @@ $hp_defaults = [
     'picks_blogs'       => [],
     'picks_cars'        => [],
     'picks_stays'       => [],
+    'hp_hero_headline' => 'Explore Chhatrapati Sambhajinagar Your Way: Aurangabad Scooter Rentals, Stays & Tours',
+    'hp_hero_subtext' => 'Book premium stays, self-drive cars, bike rentals, top restaurants, local attractions, and outstation busesâ€”all in one place.',
+    
+    'hp_hiw_title' => 'How CSNExplore Works',
+    'hp_hiw_subtext' => 'Your journey to discovering the wonders of Chhatrapati Sambhajinagar starts here, in three simple steps.',
+    'hp_hiw_s1_icon' => 'search',
+    'hp_hiw_s1_title' => 'Discover',
+    'hp_hiw_s1_desc' => 'Search verified hotels, rentals, attractions, and experiences in minutes.',
+    'hp_hiw_s2_icon' => 'shield',
+    'hp_hiw_s2_title' => 'Book Securely',
+    'hp_hiw_s2_desc' => 'Enjoy transparent pricing, instant confirmation, flexible cancellation, and secure payments.',
+    'hp_hiw_s3_icon' => 'explore',
+    'hp_hiw_s3_title' => 'Explore Freely',
+    'hp_hiw_s3_desc' => 'Check in, collect your vehicle, and experience Chhatrapati Sambhajinagar with confidence.',
+    
+    'hp_wcu_title' => 'Why Choose CSNExplore',
+    'hp_wcu_subtext' => 'We are a local, verified, and premium booking portal dedicated exclusively to Chhatrapati Sambhajinagar.',
+    'hp_wcu_f1_icon' => 'verified_user',
+    'hp_wcu_f1_title' => '100% Verified Listings',
+    'hp_wcu_f1_desc' => 'Every hotel, vehicle, guide, and experience is carefully verified to ensure trusted quality, safety, and reliability.',
+    'hp_wcu_f2_icon' => 'sell',
+    'hp_wcu_f2_title' => 'Best Price Guarantee',
+    'hp_wcu_f2_desc' => 'Book directly with local partners for transparent pricing, exclusive deals, and zero hidden charges.',
+    'hp_wcu_f3_icon' => 'support_agent',
+    'hp_wcu_f3_title' => '24/7 Local Support',
+    'hp_wcu_f3_desc' => 'Receive fast assistance from our local support team before, during, and after your trip.',
+    
+    'hp_testi_title' => 'What Our Travelers Say',
+    'hp_testi_r1_text' => 'CSNExplore made our trip to Ajanta and Ellora completely hassle-free. We rented a Swift for 2 days and the process was buttery smooth. The driver was polite and knew all the local food spots!',
+    'hp_testi_r1_name' => 'Rahul Sharma',
+    'hp_testi_r1_loc' => 'Travelled from Mumbai',
+    'hp_testi_r2_text' => 'Booked a premium stay near the station. The rates on CSNExplore were genuinely cheaper than other major OTAs. Highly recommended for anyone visiting Chhatrapati Sambhajinagar.',
+    'hp_testi_r2_name' => 'Ananya Desai',
+    'hp_testi_r2_loc' => 'Travelled from Pune',
+    'hp_testi_r3_text' => 'The bike rental service was a lifesaver! Rented a scooter to roam around the city. Transparent pricing and the vehicle was in great condition. Will definitely use again.',
+    'hp_testi_r3_name' => 'Vikram Singh',
+    'hp_testi_r3_loc' => 'Travelled from Delhi',
+    
+    'hp_itin_title' => 'Curated Itineraries',
+    'hp_itin_subtext' => 'Expertly crafted travel plans designed to help you make the most of your time in Chhatrapati Sambhajinagar.',
+    'hp_itin_i1_img' => 'https://images.unsplash.com/photo-1610017122171-ec331c1e55b6?w=800&q=80',
+    'hp_itin_i1_dur' => '2 Days',
+    'hp_itin_i1_title' => 'The Cave Explorer\'s Trail',
+    'hp_itin_i1_desc' => 'Cover the magnificent Ajanta and Ellora caves in a packed two-day weekend itinerary.',
+    'hp_itin_i1_locs' => 'Ajanta &middot; Ellora',
+    'hp_itin_i2_img' => 'https://images.unsplash.com/photo-1658406560875-9c5c24e61b78?w=800&q=80',
+    'hp_itin_i2_dur' => '1 Day',
+    'hp_itin_i2_title' => 'Forts & Heritage Run',
+    'hp_itin_i2_desc' => 'An adventurous day exploring Daulatabad Fort and the historic 52 gates of the city.',
+    'hp_itin_i2_locs' => 'Daulatabad Fort &middot; City Gates',
+    'hp_itin_i3_img' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
+    'hp_itin_i3_dur' => 'Evening',
+    'hp_itin_i3_title' => 'Mughlai Culinary Walk',
+    'hp_itin_i3_desc' => 'Taste the authentic Naan Qalia and street food delights in the old city streets.',
+    'hp_itin_i3_locs' => 'Buddi Lane &middot; Nirala Bazaar',
+    
+    'hp_news_title' => 'Stay ',
+    'hp_news_subtext' => 'Subscribe to our newsletter for exclusive deals, hidden travel spots, and the latest updates on Chhatrapati Sambhajinagar tourism.',
 ];
 foreach ($hp_defaults as $k => $v) {
     if (!isset($hp_settings[$k]) || $hp_settings[$k] === '') {
@@ -76,7 +134,7 @@ if (!is_array($hp_settings['section_order']) || count($hp_settings['section_orde
     $hp_settings['section_order'] = ['stays','cars','bikes','attractions','restaurants','buses','blogs'];
 }
 
-// Helper: layout string → Tailwind grid/flex class
+// Helper: layout string â†’ Tailwind grid/flex class
 function hp_grid_class($layout) {
     $map = [
         '3-col' => 'grid grid-cols-1 md:grid-cols-3 gap-5',
@@ -92,7 +150,7 @@ function hp_card_wrap($layout) {
     return $layout === 'scroll' ? 'flex-shrink-0 w-72 snap-start' : '';
 }
 
-// Fetch real data from DB — use picks if set, otherwise use saved counts
+// Fetch real data from DB â€” use picks if set, otherwise use saved counts
 function hp_fetch_picks($db, $table, $picks, $where_active, $fallback_sql) {
     if (!empty($picks) && is_array($picks)) {
         $ids = implode(',', array_map('intval', $picks));
@@ -136,7 +194,7 @@ $hp_stays = hp_fetch_picks($db, 'stays', $hp_settings['picks_stays'] ?? [], 'is_
 ?>
 <?php
 $page_meta = [
-    'description' => 'CSNExplore – your premium travel portal for Chhatrapati Sambhajinagar (Aurangabad). Book hotels, car & bike rentals, explore Ajanta & Ellora Caves attractions, restaurants and more.',
+    'description' => 'CSNExplore â€“ your premium travel portal for Chhatrapati Sambhajinagar (Aurangabad). Book hotels, car & bike rentals, explore Ajanta & Ellora Caves attractions, restaurants and more.',
     'canonical'   => 'https://csnexplore.com/',
     'type'        => 'website',
     'image'       => 'https://csnexplore.com/images/Logo-light-optimized.webp',
@@ -144,33 +202,7 @@ $page_meta = [
         ['name' => 'Home', 'url' => '/'],
     ],
 ];
-$extra_head = '<link rel="preload" as="image" imagesrcset="' . BASE_PATH . '/images/hotel-hero-section-mobile.webp 768w, ' . BASE_PATH . '/images/hotel-hero-section-4.webp 1920w" imagesizes="100vw" fetchpriority="high">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CSNExplore",
-  "url": "https://csnexplore.com",
-  "logo": "https://csnexplore.com/images/Logo-light-optimized.webp",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-8600968888",
-    "contactType": "customer service",
-    "areaServed": "IN",
-    "availableLanguage": ["en", "hi"]
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chhatrapati Sambhajinagar",
-    "addressRegion": "Maharashtra",
-    "addressCountry": "IN"
-  },
-  "sameAs": [
-    "https://www.facebook.com/csnexplore",
-    "https://www.instagram.com/csnexplore"
-  ]
-}
-</script>';
+$extra_head = '<link rel="preload" as="image" imagesrcset="' . BASE_PATH . '/images/hotel-hero-section-mobile.webp 768w, ' . BASE_PATH . '/images/hotel-hero-section-4.webp 1920w" imagesizes="100vw" fetchpriority="high">';
 $extra_styles = "
         .hide-scrollbar::-webkit-scrollbar { display:none; }
         .hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
@@ -207,13 +239,13 @@ $extra_styles = "
         }
         #hero-label, #hero-pre, #hero-highlight, #hero-post, #hero-desc { transition: opacity 0.25s ease; }
         .search-box { 
-            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-            backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); 
-            border: 1px solid rgba(255,255,255,0.08); 
-            border-top: 1px solid rgba(255,255,255,0.25);
-            border-left: 1px solid rgba(255,255,255,0.15);
-            border-radius: 32px; padding: 28px 32px;
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6), 0 0 40px rgba(236,91,19,0.1), inset 0 0 0 1px rgba(255,255,255,0.05);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%);
+            backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%); 
+            border: 1px solid rgba(255,255,255,0.15); 
+            border-top: 1px solid rgba(255,255,255,0.3);
+            border-left: 1px solid rgba(255,255,255,0.2);
+            border-radius: 36px; padding: 32px 36px;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8), 0 0 50px rgba(236,91,19,0.15), inset 0 0 0 1px rgba(255,255,255,0.1);
         }
         #search-tabs-scroll {
             display: flex; gap: 8px; justify-content: center; margin: 0 auto 24px auto;
@@ -432,9 +464,9 @@ require 'header.php';
         <div class="h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] flex flex-col justify-end mb-8 md:mb-10 lg:mb-12">
             <p id="hero-label" class="mobile-hide text-orange-500 font-bold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-3">Chhatrapati Sambhajinagar</p>
             <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 md:mb-6 leading-[1.1] font-black px-4" style="text-shadow: 0 4px 30px rgba(0,0,0,0.6);">
-                Explore Chhatrapati Sambhajinagar Your Way: Rentals, Stays & Tours
+                <?php echo htmlspecialchars($hp_settings['hp_hero_headline'] ?? 'Explore Chhatrapati Sambhajinagar Your Way: Aurangabad Scooter Rentals, Stays & Tours'); ?>
             </h1>
-            <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-6 leading-relaxed mb-0">Book premium stays, self-drive cars, bike rentals, top restaurants, local attractions, and outstation buses—all in one place.</p>
+            <p id="hero-desc" class="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-6 leading-relaxed mb-0"><?php echo htmlspecialchars($hp_settings['hp_hero_subtext'] ?? 'Book premium stays, self-drive cars, bike rentals, top restaurants, local attractions, and outstation busesâ€”all in one place.'); ?></p>
         </div>
 
         <!-- Modern Tabs Section -->
@@ -524,9 +556,9 @@ function switchTab(tab, fromAuto) {
     var heroData = {
         stays:       { img: '<?php echo BASE_PATH; ?>/images/hotel-hero-section-4.webp', label:'Find Your Stay',       pre:'Discover ',   highlight:'Perfect Hotels',    post:' Near You',    desc:'The best hotels, guesthouses and homestays in Chhatrapati Sambhajinagar.' },
         cars:        { img: '<?php echo BASE_PATH; ?>/images/car-rental-hero-section%20(3).webp', label:'Rent a Car',            pre:'Drive in ',   highlight:'Premium Style',     post:' Today',       desc:'Luxury sedans, SUVs and hatchbacks with professional chauffeurs at your service.' },
-        bikes:       { img: '<?php echo BASE_PATH; ?>/images/bike%20rentals-hero-section%20(6).webp', label:'Rent a Bike',           pre:'Ride ',       highlight:'The Open Road',     post:' Your Way',    desc:'Scooters, cruisers and sports bikes — ride the city your way, anytime.' },
-        attractions: { img: '<?php echo BASE_PATH; ?>/images/attractions-hero-section%20(7).webp', label:'Discover Attractions',  pre:'Explore ',    highlight:'Ancient Marvels',   post:' Around You',  desc:'Ellora, Ajanta, Bibi Ka Maqbara and more — heritage wonders await you.' },
-        dine:        { img: '<?php echo BASE_PATH; ?>/images/dine-hero-section%20(1).webp', label:'Taste the City',        pre:'Savour ',     highlight:'Local Flavours',    post:' Tonight',     desc:'From Mughlai feasts to street food — find the best restaurants near you.' },
+        bikes:       { img: '<?php echo BASE_PATH; ?>/images/bike%20rentals-hero-section%20(6).webp', label:'Rent a Bike',           pre:'Ride ',       highlight:'The Open Road',     post:' Your Way',    desc:'Scooters, cruisers and sports bikes â€” ride the city your way, anytime.' },
+        attractions: { img: '<?php echo BASE_PATH; ?>/images/attractions-hero-section%20(7).webp', label:'Discover Attractions',  pre:'Explore ',    highlight:'Ancient Marvels',   post:' Around You',  desc:'Ellora, Ajanta, Bibi Ka Maqbara and more â€” heritage wonders await you.' },
+        dine:        { img: '<?php echo BASE_PATH; ?>/images/dine-hero-section%20(1).webp', label:'Taste the City',        pre:'Savour ',     highlight:'Local Flavours',    post:' Tonight',     desc:'From Mughlai feasts to street food â€” find the best restaurants near you.' },
         buses:       { img: '<?php echo BASE_PATH; ?>/images/bus-hero-section%20(2).webp', label:'Book a Bus',            pre:'Travel ',     highlight:'Your Way',          post:' Comfortably', desc:'AC sleepers, Volvo coaches and MSRTC buses to and from Sambhajinagar.' }
     };
     var d = heroData[tab];
@@ -558,14 +590,11 @@ function switchTab(tab, fromAuto) {
         }
     }
 
-    ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='0'; });
+    ['hero-label','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='0'; });
     setTimeout(function(){
         document.getElementById('hero-label').textContent = d.label;
-        document.getElementById('hero-pre').textContent = d.pre;
-        document.getElementById('hero-highlight').textContent = d.highlight;
-        document.getElementById('hero-post').textContent = d.post;
         document.getElementById('hero-desc').textContent = d.desc;
-        ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='1'; });
+        ['hero-label','hero-desc'].forEach(function(id){ document.getElementById(id).style.opacity='1'; });
     }, 250);
     
     // Stop auto-rotation when user manually selects a tab
@@ -604,11 +633,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Initialize with the first background (stays - default tab)
-// hero-bg srcs are already set via HTML — no need to reset them
+// hero-bg srcs are already set via HTML â€” no need to reset them
 
 // Fix bfcache: restore hero text when navigating back
 window.addEventListener('pageshow', function(e) {
-    ['hero-label','hero-pre','hero-highlight','hero-post','hero-desc'].forEach(function(id){
+    ['hero-label','hero-desc'].forEach(function(id){
         var el = document.getElementById(id);
         if (el) el.style.opacity = '1';
     });
@@ -620,7 +649,7 @@ window.addEventListener('pageshow', function(e) {
     // }
 });
 
-var searchUrls = { stays:'<?php echo BASE_PATH; ?>/listing/stays', cars:'<?php echo BASE_PATH; ?>/listing/cars', bikes:'<?php echo BASE_PATH; ?>/listing/bikes', attractions:'<?php echo BASE_PATH; ?>/listing/attractions', dine:'<?php echo BASE_PATH; ?>/listing/restaurants', buses:'<?php echo BASE_PATH; ?>/bus' };
+var searchUrls = { stays:'<?php echo BASE_PATH; ?>/hotels', cars:'<?php echo BASE_PATH; ?>/car-rentals', bikes:'<?php echo BASE_PATH; ?>/bike-rentals', attractions:'<?php echo BASE_PATH; ?>/attractions', dine:'<?php echo BASE_PATH; ?>/restaurants', buses:'<?php echo BASE_PATH; ?>/bus' };
 function doSearch(tab) {
     window.location.href = searchUrls[tab];
 }
@@ -771,7 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <?php
-// Base counts — if more items than this are shown, switch to horizontal scroll
+// Base counts â€” if more items than this are shown, switch to horizontal scroll
 $_sec_base_counts = [
     'attractions' => 4,
     'bikes'       => 4,
@@ -782,7 +811,7 @@ $_sec_base_counts = [
     'stays'       => 4,
 ];
 
-// ── Render sections in saved order ───────────────────────────────────────────
+// â”€â”€ Render sections in saved order â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 $_sec_bg_toggle = false;
 foreach ($hp_settings['section_order'] as $_sec_key):
     if (empty($hp_settings['show_' . $_sec_key])) continue;
@@ -812,14 +841,14 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     Not sure where to go? <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent italic px-1 pr-2">Let us plan it.</span>
                 </h2>
                 <p class="text-white/70 text-sm md:text-base max-w-lg mx-auto md:mx-0 mb-6 group-hover:text-white/90 transition-colors">
-                    Talk to our local trip experts. We'll craft a customized, fully personalized itinerary for your entire trip—including cars, hotels, and ancient site guides—at no extra cost.
+                    Talk to our local trip experts. We'll craft a customized, fully personalized itinerary for your entire tripâ€”including cars, hotels, and ancient site guidesâ€”at no extra cost.
                 </p>
                 <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-orange-500 text-white font-black rounded-xl text-sm shadow-[0_8px_30px_rgb(236,91,19,0.3)] hover:shadow-[0_8px_30px_rgb(236,91,19,0.5)] hover:-translate-y-1 hover:text-white transition-all">
                     Trip Plan <span class="material-symbols-outlined text-[18px]">support_agent</span>
                 </a>
             </div>
             
-            <!-- Graphic layout — JS-driven smooth card stack -->
+            <!-- Graphic layout â€” JS-driven smooth card stack -->
             <div class="flex flex-shrink-0 relative w-64 h-72 md:w-72 md:h-80 lg:w-80 lg:h-96 z-10 items-center justify-center" id="trip-stack-wrap">
                 <style>
                     #trip-stack-wrap .stack-card {
@@ -829,7 +858,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                         background-size: cover;
                         background-position: center;
                         border: 2px solid rgba(255,255,255,0.22);
-                        /* Use filter:drop-shadow instead of box-shadow — GPU composited, no CLS */
+                        /* Use filter:drop-shadow instead of box-shadow â€” GPU composited, no CLS */
                         will-change: transform, opacity;
                         transition: transform 0.6s cubic-bezier(0.22,1,0.36,1),
                                     opacity   0.6s cubic-bezier(0.22,1,0.36,1);
@@ -876,7 +905,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
     if (!cards.length) return;
     var n = cards.length, cur = 0;
 
-    /* 4-layer depth states — use filter:drop-shadow (GPU composited) instead of box-shadow */
+    /* 4-layer depth states â€” use filter:drop-shadow (GPU composited) instead of box-shadow */
     var S = [
         { z:4, o:1,    t:'translateY(0px) scale(1) rotate(0deg)',        f:'drop-shadow(0 28px 30px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(236,91,19,0.15))' },
         { z:3, o:0.75, t:'translateY(12px) scale(0.93) rotate(-2.5deg)', f:'drop-shadow(0 10px 18px rgba(0,0,0,0.28))' },
@@ -910,7 +939,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 <?php endif; ?>
 <?php
     $_layout = $hp_settings['layout_' . $_sec_key];
-    // If more items than base count → force horizontal scroll
+    // If more items than base count â†’ force horizontal scroll
     $_sec_items_map = ['attractions'=>$hp_attractions,'bikes'=>$hp_bikes,'restaurants'=>$hp_restaurants,'buses'=>$hp_buses,'blogs'=>$hp_blogs,'cars'=>$hp_cars,'stays'=>$hp_stays];
     $_sec_item_count = count($_sec_items_map[$_sec_key] ?? []);
     $_base = $_sec_base_counts[$_sec_key] ?? 4;
@@ -941,15 +970,18 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                     'stays' => 'Premium Stays & Hotels in Chhatrapati Sambhajinagar',
                     'cars' => 'Self-Drive Car Rentals & Taxis (Aurangabad)',
                     'bikes' => 'Quick Bike & Scooter Rentals in Sambhajinagar',
-                    'attractions' => 'Ajanta & Ellora Caves Tour & Heritage Sites',
-                    'restaurants' => 'Taste the City: Pure Veg, Jain & Maharashtrian Restaurants',
+                    'attractions' => 'Top Heritage Sites & Caves Tour',
+                    'restaurants' => 'Taste the City: Pure Veg, Jain & Maharashtrian',
                     'buses' => 'Outstation Buses & Travel Options'
                 ];
                 $display_title = $seo_titles[$_sec_key] ?? $hp_settings['title_' . $_sec_key];
                 ?>
                 <h2 class="font-serif text-2xl md:text-3xl text-slate-900"><?php echo htmlspecialchars($display_title); ?></h2>
             </div>
-            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo htmlspecialchars($display_title); ?>" class="text-sm font-bold text-[#c2410c] hover:underline">See all <?php echo htmlspecialchars($display_title); ?> &rarr;</a>
+            <a href="<?php echo BASE_PATH; ?>/listing/<?php echo $_sec_key; ?>" aria-label="See all <?php echo htmlspecialchars($display_title); ?>" class="text-sm font-bold text-[#c2410c] hover:underline flex items-center gap-1 group">
+                See all <span class="hidden md:inline lowercase"><?php echo htmlspecialchars($sec_subtitles[$_sec_key] ?? $_sec_key); ?></span> 
+                <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+            </a>
             <?php endif; ?>
         </div>
         <?php if ($_sec_key !== 'blogs'): ?>
@@ -959,7 +991,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
         </p>
         <?php endif; ?>
         <?php
-        // ── Visible-cards-per-section config ─────────────────────────────────
+        // â”€â”€ Visible-cards-per-section config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         $_vis = ['attractions'=>4,'bikes'=>4,'restaurants'=>4,'buses'=>2,'blogs'=>3];
         $_vis_count = $_vis[$_sec_key] ?? 4;
         // Mobile: fixed 80vw so ~1.1 cards visible. Desktop: percentage of container.
@@ -969,7 +1001,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $render_fn = function($a) {
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('attractions', $a['id'], $a['name']);
                 $imgSrc = $a['image'] ?? '';
-                $img = (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                $img = htmlspecialchars(get_working_image_url($imgSrc));
                 if (!$imgSrc) $img = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80&auto=format';
                 $name=htmlspecialchars($a['name'] ?? '');
                 $tag=htmlspecialchars($a['type'] ?? 'Attraction');
@@ -1137,7 +1169,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
         elseif ($_sec_key === 'buses'):
             $render_fn = function($bus) {
                 $op=htmlspecialchars($bus['operator']??''); $bt=htmlspecialchars($bus['bus_type']??'');
-                $route=htmlspecialchars($bus['from_location']??'').' → '.htmlspecialchars($bus['to_location']??'');
+                $route=htmlspecialchars($bus['from_location']??'').' â†’ '.htmlspecialchars($bus['to_location']??'');
                 $price=number_format($bus['price']);
                 $slug = BASE_PATH . '/listing-detail/' . generateSlug('buses', $bus['id'], $bus['operator']);
                 return '<a href="'.$slug.'" class="glass-dark p-5 rounded-2xl flex items-center justify-between gap-4 card-hover flex-shrink-0 group relative overflow-hidden" style="width:VAR_W">'
@@ -1201,6 +1233,30 @@ foreach ($hp_settings['section_order'] as $_sec_key):
             $items = $hp_blogs;
         endif;
         ?>
+        <?php if ($_sec_key === 'stays'): ?>
+        <!-- Premium Carousel Slider for Stays -->
+        <div class="relative overflow-hidden group/slider -mx-5 px-5" id="carousel-wrap-stays" style="scroll-behavior: auto !important;">
+            <div class="flex gap-6 pb-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar" id="carousel-track-stays" style="scroll-padding-left: 20px;">
+                <?php
+                if (!empty($items)) {
+                    foreach ($items as $__item) {
+                        echo str_replace('VAR_W', $_card_w, $render_fn($__item));
+                    }
+                } else {
+                    echo '<p class="text-slate-400 py-8">No items yet.</p>';
+                }
+                ?>
+            </div>
+            <!-- Slider Controls -->
+            <button onclick="document.getElementById('carousel-track-stays').scrollBy({left:-350, behavior:'smooth'})" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md shadow-xl rounded-full p-3 text-slate-800 opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:scale-110 hidden md:block z-30 border border-slate-200" aria-label="Previous">
+                <span class="material-symbols-outlined font-bold">arrow_back_ios_new</span>
+            </button>
+            <button onclick="document.getElementById('carousel-track-stays').scrollBy({left:350, behavior:'smooth'})" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md shadow-xl rounded-full p-3 text-slate-800 opacity-0 group-hover/slider:opacity-100 transition-all hover:bg-white hover:scale-110 hidden md:block z-30 border border-slate-200" aria-label="Next">
+                <span class="material-symbols-outlined font-bold">arrow_forward_ios</span>
+            </button>
+        </div>
+        <?php else: ?>
+        <!-- Default Carousel -->
         <div class="relative overflow-x-auto overflow-y-hidden hide-scrollbar snap-x snap-mandatory" id="carousel-wrap-<?php echo $_sec_key; ?>" style="scroll-behavior: auto !important;">
             <div id="carousel-track-<?php echo $_sec_key; ?>" class="flex gap-6 pb-4">
                 <?php
@@ -1215,117 +1271,1023 @@ foreach ($hp_settings['section_order'] as $_sec_key):
                 ?>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </section>
 <?php endforeach; ?>
+<!-- How CSNExplore Works Section â€” Premium Redesign -->
+<style>
+/* HIW Section Styles */
+.hiw-section {
+    background: linear-gradient(135deg, #0f0c0a 0%, #1a1208 40%, #0f0c0a 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 96px 0;
+}
+.hiw-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 10% 20%, rgba(236,91,19,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(245,158,11,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 30% 30% at 50% 50%, rgba(236,91,19,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+.hiw-orb-1 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,91,19,0.12) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    animation: hiwFloat1 8s ease-in-out infinite;
+    pointer-events: none;
+}
+.hiw-orb-2 {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+    bottom: -80px; right: -60px;
+    animation: hiwFloat2 10s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes hiwFloat1 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(30px, 20px) scale(1.08); }
+}
+@keyframes hiwFloat2 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-20px, -30px) scale(1.05); }
+}
+.hiw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(236,91,19,0.15);
+    border: 1px solid rgba(236,91,19,0.3);
+    color: #f97316;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+}
+.hiw-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+.hiw-title span {
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.hiw-subtitle {
+    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+}
+/* Desktop connector line */
+.hiw-connector-wrap {
+    position: absolute;
+    top: 44px;
+    left: calc(16.666% + 40px);
+    right: calc(16.666% + 40px);
+    height: 2px;
+    pointer-events: none;
+    z-index: 0;
+    display: none;
+}
+@media (min-width: 768px) {
+    .hiw-connector-wrap { display: block; }
+    .hiw-connector-wrap.hiw-row2 { top: 44px; }
+}
+.hiw-connector-line {
+    width: 100%;
+    height: 100%;
+    border-top: 2px dashed rgba(236,91,19,0.25);
+    position: relative;
+}
+.hiw-connector-line::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, #f97316, #f59e0b);
+    animation: hiwConnectorFill 2s ease-out 0.5s forwards;
+}
+@keyframes hiwConnectorFill {
+    to { width: 100%; }
+}
+
+/* Step Card */
+.hiw-step-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    flex-shrink: 0;
+    width: 85vw;
+    max-width: 320px;
+    scroll-snap-align: center;
+    height: 100%;
+    min-height: 280px;
+}
+.hiw-icon-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    cursor: default;
+    background: linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(245,158,11,0.1) 100%);
+    border: 1px solid rgba(249,115,22,0.25);
+    box-shadow: 0 0 0 0 rgba(249,115,22,0);
+}
+.hiw-step-card:hover .hiw-icon-wrap {
+    transform: scale(1.12) translateY(-4px);
+    box-shadow: 0 0 40px rgba(249,115,22,0.35), 0 20px 40px rgba(0,0,0,0.3);
+    border-color: rgba(249,115,22,0.5);
+}
+.hiw-icon-inner {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(249,115,22,0.5);
+}
+.hiw-step-num {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.5);
+    border: 2px solid rgba(15,12,10,0.8);
+}
+.hiw-card-body {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 24px 20px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+    width: 100%;
+    flex-grow: 1;
+}
+.hiw-step-card:hover .hiw-card-body {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(249,115,22,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(249,115,22,0.1);
+    transform: translateY(-4px);
+}
+.hiw-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+.hiw-card-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+}
+
+/* Mobile vertical line */
+.hiw-mobile-line {
+    position: absolute;
+    left: 43px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(249,115,22,0.4), rgba(249,115,22,0.1));
+    pointer-events: none;
+}
+
+/* WCU Section Premium */
+.wcu-section {
+    background: #ffffff;
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+}
+.wcu-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(236,91,19,0.04) 0%, transparent 60%);
+    pointer-events: none;
+}
+.wcu-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 36px 32px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    overflow: hidden;
+}
+.wcu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(249,115,22,0) 0%, rgba(249,115,22,0) 100%);
+    transition: background 0.4s ease;
+    pointer-events: none;
+}
+.wcu-card:hover {
+    box-shadow: 0 20px 60px rgba(236,91,19,0.12), 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(-8px);
+    border-color: rgba(249,115,22,0.15);
+}
+.wcu-card:hover::before {
+    background: linear-gradient(135deg, rgba(249,115,22,0.03) 0%, rgba(245,158,11,0.02) 100%);
+}
+.wcu-icon-ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.wcu-card:hover .wcu-icon-ring {
+    transform: scale(1.12) rotate(-5deg);
+}
+.wcu-number {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-size: 56px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.03);
+    line-height: 1;
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+}
+.wcu-title-text {
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+.wcu-desc-text {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.75;
+}
+
+/* Testimonials Premium */
+.testi-section {
+    background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #f1f5f9;
+}
+.testi-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #fff7ed, #fff3e0);
+    border: 1px solid rgba(249,115,22,0.2);
+    color: #ea580c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+}
+.testi-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px 28px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 85vw;
+    max-width: 350px;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.testi-card::before {
+    content: '"';
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 96px;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: rgba(249,115,22,0.08);
+    line-height: 1;
+    font-weight: 900;
+    pointer-events: none;
+}
+.testi-card:hover {
+    box-shadow: 0 20px 50px rgba(236,91,19,0.1), 0 4px 16px rgba(0,0,0,0.06);
+    transform: translateY(-6px);
+    border-color: rgba(249,115,22,0.12);
+}
+.testi-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+}
+.testi-star {
+    color: #f59e0b;
+    font-size: 16px;
+}
+.testi-text {
+    color: #475569;
+    font-size: 13.5px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+.testi-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+}
+.testi-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+.testi-loc {
+    font-size: 12px;
+    color: #94a3b8;
+}
+</style>
+
+<style>
+/* How CSNExplore Works Grid Styles */
+.hiw-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    position: relative;
+    z-index: 10;
+}
+@media (min-width: 768px) {
+    .hiw-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .hiw-grid-container {
+        /* Three cards on top, three at bottom as requested */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.hiw-grid-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.hiw-grid-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.03) 0%, rgba(245,158,11,0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+.hiw-grid-card:hover {
+    box-shadow: 0 20px 40px rgba(236,91,19,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    transform: translateY(-6px);
+    border-color: rgba(249,115,22,0.15);
+}
+.hiw-grid-card:hover::before {
+    opacity: 1;
+}
+.hiw-grid-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff7ed, #fffbeb);
+    border: 1px solid rgba(249,115,22,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: #ea580c;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hiw-grid-card:hover .hiw-grid-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 10px 20px rgba(236,91,19,0.25);
+}
+.hiw-grid-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(0,0,0,0.03);
+    z-index: 0;
+    pointer-events: none;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.4s;
+}
+.hiw-grid-card:hover .hiw-grid-number {
+    color: rgba(249,115,22,0.05);
+}
+</style>
+
+<section class="py-24 bg-slate-50 relative overflow-hidden" data-reveal>
+    <div style="max-width:1140px; margin:0 auto; padding:0 20px; position:relative; z-index:10;">
+        <div style="text-align:center; margin-bottom:56px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#fff7ed,#fffbeb); border:1px solid rgba(249,115,22,0.2); color:#ea580c; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-bottom:16px;">
+                <span class="material-symbols-outlined" style="font-size:14px;">route</span> Our Journey
+            </div>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-slate-900 mb-4">How <span class="text-orange-500">CSNExplore</span> Works</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto">Follow a seamless journey from dreaming about your destination to sharing unforgettable memories.</p>
+        </div>
+
+        <div class="hiw-grid-container">
+            <?php
+            $hiw_steps = [
+                ['icon'=>'travel_explore', 'num'=>'01', 'title'=>'Discover Places', 'desc'=>'Browse verified destinations, heritage sites, and top-rated local attractions.'],
+                ['icon'=>'event_note',     'num'=>'02', 'title'=>'Plan Itinerary',  'desc'=>'Get custom travel plans tailored to your budget and specific timeline.'],
+                ['icon'=>'compare_arrows', 'num'=>'03', 'title'=>'Compare Options', 'desc'=>'Instantly compare prices across hotels, cabs, and bike rental services.'],
+                ['icon'=>'local_taxi',     'num'=>'04', 'title'=>'Book Instantly',  'desc'=>'Reserve everything you need in one unified portal without hidden fees.'],
+                ['icon'=>'support_agent',  'num'=>'05', 'title'=>'Expert Support',  'desc'=>'Connect with our local experts who ensure your journey is flawless.'],
+                ['icon'=>'luggage',        'num'=>'06', 'title'=>'Enjoy the Trip',  'desc'=>'Travel with absolute confidence alongside our trusted local partners.'],
+            ];
+            foreach ($hiw_steps as $step):
+            ?>
+            <div class="hiw-grid-card group">
+                <div class="hiw-grid-number"><?php echo $step['num']; ?></div>
+                <div class="hiw-grid-icon">
+                    <span class="material-symbols-outlined text-[32px] group-hover:text-white transition-colors duration-300" style="font-variation-settings:'FILL' 1;"><?php echo $step['icon']; ?></span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3 relative z-10"><?php echo htmlspecialchars($step['title']); ?></h3>
+                <p class="text-slate-500 text-sm leading-relaxed relative z-10"><?php echo htmlspecialchars($step['desc']); ?></p>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section â€” Holographic Glass Grid -->
+<style>
+.holo-grid { display: grid; grid-template-columns: 1fr; gap: 24px; position: relative; z-index: 10; padding-bottom: 40px; }
+@media (min-width: 768px) { .holo-grid { grid-template-columns: repeat(3, 1fr); } }
+.holo-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+}
+.holo-card::before {
+    content: ''; position: absolute; inset: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(249,115,22,0.1), transparent 40%); opacity: 0; transition: opacity 0.5s;
+}
+.holo-card:hover { transform: translateY(-8px); border-color: rgba(249, 115, 22, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px rgba(249, 115, 22, 0.1); }
+.holo-card:hover::before { opacity: 1; }
+.holo-icon-ring {
+    width: 72px; height: 72px; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05));
+    border: 1px solid rgba(249,115,22,0.2); margin-bottom: 32px;
+}
+.holo-number { position: absolute; top: -10px; right: -10px; font-size: 140px; font-weight: 900; line-height: 1; color: rgba(255,255,255,0.03); z-index: -1; pointer-events: none; font-family: 'Playfair Display', serif; }
+</style>
+<section class="py-24 relative overflow-hidden bg-slate-900" data-reveal>
+    <!-- Background Accents -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none"></div>
+    </div>
+    
+    <div class="max-w-[1140px] mx-auto px-5 relative z-10">
+        <div style="text-align:center; margin-bottom:60px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fdba74; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-bottom:16px; backdrop-filter: blur(8px);">
+                <span class="material-symbols-outlined" style="font-size:14px;">star</span>
+                Why Us
+            </div>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-4"><?php echo htmlspecialchars($hp_settings['hp_wcu_title'] ?? 'Why Choose CSNExplore'); ?></h2>
+            <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto"><?php echo htmlspecialchars($hp_settings['hp_wcu_subtext'] ?? 'We are a local, verified, and premium booking portal dedicated exclusively to Chhatrapati Sambhajinagar.'); ?></p>
+        </div>
+
+        <div class="holo-grid" id="holo-grid-container">
+            <!-- Feature 1 -->
+            <div class="holo-card">
+                <div class="holo-number">01</div>
+                <div class="holo-icon-ring">
+                    <span class="material-symbols-outlined text-orange-400 text-3xl"><?php echo htmlspecialchars($hp_settings['hp_wcu_f1_icon'] ?? 'verified_user'); ?></span>
+                </div>
+                <h3 class="text-white text-xl font-bold mb-3"><?php echo htmlspecialchars($hp_settings['hp_wcu_f1_title'] ?? '100% Verified Listings'); ?></h3>
+                <p class="text-slate-400 text-sm leading-relaxed"><?php echo htmlspecialchars($hp_settings['hp_wcu_f1_desc'] ?? 'Every hotel, vehicle, guide, and experience is carefully verified to ensure trusted quality, safety, and reliability.'); ?></p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="holo-card">
+                <div class="holo-number">02</div>
+                <div class="holo-icon-ring" style="background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); border-color: rgba(59,130,246,0.2);">
+                    <span class="material-symbols-outlined text-blue-400 text-3xl"><?php echo htmlspecialchars($hp_settings['hp_wcu_f2_icon'] ?? 'sell'); ?></span>
+                </div>
+                <h3 class="text-white text-xl font-bold mb-3"><?php echo htmlspecialchars($hp_settings['hp_wcu_f2_title'] ?? 'Best Price Guarantee'); ?></h3>
+                <p class="text-slate-400 text-sm leading-relaxed"><?php echo htmlspecialchars($hp_settings['hp_wcu_f2_desc'] ?? 'Book directly with local partners for transparent pricing, exclusive deals, and zero hidden charges.'); ?></p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="holo-card">
+                <div class="holo-number">03</div>
+                <div class="holo-icon-ring" style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05)); border-color: rgba(16,185,129,0.2);">
+                    <span class="material-symbols-outlined text-emerald-400 text-3xl"><?php echo htmlspecialchars($hp_settings['hp_wcu_f3_icon'] ?? 'support_agent'); ?></span>
+                </div>
+                <h3 class="text-white text-xl font-bold mb-3"><?php echo htmlspecialchars($hp_settings['hp_wcu_f3_title'] ?? '24/7 Local Support'); ?></h3>
+                <p class="text-slate-400 text-sm leading-relaxed"><?php echo htmlspecialchars($hp_settings['hp_wcu_f3_desc'] ?? 'Receive fast assistance from our local support team before, during, and after your trip.'); ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+// Mouse tracking for holo cards glow effect
+document.getElementById('holo-grid-container')?.addEventListener('mousemove', function(e) {
+    for(const card of document.querySelectorAll('.holo-card')) {
+        const rect = card.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    }
+});
+</script>
+
+<!-- Testimonials Section â€” Cinematic Glass Wall -->
+<style>
+.testi-wall { display: grid; grid-template-columns: 1fr; gap: 24px; position: relative; z-index: 10; padding-bottom: 40px; }
+@media (min-width: 768px) { .testi-wall { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+.testi-glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 32px;
+    padding: 32px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.testi-glass-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.testi-quote-mark { font-size: 80px; font-family: 'Playfair Display', serif; color: rgba(249,115,22,0.15); line-height: 0; position: absolute; top: 50px; left: 24px; }
+</style>
+<section class="py-24 relative overflow-hidden bg-slate-50" data-reveal>
+    <div class="absolute inset-0 z-0">
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-100 rounded-full blur-[100px] opacity-50 pointer-events-none"></div>
+    </div>
+    
+    <div class="max-w-[1140px] mx-auto px-5 relative z-10">
+        <div style="text-align:center; margin-bottom:60px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#fff7ed,#fffbeb); border:1px solid rgba(249,115,22,0.2); color:#ea580c; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-bottom:16px;">
+                <span class="material-symbols-outlined" style="font-size:14px; font-variation-settings:'FILL' 1;">star</span>
+                Testimonials
+            </div>
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-slate-900 mb-4"><?php echo htmlspecialchars($hp_settings['hp_testi_title'] ?? 'What Our Travelers Say'); ?></h2>
+        </div>
+        
+        <div class="testi-wall">
+            <!-- Review 1 -->
+            <div class="testi-glass-card" style="transform: translateY(20px);">
+                <div class="testi-quote-mark">"</div>
+                <div class="flex items-center gap-1 mb-6">
+                    <?php for($s=0;$s<5;$s++): ?><span class="material-symbols-outlined text-orange-400 text-xl" style="font-variation-settings:'FILL' 1;">star</span><?php endfor; ?>
+                </div>
+                <p class="text-slate-700 text-[15px] leading-relaxed mb-8 relative z-10 font-medium">"<?php echo htmlspecialchars($hp_settings['hp_testi_r1_text'] ?? 'CSNExplore made our trip to Ajanta and Ellora completely hassle-free. We rented a Swift for 2 days and the process was buttery smooth. The driver was polite and knew all the local food spots!'); ?>"</p>
+                <div class="flex items-center gap-4 border-t border-slate-200/50 pt-5">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-amber-400 text-white flex items-center justify-center font-bold text-lg shadow-inner"><?php echo substr($hp_settings['hp_testi_r1_name'] ?? 'Rahul Sharma', 0, 1); ?></div>
+                    <div>
+                        <div class="font-bold text-slate-900"><?php echo htmlspecialchars($hp_settings['hp_testi_r1_name'] ?? 'Rahul Sharma'); ?></div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider"><?php echo htmlspecialchars($hp_settings['hp_testi_r1_loc'] ?? 'Travelled from Mumbai'); ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="testi-glass-card" style="transform: translateY(-10px);">
+                <div class="testi-quote-mark">"</div>
+                <div class="flex items-center gap-1 mb-6">
+                    <?php for($s=0;$s<5;$s++): ?><span class="material-symbols-outlined text-orange-400 text-xl" style="font-variation-settings:'FILL' 1;">star</span><?php endfor; ?>
+                </div>
+                <p class="text-slate-700 text-[15px] leading-relaxed mb-8 relative z-10 font-medium">"<?php echo htmlspecialchars($hp_settings['hp_testi_r2_text'] ?? 'Booked a premium stay near the station. The rates on CSNExplore were genuinely cheaper than other major OTAs. Highly recommended for anyone visiting Chhatrapati Sambhajinagar.'); ?>"</p>
+                <div class="flex items-center gap-4 border-t border-slate-200/50 pt-5">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 text-white flex items-center justify-center font-bold text-lg shadow-inner"><?php echo substr($hp_settings['hp_testi_r2_name'] ?? 'Ananya Desai', 0, 1); ?></div>
+                    <div>
+                        <div class="font-bold text-slate-900"><?php echo htmlspecialchars($hp_settings['hp_testi_r2_name'] ?? 'Ananya Desai'); ?></div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider"><?php echo htmlspecialchars($hp_settings['hp_testi_r2_loc'] ?? 'Travelled from Pune'); ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="testi-glass-card" style="transform: translateY(30px);">
+                <div class="testi-quote-mark">"</div>
+                <div class="flex items-center gap-1 mb-6">
+                    <?php for($s=0;$s<5;$s++): ?><span class="material-symbols-outlined text-orange-400 text-xl" style="font-variation-settings:'FILL' 1;">star</span><?php endfor; ?>
+                </div>
+                <p class="text-slate-700 text-[15px] leading-relaxed mb-8 relative z-10 font-medium">"<?php echo htmlspecialchars($hp_settings['hp_testi_r3_text'] ?? 'The bike rental service was a lifesaver! Rented a scooter to roam around the city. Transparent pricing and the vehicle was in great condition. Will definitely use again.'); ?>"</p>
+                <div class="flex items-center gap-4 border-t border-slate-200/50 pt-5">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-white flex items-center justify-center font-bold text-lg shadow-inner"><?php echo substr($hp_settings['hp_testi_r3_name'] ?? 'Vikram Singh', 0, 1); ?></div>
+                    <div>
+                        <div class="font-bold text-slate-900"><?php echo htmlspecialchars($hp_settings['hp_testi_r3_name'] ?? 'Vikram Singh'); ?></div>
+                        <div class="text-xs text-slate-500 font-medium uppercase tracking-wider"><?php echo htmlspecialchars($hp_settings['hp_testi_r3_loc'] ?? 'Travelled from Delhi'); ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Curated Itineraries Section â€” Minimalist Carousel Redesign -->
+<section class="py-24 relative overflow-hidden bg-white" data-reveal>
+    <div class="max-w-[1140px] mx-auto px-5 relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <h2 class="font-serif text-3xl md:text-5xl text-slate-900 font-bold leading-tight mb-4"><?php echo htmlspecialchars($hp_settings['hp_itin_title'] ?? 'Curated Itineraries'); ?></h2>
+                <p class="text-slate-500 text-sm md:text-base max-w-xl"><?php echo htmlspecialchars($hp_settings['hp_itin_subtext'] ?? 'Expertly crafted travel plans designed to help you make the most of your time in Chhatrapati Sambhajinagar.'); ?></p>
+            </div>
+            <a href="<?php echo BASE_PATH; ?>/suggestor" class="inline-flex items-center gap-2 text-primary font-bold hover:text-orange-600 transition-colors">
+                View all plans <span class="material-symbols-outlined text-xl">arrow_forward</span>
+            </a>
+        </div>
+        
+        <div id="itin-scroll" style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:24px; padding-bottom:32px; align-items:stretch; scroll-behavior: smooth;" class="hide-scrollbar">
+            <!-- Itinerary 1 -->
+            <a href="<?php echo BASE_PATH; ?>/suggestor" class="group flex-shrink-0 w-[85vw] md:w-[400px] lg:w-[450px] scroll-snap-align-center bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:scale-[1.03] hover:border-orange-200">
+                <div class="relative h-[240px] overflow-hidden">
+                    <img src="<?php echo BASE_PATH; ?>/images/hotel-hero-section-4.webp" alt="Ajanta Ellora Tour" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-sm">
+                        <?php echo htmlspecialchars($hp_settings['hp_itin_i1_dur'] ?? '2 Days'); ?>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="text-orange-500 text-sm font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                        Ajanta Ellora Tour
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif"><?php echo htmlspecialchars($hp_settings['hp_itin_i1_title'] ?? "The Cave Explorer's Trail"); ?></h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2"><?php echo htmlspecialchars($hp_settings['hp_itin_i1_desc'] ?? 'Cover the magnificent Ajanta and Ellora caves in a packed two-day weekend itinerary.'); ?></p>
+                    <div class="flex items-center text-slate-400 text-xs font-medium uppercase tracking-wider gap-1">
+                        <span class="material-symbols-outlined text-base">map</span> Ajanta &middot; Ellora
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Itinerary 2 -->
+            <a href="<?php echo BASE_PATH; ?>/suggestor" class="group flex-shrink-0 w-[85vw] md:w-[400px] lg:w-[450px] scroll-snap-align-center bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:scale-[1.03] hover:border-orange-200">
+                <div class="relative h-[240px] overflow-hidden">
+                    <img src="<?php echo BASE_PATH; ?>/images/bike%20rentals-hero-section%20(6).webp" alt="Historical Forts" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-sm">
+                        <?php echo htmlspecialchars($hp_settings['hp_itin_i2_dur'] ?? '1 Day'); ?>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="text-blue-500 text-sm font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                        Historical Forts
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif"><?php echo htmlspecialchars($hp_settings['hp_itin_i2_title'] ?? 'Forts & Heritage Run'); ?></h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2"><?php echo htmlspecialchars($hp_settings['hp_itin_i2_desc'] ?? 'An adventurous day exploring Daulatabad Fort and the historic 52 gates of the city.'); ?></p>
+                    <div class="flex items-center text-slate-400 text-xs font-medium uppercase tracking-wider gap-1">
+                        <span class="material-symbols-outlined text-base">map</span> Daulatabad Fort &middot; City Gates
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Itinerary 3 -->
+            <a href="<?php echo BASE_PATH; ?>/suggestor" class="group flex-shrink-0 w-[85vw] md:w-[400px] lg:w-[450px] scroll-snap-align-center bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:scale-[1.03] hover:border-orange-200">
+                <div class="relative h-[240px] overflow-hidden">
+                    <img src="<?php echo BASE_PATH; ?>/images/car-rental-hero-section%20(3).webp" alt="Culinary Tour" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-sm">
+                        <?php echo htmlspecialchars($hp_settings['hp_itin_i3_dur'] ?? 'Evening'); ?>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="text-purple-500 text-sm font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                        Culinary Tour
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif"><?php echo htmlspecialchars($hp_settings['hp_itin_i3_title'] ?? 'Mughlai Culinary Walk'); ?></h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2"><?php echo htmlspecialchars($hp_settings['hp_itin_i3_desc'] ?? 'Taste the authentic Naan Qalia and street food delights in the old city streets.'); ?></p>
+                    <div class="flex items-center text-slate-400 text-xs font-medium uppercase tracking-wider gap-1">
+                        <span class="material-symbols-outlined text-base">map</span> Nirala Bazaar &middot; Old City
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
 </main>
 
-<!-- SEO Semantic Text Block Injection (Visually Hidden but readable by Search Engines) -->
-<div class="sr-only">
-    <h2>The Ultimate Aurangabad Tourism & Rental Portal</h2>
-    <p>Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget tour or exploring the city over a long weekend, our platform brings everything into one unified dashboard. From finding the best budget car rentals in Aurangabad to booking luxury sedans, we ensure your journey to Ajanta and Ellora Caves is seamless.</p>
-    <p>Accommodation is crucial for a great trip. Our database helps you discover top-rated hotels, homestays, and the top 10 dormitories near Chhatrapati Sambhajinagar. We feature verified Jain hotels in Aurangabad providing authentic pure vegetarian dining, and prioritize safety with secure transit and stay options specifically curated for solo female travelers.</p>
-    <p>Need total flexibility to explore at your own pace? Skip public transit with our verified local vendors. If you want to rent a bike in Aurangabad, we offer everything from cheap daily scooter rentals to premium motorcycles. Pair your ride with our detailed guides on local tourist attractions in Sambhajinagar and you're ready to uncover hidden gems across the Deccan plateau.</p>
-    <h2>Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h2>
-    <p>Hotels CSNExplore | Budget Stays CSNExplore | Jain Hotels Aurangabad CSNExplore | Safe Stays for Women CSNExplore | Car Rentals Near Me Aurangabad CSNExplore | Cab Booking Aurangabad CSNExplore | Self Drive Cars CSNExplore.com | Innova Rental Aurangabad CSNExplore | Bike Rental Aurangabad CSNExplore | Electric Scooter Rental CSNExplore | Scsnexplore Bike Rental | Activa Rental Aurangabad CSNExplore | Ajanta Caves Tour CSNExplore | Ellora Caves Guide CSNExplore | Bibi Ka Maqbara Tickets CSNExplore | Daulatabad Fort Trip CSNExplore | Veg Restaurant Aurangabad CSNExplore | Best Misal Pav Aurangabad CSNExplore | Maharashtrian Thali CSNExplore | Solo Travelling CSNExplore | Women Travel Safety CSNExplore | Budget Under 2 Days CSNExplore | Aurangabad Travel Guide CSNExplore.in | CSNExplore Tourism Portal and The Ultimate Aurangabad Tourism & Rental Portal</p>
-</div>
+<!-- About Chhatrapati Sambhajinagar Tourism (SEO Content) â€” Clean Bento Box Redesign -->
+<section class="py-24 relative overflow-hidden bg-slate-50 border-t border-slate-200" data-reveal>
+    <div class="max-w-[1140px] mx-auto px-5 relative z-10">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            
+            <!-- Bento Item 1: Main Title & Intro -->
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-3xl p-8 md:p-12 relative overflow-hidden border border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col justify-center transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(236,91,19,0.15)] group">
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                        <span class="text-slate-600 text-xs font-bold uppercase tracking-widest">Premium Portal</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-slate-900">
+                        The Ultimate <br>
+                        <span class="text-orange-600">Aurangabad Tourism</span> <br>
+                        & Rental Portal
+                    </h2>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl font-medium">
+                        Welcome to CSNExplore, your premium gateway to the historic wonders of Maharashtra. Whether you are planning a comprehensive budget tour or exploring the city over a long weekend, our platform brings everything into one unified dashboard.
+                    </p>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl font-medium mt-3">
+                        From finding the best budget car rentals to booking verified luxury stays, we ensure your journey to Ajanta and Ellora Caves is entirely seamless and worry-free.
+                    </p>
+                </div>
+            </div>
 
-<!-- Extreme SEO FAQ Section for Exact Match Queries -->
-<section class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-100 bg-slate-50 rounded-2xl mb-8">
-    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-6 text-center">Frequently Asked Travel Questions</h2>
+            <!-- Bento Item 2: Highlight Stat -->
+            <div class="bg-gradient-to-br from-orange-500 to-amber-500 rounded-3xl p-8 flex flex-col justify-center items-center text-center shadow-[0_8px_30px_rgba(249,115,22,0.2)] transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_40px_rgba(249,115,22,0.4)]">
+                <span class="material-symbols-outlined text-white text-5xl mb-4">verified</span>
+                <h3 class="text-white font-bold text-4xl mb-2">100+</h3>
+                <p class="text-white/90 text-sm font-bold uppercase tracking-wider">Verified<br>Partners</p>
+                <p class="text-white/70 text-xs mt-3">Trusted local hotels, rentals, and guides.</p>
+            </div>
+
+            <!-- Bento Item 3: Tags / Popular Searches -->
+            <div class="md:col-span-3 lg:col-span-2 bg-white border border-slate-200 rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+                <h3 class="text-slate-900 font-bold text-lg mb-6 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-orange-500 bg-orange-50 p-2 rounded-xl">trending_up</span>
+                    Popular Searches
+                </h3>
+                <div class="flex flex-wrap gap-2.5">
+                    <?php
+                    $tags = [
+                        'Hotels CSNExplore', 'Jain Hotels', 'Safe Stays', 
+                        'Car Rentals', 'Cab Booking', 'Self Drive Cars',
+                        'Bike Rental', 'Ajanta Caves Tour', 'Daulatabad Fort'
+                    ];
+                    foreach ($tags as $tag) {
+                        echo '<span class="bg-slate-50 hover:bg-orange-50 hover:text-orange-600 transition-colors border border-slate-200 text-slate-700 px-4 py-2 rounded-full text-xs font-bold cursor-default shadow-sm">'.htmlspecialchars($tag).'</span>';
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <!-- Bento Item 4: Safety & Support -->
+            <div class="md:col-span-3 lg:col-span-2 bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-200 flex flex-col sm:flex-row items-center gap-6">
+                <div class="w-16 h-16 shrink-0 bg-blue-50 rounded-2xl flex items-center justify-center border border-blue-100">
+                    <span class="material-symbols-outlined text-blue-500 text-3xl">security</span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Safe & Reliable Travel</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                        Curated options for solo female travelers. Enjoy 24/7 local support and detailed guides to uncover hidden gems across the Deccan plateau.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Extreme SEO FAQ Section for Exact Match Queries â€” Clean Light Redesign -->
+<section class="max-w-4xl mx-auto px-6 py-16 mb-12" data-reveal>
+    <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            Frequently Asked Questions
+        </h2>
+        <p class="text-slate-500">Everything you need to know about visiting Chhatrapati Sambhajinagar.</p>
+    </div>
+    
     <style>
-        details > summary { list-style: none; outline: none; }
-        details > summary::-webkit-details-marker { display: none; }
+        .faq-clean details > summary { list-style: none; outline: none; }
+        .faq-clean details > summary::-webkit-details-marker { display: none; }
+        .faq-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); border-color: #cbd5e1; }
     </style>
-    <div class="space-y-3">
+    
+    <div class="faq-clean">
         <!-- FAQ 1 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>How to travel in Aurangabad (Chhatrapati Sambhajinagar)?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>How do I reach Chhatrapati Sambhajinagar (Aurangabad)?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    If you are looking to travel in Aurangabad (Chhatrapati Sambhajinagar), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel dashboard.
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    Chhatrapati Sambhajinagar is well-connected by air, train, and road. The city has its own airport (IXU) with daily flights from Mumbai, Delhi, and Hyderabad. By train, it connects to major cities, or you can take a bus/cab from Pune (approx. 5-6 hours) or Mumbai. CSNExplore offers reliable airport transfers and outstation cabs to your hotel upon arrival.
                 </p>
             </div>
         </details>
         <!-- FAQ 2 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>What is the best way to travel in Chhatrapati Sambhajinagar?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>Which days are the Ajanta and Ellora Caves closed?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    To travel in Chhatrapati Sambhajinagar (Aurangabad), we highly recommend starting with our curated itineraries. CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays. 
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    This is crucial for your itinerary: Ajanta Caves are closed every Monday, and Ellora Caves are closed every Tuesday. Never schedule Ajanta on a Monday or Ellora on a Tuesday. The CSNExplore travel dashboard automatically factors these closure days into our curated 2-day and 3-day itinerary packages.
                 </p>
             </div>
         </details>
         <!-- FAQ 3 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>Where can I find the ultimate travel Aurangabad guide?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What are the timings and entry fees for Ajanta and Ellora Caves?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    CSNExplore is the ultimate destination for any travel queries in Aurangabad and Chhatrapati Sambhajinagar. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable.
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    Ajanta is open from 9:00 AM to 5:00 PM, while Ellora opens earlier from 6:00 AM to 6:00 PM. For Indian and SAARC tourists, tickets are â‚¹40 offline (â‚¹35 if booked online via ASI). For foreign tourists, it is â‚¹600 (â‚¹550 online). Children under 15 enter for free. You can easily rent an Activa or book a cab through CSNExplore to reach the caves right when they open.
                 </p>
             </div>
         </details>
         <!-- FAQ 4 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>Is it safe for solo female travelers in Aurangabad?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>How far are the Ajanta and Ellora Caves from the city center?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Yes, CSNExplore prioritizes women travel safety. We list verified homestays, safe dormitories, and reliable cab bookings to ensure a stress-free and secure journey for solo female travelers across Chhatrapati Sambhajinagar.
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    Ellora is about 30 km away (a 45-minute drive), making it easy to combine with Daulatabad Fort and the Grishneshwar Jyotirlinga. Ajanta is much furtherâ€”about 100 km away, taking 2.5 to 3 hours by road. Because of the distance, we strongly recommend giving Ajanta its own full day. Book a comfortable AC cab through CSNExplore for the long drive to Ajanta.
                 </p>
             </div>
         </details>
         <!-- FAQ 5 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>Can I rent an Activa or electric scooter in Aurangabad?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What is the best time of year to visit Chhatrapati Sambhajinagar?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Absolutely! Through CSNExplore, you can easily book an Activa rental or an electric scooter for daily commuting. It's an affordable and highly convenient way to navigate local attractions and taste the best Maharashtrian Thali in town.
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    The most comfortable time is Winter (October to March) when temperatures range from 10Â°C to 25Â°C. Monsoon (July to September) is also popular, as the hills turn lush green and waterfalls cascade over the caves. Summer (April to June) gets exceedingly hot (up to 45Â°C), so if you visit then, start your cave tours right at sunrise.
                 </p>
             </div>
         </details>
         <!-- FAQ 6 -->
-        <details class="group bg-white px-5 py-3.5 rounded-xl shadow-sm border border-slate-100 cursor-pointer hover:shadow-md transition-shadow">
-            <summary class="font-bold text-[15px] text-slate-900 flex justify-between items-center select-none">
-                <span>How do I plan an Ajanta and Ellora Caves tour under a budget?</span>
-                <span class="transition-transform duration-300 group-open:-rotate-180 text-primary">
-                    <span class="material-symbols-outlined text-xl">expand_more</span>
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What should I wear and pack for the cave tours?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
                 </span>
             </summary>
-            <div class="pt-3 mt-2 border-t border-slate-50">
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    We provide the best options for a budget trip under 2 days. From renting a self-drive car or booking an Innova rental to following our detailed Ellora Caves guide, CSNExplore helps you manage time and money efficiently while covering top spots like Bibi Ka Maqbara and Daulatabad Fort.
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    Wear slip-on shoes or sandals, as you must remove your footwear before entering several of the cave temples (especially the ones with active shrines or delicate floors). Pack a hat, sunglasses, plenty of water, and an umbrella if visiting in summer. Flash photography is strictly prohibited inside the caves to protect the ancient frescoes.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 7 -->
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What are the top attractions inside the city besides the caves?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
+                </span>
+            </summary>
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    Inside the city, you must visit Bibi Ka Maqbara (the 'Taj of the Deccan'), the Aurangabad Caves, and the historic Panchakki water mill. A quick scooter rental from CSNExplore is the cheapest and fastest way to cover these local city monuments in a single afternoon.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 8 -->
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What local food is Chhatrapati Sambhajinagar famous for?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
+                </span>
+            </summary>
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    The city is famous for its Mughal and Hyderabadi influences. You must try Naan Qalia (a rich spiced mutton curry), traditional Maharashtrian Thalis, and local street food in Nirala Bazaar. Ask your CSNExplore cab driver for their favorite local dining spots!
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 9 -->
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>What is the best thing to buy in Aurangabad?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
+                </span>
+            </summary>
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    The region is renowned for its textiles. The top buys are authentic Paithani silk sarees (woven with real gold zari) and unique Himroo brocade shawls. Bidri pottery and metalwork are also excellent souvenirs.
+                </p>
+            </div>
+        </details>
+        <!-- FAQ 10 -->
+        <details class="group faq-item px-6 py-5 cursor-pointer">
+            <summary class="font-bold text-[15px] md:text-lg text-slate-900 flex justify-between items-center select-none">
+                <span>How do I plan a budget trip to Chhatrapati Sambhajinagar?</span>
+                <span class="shrink-0 ml-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-orange-500 group-open:rotate-45 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-xl">add</span>
+                </span>
+            </summary>
+            <div class="pt-4 mt-3 border-t border-slate-100">
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    To keep costs low, book your stay at backpacker hostels or dormitories near the central bus stand via CSNExplore. Instead of hiring a guide for the whole day, download ASI audio guides, eat at local Maharashtrian dhabas, and use CSNExplore to rent an Activa for local city sights or share a cab ride to the caves.
                 </p>
             </div>
         </details>
     </div>
 </section>
 
-<!-- FAQPage JSON-LD Schema for Featured Snippets -->
+<!-- Detailed FAQPage JSON-LD Schema for CSNExplore -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1333,50 +2295,82 @@ foreach ($hp_settings['section_order'] as $_sec_key):
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How to travel in Aurangabad (Chhatrapati Sambhajinagar)?",
+      "name": "How do I reach Chhatrapati Sambhajinagar (Aurangabad)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If you are looking to travel in Aurangabad (Chhatrapati Sambhajinagar), the best way is to rent a car or a bike through CSNExplore. Our portal offers verified, budget-friendly transportation. For outstation trips, you can book cabs or luxury buses directly from our travel dashboard."
+        "text": "Chhatrapati Sambhajinagar is well-connected by air, train, and road. The city has its own airport (IXU) with daily flights from Mumbai, Delhi, and Hyderabad. By train, it connects to major cities, or you can take a bus/cab from Pune (approx. 5-6 hours) or Mumbai. CSNExplore offers reliable airport transfers and outstation cabs to your hotel upon arrival."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the best way to travel in Chhatrapati Sambhajinagar?",
+      "name": "Which days are the Ajanta and Ellora Caves closed?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "To travel in Chhatrapati Sambhajinagar (Aurangabad), we highly recommend starting with our curated itineraries. CSNExplore provides you with instant bookings for Ajanta and Ellora Caves, budget dormitories, and premium stays."
+        "text": "This is crucial for your itinerary: Ajanta Caves are closed every Monday, and Ellora Caves are closed every Tuesday. Never schedule Ajanta on a Monday or Ellora on a Tuesday. The CSNExplore travel dashboard automatically factors these closure days into our curated 2-day and 3-day itinerary packages."
       }
     },
     {
       "@type": "Question",
-      "name": "Where can I find the ultimate travel Aurangabad guide?",
+      "name": "What are the timings and entry fees for Ajanta and Ellora Caves?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "CSNExplore is the ultimate destination for any travel queries in Aurangabad and Chhatrapati Sambhajinagar. From securing affordable dorms on a cot basis for solo backpackers to luxury car rentals for families, our extensive local database ensures your trip to the historic Deccan region is safe and memorable."
+        "text": "Ajanta is open from 9:00 AM to 5:00 PM, while Ellora opens earlier from 6:00 AM to 6:00 PM. For Indian and SAARC tourists, tickets are â‚¹40 offline (â‚¹35 if booked online via ASI). For foreign tourists, it is â‚¹600 (â‚¹550 online). Children under 15 enter for free. You can easily rent an Activa or book a cab through CSNExplore to reach the caves right when they open."
       }
     },
     {
       "@type": "Question",
-      "name": "Is it safe for solo female travelers in Aurangabad?",
+      "name": "How far are the Ajanta and Ellora Caves from the city center?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, CSNExplore prioritizes women travel safety. We list verified homestays, safe dormitories, and reliable cab bookings to ensure a stress-free and secure journey for solo female travelers across Chhatrapati Sambhajinagar."
+        "text": "Ellora is about 30 km away (a 45-minute drive), making it easy to combine with Daulatabad Fort and the Grishneshwar Jyotirlinga. Ajanta is much furtherâ€”about 100 km away, taking 2.5 to 3 hours by road. Because of the distance, we strongly recommend giving Ajanta its own full day. Book a comfortable AC cab through CSNExplore for the long drive to Ajanta."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I rent an Activa or electric scooter in Aurangabad?",
+      "name": "What is the best time of year to visit Chhatrapati Sambhajinagar?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolutely! Through CSNExplore, you can easily book an Activa rental or an electric scooter for daily commuting. It's an affordable and highly convenient way to navigate local attractions and taste the best Maharashtrian Thali in town."
+        "text": "The most comfortable time is Winter (October to March) when temperatures range from 10Â°C to 25Â°C. Monsoon (July to September) is also popular, as the hills turn lush green and waterfalls cascade over the caves. Summer (April to June) gets exceedingly hot (up to 45Â°C), so if you visit then, start your cave tours right at sunrise."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I plan an Ajanta and Ellora Caves tour under a budget?",
+      "name": "What should I wear and pack for the cave tours?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We provide the best options for a budget trip under 2 days. From renting a self-drive car or booking an Innova rental to following our detailed Ellora Caves guide, CSNExplore helps you manage time and money efficiently while covering top spots like Bibi Ka Maqbara and Daulatabad Fort."
+        "text": "Wear slip-on shoes or sandals, as you must remove your footwear before entering several of the cave temples (especially the ones with active shrines or delicate floors). Pack a hat, sunglasses, plenty of water, and an umbrella if visiting in summer. Flash photography is strictly prohibited inside the caves to protect the ancient frescoes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the top attractions inside the city besides the caves?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inside the city, you must visit Bibi Ka Maqbara (the 'Taj of the Deccan'), the Aurangabad Caves, and the historic Panchakki water mill. A quick scooter rental from CSNExplore is the cheapest and fastest way to cover these local city monuments in a single afternoon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What local food is Chhatrapati Sambhajinagar famous for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The city is famous for its Mughal and Hyderabadi influences. You must try Naan Qalia (a rich spiced mutton curry), traditional Maharashtrian Thalis, and local street food in Nirala Bazaar. Ask your CSNExplore cab driver for their favorite local dining spots!"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best thing to buy in Aurangabad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The region is renowned for its textiles. The top buys are authentic Paithani silk sarees (woven with real gold zari) and unique Himroo brocade shawls. Bidri pottery and metalwork are also excellent souvenirs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I plan a budget trip to Chhatrapati Sambhajinagar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To keep costs low, book your stay at backpacker hostels or dormitories near the central bus stand via CSNExplore. Instead of hiring a guide for the whole day, download ASI audio guides, eat at local Maharashtrian dhabas, and use CSNExplore to rent an Activa for local city sights or share a cab ride to the caves."
       }
     }
   ]
@@ -1503,7 +2497,7 @@ foreach ($hp_settings['section_order'] as $_sec_key):
         js.onload = function() { _fp_loaded = true; if(typeof initFlatpickr==='function') initFlatpickr(); };
         document.head.appendChild(js);
     }
-    // Attach to all date inputs — load only on first focus
+    // Attach to all date inputs â€” load only on first focus
     document.querySelectorAll('.date-field input').forEach(function(el) {
         el.addEventListener('focus', loadFlatpickr, { once: true, passive: true });
         el.addEventListener('touchstart', loadFlatpickr, { once: true, passive: true });
@@ -1515,3 +2509,5 @@ foreach ($hp_settings['section_order'] as $_sec_key):
 
 </body>
 </html>
+
+

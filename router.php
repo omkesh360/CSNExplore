@@ -1,156 +1,160 @@
 <?php
-// router.php - Handles clean URLs for PHP built-in web server
-// Usage: php -S localhost:8000 router.php
+// router.php - Handles clean URLs using nikic/fast-route
 
-if (file_exists(__DIR__ . '/php/config.php')) {
-    require_once __DIR__ . '/php/config.php';
+if (file_exists(__DIR__ . "/php/config.php")) {
+    require_once __DIR__ . "/php/config.php";
 }
 
-if (defined('APP_ENV') && APP_ENV === 'local') {
+if (defined("APP_ENV") && APP_ENV === "local") {
     error_reporting(E_ALL);
-    ini_set('display_errors', '1');
+    ini_set("display_errors", "1");
 } else {
     error_reporting(0);
-    ini_set('display_errors', '0');
+    ini_set("display_errors", "0");
 }
 
-$uri  = $_SERVER['REQUEST_URI'];
-$path = parse_url($uri, PHP_URL_PATH);
-$path = ltrim($path, '/');
-
-// Preserve query string for PHP files
-$qs = $_SERVER['QUERY_STRING'] ?? '';
-
-// ── 301 redirects (legacy URLs) ───────────────────────────────────────────────
-if (file_exists('php/redirects.php')) {
-    require_once 'php/redirects.php';
+// -- 301 redirects (legacy URLs) -----------------------------------------------
+if (file_exists("php/redirects.php")) {
+    require_once "php/redirects.php";
 }
 
-// ── 1. Real files (images, css, js, etc.) ────────────────────────────────────
-if ($path !== '' && file_exists($path) && !is_dir($path)) {
-    return false; // let built-in server handle it
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    // Static Routes
+    $r->addRoute("GET", "/", "index.php");
+    $r->addRoute("GET", "/index", "index.php");
+    $r->addRoute("GET", "/index.php", "index.php");
+    $r->addRoute("GET", "/about", "about.php");
+    $r->addRoute(["GET", "POST"], "/contact", "contact.php");
+    $r->addRoute("GET", "/blogs", "blogs.php");
+    $r->addRoute(["GET", "POST"], "/login", "login.php");
+    $r->addRoute(["GET", "POST"], "/register", "register.php");
+    $r->addRoute("GET", "/privacy", "privacy.php");
+    $r->addRoute("GET", "/terms", "terms.php");
+    $r->addRoute("GET", "/my-booking", "my-booking.php");
+    $r->addRoute("GET", "/bus", "bus.php");
+    $r->addRoute("GET", "/blog-detail", "blog-detail.php");
+    $r->addRoute(["GET", "POST"], "/subscribe", "subscribe.php");
+    $r->addRoute("GET", "/install", "install.php");
+    $r->addRoute("GET", "/faq", "faq.php");
+    $r->addRoute("GET", "/itineraries", "itineraries.php");
+    $r->addRoute("GET", "/near-attractions", "near-attractions.php");
+    $r->addRoute("GET", "/compare", "compare.php");
+    $r->addRoute("GET", "/suggestor", "suggestor.php");
+    $r->addRoute("GET", "/travel-guide", "travel-guide.php");
+    $r->addRoute("GET", "/explore", "explore.php"); // ADDED EXPLICIT ROUTE
+
+    // Clean URLs for Listings
+    $r->addRoute("GET", "/hotels", "listing.php");
+    $r->addRoute("GET", "/hotel-stays", "listing.php");
+    $r->addRoute("GET", "/car-rentals", "listing.php");
+    $r->addRoute("GET", "/bike-rentals", "listing.php");
+    $r->addRoute("GET", "/attractions", "listing.php");
+    $r->addRoute("GET", "/restaurants", "listing.php");
+
+    // Dynamic Routes
+    $r->addRoute("GET", "/listing/{type}[/]", "listing.php");
+    $r->addRoute("GET", "/listing", "listing.php");
+    
+    // Legacy URLs support
+    $r->addRoute("GET", "/listing-detail/{slug}[/]", "listing-detail-handler");
+    $r->addRoute("GET", "/blogs/{slug}[/]", "blogs-handler");
+});
+
+// Fetch method and URI
+$httpMethod = $_SERVER["REQUEST_METHOD"] ?? "GET";
+$uri = $_SERVER["REQUEST_URI"] ?? "/";
+
+if (false !== $pos = strpos($uri, "?")) {
+    $uri = substr($uri, 0, $pos);
+}
+// For local CLI server compat if subfolder is not used, else normal
+$base = rtrim(dirname($_SERVER["SCRIPT_NAME"] ?? ""), "/");
+if ($base !== "" && strpos($uri, $base) === 0) {
+    $uri = substr($uri, strlen($base));
+}
+$uri = rtrim(rawurldecode($uri), "/");
+if ($uri === "") $uri = "/";
+
+$path = ltrim($uri, "/");
+
+// -- 1. Real files (images, css, js, etc.) ------------------------------------
+if ($path !== "" && file_exists(__DIR__ . "/" . $path) && !is_dir(__DIR__ . "/" . $path)) {
+    if (php_sapi_name() === "cli-server") {
+        return false;
+    } else {
+        if (str_ends_with($path, ".html")) {
+            header("Content-Type: text/html; charset=UTF-8");
+        }
+        include __DIR__ . "/" . $path;
+        return;
+    }
 }
 
-// ── 2. Root / index ───────────────────────────────────────────────────────────
-if ($path === '' || $path === 'index.php') {
-    include 'index.php';
-    return;
-}
-// Redirect /index → / (canonical URL)
-if ($path === 'index') {
-    $base = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/');
-    header('Location: ' . $base . '/', true, 301);
+// Redirect /index ? / (canonical URL)
+if ($uri === "/index") {
+    header("Location: " . $base . "/", true, 301);
     exit;
 }
 
-// ── 3. Listing detail pages: /listing-detail/cars-5-slug ─────────────────────
-if (preg_match('#^listing-detail/([^/]+)/?$#', $path, $m)) {
-    $slug = $m[1];
-    // Check with and without .html extension
-    $htmlFile = 'listing-detail/' . $slug;
-    if (!str_ends_with($slug, '.html')) $htmlFile .= '.html';
-    
-    if (file_exists($htmlFile)) {
-        header('Content-Type: text/html; charset=UTF-8');
-        include $htmlFile; // Using include instead of readfile for potential PHP snippets inside
-        return;
-    }
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        // Try direct file fallback or 404
+        if ($path !== "" && file_exists(__DIR__ . "/" . $path . ".php")) {
+            include __DIR__ . "/" . $path . ".php";
+        } elseif ($path !== "" && file_exists(__DIR__ . "/" . $path . ".html")) {
+            header("Content-Type: text/html; charset=UTF-8");
+            include __DIR__ . "/" . $path . ".html";
+        } elseif (is_dir(__DIR__ . "/" . $path) && file_exists(__DIR__ . "/" . $path . "/index.php")) {
+            include __DIR__ . "/" . $path . "/index.php";
+        } else {
+            http_response_code(404);
+            include "404.php";
+        }
+        break;
+        
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowedMethods = $routeInfo[1];
+        http_response_code(405);
+        echo "405 Method Not Allowed";
+        break;
+        
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+        
+        // Populate $_GET for compatibility with existing code
+        if (!empty($vars)) {
+            foreach ($vars as $key => $val) {
+                $_GET[$key] = $val;
+            }
+        }
+        
+        if ($handler === "listing-detail-handler") {
+            $slug = $vars["slug"];
+            $htmlFile = __DIR__ . "/listing-detail/" . $slug;
+            if (!str_ends_with($slug, ".html")) $htmlFile .= ".html";
+            if (file_exists($htmlFile)) {
+                header("Content-Type: text/html; charset=UTF-8");
+                include $htmlFile;
+            } else {
+                http_response_code(404);
+                include "404.php";
+            }
+        } elseif ($handler === "blogs-handler") {
+            $htmlFile = __DIR__ . "/blogs/" . $vars["slug"];
+            if (file_exists($htmlFile)) {
+                header("Content-Type: text/html; charset=UTF-8");
+                readfile($htmlFile);
+            } elseif (file_exists($htmlFile . ".html")) {
+                header("Content-Type: text/html; charset=UTF-8");
+                readfile($htmlFile . ".html");
+            } else {
+                http_response_code(404);
+                include "404.php";
+            }
+        } else {
+            include __DIR__ . "/" . $handler;
+        }
+        break;
 }
-
-// ── 4. Blog static HTML pages: /blogs/1-my-slug ──────────────────────────────
-if (preg_match('#^blogs/(.+)$#', $path, $m)) {
-    $htmlFile = 'blogs/' . $m[1];
-    // with or without .html
-    if (file_exists($htmlFile)) {
-        header('Content-Type: text/html; charset=UTF-8');
-        readfile($htmlFile);
-        return;
-    }
-    if (file_exists($htmlFile . '.html')) {
-        header('Content-Type: text/html; charset=UTF-8');
-        readfile($htmlFile . '.html');
-        return;
-    }
-}
-
-// ── 5. Clean URL → PHP file map ───────────────────────────────────────────────
-$routes = [
-    'about'       => 'about.php',
-    'contact'     => 'contact.php',
-    'blogs'       => 'blogs.php',
-    'login'       => 'login.php',
-    'register'    => 'register.php',
-    'privacy'     => 'privacy.php',
-    'terms'       => 'terms.php',
-    'my-booking'  => 'my-booking.php',
-    'bus'         => 'bus.php',
-    'blog-detail' => 'blog-detail.php',
-    'subscribe'   => 'subscribe.php',
-    'install'     => 'install.php',
-    'faq'         => 'faq.php',
-    'itineraries' => 'itineraries.php',
-    'near-attractions' => 'near-attractions.php',
-    'compare'     => 'compare.php',
-    'suggestor'   => 'suggestor.php',
-    'travel-guide' => 'travel-guide.php',
-];
-
-// Strip trailing slash for matching
-$cleanPath = rtrim($path, '/');
-
-if (isset($routes[$cleanPath])) {
-    include $routes[$cleanPath];
-    return;
-}
-
-// ── 6. /listing/type ─────────────────────────────────────────────────────────
-if (preg_match('#^listing/([a-zA-Z-]+)/?$#', $cleanPath, $m)) {
-    $_GET['type'] = $m[1];
-    include 'listing.php';
-    return;
-}
-
-if ($cleanPath === 'listing') {
-    include 'listing.php';
-    return;
-}
-
-// ── 7. Direct .php file exists ───────────────────────────────────────────────
-if (file_exists($cleanPath . '.php')) {
-    include $cleanPath . '.php';
-    return;
-}
-
-// ── 8. Direct .html file exists or extension-less html ──────────────────────
-if (file_exists($path . '.html')) {
-    header('Content-Type: text/html; charset=UTF-8');
-    include $path . '.html';
-    return;
-}
-if (file_exists($cleanPath . '.html')) {
-    header('Content-Type: text/html; charset=UTF-8');
-    include $cleanPath . '.html';
-    return;
-}
-if (file_exists($path) && !is_dir($path)) {
-    // If it's an HTML file just serve it
-    if (str_ends_with($path, '.html')) {
-        header('Content-Type: text/html; charset=UTF-8');
-    }
-    include $path;
-    return;
-}
-
-// ── 9. Admin pages (directory) ───────────────────────────────────────────────
-if (file_exists($cleanPath) && is_dir($cleanPath)) {
-    // Try index.php in directory
-    if (file_exists($cleanPath . '/index.php')) {
-        include $cleanPath . '/index.php';
-        return;
-    }
-}
-
-// ── 10. 404 fallback ─────────────────────────────────────────────────────────
-http_response_code(404);
-include 'index.php';
-return;

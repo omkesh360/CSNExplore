@@ -211,3 +211,9 @@ document.getElementById('gallery-picker-modal').addEventListener('click', functi
 <?php if (!empty($extra_js)) echo $extra_js; ?>
 </body>
 </html>
+<?php
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/../W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/../W3speedster/footer_opt.php';
+}
+?>

@@ -5,7 +5,7 @@ ServerSignature Off
 FileETag MTime Size
 
 # ── Block migration/utility scripts from web access ──────────────────────────
-<FilesMatch "^(run_index_migration|check_images|check_images_info|cleanup_images|convert_images|convert_uploads|diagnose_images|fix_jpg_as_png|gen_512icon|gen_mobile_hero|generate_webp_variants|minify_css|optimize_images|seed_blogs_1|seed_blogs_2|regenerate_favicons|router|install)\.php$">
+<FilesMatch "^(run_index_migration|check_images|check_images_info|cleanup_images|convert_images|convert_uploads|diagnose_images|fix_jpg_as_png|gen_512icon|gen_mobile_hero|generate_webp_variants|minify_css|optimize_images|seed_blogs_1|seed_blogs_2|regenerate_favicons)\.php$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -265,7 +265,26 @@ AddType image/webp .webp
     RewriteCond %{REQUEST_URI} ^(.*/)index(\.php)?$
     RewriteRule ^ %1 [R=301,L]
 
-    # ── 2. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
+    # ── 2. 301 Redirect old listing?type= URLs → clean SEO URLs ────────────────
+    RewriteCond %{QUERY_STRING} ^type=stays(&|$)
+    RewriteRule ^listing(/?)$ /hotels? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^type=cars(&|$)
+    RewriteRule ^listing(/?)$ /car-rentals? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^type=bikes(&|$)
+    RewriteRule ^listing(/?)$ /bike-rentals? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^type=attractions(&|$)
+    RewriteRule ^listing(/?)$ /attractions? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^type=restaurants(&|$)
+    RewriteRule ^listing(/?)$ /restaurants? [R=301,L]
+
+    RewriteCond %{QUERY_STRING} ^type=buses(&|$)
+    RewriteRule ^listing(/?)$ /bus-rentals? [R=301,L]
+
+    # ── 3. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
     # Extract blog ID from URL and route to dynamic blog-detail.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^blogs/(?:blogs-)?([0-9]+)-.*$ blog-detail.php?id=$1 [NC,L,QSA]
@@ -299,26 +318,20 @@ AddType image/webp .webp
     # /vendor-dashboard → vendor dashboard
     RewriteRule ^vendor-dashboard/?$ vendor/dashboard.php   [L,QSA]
 
-    # ── 7. Extensionless PHP files (/about → about.php) ──────────────────────
-    # Redirect /about.php to /about
+    # ── 7. Frontend Controller (FastRoute) ──────────────────────────────────
+    # Redirect direct .php access to extensionless (optional, but good for SEO)
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/.]+)\.php\ [NC]
+    RewriteCond %{REQUEST_URI} !^/router\.php$
     RewriteRule ^ %1 [L,R=301]
 
-    RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^([^/.]+)$ $1.php [L]
-
-    # ── 8. Home & Listing fallback ──────────────────────────────────────────
-    RewriteRule ^$                    index.php       [L]
-    RewriteRule ^index/?$             index.php       [L]
-    RewriteRule ^listing/([a-z-]+)/?$ listing.php?type=$1 [QSA,L]
-    RewriteRule ^listing/?$           listing.php     [QSA,L]
-    RewriteRule ^blog-detail/?$       blog-detail.php [QSA,L]
-
-    # Serve dynamic sitemap
-    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+    # Route all non-existing files/directories to router.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ router.php [L,QSA]
 </IfModule>
 
 # ── Custom Error Pages ────────────────────────────────────────────────────────
-ErrorDocument 404 /404.php
-ErrorDocument 403 /404.php
-ErrorDocument 500 /500.php
+# ErrorDocument directives are removed since mod_rewrite now handles 404s
+# dynamically, which prevents subdirectory paths breaking (e.g. on localhost).
+ErrorDocument 403 /CSNExplore/404.php
+ErrorDocument 500 /CSNExplore/500.php

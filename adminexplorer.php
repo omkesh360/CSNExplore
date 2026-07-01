@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/W3speedster/header_opt.php';
+}
+
 $page_title = "Admin Login | CSNExplore";
 require_once 'php/config.php';
 ?>
@@ -193,3 +198,9 @@ document.getElementById('admin-login-form').addEventListener('submit',async func
 </script>
 </body>
 </html>
+<?php
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/W3speedster/footer_opt.php';
+}
+?>

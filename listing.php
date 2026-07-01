@@ -2,13 +2,69 @@
 // listing.php – Unified listing page for all categories
 require_once 'php/config.php';
 
-$type = $_GET['type'] ?? 'stays';
-if ($type === 'buses') {
-    header('Location: ' . BASE_PATH . '/bus');
-    exit;
+// ── Resolve listing type from clean URL path OR legacy ?type= param ──────────
+// Map clean URL paths → internal type keys
+$_urlTypeMap = [
+    'hotels'      => 'stays',
+    'hotel-stays' => 'stays',
+    'car-rentals' => 'cars',
+    'bike-rentals'=> 'bikes',
+    'attractions' => 'attractions',
+    'restaurants' => 'restaurants',
+    'bus-rentals' => 'buses',
+];
+
+// Detect which clean URL was requested
+$_requestPath = trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+// Strip subfolder prefix (e.g. CSNExplore/) if on localhost
+$_scriptBase  = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/');
+if ($_scriptBase !== '' && strpos('/' . $_requestPath, $_scriptBase) === 0) {
+    $_requestPath = ltrim(substr('/' . $_requestPath, strlen($_scriptBase)), '/');
 }
-$allowed = ['stays','cars','bikes','attractions','restaurants','buses'];
+
+// Map clean URL to type, or fall back to ?type= query param
+if (array_key_exists($_requestPath, $_urlTypeMap)) {
+    $type = $_urlTypeMap[$_requestPath];
+} else {
+    $type = $_GET['type'] ?? 'stays';
+}
+
+// 301-redirect old ?type= query-param URLs to clean URLs ─────────────────────
+$_cleanUrlMap = [
+    'stays'       => 'hotels',
+    'cars'        => 'car-rentals',
+    'bikes'       => 'bike-rentals',
+    'attractions' => 'attractions',
+    'restaurants' => 'restaurants',
+    'buses'       => 'bus',
+];
+// Only redirect if user hit /listing?type=X (not already on clean URL)
+if (isset($_GET['type']) && !array_key_exists($_requestPath, $_urlTypeMap)) {
+    $cleanSlug = $_cleanUrlMap[$_GET['type']] ?? null;
+    if ($cleanSlug) {
+        $qs = $_GET;
+        unset($qs['type']);
+        $suffix = !empty($qs) ? '?' . http_build_query($qs) : '';
+        header('Location: ' . BASE_PATH . '/' . $cleanSlug . $suffix, true, 301);
+        exit;
+    }
+}
+
+// Validate type
+$allowed = ['stays','cars','bikes','attractions','restaurants'];
 if (!in_array($type, $allowed)) $type = 'stays';
+
+// ── Canonical URL for this page ───────────────────────────────────────────────
+$_canonicalMap = [
+    'stays'       => 'hotels',
+    'cars'        => 'car-rentals',
+    'bikes'       => 'bike-rentals',
+    'attractions' => 'attractions',
+    'restaurants' => 'restaurants',
+];
+$_canonicalSlug  = $_canonicalMap[$type];
+$_canonicalUrl   = 'https://csnexplore.com/' . $_canonicalSlug;
+
 
 // ── Fetch from DB ─────────────────────────────────────────────────────────────
 $db = getDB();
@@ -162,12 +218,13 @@ function listingSlug($type, $item) {
 $page_meta = [
     'seo_type'    => $type,
     'description' => "Find the best " . strtolower($c['label']) . " in Chhatrapati Sambhajinagar. " . $c['hero_sub'],
-    'canonical'   => "https://csnexplore.com/listing/" . htmlspecialchars($type),
+    'canonical'   => $_canonicalUrl,
     'image'       => "https://csnexplore.com" . $c['hero_bg'],
     'type'        => 'website',
+    'robots'      => 'index, follow',
     'breadcrumbs' => [
-        ['name' => 'Home', 'url' => '/'],
-        ['name' => $c['label'], 'url' => '/listing/' . $type],
+        ['name' => 'Home',      'url' => '/'],
+        ['name' => $c['label'], 'url' => '/' . $_canonicalSlug],
     ],
 ];
 
@@ -519,15 +576,14 @@ $category_nav = [
                   $p400 = __DIR__.'/images/uploads/variants/'.$base.'-400w.webp';
                   $p700 = __DIR__.'/images/uploads/variants/'.$base.'-700w.webp';
                   if (file_exists($p400) && file_exists($p700)) {
-                      $imgFinal = BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/');
+                      $imgFinal = htmlspecialchars(get_working_image_url($imgSrc));
                       $srcset = 'srcset="'.$v400.' 400w, '.$v700.' 700w, '.$imgFinal.' 800w"';
                   }
               }
           ?>
           <div class="relative h-52 overflow-hidden <?php if(stripos($imgSrc, '.png') !== false) echo 'bg-[#ecf5ff]'; ?>">
             <img loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                 src="<?php 
-                    echo (strpos($imgSrc, 'http') === 0) ? htmlspecialchars($imgSrc) : BASE_PATH . '/' . ltrim(htmlspecialchars($imgSrc), '/'); 
+                 src="<?php echo htmlspecialchars(get_working_image_url($imgSrc)); 
                  ?>" <?php echo $srcset; ?> <?php echo $sizesAttr; ?>
                  alt="<?php echo htmlspecialchars(($item['name'] ?? $item['operator'] ?? '') . ' - ' . ($item['type'] ?? $type) . ' in Chhatrapati Sambhajinagar Aurangabad Maharashtra'); ?>"
                  onerror="this.onerror=null;if(!this.src.includes('unsplash.com'))this.src='<?php

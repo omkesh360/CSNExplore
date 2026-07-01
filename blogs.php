@@ -1,5 +1,5 @@
-<?php
-$page_title   = "Travel Blogs & Stories | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
+﻿<?php
+$page_title   = "Travel Blogs & Stories | CSNExplore â€“ Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "blogs.php";
 require_once 'php/config.php';
 
@@ -123,13 +123,14 @@ require 'header.php';
 
 <main style="background: #f8f6f6;">
 
-<!-- Shared hero with breadcrumb at top -->
-<section class="relative h-[420px] flex items-center justify-center overflow-hidden pt-28">
+<!-- Shared hero with video background -->
+<section class="relative min-h-[500px] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 z-0">
-        <img loading="lazy" width="800" height="600" class="w-full h-full object-cover"
-             src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80&auto=format"
-             alt="CSNExplore Blogs"/>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
+        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+            <source src="<?php echo BASE_PATH; ?>/videos/blog-vid.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/70 to-primary/30 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
     </div>
     <!-- Breadcrumb at very top of hero -->
     <div class="absolute top-0 left-0 right-0 z-20 pt-28">
@@ -141,17 +142,20 @@ require 'header.php';
             <span class="text-white font-semibold">Blogs</span>
             <?php if ($cat_filter): ?>
             <span class="material-symbols-outlined text-base">chevron_right</span>
-            <span class="text-primary font-semibold"><?php echo htmlspecialchars($cat_filter); ?></span>
+            <span class="text-white font-semibold"><?php echo htmlspecialchars($cat_filter); ?></span>
             <?php endif; ?>
         </div>
     </div>
-    <div data-reveal class="relative z-10 text-center px-5 max-w-[1140px] mx-auto w-full">
+    <div data-reveal class="relative z-10 text-center px-5 max-w-[1140px] mx-auto w-full py-16">
         <div class="max-w-4xl mx-auto">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-widest mb-4">Travel Stories</span>
-            <h1 class="text-5xl md:text-6xl font-serif font-black text-white mb-4 leading-tight">
-                <?php echo $cat_filter ? htmlspecialchars($cat_filter) : 'Explore Our Blogs'; ?>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-black text-white mb-6 leading-tight drop-shadow-lg">
+                <?php echo $cat_filter ? htmlspecialchars($cat_filter) : 'Travel Stories &<br><em class="not-italic text-amber-400">Guides</em>'; ?>
             </h1>
-            <p class="text-white/70 text-lg max-w-2xl mx-auto">Guides, tips and stories from Chhatrapati Sambhajinagar.</p>
+            <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-8 drop-shadow">Guides, tips and stories from Chhatrapati Sambhajinagar.</p>
+            <a href="#blogs-grid" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/60 rounded-full text-white font-semibold backdrop-blur-sm bg-white/10 hover:bg-amber-500 hover:border-amber-500 hover:scale-105 transition-all shadow-lg hover:shadow-amber-500/40">
+                <span>Read Blogs</span>
+                <span class="material-symbols-outlined">arrow_downward</span>
+            </a>
         </div>
     </div>
 </section>
@@ -170,7 +174,7 @@ require 'header.php';
             <div class="flex-1">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Featured Story</span>
-                    <span class="text-slate-500 text-sm"><?php echo htmlspecialchars($featured['read_time'] ?? '5 min read'); ?> · <?php echo htmlspecialchars($featured['category']); ?></span>
+                    <span class="text-slate-500 text-sm"><?php echo htmlspecialchars($featured['read_time'] ?? '5 min read'); ?> Â· <?php echo htmlspecialchars($featured['category']); ?></span>
                 </div>
                 <h2 class="text-slate-900 text-xl md:text-2xl font-serif font-black leading-tight mb-2 group-hover:text-primary transition-colors">
                     <?php echo htmlspecialchars($featured['title']); ?>
@@ -322,3 +326,5 @@ $total_grid_blogs = count($all_blogs_for_filter);
 </main>
 
 <?php require 'footer.php'; ?>
+
+

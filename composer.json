@@ -5,12 +5,25 @@
     "require": {
         "php": ">=8.0.0",
         "ezyang/htmlpurifier": "^4.17",
-        "sentry/sentry": "^3.22"
+        "sentry/sentry": "^3.22",
+        "filp/whoops": "*",
+        "monolog/monolog": "*",
+        "php-di/php-di": "*",
+        "vlucas/phpdotenv": "*",
+        "illuminate/database": "*",
+        "symfony/cache": "*",
+        "predis/predis": "*",
+        "guzzlehttp/guzzle": "*",
+        "nikic/fast-route": "*",
+        "respect/validation": "*"
     },
     "config": {
         "optimize-autoloader": true,
         "platform": {
             "php": "8.0.0"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
     }
 }

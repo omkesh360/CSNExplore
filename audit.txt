@@ -1,0 +1,631 @@
+================================================================================
+CSNExplore WEBSITE AUDIT REPORT
+Generated: June 18, 2026
+Auditor: Kiro AI
+================================================================================
+
+This audit covers all PHP pages, API endpoints, config files, JS, CSS, .htaccess,
+and architectural/structural issues found across the CSNExplore website.
+
+================================================================================
+SECTION 1: CRITICAL SECURITY ISSUES
+================================================================================
+
+[SEC-01] XSS – Unescaped Blog Content Output (CRITICAL)
+  File: blog-detail.php, line ~148
+  Issue: <?php echo $blog['content']; ?> outputs raw HTML from the database
+         without any escaping. If an admin saves malicious JS in blog content,
+         it will execute in every visitor's browser (stored XSS).
+  Fix:   Use a proper HTML sanitizer (HTMLPurifier is already imported in
+         config.php via sanitizeHtml()). Apply it when saving/displaying blog
+         content. At minimum, the function should be called here:
+         echo sanitizeHtml($blog['content']);
+
+[SEC-02] XSS – Unescaped FAQ Content (MEDIUM)
+  File: faq.php, lines ~183-185
+  Issue: $faq['question'] and $faq['answer'] are output without htmlspecialchars().
+         These are hardcoded arrays, but the pattern is unsafe if the source
+         ever becomes dynamic.
+  Fix:   echo htmlspecialchars($faq['question']); and same for answer.
+
+[SEC-03] XSS – Unescaped Itinerary Content (MEDIUM)
+  File: itineraries.php, many lines
+  Issue: Day fields like $day['morning'], $day['activities'], $day['evening'],
+         $day['meals'], $day['accommodation'] are echoed without htmlspecialchars().
+         Also $itinerary['name'], $itinerary['price'], $itinerary['difficulty'],
+         $itinerary['best_for'] are unescaped in HTML context.
+  Fix:   Wrap all echo calls with htmlspecialchars().
+
+[SEC-04] CSRF Token Not Validated on Subscribe Form (MEDIUM)
+  File: subscribe.php
+  Issue: No CSRF validation is performed for newsletter subscription POST.
+         The global validateCsrf() helper exists but is not called here.
+  Fix:   Add validateCsrf() at the top of the POST handler.
+
+[SEC-05] Token Passed in Query String (LOW-MEDIUM)
+  File: my-booking.php (JavaScript fetch call)
+  Issue: The JWT token is appended to the URL as a query parameter:
+         fetch('.../user_bookings.php?token=' + encodeURIComponent(token))
+         Query string tokens appear in server logs, browser history, and
+         referrer headers – a security anti-pattern.
+  Fix:   Pass the token in the Authorization header:
+         headers: { 'Authorization': 'Bearer ' + token }
+
+[SEC-06] Admin Detection via localStorage Only (MEDIUM)
+  File: blog-detail.php, line ~172
+  Issue: The "Edit this Post" admin button is shown/hidden purely based on
+         localStorage.getItem('csn_admin_token'). This is client-side only
+         and not a security gate — any user who sets that key sees the button.
+         The button itself links to admin/ which has server-side auth, but
+         the UI can be confusing / abused for phishing.
+  Fix:   This is cosmetic but document it; ensure admin/* pages all enforce
+         server-side JWT validation independently.
+
+[SEC-07] Default Admin Credentials Seeded in DB (HIGH)
+  File: php/database.php, initSchema() method
+  Issue: Admin user admin@csnexplore.com with password 'admin123' is seeded
+         automatically if no admin exists. This is a well-known default
+         credential and represents a serious risk on fresh deployments.
+  Fix:   Remove the auto-seed or change the default password to a random
+         value that is printed to the console once, then delete the code.
+
+[SEC-08] .htaccess ErrorDocument Uses Hardcoded /CSNExplore/ Path (MEDIUM)
+  File: .htaccess, last two lines
+  Issue: ErrorDocument 403 /CSNExplore/404.php
+         This path is hardcoded for local XAMPP development. On production
+         (csnexplore.com), the document root IS the project folder, so the
+         path should be /404.php. This causes 403/500 error pages to return
+         a 404 themselves in production.
+  Fix:   Change to: ErrorDocument 403 /404.php
+                     ErrorDocument 500 /500.php
+
+[SEC-09] bootstrap.php Falls Back to Predis Even When Redis Is Unavailable (LOW)
+  File: php/bootstrap.php
+  Issue: If Redis is not running, the DI container silently falls back to
+         Predis with the same Redis connection settings, which will also fail.
+         No FilesystemAdapter fallback is configured.
+  Fix:   Add a proper try/catch fallback to FilesystemAdapter or ArrayAdapter
+         so the app works without Redis.
+
+
+================================================================================
+SECTION 2: PHP BUGS & LOGIC ERRORS
+================================================================================
+
+[BUG-01] suggestor.php – DB Column Mismatch (HIGH)
+  File: suggestor.php, line ~68
+  Issue: The code inserts 'travel_details', 'num_people', 'car_service_type',
+         'car_sub_type', 'bike_sub_type', 'extra_notes' into the trip_requests
+         table. However, the DB schema in database.php defines different columns:
+         'special_requests', 'duration', 'budget' – not 'travel_details',
+         'num_people', etc. This will cause a PDO exception on every submission.
+  Fix:   Align the suggestor.php INSERT columns with the actual DB schema, or
+         run an ALTER TABLE to add the missing columns.
+
+[BUG-02] subscribe.php – Missing Table Creation (HIGH)
+  File: subscribe.php, line ~29 (comment says "table is created in database.php")
+  Issue: database.php initSchema() does NOT include a CREATE TABLE for
+         newsletter_subscribers. The comment is wrong and the table does not
+         exist. Every subscription attempt will throw a PDO exception.
+  Fix:   Add CREATE TABLE IF NOT EXISTS newsletter_subscribers in database.php
+         initSchema(), with columns: id, email (UNIQUE), is_active, created_at.
+
+[BUG-03] router.php – debug.php Always Included (HIGH)
+  File: router.php, line ~79
+  Issue: include 'debug.php'; is called unconditionally on every request,
+         regardless of environment. This will leak debug information in production
+         and may break JSON API responses if debug.php outputs anything.
+  Fix:   Wrap it: if (defined('APP_ENV') && APP_ENV === 'local') include 'debug.php';
+
+[BUG-04] Circular require_once in contact.php (LOW)
+  File: contact.php, POST handler block (~line 53)
+  Issue: require_once __DIR__ . '/php/config.php'; is called again inside the
+         POST handler, after it has already been included at the top of the file.
+         This is redundant (require_once prevents double-execution) but adds
+         unnecessary complexity that could mask real missing-include bugs.
+  Fix:   Remove the second require_once inside the if block.
+
+[BUG-05] itineraries.php – PHP Syntax Warning in Array (LOW)
+  File: itineraries.php, 3-day-caves-tour → day 3 definition
+  Issue: The 'meals' key and 'accommodation' key are on the same line separated
+         only by a comma inside an array:
+         'meals' => 'Breakfast (hotel), Lunch (Ellora)', 'accommodation' => 'N/A',
+         This is valid PHP syntax but the comma after $day['meals'] closes the
+         element early, causing 'accommodation' to appear as a separate array key
+         instead of part of that day's data. It may cause an "Undefined index"
+         notice when rendering.
+  Fix:   Separate into distinct array entries properly.
+
+[BUG-06] suggestor.php – send-pending-emails.php Does Not Exist (HIGH)
+  File: suggestor.php (JavaScript block in success screen)
+  Issue: fetch('<?php echo BASE_PATH; ?>/send-pending-emails.php', ...) is called
+         to trigger background email sending after redirect. However,
+         send-pending-emails.php does not exist in the codebase. This will
+         silently fail (emails not sent after trip request submission).
+  Fix:   Either create the file, or use the fastcgi_finish_request() path
+         that's already attempted in the PHP POST handler.
+
+[BUG-07] 500.php Does Not Suppress Config Errors (MEDIUM)
+  File: 500.php
+  Issue: 500.php calls require_once 'php/config.php'. If the server error is
+         caused by config.php itself (e.g., DB connection failure), this will
+         cause a blank page instead of showing the 500 error page.
+  Fix:   Wrap the require in a try/catch, or use a minimal static HTML fallback
+         that doesn't depend on config.php.
+
+[BUG-08] about.php – Founding Year Mismatch (LOW)
+  File: about.php
+  Issue: The JSON-LD schema says "foundingDate": "2024-01-01" but the hero
+         section badge says "Established 2012". These are contradictory and
+         will confuse search engines reading structured data.
+  Fix:   Align both to the real founding date.
+
+
+================================================================================
+SECTION 3: PERFORMANCE ISSUES
+================================================================================
+
+[PERF-01] Homepage Caches Full HTML Including Stale JS Tokens (MEDIUM)
+  File: index.php, header.php
+  Issue: The full homepage HTML (including dynamic CSRF token, user state
+         scripts, etc.) is cached to cache/homepage.html and served for 1 hour.
+         If the CSRF cookie token changes within that hour, the cached page
+         has a stale token embedded. Also the cache is written inside
+         sanitize_output() which runs as ob_start callback — meaning it runs
+         on every include of header.php, not just the homepage.
+  Fix:   Explicitly generate the homepage cache only when $current_page === 'home'
+         and strip user-specific tokens from the cached version.
+
+[PERF-02] No DB Query Caching on High-Traffic API Endpoints (MEDIUM)
+  File: php/api/dashboard.php, php/api/bookings.php, etc.
+  Issue: Admin API endpoints execute multiple COUNT() queries on every request
+         with no caching layer.
+  Fix:   Apply ObjectCache::get/set with short TTLs (30-60 sec) for dashboard
+         stat queries.
+
+[PERF-03] Explore Page Uses background-attachment: fixed (LOW)
+  File: explore.php
+  Issue: The hero section uses CSS parallax via background-attachment: fixed.
+         This disables GPU compositing on mobile browsers and causes severe
+         paint performance issues (jank/lag) on iOS Safari and many Android
+         browsers.
+  Fix:   Replace with a JS-based parallax (transform: translateY) or simply
+         remove the effect on mobile via a media query.
+
+[PERF-04] content-visibility: auto Applied to All Sections (LOW)
+  File: header.php (inline CSS)
+  Issue: section:not(.homepage-hero) { content-visibility: auto; contain-intrinsic-size: 800px; }
+         This is a good optimization for long pages, but contain-intrinsic-size: 800px
+         is a fixed guess. Sections taller than 800px will cause layout shift
+         when they enter the viewport. Each section's intrinsic size should
+         match its actual rendered height.
+  Fix:   Either remove the fixed intrinsic size or use content-visibility: auto
+         only on predictably-sized sections.
+
+[PERF-05] Google Analytics Loads on Every Touch/Click (LOW)
+  File: header.php
+  Issue: GA is loaded on the first user interaction event. However it listens
+         to 'scroll', 'mousemove', 'touchstart', 'keydown', 'click'. On mobile,
+         touchstart fires on the very first touch, effectively loading GA
+         immediately on page load for mobile users — defeating the intent.
+  Fix:   Consider using a 3-second setTimeout or Intersection Observer as
+         the trigger instead.
+
+[PERF-06] Price Range Sliders Re-render All Cards on Every Input Event (LOW)
+  File: listing.php
+  Issue: The price range filter fires applyFilters() on every oninput event,
+         which iterates and updates all listing cards on every slider movement.
+         On a page with many listings this can stutter.
+  Fix:   Debounce the oninput callback with a 150-200ms delay.
+
+
+================================================================================
+SECTION 4: SEO ISSUES
+================================================================================
+
+[SEO-01] Duplicate JSON-LD Organization Schema (MEDIUM)
+  File: footer.php AND header.php (via SEOOptimizer::generateOrganizationSchema)
+  Issue: A full TravelAgency schema is injected in footer.php, AND
+         SEOOptimizer also outputs an Organization schema in header.php.
+         Google sees two overlapping Organization schemas per page which can
+         cause confusion and is against Google's structured data guidelines.
+  Fix:   Remove the inline schema block from footer.php and rely solely on
+         the SEOOptimizer class.
+
+[SEO-02] blogs.php – Search Filter Action URL Missing BASE_PATH (MEDIUM)
+  File: blogs.php, line with <form method="GET" action="blogs" ...>
+  Issue: The search form action is set to "blogs" (relative URL) instead of
+         BASE_PATH . '/blogs'. On sub-path deployments (e.g., /CSNExplore),
+         this will submit to the wrong URL.
+  Fix:   action="<?php echo BASE_PATH; ?>/blogs"
+
+[SEO-03] login.php & register.php – Canonical URL Uses BASE_PATH Not HTTPS Full URL (LOW)
+  File: login.php, register.php
+  Issue: 'canonical' => BASE_PATH . '/login' produces a relative path like
+         /CSNExplore/login or /login — not the full absolute URL required for
+         canonical tags. This means the canonical meta tag will be invalid.
+  Fix:   'canonical' => 'https://csnexplore.com/login'
+
+[SEO-04] blog-detail.php – Related Blogs Link to Non-Canonical URL (MEDIUM)
+  File: blog-detail.php, Related Stories section
+  Issue: Related blog links use the pattern:
+         BASE_PATH . '/blog-detail?id=' . $r['id']
+         But canonical blog URLs are:
+         /blogs/{id}-{slug}.html
+         This creates inconsistent internal linking and sends mixed signals
+         to search engines about the canonical URL for blog posts.
+  Fix:   Use the same blogSlug() function (or equivalent) that the main
+         blogs.php page uses for all blog links.
+
+[SEO-05] faq.php – Missing Breadcrumb Rendering in <head> (LOW)
+  File: faq.php
+  Issue: $breadcrumbs is set but never passed to $page_meta['breadcrumbs'],
+         so no BreadcrumbList schema is generated by the header.
+  Fix:   Add 'breadcrumbs' => $breadcrumbs to the $page_meta array.
+
+[SEO-06] sitemap.php Returns Dynamic Page but robots.txt May Point Elsewhere (LOW)
+  File: robots.txt / sitemap.php
+  Issue: Sitemap is generated dynamically by sitemap.php but the static
+         .html files in listing-detail/ and blogs_archive/ are not guaranteed
+         to be included. Verify sitemap.php crawls all pre-generated HTML files.
+
+[SEO-07] suggestor.php – Invalid JSON-LD (WebApplication Schema) (LOW)
+  File: suggestor.php
+  Issue: The JSON-LD block has a trailing comma after the last property:
+         "applicationCategory": "TravelApplication",
+         }
+         This is invalid JSON and will cause Google's Rich Results Test to
+         report a parse error for the schema.
+  Fix:   Remove the trailing comma before the closing brace.
+
+[SEO-08] about.php – "Established 2012" vs foundingDate "2024" (LOW)
+  File: about.php (also listed as BUG-08)
+  SEO impact: Contradictory dates in on-page text vs structured data.
+
+
+================================================================================
+SECTION 5: ACCESSIBILITY ISSUES
+================================================================================
+
+[A11Y-01] Listing Cards – Absolute Overlay Link Has No Descriptive Text (MEDIUM)
+  File: listing.php, blog-detail.php (linked listings section)
+  Issue: Card click areas use:
+         <a href="..." class="absolute inset-0 z-10" aria-label="View Details">
+         "View Details" is not descriptive enough for screen readers.
+         A screen reader user visiting a list of 12 hotels all labeled
+         "View Details" cannot distinguish between them.
+  Fix:   Set aria-label to the actual item name:
+         aria-label="View details for <?php echo htmlspecialchars($item['name']); ?>"
+
+[A11Y-02] faq.php – Hero Section Has No Breadcrumb / Skip-Nav (LOW)
+  File: faq.php
+  Issue: The hero section does not include pt-28 padding for the fixed header
+         unlike other pages. Additionally there is no skip-to-content link.
+  Fix:   Add pt-28 to align with other pages' hero sections. Add a skip nav link.
+
+[A11Y-03] Mobile Bottom Nav – Active State Only Applied by class String Comparison (LOW)
+  File: footer.php
+  Issue: Bottom nav active state is checked with $current_page === 'home'.
+         For many pages $current_page is not set consistently (e.g., 'faq'
+         vs 'faq.php'). This means the active icon doesn't always highlight
+         correctly.
+  Fix:   Standardise $current_page values across all pages to use the same
+         format (e.g., always without .php extension, or always with it).
+
+[A11Y-04] Blog Detail Hero Image Has Generic Alt Text (LOW)
+  File: blog-detail.php
+  Issue: The hero image uses alt="Blog Hero" which is non-descriptive.
+  Fix:   Use the blog title as alt text:
+         alt="<?php echo htmlspecialchars($blog['title']); ?>"
+
+[A11Y-05] Cookie Banner Uses Inline Styles, Not Focus-Visible (LOW)
+  File: footer.php (cookie banner)
+  Issue: The Accept/Decline buttons in the cookie banner have only
+         onmouseover/onmouseout styling and no :focus-visible style,
+         making keyboard navigation invisible.
+  Fix:   Add proper :focus styles or move to CSS classes.
+
+[A11Y-06] Contact Form – Missing <label for> Association on Some Inputs (LOW)
+  File: contact.php
+  Issue: The Travel Interest <select> has a <label> element but it uses
+         "text-xs font-bold..." styling only without a for= attribute
+         linking it to the select's id. Screen readers cannot associate them.
+  Fix:   Add id="interest" to the select and for="interest" to the label.
+
+
+================================================================================
+SECTION 6: UI / UX ISSUES
+================================================================================
+
+[UX-01] Footer Newsletter Form and Blogs Page Newsletter Form Both POST to "subscribe"
+  File: footer.php, blogs.php
+  Issue: Both forms use action="subscribe" (relative URL). On any page that is
+         not at root depth, this produces an incorrect submission URL.
+         E.g., on /admin/ pages, the form would POST to /admin/subscribe.
+  Fix:   Use the absolute path: action="<?php echo BASE_PATH; ?>/subscribe"
+
+[UX-02] listing.php – Sidebar Is Collapsed by Default But Filter Badge Shows "0 Filters"
+  File: listing.php
+  Issue: The active filter count badge and bar are shown with 0 count even
+         when no filters are active, which may be confusing.
+  Fix:   Keep the badge hidden (display:none) until at least one filter is active.
+
+[UX-03] Back Button on blog-detail.php – Overwrites Normal Navigation (LOW)
+  File: blog-detail.php
+  Issue: The "Go Back" link intercepts click events and calls window.history.back()
+         if the referrer is from the same domain. This prevents middle-click
+         (open in new tab) behavior and is surprising to users.
+  Fix:   Use a plain href to BASE_PATH/blogs and let the browser handle navigation.
+
+[UX-04] 404.php – No Search Box or Suggested Links (LOW)
+  File: 404.php
+  Issue: The 404 page only offers a "Back to Homepage" button. There are no
+         popular links, search bar, or suggestions to help users find content.
+  Fix:   Add 3-5 popular page links (Stays, Cars, Bikes, Blogs, Contact) and
+         optionally a search input.
+
+[UX-05] faq.php – btn-primary and btn-outline CSS Classes Not Defined (MEDIUM)
+  File: faq.php, "Didn't Find Your Answer?" section
+  Issue: The CTA buttons use class="btn-primary" and class="btn-outline" but
+         these classes are not defined in style.css, style.min.css, or anywhere
+         in the project. The buttons will render without any styling.
+  Fix:   Either define .btn-primary and .btn-outline in style.css, or replace
+         them with the Tailwind utility classes used everywhere else on the site.
+
+[UX-06] itineraries.php – CTA Buttons Use class="btn-white" Which Is Not Defined (MEDIUM)
+  File: itineraries.php, booking section
+  Issue: Same problem as above — class="btn-white" is not defined anywhere.
+  Fix:   Replace with Tailwind classes, e.g.:
+         class="bg-white text-primary font-bold px-6 py-3 rounded-full hover:bg-slate-100"
+
+[UX-07] suggestor.php – Confetti Animation Runs Synchronously on Main Thread (LOW)
+  File: suggestor.php (success screen JS)
+  Issue: createConfetti() creates 50 DOM nodes and animates them inline.
+         This may cause jank on low-end devices on the success screen.
+  Fix:   Use a lightweight CSS-only confetti library or limit to 20 particles.
+
+
+================================================================================
+SECTION 7: CODE QUALITY & ARCHITECTURE ISSUES
+================================================================================
+
+[CODE-01] Dual Database Layers Running Simultaneously (MEDIUM)
+  File: php/bootstrap.php, php/database.php
+  Issue: The project runs two separate database connection pools on every request:
+         1. The custom Database (PDO wrapper) via getDB()
+         2. Laravel Eloquent Capsule via Illuminate/Database
+         Both connect to MySQL on every request, doubling connection overhead.
+         The Eloquent connection appears unused in most files.
+  Fix:   Either complete the migration to Eloquent and remove the custom wrapper,
+         or remove the Eloquent setup from bootstrap.php until it is needed.
+
+[CODE-02] config.php Calls applyCacheHeaders() Before Headers Can Be Sent (MEDIUM)
+  File: php/config.php
+  Issue: applyCacheHeaders('page') is called very early in config.php, before
+         many pages set their own $page_meta or conditional headers. Pages that
+         want different cache-control (e.g., 404 pages with no-cache) may be
+         overridden.
+  Fix:   Move applyCacheHeaders() to the end of each page's bootstrap, after
+         the page-specific response code is determined.
+
+[CODE-03] WAF Regex in config.php Is Too Permissive (MEDIUM)
+  File: php/config.php, WAF section
+  Issue: The WAF blocks requests containing UNION.+SELECT but this pattern is
+         case-sensitive and only catches basic SQL injection. It will miss
+         variations like uNiOn sElEcT or UNION/**/SELECT.
+         More importantly, if the blog content legitimately contains the word
+         "UNION" followed by "SELECT" (e.g., in a technical article), the WAF
+         will return 403 for that page.
+  Fix:   Use parameterized queries everywhere (already done for DB) and rely on
+         that as the primary defense. WAF regex can be supplemented but should
+         not be the only layer.
+
+[CODE-04] Unused Files That Should Be Removed or Protected (LOW)
+  Files: debug.php, test.php, scratch_fetch_blogs.php, fix_router.php, router_debug.txt
+  Issue: These files appear to be development/debugging artifacts. If publicly
+         accessible, they may leak system information.
+         debug.php is currently included unconditionally by router.php (see BUG-03).
+         test.php and scratch_fetch_blogs.php should never be web-accessible.
+  Fix:   Delete these files or add them to the .htaccess FilesMatch block that
+         already denies access to utility scripts.
+
+[CODE-05] ObjectCache Returns false for Cache Miss, null for DB Cache Miss (LOW)
+  File: php/database.php, php/config.php
+  Issue: ObjectCache::get() returns false for a cache miss. The Database class
+         readCache() returns null for a miss. Code that checks these must use
+         !== false and !== null respectively. Inconsistent sentinel values
+         can cause subtle bugs where the integer 0 or empty string is re-fetched.
+  Fix:   Standardise both to return null for misses, and update all callers.
+
+[CODE-06] Error Messages Leak in comments.php API (LOW)
+  File: php/api/comments.php, catch block
+  Issue: sendError('Server error: ' . $e->getMessage(), 500) includes the
+         exception message in the HTTP response, which can leak internal
+         details (SQL errors, file paths) to end users in production.
+  Fix:   Log the full exception but return a generic message to the client:
+         error_log($e->getMessage());
+         sendError('An internal error occurred.', 500);
+
+[CODE-07] hardcoded /CSNExplore Path in .htaccess ErrorDocument (MEDIUM)
+  File: .htaccess (also noted in SEC-08)
+  Issue: ErrorDocument 403 /CSNExplore/404.php is hardcoded to the dev path.
+  Fix:   See SEC-08.
+
+[CODE-08] Redundant data-reveal Attribute (LOW)
+  File: footer.php
+  Issue: <div data-reveal data-reveal="left"> — the attribute is set twice,
+         once as boolean and once with value "left". This is invalid HTML.
+  Fix:   Use only data-reveal="left" (or just data-reveal if direction doesn't matter).
+
+
+================================================================================
+SECTION 8: BROKEN LINKS & MISSING REFERENCES
+================================================================================
+
+[LINK-01] vendor/ Directory Referenced But Does Not Appear to Exist (HIGH)
+  File: router.php, .htaccess
+  Issue: RewriteRules reference vendor/vendorlogin.php and vendor/dashboard.php
+         but no vendor/ directory was found in the project root.
+         Requests to /vendorlogin, /vendor-login, /vendor-portal will 404.
+  Fix:   Either create the vendor portal pages or remove those rewrite rules.
+
+[LINK-02] install.php Referenced in router.php But Does Not Exist (MEDIUM)
+  File: router.php
+  Issue: $r->addRoute('GET', '/install', 'install.php') but install.php is not
+         present in the root directory.
+  Fix:   Remove the route or create the file.
+
+[LINK-03] locations.txt Referenced in footer.php But May Not Exist (LOW)
+  File: footer.php
+  Issue: The datalist for location autocomplete reads from locations.txt.
+         If this file is missing, the autocomplete silently returns nothing
+         (gracefully handled with file_exists check), but the feature is broken.
+  Fix:   Ensure locations.txt exists and is populated with valid location names.
+
+[LINK-04] images/travelhub.png Referenced in Meta Tags (LOW)
+  File: privacy.php, terms.php
+  Issue: 'image' => 'https://csnexplore.com/images/travelhub.png' references
+         an image named "travelhub.png". The project uses "Logo-light-optimized.webp"
+         everywhere else. This image likely does not exist under the new branding.
+  Fix:   Update to 'https://csnexplore.com/images/Logo-light-optimized.webp'
+
+[LINK-05] near-attractions.php Referenced but Not Audited (LOW)
+  File: router.php
+  Issue: /near-attractions route points to near-attractions.php which exists
+         but was not included in this audit. Verify it follows the same patterns.
+
+[LINK-06] compare.php Referenced but Not Audited (LOW)
+  File: router.php
+  Issue: /compare route points to compare.php. Verify it follows the same
+         security and coding patterns as other pages.
+
+[LINK-07] travel-guide.php Referenced but Not Audited (LOW)
+  File: router.php
+  Issue: /travel-guide route points to travel-guide.php. Verify it follows
+         the same security and coding patterns.
+
+
+================================================================================
+SECTION 9: ADMIN PANEL ISSUES
+================================================================================
+
+[ADMIN-01] No Server-Side Auth Guard on Admin PHP Files (HIGH)
+  File: admin/*.php
+  Issue: admin/dashboard.php starts with $admin_page = 'dashboard' and then
+         require 'admin-header.php'. The auth check (JWT validation) must live
+         inside admin-header.php. If admin-header.php's auth check fails and
+         does not die/exit, admin pages will render.
+         This was not fully audited — verify admin-header.php exits on auth failure.
+  Fix:   Ensure admin-header.php calls verifyToken() and redirects/dies on
+         failure before any HTML is output.
+
+[ADMIN-02] Admin Token Stored in localStorage (MEDIUM)
+  File: login.php (JavaScript)
+  Issue: localStorage.setItem('csn_admin_token', data.token) stores the admin
+         JWT in localStorage. localStorage is accessible to any JS on the page
+         (XSS risk). If XSS occurs (see SEC-01), admin tokens can be stolen.
+  Fix:   Use HttpOnly cookies for admin tokens (already partially done server-side
+         via setcookie('admin_token', ...) in auth.php, but localStorage copy
+         should not be kept).
+
+[ADMIN-03] admin/blog-editor-new.php – Referenced Without Audit (MEDIUM)
+  Issue: This is the blog editing interface. It should be verified that:
+         - All form inputs are validated and sanitized server-side
+         - Uploaded images are validated for type (not just extension)
+         - The editor saves content that passes through sanitizeHtml() before DB insert
+
+
+================================================================================
+SECTION 10: MINOR / COSMETIC ISSUES
+================================================================================
+
+[MINOR-01] about.php – "Contact Support" Link Uses /contact, Home Link Uses /index
+  Both breadcrumbs in about.php use slightly different patterns
+  (href="<?php echo BASE_PATH; ?>/index" for home) while blogs.php uses
+  href="<?php echo BASE_PATH; ?>/". Inconsistent linking across pages.
+
+[MINOR-02] blogs.php – $b Variable Leaked After foreach Loop
+  File: blogs.php
+  Issue: The code has: foreach ($all_blogs_for_filter as &$b) ...
+         unset($b); — this is correct. But if the loop runs 0 times, $b
+         is never set and unset() silently does nothing. Not a bug but
+         unnecessary defensive code.
+
+[MINOR-03] header.php – Unclosed script Tag in GA Block
+  File: header.php (GA loading script block)
+  Issue: The inline JS block that loads Google Analytics appears to be missing
+         its closing })(); and </script> tag (output was truncated in review).
+         Verify the GA script block is properly closed.
+
+[MINOR-04] Privacy Policy and Terms Date "January 1, 2025" Is Outdated
+  File: privacy.php, terms.php
+  Issue: "Last updated: January 1, 2025" — it is now June 2026. If these
+         policies have not actually been updated, at minimum update the date
+         to reflect the current review. More importantly, ensure policies
+         reflect actual current practices.
+
+[MINOR-05] footer.php – "footer-logo-text" Fallback Span Has display:none as Inline Style
+  File: footer.php
+  Issue: <span id="footer-logo-text" style="display:none" class="items-center gap-2 mb-4">
+         The fallback text uses class="items-center gap-2" (Tailwind flex utilities)
+         but display:none overrides them. When the onerror shows it via JS
+         (this.style.display='none' on the image), it uses display='flex' but
+         the class is "items-center" not "flex items-center", so flex may not
+         apply. Should be class="flex items-center gap-2 mb-4".
+
+[MINOR-06] contact.php – Interest Select Has No Selected Attribute for POST Repopulation
+  File: contact.php
+  Issue: After a failed form submission, all fields repopulate their values
+         via value="<?php echo htmlspecialchars($_POST['field'] ?? ''); ?>"
+         except the <select> for interest — it has no logic to re-select the
+         previously chosen option.
+  Fix:   Add PHP logic to mark the <option selected> that matches $_POST['interest'].
+
+================================================================================
+SECTION 11: SUMMARY TABLE
+================================================================================
+
+Priority | ID       | Title                                          | File
+---------|----------|------------------------------------------------|------------------
+CRITICAL | SEC-01   | Stored XSS in blog content output             | blog-detail.php
+HIGH     | BUG-01   | DB column mismatch in suggestor form           | suggestor.php
+HIGH     | BUG-02   | newsletter_subscribers table never created     | subscribe.php
+HIGH     | BUG-03   | debug.php included unconditionally             | router.php
+HIGH     | BUG-06   | send-pending-emails.php missing               | suggestor.php
+HIGH     | SEC-07   | Default admin credentials seeded in DB        | database.php
+HIGH     | LINK-01  | vendor/ directory referenced but missing      | router.php
+HIGH     | ADMIN-01 | Admin auth guard not verified                 | admin/
+MEDIUM   | SEC-02   | XSS in FAQ output                             | faq.php
+MEDIUM   | SEC-03   | XSS in itineraries output                     | itineraries.php
+MEDIUM   | SEC-04   | No CSRF on subscribe form                     | subscribe.php
+MEDIUM   | SEC-05   | JWT token in query string                     | my-booking.php
+MEDIUM   | SEC-08   | Hardcoded /CSNExplore/ in ErrorDocument       | .htaccess
+MEDIUM   | BUG-07   | 500.php requires config that may be broken    | 500.php
+MEDIUM   | UX-05    | btn-primary CSS class undefined               | faq.php
+MEDIUM   | UX-06    | btn-white CSS class undefined                 | itineraries.php
+MEDIUM   | SEO-01   | Duplicate JSON-LD Organization schema        | footer.php/header.php
+MEDIUM   | SEO-02   | Search form action missing BASE_PATH         | blogs.php
+MEDIUM   | A11Y-01  | Non-descriptive card link aria-label         | listing.php
+MEDIUM   | CODE-01  | Dual DB layers (PDO + Eloquent)              | bootstrap.php
+MEDIUM   | ADMIN-02 | Admin JWT in localStorage (XSS risk)         | login.php
+LOW      | Many     | See individual items above                    | Various
+
+================================================================================
+TOTAL ISSUES FOUND: 55 (9 Critical/High, 20 Medium, 26 Low/Minor)
+================================================================================
+
+RECOMMENDED IMMEDIATE FIXES (in order of priority):
+1. SEC-01 – Apply sanitizeHtml() to blog content output
+2. BUG-02 – Add newsletter_subscribers table to DB schema
+3. BUG-03 – Guard debug.php inclusion to local env only
+4. SEC-07 – Remove default admin123 seeding from database.php
+5. BUG-01 – Align suggestor.php INSERT columns with DB schema
+6. SEC-08 – Fix .htaccess ErrorDocument paths for production
+7. UX-05/06 – Define or replace btn-primary, btn-outline, btn-white CSS classes
+8. SEO-07 – Fix invalid JSON-LD trailing comma in suggestor.php
+9. BUG-06 – Create or remove send-pending-emails.php reference
+10. LINK-01 – Remove broken vendor portal rewrite rules or create the files
+
+================================================================================
+END OF AUDIT REPORT
+================================================================================

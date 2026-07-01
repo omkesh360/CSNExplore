@@ -2,40 +2,8 @@
 declare(strict_types=1);
 // CSNExplore – Central config
 
-// Load .env file if exists
-if (file_exists(__DIR__ . '/../.env')) {
-    $lines = file(__DIR__ . '/../.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) continue;
-        if (strpos($line, '=') === false) continue;
-        list($key, $value) = explode('=', $line, 2);
-        $key   = trim($key);
-        $value = trim($value);
-        // Strip surrounding quotes (single or double)
-        if (strlen($value) >= 2 && (
-            ($value[0] === '"'  && $value[-1] === '"') ||
-            ($value[0] === "'"  && $value[-1] === "'")
-        )) {
-            $value = substr($value, 1, -1);
-        }
-        if (function_exists('putenv')) {
-            putenv($key . '=' . $value);
-        }
-        $_ENV[$key] = $value;
-        $_SERVER[$key] = $value;
-    }
-}
-
-// Robust env helper
-if (!function_exists('env')) {
-    function env($key, $default = null) {
-        if (isset($_ENV[$key])) return $_ENV[$key];
-        if (isset($_SERVER[$key])) return $_SERVER[$key];
-        $val = function_exists('getenv') ? getenv($key) : false;
-        if ($val !== false) return $val;
-        return $default;
-    }
-}
+// Load the modern bootstrap which handles env, DI, and logging
+require_once __DIR__ . '/bootstrap.php';
 
 // Advanced Settings
 define('MAINTENANCE_MODE', env('MAINTENANCE_MODE', false)); // Set to true to enable maintenance mode
@@ -74,40 +42,30 @@ if (function_exists('opcache_is_script_cached') && function_exists('opcache_comp
 
 // ── Object Caching System (Redis -> Fallback) ──────────────────────────────
 class ObjectCache {
-    private static $redis = null;
-    private static $enabled = false;
-    
-    public static function init() {
-        if (extension_loaded('redis')) {
-            try {
-                self::$redis = new Redis();
-                if (self::$redis->connect(env('REDIS_HOST', '127.0.0.1'), env('REDIS_PORT', 6379))) {
-                    self::$enabled = true;
-                }
-            } catch (Exception $e) { self::$enabled = false; }
-        }
-    }
+    public static function init() {}
     
     public static function get($key) {
-        if (self::$enabled) {
-            $val = self::$redis->get($key);
-            return $val !== false ? json_decode($val, true) : false;
-        }
-        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.php';
-        if (file_exists($path) && (filemtime($path) + 3600 > time())) {
-            return include $path;
-        }
+        try {
+            $cache = app(\Symfony\Component\Cache\Adapter\AdapterInterface::class);
+            $item = $cache->getItem(md5($key));
+            if ($item->isHit()) {
+                return $item->get();
+            }
+        } catch (\Exception $e) {}
         return false;
     }
     
     public static function set($key, $value, $ttl = 3600) {
-        if (self::$enabled) return self::$redis->setex($key, $ttl, json_encode($value));
-        $path = __DIR__ . '/../cache/obj_' . md5($key) . '.php';
-        $content = "<?php\nreturn " . var_export($value, true) . ";\n";
-        return file_put_contents($path, $content);
+        try {
+            $cache = app(\Symfony\Component\Cache\Adapter\AdapterInterface::class);
+            $item = $cache->getItem(md5($key));
+            $item->set($value);
+            $item->expiresAfter($ttl);
+            return $cache->save($item);
+        } catch (\Exception $e) {}
+        return false;
     }
 }
-ObjectCache::init();
 
 // ── Performance bootstrap MUST be first (OPcache, JIT, realpath cache, ob) ──
 require_once __DIR__ . '/performance.php';

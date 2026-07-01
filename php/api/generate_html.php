@@ -553,14 +553,18 @@ function sharedHeader($base, $type = '') {
     foreach ($listing_links as $link) {
         $is_active = ($link['type'] === $type);
         $class = $is_active ? $active_class : $inactive_class;
-        $link_href = ($link['type'] === 'buses') ? $base . 'bus' : $base . 'listing?type=' . $link['type'];
+        $type_map = ['stays' => 'hotels', 'cars' => 'car-rentals', 'bikes' => 'bike-rentals', 'attractions' => 'attractions', 'restaurants' => 'restaurants', 'buses' => 'bus'];
+        $mapped_path = isset($type_map[$link['type']]) ? $type_map[$link['type']] : $link['type'];
+        $link_href = $base . $mapped_path;
         $nav_html .= '<a href="' . $link_href . '" class="text-sm font-semibold px-4 py-2 rounded-full transition-colors duration-200 ' . $class . '" aria-label="Browse ' . strtolower($link['label']) . ' in Chhatrapati Sambhajinagar">' . $link['label'] . '</a>' . "\n";
     }
     
     // Generate mobile menu category grid
     $mobile_categories = '';
     foreach ($listing_links as $link) {
-        $link_href = ($link['type'] === 'buses') ? $base . 'bus' : $base . 'listing?type=' . $link['type'];
+        $type_map = ['stays' => 'hotels', 'cars' => 'car-rentals', 'bikes' => 'bike-rentals', 'attractions' => 'attractions', 'restaurants' => 'restaurants', 'buses' => 'bus'];
+        $mapped_path = isset($type_map[$link['type']]) ? $type_map[$link['type']] : $link['type'];
+        $link_href = $base . $mapped_path;
         $mobile_categories .= '<a href="' . $link_href . '" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-size:10px;font-weight:700">
                 <span class="material-symbols-outlined" style="font-size:18px;color:#ec5b13">' . $link['icon'] . '</span>
                 ' . $link['label'] . '

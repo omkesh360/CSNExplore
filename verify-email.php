@@ -1,4 +1,9 @@
 <?php
+// Include W3Speedster header optimization
+if (file_exists(__DIR__ . '/W3speedster/header_opt.php')) {
+    require_once __DIR__ . '/W3speedster/header_opt.php';
+}
+
 /**
  * verify-email.php
  * Handles email verification links: /verify-email?token=xxx
@@ -190,3 +195,9 @@ if ($redirect && preg_match('/^[a-zA-Z0-9\-_\/\.]+$/', $redirect)) {
     <?php endif; ?>
 </body>
 </html>
+<?php
+// Include W3Speedster footer optimization
+if (file_exists(__DIR__ . '/W3speedster/footer_opt.php')) {
+    require_once __DIR__ . '/W3speedster/footer_opt.php';
+}
+?>
