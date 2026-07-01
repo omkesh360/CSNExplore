@@ -581,51 +581,44 @@ if (file_exists($locationsFile)) {
             }
             
             // Start progress bar animation
-            setTimeout(function() {
-                pb.style.width = '50%';
-            }, 10);
-            
-            setTimeout(function() {
-                pb.style.width = '85%';
-            }, 150);
+            setTimeout(function() { pb.style.width = '60%'; }, 10);
+            setTimeout(function() { pb.style.width = '85%'; }, 200);
 
-            // Start body fade out
-            setTimeout(function() {
-                document.body.style.transition = 'opacity 0.2s ease-out';
-                document.body.style.opacity = '0';
-            }, 100);
-
-            // Safety: restore if navigation stalls
-            var _st = setTimeout(function () { 
-                document.body.style.opacity = '1'; 
-                if (pb) pb.style.width = '0%';
-            }, 800);
-
-            setTimeout(function () { 
-                clearTimeout(_st); 
-                window.location.href = href; 
-            }, 150); // Reduced from 300ms → 150ms for faster navigation
+            // Navigate immediately — no fade-out (fade-out causes white page on Back)
+            window.location.href = href;
         });
 
-        // ── Always restore opacity on any page show/load (fixes invisible text) ──
+        // ── CRITICAL: Always restore body on pageshow (Back/Forward Cache fix) ──
+        // This runs every time the page is shown — including when user hits Back
         function _restoreBody() {
-            document.body.style.transition = '';
+            document.body.style.transition = 'none';
             document.body.style.opacity = '1';
             document.body.style.visibility = 'visible';
             var pb = document.getElementById('page-loading-bar');
             if (pb) pb.remove();
         }
-        window.addEventListener('pageshow', _restoreBody);
+        // pageshow fires on both normal load AND back/forward cache restore
+        window.addEventListener('pageshow', function(e) {
+            _restoreBody();
+            // If restored from bfcache, re-reveal any hidden elements
+            if (e.persisted) {
+                document.querySelectorAll('[data-reveal], [data-reveal-children]').forEach(function(el){
+                    el.classList.add('revealed');
+                });
+            }
+        });
         window.addEventListener('load', _restoreBody);
-        // Hard safety net after 150ms in case events don't fire
-        setTimeout(_restoreBody, 150);
+        // Immediate safety net
+        _restoreBody();
 
         // ── Service Worker Registration (Progressive Web App) ──
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(reg) { console.log('SW registered'); })
-                    .catch(function(err) { console.log('SW registration failed'); });
+                // Use correct path for subfolder install
+                var swPath = (window.location.pathname.startsWith('/CSNExplore') ? '/CSNExplore' : '') + '/sw.js';
+                navigator.serviceWorker.register(swPath)
+                    .then(function(reg) { console.log('SW registered:', reg.scope); })
+                    .catch(function(err) { console.log('SW registration failed:', err); });
             });
         }
 
@@ -636,11 +629,8 @@ if (file_exists($locationsFile)) {
             document.getElementById('cookie-banner').style.display = 'none';
         };
 
-        // ── Reinitialize reveal on pageshow (back/forward cache) ──store opacity on page show (back/forward cache) ──
-        window.addEventListener('pageshow', function (e) {
-            document.body.classList.remove('page-fade-out');
-            document.querySelectorAll('[data-reveal], [data-reveal-children]').forEach(function(el){ el.classList.add('revealed'); });
-        });
+        // ── Reinitialize reveal on pageshow (back/forward cache) ──
+        // NOTE: Main pageshow handler is above in the transition block
     })();
 
     // ── Global Parallax Effect for Hero Sections ──
@@ -699,6 +689,6 @@ if (ob_get_level() > 1) {
 
 // Include W3Speedster footer optimization
 if (file_exists(__DIR__ . '/W3speedster/footer_opt.php')) {
-    require_once __DIR__ . '/W3speedster/footer_opt.php';
+    // require_once __DIR__ . '/W3speedster/footer_opt.php'; // Temporarily disabled to test speed issues
 }
 ?>

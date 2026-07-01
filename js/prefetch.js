@@ -24,7 +24,7 @@
             let cleanUrl = url.href.split('#')[0];
             if (prefetchCache.has(cleanUrl)) return;
 
-            // Wait 65ms before prefetching to avoid accidental hovers
+            // Wait 400ms before prefetching to avoid accidental hovers and server overload
             hoverTimer = setTimeout(function() {
                 prefetchCache.add(cleanUrl);
                 let link = document.createElement('link');
@@ -32,7 +32,7 @@
                 link.href = cleanUrl;
                 link.as = 'document';
                 document.head.appendChild(link);
-            }, 65);
+            }, 400);
 
         } catch (err) {}
     });

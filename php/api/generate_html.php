@@ -177,6 +177,7 @@ function htmlHead($title, $depth = 0, $canonical = '', $desc = 'Discover the bes
     $head = '<!DOCTYPE html>
 <html lang="en">
 <head>
+<script>window.addEventListener(\'pageshow\',function(e){if(e.persisted){document.body.style.cssText=\'opacity:1!important;visibility:visible!important;transition:none!important\';document.querySelectorAll(\'[data-reveal],[data-reveal-children],[data-animate],.card-reveal\').forEach(function(el){el.classList.add(\'revealed\');el.style.cssText=\'opacity:1!important;transform:none!important;filter:none!important;transition:none!important\';});var pb=document.getElementById(\'page-loading-bar\');if(pb)pb.remove();}},{passive:true});</script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="mobile-web-app-capable" content="yes"/>
@@ -1048,7 +1049,8 @@ function sharedFooter($base) {
         });
     }
 
-    // ── Smooth page transitions (fade out on link click) ──
+
+    // ── Smooth page transitions (progress bar only, no fade-out to prevent white page on Back) ──
     document.addEventListener(\'click\', function(e) {
         var a = e.target.closest(\'a\');
         if (!a) return;
@@ -1058,13 +1060,20 @@ function sharedFooter($base) {
         try {
             var url = new URL(href, window.location.href);
             if (url.origin !== window.location.origin) return;
+            if (url.pathname === window.location.pathname && url.search === window.location.search) return;
         } catch(err) { return; }
         e.preventDefault();
-        document.body.style.transition = \'opacity 0.15s ease-out\';
-        document.body.style.opacity = \'0\';
-        // Safety: restore if navigation stalls
-        var _st = setTimeout(function() { document.body.style.opacity = \'1\'; }, 800);
-        setTimeout(function(){ clearTimeout(_st); window.location.href = href; }, 150);
+        // Show progress bar, navigate immediately
+        var pb = document.getElementById(\'page-loading-bar\');
+        if (!pb) {
+            pb = document.createElement(\'div\');
+            pb.id = \'page-loading-bar\';
+            pb.style.cssText = \'position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,#ec5b13,#f97316,#fb923c);z-index:999999;transition:width 0.3s ease;width:0%;box-shadow:0 0 8px rgba(236,91,19,0.5);\';
+            document.body.appendChild(pb);
+        }
+        setTimeout(function(){ pb.style.width=\'60%\'; }, 10);
+        setTimeout(function(){ pb.style.width=\'85%\'; }, 200);
+        window.location.href = href;
     });
 
     // ── Cookie consent ──
@@ -1077,14 +1086,25 @@ function sharedFooter($base) {
         setTimeout(function(){document.getElementById(\'cookie-banner\').style.display=\'block\';},1200);
     }
 
-    // ── Restore opacity on page show (back/forward cache) ──
-    window.addEventListener(\'pageshow\', function(e) {
-        document.body.style.transition = \'\';
+    // ── CRITICAL: Restore body visibility on pageshow (Back/Forward Cache fix) ──
+    function _restoreBody() {
+        document.body.style.transition = \'none\';
         document.body.style.opacity = \'1\';
+        document.body.style.visibility = \'visible\';
+        var pb = document.getElementById(\'page-loading-bar\');
+        if (pb) pb.remove();
+    }
+    window.addEventListener(\'pageshow\', function(e) {
+        _restoreBody();
+        if (e.persisted) {
+            document.querySelectorAll(\'[data-reveal],[data-reveal-children]\').forEach(function(el){ el.classList.add(\'revealed\'); });
+        }
     });
+    window.addEventListener(\'load\', _restoreBody);
+    _restoreBody();
 })();
 </script>
-<script src="' . $base . '/js/preloader.js"></script>
+
 <script src="' . $base . '/js/prefetch.js" defer></script>
 <script>
 // Mark page as ready (fade in body)

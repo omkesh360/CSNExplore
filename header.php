@@ -1,7 +1,7 @@
 <?php
 // Include W3Speedster header optimization
 if (file_exists(__DIR__ . '/W3speedster/header_opt.php')) {
-    require_once __DIR__ . '/W3speedster/header_opt.php';
+    // require_once __DIR__ . '/W3speedster/header_opt.php'; // Temporarily disabled to test speed issues
 }
 
 // Advanced HTML Minification
@@ -71,6 +71,8 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- BFCACHE WHITE PAGE FIX: runs immediately, before any deferred JS -->
+    <script>window.addEventListener('pageshow',function(e){if(e.persisted){document.body.style.cssText='opacity:1!important;visibility:visible!important;transition:none!important';document.querySelectorAll('[data-reveal],[data-reveal-children],[data-animate],.card-reveal').forEach(function(el){el.classList.add('revealed');el.style.cssText='opacity:1!important;transform:none!important;filter:none!important;transition:none!important';});var pb=document.getElementById('page-loading-bar');if(pb)pb.remove();}},{passive:true});</script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -174,19 +176,8 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Temporary Tailwind JIT Fallback to instantly fix missing layout classes -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#ec5b13',
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Tailwind JIT disabled for performance. Styles are in style.min.css -->
+
 
     
     <!-- Fonts: Preload and load async with display=optional to prevent render blocking AND prevent CLS FOUT -->
@@ -322,7 +313,12 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         /* ── FLASH FIX: glass-card solid fallback before backdrop-filter CSS loads ── */
         .glass-card,.glass,.glass-section,.glass-glow{background:#fff;border:1px solid #e2e8f0}
         /* ── GLOBAL BUTTERY SMOOTH ANIMATIONS & GLASSMORPHISM ── */
-        [data-reveal],[data-reveal-stagger]>*,.card-reveal,[data-animate]{
+        /* IMPORTANT: Only hide elements when JS animation system is active.
+           Without csn-anim-init (bfcache restore, JS not loaded), elements are always visible. */
+        body.csn-anim-init [data-reveal],
+        body.csn-anim-init [data-reveal-stagger]>*,
+        body.csn-anim-init .card-reveal,
+        body.csn-anim-init [data-animate]{
             opacity:0;
             transform:translateY(30px) scale(0.98);
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, filter 0.5s ease;

@@ -1,5 +1,5 @@
-﻿<?php
-$page_title   = "Travel Blogs & Stories | CSNExplore â€“ Chhatrapati Sambhajinagar (Aurangabad)";
+<?php
+$page_title   = "Travel Blogs & Stories | CSNExplore – Chhatrapati Sambhajinagar (Aurangabad)";
 $current_page = "blogs.php";
 require_once 'php/config.php';
 
@@ -174,7 +174,7 @@ require 'header.php';
             <div class="flex-1">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Featured Story</span>
-                    <span class="text-slate-500 text-sm"><?php echo htmlspecialchars($featured['read_time'] ?? '5 min read'); ?> Â· <?php echo htmlspecialchars($featured['category']); ?></span>
+                    <span class="text-slate-500 text-sm"><?php echo htmlspecialchars($featured['read_time'] ?? '5 min read'); ?> · <?php echo htmlspecialchars($featured['category']); ?></span>
                 </div>
                 <h2 class="text-slate-900 text-xl md:text-2xl font-serif font-black leading-tight mb-2 group-hover:text-primary transition-colors">
                     <?php echo htmlspecialchars($featured['title']); ?>

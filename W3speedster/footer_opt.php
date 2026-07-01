@@ -103,7 +103,7 @@ function includeW3speedsterHelper(): bool
  */
 function executeFooterOptimization(): void
 {
-    // try {
+    try {
         $html = getBufferedHtml();
         if (!includeW3speedsterHelper()) {
             error_log('W3speedster: Failed to include helper file, outputting original HTML');
@@ -133,13 +133,13 @@ function executeFooterOptimization(): void
             echo $html;
         }
         
-    // } catch (Exception $e) {
-    //     error_log('W3speedster: Exception in footer optimization: ' . $e->getMessage());
-    //     echo $html ?? '';
-    // } catch (Error $e) {
-    //     error_log('W3speedster: Fatal error in footer optimization: ' . $e->getMessage());
-    //     echo $html ?? '';
-    // }
+    } catch (Exception $e) {
+        error_log('W3speedster: Exception in footer optimization: ' . $e->getMessage());
+        echo $html ?? '';
+    } catch (Error $e) {
+        error_log('W3speedster: Fatal error in footer optimization: ' . $e->getMessage());
+        echo $html ?? '';
+    }
 }
 
 executeFooterOptimization();

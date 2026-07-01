@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $page_title       = "Terms of Service | CSNExplore";
 $current_page     = "terms.php";
 require_once 'php/config.php';
@@ -46,29 +46,29 @@ include 'header.php';
   <div class="summary-bar">
     <div class="summary-inner">
       <div class="summary-track">
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Valid ID required for booking</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Valid ID required for booking</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Transparent pricing, no hidden charges</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Transparent pricing, no hidden charges</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✗</span><span class="summary-text">No illegal use of vehicles</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">No illegal use of vehicles</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Governed by Indian law</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Governed by Indian law</span></div>
         <div class="summary-div"></div>
       </div>
       <div class="summary-track" aria-hidden="true">
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Valid ID required for booking</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Valid ID required for booking</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Transparent pricing, no hidden charges</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Transparent pricing, no hidden charges</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✗</span><span class="summary-text">No illegal use of vehicles</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">No illegal use of vehicles</span></div>
         <div class="summary-div"></div>
-        <div class="summary-item"><span class="summary-icon">✓</span><span class="summary-text">Governed by Indian law</span></div>
+        <div class="summary-item"><span class="summary-icon">?</span><span class="summary-text">Governed by Indian law</span></div>
         <div class="summary-div"></div>
       </div>
     </div>
   </div>
 
-  <!-- PILL NAV — tab/mobile only -->
+  <!-- PILL NAV � tab/mobile only -->
   <nav class="toc-pills">
     <a href="#introduction" class="toc-pill">1. Introduction</a>
     <a href="#booking-terms" class="toc-pill">2. Booking Terms</a>
@@ -120,12 +120,12 @@ include 'header.php';
           <ul class="bullet-list">
             <li>These Terms apply to all users, including tourists, corporate clients, travel agents, and partner drivers.</li>
             <li>If you do not agree with any part of these Terms, please discontinue use of our services immediately.</li>
-            <li>We may update these Terms from time to time — continued use of the website implies acceptance of the revised Terms.</li>
+            <li>We may update these Terms from time to time � continued use of the website implies acceptance of the revised Terms.</li>
           </ul>
         </div>
 
         <div class="info-note">
-          <span class="note-icon">ℹ</span>
+          <span class="note-icon">?</span>
           <p>WanderWheels operates as a vehicle rental and tour booking platform under applicable Indian laws. These Terms should be read alongside our Cancellation & Refund Policy and Privacy Policy.</p>
         </div>
       </section>
@@ -174,11 +174,11 @@ include 'header.php';
 
         <div class="text-block">
           <ul class="bullet-list">
-            <li><strong>Authorized Use Only —</strong> Vehicles may only be used for the trip purpose declared at booking. Subletting or re-renting to a third party is strictly prohibited.</li>
-            <li><strong>Passenger & Luggage Limits —</strong> The number of passengers and luggage must not exceed the vehicle's stated capacity.</li>
-            <li><strong>Prohibited Activities —</strong> Smoking, consumption of alcohol, and carrying illegal substances inside the vehicle are strictly prohibited.</li>
-            <li><strong>Damage Charges —</strong> Any damage caused to the vehicle during the rental period will be charged to the customer as per assessed repair cost.</li>
-            <li><strong>Traffic Violations —</strong> Any traffic fines, challans, or penalties incurred during self-drive bookings are the customer's sole responsibility.</li>
+            <li><strong>Authorized Use Only �</strong> Vehicles may only be used for the trip purpose declared at booking. Subletting or re-renting to a third party is strictly prohibited.</li>
+            <li><strong>Passenger & Luggage Limits �</strong> The number of passengers and luggage must not exceed the vehicle's stated capacity.</li>
+            <li><strong>Prohibited Activities �</strong> Smoking, consumption of alcohol, and carrying illegal substances inside the vehicle are strictly prohibited.</li>
+            <li><strong>Damage Charges �</strong> Any damage caused to the vehicle during the rental period will be charged to the customer as per assessed repair cost.</li>
+            <li><strong>Traffic Violations �</strong> Any traffic fines, challans, or penalties incurred during self-drive bookings are the customer's sole responsibility.</li>
           </ul>
         </div>
       </section>
@@ -223,7 +223,7 @@ include 'header.php';
         </div>
 
         <div class="info-note warning">
-          <span class="note-icon">⚠</span>
+          <span class="note-icon">?</span>
           <p>In case of a failed or pending online payment, the booking will not be confirmed until successful payment is verified by our team.</p>
         </div>
       </section>
@@ -234,7 +234,7 @@ include 'header.php';
         <p class="section-desc">Cancellations, refund timelines, and rescheduling rules are governed by our dedicated policy page.</p>
 
         <div class="info-note">
-          <span class="note-icon">ℹ</span>
+          <span class="note-icon">?</span>
           <p>For complete details on cancellation charges, refund timelines, and rescheduling rules, please refer to our <a href="<?php echo BASE_PATH; ?>/terms" class="inline-link">Cancellation & Refund Policy</a> page.</p>
         </div>
       </section>
@@ -246,17 +246,17 @@ include 'header.php';
 
         <div class="special-grid">
           <div class="special-col">
-            <h3 class="special-col-title eligible">✓ Company Covers</h3>
+            <h3 class="special-col-title eligible">? Company Covers</h3>
             <ul class="special-list">
               <li>
-                <span class="sp-icon eligible">✓</span>
+                <span class="sp-icon eligible">?</span>
                 <div>
                   <strong>Vehicle Insurance</strong>
                   <p>All fleet vehicles carry valid insurance as per Indian motor vehicle laws</p>
                 </div>
               </li>
               <li>
-                <span class="sp-icon eligible">✓</span>
+                <span class="sp-icon eligible">?</span>
                 <div>
                   <strong>Driver Verification</strong>
                   <p>All assigned drivers are background-verified and licensed</p>
@@ -265,17 +265,17 @@ include 'header.php';
             </ul>
           </div>
           <div class="special-col">
-            <h3 class="special-col-title not-eligible">✗ Company Is Not Liable For</h3>
+            <h3 class="special-col-title not-eligible">? Company Is Not Liable For</h3>
             <ul class="special-list">
               <li>
-                <span class="sp-icon not-eligible">✗</span>
+                <span class="sp-icon not-eligible">?</span>
                 <div>
                   <strong>Personal Belongings</strong>
                   <p>Loss, theft, or damage to personal belongings inside the vehicle</p>
                 </div>
               </li>
               <li>
-                <span class="sp-icon not-eligible">✗</span>
+                <span class="sp-icon not-eligible">?</span>
                 <div>
                   <strong>Force Majeure Events</strong>
                   <p>Delays or disruptions caused by natural disasters, strikes, or government restrictions</p>
@@ -377,7 +377,7 @@ include 'header.php';
         <p class="section-desc">We may revise these Terms periodically to reflect changes in our services, legal requirements, or business practices.</p>
 
         <div class="info-note">
-          <span class="note-icon">ℹ</span>
+          <span class="note-icon">?</span>
           <p>Updated Terms will be posted on this page with a revised "Last Updated" date. Continued use of our website or services after changes are posted constitutes acceptance of the revised Terms.</p>
         </div>
       </section>
@@ -444,7 +444,7 @@ include 'header.php';
               </div>
               <button type="submit" class="cf-submit">Submit Query</button>
               <div class="cf-success" id="cfSuccess" style="display:none;">
-                ✓ Your query has been submitted. Our team will respond within 2 business hours.
+                ? Your query has been submitted. Our team will respond within 2 business hours.
               </div>
             </form>
           </div>
@@ -461,7 +461,7 @@ include 'header.php';
       <div class="cta-overlay"></div>
       <div class="cta-content">
         <h2 class="cta-title">Ready to Book Your <span class="cta-accent">Next Trip?</span></h2>
-        <p class="cta-sub">Now that you know our terms, travel with WanderWheels confidently — safe, transparent, and reliable every time.</p>
+        <p class="cta-sub">Now that you know our terms, travel with WanderWheels confidently � safe, transparent, and reliable every time.</p>
         <div class="cta-btns">
           <a href="<?php echo BASE_PATH; ?>/" class="cta-btn-primary">Book Your Trip</a>
           <a href="<?php echo BASE_PATH; ?>/contact" class="cta-btn-secondary">Talk to Us</a>

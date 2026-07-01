@@ -267,22 +267,22 @@ AddType image/webp .webp
 
     # ── 2. 301 Redirect old listing?type= URLs → clean SEO URLs ────────────────
     RewriteCond %{QUERY_STRING} ^type=stays(&|$)
-    RewriteRule ^listing(/?)$ /hotels? [R=301,L]
+    RewriteRule ^listing(/?)$ hotels? [R=301,L]
 
     RewriteCond %{QUERY_STRING} ^type=cars(&|$)
-    RewriteRule ^listing(/?)$ /car-rentals? [R=301,L]
+    RewriteRule ^listing(/?)$ car-rentals? [R=301,L]
 
     RewriteCond %{QUERY_STRING} ^type=bikes(&|$)
-    RewriteRule ^listing(/?)$ /bike-rentals? [R=301,L]
+    RewriteRule ^listing(/?)$ bike-rentals? [R=301,L]
 
     RewriteCond %{QUERY_STRING} ^type=attractions(&|$)
-    RewriteRule ^listing(/?)$ /attractions? [R=301,L]
+    RewriteRule ^listing(/?)$ attractions? [R=301,L]
 
     RewriteCond %{QUERY_STRING} ^type=restaurants(&|$)
-    RewriteRule ^listing(/?)$ /restaurants? [R=301,L]
+    RewriteRule ^listing(/?)$ restaurants? [R=301,L]
 
     RewriteCond %{QUERY_STRING} ^type=buses(&|$)
-    RewriteRule ^listing(/?)$ /bus-rentals? [R=301,L]
+    RewriteRule ^listing(/?)$ bus-rentals? [R=301,L]
 
     # ── 3. Handle Blog pages: /blogs/blogs-1-my-slug → blog-detail.php?id=1 ────────
     # Extract blog ID from URL and route to dynamic blog-detail.php

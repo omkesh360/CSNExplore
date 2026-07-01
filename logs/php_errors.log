@@ -2630,3 +2630,5 @@ Stack trace:
 [01-Jul-2026 22:45:28 Asia/Kolkata] W3speedster: Error in HTML optimization: Undefined array key "HTTP_HOST"
 [01-Jul-2026 22:59:32 Asia/Kolkata] W3speedster: Failed to initialize W3speedster instance: Undefined array key "HTTP_HOST"
 [01-Jul-2026 22:59:32 Asia/Kolkata] W3speedster: Error in HTML optimization: Undefined array key "HTTP_HOST"
+[01-Jul-2026 23:06:36 Asia/Kolkata] W3speedster: Failed to initialize W3speedster instance: Undefined array key "HTTP_HOST"
+[01-Jul-2026 23:06:36 Asia/Kolkata] W3speedster: Error in HTML optimization: Undefined array key "HTTP_HOST"
