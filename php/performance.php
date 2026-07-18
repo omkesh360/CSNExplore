@@ -42,10 +42,10 @@ if (function_exists('opcache_get_status')) {
 
     /* JIT: tracing mode gives the best speedup for typical PHP code.
      * Buffer of 64MB is generous but safe. Set to 0 to disable on shared hosts. */
-    if (PHP_VERSION_ID >= 80000) {
-        ini_set('opcache.jit', 'tracing');
-        ini_set('opcache.jit_buffer_size', '64M');
-    }
+    // if (PHP_VERSION_ID >= 80000) {
+    //     @ini_set('opcache.jit', 'tracing');
+    //     @ini_set('opcache.jit_buffer_size', '64M');
+    // }
 }
 
 /* ── 5. Output buffering + gzip compression ──────────────────────────────── */

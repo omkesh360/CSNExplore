@@ -590,7 +590,7 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
             <?php if (defined('WHITE_LABEL_MODE') && WHITE_LABEL_MODE === true): ?>
                 <span class="text-white font-bold text-xl tracking-wide">TravelPortal</span>
             <?php else: ?>
-                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/csnexplore-logo.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain logo-main"/>
+                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/csnexplore-logo.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain logo-main"/>
                 <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain logo-scrolled"/>
             <?php endif; ?>
         </a>

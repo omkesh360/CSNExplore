@@ -129,8 +129,8 @@ $config = [
   ],
 ];
 
-$c = $config[$type];
-$page_title    = $c['title'];
+$listing_config = $config[$type];
+$page_title    = $listing_config['title'];
 $current_page  = 'listing.php';
 $listing_type  = $type;
 
@@ -150,15 +150,15 @@ function listingSlug($type, $item) {
 if (!isset($page_meta)) $page_meta = [];
 $page_meta['seo_type'] = $type;
 if (!isset($page_meta['description'])) {
-    $page_meta['description'] = "Find the best " . strtolower($c['label']) . " in Chhatrapati Sambhajinagar. " . $c['hero_sub'];
+    $page_meta['description'] = "Find the best " . strtolower($listing_config['label']) . " in Chhatrapati Sambhajinagar. " . $listing_config['hero_sub'];
 }
 $page_meta['canonical'] = $_canonicalUrl;
-$page_meta['image'] = "https://csnexplore.com" . $c['hero_bg'];
+$page_meta['image'] = "https://csnexplore.com" . $listing_config['hero_bg'];
 $page_meta['type'] = 'website';
 $page_meta['robots'] = 'index, follow';
 $page_meta['breadcrumbs'] = [
     ['name' => 'Home',      'url' => '/'],
-    ['name' => $c['label'], 'url' => '/' . $_canonicalSlug],
+    ['name' => $listing_config['label'], 'url' => '/' . $_canonicalSlug],
 ];
 
 $itemListElements = [];
@@ -231,7 +231,7 @@ $extra_head = '<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "' . $c['title'] . '",
+  "name": "' . $listing_config['title'] . '",
   "description": "' . $page_meta['description'] . '",
   "url": "' . $page_meta['canonical'] . '",
   "mainEntity": {
@@ -240,7 +240,7 @@ $extra_head = '<script type="application/ld+json">
   }
 }
 </script>' . $faq_schema_html . '
-<link rel="preload" as="image" href="' . htmlspecialchars($c['hero_bg']) . '" fetchpriority="high">';
+<link rel="preload" as="image" href="' . htmlspecialchars($listing_config['hero_bg']) . '" fetchpriority="high">';
 
 
 $extra_styles = "
@@ -294,10 +294,10 @@ $category_nav = [
 
 <!-- Hero Banner with breadcrumb at top -->
 <div class="relative min-h-[16rem] md:min-h-[18rem] flex flex-col justify-end overflow-hidden pt-28 pb-6">
-    <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
-         alt="Explore <?php echo htmlspecialchars($c['label']); ?> in Chhatrapati Sambhajinagar Aurangabad Maharashtra - CSNExplore"
+    <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($listing_config['hero_bg']); ?>"
+         alt="Explore <?php echo htmlspecialchars($listing_config['label']); ?> in Chhatrapati Sambhajinagar Aurangabad Maharashtra - CSNExplore"
          class="absolute inset-0 w-full h-full object-cover z-0"/>
-    <span class="sr-only relative z-0">Find and book the top-rated <?php echo htmlspecialchars(strtolower($c['label'])); ?> in Chhatrapati Sambhajinagar, Aurangabad, Maharashtra. Compare rates, ratings, verified user reviews, locations, and options for budget stays, luxury hotels, rental cars, and bikes.</span>
+    <span class="sr-only relative z-0">Find and book the top-rated <?php echo htmlspecialchars(strtolower($listing_config['label'])); ?> in Chhatrapati Sambhajinagar, Aurangabad, Maharashtra. Compare rates, ratings, verified user reviews, locations, and options for budget stays, luxury hotels, rental cars, and bikes.</span>
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705] z-0"></div>
     
     <div class="relative z-10 max-w-[1140px] mx-auto px-5 w-full flex flex-col gap-3">
@@ -307,15 +307,15 @@ $category_nav = [
                 <span class="material-symbols-outlined text-base">home</span>Home
             </a>
             <span class="material-symbols-outlined text-base">chevron_right</span>
-            <span class="text-white font-semibold"><?php echo htmlspecialchars($c['label']); ?></span>
+            <span class="text-white font-semibold"><?php echo htmlspecialchars($listing_config['label']); ?></span>
         </div>
         <!-- Title -->
         <div>
             <h1 class="text-white text-2xl md:text-4xl font-serif font-black flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-3xl"><?php echo htmlspecialchars($c['icon']); ?></span>
-                <?php echo htmlspecialchars($c['hero_h1']); ?>
+                <span class="material-symbols-outlined text-primary text-3xl"><?php echo htmlspecialchars($listing_config['icon']); ?></span>
+                <?php echo htmlspecialchars($listing_config['hero_h1']); ?>
             </h1>
-            <p class="text-white/60 text-sm mt-1"><?php echo htmlspecialchars($c['hero_sub']); ?></p>
+            <p class="text-white/60 text-sm mt-1"><?php echo htmlspecialchars($listing_config['hero_sub']); ?></p>
         </div>
     </div>
 </div>
@@ -325,14 +325,14 @@ $category_nav = [
     <!-- Page Title & Search Bar -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
       <div>
-        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight"><?php echo htmlspecialchars($c['heading']); ?></h2>
+        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight"><?php echo htmlspecialchars($listing_config['heading']); ?></h2>
         <p class="text-slate-500 text-sm font-medium"><?php echo count($items); ?> result<?php echo count($items) !== 1 ? 's' : ''; ?> found</p>
       </div>
       <form method="GET" action="<?php echo BASE_PATH; ?>/listing/<?php echo htmlspecialchars($type); ?>" class="flex items-center gap-2 w-full sm:w-auto">
         <div class="relative flex-1 sm:w-64">
            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>"
-                  placeholder="Search <?php echo htmlspecialchars($c['label']); ?>..." list="location-list"
+                  placeholder="Search <?php echo htmlspecialchars($listing_config['label']); ?>..." list="location-list"
                   class="w-full border border-slate-200 rounded-xl pl-12 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white text-slate-900 transition-all text-ellipsis whitespace-nowrap overflow-hidden"/>
         </div>
         <button type="submit" class="px-4 py-2.5 bg-primary text-white rounded-xl text-sm font-bold hover:bg-orange-600 transition-all shadow active:scale-95">Search</button>
@@ -386,10 +386,10 @@ $category_nav = [
         <!-- Type filters -->
         <div class="mb-6">
           <p class="text-xs font-bold text-slate-500 mb-3 flex items-center gap-2 uppercase tracking-wider">
-            <span class="material-symbols-outlined text-base">category</span><?php echo htmlspecialchars($c['filter_label']); ?>
+            <span class="material-symbols-outlined text-base">category</span><?php echo htmlspecialchars($listing_config['filter_label']); ?>
           </p>
           <div class="space-y-2 max-h-52 overflow-y-auto pr-1">
-            <?php foreach ($c['filters'] as $f): ?>
+            <?php foreach ($listing_config['filters'] as $f): ?>
             <label class="flex items-center gap-3 cursor-pointer group">
               <input type="checkbox" value="<?php echo htmlspecialchars($f); ?>"
                      class="type-filter rounded text-primary focus:ring-primary size-4 border-slate-300 cursor-pointer"/>
@@ -568,13 +568,13 @@ $category_nav = [
               <div>
                 <?php if ($price_val > 0): ?><span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">from</span><?php endif; ?>
                 <span class="text-xl font-black text-primary"><?php echo $price_fmt; ?></span>
-                <?php if ($c['unit'] && $price_val > 0): ?>
-                <span class="text-xs text-slate-400 font-medium"><?php echo htmlspecialchars($c['unit']); ?></span>
+                <?php if ($listing_config['unit'] && $price_val > 0): ?>
+                <span class="text-xs text-slate-400 font-medium"><?php echo htmlspecialchars($listing_config['unit']); ?></span>
                 <?php endif; ?>
               </div>
               <a href="<?php echo listingSlug($type, $item); ?>"
                  class="px-4 py-2 bg-primary text-white hover:bg-orange-600 rounded-xl text-sm font-bold transition-all duration-300 shadow-[0_4px_15px_rgba(236,91,19,0.3)] hover:shadow-[0_8px_25px_rgba(236,91,19,0.5)] hover:-translate-y-0.5">
-                <?php echo htmlspecialchars($c['cta']); ?>
+                <?php echo htmlspecialchars($listing_config['cta']); ?>
               </a>
             </div>
           </div>

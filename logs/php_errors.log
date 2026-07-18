@@ -2640,3 +2640,4 @@ Stack trace:
   thrown in C:\xampp\htdocs\CSNExplore\stays.php on line 167
 [18-Jul-2026 22:23:53 Asia/Kolkata] Database rate limiting error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexploredb.rate_limits' doesn't exist. Falling back to file-based.
 [18-Jul-2026 22:58:23 Asia/Kolkata] Database rate limiting error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexploredb.rate_limits' doesn't exist. Falling back to file-based.
+[18-Jul-2026 23:18:48 Asia/Kolkata] Database rate limiting error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'csnexploredb.rate_limits' doesn't exist. Falling back to file-based.
