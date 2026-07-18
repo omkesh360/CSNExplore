@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // bike-rental.php
 require_once 'php/config.php';
 $type = 'bikes';

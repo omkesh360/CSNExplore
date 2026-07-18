@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // stays.php
 require_once 'php/config.php';
 $type = 'stays';

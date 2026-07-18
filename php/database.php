@@ -8,7 +8,7 @@ class Database {
 
     private function __construct() {
         // Auto-detect environment robustly
-        $appEnv = function_exists('env') ? env('APP_ENV') : (function_exists('getenv') ? getenv('APP_ENV') : false);
+        $appEnv = defined('APP_ENV') ? APP_ENV : (function_exists('env') ? env('APP_ENV') : (function_exists('getenv') ? getenv('APP_ENV') : false));
         $isLocalEnv = (strpos(__DIR__, 'htdocs') !== false || strpos(__DIR__, 'xampp') !== false || php_uname('s') === 'Windows NT');
         $isProduction = $appEnv === 'production' || !$isLocalEnv;
 

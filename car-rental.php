@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // car-rental.php
 require_once 'php/config.php';
 $type = 'cars';

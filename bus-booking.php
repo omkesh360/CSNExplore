@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // bus-booking.php
 require_once 'php/config.php';
 $type = 'buses';

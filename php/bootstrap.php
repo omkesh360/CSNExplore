@@ -30,7 +30,9 @@ if (!function_exists('env')) {
 
 // Ensure APP_ENV is defined early
 if (!defined('APP_ENV')) {
-    define('APP_ENV', env('APP_ENV', 'production'));
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    $isLocal = (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false);
+    define('APP_ENV', $isLocal ? 'local' : env('APP_ENV', 'production'));
 }
 
 // 2. Setup Logging (Monolog)

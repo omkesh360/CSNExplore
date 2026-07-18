@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Restraunts.php
 require_once 'php/config.php';
 $type = 'restaurants';
