@@ -1,7 +1,7 @@
 ﻿<?php
-// attractions.php
+// bus-booking.php
 require_once 'php/config.php';
-$type = 'attractions';
-$_canonicalSlug = 'attractions';
+$type = 'buses';
+$_canonicalSlug = 'bus';
 $_canonicalUrl = 'https://csnexplore.com/' . $_canonicalSlug;
 require_once 'php/templates/listing_core.php';

@@ -77,7 +77,7 @@
             <!-- Contact Info -->
             <div data-reveal data-delay="3">
                 <h4 class="font-bold text-sm mb-4">Contact Info</h4>
-<ul class="flex flex-col gap-4 text-white/50 text-sm">
+<ul class="flex flex-col gap-4 text-white/50 text-sm" style="list-style:none;padding:0;margin:0">
                     <li class="flex items-start gap-4">
                         <span class="size-9 rounded-full border border-white/15 flex items-center justify-center shrink-0 mt-0.5 bg-white/5">
                             <span class="material-symbols-outlined text-primary text-[19px]">location_on</span>
@@ -122,35 +122,68 @@
             </div>
         </div>
         
-        <!-- SEO Keyword Block -->
-        <div class="sr-only">
-            <h4 class="font-bold text-sm mb-3 text-white/80">Popular Searches in Chhatrapati Sambhajinagar (Aurangabad)</h4>
-            <p class="text-white/40 text-xs leading-loose">
-                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Hotels CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Budget Stays CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Jain Hotels Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Safe Stays for Women CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Car Rentals Near Me Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Cab Booking Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Self Drive Cars CSNExplore.com</a> | 
-                <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Innova Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Electric Scooter Rental CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Scsnexplore Bike Rental</a> | 
-                <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Activa Rental Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ajanta Caves Tour CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ellora Caves Guide CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Bibi Ka Maqbara Tickets CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Daulatabad Fort Trip CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Veg Restaurant Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Best Misal Pav Aurangabad CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Maharashtrian Thali CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Solo Travelling CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Women Travel Safety CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Budget Under 2 Days CSNExplore</a> | 
-                <a href="<?php echo BASE_PATH; ?>/" class="hover:text-primary transition-colors">Aurangabad Travel Guide CSNExplore.in</a> | 
-                <a href="<?php echo BASE_PATH; ?>/" class="hover:text-primary transition-colors">CSNExplore Tourism Portal</a>
-            </p>
+        <!-- SEO Keyword Block: Popular Searches & Nearby Locations -->
+        <div class="border-t border-white/10 pt-8 pb-4 mt-4">
+            <details class="group cursor-pointer">
+                <summary class="flex items-center justify-between font-bold text-sm text-white/80 select-none list-none outline-none [&::-webkit-details-marker]:hidden">
+                    <span>Popular Searches & Nearby Locations</span>
+                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-white/60">expand_more</span>
+                </summary>
+                <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-[11px] text-white/50 leading-relaxed">
+                    <!-- Cars -->
+                    <div class="flex flex-col gap-2">
+                        <h5 class="text-white/70 font-semibold mb-1 uppercase tracking-wider text-[10px]">Car Rentals</h5>
+                        <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Best Car Rental in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Top Car Rental Service in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Self Drive Cars in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Car and Bike Rentals Near Me</a>
+                        <a href="<?php echo BASE_PATH; ?>/car-rentals" class="hover:text-primary transition-colors">Cab Booking Aurangabad</a>
+                    </div>
+                    <!-- Bikes -->
+                    <div class="flex flex-col gap-2">
+                        <h5 class="text-white/70 font-semibold mb-1 uppercase tracking-wider text-[10px]">Bike Rentals</h5>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Best Bike Rental in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Top Bike Rental Service in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Rent Bike in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">7 Scooters Rental Services</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Joyride Rental</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Ridobiko Bike Rental</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Eezee Rentals</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Raghubir Bike Rental</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Banjara Ride</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Snaprides</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Freedom Bike Rental</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Shine Bike Price in Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Ride Your Bike</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Prime Ride</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Rudra Bike</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Dolphin Travels Aurangabad</a>
+                    </div>
+                    <!-- Other Locations -->
+                    <div class="flex flex-col gap-2">
+                        <h5 class="text-white/70 font-semibold mb-1 uppercase tracking-wider text-[10px]">Nearby Locations</h5>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike on rent in Kolhapur</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Scooty on rent in Ahmedabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rental Thanjavur</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rental in Dimapur</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rentals in Shirdi</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Bike Rental in Kudal</a>
+                        <a href="<?php echo BASE_PATH; ?>/bike-rentals" class="hover:text-primary transition-colors">Activa Rent in Ahmedabad</a>
+                    </div>
+                    <!-- Hotels & Attractions -->
+                    <div class="flex flex-col gap-2">
+                        <h5 class="text-white/70 font-semibold mb-1 uppercase tracking-wider text-[10px]">Hotels & Tourism</h5>
+                        <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Hotel Naivedya Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/restaurants" class="hover:text-primary transition-colors">Naivedya Thali Aurangabad</a>
+                        <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Best Time to Visit Ajanta Ellora</a>
+                        <a href="<?php echo BASE_PATH; ?>/hotels" class="hover:text-primary transition-colors">Hotels CSNExplore</a>
+                        <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ajanta Caves Tour</a>
+                        <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Ellora Caves Guide</a>
+                        <a href="<?php echo BASE_PATH; ?>/attractions" class="hover:text-primary transition-colors">Daulatabad Fort Trip</a>
+                        <a href="<?php echo BASE_PATH; ?>/blogs" class="hover:text-primary transition-colors">Solo Travelling in Maharashtra</a>
+                    </div>
+                </div>
+            </details>
         </div>
 
         <!-- Comprehensive LocalBusiness Schema Injection -->
@@ -285,46 +318,12 @@ $hide_floating_buttons = in_array($current_page ?? '', ['login.php', 'register.p
                 d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
         </svg>
     </a>
-    <!-- WhatsApp pulse ring -->
-    <style>
-        #whatsapp-float {
-            position: relative;
-        }
-
-        #whatsapp-float::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #25D366;
-            opacity: .4;
-            animation: wa-pulse 2s infinite;
-        }
-
-        @keyframes wa-pulse {
-            0% {
-                transform: scale(1);
-                opacity: .4;
-            }
-
-            70% {
-                transform: scale(1.4);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1.4);
-                opacity: 0;
-            }
-        }
-    </style>
 <?php endif; ?>
 
 <!-- ── Cookie Consent Banner [B4.1] ──────────────────────────────────────── -->
 <?php $show_cookie = !isset($_COOKIE['csn_cookie_consent']) ? 'block' : 'none'; ?>
 <div id="cookie-banner"
-    style="display:<?php echo $show_cookie; ?>;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1e293b;color:#f8fafc;padding:16px 24px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
+    style="display:<?php echo $show_cookie; ?>;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1e293b;color:#f8fafc;padding:16px 24px;padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));box-shadow:0 -4px 20px rgba(0,0,0,0.3);">
     <div
         style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;">
         <p style="margin:0;font-size:13px;color:#cbd5e1;line-height:1.6;flex:1;min-width:280px;">
@@ -361,58 +360,7 @@ if (file_exists($locationsFile)) {
     }
 }
 ?>
-<style>
-.autocomplete-dropdown {
-    position: absolute;
-    background: #1c1410;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-    z-index: 999999;
-    max-height: 250px;
-    overflow-y: auto;
-    display: none;
-    flex-direction: column;
-}
-.autocomplete-dropdown.active {
-    display: flex;
-}
-.autocomplete-item {
-    padding: 12px 20px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.autocomplete-item:hover {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-}
-.autocomplete-item b {
-    color: #38bdf8; /* Light blue highlight instead of orange */
-}
-.autocomplete-item.no-results {
-    color: #94a3b8;
-    cursor: default;
-}
-.autocomplete-item.no-results:hover {
-    background: transparent;
-}
-.autocomplete-item .material-symbols-outlined {
-    font-size: 18px;
-    opacity: 0.7;
-}
-
-/* Scrollbar for dropdown */
-.autocomplete-dropdown::-webkit-scrollbar { width: 6px; }
-.autocomplete-dropdown::-webkit-scrollbar-track { background: transparent; }
-.autocomplete-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-.autocomplete-dropdown::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
-</style>
+<!-- Autocomplete CSS is in mobile-responsive.css -->
 <script type="application/json" id="csn-locations-data">
 <?php echo json_encode($locationsData); ?>
 </script>
@@ -614,11 +562,8 @@ if (file_exists($locationsFile)) {
         // ── Service Worker Registration (Progressive Web App) ──
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                // Use correct path for subfolder install
                 var swPath = (window.location.pathname.startsWith('/CSNExplore') ? '/CSNExplore' : '') + '/sw.js';
-                navigator.serviceWorker.register(swPath)
-                    .then(function(reg) { console.log('SW registered:', reg.scope); })
-                    .catch(function(err) { console.log('SW registration failed:', err); });
+                navigator.serviceWorker.register(swPath).catch(function() {});
             });
         }
 

@@ -83,7 +83,8 @@ require 'admin-header.php';
 </div>
 
 <?php
-$extra_js = '<script>
+$extra_js = <<<'EOT'
+<script>
 /* ── helpers ── */
 function escHtml(s) {
     return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -253,6 +254,8 @@ async function saveHomepage() {
 }
 
 loadHomepage();
-</script>';
+</script>
+EOT;
+
 require 'admin-footer.php';
 ?>

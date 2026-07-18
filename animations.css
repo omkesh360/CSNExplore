@@ -38,6 +38,11 @@ body.page-fade-out {
   transition:
     opacity   0.75s var(--ease-out-expo),
     transform 0.75s var(--ease-out-expo);
+}
+/* Only promote to GPU layer when animation system is active (avoids excess GPU memory) */
+body.csn-anim-init [data-reveal],
+body.csn-anim-init .card-reveal,
+body.csn-anim-init [data-animate] {
   will-change: opacity, transform;
 }
 /* FLASH FIX: if JS hasn't run yet (no .csn-anim-init on body), show elements immediately */
@@ -47,6 +52,7 @@ body:not(.csn-anim-init) [data-animate] {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
+  will-change: auto !important;
 }
 [data-reveal='left']  { transform: translateX(-28px); }
 [data-reveal='right'] { transform: translateX(28px); }
@@ -75,6 +81,8 @@ body:not(.csn-anim-init) [data-animate] {
   transition:
     opacity  0.8s var(--ease-out-expo),
     transform 0.8s var(--ease-out-expo);
+}
+body.csn-anim-init [data-reveal-children] > * {
   will-change: opacity, transform;
 }
 [data-reveal-children].revealed > *:nth-child(1)  { opacity:1; transform:none; transition-delay:  30ms; }

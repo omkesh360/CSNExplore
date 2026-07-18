@@ -28,11 +28,8 @@ $extra_head = '<script type="application/ld+json">
 $extra_styles = "
     /* ── Explore page specific styles ── */
     .glass-panel { background:rgba(255,255,255,0.07); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); }
-    .hero-parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
-    /* Disable fixed parallax on mobile — causes blank backgrounds on iOS */
-    @media (max-width: 768px) {
-        .hero-parallax { background-attachment: scroll !important; }
-    }
+    .hero-bg-anim { background-position: center; background-repeat: no-repeat; background-size: cover; animation: subtleZoom 20s infinite alternate; }
+    @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.05); } }
     .card-zoom-image { transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
     .group:hover .card-zoom-image { transform: scale(1.08); }
 
@@ -181,9 +178,9 @@ require 'header.php';
 <main class="bg-slate-50">
 <!-- Hero Section -->
 <section class="relative min-h-[60vh] md:min-h-[70vh] flex flex-col justify-end overflow-hidden" style="padding-top:92px;">
-    <div class="absolute inset-0 z-0">
-        <!-- Background image (parallax on desktop, scroll on mobile) -->
-        <div class="w-full h-full hero-parallax" style="background-image: url('<?php echo BASE_PATH; ?>/images/hero_csn.webp');"></div>
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <!-- Background image with subtle zoom motion effect -->
+        <div class="w-full h-full hero-bg-anim" style="background-image: url('<?php echo BASE_PATH; ?>/images/hero_csn.webp');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0f172a]"></div>
     </div>
     <!-- Breadcrumb — sits right below the fixed header -->
@@ -235,7 +232,7 @@ require 'header.php';
             <div data-reveal="right" class="relative mt-8 md:mt-0">
                 <div class="absolute -inset-4 bg-primary/10 rounded-[2rem] transform rotate-3 pointer-events-none"></div>
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio:4/5;">
-                    <img src="<?php echo BASE_PATH; ?>/images/uploads/panchakki.webp" alt="Panchakki — Historic Water Mill, Chhatrapati Sambhajinagar" class="w-full h-full object-cover">
+                    <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/panchakki.webp" alt="Panchakki — Historic Water Mill, Chhatrapati Sambhajinagar" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -256,7 +253,7 @@ require 'header.php';
             
             <!-- Ellora Caves (Large — spans 8 cols × 2 rows on desktop) -->
             <div data-reveal="scale" class="md:col-span-8 md:row-span-2 group relative overflow-hidden rounded-3xl shadow-lg cursor-pointer" style="min-height:280px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/ellora_caves.webp" alt="Ellora Caves — Kailasa Temple" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/ellora_caves.webp" alt="Ellora Caves — Kailasa Temple" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                 <div class="landmark-card-content absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <span class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold rounded mb-2 md:mb-3">UNESCO Site</span>
@@ -267,7 +264,7 @@ require 'header.php';
 
             <!-- Bibi Ka Maqbara (4 cols × 2 rows) -->
             <div data-reveal="scale" data-delay="100" class="md:col-span-4 md:row-span-2 group relative overflow-hidden rounded-3xl shadow-lg cursor-pointer" style="min-height:260px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/bibi.webp" alt="Bibi Ka Maqbara — Taj of the Deccan" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/bibi.webp" alt="Bibi Ka Maqbara — Taj of the Deccan" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                 <div class="landmark-card-content absolute bottom-0 left-0 right-0 p-5 md:p-6">
                     <h3 class="text-xl md:text-2xl font-serif font-bold text-white mb-1 md:mb-2">Bibi Ka Maqbara</h3>
@@ -277,7 +274,7 @@ require 'header.php';
 
             <!-- Ajanta Caves (6 cols × 2 rows) -->
             <div data-reveal="scale" data-delay="200" class="md:col-span-6 md:row-span-2 group relative overflow-hidden rounded-3xl shadow-lg cursor-pointer" style="min-height:260px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/ajanta.webp" alt="Ajanta Caves — Buddhist Rock-cut Monuments" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/ajanta.webp" alt="Ajanta Caves — Buddhist Rock-cut Monuments" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                 <div class="landmark-card-content absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <span class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold rounded mb-2 md:mb-3">UNESCO Site</span>
@@ -288,7 +285,7 @@ require 'header.php';
 
             <!-- Daulatabad Fort (6 cols × 2 rows) -->
             <div data-reveal="scale" data-delay="300" class="md:col-span-6 md:row-span-2 group relative overflow-hidden rounded-3xl shadow-lg cursor-pointer" style="min-height:260px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.webp" alt="Daulatabad Fort — 12th Century Hill Fortress" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/daulatabad.webp" alt="Daulatabad Fort — 12th Century Hill Fortress" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                 <div class="landmark-card-content absolute bottom-0 left-0 right-0 p-6 md:p-8">
                     <h3 class="text-xl md:text-3xl font-serif font-bold text-white mb-1 md:mb-2">Daulatabad Fort</h3>
@@ -318,7 +315,7 @@ require 'header.php';
             <!-- Mughlai Cuisine -->
             <div data-reveal="left" class="vibe-card rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div class="relative h-48 overflow-hidden">
-                    <img src="<?php echo BASE_PATH; ?>/images/uploads/north-indian-thali.webp" alt="Mughlai Cuisine — North Indian Thali" class="w-full h-full object-cover card-zoom-image">
+                    <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/north-indian-thali.webp" alt="Mughlai Cuisine — North Indian Thali" class="w-full h-full object-cover card-zoom-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-3 left-4">
                         <span class="inline-flex items-center gap-1.5 bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
@@ -335,7 +332,7 @@ require 'header.php';
             <!-- Himroo & Paithani -->
             <div data-reveal="up" data-delay="100" class="vibe-card rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div class="relative h-48 overflow-hidden">
-                    <img src="<?php echo BASE_PATH; ?>/images/uploads/valley_of_saints.webp" alt="Valley of Saints — Chhatrapati Sambhajinagar" class="w-full h-full object-cover card-zoom-image">
+                    <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/valley_of_saints.webp" alt="Valley of Saints — Chhatrapati Sambhajinagar" class="w-full h-full object-cover card-zoom-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-3 left-4">
                         <span class="inline-flex items-center gap-1.5 bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
@@ -352,7 +349,7 @@ require 'header.php';
             <!-- Ellora Festival -->
             <div data-reveal="right" data-delay="200" class="vibe-card rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div class="relative h-48 overflow-hidden">
-                    <img src="<?php echo BASE_PATH; ?>/images/uploads/grishneshwar-temple.webp" alt="Grishneshwar Temple — Chhatrapati Sambhajinagar" class="w-full h-full object-cover card-zoom-image">
+                    <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/grishneshwar-temple.webp" alt="Grishneshwar Temple — Chhatrapati Sambhajinagar" class="w-full h-full object-cover card-zoom-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-3 left-4">
                         <span class="inline-flex items-center gap-1.5 bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
@@ -386,7 +383,7 @@ require 'header.php';
 
             <!-- Siddharth Lake -->
             <div data-reveal="scale" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer" style="min-height:180px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/siddharth_lake.webp" alt="Siddharth Lake Garden" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/siddharth_lake.webp" alt="Siddharth Lake Garden" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
                     <p class="text-white font-bold text-sm leading-tight">Siddharth Lake Garden</p>
@@ -396,7 +393,7 @@ require 'header.php';
 
             <!-- Buddha Vihar -->
             <div data-reveal="scale" data-delay="80" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer" style="min-height:180px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/buddha_vihar.webp" alt="Buddha Vihar" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/buddha_vihar.webp" alt="Buddha Vihar" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
                     <p class="text-white font-bold text-sm leading-tight">Buddha Vihar</p>
@@ -406,7 +403,7 @@ require 'header.php';
 
             <!-- Maharashtra Museum -->
             <div data-reveal="scale" data-delay="160" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer" style="min-height:180px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/maharashtra_museum.webp" alt="Maharashtra State Museum" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/maharashtra_museum.webp" alt="Maharashtra State Museum" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
                     <p class="text-white font-bold text-sm leading-tight">State Museum</p>
@@ -416,7 +413,7 @@ require 'header.php';
 
             <!-- CIDCO Garden -->
             <div data-reveal="scale" data-delay="240" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer" style="min-height:180px;">
-                <img src="<?php echo BASE_PATH; ?>/images/uploads/cidco_garden.webp" alt="CIDCO Garden" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
+                <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/cidco_garden.webp" alt="CIDCO Garden" class="absolute inset-0 w-full h-full object-cover card-zoom-image">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
                     <p class="text-white font-bold text-sm leading-tight">CIDCO Garden</p>
@@ -432,7 +429,7 @@ require 'header.php';
 <section class="py-20 md:py-24 relative overflow-hidden bg-[#0f172a]">
     <div class="absolute inset-0 z-0 pointer-events-none">
         <!-- Real background image with dark overlay -->
-        <img src="<?php echo BASE_PATH; ?>/images/uploads/travel-gate.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <img loading="lazy" decoding="async" src="<?php echo BASE_PATH; ?>/images/uploads/travel-gate.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-20">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(236,91,19,0.18)_0%,rgba(15,23,42,0.95)_70%)]"></div>
         <!-- Glowing orbs -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>

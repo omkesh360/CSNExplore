@@ -15,15 +15,15 @@ function csn_handle_redirects(): void {
     // /stays.php?id=123  → /listing/stays  (no per-item redirect since we use static HTML)
     // /cars.php?type=muv → /listing/cars
     $legacyPageMap = [
-        'stays.php'       => '/listing/stays',
-        'cars.php'        => '/listing/cars',
-        'bikes.php'       => '/listing/bikes',
-        'attractions.php' => '/listing/attractions',
-        'restaurants.php' => '/listing/restaurants',
+        'stays.php'       => '/hotels',
+        'cars.php'        => '/car-rentals',
+        'bikes.php'       => '/bike-rentals',
+        'attractions.php' => '/attractions',
+        'restaurants.php' => '/restaurants',
         'buses.php'       => '/bus',
         'blog.php'        => '/blogs',
-        'hotel.php'       => '/listing/stays',
-        'vehicle.php'     => '/listing/cars',
+        'hotel.php'       => '/hotels',
+        'vehicle.php'     => '/car-rentals',
     ];
     foreach ($legacyPageMap as $old => $new) {
         if ($path === $old || $path === ltrim($old, '/')) {
@@ -70,12 +70,12 @@ function csn_handle_redirects(): void {
     // ── 5. Specific legacy slug redirects ─────────────────────────────────────
     $slugRedirects = [
         // 'old-path' => 'new-path'
-        'aurangabad-hotels'       => '/listing/stays',
-        'aurangabad-car-rental'   => '/listing/cars',
-        'aurangabad-bike-rental'  => '/listing/bikes',
-        'ajanta-caves-tour'       => '/listing/attractions',
-        'ellora-caves-tour'       => '/listing/attractions',
-        'aurangabad-restaurants'  => '/listing/restaurants',
+        'aurangabad-hotels'       => '/hotels',
+        'aurangabad-car-rental'   => '/car-rentals',
+        'aurangabad-bike-rental'  => '/bike-rentals',
+        'ajanta-caves-tour'       => '/attractions',
+        'ellora-caves-tour'       => '/attractions',
+        'aurangabad-restaurants'  => '/restaurants',
         'aurangabad-bus'          => '/bus',
         'travel-guide'            => '/blogs',
     ];

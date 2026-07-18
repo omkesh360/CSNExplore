@@ -126,9 +126,34 @@ require 'header.php';
 <!-- Shared hero with video background -->
 <section class="relative min-h-[500px] flex items-center justify-center overflow-hidden pt-28">
     <div class="absolute inset-0 z-0">
-        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
-            <source src="<?php echo BASE_PATH; ?>/videos/blog-vid.mp4" type="video/mp4">
+        <video id="blog-hero-video" class="w-full h-full object-cover" muted loop playsinline preload="none" poster="<?php echo BASE_PATH; ?>/images/hero_csn.webp">
+            <source data-src="<?php echo BASE_PATH; ?>/videos/blog-vid.mp4" type="video/mp4">
         </video>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var video = document.getElementById('blog-hero-video');
+                var source = video.querySelector('source');
+                if ('IntersectionObserver' in window) {
+                    var observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                source.src = source.getAttribute('data-src');
+                                video.load();
+                                var playPromise = video.play();
+                                if (playPromise !== undefined) playPromise.catch(function(){});
+                                observer.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    observer.observe(video);
+                } else {
+                    source.src = source.getAttribute('data-src');
+                    video.load();
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) playPromise.catch(function(){});
+                }
+            });
+        </script>
         <div class="absolute inset-0 bg-gradient-to-br from-primary/70 to-primary/30 mix-blend-multiply"></div>
         <div class="absolute inset-0 bg-black/30"></div>
     </div>

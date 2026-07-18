@@ -1,71 +1,3 @@
-<?php
-// listing.php – Unified listing page for all categories
-require_once 'php/config.php';
-
-// ── Resolve listing type from clean URL path OR legacy ?type= param ──────────
-// Map clean URL paths → internal type keys
-$_urlTypeMap = [
-    'hotels'      => 'stays',
-    'hotel-stays' => 'stays',
-    'car-rentals' => 'cars',
-    'bike-rentals'=> 'bikes',
-    'attractions' => 'attractions',
-    'restaurants' => 'restaurants',
-    'bus-rentals' => 'buses',
-];
-
-// Detect which clean URL was requested
-$_requestPath = trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
-// Strip subfolder prefix (e.g. CSNExplore/) if on localhost
-$_scriptBase  = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/');
-if ($_scriptBase !== '' && strpos('/' . $_requestPath, $_scriptBase) === 0) {
-    $_requestPath = ltrim(substr('/' . $_requestPath, strlen($_scriptBase)), '/');
-}
-
-// Map clean URL to type, or fall back to ?type= query param
-if (array_key_exists($_requestPath, $_urlTypeMap)) {
-    $type = $_urlTypeMap[$_requestPath];
-} else {
-    $type = $_GET['type'] ?? 'stays';
-}
-
-// 301-redirect old ?type= query-param URLs to clean URLs ─────────────────────
-$_cleanUrlMap = [
-    'stays'       => 'hotels',
-    'cars'        => 'car-rentals',
-    'bikes'       => 'bike-rentals',
-    'attractions' => 'attractions',
-    'restaurants' => 'restaurants',
-    'buses'       => 'bus',
-];
-// Only redirect if user hit /listing?type=X (not already on clean URL)
-if (isset($_GET['type']) && !array_key_exists($_requestPath, $_urlTypeMap)) {
-    $cleanSlug = $_cleanUrlMap[$_GET['type']] ?? null;
-    if ($cleanSlug) {
-        $qs = $_GET;
-        unset($qs['type']);
-        $suffix = !empty($qs) ? '?' . http_build_query($qs) : '';
-        header('Location: ' . BASE_PATH . '/' . $cleanSlug . $suffix, true, 301);
-        exit;
-    }
-}
-
-// Validate type
-$allowed = ['stays','cars','bikes','attractions','restaurants'];
-if (!in_array($type, $allowed)) $type = 'stays';
-
-// ── Canonical URL for this page ───────────────────────────────────────────────
-$_canonicalMap = [
-    'stays'       => 'hotels',
-    'cars'        => 'car-rentals',
-    'bikes'       => 'bike-rentals',
-    'attractions' => 'attractions',
-    'restaurants' => 'restaurants',
-];
-$_canonicalSlug  = $_canonicalMap[$type];
-$_canonicalUrl   = 'https://csnexplore.com/' . $_canonicalSlug;
-
-
 // ── Fetch from DB ─────────────────────────────────────────────────────────────
 $db = getDB();
 $search     = trim($_GET['search'] ?? '');
@@ -112,7 +44,7 @@ if ($items === false) {
 
 $config = [
   'stays' => [
-    'title'    => 'Hotel Stays | CSNExplore',
+    'title'    => 'Best Hotels in Aurangabad | Hotel Naivedya | CSNExplore',
     'heading'  => 'Hotels in Chhatrapati Sambhajinagar',
     'icon'     => 'bed',
     'label'    => 'Stays',
@@ -120,7 +52,7 @@ $config = [
     'cta'      => 'Check Availability',
     'hero_bg'  => BASE_PATH . '/images/hotel-hero-section-4.webp',
     'hero_h1'  => 'Find Your Perfect Stay',
-    'hero_sub' => 'Hotels, resorts & homestays in Chhatrapati Sambhajinagar.',
+    'hero_sub' => 'Hotels, resorts & homestays in Aurangabad including Hotel Naivedya.',
     'filters'  => ['Luxury Hotel','Heritage Hotel','Budget Hotel','Resort','Homestay','Hostel','Guesthouse','Business Hotel'],
     'filter_label' => 'Property Type',
     'promo'    => 'First hotel booking with CSNExplore',
@@ -215,17 +147,18 @@ function listingSlug($type, $item) {
     return BASE_PATH . '/listing-detail/' . generateSlug($type, $item['id'], $name);
 }
 
-$page_meta = [
-    'seo_type'    => $type,
-    'description' => "Find the best " . strtolower($c['label']) . " in Chhatrapati Sambhajinagar. " . $c['hero_sub'],
-    'canonical'   => $_canonicalUrl,
-    'image'       => "https://csnexplore.com" . $c['hero_bg'],
-    'type'        => 'website',
-    'robots'      => 'index, follow',
-    'breadcrumbs' => [
-        ['name' => 'Home',      'url' => '/'],
-        ['name' => $c['label'], 'url' => '/' . $_canonicalSlug],
-    ],
+if (!isset($page_meta)) $page_meta = [];
+$page_meta['seo_type'] = $type;
+if (!isset($page_meta['description'])) {
+    $page_meta['description'] = "Find the best " . strtolower($c['label']) . " in Chhatrapati Sambhajinagar. " . $c['hero_sub'];
+}
+$page_meta['canonical'] = $_canonicalUrl;
+$page_meta['image'] = "https://csnexplore.com" . $c['hero_bg'];
+$page_meta['type'] = 'website';
+$page_meta['robots'] = 'index, follow';
+$page_meta['breadcrumbs'] = [
+    ['name' => 'Home',      'url' => '/'],
+    ['name' => $c['label'], 'url' => '/' . $_canonicalSlug],
 ];
 
 $itemListElements = [];
@@ -360,25 +293,24 @@ $category_nav = [
 <!-- Category Sub-Nav is in header.php for listing pages -->
 
 <!-- Hero Banner with breadcrumb at top -->
-<div class="relative h-52 md:h-72 overflow-hidden pt-28">
+<div class="relative min-h-[16rem] md:min-h-[18rem] flex flex-col justify-end overflow-hidden pt-28 pb-6">
     <img fetchpriority="high" loading="eager" decoding="sync" width="800" height="600" src="<?php echo htmlspecialchars($c['hero_bg']); ?>"
          alt="Explore <?php echo htmlspecialchars($c['label']); ?> in Chhatrapati Sambhajinagar Aurangabad Maharashtra - CSNExplore"
-         class="absolute inset-0 w-full h-full object-cover"/>
-    <span class="sr-only">Find and book the top-rated <?php echo htmlspecialchars(strtolower($c['label'])); ?> in Chhatrapati Sambhajinagar, Aurangabad, Maharashtra. Compare rates, ratings, verified user reviews, locations, and options for budget stays, luxury hotels, rental cars, and bikes.</span>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705]"></div>
-    <!-- Breadcrumb at very top -->
-    <div class="absolute top-0 left-0 right-0 pt-28">
-        <div class="max-w-[1140px] mx-auto px-5 flex items-center gap-2 text-sm text-white/60 flex-wrap">
+         class="absolute inset-0 w-full h-full object-cover z-0"/>
+    <span class="sr-only relative z-0">Find and book the top-rated <?php echo htmlspecialchars(strtolower($c['label'])); ?> in Chhatrapati Sambhajinagar, Aurangabad, Maharashtra. Compare rates, ratings, verified user reviews, locations, and options for budget stays, luxury hotels, rental cars, and bikes.</span>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-[#0a0705] z-0"></div>
+    
+    <div class="relative z-10 max-w-[1140px] mx-auto px-5 w-full flex flex-col gap-3">
+        <!-- Breadcrumb -->
+        <div class="flex items-center gap-2 text-sm text-white/60 flex-wrap">
             <a href="<?php echo BASE_PATH; ?>/" class="hover:text-white transition-colors flex items-center gap-1">
                 <span class="material-symbols-outlined text-base">home</span>Home
             </a>
             <span class="material-symbols-outlined text-base">chevron_right</span>
             <span class="text-white font-semibold"><?php echo htmlspecialchars($c['label']); ?></span>
         </div>
-    </div>
-    <!-- Title at bottom -->
-    <div class="absolute bottom-0 left-0 right-0 pb-6">
-        <div class="max-w-[1140px] mx-auto px-5">
+        <!-- Title -->
+        <div>
             <h1 class="text-white text-2xl md:text-4xl font-serif font-black flex items-center gap-3">
                 <span class="material-symbols-outlined text-primary text-3xl"><?php echo htmlspecialchars($c['icon']); ?></span>
                 <?php echo htmlspecialchars($c['hero_h1']); ?>
@@ -513,7 +445,7 @@ $category_nav = [
 
       <!-- Apply Button -->
       <div class="mt-4 flex gap-2">
-        <button onclick="applyFilters()" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl hover:bg-orange-600 transition-all text-sm flex items-center justify-center gap-2 shadow-sm">
+        <button onclick="applyFilters(); document.getElementById('sidebar-filters').classList.add('collapsed'); document.getElementById('listings-wrapper').classList.remove('grid-filtered');" class="flex-1 py-3 bg-primary text-white font-bold rounded-xl hover:bg-orange-600 transition-all text-sm flex items-center justify-center gap-2 shadow-sm">
           <span class="material-symbols-outlined text-base">filter_alt</span> Apply Filters
         </button>
         <button onclick="resetFilters()" class="px-4 py-3 border border-slate-200 text-slate-500 font-semibold rounded-xl hover:bg-slate-50 transition-all text-sm">

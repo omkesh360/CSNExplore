@@ -55,10 +55,13 @@ input, select, textarea {
 /* ── Images ── */
 img { max-width: 100%; height: auto; }
 
-/* ── Prevent horizontal overflow ── */
-section, main, article, aside, div {
+/* ── Prevent horizontal overflow (do NOT apply max-width to div — breaks flex/grid) ── */
+section, main, article, aside {
   max-width: 100%;
 }
+/* Images always constrained */
+img, video, iframe, embed, object { max-width: 100%; }
+
 
 /* ── Mobile Utilities ── */
 @media (max-width: 768px) {
@@ -170,8 +173,20 @@ section, main, article, aside, div {
   box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
   display: flex;
   gap: 12px;
-  z-index: 1000;
+  z-index: 1100;
 }
+
+/* ── Main content: leave room for the fixed bottom nav on mobile ── */
+@media (max-width: 767px) {
+  main, .csn-main {
+    padding-bottom: calc(80px + var(--safe-bottom, 0px)) !important;
+  }
+  /* Pages that explicitly hide bottom nav don't need the padding */
+  body.no-bottom-nav main, body.no-bottom-nav .csn-main {
+    padding-bottom: 0 !important;
+  }
+}
+
 
 /* ── Image Zoom ── */
 .hover-zoom { overflow: hidden; }
@@ -227,7 +242,25 @@ section, main, article, aside, div {
 /* ── WhatsApp float button ── */
 #whatsapp-float {
   bottom: calc(20px + var(--safe-bottom)) !important;
+  position: fixed !important;
 }
+/* Pulse ring stays behind the icon via z-index */
+#whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: .4;
+  animation: wa-pulse 2s infinite;
+  z-index: -1;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: .4; }
+  70%  { transform: scale(1.4); opacity: 0;  }
+  100% { transform: scale(1.4); opacity: 0;  }
+}
+
 
 /* ── Smooth page transitions ── */
 .page-transition {
@@ -434,3 +467,46 @@ button.text-white:hover * {
 .group:hover .group-hover\:scale-110 {
   transform: scale(1.06) !important;
 }
+
+/* ══════════════════════════════════════════════════════
+   AUTOCOMPLETE DROPDOWN
+   (Moved here from footer.php to enable browser caching)
+   ══════════════════════════════════════════════════════ */
+.autocomplete-dropdown {
+  position: absolute;
+  background: #1c1410;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+  z-index: 999999;
+  max-height: 250px;
+  overflow-y: auto;
+  display: none;
+  flex-direction: column;
+}
+.autocomplete-dropdown.active {
+  display: flex;
+}
+.autocomplete-item {
+  padding: 12px 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.autocomplete-item:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+.autocomplete-item b { color: #38bdf8; }
+.autocomplete-item.no-results { color: #94a3b8; cursor: default; }
+.autocomplete-item.no-results:hover { background: transparent; }
+.autocomplete-item .material-symbols-outlined { font-size: 18px; opacity: 0.7; }
+.autocomplete-dropdown::-webkit-scrollbar { width: 6px; }
+.autocomplete-dropdown::-webkit-scrollbar-track { background: transparent; }
+.autocomplete-dropdown::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+.autocomplete-dropdown::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }

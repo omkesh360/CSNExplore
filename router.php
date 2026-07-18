@@ -31,7 +31,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute("GET", "/privacy", "privacy.php");
     $r->addRoute("GET", "/terms", "terms.php");
     $r->addRoute("GET", "/my-booking", "my-booking.php");
-    $r->addRoute("GET", "/bus", "bus.php");
+    $r->addRoute("GET", "/bus", "bus-booking.php");
     $r->addRoute("GET", "/blog-detail", "blog-detail.php");
     $r->addRoute(["GET", "POST"], "/subscribe", "subscribe.php");
     $r->addRoute("GET", "/install", "install.php");
@@ -44,16 +44,16 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute("GET", "/explore", "explore.php"); // ADDED EXPLICIT ROUTE
 
     // Clean URLs for Listings
-    $r->addRoute("GET", "/hotels", "listing.php");
-    $r->addRoute("GET", "/hotel-stays", "listing.php");
-    $r->addRoute("GET", "/car-rentals", "listing.php");
-    $r->addRoute("GET", "/bike-rentals", "listing.php");
-    $r->addRoute("GET", "/attractions", "listing.php");
-    $r->addRoute("GET", "/restaurants", "listing.php");
+    $r->addRoute("GET", "/hotels", "stays.php");
+    $r->addRoute("GET", "/hotel-stays", "stays.php");
+    $r->addRoute("GET", "/car-rentals", "car-rental.php");
+    $r->addRoute("GET", "/bike-rentals", "bike-rental.php");
+    $r->addRoute("GET", "/attractions", "attractions.php");
+    $r->addRoute("GET", "/restaurants", "Restraunts.php");
 
-    // Dynamic Routes
-    $r->addRoute("GET", "/listing/{type}[/]", "listing.php");
-    $r->addRoute("GET", "/listing", "listing.php");
+    // Dynamic Routes (Deprecated but kept for safety, point to stays as fallback or remove)
+    $r->addRoute("GET", "/listing/{type}[/]", "stays.php");
+    $r->addRoute("GET", "/listing", "stays.php");
     
     // Legacy URLs support
     $r->addRoute("GET", "/listing-detail/{slug}[/]", "listing-detail-handler");

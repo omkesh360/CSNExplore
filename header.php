@@ -259,32 +259,6 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
             text-rendering: optimizeLegibility;
         }
         
-        /* Header - Critical for LCP */
-        #site-header {
-            position: fixed;
-            top: 28px;
-            left: 0;
-            right: 0;
-            z-index: 60;
-            background: #000;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        
-        /* Marquee bar */
-        #marquee-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 70;
-            background: #ec5b13;
-            color: #fff;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        
         /* Hero section - Critical for LCP */
         .hero-section {
             min-height: 100vh;
@@ -303,38 +277,16 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         }
         
         /* Loading state */
-        .loading {
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
-        }
-        .loaded {
-            opacity: 1;
-        }
+        .loading { opacity: 0; transition: opacity 0.3s ease-in; }
+        .loaded  { opacity: 1; }
+
         /* ── FLASH FIX: glass-card solid fallback before backdrop-filter CSS loads ── */
         .glass-card,.glass,.glass-section,.glass-glow{background:#fff;border:1px solid #e2e8f0}
-        /* ── GLOBAL BUTTERY SMOOTH ANIMATIONS & GLASSMORPHISM ── */
-        /* IMPORTANT: Only hide elements when JS animation system is active.
-           Without csn-anim-init (bfcache restore, JS not loaded), elements are always visible. */
-        body.csn-anim-init [data-reveal],
-        body.csn-anim-init [data-reveal-stagger]>*,
-        body.csn-anim-init .card-reveal,
-        body.csn-anim-init [data-animate]{
-            opacity:0;
-            transform:translateY(30px) scale(0.98);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, filter 0.5s ease;
-            will-change: opacity, transform;
-            filter: blur(4px);
-        }
-        [data-reveal].revealed,[data-reveal-stagger]>*.revealed,.card-reveal.revealed,.animate-visible{
-            opacity:1!important;
-            transform:translateY(0) scale(1)!important;
-            filter: blur(0px)!important;
-        }
-        /* ── OUTLINE FIX: remove default browser outline flash on reload & click ── */
-        *:focus { outline: none; }
-        *:focus-visible { outline: 2px solid #ec5b13; outline-offset: 2px; border-radius: 3px; }
-        /* ── Prevent blue/dark flash on tapping links on mobile ── */
-        a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+        
+        /* ── Logo Swap for Pill Mode ── */
+        .logo-scrolled { display: none !important; }
+        #site-header.pill-mode .logo-main { display: none !important; }
+        #site-header.pill-mode .logo-scrolled { display: block !important; }
     </style>
     <style>
         /* ── Global Enhancements ── */
@@ -458,11 +410,9 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         .hdr-call-btn, .hdr-wa-btn { position: relative; overflow: hidden; }
         .hdr-call-btn::before, .hdr-wa-btn::before { display: none !important; }
         /* ── Global mobile fixes ── */
-        body { overflow-x: hidden; max-width: 100vw; }
         * { box-sizing: border-box; }
         @media (max-width: 640px) {
             .max-w-\[1140px\] { padding-left: 12px !important; padding-right: 12px !important; }
-            section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
             h1.font-serif, h2.font-serif { font-size: 1.5rem !important; line-height: 1.15 !important; }
             .py-16 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
             .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
@@ -547,22 +497,23 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
         ['scroll','mousemove','touchstart','keydown','click'].forEach(function(e) {
             window.addEventListener(e, loadGA, {once: true, passive: true});
         });
-        // Removed 5-second fallback: only load on explicit user interaction for 0 TBT
-        // setTimeout(loadGA, 5000);
+        // Only load on explicit user interaction for 0 TBT
+    })();
+    </script>
     <!-- CSRF Protection Fetch Interceptor -->
     <script>
     (function() {
-        const originalFetch = window.fetch;
+        var originalFetch = window.fetch;
         window.fetch = function(url, options) {
             options = options || {};
-            const method = (options.method || 'GET').toUpperCase();
-            if (['POST', 'PUT', 'DELETE'].includes(method)) {
-                const isRelative = !url.match(/^(?:https?:)?\/\//i);
-                const isSameOrigin = url.startsWith(window.location.origin);
+            var method = (options.method || 'GET').toUpperCase();
+            if (['POST', 'PUT', 'DELETE'].indexOf(method) !== -1) {
+                var isRelative = !url.match(/^(?:https?:)?\/\//i);
+                var isSameOrigin = typeof url === 'string' && url.indexOf(window.location.origin) === 0;
                 if (isRelative || isSameOrigin) {
                     options.headers = options.headers || {};
-                    const matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
-                    const csrfToken = matches ? decodeURIComponent(matches[1]) : '';
+                    var matches = document.cookie.match(/(?:^|; )csrf_token=([^;]*)/);
+                    var csrfToken = matches ? decodeURIComponent(matches[1]) : '';
                     if (csrfToken) {
                         if (options.headers instanceof Headers) {
                             options.headers.set('X-CSRF-Token', csrfToken);
@@ -577,6 +528,14 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
             return originalFetch(url, options);
         };
     })();
+    </script>
+    <!-- Microsoft Clarity Tracking -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xn92b2mf6k");
     </script>
     <?php if (!empty($extra_head)) echo $extra_head; ?>
 </head>
@@ -631,14 +590,13 @@ if (defined('MAINTENANCE_MODE') && MAINTENANCE_MODE === true) {
             <?php if (defined('WHITE_LABEL_MODE') && WHITE_LABEL_MODE === true): ?>
                 <span class="text-white font-bold text-xl tracking-wide">TravelPortal</span>
             <?php else: ?>
-                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain"/>
+                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/csnexplore-logo.png" alt="CSNExplore" class="h-8 sm:h-9 object-contain logo-main"/>
+                <img fetchpriority="high" loading="eager" width="120" height="36" src="<?php echo BASE_PATH; ?>/images/Logo-light-optimized.webp" alt="CSNExplore" class="h-8 sm:h-9 object-contain logo-scrolled"/>
             <?php endif; ?>
         </a>
         <div class="hidden xl:flex items-center gap-0" itemscope itemtype="https://schema.org/SiteNavigationElement">
-            <?php foreach (($is_listing_page ? $listing_nav : $nav_links) as $link):
-                $is_active = ($is_listing_page
-                    ? ($link['type'] === $active_listing_type)
-                    : (trim($link['href'],'/') === trim($current_page,'/') || ($current_page==='home' && ($link['href'] === BASE_PATH.'/' || strpos($link['href'],'/index')!==false))));
+            <?php foreach ($nav_links as $link):
+                $is_active = (trim($link['href'],'/') === trim($current_page,'/') || ($current_page==='home' && ($link['href'] === BASE_PATH.'/' || strpos($link['href'],'/index')!==false)));
             ?>
             <a itemprop="url" href="<?php echo $link['href']; ?>" title="<?php echo htmlspecialchars($link['label']); ?> in Chhatrapati Sambhajinagar"
                class="text-[13px] font-bold px-3.5 py-2 rounded-full transition-colors duration-200 <?php echo $is_active ? 'text-white bg-white/10' : 'text-white/70 hover:bg-white/10 hover:text-white'; ?> whitespace-nowrap">

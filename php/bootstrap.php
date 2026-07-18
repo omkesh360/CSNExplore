@@ -80,9 +80,10 @@ $containerBuilder->addDefinitions([
         }
         // Fallback to Predis if phpredis extension is not installed
         $client = new \Predis\Client([
-            'scheme' => 'tcp',
-            'host'   => env('REDIS_HOST', '127.0.0.1'),
-            'port'   => env('REDIS_PORT', 6379),
+            'scheme'  => 'tcp',
+            'host'    => env('REDIS_HOST', '127.0.0.1'),
+            'port'    => env('REDIS_PORT', 6379),
+            'timeout' => 1.0,
         ]);
         return new \Symfony\Component\Cache\Adapter\RedisAdapter($client, 'csn_');
     }),

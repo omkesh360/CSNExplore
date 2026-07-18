@@ -52,7 +52,8 @@ $admin_title = $admin_title ?? 'Admin | CSNExplore';
 <meta name="msapplication-TileImage" content="../images/fevicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ec5b13">
 <title><?php echo htmlspecialchars($admin_title); ?></title>
-<!-- Tailwind script removed -->
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/admin/admin-mobile.css"/>
 <script>

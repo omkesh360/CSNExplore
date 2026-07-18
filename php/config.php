@@ -27,6 +27,15 @@ if (php_sapi_name() !== 'cli') {
     define('CORS_ORIGIN', 'https://csnexplore.com');
 }
 
+// Security Headers (Industry Standard)
+if (!headers_sent()) {
+    header("X-Content-Type-Options: nosniff");
+    header("X-XSS-Protection: 1; mode=block");
+    header("X-Frame-Options: SAMEORIGIN");
+    header("Strict-Transport-Security: max-age=31536000; includeSubDomains");
+    header("Referrer-Policy: strict-origin-when-cross-origin");
+}
+
 // CSNExplore – Central config
 date_default_timezone_set('Asia/Kolkata');
 
